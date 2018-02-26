@@ -1,0 +1,105 @@
+grammar org.xtext.sampleProj.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/sampleProj/mydsl/MyDsl"
+
+DomainModel:
+	(elements+=TopLevel)*;
+	
+// Theorem names can include white space.
+terminal THM_NAME: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9' ' | '|'\t'|'\r'|'\n')*;
+	
+TopLevel:
+	ImportSatement | ClassDecl;
+	
+
+ImportSatement:
+	'Import'
+		imports+=Import
+;
+
+Import:
+	importName+=ImportComponent ('.' importName+=ImportComponent)
+;
+
+ImportComponent:
+	name=ID
+;
+
+ClassDecl:
+	Class | Datatype | Extend
+;
+
+PolyContext:
+	'<' (typedVars+=TypedVariable)+ '>'
+;
+
+TypedVariable:
+	name+=TypeName type+=TypeDeclaration
+;
+
+TypeDeclaration:
+	typeName=[TypeName] context=TypeDeclContext
+;
+
+TypeDeclContext:
+	'<' (',' typeName+=[TypeName]) '>'
+;
+
+TypeName:
+	name=ID
+;
+
+FunctionName:
+	name=ID
+;
+
+Supertype:
+	':' superType+=TypeDeclaration (',' superType+=TypeDeclaration)*
+;
+
+Where:
+	'where' expessions+=Expression (';' expressions+=Expression)
+;
+
+Class:
+	'Class' name=TypeName (context+=PolyContext)? (supertypes+=Supertype)? (body+=TypeBody)
+;
+
+Datatype:
+	'Datatype' name=TypeName (context+=PolyContext)? (constructors+=DatatypeConstructor)*
+;
+
+DatatypeConstructor:
+	BaseConstructor | Constructor
+;
+
+BaseConstructor:
+	name=ID
+;
+
+Constructor:
+	name=ID '(' (typedVariables+=TypedVariable)* ')'
+;
+
+Extend: 
+	name=[TypeName] '(' extesnion=ID ')' typeBody=TypeBody
+;
+
+TypeBody:
+	'{' (functions+=FunctionDecl)* | (theorems+=TheoremBody)  '}'
+;
+
+FunctionDecl:
+	name+=FunctionName '(' (typeVariables+=TypedVariable)* ')'
+;
+
+TheoremBody:
+	'Theorems' '{'  '}'
+;
+
+Expression:
+	// This needs to be written. Could be worth separating this out into another 
+	// dsl reducing the complexity of this section. Specifically I need to look out for
+	// the following expressions forall exists lambda function calls.
+	name=ID
+;
