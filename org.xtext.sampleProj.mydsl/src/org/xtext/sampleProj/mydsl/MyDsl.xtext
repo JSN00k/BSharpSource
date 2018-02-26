@@ -6,7 +6,7 @@ DomainModel:
 	(elements+=TopLevel)*;
 	
 // Theorem names can include white space.
-terminal THM_NAME: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9' ' | '|'\t'|'\r'|'\n')*;
+//terminal THM_NAME: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9' ' | '|'\t')*;
 	
 TopLevel:
 	ImportSatement | ClassDecl;
@@ -30,11 +30,19 @@ ClassDecl:
 ;
 
 PolyContext:
-	'<' (typedVars+=TypedVariable)+ '>'
+	'<' (polyTypes+=PolyContextTypes)+ '>'
+;
+
+PolyContextTypes:
+	name=ID (constraints+=TypeConstraints)*
+;
+
+TypeConstraints:
+	':' typeName+=[TypeName] (',' typeName+=[TypeName])*
 ;
 
 TypedVariable:
-	name+=TypeName type+=TypeDeclaration
+	name=ID constraints+=TypeConstraints
 ;
 
 TypeDeclaration:
@@ -42,7 +50,17 @@ TypeDeclaration:
 ;
 
 TypeDeclContext:
-	'<' (',' typeName+=[TypeName]) '>'
+	'<' typeName+=TypeConstructor (',' typeName+=TypeConstructor)* '>'
+;
+
+
+
+ConstructedType:
+	type+=TypeConstructor ('×' type+=TypeConstructor)*
+;
+
+TypeConstructor:
+	typeName+=[TypeName] (context+=TypeDeclContext)?
 ;
 
 TypeName:
@@ -62,11 +80,11 @@ Where:
 ;
 
 Class:
-	'Class' name=TypeName (context+=PolyContext)? (supertypes+=Supertype)? (body+=TypeBody)
+	'Class' name=TypeName (context+=PolyContext)? (supertypes+=Supertype)? '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 Datatype:
-	'Datatype' name=TypeName (context+=PolyContext)? (constructors+=DatatypeConstructor)*
+	'Datatype' name=TypeName (context+=PolyContext)? (constructors+=DatatypeConstructor)* '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 DatatypeConstructor:
@@ -82,11 +100,11 @@ Constructor:
 ;
 
 Extend: 
-	name=[TypeName] '(' extesnion=ID ')' typeBody=TypeBody
+	name=[TypeName] '(' extesnion=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
-TypeBody:
-	'{' (functions+=FunctionDecl)* | (theorems+=TheoremBody)  '}'
+TypeBodyElements:
+	 (functions+=FunctionDecl) | (theorems+=TheoremBody)
 ;
 
 FunctionDecl:
