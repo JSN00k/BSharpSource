@@ -17,41 +17,41 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.sampleProj.mydsl.myDsl.Import;
-import org.xtext.sampleProj.mydsl.myDsl.ImportComponent;
+import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Import</b></em>'.
+ * An implementation of the model object '<em><b>Constructed Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ImportImpl#getImportName <em>Import Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ConstructedTypeImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ImportImpl extends MinimalEObjectImpl.Container implements Import
+public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements ConstructedType
 {
   /**
-   * The cached value of the '{@link #getImportName() <em>Import Name</em>}' containment reference list.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getImportName()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected EList<ImportComponent> importName;
+  protected EList<TypeConstructor> type;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ImportImpl()
+  protected ConstructedTypeImpl()
   {
     super();
   }
@@ -64,7 +64,7 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.IMPORT;
+    return MyDslPackage.Literals.CONSTRUCTED_TYPE;
   }
 
   /**
@@ -72,13 +72,13 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ImportComponent> getImportName()
+  public EList<TypeConstructor> getType()
   {
-    if (importName == null)
+    if (type == null)
     {
-      importName = new EObjectContainmentEList<ImportComponent>(ImportComponent.class, this, MyDslPackage.IMPORT__IMPORT_NAME);
+      type = new EObjectContainmentEList<TypeConstructor>(TypeConstructor.class, this, MyDslPackage.CONSTRUCTED_TYPE__TYPE);
     }
-    return importName;
+    return type;
   }
 
   /**
@@ -91,8 +91,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT__IMPORT_NAME:
-        return ((InternalEList<?>)getImportName()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
+        return ((InternalEList<?>)getType()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -107,8 +107,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT__IMPORT_NAME:
-        return getImportName();
+      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
+        return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -124,9 +124,9 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT__IMPORT_NAME:
-        getImportName().clear();
-        getImportName().addAll((Collection<? extends ImportComponent>)newValue);
+      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
+        getType().clear();
+        getType().addAll((Collection<? extends TypeConstructor>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,8 +142,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT__IMPORT_NAME:
-        getImportName().clear();
+      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
+        getType().clear();
         return;
     }
     super.eUnset(featureID);
@@ -159,10 +159,10 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT__IMPORT_NAME:
-        return importName != null && !importName.isEmpty();
+      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
+        return type != null && !type.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ImportImpl
+} //ConstructedTypeImpl

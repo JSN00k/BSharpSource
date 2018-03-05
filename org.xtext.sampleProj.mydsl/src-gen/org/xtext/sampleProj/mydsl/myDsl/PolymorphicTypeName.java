@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Import Component</b></em>'.
+ * A representation of the model object '<em><b>Polymorphic Type Name</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.ImportComponent#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName#getName <em>Name</em>}</li>
  * </ul>
  *
- * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getImportComponent()
+ * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getPolymorphicTypeName()
  * @model
  * @generated
  */
-public interface ImportComponent extends EObject
+public interface PolymorphicTypeName extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -33,14 +33,14 @@ public interface ImportComponent extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getImportComponent_Name()
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getPolymorphicTypeName_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.ImportComponent#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -49,4 +49,4 @@ public interface ImportComponent extends EObject
    */
   void setName(String value);
 
-} // ImportComponent
+} // PolymorphicTypeName

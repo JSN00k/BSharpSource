@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -23,35 +24,46 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Type Decl Context</b></em>'.
+ * An implementation of the model object '<em><b>Type Constructor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeDeclContextImpl#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstructorImpl#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstructorImpl#getContext <em>Context</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements TypeDeclContext
+public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements TypeConstructor
 {
   /**
-   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' containment reference list.
+   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTypeName()
    * @generated
    * @ordered
    */
-  protected EList<TypeConstructor> typeName;
+  protected EList<String> typeName;
+
+  /**
+   * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContext()
+   * @generated
+   * @ordered
+   */
+  protected EList<TypeDeclContext> context;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected TypeDeclContextImpl()
+  protected TypeConstructorImpl()
   {
     super();
   }
@@ -64,7 +76,7 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.TYPE_DECL_CONTEXT;
+    return MyDslPackage.Literals.TYPE_CONSTRUCTOR;
   }
 
   /**
@@ -72,13 +84,27 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypeConstructor> getTypeName()
+  public EList<String> getTypeName()
   {
     if (typeName == null)
     {
-      typeName = new EObjectContainmentEList<TypeConstructor>(TypeConstructor.class, this, MyDslPackage.TYPE_DECL_CONTEXT__TYPE_NAME);
+      typeName = new EDataTypeEList<String>(String.class, this, MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME);
     }
     return typeName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<TypeDeclContext> getContext()
+  {
+    if (context == null)
+    {
+      context = new EObjectContainmentEList<TypeDeclContext>(TypeDeclContext.class, this, MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT);
+    }
+    return context;
   }
 
   /**
@@ -91,8 +117,8 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPE_DECL_CONTEXT__TYPE_NAME:
-        return ((InternalEList<?>)getTypeName()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
+        return ((InternalEList<?>)getContext()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -107,8 +133,10 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPE_DECL_CONTEXT__TYPE_NAME:
+      case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
         return getTypeName();
+      case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
+        return getContext();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -124,9 +152,13 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPE_DECL_CONTEXT__TYPE_NAME:
+      case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
         getTypeName().clear();
-        getTypeName().addAll((Collection<? extends TypeConstructor>)newValue);
+        getTypeName().addAll((Collection<? extends String>)newValue);
+        return;
+      case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
+        getContext().clear();
+        getContext().addAll((Collection<? extends TypeDeclContext>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,8 +174,11 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPE_DECL_CONTEXT__TYPE_NAME:
+      case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
         getTypeName().clear();
+        return;
+      case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
+        getContext().clear();
         return;
     }
     super.eUnset(featureID);
@@ -159,10 +194,29 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPE_DECL_CONTEXT__TYPE_NAME:
+      case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
         return typeName != null && !typeName.isEmpty();
+      case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
+        return context != null && !context.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //TypeDeclContextImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (typeName: ");
+    result.append(typeName);
+    result.append(')');
+    return result.toString();
+  }
+
+} //TypeConstructorImpl

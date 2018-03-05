@@ -29,13 +29,26 @@ ClassDecl:
 	Class | Datatype | Extend
 ;
 
+Class:
+	'Class' name=TypeName (context+=PolyContext)? (supertypes+=Supertype)? '{' (bodyElements+=TypeBodyElements)* '}'
+;
+
+TypeName:
+	name=ID
+;
+
 PolyContext:
 	'<' (polyTypes+=PolyContextTypes)+ '>'
 ;
 
 PolyContextTypes:
-	name=ID (constraints+=TypeConstraints)*
+	name=PolymorphicTypeName (constraints+=TypeConstraints)*
 ;
+
+PolymorphicTypeName:
+	name=ID
+;
+
 
 TypeConstraints:
 	':' typeName+=[TypeName] (',' typeName+=[TypeName])*
@@ -45,42 +58,37 @@ TypedVariable:
 	name=ID constraints+=TypeConstraints
 ;
 
+Supertype:
+	':' superType+=ConstructedType (',' superType+=TypeDeclaration)*
+;
+
 TypeDeclaration:
 	typeName=[TypeName] context=TypeDeclContext
+;
+
+/* Along with the normal Event-B type operator, and new B++ types the  */
+ConstructedType:
+	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)*
+;
+
+TypeConstructor:
+	typeName+=ID (context+=TypeDeclContext)?
 ;
 
 TypeDeclContext:
 	'<' typeName+=TypeConstructor (',' typeName+=TypeConstructor)* '>'
 ;
 
-
-
-ConstructedType:
-	type+=TypeConstructor ('×' type+=TypeConstructor)*
-;
-
-TypeConstructor:
-	typeName+=[TypeName] (context+=TypeDeclContext)?
-;
-
-TypeName:
-	name=ID
-;
-
-FunctionName:
-	name=ID
-;
-
-Supertype:
-	':' superType+=TypeDeclaration (',' superType+=TypeDeclaration)*
-;
-
 Where:
 	'where' expessions+=Expression (';' expressions+=Expression)
 ;
 
-Class:
-	'Class' name=TypeName (context+=PolyContext)? (supertypes+=Supertype)? '{' (bodyElements+=TypeBodyElements)* '}'
+TypeBodyElements:
+	 (functions+=FunctionDecl) | (theorems+=TheoremBody)
+;
+
+FunctionName:
+	name=ID
 ;
 
 Datatype:
@@ -101,10 +109,6 @@ Constructor:
 
 Extend: 
 	name=[TypeName] '(' extesnion=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
-;
-
-TypeBodyElements:
-	 (functions+=FunctionDecl) | (theorems+=TheoremBody)
 ;
 
 FunctionDecl:
