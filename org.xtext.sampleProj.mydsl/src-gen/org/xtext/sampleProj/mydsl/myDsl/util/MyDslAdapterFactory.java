@@ -23,8 +23,9 @@ import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
 import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
 import org.xtext.sampleProj.mydsl.myDsl.Import;
 import org.xtext.sampleProj.mydsl.myDsl.ImportComponent;
-import org.xtext.sampleProj.mydsl.myDsl.ImportSatement;
+import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.Name;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
@@ -113,9 +114,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createTopLevelAdapter();
       }
       @Override
-      public Adapter caseImportSatement(ImportSatement object)
+      public Adapter caseImportStatement(ImportStatement object)
       {
-        return createImportSatementAdapter();
+        return createImportStatementAdapter();
       }
       @Override
       public Adapter caseImport(Import object)
@@ -138,9 +139,19 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createClassAdapter();
       }
       @Override
+      public Adapter caseName(Name object)
+      {
+        return createNameAdapter();
+      }
+      @Override
       public Adapter caseTypeName(TypeName object)
       {
         return createTypeNameAdapter();
+      }
+      @Override
+      public Adapter casePolymorphicTypeName(PolymorphicTypeName object)
+      {
+        return createPolymorphicTypeNameAdapter();
       }
       @Override
       public Adapter casePolyContext(PolyContext object)
@@ -151,11 +162,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePolyContextTypes(PolyContextTypes object)
       {
         return createPolyContextTypesAdapter();
-      }
-      @Override
-      public Adapter casePolymorphicTypeName(PolymorphicTypeName object)
-      {
-        return createPolymorphicTypeNameAdapter();
       }
       @Override
       public Adapter caseTypeConstraints(TypeConstraints object)
@@ -295,16 +301,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.ImportSatement <em>Import Satement</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.ImportStatement <em>Import Statement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.ImportSatement
+   * @see org.xtext.sampleProj.mydsl.myDsl.ImportStatement
    * @generated
    */
-  public Adapter createImportSatementAdapter()
+  public Adapter createImportStatementAdapter()
   {
     return null;
   }
@@ -370,6 +376,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Name <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.Name
+   * @generated
+   */
+  public Adapter createNameAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeName <em>Type Name</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -380,6 +401,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTypeNameAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName <em>Polymorphic Type Name</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName
+   * @generated
+   */
+  public Adapter createPolymorphicTypeNameAdapter()
   {
     return null;
   }
@@ -410,21 +446,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPolyContextTypesAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName <em>Polymorphic Type Name</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName
-   * @generated
-   */
-  public Adapter createPolymorphicTypeNameAdapter()
   {
     return null;
   }

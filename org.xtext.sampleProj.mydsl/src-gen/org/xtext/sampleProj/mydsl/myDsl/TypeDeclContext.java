@@ -27,7 +27,7 @@ public interface TypeDeclContext extends EObject
 {
   /**
    * Returns the value of the '<em><b>Type Name</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.TypeConstructor}.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.ConstructedType}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Type Name</em>' containment reference list isn't clear,
@@ -39,6 +39,6 @@ public interface TypeDeclContext extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<TypeConstructor> getTypeName();
+  EList<ConstructedType> getTypeName();
 
 } // TypeDeclContext

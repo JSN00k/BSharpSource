@@ -9,10 +9,10 @@ DomainModel:
 //terminal THM_NAME: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9' ' | '|'\t')*;
 	
 TopLevel:
-	ImportSatement | ClassDecl;
+	ImportStatement | ClassDecl;
 	
 
-ImportSatement:
+ImportStatement:
 	'Import'
 		imports+=Import
 ;
@@ -30,12 +30,14 @@ ClassDecl:
 ;
 
 Class:
-	'Class' name=TypeName (context+=PolyContext)? (supertypes+=Supertype)? '{' (bodyElements+=TypeBodyElements)* '}'
+	'Class' typeName=TypeName (context+=PolyContext)? (supertypes+=Supertype)? '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
-TypeName:
-	name=ID
-;
+Name: PolymorphicTypeName | TypeName;
+
+TypeName: name=ID;
+
+PolymorphicTypeName: name=ID;
 
 PolyContext:
 	'<' (polyTypes+=PolyContextTypes)+ '>'
@@ -43,10 +45,6 @@ PolyContext:
 
 PolyContextTypes:
 	name=PolymorphicTypeName (constraints+=TypeConstraints)*
-;
-
-PolymorphicTypeName:
-	name=ID
 ;
 
 
@@ -59,7 +57,7 @@ TypedVariable:
 ;
 
 Supertype:
-	':' superType+=ConstructedType (',' superType+=TypeDeclaration)*
+	':' superType+=ConstructedType (',' superType+=ConstructedType)*
 ;
 
 TypeDeclaration:
@@ -68,16 +66,36 @@ TypeDeclaration:
 
 /* Along with the normal Event-B type operator, and new B++ types the  */
 ConstructedType:
-	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)*
+	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
 ;
 
+/* Type constructor has validation rules to check that there is no context when there is a polymorphic name, 
+ * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
+ */
 TypeConstructor:
-	typeName+=ID (context+=TypeDeclContext)?
+	typeName+=[Name] (context+=TypeDeclContext)?
 ;
 
 TypeDeclContext:
-	'<' typeName+=TypeConstructor (',' typeName+=TypeConstructor)* '>'
+	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
 ;
+
+//ConcreteTypeDecl:
+//	PolymorphicTypeName | TypeConstructor | ConstructedType
+//;
+//
+//TypeConstructor:
+//	typeName+=[TypeName] (context+=TypeDeclContext)?
+//;
+//
+//TypeDeclContext:
+//	'<' typeName+=ConcreteTypeDecl (',' typeName+=ConcreteTypeDecl)* '>'
+//;
+//
+//ConstructedType:
+//	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)?
+//;
+
 
 Where:
 	'where' expessions+=Expression (';' expressions+=Expression)

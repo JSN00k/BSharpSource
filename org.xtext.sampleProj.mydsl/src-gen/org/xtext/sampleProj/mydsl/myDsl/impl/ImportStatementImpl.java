@@ -16,23 +16,23 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.Import;
-import org.xtext.sampleProj.mydsl.myDsl.ImportSatement;
+import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Import Satement</b></em>'.
+ * An implementation of the model object '<em><b>Import Statement</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ImportSatementImpl#getImports <em>Imports</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ImportStatementImpl#getImports <em>Imports</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ImportSatementImpl extends TopLevelImpl implements ImportSatement
+public class ImportStatementImpl extends TopLevelImpl implements ImportStatement
 {
   /**
    * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
@@ -49,7 +49,7 @@ public class ImportSatementImpl extends TopLevelImpl implements ImportSatement
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ImportSatementImpl()
+  protected ImportStatementImpl()
   {
     super();
   }
@@ -62,7 +62,7 @@ public class ImportSatementImpl extends TopLevelImpl implements ImportSatement
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.IMPORT_SATEMENT;
+    return MyDslPackage.Literals.IMPORT_STATEMENT;
   }
 
   /**
@@ -74,7 +74,7 @@ public class ImportSatementImpl extends TopLevelImpl implements ImportSatement
   {
     if (imports == null)
     {
-      imports = new EObjectContainmentEList<Import>(Import.class, this, MyDslPackage.IMPORT_SATEMENT__IMPORTS);
+      imports = new EObjectContainmentEList<Import>(Import.class, this, MyDslPackage.IMPORT_STATEMENT__IMPORTS);
     }
     return imports;
   }
@@ -89,7 +89,7 @@ public class ImportSatementImpl extends TopLevelImpl implements ImportSatement
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT_SATEMENT__IMPORTS:
+      case MyDslPackage.IMPORT_STATEMENT__IMPORTS:
         return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -105,7 +105,7 @@ public class ImportSatementImpl extends TopLevelImpl implements ImportSatement
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT_SATEMENT__IMPORTS:
+      case MyDslPackage.IMPORT_STATEMENT__IMPORTS:
         return getImports();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -122,7 +122,7 @@ public class ImportSatementImpl extends TopLevelImpl implements ImportSatement
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT_SATEMENT__IMPORTS:
+      case MyDslPackage.IMPORT_STATEMENT__IMPORTS:
         getImports().clear();
         getImports().addAll((Collection<? extends Import>)newValue);
         return;
@@ -140,7 +140,7 @@ public class ImportSatementImpl extends TopLevelImpl implements ImportSatement
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT_SATEMENT__IMPORTS:
+      case MyDslPackage.IMPORT_STATEMENT__IMPORTS:
         getImports().clear();
         return;
     }
@@ -157,10 +157,10 @@ public class ImportSatementImpl extends TopLevelImpl implements ImportSatement
   {
     switch (featureID)
     {
-      case MyDslPackage.IMPORT_SATEMENT__IMPORTS:
+      case MyDslPackage.IMPORT_STATEMENT__IMPORTS:
         return imports != null && !imports.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ImportSatementImpl
+} //ImportStatementImpl

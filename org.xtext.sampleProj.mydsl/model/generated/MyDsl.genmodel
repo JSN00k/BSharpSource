@@ -10,8 +10,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//DomainModel/elements"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TopLevel"/>
-    <genClasses ecoreClass="MyDsl.ecore#//ImportSatement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ImportSatement/imports"/>
+    <genClasses ecoreClass="MyDsl.ecore#//ImportStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ImportStatement/imports"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Import">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Import/importName"/>
@@ -23,22 +23,21 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ClassDecl/bodyElements"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Class">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Class/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Class/typeName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Class/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Class/supertypes"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//TypeName">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//TypeName/name"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Name">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Name/name"/>
     </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//TypeName"/>
+    <genClasses ecoreClass="MyDsl.ecore#//PolymorphicTypeName"/>
     <genClasses ecoreClass="MyDsl.ecore#//PolyContext">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//PolyContext/polyTypes"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//PolyContextTypes">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//PolyContextTypes/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//PolyContextTypes/constraints"/>
-    </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//PolymorphicTypeName">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//PolymorphicTypeName/name"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TypeConstraints">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypeConstraints/typeName"/>
@@ -58,7 +57,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ConstructedType/type"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TypeConstructor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//TypeConstructor/typeName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypeConstructor/typeName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypeConstructor/context"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TypeDeclContext">

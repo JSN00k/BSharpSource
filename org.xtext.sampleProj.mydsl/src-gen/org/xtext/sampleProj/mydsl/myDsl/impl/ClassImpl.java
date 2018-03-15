@@ -31,7 +31,7 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeName;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ClassImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ClassImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ClassImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ClassImpl#getSupertypes <em>Supertypes</em>}</li>
  * </ul>
@@ -41,14 +41,14 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeName;
 public class ClassImpl extends ClassDeclImpl implements org.xtext.sampleProj.mydsl.myDsl.Class
 {
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
+   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getTypeName()
    * @generated
    * @ordered
    */
-  protected TypeName name;
+  protected TypeName typeName;
 
   /**
    * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference list.
@@ -96,9 +96,9 @@ public class ClassImpl extends ClassDeclImpl implements org.xtext.sampleProj.myd
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypeName getName()
+  public TypeName getTypeName()
   {
-    return name;
+    return typeName;
   }
 
   /**
@@ -106,13 +106,13 @@ public class ClassImpl extends ClassDeclImpl implements org.xtext.sampleProj.myd
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetName(TypeName newName, NotificationChain msgs)
+  public NotificationChain basicSetTypeName(TypeName newTypeName, NotificationChain msgs)
   {
-    TypeName oldName = name;
-    name = newName;
+    TypeName oldTypeName = typeName;
+    typeName = newTypeName;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.CLASS__NAME, oldName, newName);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.CLASS__TYPE_NAME, oldTypeName, newTypeName);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -123,20 +123,20 @@ public class ClassImpl extends ClassDeclImpl implements org.xtext.sampleProj.myd
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(TypeName newName)
+  public void setTypeName(TypeName newTypeName)
   {
-    if (newName != name)
+    if (newTypeName != typeName)
     {
       NotificationChain msgs = null;
-      if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLASS__NAME, null, msgs);
-      if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLASS__NAME, null, msgs);
-      msgs = basicSetName(newName, msgs);
+      if (typeName != null)
+        msgs = ((InternalEObject)typeName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLASS__TYPE_NAME, null, msgs);
+      if (newTypeName != null)
+        msgs = ((InternalEObject)newTypeName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLASS__TYPE_NAME, null, msgs);
+      msgs = basicSetTypeName(newTypeName, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CLASS__NAME, newName, newName));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CLASS__TYPE_NAME, newTypeName, newTypeName));
   }
 
   /**
@@ -177,8 +177,8 @@ public class ClassImpl extends ClassDeclImpl implements org.xtext.sampleProj.myd
   {
     switch (featureID)
     {
-      case MyDslPackage.CLASS__NAME:
-        return basicSetName(null, msgs);
+      case MyDslPackage.CLASS__TYPE_NAME:
+        return basicSetTypeName(null, msgs);
       case MyDslPackage.CLASS__CONTEXT:
         return ((InternalEList<?>)getContext()).basicRemove(otherEnd, msgs);
       case MyDslPackage.CLASS__SUPERTYPES:
@@ -197,8 +197,8 @@ public class ClassImpl extends ClassDeclImpl implements org.xtext.sampleProj.myd
   {
     switch (featureID)
     {
-      case MyDslPackage.CLASS__NAME:
-        return getName();
+      case MyDslPackage.CLASS__TYPE_NAME:
+        return getTypeName();
       case MyDslPackage.CLASS__CONTEXT:
         return getContext();
       case MyDslPackage.CLASS__SUPERTYPES:
@@ -218,8 +218,8 @@ public class ClassImpl extends ClassDeclImpl implements org.xtext.sampleProj.myd
   {
     switch (featureID)
     {
-      case MyDslPackage.CLASS__NAME:
-        setName((TypeName)newValue);
+      case MyDslPackage.CLASS__TYPE_NAME:
+        setTypeName((TypeName)newValue);
         return;
       case MyDslPackage.CLASS__CONTEXT:
         getContext().clear();
@@ -243,8 +243,8 @@ public class ClassImpl extends ClassDeclImpl implements org.xtext.sampleProj.myd
   {
     switch (featureID)
     {
-      case MyDslPackage.CLASS__NAME:
-        setName((TypeName)null);
+      case MyDslPackage.CLASS__TYPE_NAME:
+        setTypeName((TypeName)null);
         return;
       case MyDslPackage.CLASS__CONTEXT:
         getContext().clear();
@@ -266,8 +266,8 @@ public class ClassImpl extends ClassDeclImpl implements org.xtext.sampleProj.myd
   {
     switch (featureID)
     {
-      case MyDslPackage.CLASS__NAME:
-        return name != null;
+      case MyDslPackage.CLASS__TYPE_NAME:
+        return typeName != null;
       case MyDslPackage.CLASS__CONTEXT:
         return context != null && !context.isEmpty();
       case MyDslPackage.CLASS__SUPERTYPES:

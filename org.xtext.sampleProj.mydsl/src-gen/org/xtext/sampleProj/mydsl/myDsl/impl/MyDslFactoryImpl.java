@@ -24,9 +24,10 @@ import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
 import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
 import org.xtext.sampleProj.mydsl.myDsl.Import;
 import org.xtext.sampleProj.mydsl.myDsl.ImportComponent;
-import org.xtext.sampleProj.mydsl.myDsl.ImportSatement;
+import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslFactory;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.Name;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
@@ -95,15 +96,16 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
     {
       case MyDslPackage.DOMAIN_MODEL: return createDomainModel();
       case MyDslPackage.TOP_LEVEL: return createTopLevel();
-      case MyDslPackage.IMPORT_SATEMENT: return createImportSatement();
+      case MyDslPackage.IMPORT_STATEMENT: return createImportStatement();
       case MyDslPackage.IMPORT: return createImport();
       case MyDslPackage.IMPORT_COMPONENT: return createImportComponent();
       case MyDslPackage.CLASS_DECL: return createClassDecl();
       case MyDslPackage.CLASS: return createClass();
+      case MyDslPackage.NAME: return createName();
       case MyDslPackage.TYPE_NAME: return createTypeName();
+      case MyDslPackage.POLYMORPHIC_TYPE_NAME: return createPolymorphicTypeName();
       case MyDslPackage.POLY_CONTEXT: return createPolyContext();
       case MyDslPackage.POLY_CONTEXT_TYPES: return createPolyContextTypes();
-      case MyDslPackage.POLYMORPHIC_TYPE_NAME: return createPolymorphicTypeName();
       case MyDslPackage.TYPE_CONSTRAINTS: return createTypeConstraints();
       case MyDslPackage.TYPED_VARIABLE: return createTypedVariable();
       case MyDslPackage.SUPERTYPE: return createSupertype();
@@ -153,10 +155,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ImportSatement createImportSatement()
+  public ImportStatement createImportStatement()
   {
-    ImportSatementImpl importSatement = new ImportSatementImpl();
-    return importSatement;
+    ImportStatementImpl importStatement = new ImportStatementImpl();
+    return importStatement;
   }
 
   /**
@@ -208,10 +210,32 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Name createName()
+  {
+    NameImpl name = new NameImpl();
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public TypeName createTypeName()
   {
     TypeNameImpl typeName = new TypeNameImpl();
     return typeName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PolymorphicTypeName createPolymorphicTypeName()
+  {
+    PolymorphicTypeNameImpl polymorphicTypeName = new PolymorphicTypeNameImpl();
+    return polymorphicTypeName;
   }
 
   /**
@@ -234,17 +258,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     PolyContextTypesImpl polyContextTypes = new PolyContextTypesImpl();
     return polyContextTypes;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PolymorphicTypeName createPolymorphicTypeName()
-  {
-    PolymorphicTypeNameImpl polymorphicTypeName = new PolymorphicTypeNameImpl();
-    return polymorphicTypeName;
   }
 
   /**

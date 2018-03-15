@@ -113,11 +113,11 @@ ruleTopLevel returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getTopLevelAccess().getImportSatementParserRuleCall_0());
+			newCompositeNode(grammarAccess.getTopLevelAccess().getImportStatementParserRuleCall_0());
 		}
-		this_ImportSatement_0=ruleImportSatement
+		this_ImportStatement_0=ruleImportStatement
 		{
-			$current = $this_ImportSatement_0.current;
+			$current = $this_ImportStatement_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
@@ -132,15 +132,15 @@ ruleTopLevel returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleImportSatement
-entryRuleImportSatement returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getImportSatementRule()); }
-	iv_ruleImportSatement=ruleImportSatement
-	{ $current=$iv_ruleImportSatement.current; }
+// Entry rule entryRuleImportStatement
+entryRuleImportStatement returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getImportStatementRule()); }
+	iv_ruleImportStatement=ruleImportStatement
+	{ $current=$iv_ruleImportStatement.current; }
 	EOF;
 
-// Rule ImportSatement
-ruleImportSatement returns [EObject current=null]
+// Rule ImportStatement
+ruleImportStatement returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -150,17 +150,17 @@ ruleImportSatement returns [EObject current=null]
 	(
 		otherlv_0='Import'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getImportSatementAccess().getImportKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getImportStatementAccess().getImportKeyword_0());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getImportSatementAccess().getImportsImportParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getImportStatementAccess().getImportsImportParserRuleCall_1_0());
 				}
 				lv_imports_1_0=ruleImport
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getImportSatementRule());
+						$current = createModelElementForParent(grammarAccess.getImportStatementRule());
 					}
 					add(
 						$current,
@@ -340,17 +340,17 @@ ruleClass returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getClassAccess().getNameTypeNameParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getClassAccess().getTypeNameTypeNameParserRuleCall_1_0());
 				}
-				lv_name_1_0=ruleTypeName
+				lv_typeName_1_0=ruleTypeName
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getClassRule());
 					}
 					set(
 						$current,
-						"name",
-						lv_name_1_0,
+						"typeName",
+						lv_typeName_1_0,
 						"org.xtext.sampleProj.mydsl.MyDsl.TypeName");
 					afterParserOrEnumRuleCall();
 				}
@@ -448,6 +448,41 @@ ruleTypeName returns [EObject current=null]
 			{
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getTypeNameRule());
+				}
+				setWithLastConsumed(
+					$current,
+					"name",
+					lv_name_0_0,
+					"org.eclipse.xtext.common.Terminals.ID");
+			}
+		)
+	)
+;
+
+// Entry rule entryRulePolymorphicTypeName
+entryRulePolymorphicTypeName returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPolymorphicTypeNameRule()); }
+	iv_rulePolymorphicTypeName=rulePolymorphicTypeName
+	{ $current=$iv_rulePolymorphicTypeName.current; }
+	EOF;
+
+// Rule PolymorphicTypeName
+rulePolymorphicTypeName returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_name_0_0=RULE_ID
+			{
+				newLeafNode(lv_name_0_0, grammarAccess.getPolymorphicTypeNameAccess().getNameIDTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getPolymorphicTypeNameRule());
 				}
 				setWithLastConsumed(
 					$current,
@@ -559,41 +594,6 @@ rulePolyContextTypes returns [EObject current=null]
 				}
 			)
 		)*
-	)
-;
-
-// Entry rule entryRulePolymorphicTypeName
-entryRulePolymorphicTypeName returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPolymorphicTypeNameRule()); }
-	iv_rulePolymorphicTypeName=rulePolymorphicTypeName
-	{ $current=$iv_rulePolymorphicTypeName.current; }
-	EOF;
-
-// Rule PolymorphicTypeName
-rulePolymorphicTypeName returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			lv_name_0_0=RULE_ID
-			{
-				newLeafNode(lv_name_0_0, grammarAccess.getPolymorphicTypeNameAccess().getNameIDTerminalRuleCall_0());
-			}
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getPolymorphicTypeNameRule());
-				}
-				setWithLastConsumed(
-					$current,
-					"name",
-					lv_name_0_0,
-					"org.eclipse.xtext.common.Terminals.ID");
-			}
-		)
 	)
 ;
 
@@ -916,9 +916,9 @@ ruleConstructedType returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConstructedTypeAccess().getTypeTypeConstructorParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getConstructedTypeAccess().getTypeConstructedTypeParserRuleCall_1_1_0());
 					}
-					lv_type_11_0=ruleTypeConstructor
+					lv_type_11_0=ruleConstructedType
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConstructedTypeRule());
@@ -927,12 +927,12 @@ ruleConstructedType returns [EObject current=null]
 							$current,
 							"type",
 							lv_type_11_0,
-							"org.xtext.sampleProj.mydsl.MyDsl.TypeConstructor");
+							"org.xtext.sampleProj.mydsl.MyDsl.ConstructedType");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)*
+		)?
 	)
 ;
 
@@ -954,19 +954,14 @@ ruleTypeConstructor returns [EObject current=null]
 	(
 		(
 			(
-				lv_typeName_0_0=RULE_ID
-				{
-					newLeafNode(lv_typeName_0_0, grammarAccess.getTypeConstructorAccess().getTypeNameIDTerminalRuleCall_0_0());
-				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getTypeConstructorRule());
 					}
-					addWithLastConsumed(
-						$current,
-						"typeName",
-						lv_typeName_0_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getTypeConstructorAccess().getTypeNameNameCrossReference_0_0());
 				}
 			)
 		)
@@ -1015,9 +1010,9 @@ ruleTypeDeclContext returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTypeDeclContextAccess().getTypeNameTypeConstructorParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getTypeDeclContextAccess().getTypeNameConstructedTypeParserRuleCall_1_0());
 				}
-				lv_typeName_1_0=ruleTypeConstructor
+				lv_typeName_1_0=ruleConstructedType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTypeDeclContextRule());
@@ -1026,7 +1021,7 @@ ruleTypeDeclContext returns [EObject current=null]
 						$current,
 						"typeName",
 						lv_typeName_1_0,
-						"org.xtext.sampleProj.mydsl.MyDsl.TypeConstructor");
+						"org.xtext.sampleProj.mydsl.MyDsl.ConstructedType");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1039,9 +1034,9 @@ ruleTypeDeclContext returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getTypeDeclContextAccess().getTypeNameTypeConstructorParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getTypeDeclContextAccess().getTypeNameConstructedTypeParserRuleCall_2_1_0());
 					}
-					lv_typeName_3_0=ruleTypeConstructor
+					lv_typeName_3_0=ruleConstructedType
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getTypeDeclContextRule());
@@ -1050,7 +1045,7 @@ ruleTypeDeclContext returns [EObject current=null]
 							$current,
 							"typeName",
 							lv_typeName_3_0,
-							"org.xtext.sampleProj.mydsl.MyDsl.TypeConstructor");
+							"org.xtext.sampleProj.mydsl.MyDsl.ConstructedType");
 						afterParserOrEnumRuleCall();
 					}
 				)

@@ -99,25 +99,25 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleImportSatement
-entryRuleImportSatement
+// Entry rule entryRuleImportStatement
+entryRuleImportStatement
 :
-{ before(grammarAccess.getImportSatementRule()); }
-	 ruleImportSatement
-{ after(grammarAccess.getImportSatementRule()); } 
+{ before(grammarAccess.getImportStatementRule()); }
+	 ruleImportStatement
+{ after(grammarAccess.getImportStatementRule()); } 
 	 EOF 
 ;
 
-// Rule ImportSatement
-ruleImportSatement 
+// Rule ImportStatement
+ruleImportStatement 
 	@init {
 		int stackSize = keepStackSize();
 	}
 	:
 	(
-		{ before(grammarAccess.getImportSatementAccess().getGroup()); }
-		(rule__ImportSatement__Group__0)
-		{ after(grammarAccess.getImportSatementAccess().getGroup()); }
+		{ before(grammarAccess.getImportStatementAccess().getGroup()); }
+		(rule__ImportStatement__Group__0)
+		{ after(grammarAccess.getImportStatementAccess().getGroup()); }
 	)
 ;
 finally {
@@ -249,6 +249,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRulePolymorphicTypeName
+entryRulePolymorphicTypeName
+:
+{ before(grammarAccess.getPolymorphicTypeNameRule()); }
+	 rulePolymorphicTypeName
+{ after(grammarAccess.getPolymorphicTypeNameRule()); } 
+	 EOF 
+;
+
+// Rule PolymorphicTypeName
+rulePolymorphicTypeName 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getPolymorphicTypeNameAccess().getNameAssignment()); }
+		(rule__PolymorphicTypeName__NameAssignment)
+		{ after(grammarAccess.getPolymorphicTypeNameAccess().getNameAssignment()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRulePolyContext
 entryRulePolyContext
 :
@@ -293,31 +318,6 @@ rulePolyContextTypes
 		{ before(grammarAccess.getPolyContextTypesAccess().getGroup()); }
 		(rule__PolyContextTypes__Group__0)
 		{ after(grammarAccess.getPolyContextTypesAccess().getGroup()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-// Entry rule entryRulePolymorphicTypeName
-entryRulePolymorphicTypeName
-:
-{ before(grammarAccess.getPolymorphicTypeNameRule()); }
-	 rulePolymorphicTypeName
-{ after(grammarAccess.getPolymorphicTypeNameRule()); } 
-	 EOF 
-;
-
-// Rule PolymorphicTypeName
-rulePolymorphicTypeName 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getPolymorphicTypeNameAccess().getNameAssignment()); }
-		(rule__PolymorphicTypeName__NameAssignment)
-		{ after(grammarAccess.getPolymorphicTypeNameAccess().getNameAssignment()); }
 	)
 ;
 finally {
@@ -755,9 +755,9 @@ rule__TopLevel__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getTopLevelAccess().getImportSatementParserRuleCall_0()); }
-		ruleImportSatement
-		{ after(grammarAccess.getTopLevelAccess().getImportSatementParserRuleCall_0()); }
+		{ before(grammarAccess.getTopLevelAccess().getImportStatementParserRuleCall_0()); }
+		ruleImportStatement
+		{ after(grammarAccess.getTopLevelAccess().getImportStatementParserRuleCall_0()); }
 	)
 	|
 	(
@@ -908,53 +908,53 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ImportSatement__Group__0
+rule__ImportStatement__Group__0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__ImportSatement__Group__0__Impl
-	rule__ImportSatement__Group__1
+	rule__ImportStatement__Group__0__Impl
+	rule__ImportStatement__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ImportSatement__Group__0__Impl
+rule__ImportStatement__Group__0__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getImportSatementAccess().getImportKeyword_0()); }
+	{ before(grammarAccess.getImportStatementAccess().getImportKeyword_0()); }
 	'Import'
-	{ after(grammarAccess.getImportSatementAccess().getImportKeyword_0()); }
+	{ after(grammarAccess.getImportStatementAccess().getImportKeyword_0()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ImportSatement__Group__1
+rule__ImportStatement__Group__1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__ImportSatement__Group__1__Impl
+	rule__ImportStatement__Group__1__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ImportSatement__Group__1__Impl
+rule__ImportStatement__Group__1__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getImportSatementAccess().getImportsAssignment_1()); }
-	(rule__ImportSatement__ImportsAssignment_1)
-	{ after(grammarAccess.getImportSatementAccess().getImportsAssignment_1()); }
+	{ before(grammarAccess.getImportStatementAccess().getImportsAssignment_1()); }
+	(rule__ImportStatement__ImportsAssignment_1)
+	{ after(grammarAccess.getImportStatementAccess().getImportsAssignment_1()); }
 )
 ;
 finally {
@@ -1115,9 +1115,9 @@ rule__Class__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getClassAccess().getNameAssignment_1()); }
-	(rule__Class__NameAssignment_1)
-	{ after(grammarAccess.getClassAccess().getNameAssignment_1()); }
+	{ before(grammarAccess.getClassAccess().getTypeNameAssignment_1()); }
+	(rule__Class__TypeNameAssignment_1)
+	{ after(grammarAccess.getClassAccess().getTypeNameAssignment_1()); }
 )
 ;
 finally {
@@ -1824,7 +1824,7 @@ rule__ConstructedType__Group__1__Impl
 :
 (
 	{ before(grammarAccess.getConstructedTypeAccess().getGroup_1()); }
-	(rule__ConstructedType__Group_1__0)*
+	(rule__ConstructedType__Group_1__0)?
 	{ after(grammarAccess.getConstructedTypeAccess().getGroup_1()); }
 )
 ;
@@ -2793,15 +2793,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ImportSatement__ImportsAssignment_1
+rule__ImportStatement__ImportsAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getImportSatementAccess().getImportsImportParserRuleCall_1_0()); }
+		{ before(grammarAccess.getImportStatementAccess().getImportsImportParserRuleCall_1_0()); }
 		ruleImport
-		{ after(grammarAccess.getImportSatementAccess().getImportsImportParserRuleCall_1_0()); }
+		{ after(grammarAccess.getImportStatementAccess().getImportsImportParserRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -2853,15 +2853,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Class__NameAssignment_1
+rule__Class__TypeNameAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getClassAccess().getNameTypeNameParserRuleCall_1_0()); }
+		{ before(grammarAccess.getClassAccess().getTypeNameTypeNameParserRuleCall_1_0()); }
 		ruleTypeName
-		{ after(grammarAccess.getClassAccess().getNameTypeNameParserRuleCall_1_0()); }
+		{ after(grammarAccess.getClassAccess().getTypeNameTypeNameParserRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -2928,6 +2928,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__PolymorphicTypeName__NameAssignment
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getPolymorphicTypeNameAccess().getNameIDTerminalRuleCall_0()); }
+		RULE_ID
+		{ after(grammarAccess.getPolymorphicTypeNameAccess().getNameIDTerminalRuleCall_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__PolyContext__PolyTypesAssignment_1
 	@init {
 		int stackSize = keepStackSize();
@@ -2967,21 +2982,6 @@ rule__PolyContextTypes__ConstraintsAssignment_1
 		{ before(grammarAccess.getPolyContextTypesAccess().getConstraintsTypeConstraintsParserRuleCall_1_0()); }
 		ruleTypeConstraints
 		{ after(grammarAccess.getPolyContextTypesAccess().getConstraintsTypeConstraintsParserRuleCall_1_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__PolymorphicTypeName__NameAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getPolymorphicTypeNameAccess().getNameIDTerminalRuleCall_0()); }
-		RULE_ID
-		{ after(grammarAccess.getPolymorphicTypeNameAccess().getNameIDTerminalRuleCall_0()); }
 	)
 ;
 finally {
@@ -3141,9 +3141,9 @@ rule__ConstructedType__TypeAssignment_1_1
 	}
 :
 	(
-		{ before(grammarAccess.getConstructedTypeAccess().getTypeTypeConstructorParserRuleCall_1_1_0()); }
-		ruleTypeConstructor
-		{ after(grammarAccess.getConstructedTypeAccess().getTypeTypeConstructorParserRuleCall_1_1_0()); }
+		{ before(grammarAccess.getConstructedTypeAccess().getTypeConstructedTypeParserRuleCall_1_1_0()); }
+		ruleConstructedType
+		{ after(grammarAccess.getConstructedTypeAccess().getTypeConstructedTypeParserRuleCall_1_1_0()); }
 	)
 ;
 finally {
@@ -3156,9 +3156,13 @@ rule__TypeConstructor__TypeNameAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getTypeConstructorAccess().getTypeNameIDTerminalRuleCall_0_0()); }
-		RULE_ID
-		{ after(grammarAccess.getTypeConstructorAccess().getTypeNameIDTerminalRuleCall_0_0()); }
+		{ before(grammarAccess.getTypeConstructorAccess().getTypeNameNameCrossReference_0_0()); }
+		(
+			{ before(grammarAccess.getTypeConstructorAccess().getTypeNameNameIDTerminalRuleCall_0_0_1()); }
+			RULE_ID
+			{ after(grammarAccess.getTypeConstructorAccess().getTypeNameNameIDTerminalRuleCall_0_0_1()); }
+		)
+		{ after(grammarAccess.getTypeConstructorAccess().getTypeNameNameCrossReference_0_0()); }
 	)
 ;
 finally {
@@ -3186,9 +3190,9 @@ rule__TypeDeclContext__TypeNameAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getTypeDeclContextAccess().getTypeNameTypeConstructorParserRuleCall_1_0()); }
-		ruleTypeConstructor
-		{ after(grammarAccess.getTypeDeclContextAccess().getTypeNameTypeConstructorParserRuleCall_1_0()); }
+		{ before(grammarAccess.getTypeDeclContextAccess().getTypeNameConstructedTypeParserRuleCall_1_0()); }
+		ruleConstructedType
+		{ after(grammarAccess.getTypeDeclContextAccess().getTypeNameConstructedTypeParserRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -3201,9 +3205,9 @@ rule__TypeDeclContext__TypeNameAssignment_2_1
 	}
 :
 	(
-		{ before(grammarAccess.getTypeDeclContextAccess().getTypeNameTypeConstructorParserRuleCall_2_1_0()); }
-		ruleTypeConstructor
-		{ after(grammarAccess.getTypeDeclContextAccess().getTypeNameTypeConstructorParserRuleCall_2_1_0()); }
+		{ before(grammarAccess.getTypeDeclContextAccess().getTypeNameConstructedTypeParserRuleCall_2_1_0()); }
+		ruleConstructedType
+		{ after(grammarAccess.getTypeDeclContextAccess().getTypeNameConstructedTypeParserRuleCall_2_1_0()); }
 	)
 ;
 finally {

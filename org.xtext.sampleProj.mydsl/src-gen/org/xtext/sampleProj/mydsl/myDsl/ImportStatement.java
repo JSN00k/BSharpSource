@@ -7,21 +7,21 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Import Satement</b></em>'.
+ * A representation of the model object '<em><b>Import Statement</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.ImportSatement#getImports <em>Imports</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.ImportStatement#getImports <em>Imports</em>}</li>
  * </ul>
  *
- * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getImportSatement()
+ * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getImportStatement()
  * @model
  * @generated
  */
-public interface ImportSatement extends TopLevel
+public interface ImportStatement extends TopLevel
 {
   /**
    * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
@@ -33,10 +33,10 @@ public interface ImportSatement extends TopLevel
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Imports</em>' containment reference list.
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getImportSatement_Imports()
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getImportStatement_Imports()
    * @model containment="true"
    * @generated
    */
   EList<Import> getImports();
 
-} // ImportSatement
+} // ImportStatement

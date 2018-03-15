@@ -25,7 +25,7 @@ import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
 import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
 import org.xtext.sampleProj.mydsl.myDsl.Import;
 import org.xtext.sampleProj.mydsl.myDsl.ImportComponent;
-import org.xtext.sampleProj.mydsl.myDsl.ImportSatement;
+import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
@@ -91,8 +91,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.IMPORT_COMPONENT:
 				sequence_ImportComponent(context, (ImportComponent) semanticObject); 
 				return; 
-			case MyDslPackage.IMPORT_SATEMENT:
-				sequence_ImportSatement(context, (ImportSatement) semanticObject); 
+			case MyDslPackage.IMPORT_STATEMENT:
+				sequence_ImportStatement(context, (ImportStatement) semanticObject); 
 				return; 
 			case MyDslPackage.POLY_CONTEXT:
 				sequence_PolyContext(context, (PolyContext) semanticObject); 
@@ -161,7 +161,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Class returns Class
 	 *
 	 * Constraint:
-	 *     (name=TypeName context+=PolyContext? supertypes+=Supertype? bodyElements+=TypeBodyElements*)
+	 *     (typeName=TypeName context+=PolyContext? supertypes+=Supertype? bodyElements+=TypeBodyElements*)
 	 */
 	protected void sequence_Class(ISerializationContext context, org.xtext.sampleProj.mydsl.myDsl.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -173,7 +173,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ConstructedType returns ConstructedType
 	 *
 	 * Constraint:
-	 *     (type+=TypeConstructor type+=TypeConstructor*)
+	 *     (type+=TypeConstructor type+=ConstructedType?)
 	 */
 	protected void sequence_ConstructedType(ISerializationContext context, ConstructedType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -301,13 +301,13 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     TopLevel returns ImportSatement
-	 *     ImportSatement returns ImportSatement
+	 *     TopLevel returns ImportStatement
+	 *     ImportStatement returns ImportStatement
 	 *
 	 * Constraint:
 	 *     imports+=Import
 	 */
-	protected void sequence_ImportSatement(ISerializationContext context, ImportSatement semanticObject) {
+	protected void sequence_ImportStatement(ISerializationContext context, ImportStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -350,6 +350,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Name returns PolymorphicTypeName
 	 *     PolymorphicTypeName returns PolymorphicTypeName
 	 *
 	 * Constraint:
@@ -357,8 +358,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_PolymorphicTypeName(ISerializationContext context, PolymorphicTypeName semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.POLYMORPHIC_TYPE_NAME__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.POLYMORPHIC_TYPE_NAME__NAME));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.NAME__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.NAME__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPolymorphicTypeNameAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
@@ -407,7 +408,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypeConstructor returns TypeConstructor
 	 *
 	 * Constraint:
-	 *     (typeName+=ID context+=TypeDeclContext?)
+	 *     (typeName+=[Name|ID] context+=TypeDeclContext?)
 	 */
 	protected void sequence_TypeConstructor(ISerializationContext context, TypeConstructor semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -419,7 +420,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypeDeclContext returns TypeDeclContext
 	 *
 	 * Constraint:
-	 *     (typeName+=TypeConstructor typeName+=TypeConstructor*)
+	 *     (typeName+=ConstructedType typeName+=ConstructedType*)
 	 */
 	protected void sequence_TypeDeclContext(ISerializationContext context, TypeDeclContext semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -449,6 +450,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Name returns TypeName
 	 *     TypeName returns TypeName
 	 *
 	 * Constraint:
@@ -456,8 +458,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_TypeName(ISerializationContext context, TypeName semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.TYPE_NAME__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.TYPE_NAME__NAME));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.NAME__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.NAME__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTypeNameAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());

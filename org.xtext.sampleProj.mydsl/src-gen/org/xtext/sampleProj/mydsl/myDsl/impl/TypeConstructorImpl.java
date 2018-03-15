@@ -14,11 +14,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.Name;
 import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
 
@@ -39,14 +40,14 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
 public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements TypeConstructor
 {
   /**
-   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' attribute list.
+   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTypeName()
    * @generated
    * @ordered
    */
-  protected EList<String> typeName;
+  protected EList<Name> typeName;
 
   /**
    * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference list.
@@ -84,11 +85,11 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getTypeName()
+  public EList<Name> getTypeName()
   {
     if (typeName == null)
     {
-      typeName = new EDataTypeEList<String>(String.class, this, MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME);
+      typeName = new EObjectResolvingEList<Name>(Name.class, this, MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME);
     }
     return typeName;
   }
@@ -154,7 +155,7 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
     {
       case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
         getTypeName().clear();
-        getTypeName().addAll((Collection<? extends String>)newValue);
+        getTypeName().addAll((Collection<? extends Name>)newValue);
         return;
       case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
         getContext().clear();
@@ -200,23 +201,6 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
         return context != null && !context.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (typeName: ");
-    result.append(typeName);
-    result.append(')');
-    return result.toString();
   }
 
 } //TypeConstructorImpl

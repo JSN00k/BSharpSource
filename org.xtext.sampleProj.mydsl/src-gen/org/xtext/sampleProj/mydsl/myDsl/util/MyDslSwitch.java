@@ -21,8 +21,9 @@ import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
 import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
 import org.xtext.sampleProj.mydsl.myDsl.Import;
 import org.xtext.sampleProj.mydsl.myDsl.ImportComponent;
-import org.xtext.sampleProj.mydsl.myDsl.ImportSatement;
+import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.Name;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
@@ -114,11 +115,11 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.IMPORT_SATEMENT:
+      case MyDslPackage.IMPORT_STATEMENT:
       {
-        ImportSatement importSatement = (ImportSatement)theEObject;
-        T result = caseImportSatement(importSatement);
-        if (result == null) result = caseTopLevel(importSatement);
+        ImportStatement importStatement = (ImportStatement)theEObject;
+        T result = caseImportStatement(importStatement);
+        if (result == null) result = caseTopLevel(importStatement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -153,10 +154,26 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.NAME:
+      {
+        Name name = (Name)theEObject;
+        T result = caseName(name);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.TYPE_NAME:
       {
         TypeName typeName = (TypeName)theEObject;
         T result = caseTypeName(typeName);
+        if (result == null) result = caseName(typeName);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.POLYMORPHIC_TYPE_NAME:
+      {
+        PolymorphicTypeName polymorphicTypeName = (PolymorphicTypeName)theEObject;
+        T result = casePolymorphicTypeName(polymorphicTypeName);
+        if (result == null) result = caseName(polymorphicTypeName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -171,13 +188,6 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         PolyContextTypes polyContextTypes = (PolyContextTypes)theEObject;
         T result = casePolyContextTypes(polyContextTypes);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.POLYMORPHIC_TYPE_NAME:
-      {
-        PolymorphicTypeName polymorphicTypeName = (PolymorphicTypeName)theEObject;
-        T result = casePolymorphicTypeName(polymorphicTypeName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -343,17 +353,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Import Satement</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Import Statement</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Import Satement</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Import Statement</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseImportSatement(ImportSatement object)
+  public T caseImportStatement(ImportStatement object)
   {
     return null;
   }
@@ -423,6 +433,22 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Name</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Name</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseName(Name object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Type Name</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -434,6 +460,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTypeName(TypeName object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Polymorphic Type Name</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Polymorphic Type Name</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePolymorphicTypeName(PolymorphicTypeName object)
   {
     return null;
   }
@@ -466,22 +508,6 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePolyContextTypes(PolyContextTypes object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Polymorphic Type Name</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Polymorphic Type Name</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePolymorphicTypeName(PolymorphicTypeName object)
   {
     return null;
   }

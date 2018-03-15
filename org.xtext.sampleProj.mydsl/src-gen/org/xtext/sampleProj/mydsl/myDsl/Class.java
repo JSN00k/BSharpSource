@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Class#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Class#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Class#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Class#getSupertypes <em>Supertypes</em>}</li>
  * </ul>
@@ -26,30 +26,30 @@ import org.eclipse.emf.common.util.EList;
 public interface Class extends ClassDecl
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' containment reference.
+   * Returns the value of the '<em><b>Type Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Type Name</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' containment reference.
-   * @see #setName(TypeName)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getClass_Name()
+   * @return the value of the '<em>Type Name</em>' containment reference.
+   * @see #setTypeName(TypeName)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getClass_TypeName()
    * @model containment="true"
    * @generated
    */
-  TypeName getName();
+  TypeName getTypeName();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.Class#getName <em>Name</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.Class#getTypeName <em>Type Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' containment reference.
-   * @see #getName()
+   * @param value the new value of the '<em>Type Name</em>' containment reference.
+   * @see #getTypeName()
    * @generated
    */
-  void setName(TypeName value);
+  void setTypeName(TypeName value);
 
   /**
    * Returns the value of the '<em><b>Context</b></em>' containment reference list.

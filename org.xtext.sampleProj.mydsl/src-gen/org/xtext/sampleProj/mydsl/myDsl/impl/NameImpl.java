@@ -3,55 +3,57 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.Name;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Constructed Type</b></em>'.
+ * An implementation of the model object '<em><b>Name</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ConstructedTypeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.NameImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements ConstructedType
+public class NameImpl extends MinimalEObjectImpl.Container implements Name
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference list.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected EList<EObject> type;
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ConstructedTypeImpl()
+  protected NameImpl()
   {
     super();
   }
@@ -64,7 +66,7 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.CONSTRUCTED_TYPE;
+    return MyDslPackage.Literals.NAME;
   }
 
   /**
@@ -72,13 +74,9 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EObject> getType()
+  public String getName()
   {
-    if (type == null)
-    {
-      type = new EObjectContainmentEList<EObject>(EObject.class, this, MyDslPackage.CONSTRUCTED_TYPE__TYPE);
-    }
-    return type;
+    return name;
   }
 
   /**
@@ -86,15 +84,12 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  public void setName(String newName)
   {
-    switch (featureID)
-    {
-      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
-        return ((InternalEList<?>)getType()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.NAME__NAME, oldName, name));
   }
 
   /**
@@ -107,8 +102,8 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
-        return getType();
+      case MyDslPackage.NAME__NAME:
+        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -118,15 +113,13 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
-        getType().clear();
-        getType().addAll((Collection<? extends EObject>)newValue);
+      case MyDslPackage.NAME__NAME:
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,8 +135,8 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
-        getType().clear();
+      case MyDslPackage.NAME__NAME:
+        setName(NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -159,10 +152,27 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRUCTED_TYPE__TYPE:
-        return type != null && !type.isEmpty();
+      case MyDslPackage.NAME__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
   }
 
-} //ConstructedTypeImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
+  }
+
+} //NameImpl

@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
 
 /**
@@ -44,7 +44,7 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected EList<TypeConstructor> typeName;
+  protected EList<ConstructedType> typeName;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,11 +72,11 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypeConstructor> getTypeName()
+  public EList<ConstructedType> getTypeName()
   {
     if (typeName == null)
     {
-      typeName = new EObjectContainmentEList<TypeConstructor>(TypeConstructor.class, this, MyDslPackage.TYPE_DECL_CONTEXT__TYPE_NAME);
+      typeName = new EObjectContainmentEList<ConstructedType>(ConstructedType.class, this, MyDslPackage.TYPE_DECL_CONTEXT__TYPE_NAME);
     }
     return typeName;
   }
@@ -126,7 +126,7 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
     {
       case MyDslPackage.TYPE_DECL_CONTEXT__TYPE_NAME:
         getTypeName().clear();
-        getTypeName().addAll((Collection<? extends TypeConstructor>)newValue);
+        getTypeName().addAll((Collection<? extends ConstructedType>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

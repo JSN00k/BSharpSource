@@ -27,20 +27,20 @@ import org.eclipse.emf.ecore.EObject;
 public interface TypeConstructor extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Type Name</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Type Name</b></em>' reference list.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.Name}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type Name</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Type Name</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type Name</em>' attribute list.
+   * @return the value of the '<em>Type Name</em>' reference list.
    * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypeConstructor_TypeName()
-   * @model unique="false"
+   * @model
    * @generated
    */
-  EList<String> getTypeName();
+  EList<Name> getTypeName();
 
   /**
    * Returns the value of the '<em><b>Context</b></em>' containment reference list.

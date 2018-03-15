@@ -3,6 +3,13 @@
  */
 package org.xtext.sampleProj.mydsl.scoping;
 
+import com.google.common.base.Objects;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.scoping.IScope;
+import org.xtext.sampleProj.mydsl.myDsl.ClassDecl;
+import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
 import org.xtext.sampleProj.mydsl.scoping.AbstractMyDslScopeProvider;
 
 /**
@@ -13,4 +20,15 @@ import org.xtext.sampleProj.mydsl.scoping.AbstractMyDslScopeProvider;
  */
 @SuppressWarnings("all")
 public class MyDslScopeProvider extends AbstractMyDslScopeProvider {
+  @Override
+  public IScope getScope(final EObject context, final EReference reference) {
+    if ((context instanceof PolymorphicTypeName)) {
+      ClassDecl _containerOfType = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
+      final ClassDecl classAncestor = ((ClassDecl) _containerOfType);
+      boolean _notEquals = (!Objects.equal(classAncestor, null));
+      if (_notEquals) {
+      }
+    }
+    return super.getScope(context, reference);
+  }
 }

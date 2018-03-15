@@ -42,13 +42,13 @@ public interface MyDslFactory extends EFactory
   TopLevel createTopLevel();
 
   /**
-   * Returns a new object of class '<em>Import Satement</em>'.
+   * Returns a new object of class '<em>Import Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Import Satement</em>'.
+   * @return a new object of class '<em>Import Statement</em>'.
    * @generated
    */
-  ImportSatement createImportSatement();
+  ImportStatement createImportStatement();
 
   /**
    * Returns a new object of class '<em>Import</em>'.
@@ -87,6 +87,15 @@ public interface MyDslFactory extends EFactory
   Class createClass();
 
   /**
+   * Returns a new object of class '<em>Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Name</em>'.
+   * @generated
+   */
+  Name createName();
+
+  /**
    * Returns a new object of class '<em>Type Name</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -94,6 +103,15 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   TypeName createTypeName();
+
+  /**
+   * Returns a new object of class '<em>Polymorphic Type Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Polymorphic Type Name</em>'.
+   * @generated
+   */
+  PolymorphicTypeName createPolymorphicTypeName();
 
   /**
    * Returns a new object of class '<em>Poly Context</em>'.
@@ -112,15 +130,6 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   PolyContextTypes createPolyContextTypes();
-
-  /**
-   * Returns a new object of class '<em>Polymorphic Type Name</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Polymorphic Type Name</em>'.
-   * @generated
-   */
-  PolymorphicTypeName createPolymorphicTypeName();
 
   /**
    * Returns a new object of class '<em>Type Constraints</em>'.

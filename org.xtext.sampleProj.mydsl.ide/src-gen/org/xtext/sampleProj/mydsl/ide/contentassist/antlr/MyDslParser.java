@@ -33,10 +33,11 @@ public class MyDslParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getTopLevelAccess().getAlternatives(), "rule__TopLevel__Alternatives");
 					put(grammarAccess.getClassDeclAccess().getAlternatives(), "rule__ClassDecl__Alternatives");
+					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getConstructedTypeAccess().getAlternatives_1_0(), "rule__ConstructedType__Alternatives_1_0");
 					put(grammarAccess.getTypeBodyElementsAccess().getAlternatives(), "rule__TypeBodyElements__Alternatives");
 					put(grammarAccess.getDatatypeConstructorAccess().getAlternatives(), "rule__DatatypeConstructor__Alternatives");
-					put(grammarAccess.getImportSatementAccess().getGroup(), "rule__ImportSatement__Group__0");
+					put(grammarAccess.getImportStatementAccess().getGroup(), "rule__ImportStatement__Group__0");
 					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
 					put(grammarAccess.getImportAccess().getGroup_1(), "rule__Import__Group_1__0");
 					put(grammarAccess.getClassAccess().getGroup(), "rule__Class__Group__0");
@@ -61,19 +62,19 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionDeclAccess().getGroup(), "rule__FunctionDecl__Group__0");
 					put(grammarAccess.getTheoremBodyAccess().getGroup(), "rule__TheoremBody__Group__0");
 					put(grammarAccess.getDomainModelAccess().getElementsAssignment(), "rule__DomainModel__ElementsAssignment");
-					put(grammarAccess.getImportSatementAccess().getImportsAssignment_1(), "rule__ImportSatement__ImportsAssignment_1");
+					put(grammarAccess.getImportStatementAccess().getImportsAssignment_1(), "rule__ImportStatement__ImportsAssignment_1");
 					put(grammarAccess.getImportAccess().getImportNameAssignment_0(), "rule__Import__ImportNameAssignment_0");
 					put(grammarAccess.getImportAccess().getImportNameAssignment_1_1(), "rule__Import__ImportNameAssignment_1_1");
 					put(grammarAccess.getImportComponentAccess().getNameAssignment(), "rule__ImportComponent__NameAssignment");
-					put(grammarAccess.getClassAccess().getNameAssignment_1(), "rule__Class__NameAssignment_1");
+					put(grammarAccess.getClassAccess().getTypeNameAssignment_1(), "rule__Class__TypeNameAssignment_1");
 					put(grammarAccess.getClassAccess().getContextAssignment_2(), "rule__Class__ContextAssignment_2");
 					put(grammarAccess.getClassAccess().getSupertypesAssignment_3(), "rule__Class__SupertypesAssignment_3");
 					put(grammarAccess.getClassAccess().getBodyElementsAssignment_5(), "rule__Class__BodyElementsAssignment_5");
 					put(grammarAccess.getTypeNameAccess().getNameAssignment(), "rule__TypeName__NameAssignment");
+					put(grammarAccess.getPolymorphicTypeNameAccess().getNameAssignment(), "rule__PolymorphicTypeName__NameAssignment");
 					put(grammarAccess.getPolyContextAccess().getPolyTypesAssignment_1(), "rule__PolyContext__PolyTypesAssignment_1");
 					put(grammarAccess.getPolyContextTypesAccess().getNameAssignment_0(), "rule__PolyContextTypes__NameAssignment_0");
 					put(grammarAccess.getPolyContextTypesAccess().getConstraintsAssignment_1(), "rule__PolyContextTypes__ConstraintsAssignment_1");
-					put(grammarAccess.getPolymorphicTypeNameAccess().getNameAssignment(), "rule__PolymorphicTypeName__NameAssignment");
 					put(grammarAccess.getTypeConstraintsAccess().getTypeNameAssignment_1(), "rule__TypeConstraints__TypeNameAssignment_1");
 					put(grammarAccess.getTypeConstraintsAccess().getTypeNameAssignment_2_1(), "rule__TypeConstraints__TypeNameAssignment_2_1");
 					put(grammarAccess.getTypedVariableAccess().getNameAssignment_0(), "rule__TypedVariable__NameAssignment_0");

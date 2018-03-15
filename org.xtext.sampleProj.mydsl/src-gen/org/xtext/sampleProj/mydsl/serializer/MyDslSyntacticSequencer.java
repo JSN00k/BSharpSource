@@ -63,7 +63,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	  *     )
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     type+=TypeConstructor (ambiguity) type+=TypeConstructor
+	 *     type+=TypeConstructor (ambiguity) type+=ConstructedType
 	 */
 	protected void emit_ConstructedType_LeftRightArrowKeyword_1_0_4_or_MultiplicationSignKeyword_1_0_0_or_PrivateUseAreaE100Keyword_1_0_3_or_PrivateUseAreaE102Keyword_1_0_2_or_RightwardsArrowKeyword_1_0_1_or_RightwardsArrowWithTailKeyword_1_0_7_or_RightwardsArrowWithVerticalStrokeKeyword_1_0_6_or_RightwardsTwoHeadedArrowKeyword_1_0_9_or_RightwardsTwoHeadedArrowWithTailKeyword_1_0_5_or_RightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

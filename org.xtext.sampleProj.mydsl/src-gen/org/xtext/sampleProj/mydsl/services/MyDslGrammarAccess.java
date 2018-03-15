@@ -41,32 +41,32 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class TopLevelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.TopLevel");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cImportSatementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cImportStatementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cClassDeclParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//// Theorem names can include white space.
 		////terminal THM_NAME: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9' ' | '|'\t')*;
 		//TopLevel:
-		//	ImportSatement | ClassDecl;
+		//	ImportStatement | ClassDecl;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ImportSatement | ClassDecl
+		//ImportStatement | ClassDecl
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//ImportSatement
-		public RuleCall getImportSatementParserRuleCall_0() { return cImportSatementParserRuleCall_0; }
+		//ImportStatement
+		public RuleCall getImportStatementParserRuleCall_0() { return cImportStatementParserRuleCall_0; }
 		
 		//ClassDecl
 		public RuleCall getClassDeclParserRuleCall_1() { return cClassDeclParserRuleCall_1; }
 	}
-	public class ImportSatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.ImportSatement");
+	public class ImportStatementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.ImportStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cImportsAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cImportsImportParserRuleCall_1_0 = (RuleCall)cImportsAssignment_1.eContents().get(0);
 		
-		//ImportSatement:
+		//ImportStatement:
 		//	'Import'
 		//	imports+=Import;
 		@Override public ParserRule getRule() { return rule; }
@@ -160,8 +160,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Class");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cClassKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameTypeNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cTypeNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeNameTypeNameParserRuleCall_1_0 = (RuleCall)cTypeNameAssignment_1.eContents().get(0);
 		private final Assignment cContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cContextPolyContextParserRuleCall_2_0 = (RuleCall)cContextAssignment_2.eContents().get(0);
 		private final Assignment cSupertypesAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -172,20 +172,20 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Class:
-		//	'Class' name=TypeName context+=PolyContext? supertypes+=Supertype? '{' bodyElements+=TypeBodyElements* '}';
+		//	'Class' typeName=TypeName context+=PolyContext? supertypes+=Supertype? '{' bodyElements+=TypeBodyElements* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Class' name=TypeName context+=PolyContext? supertypes+=Supertype? '{' bodyElements+=TypeBodyElements* '}'
+		//'Class' typeName=TypeName context+=PolyContext? supertypes+=Supertype? '{' bodyElements+=TypeBodyElements* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Class'
 		public Keyword getClassKeyword_0() { return cClassKeyword_0; }
 		
-		//name=TypeName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//typeName=TypeName
+		public Assignment getTypeNameAssignment_1() { return cTypeNameAssignment_1; }
 		
 		//TypeName
-		public RuleCall getNameTypeNameParserRuleCall_1_0() { return cNameTypeNameParserRuleCall_1_0; }
+		public RuleCall getTypeNameTypeNameParserRuleCall_1_0() { return cTypeNameTypeNameParserRuleCall_1_0; }
 		
 		//context+=PolyContext?
 		public Assignment getContextAssignment_2() { return cContextAssignment_2; }
@@ -211,12 +211,46 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
+	public class NameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Name");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPolymorphicTypeNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTypeNameParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Name:
+		//	PolymorphicTypeName | TypeName;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//PolymorphicTypeName | TypeName
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//PolymorphicTypeName
+		public RuleCall getPolymorphicTypeNameParserRuleCall_0() { return cPolymorphicTypeNameParserRuleCall_0; }
+		
+		//TypeName
+		public RuleCall getTypeNameParserRuleCall_1() { return cTypeNameParserRuleCall_1; }
+	}
 	public class TypeNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.TypeName");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
 		//TypeName:
+		//	name=ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=ID
+		public Assignment getNameAssignment() { return cNameAssignment; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
+	}
+	public class PolymorphicTypeNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.PolymorphicTypeName");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//PolymorphicTypeName:
 		//	name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -279,21 +313,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TypeConstraints
 		public RuleCall getConstraintsTypeConstraintsParserRuleCall_1_0() { return cConstraintsTypeConstraintsParserRuleCall_1_0; }
-	}
-	public class PolymorphicTypeNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.PolymorphicTypeName");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
-		
-		//PolymorphicTypeName:
-		//	name=ID;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID
-		public Assignment getNameAssignment() { return cNameAssignment; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
 	}
 	public class TypeConstraintsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.TypeConstraints");
@@ -457,13 +476,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8 = (Keyword)cAlternatives_1_0.eContents().get(8);
 		private final Keyword cRightwardsTwoHeadedArrowKeyword_1_0_9 = (Keyword)cAlternatives_1_0.eContents().get(9);
 		private final Assignment cTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cTypeTypeConstructorParserRuleCall_1_1_0 = (RuleCall)cTypeAssignment_1_1.eContents().get(0);
+		private final RuleCall cTypeConstructedTypeParserRuleCall_1_1_0 = (RuleCall)cTypeAssignment_1_1.eContents().get(0);
 		
 		///* Along with the normal Event-B type operator, and new B++ types the  */ ConstructedType:
-		//	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)*;
+		//	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)*
+		//type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
 		public Group getGroup() { return cGroup; }
 		
 		//type+=TypeConstructor
@@ -472,7 +491,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeConstructor
 		public RuleCall getTypeTypeConstructorParserRuleCall_0_0() { return cTypeTypeConstructorParserRuleCall_0_0; }
 		
-		//(('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)*
+		//(('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//'×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠'
@@ -508,32 +527,38 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//'↠'
 		public Keyword getRightwardsTwoHeadedArrowKeyword_1_0_9() { return cRightwardsTwoHeadedArrowKeyword_1_0_9; }
 		
-		//type+=TypeConstructor
+		//type+=ConstructedType
 		public Assignment getTypeAssignment_1_1() { return cTypeAssignment_1_1; }
 		
-		//TypeConstructor
-		public RuleCall getTypeTypeConstructorParserRuleCall_1_1_0() { return cTypeTypeConstructorParserRuleCall_1_1_0; }
+		//ConstructedType
+		public RuleCall getTypeConstructedTypeParserRuleCall_1_1_0() { return cTypeConstructedTypeParserRuleCall_1_1_0; }
 	}
 	public class TypeConstructorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.TypeConstructor");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeNameIDTerminalRuleCall_0_0 = (RuleCall)cTypeNameAssignment_0.eContents().get(0);
+		private final CrossReference cTypeNameNameCrossReference_0_0 = (CrossReference)cTypeNameAssignment_0.eContents().get(0);
+		private final RuleCall cTypeNameNameIDTerminalRuleCall_0_0_1 = (RuleCall)cTypeNameNameCrossReference_0_0.eContents().get(1);
 		private final Assignment cContextAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cContextTypeDeclContextParserRuleCall_1_0 = (RuleCall)cContextAssignment_1.eContents().get(0);
 		
-		//TypeConstructor:
-		//	typeName+=ID context+=TypeDeclContext?;
+		///* Type constructor has validation rules to check that there is no context when there is a polymorphic name, 
+		// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
+		// */ TypeConstructor:
+		//	typeName+=[Name] context+=TypeDeclContext?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//typeName+=ID context+=TypeDeclContext?
+		//typeName+=[Name] context+=TypeDeclContext?
 		public Group getGroup() { return cGroup; }
 		
-		//typeName+=ID
+		//typeName+=[Name]
 		public Assignment getTypeNameAssignment_0() { return cTypeNameAssignment_0; }
 		
+		//[Name]
+		public CrossReference getTypeNameNameCrossReference_0_0() { return cTypeNameNameCrossReference_0_0; }
+		
 		//ID
-		public RuleCall getTypeNameIDTerminalRuleCall_0_0() { return cTypeNameIDTerminalRuleCall_0_0; }
+		public RuleCall getTypeNameNameIDTerminalRuleCall_0_0_1() { return cTypeNameNameIDTerminalRuleCall_0_0_1; }
 		
 		//context+=TypeDeclContext?
 		public Assignment getContextAssignment_1() { return cContextAssignment_1; }
@@ -546,40 +571,40 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLessThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypeNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeNameTypeConstructorParserRuleCall_1_0 = (RuleCall)cTypeNameAssignment_1.eContents().get(0);
+		private final RuleCall cTypeNameConstructedTypeParserRuleCall_1_0 = (RuleCall)cTypeNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cTypeNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cTypeNameTypeConstructorParserRuleCall_2_1_0 = (RuleCall)cTypeNameAssignment_2_1.eContents().get(0);
+		private final RuleCall cTypeNameConstructedTypeParserRuleCall_2_1_0 = (RuleCall)cTypeNameAssignment_2_1.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//TypeDeclContext:
-		//	'<' typeName+=TypeConstructor (',' typeName+=TypeConstructor)* '>';
+		//	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'<' typeName+=TypeConstructor (',' typeName+=TypeConstructor)* '>'
+		//'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
 		public Group getGroup() { return cGroup; }
 		
 		//'<'
 		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
 		
-		//typeName+=TypeConstructor
+		//typeName+=ConstructedType
 		public Assignment getTypeNameAssignment_1() { return cTypeNameAssignment_1; }
 		
-		//TypeConstructor
-		public RuleCall getTypeNameTypeConstructorParserRuleCall_1_0() { return cTypeNameTypeConstructorParserRuleCall_1_0; }
+		//ConstructedType
+		public RuleCall getTypeNameConstructedTypeParserRuleCall_1_0() { return cTypeNameConstructedTypeParserRuleCall_1_0; }
 		
-		//(',' typeName+=TypeConstructor)*
+		//(',' typeName+=ConstructedType)*
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//','
 		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
 		
-		//typeName+=TypeConstructor
+		//typeName+=ConstructedType
 		public Assignment getTypeNameAssignment_2_1() { return cTypeNameAssignment_2_1; }
 		
-		//TypeConstructor
-		public RuleCall getTypeNameTypeConstructorParserRuleCall_2_1_0() { return cTypeNameTypeConstructorParserRuleCall_2_1_0; }
+		//ConstructedType
+		public RuleCall getTypeNameConstructedTypeParserRuleCall_2_1_0() { return cTypeNameConstructedTypeParserRuleCall_2_1_0; }
 		
 		//'>'
 		public Keyword getGreaterThanSignKeyword_3() { return cGreaterThanSignKeyword_3; }
@@ -595,6 +620,21 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExpressionsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cExpressionsExpressionParserRuleCall_2_1_0 = (RuleCall)cExpressionsAssignment_2_1.eContents().get(0);
 		
+		////ConcreteTypeDecl:
+		////	PolymorphicTypeName | TypeConstructor | ConstructedType
+		////;
+		////
+		////TypeConstructor:
+		////	typeName+=[TypeName] (context+=TypeDeclContext)?
+		////;
+		////
+		////TypeDeclContext:
+		////	'<' typeName+=ConcreteTypeDecl (',' typeName+=ConcreteTypeDecl)* '>'
+		////;
+		////
+		////ConstructedType:
+		////	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)?
+		////;
 		//Where:
 		//	'where' expessions+=Expression (';' expressions+=Expression);
 		@Override public ParserRule getRule() { return rule; }
@@ -926,15 +966,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final DomainModelElements pDomainModel;
 	private final TopLevelElements pTopLevel;
-	private final ImportSatementElements pImportSatement;
+	private final ImportStatementElements pImportStatement;
 	private final ImportElements pImport;
 	private final ImportComponentElements pImportComponent;
 	private final ClassDeclElements pClassDecl;
 	private final ClassElements pClass;
+	private final NameElements pName;
 	private final TypeNameElements pTypeName;
+	private final PolymorphicTypeNameElements pPolymorphicTypeName;
 	private final PolyContextElements pPolyContext;
 	private final PolyContextTypesElements pPolyContextTypes;
-	private final PolymorphicTypeNameElements pPolymorphicTypeName;
 	private final TypeConstraintsElements pTypeConstraints;
 	private final TypedVariableElements pTypedVariable;
 	private final SupertypeElements pSupertype;
@@ -965,15 +1006,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pDomainModel = new DomainModelElements();
 		this.pTopLevel = new TopLevelElements();
-		this.pImportSatement = new ImportSatementElements();
+		this.pImportStatement = new ImportStatementElements();
 		this.pImport = new ImportElements();
 		this.pImportComponent = new ImportComponentElements();
 		this.pClassDecl = new ClassDeclElements();
 		this.pClass = new ClassElements();
+		this.pName = new NameElements();
 		this.pTypeName = new TypeNameElements();
+		this.pPolymorphicTypeName = new PolymorphicTypeNameElements();
 		this.pPolyContext = new PolyContextElements();
 		this.pPolyContextTypes = new PolyContextTypesElements();
-		this.pPolymorphicTypeName = new PolymorphicTypeNameElements();
 		this.pTypeConstraints = new TypeConstraintsElements();
 		this.pTypedVariable = new TypedVariableElements();
 		this.pSupertype = new SupertypeElements();
@@ -1034,7 +1076,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	//// Theorem names can include white space.
 	////terminal THM_NAME: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9' ' | '|'\t')*;
 	//TopLevel:
-	//	ImportSatement | ClassDecl;
+	//	ImportStatement | ClassDecl;
 	public TopLevelElements getTopLevelAccess() {
 		return pTopLevel;
 	}
@@ -1043,15 +1085,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getTopLevelAccess().getRule();
 	}
 	
-	//ImportSatement:
+	//ImportStatement:
 	//	'Import'
 	//	imports+=Import;
-	public ImportSatementElements getImportSatementAccess() {
-		return pImportSatement;
+	public ImportStatementElements getImportStatementAccess() {
+		return pImportStatement;
 	}
 	
-	public ParserRule getImportSatementRule() {
-		return getImportSatementAccess().getRule();
+	public ParserRule getImportStatementRule() {
+		return getImportStatementAccess().getRule();
 	}
 	
 	//Import:
@@ -1085,13 +1127,23 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Class:
-	//	'Class' name=TypeName context+=PolyContext? supertypes+=Supertype? '{' bodyElements+=TypeBodyElements* '}';
+	//	'Class' typeName=TypeName context+=PolyContext? supertypes+=Supertype? '{' bodyElements+=TypeBodyElements* '}';
 	public ClassElements getClassAccess() {
 		return pClass;
 	}
 	
 	public ParserRule getClassRule() {
 		return getClassAccess().getRule();
+	}
+	
+	//Name:
+	//	PolymorphicTypeName | TypeName;
+	public NameElements getNameAccess() {
+		return pName;
+	}
+	
+	public ParserRule getNameRule() {
+		return getNameAccess().getRule();
 	}
 	
 	//TypeName:
@@ -1102,6 +1154,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTypeNameRule() {
 		return getTypeNameAccess().getRule();
+	}
+	
+	//PolymorphicTypeName:
+	//	name=ID;
+	public PolymorphicTypeNameElements getPolymorphicTypeNameAccess() {
+		return pPolymorphicTypeName;
+	}
+	
+	public ParserRule getPolymorphicTypeNameRule() {
+		return getPolymorphicTypeNameAccess().getRule();
 	}
 	
 	//PolyContext:
@@ -1122,16 +1184,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPolyContextTypesRule() {
 		return getPolyContextTypesAccess().getRule();
-	}
-	
-	//PolymorphicTypeName:
-	//	name=ID;
-	public PolymorphicTypeNameElements getPolymorphicTypeNameAccess() {
-		return pPolymorphicTypeName;
-	}
-	
-	public ParserRule getPolymorphicTypeNameRule() {
-		return getPolymorphicTypeNameAccess().getRule();
 	}
 	
 	//TypeConstraints:
@@ -1175,7 +1227,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* Along with the normal Event-B type operator, and new B++ types the  */ ConstructedType:
-	//	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)*;
+	//	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?;
 	public ConstructedTypeElements getConstructedTypeAccess() {
 		return pConstructedType;
 	}
@@ -1184,8 +1236,10 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getConstructedTypeAccess().getRule();
 	}
 	
-	//TypeConstructor:
-	//	typeName+=ID context+=TypeDeclContext?;
+	///* Type constructor has validation rules to check that there is no context when there is a polymorphic name, 
+	// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
+	// */ TypeConstructor:
+	//	typeName+=[Name] context+=TypeDeclContext?;
 	public TypeConstructorElements getTypeConstructorAccess() {
 		return pTypeConstructor;
 	}
@@ -1195,7 +1249,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TypeDeclContext:
-	//	'<' typeName+=TypeConstructor (',' typeName+=TypeConstructor)* '>';
+	//	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>';
 	public TypeDeclContextElements getTypeDeclContextAccess() {
 		return pTypeDeclContext;
 	}
@@ -1204,6 +1258,21 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeDeclContextAccess().getRule();
 	}
 	
+	////ConcreteTypeDecl:
+	////	PolymorphicTypeName | TypeConstructor | ConstructedType
+	////;
+	////
+	////TypeConstructor:
+	////	typeName+=[TypeName] (context+=TypeDeclContext)?
+	////;
+	////
+	////TypeDeclContext:
+	////	'<' typeName+=ConcreteTypeDecl (',' typeName+=ConcreteTypeDecl)* '>'
+	////;
+	////
+	////ConstructedType:
+	////	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)?
+	////;
 	//Where:
 	//	'where' expessions+=Expression (';' expressions+=Expression);
 	public WhereElements getWhereAccess() {
