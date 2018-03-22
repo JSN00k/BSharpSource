@@ -29,8 +29,10 @@ ClassDecl:
 	Class | Datatype | Extend
 ;
 
+/* ------------------------ Class statements --------------------- */
+
 Class returns BppClass:
-	'Class' typeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? '{' (bodyElements+=TypeBodyElements)* '}'
+	'Class' typeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? (where=Where)? '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 Name: PolymorphicTypeName | TypeName;
@@ -57,7 +59,7 @@ PolyTypeConstraints:
 
 /* Any constriction on the polymorphic context has to be done by declaring the polymorphic context
  * on the new type. If necessary the polymorphic context can be used within type constructors. In the simple case 
- * this will be infered . Required thought on checking the base types of the super types. At some points these
+ * this will be inferred . Required thought on checking the base types of the super types. At some points these
  * need to be identical declarations. It is also necessary to allow EventB style type constructors at this
  * point. e.g., an associative operator is a subtype of a closed Event-B total function.
  */
@@ -81,52 +83,76 @@ TypeDeclContext:
 	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
 ;
 
-/* -------------------- Next Thing -------------------------------- */
+/* -------------------- Where Statement -------------------------------- */
 
-/* This may need to be changed when we can construct the types more. */
-TypedVariable:
-	name=ID constraints+=PolyTypeConstraints
-;
-
-TypeDeclaration:
-	typeName=[TypeName] context=TypeDeclContext
-;
-
+/* Type checking (which is not implemented yet) is used to type check that Expression returns a 
+ * predicate. Expression has not yet been written, but is far too general to be included in the where
+ * statement.
+ */
 Where:
 	'where' expessions+=Expression (';' expressions+=Expression)
 ;
 
-TypeBodyElements:
-	 (functions+=FunctionDecl) | (theorems+=TheoremBody)
-;
-
-FunctionName:
-	name=ID
-;
+/* ---------------------- Datatype declarations -------------------------- */
 
 Datatype:
-	'Datatype' name=TypeName (context+=PolyContext)? (constructors+=DatatypeConstructor)* '{' (bodyElements+=TypeBodyElements)* '}'
+	'Datatype' name=TypeName (context=PolyContext)? (constructors+=DatatypeConstructor)* '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
+/* PolyContext is the same as PolyContext used by the class declaration above. */
+
 DatatypeConstructor:
-	BaseConstructor | Constructor
+	'|' (BaseConstructor | DTypeConstructor)
 ;
 
 BaseConstructor:
 	name=ID
 ;
 
-Constructor:
-	name=ID '(' (typedVariables+=TypedVariable)* ')'
+/* Typed Variable list is declared below, it is used in several situations such as functions/lambdas
+ * not just in Datatypes.
+ */
+DTypeConstructor:
+	name=ID '(' decons=TypedVariableList ')'
 ;
+
+/* ------------------------ Extension statement ---------------------------- */
 
 Extend: 
 	name=[TypeName] '(' extesnion=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
-FunctionDecl:
-	name+=FunctionName '(' (typeVariables+=TypedVariable)* ')'
+/* ------------------------ TypeBodyElements ------------------------------- */
+
+TypeBodyElements:
+	 (functions+=FunctionDecl) | (theorems+=TheoremBody)
 ;
+
+FunctionDecl:
+	name+=FunctionName '(' variables=TypedVariableList ')' body=FunctionBody
+;
+
+FunctionBody:
+	FuncInductive | FuncDirectDef
+;
+
+TypedVariableList:
+	typeVar+=TypedVariable (',' typeVar+=TypedVariable)
+;
+
+TypedVariable:
+	name=ID ':' type=ConstructedType
+;
+
+TypeDeclaration:
+	typeName=[TypeName] context=TypeDeclContext
+;
+
+FunctionName:
+	name=ID
+;
+
+
 
 TheoremBody:
 	'Theorems' '{'  '}'
