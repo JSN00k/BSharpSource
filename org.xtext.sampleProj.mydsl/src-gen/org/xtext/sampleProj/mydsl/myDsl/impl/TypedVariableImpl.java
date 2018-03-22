@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstraints;
+import org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints;
 import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
 
 /**
@@ -67,7 +67,7 @@ public class TypedVariableImpl extends MinimalEObjectImpl.Container implements T
    * @generated
    * @ordered
    */
-  protected EList<TypeConstraints> constraints;
+  protected EList<PolyTypeConstraints> constraints;
 
   /**
    * <!-- begin-user-doc -->
@@ -118,11 +118,11 @@ public class TypedVariableImpl extends MinimalEObjectImpl.Container implements T
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypeConstraints> getConstraints()
+  public EList<PolyTypeConstraints> getConstraints()
   {
     if (constraints == null)
     {
-      constraints = new EObjectContainmentEList<TypeConstraints>(TypeConstraints.class, this, MyDslPackage.TYPED_VARIABLE__CONSTRAINTS);
+      constraints = new EObjectContainmentEList<PolyTypeConstraints>(PolyTypeConstraints.class, this, MyDslPackage.TYPED_VARIABLE__CONSTRAINTS);
     }
     return constraints;
   }
@@ -177,7 +177,7 @@ public class TypedVariableImpl extends MinimalEObjectImpl.Container implements T
         return;
       case MyDslPackage.TYPED_VARIABLE__CONSTRAINTS:
         getConstraints().clear();
-        getConstraints().addAll((Collection<? extends TypeConstraints>)newValue);
+        getConstraints().addAll((Collection<? extends PolyTypeConstraints>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

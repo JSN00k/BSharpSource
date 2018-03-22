@@ -3,6 +3,21 @@
  */
 package org.xtext.sampleProj.mydsl.validation;
 
+import com.google.common.base.Objects;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.xtext.sampleProj.mydsl.myDsl.BppClass;
+import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.Name;
+import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
+import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
+import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
+import org.xtext.sampleProj.mydsl.myDsl.SuperTypeList;
+import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
+import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
 import org.xtext.sampleProj.mydsl.validation.AbstractMyDslValidator;
 
 /**
@@ -12,4 +27,58 @@ import org.xtext.sampleProj.mydsl.validation.AbstractMyDslValidator;
  */
 @SuppressWarnings("all")
 public class MyDslValidator extends AbstractMyDslValidator {
+  public final static String UNEXPECTED_POLY_CONTEXT = "unexpectedPolyContext";
+  
+  public final static String POLYMORPHIC_TYPE_OUT_OF_SCOPE = "PolymorphicTypeOutOfScope";
+  
+  @Check
+  public void checkTypeDeclContext(final TypeDeclContext typeContext) {
+    SuperTypeList _containerOfType = EcoreUtil2.<SuperTypeList>getContainerOfType(typeContext, SuperTypeList.class);
+    boolean _tripleNotEquals = (_containerOfType != null);
+    if (_tripleNotEquals) {
+      EObject _eContainer = typeContext.eContainer();
+      final TypeConstructor tc = ((TypeConstructor) _eContainer);
+      Name _typeName = tc.getTypeName();
+      if ((_typeName instanceof PolymorphicTypeName)) {
+        this.error("Polymorphic Types cannot have a polymorphic context", 
+          MyDslPackage.Literals.TYPE_DECL_CONTEXT__TYPE_NAME, 
+          MyDslValidator.UNEXPECTED_POLY_CONTEXT);
+      }
+    }
+  }
+  
+  @Check
+  public void checkTypeConstructor(final TypeConstructor typeConstructor) {
+    SuperTypeList _containerOfType = EcoreUtil2.<SuperTypeList>getContainerOfType(typeConstructor, SuperTypeList.class);
+    boolean _tripleNotEquals = (_containerOfType != null);
+    if (_tripleNotEquals) {
+      Name _typeName = typeConstructor.getTypeName();
+      if ((_typeName instanceof PolymorphicTypeName)) {
+        final BppClass classDecl = EcoreUtil2.<BppClass>getContainerOfType(typeConstructor, BppClass.class);
+        if ((classDecl == null)) {
+          throw new RuntimeException("Parsing a supertype without being in a Class declaration");
+        }
+        PolyContext _context = classDecl.getContext();
+        boolean _tripleEquals = (_context == null);
+        if (_tripleEquals) {
+          this.error("Polymorphic type used that is not part of the polymorphic context of this class", 
+            MyDslPackage.Literals.TYPE_CONSTRUCTOR__TYPE_NAME, 
+            MyDslValidator.POLYMORPHIC_TYPE_OUT_OF_SCOPE);
+        } else {
+          final Function1<PolyContextTypes, Boolean> _function = (PolyContextTypes it) -> {
+            String _name = it.getName().getName();
+            String _name_1 = typeConstructor.getTypeName().getName();
+            return Boolean.valueOf(Objects.equal(_name, _name_1));
+          };
+          PolyContextTypes _findFirst = IterableExtensions.<PolyContextTypes>findFirst(classDecl.getContext().getPolyTypes(), _function);
+          boolean _tripleEquals_1 = (_findFirst == null);
+          if (_tripleEquals_1) {
+            this.error("Polymorphic type used that is not part of the polymorphic context of this class", 
+              MyDslPackage.Literals.TYPE_CONSTRUCTOR__TYPE_NAME, 
+              MyDslValidator.POLYMORPHIC_TYPE_OUT_OF_SCOPE);
+          }
+        }
+      }
+    }
+  }
 }

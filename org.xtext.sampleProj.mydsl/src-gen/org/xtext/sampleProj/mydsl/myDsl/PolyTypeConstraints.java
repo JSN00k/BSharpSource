@@ -9,21 +9,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Type Constraints</b></em>'.
+ * A representation of the model object '<em><b>Poly Type Constraints</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TypeConstraints#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
- * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypeConstraints()
+ * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getPolyTypeConstraints()
  * @model
  * @generated
  */
-public interface TypeConstraints extends EObject
+public interface PolyTypeConstraints extends EObject
 {
   /**
    * Returns the value of the '<em><b>Type Name</b></em>' reference list.
@@ -35,10 +35,10 @@ public interface TypeConstraints extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type Name</em>' reference list.
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypeConstraints_TypeName()
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getPolyTypeConstraints_TypeName()
    * @model
    * @generated
    */
   EList<TypeName> getTypeName();
 
-} // TypeConstraints
+} // PolyTypeConstraints

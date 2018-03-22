@@ -78,13 +78,13 @@ public interface MyDslFactory extends EFactory
   ClassDecl createClassDecl();
 
   /**
-   * Returns a new object of class '<em>Class</em>'.
+   * Returns a new object of class '<em>Bpp Class</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Class</em>'.
+   * @return a new object of class '<em>Bpp Class</em>'.
    * @generated
    */
-  Class createClass();
+  BppClass createBppClass();
 
   /**
    * Returns a new object of class '<em>Name</em>'.
@@ -132,40 +132,22 @@ public interface MyDslFactory extends EFactory
   PolyContextTypes createPolyContextTypes();
 
   /**
-   * Returns a new object of class '<em>Type Constraints</em>'.
+   * Returns a new object of class '<em>Poly Type Constraints</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Constraints</em>'.
+   * @return a new object of class '<em>Poly Type Constraints</em>'.
    * @generated
    */
-  TypeConstraints createTypeConstraints();
+  PolyTypeConstraints createPolyTypeConstraints();
 
   /**
-   * Returns a new object of class '<em>Typed Variable</em>'.
+   * Returns a new object of class '<em>Super Type List</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Typed Variable</em>'.
+   * @return a new object of class '<em>Super Type List</em>'.
    * @generated
    */
-  TypedVariable createTypedVariable();
-
-  /**
-   * Returns a new object of class '<em>Supertype</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Supertype</em>'.
-   * @generated
-   */
-  Supertype createSupertype();
-
-  /**
-   * Returns a new object of class '<em>Type Declaration</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Declaration</em>'.
-   * @generated
-   */
-  TypeDeclaration createTypeDeclaration();
+  SuperTypeList createSuperTypeList();
 
   /**
    * Returns a new object of class '<em>Constructed Type</em>'.
@@ -193,6 +175,24 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   TypeDeclContext createTypeDeclContext();
+
+  /**
+   * Returns a new object of class '<em>Typed Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Typed Variable</em>'.
+   * @generated
+   */
+  TypedVariable createTypedVariable();
+
+  /**
+   * Returns a new object of class '<em>Type Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Declaration</em>'.
+   * @generated
+   */
+  TypeDeclaration createTypeDeclaration();
 
   /**
    * Returns a new object of class '<em>Where</em>'.

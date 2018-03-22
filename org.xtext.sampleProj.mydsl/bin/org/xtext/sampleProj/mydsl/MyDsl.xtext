@@ -29,13 +29,15 @@ ClassDecl:
 	Class | Datatype | Extend
 ;
 
-Class:
-	'Class' typeName=TypeName (context+=PolyContext)? (supertypes+=Supertype)? '{' (bodyElements+=TypeBodyElements)* '}'
+Class returns BppClass:
+	'Class' typeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 Name: PolymorphicTypeName | TypeName;
 
 TypeName: name=ID;
+
+/*---------------- Polymorphic Context -------------------------- */
 
 PolymorphicTypeName: name=ID;
 
@@ -44,24 +46,23 @@ PolyContext:
 ;
 
 PolyContextTypes:
-	name=PolymorphicTypeName (constraints+=TypeConstraints)*
+	name=PolymorphicTypeName (constraints+=PolyTypeConstraints)*
 ;
 
-
-TypeConstraints:
+PolyTypeConstraints:
 	':' typeName+=[TypeName] (',' typeName+=[TypeName])*
 ;
 
-TypedVariable:
-	name=ID constraints+=TypeConstraints
-;
+/* ------------------- SuperTypes ---------------------------------- */
 
-Supertype:
+/* Any constriction on the polymorphic context has to be done by declaring the polymorphic context
+ * on the new type. If necessary the polymorphic context can be used within type constructors. In the simple case 
+ * this will be infered . Required thought on checking the base types of the super types. At some points these
+ * need to be identical declarations. It is also necessary to allow EventB style type constructors at this
+ * point. e.g., an associative operator is a subtype of a closed Event-B total function.
+ */
+SuperTypeList:
 	':' superType+=ConstructedType (',' superType+=ConstructedType)*
-;
-
-TypeDeclaration:
-	typeName=[TypeName] context=TypeDeclContext
 ;
 
 /* Along with the normal Event-B type operator, and new B++ types the  */
@@ -73,29 +74,23 @@ ConstructedType:
  * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
  */
 TypeConstructor:
-	typeName+=[Name] (context+=TypeDeclContext)?
+	typeName=[Name] (context+=TypeDeclContext)?
 ;
 
 TypeDeclContext:
 	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
 ;
 
-//ConcreteTypeDecl:
-//	PolymorphicTypeName | TypeConstructor | ConstructedType
-//;
-//
-//TypeConstructor:
-//	typeName+=[TypeName] (context+=TypeDeclContext)?
-//;
-//
-//TypeDeclContext:
-//	'<' typeName+=ConcreteTypeDecl (',' typeName+=ConcreteTypeDecl)* '>'
-//;
-//
-//ConstructedType:
-//	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=TypeConstructor)?
-//;
+/* -------------------- Next Thing -------------------------------- */
 
+/* This may need to be changed when we can construct the types more. */
+TypedVariable:
+	name=ID constraints+=PolyTypeConstraints
+;
+
+TypeDeclaration:
+	typeName=[TypeName] context=TypeDeclContext
+;
 
 Where:
 	'where' expessions+=Expression (';' expressions+=Expression)

@@ -15,6 +15,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.sampleProj.mydsl.myDsl.BaseConstructor;
+import org.xtext.sampleProj.mydsl.myDsl.BppClass;
 import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
 import org.xtext.sampleProj.mydsl.myDsl.Constructor;
 import org.xtext.sampleProj.mydsl.myDsl.Datatype;
@@ -29,10 +30,10 @@ import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
+import org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints;
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
-import org.xtext.sampleProj.mydsl.myDsl.Supertype;
+import org.xtext.sampleProj.mydsl.myDsl.SuperTypeList;
 import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstraints;
 import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
 import org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration;
@@ -58,8 +59,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.BASE_CONSTRUCTOR:
 				sequence_BaseConstructor(context, (BaseConstructor) semanticObject); 
 				return; 
-			case MyDslPackage.CLASS:
-				sequence_Class(context, (org.xtext.sampleProj.mydsl.myDsl.Class) semanticObject); 
+			case MyDslPackage.BPP_CLASS:
+				sequence_Class(context, (BppClass) semanticObject); 
 				return; 
 			case MyDslPackage.CONSTRUCTED_TYPE:
 				sequence_ConstructedType(context, (ConstructedType) semanticObject); 
@@ -100,17 +101,17 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.POLY_CONTEXT_TYPES:
 				sequence_PolyContextTypes(context, (PolyContextTypes) semanticObject); 
 				return; 
+			case MyDslPackage.POLY_TYPE_CONSTRAINTS:
+				sequence_PolyTypeConstraints(context, (PolyTypeConstraints) semanticObject); 
+				return; 
 			case MyDslPackage.POLYMORPHIC_TYPE_NAME:
 				sequence_PolymorphicTypeName(context, (PolymorphicTypeName) semanticObject); 
 				return; 
-			case MyDslPackage.SUPERTYPE:
-				sequence_Supertype(context, (Supertype) semanticObject); 
+			case MyDslPackage.SUPER_TYPE_LIST:
+				sequence_SuperTypeList(context, (SuperTypeList) semanticObject); 
 				return; 
 			case MyDslPackage.TYPE_BODY_ELEMENTS:
 				sequence_TypeBodyElements(context, (TypeBodyElements) semanticObject); 
-				return; 
-			case MyDslPackage.TYPE_CONSTRAINTS:
-				sequence_TypeConstraints(context, (TypeConstraints) semanticObject); 
 				return; 
 			case MyDslPackage.TYPE_CONSTRUCTOR:
 				sequence_TypeConstructor(context, (TypeConstructor) semanticObject); 
@@ -156,14 +157,14 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     TopLevel returns Class
-	 *     ClassDecl returns Class
-	 *     Class returns Class
+	 *     TopLevel returns BppClass
+	 *     ClassDecl returns BppClass
+	 *     Class returns BppClass
 	 *
 	 * Constraint:
-	 *     (typeName=TypeName context+=PolyContext? supertypes+=Supertype? bodyElements+=TypeBodyElements*)
+	 *     (typeName=TypeName context=PolyContext? supertypes=SuperTypeList? bodyElements+=TypeBodyElements*)
 	 */
-	protected void sequence_Class(ISerializationContext context, org.xtext.sampleProj.mydsl.myDsl.Class semanticObject) {
+	protected void sequence_Class(ISerializationContext context, BppClass semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -329,7 +330,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     PolyContextTypes returns PolyContextTypes
 	 *
 	 * Constraint:
-	 *     (name=PolymorphicTypeName constraints+=TypeConstraints*)
+	 *     (name=PolymorphicTypeName constraints+=PolyTypeConstraints*)
 	 */
 	protected void sequence_PolyContextTypes(ISerializationContext context, PolyContextTypes semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -344,6 +345,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     polyTypes+=PolyContextTypes+
 	 */
 	protected void sequence_PolyContext(ISerializationContext context, PolyContext semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PolyTypeConstraints returns PolyTypeConstraints
+	 *
+	 * Constraint:
+	 *     (typeName+=[TypeName|ID] typeName+=[TypeName|ID]*)
+	 */
+	protected void sequence_PolyTypeConstraints(ISerializationContext context, PolyTypeConstraints semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -369,12 +382,12 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     Supertype returns Supertype
+	 *     SuperTypeList returns SuperTypeList
 	 *
 	 * Constraint:
-	 *     (superType+=ConstructedType superType+=TypeDeclaration*)
+	 *     (superType+=ConstructedType superType+=ConstructedType*)
 	 */
-	protected void sequence_Supertype(ISerializationContext context, Supertype semanticObject) {
+	protected void sequence_SuperTypeList(ISerializationContext context, SuperTypeList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -393,22 +406,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     TypeConstraints returns TypeConstraints
-	 *
-	 * Constraint:
-	 *     (typeName+=[TypeName|ID] typeName+=[TypeName|ID]*)
-	 */
-	protected void sequence_TypeConstraints(ISerializationContext context, TypeConstraints semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     TypeConstructor returns TypeConstructor
 	 *
 	 * Constraint:
-	 *     (typeName+=[Name|ID] context+=TypeDeclContext?)
+	 *     (typeName=[Name|ID] context+=TypeDeclContext?)
 	 */
 	protected void sequence_TypeConstructor(ISerializationContext context, TypeConstructor semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -472,7 +473,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypedVariable returns TypedVariable
 	 *
 	 * Constraint:
-	 *     (name=ID constraints+=TypeConstraints)
+	 *     (name=ID constraints+=PolyTypeConstraints)
 	 */
 	protected void sequence_TypedVariable(ISerializationContext context, TypedVariable semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.sampleProj.mydsl.myDsl.BaseConstructor;
+import org.xtext.sampleProj.mydsl.myDsl.BppClass;
 import org.xtext.sampleProj.mydsl.myDsl.ClassDecl;
 import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
 import org.xtext.sampleProj.mydsl.myDsl.Constructor;
@@ -29,11 +30,11 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.Name;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
+import org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints;
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
-import org.xtext.sampleProj.mydsl.myDsl.Supertype;
+import org.xtext.sampleProj.mydsl.myDsl.SuperTypeList;
 import org.xtext.sampleProj.mydsl.myDsl.TopLevel;
 import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstraints;
 import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
 import org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration;
@@ -96,7 +97,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass classEClass = null;
+  private EClass bppClassEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -138,28 +139,14 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass typeConstraintsEClass = null;
+  private EClass polyTypeConstraintsEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass typedVariableEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass supertypeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass typeDeclarationEClass = null;
+  private EClass superTypeListEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -181,6 +168,20 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass typeDeclContextEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typedVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeDeclarationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -430,9 +431,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getClass_()
+  public EClass getBppClass()
   {
-    return classEClass;
+    return bppClassEClass;
   }
 
   /**
@@ -440,9 +441,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getClass_TypeName()
+  public EReference getBppClass_TypeName()
   {
-    return (EReference)classEClass.getEStructuralFeatures().get(0);
+    return (EReference)bppClassEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -450,9 +451,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getClass_Context()
+  public EReference getBppClass_Context()
   {
-    return (EReference)classEClass.getEStructuralFeatures().get(1);
+    return (EReference)bppClassEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -460,9 +461,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getClass_Supertypes()
+  public EReference getBppClass_Supertypes()
   {
-    return (EReference)classEClass.getEStructuralFeatures().get(2);
+    return (EReference)bppClassEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -560,9 +561,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTypeConstraints()
+  public EClass getPolyTypeConstraints()
   {
-    return typeConstraintsEClass;
+    return polyTypeConstraintsEClass;
   }
 
   /**
@@ -570,9 +571,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTypeConstraints_TypeName()
+  public EReference getPolyTypeConstraints_TypeName()
   {
-    return (EReference)typeConstraintsEClass.getEStructuralFeatures().get(0);
+    return (EReference)polyTypeConstraintsEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -580,9 +581,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTypedVariable()
+  public EClass getSuperTypeList()
   {
-    return typedVariableEClass;
+    return superTypeListEClass;
   }
 
   /**
@@ -590,69 +591,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTypedVariable_Name()
+  public EReference getSuperTypeList_SuperType()
   {
-    return (EAttribute)typedVariableEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTypedVariable_Constraints()
-  {
-    return (EReference)typedVariableEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getSupertype()
-  {
-    return supertypeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSupertype_SuperType()
-  {
-    return (EReference)supertypeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getTypeDeclaration()
-  {
-    return typeDeclarationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTypeDeclaration_TypeName()
-  {
-    return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTypeDeclaration_Context()
-  {
-    return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(1);
+    return (EReference)superTypeListEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -723,6 +664,66 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EReference getTypeDeclContext_TypeName()
   {
     return (EReference)typeDeclContextEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypedVariable()
+  {
+    return typedVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTypedVariable_Name()
+  {
+    return (EAttribute)typedVariableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypedVariable_Constraints()
+  {
+    return (EReference)typedVariableEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeDeclaration()
+  {
+    return typeDeclarationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeDeclaration_TypeName()
+  {
+    return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeDeclaration_Context()
+  {
+    return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1022,10 +1023,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     classDeclEClass = createEClass(CLASS_DECL);
     createEReference(classDeclEClass, CLASS_DECL__BODY_ELEMENTS);
 
-    classEClass = createEClass(CLASS);
-    createEReference(classEClass, CLASS__TYPE_NAME);
-    createEReference(classEClass, CLASS__CONTEXT);
-    createEReference(classEClass, CLASS__SUPERTYPES);
+    bppClassEClass = createEClass(BPP_CLASS);
+    createEReference(bppClassEClass, BPP_CLASS__TYPE_NAME);
+    createEReference(bppClassEClass, BPP_CLASS__CONTEXT);
+    createEReference(bppClassEClass, BPP_CLASS__SUPERTYPES);
 
     nameEClass = createEClass(NAME);
     createEAttribute(nameEClass, NAME__NAME);
@@ -1041,19 +1042,11 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(polyContextTypesEClass, POLY_CONTEXT_TYPES__NAME);
     createEReference(polyContextTypesEClass, POLY_CONTEXT_TYPES__CONSTRAINTS);
 
-    typeConstraintsEClass = createEClass(TYPE_CONSTRAINTS);
-    createEReference(typeConstraintsEClass, TYPE_CONSTRAINTS__TYPE_NAME);
+    polyTypeConstraintsEClass = createEClass(POLY_TYPE_CONSTRAINTS);
+    createEReference(polyTypeConstraintsEClass, POLY_TYPE_CONSTRAINTS__TYPE_NAME);
 
-    typedVariableEClass = createEClass(TYPED_VARIABLE);
-    createEAttribute(typedVariableEClass, TYPED_VARIABLE__NAME);
-    createEReference(typedVariableEClass, TYPED_VARIABLE__CONSTRAINTS);
-
-    supertypeEClass = createEClass(SUPERTYPE);
-    createEReference(supertypeEClass, SUPERTYPE__SUPER_TYPE);
-
-    typeDeclarationEClass = createEClass(TYPE_DECLARATION);
-    createEReference(typeDeclarationEClass, TYPE_DECLARATION__TYPE_NAME);
-    createEReference(typeDeclarationEClass, TYPE_DECLARATION__CONTEXT);
+    superTypeListEClass = createEClass(SUPER_TYPE_LIST);
+    createEReference(superTypeListEClass, SUPER_TYPE_LIST__SUPER_TYPE);
 
     constructedTypeEClass = createEClass(CONSTRUCTED_TYPE);
     createEReference(constructedTypeEClass, CONSTRUCTED_TYPE__TYPE);
@@ -1064,6 +1057,14 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     typeDeclContextEClass = createEClass(TYPE_DECL_CONTEXT);
     createEReference(typeDeclContextEClass, TYPE_DECL_CONTEXT__TYPE_NAME);
+
+    typedVariableEClass = createEClass(TYPED_VARIABLE);
+    createEAttribute(typedVariableEClass, TYPED_VARIABLE__NAME);
+    createEReference(typedVariableEClass, TYPED_VARIABLE__CONSTRAINTS);
+
+    typeDeclarationEClass = createEClass(TYPE_DECLARATION);
+    createEReference(typeDeclarationEClass, TYPE_DECLARATION__TYPE_NAME);
+    createEReference(typeDeclarationEClass, TYPE_DECLARATION__CONTEXT);
 
     whereEClass = createEClass(WHERE);
     createEReference(whereEClass, WHERE__EXPESSIONS);
@@ -1132,7 +1133,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Add supertypes to classes
     importStatementEClass.getESuperTypes().add(this.getTopLevel());
     classDeclEClass.getESuperTypes().add(this.getTopLevel());
-    classEClass.getESuperTypes().add(this.getClassDecl());
+    bppClassEClass.getESuperTypes().add(this.getClassDecl());
     typeNameEClass.getESuperTypes().add(this.getName_());
     polymorphicTypeNameEClass.getESuperTypes().add(this.getName_());
     datatypeEClass.getESuperTypes().add(this.getClassDecl());
@@ -1158,10 +1159,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEClass(classDeclEClass, ClassDecl.class, "ClassDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getClassDecl_BodyElements(), this.getTypeBodyElements(), null, "bodyElements", null, 0, -1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(classEClass, org.xtext.sampleProj.mydsl.myDsl.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getClass_TypeName(), this.getTypeName(), null, "typeName", null, 0, 1, org.xtext.sampleProj.mydsl.myDsl.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getClass_Context(), this.getPolyContext(), null, "context", null, 0, -1, org.xtext.sampleProj.mydsl.myDsl.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getClass_Supertypes(), this.getSupertype(), null, "supertypes", null, 0, -1, org.xtext.sampleProj.mydsl.myDsl.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(bppClassEClass, BppClass.class, "BppClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBppClass_TypeName(), this.getTypeName(), null, "typeName", null, 0, 1, BppClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBppClass_Context(), this.getPolyContext(), null, "context", null, 0, 1, BppClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBppClass_Supertypes(), this.getSuperTypeList(), null, "supertypes", null, 0, 1, BppClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(nameEClass, Name.class, "Name", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getName_Name(), ecorePackage.getEString(), "name", null, 0, 1, Name.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1175,31 +1176,31 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(polyContextTypesEClass, PolyContextTypes.class, "PolyContextTypes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPolyContextTypes_Name(), this.getPolymorphicTypeName(), null, "name", null, 0, 1, PolyContextTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPolyContextTypes_Constraints(), this.getTypeConstraints(), null, "constraints", null, 0, -1, PolyContextTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPolyContextTypes_Constraints(), this.getPolyTypeConstraints(), null, "constraints", null, 0, -1, PolyContextTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(typeConstraintsEClass, TypeConstraints.class, "TypeConstraints", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTypeConstraints_TypeName(), this.getTypeName(), null, "typeName", null, 0, -1, TypeConstraints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(polyTypeConstraintsEClass, PolyTypeConstraints.class, "PolyTypeConstraints", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPolyTypeConstraints_TypeName(), this.getTypeName(), null, "typeName", null, 0, -1, PolyTypeConstraints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(typedVariableEClass, TypedVariable.class, "TypedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTypedVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTypedVariable_Constraints(), this.getTypeConstraints(), null, "constraints", null, 0, -1, TypedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(supertypeEClass, Supertype.class, "Supertype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSupertype_SuperType(), ecorePackage.getEObject(), null, "superType", null, 0, -1, Supertype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(typeDeclarationEClass, TypeDeclaration.class, "TypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTypeDeclaration_TypeName(), this.getTypeName(), null, "typeName", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTypeDeclaration_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(superTypeListEClass, SuperTypeList.class, "SuperTypeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSuperTypeList_SuperType(), this.getConstructedType(), null, "superType", null, 0, -1, SuperTypeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constructedTypeEClass, ConstructedType.class, "ConstructedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConstructedType_Type(), ecorePackage.getEObject(), null, "type", null, 0, -1, ConstructedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeConstructorEClass, TypeConstructor.class, "TypeConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTypeConstructor_TypeName(), this.getName_(), null, "typeName", null, 0, -1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTypeConstructor_TypeName(), this.getName_(), null, "typeName", null, 0, 1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTypeConstructor_Context(), this.getTypeDeclContext(), null, "context", null, 0, -1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeDeclContextEClass, TypeDeclContext.class, "TypeDeclContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTypeDeclContext_TypeName(), this.getConstructedType(), null, "typeName", null, 0, -1, TypeDeclContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typedVariableEClass, TypedVariable.class, "TypedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTypedVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTypedVariable_Constraints(), this.getPolyTypeConstraints(), null, "constraints", null, 0, -1, TypedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typeDeclarationEClass, TypeDeclaration.class, "TypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTypeDeclaration_TypeName(), this.getTypeName(), null, "typeName", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTypeDeclaration_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(whereEClass, Where.class, "Where", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getWhere_Expessions(), this.getExpression(), null, "expessions", null, 0, -1, Where.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

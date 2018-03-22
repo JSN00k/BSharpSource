@@ -14,23 +14,23 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstraints;
+import org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints;
 import org.xtext.sampleProj.mydsl.myDsl.TypeName;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Type Constraints</b></em>'.
+ * An implementation of the model object '<em><b>Poly Type Constraints</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstraintsImpl#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.PolyTypeConstraintsImpl#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TypeConstraintsImpl extends MinimalEObjectImpl.Container implements TypeConstraints
+public class PolyTypeConstraintsImpl extends MinimalEObjectImpl.Container implements PolyTypeConstraints
 {
   /**
    * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference list.
@@ -47,7 +47,7 @@ public class TypeConstraintsImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  protected TypeConstraintsImpl()
+  protected PolyTypeConstraintsImpl()
   {
     super();
   }
@@ -60,7 +60,7 @@ public class TypeConstraintsImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.TYPE_CONSTRAINTS;
+    return MyDslPackage.Literals.POLY_TYPE_CONSTRAINTS;
   }
 
   /**
@@ -72,7 +72,7 @@ public class TypeConstraintsImpl extends MinimalEObjectImpl.Container implements
   {
     if (typeName == null)
     {
-      typeName = new EObjectResolvingEList<TypeName>(TypeName.class, this, MyDslPackage.TYPE_CONSTRAINTS__TYPE_NAME);
+      typeName = new EObjectResolvingEList<TypeName>(TypeName.class, this, MyDslPackage.POLY_TYPE_CONSTRAINTS__TYPE_NAME);
     }
     return typeName;
   }
@@ -87,7 +87,7 @@ public class TypeConstraintsImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPE_CONSTRAINTS__TYPE_NAME:
+      case MyDslPackage.POLY_TYPE_CONSTRAINTS__TYPE_NAME:
         return getTypeName();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -104,7 +104,7 @@ public class TypeConstraintsImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPE_CONSTRAINTS__TYPE_NAME:
+      case MyDslPackage.POLY_TYPE_CONSTRAINTS__TYPE_NAME:
         getTypeName().clear();
         getTypeName().addAll((Collection<? extends TypeName>)newValue);
         return;
@@ -122,7 +122,7 @@ public class TypeConstraintsImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPE_CONSTRAINTS__TYPE_NAME:
+      case MyDslPackage.POLY_TYPE_CONSTRAINTS__TYPE_NAME:
         getTypeName().clear();
         return;
     }
@@ -139,10 +139,10 @@ public class TypeConstraintsImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPE_CONSTRAINTS__TYPE_NAME:
+      case MyDslPackage.POLY_TYPE_CONSTRAINTS__TYPE_NAME:
         return typeName != null && !typeName.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //TypeConstraintsImpl
+} //PolyTypeConstraintsImpl

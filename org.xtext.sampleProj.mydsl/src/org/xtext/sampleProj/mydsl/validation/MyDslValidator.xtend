@@ -3,6 +3,15 @@
  */
 package org.xtext.sampleProj.mydsl.validation
 
+import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext
+import org.eclipse.xtext.EcoreUtil2
+import org.xtext.sampleProj.mydsl.myDsl.SuperTypeList
+import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor
+import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName
+import org.xtext.sampleProj.mydsl.myDsl.BppClass
+import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage
+import org.eclipse.xtext.validation.Check
+import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes
 
 /**
  * This class contains custom validation rules. 
@@ -21,5 +30,52 @@ class MyDslValidator extends AbstractMyDslValidator {
 //					INVALID_NAME)
 //		}
 //	}
+
+	public static val UNEXPECTED_POLY_CONTEXT = "unexpectedPolyContext"
+	public static val POLYMORPHIC_TYPE_OUT_OF_SCOPE = "PolymorphicTypeOutOfScope"
 	
+	// Check that we should be able to have a type declaration at this point
+	@Check
+	def checkTypeDeclContext (TypeDeclContext typeContext) {
+		if (EcoreUtil2.getContainerOfType(typeContext, SuperTypeList) !== null) {
+			/* We're in a supertype declaration. */
+			val tc = typeContext.eContainer() as TypeConstructor
+			if (tc.typeName instanceof PolymorphicTypeName) {
+				error('Polymorphic Types cannot have a polymorphic context',
+					MyDslPackage.Literals.TYPE_DECL_CONTEXT__TYPE_NAME,
+					UNEXPECTED_POLY_CONTEXT)
+			}
+		}
+	}
+	
+	@Check
+	def checkTypeConstructor(TypeConstructor typeConstructor) {
+		if (EcoreUtil2.getContainerOfType(typeConstructor, SuperTypeList) !== null) {
+			if (typeConstructor.typeName instanceof PolymorphicTypeName) {
+				val classDecl = EcoreUtil2.getContainerOfType(typeConstructor, BppClass)
+				
+				if (classDecl === null) {
+					/* Oh dear, this shouldn't be possible */
+					throw new RuntimeException("Parsing a supertype without being in a Class declaration")
+				}
+				
+				if (classDecl.context === null) {
+					error('Polymorphic type used that is not part of the polymorphic context of this class',
+						MyDslPackage.Literals.TYPE_CONSTRUCTOR__TYPE_NAME,
+						POLYMORPHIC_TYPE_OUT_OF_SCOPE)
+				} else {
+					
+					if (classDecl.context.polyTypes.findFirst[
+						it.name.name == typeConstructor.typeName.name
+					] === null) {
+						error('Polymorphic type used that is not part of the polymorphic context of this class',
+						MyDslPackage.Literals.TYPE_CONSTRUCTOR__TYPE_NAME,
+						POLYMORPHIC_TYPE_OUT_OF_SCOPE)
+					}
+				}
+			}
+		}
+		
+
+	}
 }

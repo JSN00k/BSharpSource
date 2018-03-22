@@ -11,36 +11,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.xtext.sampleProj.mydsl.myDsl.BaseConstructor;
-import org.xtext.sampleProj.mydsl.myDsl.ClassDecl;
-import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
-import org.xtext.sampleProj.mydsl.myDsl.Constructor;
-import org.xtext.sampleProj.mydsl.myDsl.Datatype;
-import org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor;
-import org.xtext.sampleProj.mydsl.myDsl.DomainModel;
-import org.xtext.sampleProj.mydsl.myDsl.Expression;
-import org.xtext.sampleProj.mydsl.myDsl.Extend;
-import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
-import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
-import org.xtext.sampleProj.mydsl.myDsl.Import;
-import org.xtext.sampleProj.mydsl.myDsl.ImportComponent;
-import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
-import org.xtext.sampleProj.mydsl.myDsl.MyDslFactory;
-import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.Name;
-import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
-import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
-import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
-import org.xtext.sampleProj.mydsl.myDsl.Supertype;
-import org.xtext.sampleProj.mydsl.myDsl.TopLevel;
-import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstraints;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
-import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
-import org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration;
-import org.xtext.sampleProj.mydsl.myDsl.TypeName;
-import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
-import org.xtext.sampleProj.mydsl.myDsl.Where;
+import org.xtext.sampleProj.mydsl.myDsl.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,19 +71,19 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.IMPORT: return createImport();
       case MyDslPackage.IMPORT_COMPONENT: return createImportComponent();
       case MyDslPackage.CLASS_DECL: return createClassDecl();
-      case MyDslPackage.CLASS: return createClass();
+      case MyDslPackage.BPP_CLASS: return createBppClass();
       case MyDslPackage.NAME: return createName();
       case MyDslPackage.TYPE_NAME: return createTypeName();
       case MyDslPackage.POLYMORPHIC_TYPE_NAME: return createPolymorphicTypeName();
       case MyDslPackage.POLY_CONTEXT: return createPolyContext();
       case MyDslPackage.POLY_CONTEXT_TYPES: return createPolyContextTypes();
-      case MyDslPackage.TYPE_CONSTRAINTS: return createTypeConstraints();
-      case MyDslPackage.TYPED_VARIABLE: return createTypedVariable();
-      case MyDslPackage.SUPERTYPE: return createSupertype();
-      case MyDslPackage.TYPE_DECLARATION: return createTypeDeclaration();
+      case MyDslPackage.POLY_TYPE_CONSTRAINTS: return createPolyTypeConstraints();
+      case MyDslPackage.SUPER_TYPE_LIST: return createSuperTypeList();
       case MyDslPackage.CONSTRUCTED_TYPE: return createConstructedType();
       case MyDslPackage.TYPE_CONSTRUCTOR: return createTypeConstructor();
       case MyDslPackage.TYPE_DECL_CONTEXT: return createTypeDeclContext();
+      case MyDslPackage.TYPED_VARIABLE: return createTypedVariable();
+      case MyDslPackage.TYPE_DECLARATION: return createTypeDeclaration();
       case MyDslPackage.WHERE: return createWhere();
       case MyDslPackage.TYPE_BODY_ELEMENTS: return createTypeBodyElements();
       case MyDslPackage.FUNCTION_NAME: return createFunctionName();
@@ -199,10 +170,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public org.xtext.sampleProj.mydsl.myDsl.Class createClass()
+  public BppClass createBppClass()
   {
-    ClassImpl class_ = new ClassImpl();
-    return class_;
+    BppClassImpl bppClass = new BppClassImpl();
+    return bppClass;
   }
 
   /**
@@ -265,10 +236,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypeConstraints createTypeConstraints()
+  public PolyTypeConstraints createPolyTypeConstraints()
   {
-    TypeConstraintsImpl typeConstraints = new TypeConstraintsImpl();
-    return typeConstraints;
+    PolyTypeConstraintsImpl polyTypeConstraints = new PolyTypeConstraintsImpl();
+    return polyTypeConstraints;
   }
 
   /**
@@ -276,32 +247,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypedVariable createTypedVariable()
+  public SuperTypeList createSuperTypeList()
   {
-    TypedVariableImpl typedVariable = new TypedVariableImpl();
-    return typedVariable;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Supertype createSupertype()
-  {
-    SupertypeImpl supertype = new SupertypeImpl();
-    return supertype;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TypeDeclaration createTypeDeclaration()
-  {
-    TypeDeclarationImpl typeDeclaration = new TypeDeclarationImpl();
-    return typeDeclaration;
+    SuperTypeListImpl superTypeList = new SuperTypeListImpl();
+    return superTypeList;
   }
 
   /**
@@ -335,6 +284,28 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     TypeDeclContextImpl typeDeclContext = new TypeDeclContextImpl();
     return typeDeclContext;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypedVariable createTypedVariable()
+  {
+    TypedVariableImpl typedVariable = new TypedVariableImpl();
+    return typedVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeDeclaration createTypeDeclaration()
+  {
+    TypeDeclarationImpl typeDeclaration = new TypeDeclarationImpl();
+    return typeDeclaration;
   }
 
   /**

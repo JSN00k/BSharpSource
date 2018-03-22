@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -18,23 +17,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.Supertype;
+import org.xtext.sampleProj.mydsl.myDsl.SuperTypeList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Supertype</b></em>'.
+ * An implementation of the model object '<em><b>Super Type List</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.SupertypeImpl#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.SuperTypeListImpl#getSuperType <em>Super Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SupertypeImpl extends MinimalEObjectImpl.Container implements Supertype
+public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements SuperTypeList
 {
   /**
    * The cached value of the '{@link #getSuperType() <em>Super Type</em>}' containment reference list.
@@ -44,14 +44,14 @@ public class SupertypeImpl extends MinimalEObjectImpl.Container implements Super
    * @generated
    * @ordered
    */
-  protected EList<EObject> superType;
+  protected EList<ConstructedType> superType;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected SupertypeImpl()
+  protected SuperTypeListImpl()
   {
     super();
   }
@@ -64,7 +64,7 @@ public class SupertypeImpl extends MinimalEObjectImpl.Container implements Super
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.SUPERTYPE;
+    return MyDslPackage.Literals.SUPER_TYPE_LIST;
   }
 
   /**
@@ -72,11 +72,11 @@ public class SupertypeImpl extends MinimalEObjectImpl.Container implements Super
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EObject> getSuperType()
+  public EList<ConstructedType> getSuperType()
   {
     if (superType == null)
     {
-      superType = new EObjectContainmentEList<EObject>(EObject.class, this, MyDslPackage.SUPERTYPE__SUPER_TYPE);
+      superType = new EObjectContainmentEList<ConstructedType>(ConstructedType.class, this, MyDslPackage.SUPER_TYPE_LIST__SUPER_TYPE);
     }
     return superType;
   }
@@ -91,7 +91,7 @@ public class SupertypeImpl extends MinimalEObjectImpl.Container implements Super
   {
     switch (featureID)
     {
-      case MyDslPackage.SUPERTYPE__SUPER_TYPE:
+      case MyDslPackage.SUPER_TYPE_LIST__SUPER_TYPE:
         return ((InternalEList<?>)getSuperType()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -107,7 +107,7 @@ public class SupertypeImpl extends MinimalEObjectImpl.Container implements Super
   {
     switch (featureID)
     {
-      case MyDslPackage.SUPERTYPE__SUPER_TYPE:
+      case MyDslPackage.SUPER_TYPE_LIST__SUPER_TYPE:
         return getSuperType();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -124,9 +124,9 @@ public class SupertypeImpl extends MinimalEObjectImpl.Container implements Super
   {
     switch (featureID)
     {
-      case MyDslPackage.SUPERTYPE__SUPER_TYPE:
+      case MyDslPackage.SUPER_TYPE_LIST__SUPER_TYPE:
         getSuperType().clear();
-        getSuperType().addAll((Collection<? extends EObject>)newValue);
+        getSuperType().addAll((Collection<? extends ConstructedType>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,7 +142,7 @@ public class SupertypeImpl extends MinimalEObjectImpl.Container implements Super
   {
     switch (featureID)
     {
-      case MyDslPackage.SUPERTYPE__SUPER_TYPE:
+      case MyDslPackage.SUPER_TYPE_LIST__SUPER_TYPE:
         getSuperType().clear();
         return;
     }
@@ -159,10 +159,10 @@ public class SupertypeImpl extends MinimalEObjectImpl.Container implements Super
   {
     switch (featureID)
     {
-      case MyDslPackage.SUPERTYPE__SUPER_TYPE:
+      case MyDslPackage.SUPER_TYPE_LIST__SUPER_TYPE:
         return superType != null && !superType.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //SupertypeImpl
+} //SuperTypeListImpl

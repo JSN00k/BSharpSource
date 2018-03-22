@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
+import org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints;
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstraints;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,7 +58,7 @@ public class PolyContextTypesImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected EList<TypeConstraints> constraints;
+  protected EList<PolyTypeConstraints> constraints;
 
   /**
    * <!-- begin-user-doc -->
@@ -134,11 +134,11 @@ public class PolyContextTypesImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypeConstraints> getConstraints()
+  public EList<PolyTypeConstraints> getConstraints()
   {
     if (constraints == null)
     {
-      constraints = new EObjectContainmentEList<TypeConstraints>(TypeConstraints.class, this, MyDslPackage.POLY_CONTEXT_TYPES__CONSTRAINTS);
+      constraints = new EObjectContainmentEList<PolyTypeConstraints>(PolyTypeConstraints.class, this, MyDslPackage.POLY_CONTEXT_TYPES__CONSTRAINTS);
     }
     return constraints;
   }
@@ -195,7 +195,7 @@ public class PolyContextTypesImpl extends MinimalEObjectImpl.Container implement
         return;
       case MyDslPackage.POLY_CONTEXT_TYPES__CONSTRAINTS:
         getConstraints().clear();
-        getConstraints().addAll((Collection<? extends TypeConstraints>)newValue);
+        getConstraints().addAll((Collection<? extends PolyTypeConstraints>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

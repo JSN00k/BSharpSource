@@ -5,6 +5,7 @@ package org.xtext.sampleProj.mydsl.myDsl.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,10 +13,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
@@ -40,14 +41,14 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
 public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements TypeConstructor
 {
   /**
-   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference list.
+   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTypeName()
    * @generated
    * @ordered
    */
-  protected EList<Name> typeName;
+  protected Name typeName;
 
   /**
    * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference list.
@@ -85,13 +86,42 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Name> getTypeName()
+  public Name getTypeName()
   {
-    if (typeName == null)
+    if (typeName != null && typeName.eIsProxy())
     {
-      typeName = new EObjectResolvingEList<Name>(Name.class, this, MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME);
+      InternalEObject oldTypeName = (InternalEObject)typeName;
+      typeName = (Name)eResolveProxy(oldTypeName);
+      if (typeName != oldTypeName)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME, oldTypeName, typeName));
+      }
     }
     return typeName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Name basicGetTypeName()
+  {
+    return typeName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTypeName(Name newTypeName)
+  {
+    Name oldTypeName = typeName;
+    typeName = newTypeName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME, oldTypeName, typeName));
   }
 
   /**
@@ -135,7 +165,8 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
-        return getTypeName();
+        if (resolve) return getTypeName();
+        return basicGetTypeName();
       case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
         return getContext();
     }
@@ -154,8 +185,7 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
-        getTypeName().clear();
-        getTypeName().addAll((Collection<? extends Name>)newValue);
+        setTypeName((Name)newValue);
         return;
       case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
         getContext().clear();
@@ -176,7 +206,7 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
-        getTypeName().clear();
+        setTypeName((Name)null);
         return;
       case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
         getContext().clear();
@@ -196,7 +226,7 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
-        return typeName != null && !typeName.isEmpty();
+        return typeName != null;
       case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
         return context != null && !context.isEmpty();
     }

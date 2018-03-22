@@ -10,35 +10,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.xtext.sampleProj.mydsl.myDsl.BaseConstructor;
-import org.xtext.sampleProj.mydsl.myDsl.ClassDecl;
-import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
-import org.xtext.sampleProj.mydsl.myDsl.Constructor;
-import org.xtext.sampleProj.mydsl.myDsl.Datatype;
-import org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor;
-import org.xtext.sampleProj.mydsl.myDsl.DomainModel;
-import org.xtext.sampleProj.mydsl.myDsl.Expression;
-import org.xtext.sampleProj.mydsl.myDsl.Extend;
-import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
-import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
-import org.xtext.sampleProj.mydsl.myDsl.Import;
-import org.xtext.sampleProj.mydsl.myDsl.ImportComponent;
-import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
-import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.Name;
-import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
-import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
-import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
-import org.xtext.sampleProj.mydsl.myDsl.Supertype;
-import org.xtext.sampleProj.mydsl.myDsl.TopLevel;
-import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstraints;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
-import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
-import org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration;
-import org.xtext.sampleProj.mydsl.myDsl.TypeName;
-import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
-import org.xtext.sampleProj.mydsl.myDsl.Where;
+import org.xtext.sampleProj.mydsl.myDsl.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -134,9 +106,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createClassDeclAdapter();
       }
       @Override
-      public Adapter caseClass(org.xtext.sampleProj.mydsl.myDsl.Class object)
+      public Adapter caseBppClass(BppClass object)
       {
-        return createClassAdapter();
+        return createBppClassAdapter();
       }
       @Override
       public Adapter caseName(Name object)
@@ -164,24 +136,14 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createPolyContextTypesAdapter();
       }
       @Override
-      public Adapter caseTypeConstraints(TypeConstraints object)
+      public Adapter casePolyTypeConstraints(PolyTypeConstraints object)
       {
-        return createTypeConstraintsAdapter();
+        return createPolyTypeConstraintsAdapter();
       }
       @Override
-      public Adapter caseTypedVariable(TypedVariable object)
+      public Adapter caseSuperTypeList(SuperTypeList object)
       {
-        return createTypedVariableAdapter();
-      }
-      @Override
-      public Adapter caseSupertype(Supertype object)
-      {
-        return createSupertypeAdapter();
-      }
-      @Override
-      public Adapter caseTypeDeclaration(TypeDeclaration object)
-      {
-        return createTypeDeclarationAdapter();
+        return createSuperTypeListAdapter();
       }
       @Override
       public Adapter caseConstructedType(ConstructedType object)
@@ -197,6 +159,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseTypeDeclContext(TypeDeclContext object)
       {
         return createTypeDeclContextAdapter();
+      }
+      @Override
+      public Adapter caseTypedVariable(TypedVariable object)
+      {
+        return createTypedVariableAdapter();
+      }
+      @Override
+      public Adapter caseTypeDeclaration(TypeDeclaration object)
+      {
+        return createTypeDeclarationAdapter();
       }
       @Override
       public Adapter caseWhere(Where object)
@@ -361,16 +333,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Class <em>Class</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass <em>Bpp Class</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Class
+   * @see org.xtext.sampleProj.mydsl.myDsl.BppClass
    * @generated
    */
-  public Adapter createClassAdapter()
+  public Adapter createBppClassAdapter()
   {
     return null;
   }
@@ -451,61 +423,31 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeConstraints <em>Type Constraints</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints <em>Poly Type Constraints</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypeConstraints
+   * @see org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints
    * @generated
    */
-  public Adapter createTypeConstraintsAdapter()
+  public Adapter createPolyTypeConstraintsAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable <em>Typed Variable</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.SuperTypeList <em>Super Type List</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable
+   * @see org.xtext.sampleProj.mydsl.myDsl.SuperTypeList
    * @generated
    */
-  public Adapter createTypedVariableAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Supertype <em>Supertype</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Supertype
-   * @generated
-   */
-  public Adapter createSupertypeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration <em>Type Declaration</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration
-   * @generated
-   */
-  public Adapter createTypeDeclarationAdapter()
+  public Adapter createSuperTypeListAdapter()
   {
     return null;
   }
@@ -551,6 +493,36 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTypeDeclContextAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable <em>Typed Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable
+   * @generated
+   */
+  public Adapter createTypedVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration <em>Type Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration
+   * @generated
+   */
+  public Adapter createTypeDeclarationAdapter()
   {
     return null;
   }

@@ -366,7 +366,7 @@ ruleClass returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getClassRule());
 					}
-					add(
+					set(
 						$current,
 						"context",
 						lv_context_2_0,
@@ -378,18 +378,18 @@ ruleClass returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getClassAccess().getSupertypesSupertypeParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getClassAccess().getSupertypesSuperTypeListParserRuleCall_3_0());
 				}
-				lv_supertypes_3_0=ruleSupertype
+				lv_supertypes_3_0=ruleSuperTypeList
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getClassRule());
 					}
-					add(
+					set(
 						$current,
 						"supertypes",
 						lv_supertypes_3_0,
-						"org.xtext.sampleProj.mydsl.MyDsl.Supertype");
+						"org.xtext.sampleProj.mydsl.MyDsl.SuperTypeList");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -578,9 +578,9 @@ rulePolyContextTypes returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPolyContextTypesAccess().getConstraintsTypeConstraintsParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getPolyContextTypesAccess().getConstraintsPolyTypeConstraintsParserRuleCall_1_0());
 				}
-				lv_constraints_1_0=ruleTypeConstraints
+				lv_constraints_1_0=rulePolyTypeConstraints
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPolyContextTypesRule());
@@ -589,7 +589,7 @@ rulePolyContextTypes returns [EObject current=null]
 						$current,
 						"constraints",
 						lv_constraints_1_0,
-						"org.xtext.sampleProj.mydsl.MyDsl.TypeConstraints");
+						"org.xtext.sampleProj.mydsl.MyDsl.PolyTypeConstraints");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -597,15 +597,15 @@ rulePolyContextTypes returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleTypeConstraints
-entryRuleTypeConstraints returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypeConstraintsRule()); }
-	iv_ruleTypeConstraints=ruleTypeConstraints
-	{ $current=$iv_ruleTypeConstraints.current; }
+// Entry rule entryRulePolyTypeConstraints
+entryRulePolyTypeConstraints returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPolyTypeConstraintsRule()); }
+	iv_rulePolyTypeConstraints=rulePolyTypeConstraints
+	{ $current=$iv_rulePolyTypeConstraints.current; }
 	EOF;
 
-// Rule TypeConstraints
-ruleTypeConstraints returns [EObject current=null]
+// Rule PolyTypeConstraints
+rulePolyTypeConstraints returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -615,36 +615,36 @@ ruleTypeConstraints returns [EObject current=null]
 	(
 		otherlv_0=':'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getTypeConstraintsAccess().getColonKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getPolyTypeConstraintsAccess().getColonKeyword_0());
 		}
 		(
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTypeConstraintsRule());
+						$current = createModelElement(grammarAccess.getPolyTypeConstraintsRule());
 					}
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getTypeConstraintsAccess().getTypeNameTypeNameCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameCrossReference_1_0());
 				}
 			)
 		)
 		(
 			otherlv_2=','
 			{
-				newLeafNode(otherlv_2, grammarAccess.getTypeConstraintsAccess().getCommaKeyword_2_0());
+				newLeafNode(otherlv_2, grammarAccess.getPolyTypeConstraintsAccess().getCommaKeyword_2_0());
 			}
 			(
 				(
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getTypeConstraintsRule());
+							$current = createModelElement(grammarAccess.getPolyTypeConstraintsRule());
 						}
 					}
 					otherlv_3=RULE_ID
 					{
-						newLeafNode(otherlv_3, grammarAccess.getTypeConstraintsAccess().getTypeNameTypeNameCrossReference_2_1_0());
+						newLeafNode(otherlv_3, grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameCrossReference_2_1_0());
 					}
 				)
 			)
@@ -652,71 +652,15 @@ ruleTypeConstraints returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleTypedVariable
-entryRuleTypedVariable returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypedVariableRule()); }
-	iv_ruleTypedVariable=ruleTypedVariable
-	{ $current=$iv_ruleTypedVariable.current; }
+// Entry rule entryRuleSuperTypeList
+entryRuleSuperTypeList returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSuperTypeListRule()); }
+	iv_ruleSuperTypeList=ruleSuperTypeList
+	{ $current=$iv_ruleSuperTypeList.current; }
 	EOF;
 
-// Rule TypedVariable
-ruleTypedVariable returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				lv_name_0_0=RULE_ID
-				{
-					newLeafNode(lv_name_0_0, grammarAccess.getTypedVariableAccess().getNameIDTerminalRuleCall_0_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTypedVariableRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
-			)
-		)
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getTypedVariableAccess().getConstraintsTypeConstraintsParserRuleCall_1_0());
-				}
-				lv_constraints_1_0=ruleTypeConstraints
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getTypedVariableRule());
-					}
-					add(
-						$current,
-						"constraints",
-						lv_constraints_1_0,
-						"org.xtext.sampleProj.mydsl.MyDsl.TypeConstraints");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-	)
-;
-
-// Entry rule entryRuleSupertype
-entryRuleSupertype returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getSupertypeRule()); }
-	iv_ruleSupertype=ruleSupertype
-	{ $current=$iv_ruleSupertype.current; }
-	EOF;
-
-// Rule Supertype
-ruleSupertype returns [EObject current=null]
+// Rule SuperTypeList
+ruleSuperTypeList returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -726,17 +670,17 @@ ruleSupertype returns [EObject current=null]
 	(
 		otherlv_0=':'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getSupertypeAccess().getColonKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getSuperTypeListAccess().getColonKeyword_0());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSupertypeAccess().getSuperTypeConstructedTypeParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_1_0());
 				}
 				lv_superType_1_0=ruleConstructedType
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getSupertypeRule());
+						$current = createModelElementForParent(grammarAccess.getSuperTypeListRule());
 					}
 					add(
 						$current,
@@ -750,79 +694,28 @@ ruleSupertype returns [EObject current=null]
 		(
 			otherlv_2=','
 			{
-				newLeafNode(otherlv_2, grammarAccess.getSupertypeAccess().getCommaKeyword_2_0());
+				newLeafNode(otherlv_2, grammarAccess.getSuperTypeListAccess().getCommaKeyword_2_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSupertypeAccess().getSuperTypeTypeDeclarationParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_2_1_0());
 					}
-					lv_superType_3_0=ruleTypeDeclaration
+					lv_superType_3_0=ruleConstructedType
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSupertypeRule());
+							$current = createModelElementForParent(grammarAccess.getSuperTypeListRule());
 						}
 						add(
 							$current,
 							"superType",
 							lv_superType_3_0,
-							"org.xtext.sampleProj.mydsl.MyDsl.TypeDeclaration");
+							"org.xtext.sampleProj.mydsl.MyDsl.ConstructedType");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)*
-	)
-;
-
-// Entry rule entryRuleTypeDeclaration
-entryRuleTypeDeclaration returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypeDeclarationRule()); }
-	iv_ruleTypeDeclaration=ruleTypeDeclaration
-	{ $current=$iv_ruleTypeDeclaration.current; }
-	EOF;
-
-// Rule TypeDeclaration
-ruleTypeDeclaration returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getTypeDeclarationRule());
-					}
-				}
-				otherlv_0=RULE_ID
-				{
-					newLeafNode(otherlv_0, grammarAccess.getTypeDeclarationAccess().getTypeNameTypeNameCrossReference_0_0());
-				}
-			)
-		)
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getTypeDeclarationAccess().getContextTypeDeclContextParserRuleCall_1_0());
-				}
-				lv_context_1_0=ruleTypeDeclContext
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getTypeDeclarationRule());
-					}
-					set(
-						$current,
-						"context",
-						lv_context_1_0,
-						"org.xtext.sampleProj.mydsl.MyDsl.TypeDeclContext");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
 	)
 ;
 
@@ -1055,6 +948,62 @@ ruleTypeDeclContext returns [EObject current=null]
 		{
 			newLeafNode(otherlv_4, grammarAccess.getTypeDeclContextAccess().getGreaterThanSignKeyword_3());
 		}
+	)
+;
+
+// Entry rule entryRuleTypedVariable
+entryRuleTypedVariable returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTypedVariableRule()); }
+	iv_ruleTypedVariable=ruleTypedVariable
+	{ $current=$iv_ruleTypedVariable.current; }
+	EOF;
+
+// Rule TypedVariable
+ruleTypedVariable returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_name_0_0=RULE_ID
+				{
+					newLeafNode(lv_name_0_0, grammarAccess.getTypedVariableAccess().getNameIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTypedVariableRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTypedVariableAccess().getConstraintsPolyTypeConstraintsParserRuleCall_1_0());
+				}
+				lv_constraints_1_0=rulePolyTypeConstraints
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTypedVariableRule());
+					}
+					add(
+						$current,
+						"constraints",
+						lv_constraints_1_0,
+						"org.xtext.sampleProj.mydsl.MyDsl.PolyTypeConstraints");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 

@@ -217,14 +217,14 @@ public interface MyDslPackage extends EPackage
   int CLASS_DECL_FEATURE_COUNT = TOP_LEVEL_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.ClassImpl <em>Class</em>}' class.
+   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl <em>Bpp Class</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.ClassImpl
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getClass_()
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getBppClass()
    * @generated
    */
-  int CLASS = 6;
+  int BPP_CLASS = 6;
 
   /**
    * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
@@ -233,7 +233,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
+  int BPP_CLASS__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
 
   /**
    * The feature id for the '<em><b>Type Name</b></em>' containment reference.
@@ -242,34 +242,34 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS__TYPE_NAME = CLASS_DECL_FEATURE_COUNT + 0;
+  int BPP_CLASS__TYPE_NAME = CLASS_DECL_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Context</b></em>' containment reference list.
+   * The feature id for the '<em><b>Context</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS__CONTEXT = CLASS_DECL_FEATURE_COUNT + 1;
+  int BPP_CLASS__CONTEXT = CLASS_DECL_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Supertypes</b></em>' containment reference list.
+   * The feature id for the '<em><b>Supertypes</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS__SUPERTYPES = CLASS_DECL_FEATURE_COUNT + 2;
+  int BPP_CLASS__SUPERTYPES = CLASS_DECL_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>Class</em>' class.
+   * The number of structural features of the '<em>Bpp Class</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 3;
+  int BPP_CLASS_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.NameImpl <em>Name</em>}' class.
@@ -421,14 +421,14 @@ public interface MyDslPackage extends EPackage
   int POLY_CONTEXT_TYPES_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstraintsImpl <em>Type Constraints</em>}' class.
+   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.PolyTypeConstraintsImpl <em>Poly Type Constraints</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstraintsImpl
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeConstraints()
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.PolyTypeConstraintsImpl
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getPolyTypeConstraints()
    * @generated
    */
-  int TYPE_CONSTRAINTS = 12;
+  int POLY_TYPE_CONSTRAINTS = 12;
 
   /**
    * The feature id for the '<em><b>Type Name</b></em>' reference list.
@@ -437,63 +437,26 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE_CONSTRAINTS__TYPE_NAME = 0;
+  int POLY_TYPE_CONSTRAINTS__TYPE_NAME = 0;
 
   /**
-   * The number of structural features of the '<em>Type Constraints</em>' class.
+   * The number of structural features of the '<em>Poly Type Constraints</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TYPE_CONSTRAINTS_FEATURE_COUNT = 1;
+  int POLY_TYPE_CONSTRAINTS_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl <em>Typed Variable</em>}' class.
+   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.SuperTypeListImpl <em>Super Type List</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypedVariable()
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.SuperTypeListImpl
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getSuperTypeList()
    * @generated
    */
-  int TYPED_VARIABLE = 13;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPED_VARIABLE__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPED_VARIABLE__CONSTRAINTS = 1;
-
-  /**
-   * The number of structural features of the '<em>Typed Variable</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPED_VARIABLE_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.SupertypeImpl <em>Supertype</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.SupertypeImpl
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getSupertype()
-   * @generated
-   */
-  int SUPERTYPE = 14;
+  int SUPER_TYPE_LIST = 13;
 
   /**
    * The feature id for the '<em><b>Super Type</b></em>' containment reference list.
@@ -502,53 +465,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SUPERTYPE__SUPER_TYPE = 0;
+  int SUPER_TYPE_LIST__SUPER_TYPE = 0;
 
   /**
-   * The number of structural features of the '<em>Supertype</em>' class.
+   * The number of structural features of the '<em>Super Type List</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SUPERTYPE_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeDeclarationImpl <em>Type Declaration</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypeDeclarationImpl
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeDeclaration()
-   * @generated
-   */
-  int TYPE_DECLARATION = 15;
-
-  /**
-   * The feature id for the '<em><b>Type Name</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DECLARATION__TYPE_NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Context</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DECLARATION__CONTEXT = 1;
-
-  /**
-   * The number of structural features of the '<em>Type Declaration</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DECLARATION_FEATURE_COUNT = 2;
+  int SUPER_TYPE_LIST_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.ConstructedTypeImpl <em>Constructed Type</em>}' class.
@@ -558,7 +484,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getConstructedType()
    * @generated
    */
-  int CONSTRUCTED_TYPE = 16;
+  int CONSTRUCTED_TYPE = 14;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference list.
@@ -586,10 +512,10 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeConstructor()
    * @generated
    */
-  int TYPE_CONSTRUCTOR = 17;
+  int TYPE_CONSTRUCTOR = 15;
 
   /**
-   * The feature id for the '<em><b>Type Name</b></em>' reference list.
+   * The feature id for the '<em><b>Type Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -623,7 +549,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeDeclContext()
    * @generated
    */
-  int TYPE_DECL_CONTEXT = 18;
+  int TYPE_DECL_CONTEXT = 16;
 
   /**
    * The feature id for the '<em><b>Type Name</b></em>' containment reference list.
@@ -642,6 +568,80 @@ public interface MyDslPackage extends EPackage
    * @ordered
    */
   int TYPE_DECL_CONTEXT_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl <em>Typed Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypedVariable()
+   * @generated
+   */
+  int TYPED_VARIABLE = 17;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPED_VARIABLE__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPED_VARIABLE__CONSTRAINTS = 1;
+
+  /**
+   * The number of structural features of the '<em>Typed Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPED_VARIABLE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeDeclarationImpl <em>Type Declaration</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypeDeclarationImpl
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeDeclaration()
+   * @generated
+   */
+  int TYPE_DECLARATION = 18;
+
+  /**
+   * The feature id for the '<em><b>Type Name</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_DECLARATION__TYPE_NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_DECLARATION__CONTEXT = 1;
+
+  /**
+   * The number of structural features of the '<em>Type Declaration</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_DECLARATION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.WhereImpl <em>Where</em>}' class.
@@ -1121,47 +1121,47 @@ public interface MyDslPackage extends EPackage
   EReference getClassDecl_BodyElements();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.Class <em>Class</em>}'.
+   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass <em>Bpp Class</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Class</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Class
+   * @return the meta object for class '<em>Bpp Class</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.BppClass
    * @generated
    */
-  EClass getClass_();
+  EClass getBppClass();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Class#getTypeName <em>Type Name</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeName <em>Type Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Type Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Class#getTypeName()
-   * @see #getClass_()
+   * @see org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeName()
+   * @see #getBppClass()
    * @generated
    */
-  EReference getClass_TypeName();
+  EReference getBppClass_TypeName();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.Class#getContext <em>Context</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getContext <em>Context</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Context</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Class#getContext()
-   * @see #getClass_()
+   * @return the meta object for the containment reference '<em>Context</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.BppClass#getContext()
+   * @see #getBppClass()
    * @generated
    */
-  EReference getClass_Context();
+  EReference getBppClass_Context();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.Class#getSupertypes <em>Supertypes</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getSupertypes <em>Supertypes</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Supertypes</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Class#getSupertypes()
-   * @see #getClass_()
+   * @return the meta object for the containment reference '<em>Supertypes</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.BppClass#getSupertypes()
+   * @see #getBppClass()
    * @generated
    */
-  EReference getClass_Supertypes();
+  EReference getBppClass_Supertypes();
 
   /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.Name <em>Name</em>}'.
@@ -1258,110 +1258,46 @@ public interface MyDslPackage extends EPackage
   EReference getPolyContextTypes_Constraints();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeConstraints <em>Type Constraints</em>}'.
+   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints <em>Poly Type Constraints</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Type Constraints</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypeConstraints
+   * @return the meta object for class '<em>Poly Type Constraints</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints
    * @generated
    */
-  EClass getTypeConstraints();
+  EClass getPolyTypeConstraints();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.sampleProj.mydsl.myDsl.TypeConstraints#getTypeName <em>Type Name</em>}'.
+   * Returns the meta object for the reference list '{@link org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints#getTypeName <em>Type Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference list '<em>Type Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypeConstraints#getTypeName()
-   * @see #getTypeConstraints()
+   * @see org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints#getTypeName()
+   * @see #getPolyTypeConstraints()
    * @generated
    */
-  EReference getTypeConstraints_TypeName();
+  EReference getPolyTypeConstraints_TypeName();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable <em>Typed Variable</em>}'.
+   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.SuperTypeList <em>Super Type List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Typed Variable</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable
+   * @return the meta object for class '<em>Super Type List</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.SuperTypeList
    * @generated
    */
-  EClass getTypedVariable();
+  EClass getSuperTypeList();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getName()
-   * @see #getTypedVariable()
-   * @generated
-   */
-  EAttribute getTypedVariable_Name();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getConstraints <em>Constraints</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Constraints</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getConstraints()
-   * @see #getTypedVariable()
-   * @generated
-   */
-  EReference getTypedVariable_Constraints();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.Supertype <em>Supertype</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Supertype</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Supertype
-   * @generated
-   */
-  EClass getSupertype();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.Supertype#getSuperType <em>Super Type</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.SuperTypeList#getSuperType <em>Super Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Super Type</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Supertype#getSuperType()
-   * @see #getSupertype()
+   * @see org.xtext.sampleProj.mydsl.myDsl.SuperTypeList#getSuperType()
+   * @see #getSuperTypeList()
    * @generated
    */
-  EReference getSupertype_SuperType();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration <em>Type Declaration</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Type Declaration</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration
-   * @generated
-   */
-  EClass getTypeDeclaration();
-
-  /**
-   * Returns the meta object for the reference '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration#getTypeName <em>Type Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration#getTypeName()
-   * @see #getTypeDeclaration()
-   * @generated
-   */
-  EReference getTypeDeclaration_TypeName();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration#getContext <em>Context</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Context</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration#getContext()
-   * @see #getTypeDeclaration()
-   * @generated
-   */
-  EReference getTypeDeclaration_Context();
+  EReference getSuperTypeList_SuperType();
 
   /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.ConstructedType <em>Constructed Type</em>}'.
@@ -1395,10 +1331,10 @@ public interface MyDslPackage extends EPackage
   EClass getTypeConstructor();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.sampleProj.mydsl.myDsl.TypeConstructor#getTypeName <em>Type Name</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.sampleProj.mydsl.myDsl.TypeConstructor#getTypeName <em>Type Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Type Name</em>'.
+   * @return the meta object for the reference '<em>Type Name</em>'.
    * @see org.xtext.sampleProj.mydsl.myDsl.TypeConstructor#getTypeName()
    * @see #getTypeConstructor()
    * @generated
@@ -1436,6 +1372,70 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getTypeDeclContext_TypeName();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable <em>Typed Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Typed Variable</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable
+   * @generated
+   */
+  EClass getTypedVariable();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getName()
+   * @see #getTypedVariable()
+   * @generated
+   */
+  EAttribute getTypedVariable_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getConstraints <em>Constraints</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Constraints</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getConstraints()
+   * @see #getTypedVariable()
+   * @generated
+   */
+  EReference getTypedVariable_Constraints();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration <em>Type Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Declaration</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration
+   * @generated
+   */
+  EClass getTypeDeclaration();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration#getTypeName <em>Type Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type Name</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration#getTypeName()
+   * @see #getTypeDeclaration()
+   * @generated
+   */
+  EReference getTypeDeclaration_TypeName();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Context</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration#getContext()
+   * @see #getTypeDeclaration()
+   * @generated
+   */
+  EReference getTypeDeclaration_Context();
 
   /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.Where <em>Where</em>}'.
@@ -1826,14 +1826,14 @@ public interface MyDslPackage extends EPackage
     EReference CLASS_DECL__BODY_ELEMENTS = eINSTANCE.getClassDecl_BodyElements();
 
     /**
-     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.ClassImpl <em>Class</em>}' class.
+     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl <em>Bpp Class</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.ClassImpl
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getClass_()
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getBppClass()
      * @generated
      */
-    EClass CLASS = eINSTANCE.getClass_();
+    EClass BPP_CLASS = eINSTANCE.getBppClass();
 
     /**
      * The meta object literal for the '<em><b>Type Name</b></em>' containment reference feature.
@@ -1841,23 +1841,23 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLASS__TYPE_NAME = eINSTANCE.getClass_TypeName();
+    EReference BPP_CLASS__TYPE_NAME = eINSTANCE.getBppClass_TypeName();
 
     /**
-     * The meta object literal for the '<em><b>Context</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLASS__CONTEXT = eINSTANCE.getClass_Context();
+    EReference BPP_CLASS__CONTEXT = eINSTANCE.getBppClass_Context();
 
     /**
-     * The meta object literal for the '<em><b>Supertypes</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Supertypes</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLASS__SUPERTYPES = eINSTANCE.getClass_Supertypes();
+    EReference BPP_CLASS__SUPERTYPES = eINSTANCE.getBppClass_Supertypes();
 
     /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.NameImpl <em>Name</em>}' class.
@@ -1942,14 +1942,14 @@ public interface MyDslPackage extends EPackage
     EReference POLY_CONTEXT_TYPES__CONSTRAINTS = eINSTANCE.getPolyContextTypes_Constraints();
 
     /**
-     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstraintsImpl <em>Type Constraints</em>}' class.
+     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.PolyTypeConstraintsImpl <em>Poly Type Constraints</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstraintsImpl
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeConstraints()
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.PolyTypeConstraintsImpl
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getPolyTypeConstraints()
      * @generated
      */
-    EClass TYPE_CONSTRAINTS = eINSTANCE.getTypeConstraints();
+    EClass POLY_TYPE_CONSTRAINTS = eINSTANCE.getPolyTypeConstraints();
 
     /**
      * The meta object literal for the '<em><b>Type Name</b></em>' reference list feature.
@@ -1957,43 +1957,17 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TYPE_CONSTRAINTS__TYPE_NAME = eINSTANCE.getTypeConstraints_TypeName();
+    EReference POLY_TYPE_CONSTRAINTS__TYPE_NAME = eINSTANCE.getPolyTypeConstraints_TypeName();
 
     /**
-     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl <em>Typed Variable</em>}' class.
+     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.SuperTypeListImpl <em>Super Type List</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypedVariable()
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.SuperTypeListImpl
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getSuperTypeList()
      * @generated
      */
-    EClass TYPED_VARIABLE = eINSTANCE.getTypedVariable();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TYPED_VARIABLE__NAME = eINSTANCE.getTypedVariable_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TYPED_VARIABLE__CONSTRAINTS = eINSTANCE.getTypedVariable_Constraints();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.SupertypeImpl <em>Supertype</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.SupertypeImpl
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getSupertype()
-     * @generated
-     */
-    EClass SUPERTYPE = eINSTANCE.getSupertype();
+    EClass SUPER_TYPE_LIST = eINSTANCE.getSuperTypeList();
 
     /**
      * The meta object literal for the '<em><b>Super Type</b></em>' containment reference list feature.
@@ -2001,33 +1975,7 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SUPERTYPE__SUPER_TYPE = eINSTANCE.getSupertype_SuperType();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeDeclarationImpl <em>Type Declaration</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypeDeclarationImpl
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeDeclaration()
-     * @generated
-     */
-    EClass TYPE_DECLARATION = eINSTANCE.getTypeDeclaration();
-
-    /**
-     * The meta object literal for the '<em><b>Type Name</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TYPE_DECLARATION__TYPE_NAME = eINSTANCE.getTypeDeclaration_TypeName();
-
-    /**
-     * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TYPE_DECLARATION__CONTEXT = eINSTANCE.getTypeDeclaration_Context();
+    EReference SUPER_TYPE_LIST__SUPER_TYPE = eINSTANCE.getSuperTypeList_SuperType();
 
     /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.ConstructedTypeImpl <em>Constructed Type</em>}' class.
@@ -2058,7 +2006,7 @@ public interface MyDslPackage extends EPackage
     EClass TYPE_CONSTRUCTOR = eINSTANCE.getTypeConstructor();
 
     /**
-     * The meta object literal for the '<em><b>Type Name</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Type Name</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2090,6 +2038,58 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference TYPE_DECL_CONTEXT__TYPE_NAME = eINSTANCE.getTypeDeclContext_TypeName();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl <em>Typed Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypedVariable()
+     * @generated
+     */
+    EClass TYPED_VARIABLE = eINSTANCE.getTypedVariable();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TYPED_VARIABLE__NAME = eINSTANCE.getTypedVariable_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPED_VARIABLE__CONSTRAINTS = eINSTANCE.getTypedVariable_Constraints();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeDeclarationImpl <em>Type Declaration</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypeDeclarationImpl
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeDeclaration()
+     * @generated
+     */
+    EClass TYPE_DECLARATION = eINSTANCE.getTypeDeclaration();
+
+    /**
+     * The meta object literal for the '<em><b>Type Name</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPE_DECLARATION__TYPE_NAME = eINSTANCE.getTypeDeclaration_TypeName();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPE_DECLARATION__CONTEXT = eINSTANCE.getTypeDeclaration_Context();
 
     /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.WhereImpl <em>Where</em>}' class.

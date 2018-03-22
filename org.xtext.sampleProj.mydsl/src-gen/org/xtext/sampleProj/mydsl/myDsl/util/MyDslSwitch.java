@@ -8,35 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.xtext.sampleProj.mydsl.myDsl.BaseConstructor;
-import org.xtext.sampleProj.mydsl.myDsl.ClassDecl;
-import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
-import org.xtext.sampleProj.mydsl.myDsl.Constructor;
-import org.xtext.sampleProj.mydsl.myDsl.Datatype;
-import org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor;
-import org.xtext.sampleProj.mydsl.myDsl.DomainModel;
-import org.xtext.sampleProj.mydsl.myDsl.Expression;
-import org.xtext.sampleProj.mydsl.myDsl.Extend;
-import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
-import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
-import org.xtext.sampleProj.mydsl.myDsl.Import;
-import org.xtext.sampleProj.mydsl.myDsl.ImportComponent;
-import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
-import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.Name;
-import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
-import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
-import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
-import org.xtext.sampleProj.mydsl.myDsl.Supertype;
-import org.xtext.sampleProj.mydsl.myDsl.TopLevel;
-import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstraints;
-import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
-import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
-import org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration;
-import org.xtext.sampleProj.mydsl.myDsl.TypeName;
-import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
-import org.xtext.sampleProj.mydsl.myDsl.Where;
+import org.xtext.sampleProj.mydsl.myDsl.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -145,12 +117,12 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.CLASS:
+      case MyDslPackage.BPP_CLASS:
       {
-        org.xtext.sampleProj.mydsl.myDsl.Class class_ = (org.xtext.sampleProj.mydsl.myDsl.Class)theEObject;
-        T result = caseClass(class_);
-        if (result == null) result = caseClassDecl(class_);
-        if (result == null) result = caseTopLevel(class_);
+        BppClass bppClass = (BppClass)theEObject;
+        T result = caseBppClass(bppClass);
+        if (result == null) result = caseClassDecl(bppClass);
+        if (result == null) result = caseTopLevel(bppClass);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -191,31 +163,17 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.TYPE_CONSTRAINTS:
+      case MyDslPackage.POLY_TYPE_CONSTRAINTS:
       {
-        TypeConstraints typeConstraints = (TypeConstraints)theEObject;
-        T result = caseTypeConstraints(typeConstraints);
+        PolyTypeConstraints polyTypeConstraints = (PolyTypeConstraints)theEObject;
+        T result = casePolyTypeConstraints(polyTypeConstraints);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.TYPED_VARIABLE:
+      case MyDslPackage.SUPER_TYPE_LIST:
       {
-        TypedVariable typedVariable = (TypedVariable)theEObject;
-        T result = caseTypedVariable(typedVariable);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.SUPERTYPE:
-      {
-        Supertype supertype = (Supertype)theEObject;
-        T result = caseSupertype(supertype);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.TYPE_DECLARATION:
-      {
-        TypeDeclaration typeDeclaration = (TypeDeclaration)theEObject;
-        T result = caseTypeDeclaration(typeDeclaration);
+        SuperTypeList superTypeList = (SuperTypeList)theEObject;
+        T result = caseSuperTypeList(superTypeList);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -237,6 +195,20 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         TypeDeclContext typeDeclContext = (TypeDeclContext)theEObject;
         T result = caseTypeDeclContext(typeDeclContext);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.TYPED_VARIABLE:
+      {
+        TypedVariable typedVariable = (TypedVariable)theEObject;
+        T result = caseTypedVariable(typedVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.TYPE_DECLARATION:
+      {
+        TypeDeclaration typeDeclaration = (TypeDeclaration)theEObject;
+        T result = caseTypeDeclaration(typeDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -417,17 +389,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bpp Class</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Class</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bpp Class</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseClass(org.xtext.sampleProj.mydsl.myDsl.Class object)
+  public T caseBppClass(BppClass object)
   {
     return null;
   }
@@ -513,65 +485,33 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Constraints</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Poly Type Constraints</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Constraints</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Poly Type Constraints</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypeConstraints(TypeConstraints object)
+  public T casePolyTypeConstraints(PolyTypeConstraints object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Typed Variable</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Super Type List</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Typed Variable</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Super Type List</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypedVariable(TypedVariable object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Supertype</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Supertype</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSupertype(Supertype object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTypeDeclaration(TypeDeclaration object)
+  public T caseSuperTypeList(SuperTypeList object)
   {
     return null;
   }
@@ -620,6 +560,38 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTypeDeclContext(TypeDeclContext object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Typed Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Typed Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypedVariable(TypedVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeDeclaration(TypeDeclaration object)
   {
     return null;
   }

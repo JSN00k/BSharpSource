@@ -9,25 +9,25 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Supertype</b></em>'.
+ * A representation of the model object '<em><b>Super Type List</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Supertype#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.SuperTypeList#getSuperType <em>Super Type</em>}</li>
  * </ul>
  *
- * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getSupertype()
+ * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getSuperTypeList()
  * @model
  * @generated
  */
-public interface Supertype extends EObject
+public interface SuperTypeList extends EObject
 {
   /**
    * Returns the value of the '<em><b>Super Type</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.ConstructedType}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Super Type</em>' containment reference list isn't clear,
@@ -35,10 +35,10 @@ public interface Supertype extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Super Type</em>' containment reference list.
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getSupertype_SuperType()
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getSuperTypeList_SuperType()
    * @model containment="true"
    * @generated
    */
-  EList<EObject> getSuperType();
+  EList<ConstructedType> getSuperType();
 
-} // Supertype
+} // SuperTypeList

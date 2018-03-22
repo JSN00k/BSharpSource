@@ -54,7 +54,7 @@ public interface TypedVariable extends EObject
 
   /**
    * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.TypeConstraints}.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
@@ -66,6 +66,6 @@ public interface TypedVariable extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<TypeConstraints> getConstraints();
+  EList<PolyTypeConstraints> getConstraints();
 
 } // TypedVariable
