@@ -82,17 +82,23 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.CONSTRUCTED_TYPE: return createConstructedType();
       case MyDslPackage.TYPE_CONSTRUCTOR: return createTypeConstructor();
       case MyDslPackage.TYPE_DECL_CONTEXT: return createTypeDeclContext();
-      case MyDslPackage.TYPED_VARIABLE: return createTypedVariable();
-      case MyDslPackage.TYPE_DECLARATION: return createTypeDeclaration();
       case MyDslPackage.WHERE: return createWhere();
-      case MyDslPackage.TYPE_BODY_ELEMENTS: return createTypeBodyElements();
-      case MyDslPackage.FUNCTION_NAME: return createFunctionName();
       case MyDslPackage.DATATYPE: return createDatatype();
       case MyDslPackage.DATATYPE_CONSTRUCTOR: return createDatatypeConstructor();
       case MyDslPackage.BASE_CONSTRUCTOR: return createBaseConstructor();
-      case MyDslPackage.CONSTRUCTOR: return createConstructor();
+      case MyDslPackage.DTYPE_CONSTRUCTOR: return createDTypeConstructor();
       case MyDslPackage.EXTEND: return createExtend();
+      case MyDslPackage.TYPE_BODY_ELEMENTS: return createTypeBodyElements();
       case MyDslPackage.FUNCTION_DECL: return createFunctionDecl();
+      case MyDslPackage.FUNCTION_BODY: return createFunctionBody();
+      case MyDslPackage.FUNC_DIRECT_DEF: return createFuncDirectDef();
+      case MyDslPackage.FUNC_INDUCTIVE: return createFuncInductive();
+      case MyDslPackage.FUNC_INDUCTIVE_CASE: return createFuncInductiveCase();
+      case MyDslPackage.THEOREM_BODY: return createTheoremBody();
+      case MyDslPackage.TYPED_VARIABLE_LIST: return createTypedVariableList();
+      case MyDslPackage.TYPED_VARIABLE: return createTypedVariable();
+      case MyDslPackage.TYPE_DECLARATION: return createTypeDeclaration();
+      case MyDslPackage.FUNCTION_NAME: return createFunctionName();
       case MyDslPackage.EXPRESSION: return createExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -291,54 +297,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypedVariable createTypedVariable()
-  {
-    TypedVariableImpl typedVariable = new TypedVariableImpl();
-    return typedVariable;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TypeDeclaration createTypeDeclaration()
-  {
-    TypeDeclarationImpl typeDeclaration = new TypeDeclarationImpl();
-    return typeDeclaration;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Where createWhere()
   {
     WhereImpl where = new WhereImpl();
     return where;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TypeBodyElements createTypeBodyElements()
-  {
-    TypeBodyElementsImpl typeBodyElements = new TypeBodyElementsImpl();
-    return typeBodyElements;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FunctionName createFunctionName()
-  {
-    FunctionNameImpl functionName = new FunctionNameImpl();
-    return functionName;
   }
 
   /**
@@ -379,10 +341,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Constructor createConstructor()
+  public DTypeConstructor createDTypeConstructor()
   {
-    ConstructorImpl constructor = new ConstructorImpl();
-    return constructor;
+    DTypeConstructorImpl dTypeConstructor = new DTypeConstructorImpl();
+    return dTypeConstructor;
   }
 
   /**
@@ -401,10 +363,120 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public TypeBodyElements createTypeBodyElements()
+  {
+    TypeBodyElementsImpl typeBodyElements = new TypeBodyElementsImpl();
+    return typeBodyElements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FunctionDecl createFunctionDecl()
   {
     FunctionDeclImpl functionDecl = new FunctionDeclImpl();
     return functionDecl;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionBody createFunctionBody()
+  {
+    FunctionBodyImpl functionBody = new FunctionBodyImpl();
+    return functionBody;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FuncDirectDef createFuncDirectDef()
+  {
+    FuncDirectDefImpl funcDirectDef = new FuncDirectDefImpl();
+    return funcDirectDef;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FuncInductive createFuncInductive()
+  {
+    FuncInductiveImpl funcInductive = new FuncInductiveImpl();
+    return funcInductive;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FuncInductiveCase createFuncInductiveCase()
+  {
+    FuncInductiveCaseImpl funcInductiveCase = new FuncInductiveCaseImpl();
+    return funcInductiveCase;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TheoremBody createTheoremBody()
+  {
+    TheoremBodyImpl theoremBody = new TheoremBodyImpl();
+    return theoremBody;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypedVariableList createTypedVariableList()
+  {
+    TypedVariableListImpl typedVariableList = new TypedVariableListImpl();
+    return typedVariableList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypedVariable createTypedVariable()
+  {
+    TypedVariableImpl typedVariable = new TypedVariableImpl();
+    return typedVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeDeclaration createTypeDeclaration()
+  {
+    TypeDeclarationImpl typeDeclaration = new TypeDeclarationImpl();
+    return typeDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionName createFunctionName()
+  {
+    FunctionNameImpl functionName = new FunctionNameImpl();
+    return functionName;
   }
 
   /**

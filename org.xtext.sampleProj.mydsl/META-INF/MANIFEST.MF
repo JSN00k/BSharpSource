@@ -27,3 +27,4 @@ Export-Package: org.xtext.sampleProj.mydsl.validation,
  org.xtext.sampleProj.mydsl.myDsl,
  org.xtext.sampleProj.mydsl.myDsl.impl
 Import-Package: org.apache.log4j
+Automatic-Module-Name: org.xtext.sampleProj.mydsl

@@ -5,6 +5,7 @@ package org.xtext.sampleProj.mydsl.myDsl.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,15 +13,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.xtext.sampleProj.mydsl.myDsl.FunctionBody;
 import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
 import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
+import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
+import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
+import org.xtext.sampleProj.mydsl.myDsl.TypedVariableList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +36,10 @@ import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getTypeVariables <em>Type Variables</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getBody <em>Body</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getReturnType <em>Return Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,14 +57,44 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
   protected EList<FunctionName> name;
 
   /**
-   * The cached value of the '{@link #getTypeVariables() <em>Type Variables</em>}' containment reference list.
+   * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTypeVariables()
+   * @see #getContext()
    * @generated
    * @ordered
    */
-  protected EList<TypedVariable> typeVariables;
+  protected PolyContext context;
+
+  /**
+   * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVariables()
+   * @generated
+   * @ordered
+   */
+  protected TypedVariableList variables;
+
+  /**
+   * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBody()
+   * @generated
+   * @ordered
+   */
+  protected FunctionBody body;
+
+  /**
+   * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReturnType()
+   * @generated
+   * @ordered
+   */
+  protected TypeConstructor returnType;
 
   /**
    * <!-- begin-user-doc -->
@@ -98,13 +136,191 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypedVariable> getTypeVariables()
+  public PolyContext getContext()
   {
-    if (typeVariables == null)
+    return context;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetContext(PolyContext newContext, NotificationChain msgs)
+  {
+    PolyContext oldContext = context;
+    context = newContext;
+    if (eNotificationRequired())
     {
-      typeVariables = new EObjectContainmentEList<TypedVariable>(TypedVariable.class, this, MyDslPackage.FUNCTION_DECL__TYPE_VARIABLES);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__CONTEXT, oldContext, newContext);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return typeVariables;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContext(PolyContext newContext)
+  {
+    if (newContext != context)
+    {
+      NotificationChain msgs = null;
+      if (context != null)
+        msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNCTION_DECL__CONTEXT, null, msgs);
+      if (newContext != null)
+        msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNCTION_DECL__CONTEXT, null, msgs);
+      msgs = basicSetContext(newContext, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__CONTEXT, newContext, newContext));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypedVariableList getVariables()
+  {
+    return variables;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetVariables(TypedVariableList newVariables, NotificationChain msgs)
+  {
+    TypedVariableList oldVariables = variables;
+    variables = newVariables;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__VARIABLES, oldVariables, newVariables);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setVariables(TypedVariableList newVariables)
+  {
+    if (newVariables != variables)
+    {
+      NotificationChain msgs = null;
+      if (variables != null)
+        msgs = ((InternalEObject)variables).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNCTION_DECL__VARIABLES, null, msgs);
+      if (newVariables != null)
+        msgs = ((InternalEObject)newVariables).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNCTION_DECL__VARIABLES, null, msgs);
+      msgs = basicSetVariables(newVariables, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__VARIABLES, newVariables, newVariables));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionBody getBody()
+  {
+    return body;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetBody(FunctionBody newBody, NotificationChain msgs)
+  {
+    FunctionBody oldBody = body;
+    body = newBody;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__BODY, oldBody, newBody);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBody(FunctionBody newBody)
+  {
+    if (newBody != body)
+    {
+      NotificationChain msgs = null;
+      if (body != null)
+        msgs = ((InternalEObject)body).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNCTION_DECL__BODY, null, msgs);
+      if (newBody != null)
+        msgs = ((InternalEObject)newBody).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNCTION_DECL__BODY, null, msgs);
+      msgs = basicSetBody(newBody, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__BODY, newBody, newBody));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeConstructor getReturnType()
+  {
+    return returnType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetReturnType(TypeConstructor newReturnType, NotificationChain msgs)
+  {
+    TypeConstructor oldReturnType = returnType;
+    returnType = newReturnType;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__RETURN_TYPE, oldReturnType, newReturnType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setReturnType(TypeConstructor newReturnType)
+  {
+    if (newReturnType != returnType)
+    {
+      NotificationChain msgs = null;
+      if (returnType != null)
+        msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNCTION_DECL__RETURN_TYPE, null, msgs);
+      if (newReturnType != null)
+        msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNCTION_DECL__RETURN_TYPE, null, msgs);
+      msgs = basicSetReturnType(newReturnType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__RETURN_TYPE, newReturnType, newReturnType));
   }
 
   /**
@@ -119,8 +335,14 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
     {
       case MyDslPackage.FUNCTION_DECL__NAME:
         return ((InternalEList<?>)getName()).basicRemove(otherEnd, msgs);
-      case MyDslPackage.FUNCTION_DECL__TYPE_VARIABLES:
-        return ((InternalEList<?>)getTypeVariables()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.FUNCTION_DECL__CONTEXT:
+        return basicSetContext(null, msgs);
+      case MyDslPackage.FUNCTION_DECL__VARIABLES:
+        return basicSetVariables(null, msgs);
+      case MyDslPackage.FUNCTION_DECL__BODY:
+        return basicSetBody(null, msgs);
+      case MyDslPackage.FUNCTION_DECL__RETURN_TYPE:
+        return basicSetReturnType(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -137,8 +359,14 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
     {
       case MyDslPackage.FUNCTION_DECL__NAME:
         return getName();
-      case MyDslPackage.FUNCTION_DECL__TYPE_VARIABLES:
-        return getTypeVariables();
+      case MyDslPackage.FUNCTION_DECL__CONTEXT:
+        return getContext();
+      case MyDslPackage.FUNCTION_DECL__VARIABLES:
+        return getVariables();
+      case MyDslPackage.FUNCTION_DECL__BODY:
+        return getBody();
+      case MyDslPackage.FUNCTION_DECL__RETURN_TYPE:
+        return getReturnType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -158,9 +386,17 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
         getName().clear();
         getName().addAll((Collection<? extends FunctionName>)newValue);
         return;
-      case MyDslPackage.FUNCTION_DECL__TYPE_VARIABLES:
-        getTypeVariables().clear();
-        getTypeVariables().addAll((Collection<? extends TypedVariable>)newValue);
+      case MyDslPackage.FUNCTION_DECL__CONTEXT:
+        setContext((PolyContext)newValue);
+        return;
+      case MyDslPackage.FUNCTION_DECL__VARIABLES:
+        setVariables((TypedVariableList)newValue);
+        return;
+      case MyDslPackage.FUNCTION_DECL__BODY:
+        setBody((FunctionBody)newValue);
+        return;
+      case MyDslPackage.FUNCTION_DECL__RETURN_TYPE:
+        setReturnType((TypeConstructor)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -179,8 +415,17 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
       case MyDslPackage.FUNCTION_DECL__NAME:
         getName().clear();
         return;
-      case MyDslPackage.FUNCTION_DECL__TYPE_VARIABLES:
-        getTypeVariables().clear();
+      case MyDslPackage.FUNCTION_DECL__CONTEXT:
+        setContext((PolyContext)null);
+        return;
+      case MyDslPackage.FUNCTION_DECL__VARIABLES:
+        setVariables((TypedVariableList)null);
+        return;
+      case MyDslPackage.FUNCTION_DECL__BODY:
+        setBody((FunctionBody)null);
+        return;
+      case MyDslPackage.FUNCTION_DECL__RETURN_TYPE:
+        setReturnType((TypeConstructor)null);
         return;
     }
     super.eUnset(featureID);
@@ -198,8 +443,14 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
     {
       case MyDslPackage.FUNCTION_DECL__NAME:
         return name != null && !name.isEmpty();
-      case MyDslPackage.FUNCTION_DECL__TYPE_VARIABLES:
-        return typeVariables != null && !typeVariables.isEmpty();
+      case MyDslPackage.FUNCTION_DECL__CONTEXT:
+        return context != null;
+      case MyDslPackage.FUNCTION_DECL__VARIABLES:
+        return variables != null;
+      case MyDslPackage.FUNCTION_DECL__BODY:
+        return body != null;
+      case MyDslPackage.FUNCTION_DECL__RETURN_TYPE:
+        return returnType != null;
     }
     return super.eIsSet(featureID);
   }

@@ -6,7 +6,7 @@ DomainModel:
 	(elements+=TopLevel)*;
 	
 // Theorem names can include white space.
-//terminal THM_NAME: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9' ' | '|'\t')*;
+//terminal THM_NAME: '^' -> ":";
 	
 TopLevel:
 	ImportStatement | ClassDecl;
@@ -128,12 +128,44 @@ TypeBodyElements:
 	 (functions+=FunctionDecl) | (theorems+=TheoremBody)
 ;
 
+/*------------------------- Functions --------------------------------- */
+
 FunctionDecl:
-	name+=FunctionName '(' variables=TypedVariableList ')' body=FunctionBody
+	name+=FunctionName (context=PolyContext)? '(' (variables=TypedVariableList)? ')' body=FunctionBody ':' returnType=TypeConstructor
 ;
 
 FunctionBody:
 	FuncInductive | FuncDirectDef
+;
+
+/* The expression will be type checked to make sure that it returns the expected type. The result of type checking
+ * will have three possible result. A negative result giving an error e.g., the type returned by the expression 
+ * cannot match the return type. An undetermined result, a proof obligation is generated so the user can prove
+ * demonstrate the expression returns the correct type. A positive result, the expected type is returned by the
+ * expression, and the user is not required to do anything. In the case of an intermediate result the type system
+ * assumes that the declaration is true, however, there will still be the unsatisfied proof obligation showing
+ * that the system is unproven */
+FuncDirectDef:
+	expression=Expression
+;
+
+FuncInductive:
+	'match' variableName=[TypedVariable]
+	inductCase+=FuncInductiveCase (inductCase+=FuncInductiveCase)*
+;
+
+FuncInductiveCase:
+	'|' deconName=[DTypeConstructor] ':' expre=Expression
+;
+
+/* ----------------------------- Theorems -------------------------*/
+
+TheoremBody:
+	'Theorems' '{' (theoremDecl+=TheoremDecl)+ '}'
+;
+
+TheoremDecl:
+	thmName=ID
 ;
 
 TypedVariableList:
@@ -150,12 +182,6 @@ TypeDeclaration:
 
 FunctionName:
 	name=ID
-;
-
-
-
-TheoremBody:
-	'Theorems' '{'  '}'
 ;
 
 Expression:

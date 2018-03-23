@@ -161,29 +161,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createTypeDeclContextAdapter();
       }
       @Override
-      public Adapter caseTypedVariable(TypedVariable object)
-      {
-        return createTypedVariableAdapter();
-      }
-      @Override
-      public Adapter caseTypeDeclaration(TypeDeclaration object)
-      {
-        return createTypeDeclarationAdapter();
-      }
-      @Override
       public Adapter caseWhere(Where object)
       {
         return createWhereAdapter();
-      }
-      @Override
-      public Adapter caseTypeBodyElements(TypeBodyElements object)
-      {
-        return createTypeBodyElementsAdapter();
-      }
-      @Override
-      public Adapter caseFunctionName(FunctionName object)
-      {
-        return createFunctionNameAdapter();
       }
       @Override
       public Adapter caseDatatype(Datatype object)
@@ -201,9 +181,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createBaseConstructorAdapter();
       }
       @Override
-      public Adapter caseConstructor(Constructor object)
+      public Adapter caseDTypeConstructor(DTypeConstructor object)
       {
-        return createConstructorAdapter();
+        return createDTypeConstructorAdapter();
       }
       @Override
       public Adapter caseExtend(Extend object)
@@ -211,9 +191,59 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createExtendAdapter();
       }
       @Override
+      public Adapter caseTypeBodyElements(TypeBodyElements object)
+      {
+        return createTypeBodyElementsAdapter();
+      }
+      @Override
       public Adapter caseFunctionDecl(FunctionDecl object)
       {
         return createFunctionDeclAdapter();
+      }
+      @Override
+      public Adapter caseFunctionBody(FunctionBody object)
+      {
+        return createFunctionBodyAdapter();
+      }
+      @Override
+      public Adapter caseFuncDirectDef(FuncDirectDef object)
+      {
+        return createFuncDirectDefAdapter();
+      }
+      @Override
+      public Adapter caseFuncInductive(FuncInductive object)
+      {
+        return createFuncInductiveAdapter();
+      }
+      @Override
+      public Adapter caseFuncInductiveCase(FuncInductiveCase object)
+      {
+        return createFuncInductiveCaseAdapter();
+      }
+      @Override
+      public Adapter caseTheoremBody(TheoremBody object)
+      {
+        return createTheoremBodyAdapter();
+      }
+      @Override
+      public Adapter caseTypedVariableList(TypedVariableList object)
+      {
+        return createTypedVariableListAdapter();
+      }
+      @Override
+      public Adapter caseTypedVariable(TypedVariable object)
+      {
+        return createTypedVariableAdapter();
+      }
+      @Override
+      public Adapter caseTypeDeclaration(TypeDeclaration object)
+      {
+        return createTypeDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseFunctionName(FunctionName object)
+      {
+        return createFunctionNameAdapter();
       }
       @Override
       public Adapter caseExpression(Expression object)
@@ -498,36 +528,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable <em>Typed Variable</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable
-   * @generated
-   */
-  public Adapter createTypedVariableAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration <em>Type Declaration</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration
-   * @generated
-   */
-  public Adapter createTypeDeclarationAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Where <em>Where</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -538,36 +538,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createWhereAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements <em>Type Body Elements</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements
-   * @generated
-   */
-  public Adapter createTypeBodyElementsAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionName <em>Function Name</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.FunctionName
-   * @generated
-   */
-  public Adapter createFunctionNameAdapter()
   {
     return null;
   }
@@ -618,16 +588,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Constructor <em>Constructor</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.DTypeConstructor <em>DType Constructor</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Constructor
+   * @see org.xtext.sampleProj.mydsl.myDsl.DTypeConstructor
    * @generated
    */
-  public Adapter createConstructorAdapter()
+  public Adapter createDTypeConstructorAdapter()
   {
     return null;
   }
@@ -648,6 +618,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements <em>Type Body Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements
+   * @generated
+   */
+  public Adapter createTypeBodyElementsAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl <em>Function Decl</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -658,6 +643,141 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFunctionDeclAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionBody <em>Function Body</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.FunctionBody
+   * @generated
+   */
+  public Adapter createFunctionBodyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.FuncDirectDef <em>Func Direct Def</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.FuncDirectDef
+   * @generated
+   */
+  public Adapter createFuncDirectDefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductive <em>Func Inductive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.FuncInductive
+   * @generated
+   */
+  public Adapter createFuncInductiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase <em>Func Inductive Case</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase
+   * @generated
+   */
+  public Adapter createFuncInductiveCaseAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TheoremBody <em>Theorem Body</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TheoremBody
+   * @generated
+   */
+  public Adapter createTheoremBodyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariableList <em>Typed Variable List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariableList
+   * @generated
+   */
+  public Adapter createTypedVariableListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable <em>Typed Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypedVariable
+   * @generated
+   */
+  public Adapter createTypedVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration <em>Type Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeDeclaration
+   * @generated
+   */
+  public Adapter createTypeDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionName <em>Function Name</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.FunctionName
+   * @generated
+   */
+  public Adapter createFunctionNameAdapter()
   {
     return null;
   }

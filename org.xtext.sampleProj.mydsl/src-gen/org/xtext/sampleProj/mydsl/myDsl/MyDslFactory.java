@@ -177,24 +177,6 @@ public interface MyDslFactory extends EFactory
   TypeDeclContext createTypeDeclContext();
 
   /**
-   * Returns a new object of class '<em>Typed Variable</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Typed Variable</em>'.
-   * @generated
-   */
-  TypedVariable createTypedVariable();
-
-  /**
-   * Returns a new object of class '<em>Type Declaration</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Declaration</em>'.
-   * @generated
-   */
-  TypeDeclaration createTypeDeclaration();
-
-  /**
    * Returns a new object of class '<em>Where</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -202,24 +184,6 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Where createWhere();
-
-  /**
-   * Returns a new object of class '<em>Type Body Elements</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Body Elements</em>'.
-   * @generated
-   */
-  TypeBodyElements createTypeBodyElements();
-
-  /**
-   * Returns a new object of class '<em>Function Name</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Function Name</em>'.
-   * @generated
-   */
-  FunctionName createFunctionName();
 
   /**
    * Returns a new object of class '<em>Datatype</em>'.
@@ -249,13 +213,13 @@ public interface MyDslFactory extends EFactory
   BaseConstructor createBaseConstructor();
 
   /**
-   * Returns a new object of class '<em>Constructor</em>'.
+   * Returns a new object of class '<em>DType Constructor</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Constructor</em>'.
+   * @return a new object of class '<em>DType Constructor</em>'.
    * @generated
    */
-  Constructor createConstructor();
+  DTypeConstructor createDTypeConstructor();
 
   /**
    * Returns a new object of class '<em>Extend</em>'.
@@ -267,6 +231,15 @@ public interface MyDslFactory extends EFactory
   Extend createExtend();
 
   /**
+   * Returns a new object of class '<em>Type Body Elements</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Body Elements</em>'.
+   * @generated
+   */
+  TypeBodyElements createTypeBodyElements();
+
+  /**
    * Returns a new object of class '<em>Function Decl</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -274,6 +247,87 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   FunctionDecl createFunctionDecl();
+
+  /**
+   * Returns a new object of class '<em>Function Body</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Body</em>'.
+   * @generated
+   */
+  FunctionBody createFunctionBody();
+
+  /**
+   * Returns a new object of class '<em>Func Direct Def</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Func Direct Def</em>'.
+   * @generated
+   */
+  FuncDirectDef createFuncDirectDef();
+
+  /**
+   * Returns a new object of class '<em>Func Inductive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Func Inductive</em>'.
+   * @generated
+   */
+  FuncInductive createFuncInductive();
+
+  /**
+   * Returns a new object of class '<em>Func Inductive Case</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Func Inductive Case</em>'.
+   * @generated
+   */
+  FuncInductiveCase createFuncInductiveCase();
+
+  /**
+   * Returns a new object of class '<em>Theorem Body</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Theorem Body</em>'.
+   * @generated
+   */
+  TheoremBody createTheoremBody();
+
+  /**
+   * Returns a new object of class '<em>Typed Variable List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Typed Variable List</em>'.
+   * @generated
+   */
+  TypedVariableList createTypedVariableList();
+
+  /**
+   * Returns a new object of class '<em>Typed Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Typed Variable</em>'.
+   * @generated
+   */
+  TypedVariable createTypedVariable();
+
+  /**
+   * Returns a new object of class '<em>Type Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Declaration</em>'.
+   * @generated
+   */
+  TypeDeclaration createTypeDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Function Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Name</em>'.
+   * @generated
+   */
+  FunctionName createFunctionName();
 
   /**
    * Returns a new object of class '<em>Expression</em>'.

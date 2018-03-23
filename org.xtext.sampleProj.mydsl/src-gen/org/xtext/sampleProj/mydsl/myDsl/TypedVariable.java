@@ -3,8 +3,6 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypedVariable()
@@ -53,19 +51,29 @@ public interface TypedVariable extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints}.
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Constraints</em>' containment reference list.
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypedVariable_Constraints()
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(ConstructedType)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypedVariable_Type()
    * @model containment="true"
    * @generated
    */
-  EList<PolyTypeConstraints> getConstraints();
+  ConstructedType getType();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getType <em>Type</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' containment reference.
+   * @see #getType()
+   * @generated
+   */
+  void setType(ConstructedType value);
 
 } // TypedVariable

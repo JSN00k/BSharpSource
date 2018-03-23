@@ -11,7 +11,6 @@ import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName
 import org.xtext.sampleProj.mydsl.myDsl.BppClass
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage
 import org.eclipse.xtext.validation.Check
-import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes
 
 /**
  * This class contains custom validation rules. 

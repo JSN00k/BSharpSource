@@ -12,44 +12,46 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.sampleProj.mydsl.myDsl.Constructor;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
+import org.xtext.sampleProj.mydsl.myDsl.TypedVariableList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Constructor</b></em>'.
+ * An implementation of the model object '<em><b>Typed Variable List</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ConstructorImpl#getTypedVariables <em>Typed Variables</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableListImpl#getTypeVar <em>Type Var</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConstructorImpl extends DatatypeConstructorImpl implements Constructor
+public class TypedVariableListImpl extends MinimalEObjectImpl.Container implements TypedVariableList
 {
   /**
-   * The cached value of the '{@link #getTypedVariables() <em>Typed Variables</em>}' containment reference list.
+   * The cached value of the '{@link #getTypeVar() <em>Type Var</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTypedVariables()
+   * @see #getTypeVar()
    * @generated
    * @ordered
    */
-  protected EList<TypedVariable> typedVariables;
+  protected EList<TypedVariable> typeVar;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ConstructorImpl()
+  protected TypedVariableListImpl()
   {
     super();
   }
@@ -62,7 +64,7 @@ public class ConstructorImpl extends DatatypeConstructorImpl implements Construc
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.CONSTRUCTOR;
+    return MyDslPackage.Literals.TYPED_VARIABLE_LIST;
   }
 
   /**
@@ -70,13 +72,13 @@ public class ConstructorImpl extends DatatypeConstructorImpl implements Construc
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypedVariable> getTypedVariables()
+  public EList<TypedVariable> getTypeVar()
   {
-    if (typedVariables == null)
+    if (typeVar == null)
     {
-      typedVariables = new EObjectContainmentEList<TypedVariable>(TypedVariable.class, this, MyDslPackage.CONSTRUCTOR__TYPED_VARIABLES);
+      typeVar = new EObjectContainmentEList<TypedVariable>(TypedVariable.class, this, MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR);
     }
-    return typedVariables;
+    return typeVar;
   }
 
   /**
@@ -89,8 +91,8 @@ public class ConstructorImpl extends DatatypeConstructorImpl implements Construc
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRUCTOR__TYPED_VARIABLES:
-        return ((InternalEList<?>)getTypedVariables()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
+        return ((InternalEList<?>)getTypeVar()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -105,8 +107,8 @@ public class ConstructorImpl extends DatatypeConstructorImpl implements Construc
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRUCTOR__TYPED_VARIABLES:
-        return getTypedVariables();
+      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
+        return getTypeVar();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -122,9 +124,9 @@ public class ConstructorImpl extends DatatypeConstructorImpl implements Construc
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRUCTOR__TYPED_VARIABLES:
-        getTypedVariables().clear();
-        getTypedVariables().addAll((Collection<? extends TypedVariable>)newValue);
+      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
+        getTypeVar().clear();
+        getTypeVar().addAll((Collection<? extends TypedVariable>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -140,8 +142,8 @@ public class ConstructorImpl extends DatatypeConstructorImpl implements Construc
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRUCTOR__TYPED_VARIABLES:
-        getTypedVariables().clear();
+      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
+        getTypeVar().clear();
         return;
     }
     super.eUnset(featureID);
@@ -157,10 +159,10 @@ public class ConstructorImpl extends DatatypeConstructorImpl implements Construc
   {
     switch (featureID)
     {
-      case MyDslPackage.CONSTRUCTOR__TYPED_VARIABLES:
-        return typedVariables != null && !typedVariables.isEmpty();
+      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
+        return typeVar != null && !typeVar.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ConstructorImpl
+} //TypedVariableListImpl

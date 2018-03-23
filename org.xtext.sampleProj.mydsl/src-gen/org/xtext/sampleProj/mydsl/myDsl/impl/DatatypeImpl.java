@@ -52,14 +52,14 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   protected TypeName name;
 
   /**
-   * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference list.
+   * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getContext()
    * @generated
    * @ordered
    */
-  protected EList<PolyContext> context;
+  protected PolyContext context;
 
   /**
    * The cached value of the '{@link #getConstructors() <em>Constructors</em>}' containment reference list.
@@ -145,13 +145,47 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<PolyContext> getContext()
+  public PolyContext getContext()
   {
-    if (context == null)
-    {
-      context = new EObjectContainmentEList<PolyContext>(PolyContext.class, this, MyDslPackage.DATATYPE__CONTEXT);
-    }
     return context;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetContext(PolyContext newContext, NotificationChain msgs)
+  {
+    PolyContext oldContext = context;
+    context = newContext;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE__CONTEXT, oldContext, newContext);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContext(PolyContext newContext)
+  {
+    if (newContext != context)
+    {
+      NotificationChain msgs = null;
+      if (context != null)
+        msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE__CONTEXT, null, msgs);
+      if (newContext != null)
+        msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE__CONTEXT, null, msgs);
+      msgs = basicSetContext(newContext, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE__CONTEXT, newContext, newContext));
   }
 
   /**
@@ -181,7 +215,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
       case MyDslPackage.DATATYPE__NAME:
         return basicSetName(null, msgs);
       case MyDslPackage.DATATYPE__CONTEXT:
-        return ((InternalEList<?>)getContext()).basicRemove(otherEnd, msgs);
+        return basicSetContext(null, msgs);
       case MyDslPackage.DATATYPE__CONSTRUCTORS:
         return ((InternalEList<?>)getConstructors()).basicRemove(otherEnd, msgs);
     }
@@ -223,8 +257,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
         setName((TypeName)newValue);
         return;
       case MyDslPackage.DATATYPE__CONTEXT:
-        getContext().clear();
-        getContext().addAll((Collection<? extends PolyContext>)newValue);
+        setContext((PolyContext)newValue);
         return;
       case MyDslPackage.DATATYPE__CONSTRUCTORS:
         getConstructors().clear();
@@ -248,7 +281,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
         setName((TypeName)null);
         return;
       case MyDslPackage.DATATYPE__CONTEXT:
-        getContext().clear();
+        setContext((PolyContext)null);
         return;
       case MyDslPackage.DATATYPE__CONSTRUCTORS:
         getConstructors().clear();
@@ -270,7 +303,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
       case MyDslPackage.DATATYPE__NAME:
         return name != null;
       case MyDslPackage.DATATYPE__CONTEXT:
-        return context != null && !context.isEmpty();
+        return context != null;
       case MyDslPackage.DATATYPE__CONSTRUCTORS:
         return constructors != null && !constructors.isEmpty();
     }

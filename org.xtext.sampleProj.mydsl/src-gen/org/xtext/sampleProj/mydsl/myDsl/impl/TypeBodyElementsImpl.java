@@ -14,12 +14,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.TheoremBody;
 import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
 
 /**
@@ -49,14 +49,14 @@ public class TypeBodyElementsImpl extends MinimalEObjectImpl.Container implement
   protected EList<FunctionDecl> functions;
 
   /**
-   * The cached value of the '{@link #getTheorems() <em>Theorems</em>}' attribute list.
+   * The cached value of the '{@link #getTheorems() <em>Theorems</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTheorems()
    * @generated
    * @ordered
    */
-  protected EList<String> theorems;
+  protected EList<TheoremBody> theorems;
 
   /**
    * <!-- begin-user-doc -->
@@ -98,11 +98,11 @@ public class TypeBodyElementsImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getTheorems()
+  public EList<TheoremBody> getTheorems()
   {
     if (theorems == null)
     {
-      theorems = new EDataTypeEList<String>(String.class, this, MyDslPackage.TYPE_BODY_ELEMENTS__THEOREMS);
+      theorems = new EObjectContainmentEList<TheoremBody>(TheoremBody.class, this, MyDslPackage.TYPE_BODY_ELEMENTS__THEOREMS);
     }
     return theorems;
   }
@@ -119,6 +119,8 @@ public class TypeBodyElementsImpl extends MinimalEObjectImpl.Container implement
     {
       case MyDslPackage.TYPE_BODY_ELEMENTS__FUNCTIONS:
         return ((InternalEList<?>)getFunctions()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.TYPE_BODY_ELEMENTS__THEOREMS:
+        return ((InternalEList<?>)getTheorems()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -158,7 +160,7 @@ public class TypeBodyElementsImpl extends MinimalEObjectImpl.Container implement
         return;
       case MyDslPackage.TYPE_BODY_ELEMENTS__THEOREMS:
         getTheorems().clear();
-        getTheorems().addAll((Collection<? extends String>)newValue);
+        getTheorems().addAll((Collection<? extends TheoremBody>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -200,23 +202,6 @@ public class TypeBodyElementsImpl extends MinimalEObjectImpl.Container implement
         return theorems != null && !theorems.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (theorems: ");
-    result.append(theorems);
-    result.append(')');
-    return result.toString();
   }
 
 } //TypeBodyElementsImpl

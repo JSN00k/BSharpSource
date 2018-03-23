@@ -43,19 +43,19 @@ public interface TypeBodyElements extends EObject
   EList<FunctionDecl> getFunctions();
 
   /**
-   * Returns the value of the '<em><b>Theorems</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Theorems</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.TheoremBody}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Theorems</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Theorems</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Theorems</em>' attribute list.
+   * @return the value of the '<em>Theorems</em>' containment reference list.
    * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypeBodyElements_Theorems()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getTheorems();
+  EList<TheoremBody> getTheorems();
 
 } // TypeBodyElements

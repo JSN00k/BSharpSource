@@ -198,38 +198,10 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.TYPED_VARIABLE:
-      {
-        TypedVariable typedVariable = (TypedVariable)theEObject;
-        T result = caseTypedVariable(typedVariable);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.TYPE_DECLARATION:
-      {
-        TypeDeclaration typeDeclaration = (TypeDeclaration)theEObject;
-        T result = caseTypeDeclaration(typeDeclaration);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case MyDslPackage.WHERE:
       {
         Where where = (Where)theEObject;
         T result = caseWhere(where);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.TYPE_BODY_ELEMENTS:
-      {
-        TypeBodyElements typeBodyElements = (TypeBodyElements)theEObject;
-        T result = caseTypeBodyElements(typeBodyElements);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.FUNCTION_NAME:
-      {
-        FunctionName functionName = (FunctionName)theEObject;
-        T result = caseFunctionName(functionName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -257,11 +229,11 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.CONSTRUCTOR:
+      case MyDslPackage.DTYPE_CONSTRUCTOR:
       {
-        Constructor constructor = (Constructor)theEObject;
-        T result = caseConstructor(constructor);
-        if (result == null) result = caseDatatypeConstructor(constructor);
+        DTypeConstructor dTypeConstructor = (DTypeConstructor)theEObject;
+        T result = caseDTypeConstructor(dTypeConstructor);
+        if (result == null) result = caseDatatypeConstructor(dTypeConstructor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -274,10 +246,81 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.TYPE_BODY_ELEMENTS:
+      {
+        TypeBodyElements typeBodyElements = (TypeBodyElements)theEObject;
+        T result = caseTypeBodyElements(typeBodyElements);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.FUNCTION_DECL:
       {
         FunctionDecl functionDecl = (FunctionDecl)theEObject;
         T result = caseFunctionDecl(functionDecl);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.FUNCTION_BODY:
+      {
+        FunctionBody functionBody = (FunctionBody)theEObject;
+        T result = caseFunctionBody(functionBody);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.FUNC_DIRECT_DEF:
+      {
+        FuncDirectDef funcDirectDef = (FuncDirectDef)theEObject;
+        T result = caseFuncDirectDef(funcDirectDef);
+        if (result == null) result = caseFunctionBody(funcDirectDef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.FUNC_INDUCTIVE:
+      {
+        FuncInductive funcInductive = (FuncInductive)theEObject;
+        T result = caseFuncInductive(funcInductive);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.FUNC_INDUCTIVE_CASE:
+      {
+        FuncInductiveCase funcInductiveCase = (FuncInductiveCase)theEObject;
+        T result = caseFuncInductiveCase(funcInductiveCase);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.THEOREM_BODY:
+      {
+        TheoremBody theoremBody = (TheoremBody)theEObject;
+        T result = caseTheoremBody(theoremBody);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.TYPED_VARIABLE_LIST:
+      {
+        TypedVariableList typedVariableList = (TypedVariableList)theEObject;
+        T result = caseTypedVariableList(typedVariableList);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.TYPED_VARIABLE:
+      {
+        TypedVariable typedVariable = (TypedVariable)theEObject;
+        T result = caseTypedVariable(typedVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.TYPE_DECLARATION:
+      {
+        TypeDeclaration typeDeclaration = (TypeDeclaration)theEObject;
+        T result = caseTypeDeclaration(typeDeclaration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.FUNCTION_NAME:
+      {
+        FunctionName functionName = (FunctionName)theEObject;
+        T result = caseFunctionName(functionName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -565,38 +608,6 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Typed Variable</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Typed Variable</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTypedVariable(TypedVariable object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTypeDeclaration(TypeDeclaration object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Where</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -608,38 +619,6 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseWhere(Where object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Body Elements</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Body Elements</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTypeBodyElements(TypeBodyElements object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Function Name</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Function Name</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseFunctionName(FunctionName object)
   {
     return null;
   }
@@ -693,17 +672,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Constructor</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>DType Constructor</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Constructor</em>'.
+   * @return the result of interpreting the object as an instance of '<em>DType Constructor</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseConstructor(Constructor object)
+  public T caseDTypeConstructor(DTypeConstructor object)
   {
     return null;
   }
@@ -725,6 +704,22 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Body Elements</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Body Elements</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeBodyElements(TypeBodyElements object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Function Decl</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -736,6 +731,150 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFunctionDecl(FunctionDecl object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Function Body</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function Body</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionBody(FunctionBody object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Func Direct Def</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Func Direct Def</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFuncDirectDef(FuncDirectDef object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Func Inductive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Func Inductive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFuncInductive(FuncInductive object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Func Inductive Case</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Func Inductive Case</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFuncInductiveCase(FuncInductiveCase object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Theorem Body</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Theorem Body</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTheoremBody(TheoremBody object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Typed Variable List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Typed Variable List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypedVariableList(TypedVariableList object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Typed Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Typed Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypedVariable(TypedVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeDeclaration(TypeDeclaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Function Name</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function Name</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionName(FunctionName object)
   {
     return null;
   }
