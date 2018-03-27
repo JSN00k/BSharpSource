@@ -161,6 +161,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createTypeDeclContextAdapter();
       }
       @Override
+      public Adapter caseTypeStructure(TypeStructure object)
+      {
+        return createTypeStructureAdapter();
+      }
+      @Override
       public Adapter caseWhere(Where object)
       {
         return createWhereAdapter();
@@ -224,6 +229,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseTheoremBody(TheoremBody object)
       {
         return createTheoremBodyAdapter();
+      }
+      @Override
+      public Adapter caseTheoremDecl(TheoremDecl object)
+      {
+        return createTheoremDeclAdapter();
       }
       @Override
       public Adapter caseTypedVariableList(TypedVariableList object)
@@ -528,6 +538,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeStructure <em>Type Structure</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeStructure
+   * @generated
+   */
+  public Adapter createTypeStructureAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Where <em>Where</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -718,6 +743,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTheoremBodyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TheoremDecl <em>Theorem Decl</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TheoremDecl
+   * @generated
+   */
+  public Adapter createTheoremDeclAdapter()
   {
     return null;
   }

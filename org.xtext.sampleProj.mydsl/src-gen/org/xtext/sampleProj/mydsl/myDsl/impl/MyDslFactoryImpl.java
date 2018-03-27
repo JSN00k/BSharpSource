@@ -82,6 +82,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.CONSTRUCTED_TYPE: return createConstructedType();
       case MyDslPackage.TYPE_CONSTRUCTOR: return createTypeConstructor();
       case MyDslPackage.TYPE_DECL_CONTEXT: return createTypeDeclContext();
+      case MyDslPackage.TYPE_STRUCTURE: return createTypeStructure();
       case MyDslPackage.WHERE: return createWhere();
       case MyDslPackage.DATATYPE: return createDatatype();
       case MyDslPackage.DATATYPE_CONSTRUCTOR: return createDatatypeConstructor();
@@ -95,6 +96,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.FUNC_INDUCTIVE: return createFuncInductive();
       case MyDslPackage.FUNC_INDUCTIVE_CASE: return createFuncInductiveCase();
       case MyDslPackage.THEOREM_BODY: return createTheoremBody();
+      case MyDslPackage.THEOREM_DECL: return createTheoremDecl();
       case MyDslPackage.TYPED_VARIABLE_LIST: return createTypedVariableList();
       case MyDslPackage.TYPED_VARIABLE: return createTypedVariable();
       case MyDslPackage.TYPE_DECLARATION: return createTypeDeclaration();
@@ -297,6 +299,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public TypeStructure createTypeStructure()
+  {
+    TypeStructureImpl typeStructure = new TypeStructureImpl();
+    return typeStructure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Where createWhere()
   {
     WhereImpl where = new WhereImpl();
@@ -433,6 +446,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     TheoremBodyImpl theoremBody = new TheoremBodyImpl();
     return theoremBody;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TheoremDecl createTheoremDecl()
+  {
+    TheoremDeclImpl theoremDecl = new TheoremDeclImpl();
+    return theoremDecl;
   }
 
   /**

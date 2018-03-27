@@ -177,6 +177,15 @@ public interface MyDslFactory extends EFactory
   TypeDeclContext createTypeDeclContext();
 
   /**
+   * Returns a new object of class '<em>Type Structure</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Structure</em>'.
+   * @generated
+   */
+  TypeStructure createTypeStructure();
+
+  /**
    * Returns a new object of class '<em>Where</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -292,6 +301,15 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   TheoremBody createTheoremBody();
+
+  /**
+   * Returns a new object of class '<em>Theorem Decl</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Theorem Decl</em>'.
+   * @generated
+   */
+  TheoremDecl createTheoremDecl();
 
   /**
    * Returns a new object of class '<em>Typed Variable List</em>'.

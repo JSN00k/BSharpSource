@@ -198,6 +198,13 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.TYPE_STRUCTURE:
+      {
+        TypeStructure typeStructure = (TypeStructure)theEObject;
+        T result = caseTypeStructure(typeStructure);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.WHERE:
       {
         Where where = (Where)theEObject;
@@ -279,6 +286,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         FuncInductive funcInductive = (FuncInductive)theEObject;
         T result = caseFuncInductive(funcInductive);
+        if (result == null) result = caseFunctionBody(funcInductive);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -293,6 +301,13 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         TheoremBody theoremBody = (TheoremBody)theEObject;
         T result = caseTheoremBody(theoremBody);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.THEOREM_DECL:
+      {
+        TheoremDecl theoremDecl = (TheoremDecl)theEObject;
+        T result = caseTheoremDecl(theoremDecl);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -608,6 +623,22 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Structure</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Structure</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeStructure(TypeStructure object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Where</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -811,6 +842,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTheoremBody(TheoremBody object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Theorem Decl</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Theorem Decl</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTheoremDecl(TheoremDecl object)
   {
     return null;
   }

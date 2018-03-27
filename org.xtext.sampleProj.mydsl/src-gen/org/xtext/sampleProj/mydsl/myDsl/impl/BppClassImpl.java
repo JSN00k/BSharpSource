@@ -16,6 +16,7 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.SuperTypeList;
 import org.xtext.sampleProj.mydsl.myDsl.TypeName;
+import org.xtext.sampleProj.mydsl.myDsl.TypeStructure;
 import org.xtext.sampleProj.mydsl.myDsl.Where;
 
 /**
@@ -29,6 +30,7 @@ import org.xtext.sampleProj.mydsl.myDsl.Where;
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getSupertypes <em>Supertypes</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getTypeStructure <em>Type Structure</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getWhere <em>Where</em>}</li>
  * </ul>
  *
@@ -65,6 +67,16 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
    * @ordered
    */
   protected SuperTypeList supertypes;
+
+  /**
+   * The cached value of the '{@link #getTypeStructure() <em>Type Structure</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTypeStructure()
+   * @generated
+   * @ordered
+   */
+  protected TypeStructure typeStructure;
 
   /**
    * The cached value of the '{@link #getWhere() <em>Where</em>}' containment reference.
@@ -246,6 +258,54 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
    * <!-- end-user-doc -->
    * @generated
    */
+  public TypeStructure getTypeStructure()
+  {
+    return typeStructure;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTypeStructure(TypeStructure newTypeStructure, NotificationChain msgs)
+  {
+    TypeStructure oldTypeStructure = typeStructure;
+    typeStructure = newTypeStructure;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.BPP_CLASS__TYPE_STRUCTURE, oldTypeStructure, newTypeStructure);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTypeStructure(TypeStructure newTypeStructure)
+  {
+    if (newTypeStructure != typeStructure)
+    {
+      NotificationChain msgs = null;
+      if (typeStructure != null)
+        msgs = ((InternalEObject)typeStructure).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.BPP_CLASS__TYPE_STRUCTURE, null, msgs);
+      if (newTypeStructure != null)
+        msgs = ((InternalEObject)newTypeStructure).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.BPP_CLASS__TYPE_STRUCTURE, null, msgs);
+      msgs = basicSetTypeStructure(newTypeStructure, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.BPP_CLASS__TYPE_STRUCTURE, newTypeStructure, newTypeStructure));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Where getWhere()
   {
     return where;
@@ -305,6 +365,8 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
         return basicSetContext(null, msgs);
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         return basicSetSupertypes(null, msgs);
+      case MyDslPackage.BPP_CLASS__TYPE_STRUCTURE:
+        return basicSetTypeStructure(null, msgs);
       case MyDslPackage.BPP_CLASS__WHERE:
         return basicSetWhere(null, msgs);
     }
@@ -327,6 +389,8 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
         return getContext();
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         return getSupertypes();
+      case MyDslPackage.BPP_CLASS__TYPE_STRUCTURE:
+        return getTypeStructure();
       case MyDslPackage.BPP_CLASS__WHERE:
         return getWhere();
     }
@@ -351,6 +415,9 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
         return;
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         setSupertypes((SuperTypeList)newValue);
+        return;
+      case MyDslPackage.BPP_CLASS__TYPE_STRUCTURE:
+        setTypeStructure((TypeStructure)newValue);
         return;
       case MyDslPackage.BPP_CLASS__WHERE:
         setWhere((Where)newValue);
@@ -378,6 +445,9 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         setSupertypes((SuperTypeList)null);
         return;
+      case MyDslPackage.BPP_CLASS__TYPE_STRUCTURE:
+        setTypeStructure((TypeStructure)null);
+        return;
       case MyDslPackage.BPP_CLASS__WHERE:
         setWhere((Where)null);
         return;
@@ -401,6 +471,8 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
         return context != null;
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         return supertypes != null;
+      case MyDslPackage.BPP_CLASS__TYPE_STRUCTURE:
+        return typeStructure != null;
       case MyDslPackage.BPP_CLASS__WHERE:
         return where != null;
     }

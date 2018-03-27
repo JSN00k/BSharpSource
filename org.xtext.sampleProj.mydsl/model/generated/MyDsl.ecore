@@ -28,6 +28,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertypes" eType="#//SuperTypeList"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeStructure" eType="#//TypeStructure"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Where"
         containment="true"/>
   </eClassifiers>
@@ -66,6 +68,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypeDeclContext">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" upperBound="-1"
         eType="#//ConstructedType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeStructure">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" eType="#//TypedVariableList"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Where">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expessions" upperBound="-1"
@@ -116,14 +122,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FuncInductive">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FuncInductive" eSuperTypes="#//FunctionBody">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableName" eType="#//TypedVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inductCase" upperBound="-1"
+        eType="#//FuncInductiveCase" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FuncInductiveCase">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deconName" eType="#//DTypeConstructor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expre" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TheoremBody">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="theoremDecl" upperBound="-1"
+        eType="#//TheoremDecl" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TheoremDecl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="thmName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedVariableList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeVar" upperBound="-1"

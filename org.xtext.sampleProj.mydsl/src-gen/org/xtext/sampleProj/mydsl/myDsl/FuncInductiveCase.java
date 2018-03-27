@@ -14,7 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getDeconName <em>Decon Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getExpre <em>Expre</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductiveCase()
@@ -24,29 +25,55 @@ import org.eclipse.emf.ecore.EObject;
 public interface FuncInductiveCase extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Decon Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Decon Name</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductiveCase_Name()
+   * @return the value of the '<em>Decon Name</em>' reference.
+   * @see #setDeconName(DTypeConstructor)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductiveCase_DeconName()
    * @model
    * @generated
    */
-  String getName();
+  DTypeConstructor getDeconName();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getDeconName <em>Decon Name</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Decon Name</em>' reference.
+   * @see #getDeconName()
    * @generated
    */
-  void setName(String value);
+  void setDeconName(DTypeConstructor value);
+
+  /**
+   * Returns the value of the '<em><b>Expre</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Expre</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Expre</em>' containment reference.
+   * @see #setExpre(Expression)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductiveCase_Expre()
+   * @model containment="true"
+   * @generated
+   */
+  Expression getExpre();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getExpre <em>Expre</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Expre</em>' containment reference.
+   * @see #getExpre()
+   * @generated
+   */
+  void setExpre(Expression value);
 
 } // FuncInductiveCase

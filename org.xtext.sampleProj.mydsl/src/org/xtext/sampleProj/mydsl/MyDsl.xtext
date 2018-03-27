@@ -6,7 +6,7 @@ DomainModel:
 	(elements+=TopLevel)*;
 	
 // Theorem names can include white space.
-//terminal THM_NAME: '^' -> ":";
+THM_NAME: (ID | WS)* ":";
 	
 TopLevel:
 	ImportStatement | ClassDecl;
@@ -31,8 +31,9 @@ ClassDecl:
 
 /* ------------------------ Class statements --------------------- */
 
+
 Class returns BppClass:
-	'Class' typeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? (where=Where)? '{' (bodyElements+=TypeBodyElements)* '}'
+	'Class' typeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? (typeStructure=TypeStructure)? (where=Where)? (';')? '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 Name: PolymorphicTypeName | TypeName;
@@ -74,6 +75,7 @@ ConstructedType:
 
 /* Type constructor has validation rules to check that there is no context when there is a polymorphic name, 
  * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
+ * Probably need to add the predicate type to this.
  */
 TypeConstructor:
 	typeName=[Name] (context+=TypeDeclContext)?
@@ -83,6 +85,12 @@ TypeDeclContext:
 	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
 ;
 
+/* -------------------- Type Structure ---------------------------------- */
+
+TypeStructure:
+	'(' variables=TypedVariableList ')'
+;
+
 /* -------------------- Where Statement -------------------------------- */
 
 /* Type checking (which is not implemented yet) is used to type check that Expression returns a 
@@ -90,7 +98,7 @@ TypeDeclContext:
  * statement.
  */
 Where:
-	'where' expessions+=Expression (';' expressions+=Expression)
+	'where' expessions+=Expression (';' expressions+=Expression)*
 ;
 
 /* ---------------------- Datatype declarations -------------------------- */
@@ -134,6 +142,10 @@ FunctionDecl:
 	name+=FunctionName (context=PolyContext)? '(' (variables=TypedVariableList)? ')' body=FunctionBody ':' returnType=TypeConstructor
 ;
 
+FunctionName:
+	name=ID
+;
+
 FunctionBody:
 	FuncInductive | FuncDirectDef
 ;
@@ -164,12 +176,13 @@ TheoremBody:
 	'Theorems' '{' (theoremDecl+=TheoremDecl)+ '}'
 ;
 
+/* Type check that the expression is a predicate expression. */
 TheoremDecl:
-	thmName=ID
+	thmName=THM_NAME exp=Expression
 ;
 
 TypedVariableList:
-	typeVar+=TypedVariable (',' typeVar+=TypedVariable)
+	typeVar+=TypedVariable (',' typeVar+=TypedVariable)*
 ;
 
 TypedVariable:
@@ -180,13 +193,64 @@ TypeDeclaration:
 	typeName=[TypeName] context=TypeDeclContext
 ;
 
-FunctionName:
-	name=ID
-;
+/* --------------------------- Expressions -------------------------- */
 
 Expression:
 	// This needs to be written. Could be worth separating this out into another 
 	// dsl reducing the complexity of this section. Specifically I need to look out for
 	// the following expressions forall exists lambda function calls.
+	name=ID
+;
+
+BuiltIn:
+	Lambda | Quantifier | Prefix | Infix | Functional
+;
+
+Lambda:
+	'λ' (varList=TypedVariableList)? '|' expr=Expression
+;
+
+/* --------------------- Quantifiers ------------------------- */
+Quantifier:
+
+	('∀' | '∃') varList=TypedVariableList? '·' expr=Expression
+;
+
+/* ---------------------- *Fix ------------------------------ */
+
+Prefix:
+	name=PrefixBuiltIn expr=Expression
+;
+
+PrefixBuiltIn:
+	'¬'
+;
+
+/* Infix operators cause problems, there are two issues one is avoiding left recursion this 
+ * is covered adequately here: https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions 
+ * The second issue is precedence, this is also covered in the link above, however, implementing it in the 
+ * way suggested above will not scale to the creation of ones own infix functions, instead the initial implementation
+ * will require brackets for precedence. After that a system will be implemented where each infix operator will 
+ * be given a precedence value with higher values being higher precedence. It looks like this can be done by
+ * changing the parser using the MyDSLRuntimeModule to build the abstract syntax tree based on the value of the 
+ * operators.
+ * Before the precedence code is written into a parser override, all the expressions are in effect right bracketed,
+ * as you may expect from a language that is read from left to right.
+ */
+ 
+Infix:
+	left=Element (name+=InfixOpName expr2+=Infix)* 
+;
+
+Element:
+	Bracket | FunctionCall | Instance
+;
+
+Bracket:
+	'(' Infix ')'
+;
+
+/* Change this to be builtin infix operators, and declared infix operators. */
+InfixOpName:
 	name=ID
 ;

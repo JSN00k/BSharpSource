@@ -263,13 +263,22 @@ public interface MyDslPackage extends EPackage
   int BPP_CLASS__SUPERTYPES = CLASS_DECL_FEATURE_COUNT + 2;
 
   /**
+   * The feature id for the '<em><b>Type Structure</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BPP_CLASS__TYPE_STRUCTURE = CLASS_DECL_FEATURE_COUNT + 3;
+
+  /**
    * The feature id for the '<em><b>Where</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BPP_CLASS__WHERE = CLASS_DECL_FEATURE_COUNT + 3;
+  int BPP_CLASS__WHERE = CLASS_DECL_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Bpp Class</em>' class.
@@ -278,7 +287,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BPP_CLASS_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 4;
+  int BPP_CLASS_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.NameImpl <em>Name</em>}' class.
@@ -579,6 +588,34 @@ public interface MyDslPackage extends EPackage
   int TYPE_DECL_CONTEXT_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeStructureImpl <em>Type Structure</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypeStructureImpl
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeStructure()
+   * @generated
+   */
+  int TYPE_STRUCTURE = 17;
+
+  /**
+   * The feature id for the '<em><b>Variables</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_STRUCTURE__VARIABLES = 0;
+
+  /**
+   * The number of structural features of the '<em>Type Structure</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_STRUCTURE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.WhereImpl <em>Where</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -586,7 +623,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getWhere()
    * @generated
    */
-  int WHERE = 17;
+  int WHERE = 18;
 
   /**
    * The feature id for the '<em><b>Expessions</b></em>' containment reference list.
@@ -623,7 +660,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getDatatype()
    * @generated
    */
-  int DATATYPE = 18;
+  int DATATYPE = 19;
 
   /**
    * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
@@ -678,7 +715,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getDatatypeConstructor()
    * @generated
    */
-  int DATATYPE_CONSTRUCTOR = 19;
+  int DATATYPE_CONSTRUCTOR = 20;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -706,7 +743,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getBaseConstructor()
    * @generated
    */
-  int BASE_CONSTRUCTOR = 20;
+  int BASE_CONSTRUCTOR = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -734,7 +771,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getDTypeConstructor()
    * @generated
    */
-  int DTYPE_CONSTRUCTOR = 21;
+  int DTYPE_CONSTRUCTOR = 22;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -771,7 +808,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getExtend()
    * @generated
    */
-  int EXTEND = 22;
+  int EXTEND = 23;
 
   /**
    * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
@@ -817,7 +854,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeBodyElements()
    * @generated
    */
-  int TYPE_BODY_ELEMENTS = 23;
+  int TYPE_BODY_ELEMENTS = 24;
 
   /**
    * The feature id for the '<em><b>Functions</b></em>' containment reference list.
@@ -854,7 +891,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getFunctionDecl()
    * @generated
    */
-  int FUNCTION_DECL = 24;
+  int FUNCTION_DECL = 25;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference list.
@@ -918,7 +955,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getFunctionBody()
    * @generated
    */
-  int FUNCTION_BODY = 25;
+  int FUNCTION_BODY = 26;
 
   /**
    * The number of structural features of the '<em>Function Body</em>' class.
@@ -937,7 +974,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getFuncDirectDef()
    * @generated
    */
-  int FUNC_DIRECT_DEF = 26;
+  int FUNC_DIRECT_DEF = 27;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -965,16 +1002,25 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getFuncInductive()
    * @generated
    */
-  int FUNC_INDUCTIVE = 27;
+  int FUNC_INDUCTIVE = 28;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Variable Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNC_INDUCTIVE__NAME = 0;
+  int FUNC_INDUCTIVE__VARIABLE_NAME = FUNCTION_BODY_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Induct Case</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNC_INDUCTIVE__INDUCT_CASE = FUNCTION_BODY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Func Inductive</em>' class.
@@ -983,7 +1029,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNC_INDUCTIVE_FEATURE_COUNT = 1;
+  int FUNC_INDUCTIVE_FEATURE_COUNT = FUNCTION_BODY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveCaseImpl <em>Func Inductive Case</em>}' class.
@@ -993,16 +1039,25 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getFuncInductiveCase()
    * @generated
    */
-  int FUNC_INDUCTIVE_CASE = 28;
+  int FUNC_INDUCTIVE_CASE = 29;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Decon Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNC_INDUCTIVE_CASE__NAME = 0;
+  int FUNC_INDUCTIVE_CASE__DECON_NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Expre</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNC_INDUCTIVE_CASE__EXPRE = 1;
 
   /**
    * The number of structural features of the '<em>Func Inductive Case</em>' class.
@@ -1011,7 +1066,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNC_INDUCTIVE_CASE_FEATURE_COUNT = 1;
+  int FUNC_INDUCTIVE_CASE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TheoremBodyImpl <em>Theorem Body</em>}' class.
@@ -1021,16 +1076,16 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTheoremBody()
    * @generated
    */
-  int THEOREM_BODY = 29;
+  int THEOREM_BODY = 30;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Theorem Decl</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int THEOREM_BODY__NAME = 0;
+  int THEOREM_BODY__THEOREM_DECL = 0;
 
   /**
    * The number of structural features of the '<em>Theorem Body</em>' class.
@@ -1042,6 +1097,34 @@ public interface MyDslPackage extends EPackage
   int THEOREM_BODY_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TheoremDeclImpl <em>Theorem Decl</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.TheoremDeclImpl
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTheoremDecl()
+   * @generated
+   */
+  int THEOREM_DECL = 31;
+
+  /**
+   * The feature id for the '<em><b>Thm Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int THEOREM_DECL__THM_NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Theorem Decl</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int THEOREM_DECL_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableListImpl <em>Typed Variable List</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1049,7 +1132,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypedVariableList()
    * @generated
    */
-  int TYPED_VARIABLE_LIST = 30;
+  int TYPED_VARIABLE_LIST = 32;
 
   /**
    * The feature id for the '<em><b>Type Var</b></em>' containment reference list.
@@ -1077,7 +1160,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypedVariable()
    * @generated
    */
-  int TYPED_VARIABLE = 31;
+  int TYPED_VARIABLE = 33;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1114,7 +1197,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeDeclaration()
    * @generated
    */
-  int TYPE_DECLARATION = 32;
+  int TYPE_DECLARATION = 34;
 
   /**
    * The feature id for the '<em><b>Type Name</b></em>' reference.
@@ -1151,7 +1234,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getFunctionName()
    * @generated
    */
-  int FUNCTION_NAME = 33;
+  int FUNCTION_NAME = 35;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1179,7 +1262,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 34;
+  int EXPRESSION = 36;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1357,6 +1440,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getBppClass_Supertypes();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeStructure <em>Type Structure</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type Structure</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeStructure()
+   * @see #getBppClass()
+   * @generated
+   */
+  EReference getBppClass_TypeStructure();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getWhere <em>Where</em>}'.
@@ -1578,6 +1672,27 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getTypeDeclContext_TypeName();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeStructure <em>Type Structure</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Structure</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeStructure
+   * @generated
+   */
+  EClass getTypeStructure();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.TypeStructure#getVariables <em>Variables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Variables</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeStructure#getVariables()
+   * @see #getTypeStructure()
+   * @generated
+   */
+  EReference getTypeStructure_Variables();
 
   /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.Where <em>Where</em>}'.
@@ -1877,15 +1992,26 @@ public interface MyDslPackage extends EPackage
   EClass getFuncInductive();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getName <em>Name</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getVariableName <em>Variable Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getName()
+   * @return the meta object for the reference '<em>Variable Name</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getVariableName()
    * @see #getFuncInductive()
    * @generated
    */
-  EAttribute getFuncInductive_Name();
+  EReference getFuncInductive_VariableName();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getInductCase <em>Induct Case</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Induct Case</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getInductCase()
+   * @see #getFuncInductive()
+   * @generated
+   */
+  EReference getFuncInductive_InductCase();
 
   /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase <em>Func Inductive Case</em>}'.
@@ -1898,15 +2024,26 @@ public interface MyDslPackage extends EPackage
   EClass getFuncInductiveCase();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getName <em>Name</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getDeconName <em>Decon Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getName()
+   * @return the meta object for the reference '<em>Decon Name</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getDeconName()
    * @see #getFuncInductiveCase()
    * @generated
    */
-  EAttribute getFuncInductiveCase_Name();
+  EReference getFuncInductiveCase_DeconName();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getExpre <em>Expre</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expre</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getExpre()
+   * @see #getFuncInductiveCase()
+   * @generated
+   */
+  EReference getFuncInductiveCase_Expre();
 
   /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TheoremBody <em>Theorem Body</em>}'.
@@ -1919,15 +2056,36 @@ public interface MyDslPackage extends EPackage
   EClass getTheoremBody();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.TheoremBody#getName <em>Name</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.TheoremBody#getTheoremDecl <em>Theorem Decl</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.TheoremBody#getName()
+   * @return the meta object for the containment reference list '<em>Theorem Decl</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TheoremBody#getTheoremDecl()
    * @see #getTheoremBody()
    * @generated
    */
-  EAttribute getTheoremBody_Name();
+  EReference getTheoremBody_TheoremDecl();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TheoremDecl <em>Theorem Decl</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Theorem Decl</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TheoremDecl
+   * @generated
+   */
+  EClass getTheoremDecl();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.TheoremDecl#getThmName <em>Thm Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Thm Name</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TheoremDecl#getThmName()
+   * @see #getTheoremDecl()
+   * @generated
+   */
+  EAttribute getTheoremDecl_ThmName();
 
   /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariableList <em>Typed Variable List</em>}'.
@@ -2214,6 +2372,14 @@ public interface MyDslPackage extends EPackage
     EReference BPP_CLASS__SUPERTYPES = eINSTANCE.getBppClass_Supertypes();
 
     /**
+     * The meta object literal for the '<em><b>Type Structure</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BPP_CLASS__TYPE_STRUCTURE = eINSTANCE.getBppClass_TypeStructure();
+
+    /**
      * The meta object literal for the '<em><b>Where</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2400,6 +2566,24 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference TYPE_DECL_CONTEXT__TYPE_NAME = eINSTANCE.getTypeDeclContext_TypeName();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeStructureImpl <em>Type Structure</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.TypeStructureImpl
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeStructure()
+     * @generated
+     */
+    EClass TYPE_STRUCTURE = eINSTANCE.getTypeStructure();
+
+    /**
+     * The meta object literal for the '<em><b>Variables</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPE_STRUCTURE__VARIABLES = eINSTANCE.getTypeStructure_Variables();
 
     /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.WhereImpl <em>Where</em>}' class.
@@ -2648,12 +2832,20 @@ public interface MyDslPackage extends EPackage
     EClass FUNC_INDUCTIVE = eINSTANCE.getFuncInductive();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Variable Name</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNC_INDUCTIVE__NAME = eINSTANCE.getFuncInductive_Name();
+    EReference FUNC_INDUCTIVE__VARIABLE_NAME = eINSTANCE.getFuncInductive_VariableName();
+
+    /**
+     * The meta object literal for the '<em><b>Induct Case</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNC_INDUCTIVE__INDUCT_CASE = eINSTANCE.getFuncInductive_InductCase();
 
     /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveCaseImpl <em>Func Inductive Case</em>}' class.
@@ -2666,12 +2858,20 @@ public interface MyDslPackage extends EPackage
     EClass FUNC_INDUCTIVE_CASE = eINSTANCE.getFuncInductiveCase();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Decon Name</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNC_INDUCTIVE_CASE__NAME = eINSTANCE.getFuncInductiveCase_Name();
+    EReference FUNC_INDUCTIVE_CASE__DECON_NAME = eINSTANCE.getFuncInductiveCase_DeconName();
+
+    /**
+     * The meta object literal for the '<em><b>Expre</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNC_INDUCTIVE_CASE__EXPRE = eINSTANCE.getFuncInductiveCase_Expre();
 
     /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TheoremBodyImpl <em>Theorem Body</em>}' class.
@@ -2684,12 +2884,30 @@ public interface MyDslPackage extends EPackage
     EClass THEOREM_BODY = eINSTANCE.getTheoremBody();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Theorem Decl</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute THEOREM_BODY__NAME = eINSTANCE.getTheoremBody_Name();
+    EReference THEOREM_BODY__THEOREM_DECL = eINSTANCE.getTheoremBody_TheoremDecl();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TheoremDeclImpl <em>Theorem Decl</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.TheoremDeclImpl
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTheoremDecl()
+     * @generated
+     */
+    EClass THEOREM_DECL = eINSTANCE.getTheoremDecl();
+
+    /**
+     * The meta object literal for the '<em><b>Thm Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute THEOREM_DECL__THM_NAME = eINSTANCE.getTheoremDecl_ThmName();
 
     /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableListImpl <em>Typed Variable List</em>}' class.

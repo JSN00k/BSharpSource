@@ -26,6 +26,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/typeName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/supertypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/typeStructure"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/where"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Name">
@@ -55,6 +56,9 @@
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TypeDeclContext">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypeDeclContext/typeName"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//TypeStructure">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypeStructure/variables"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Where">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Where/expessions"/>
@@ -92,13 +96,18 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FuncDirectDef/expression"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//FuncInductive">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FuncInductive/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FuncInductive/variableName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FuncInductive/inductCase"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//FuncInductiveCase">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FuncInductiveCase/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FuncInductiveCase/deconName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FuncInductiveCase/expre"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TheoremBody">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//TheoremBody/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TheoremBody/theoremDecl"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//TheoremDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//TheoremDecl/thmName"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TypedVariableList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypedVariableList/typeVar"/>

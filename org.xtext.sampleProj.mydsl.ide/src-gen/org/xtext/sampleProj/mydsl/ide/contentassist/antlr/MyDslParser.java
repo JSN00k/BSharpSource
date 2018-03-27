@@ -31,12 +31,15 @@ public class MyDslParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getTHM_NAMEAccess().getAlternatives_0(), "rule__THM_NAME__Alternatives_0");
 					put(grammarAccess.getTopLevelAccess().getAlternatives(), "rule__TopLevel__Alternatives");
 					put(grammarAccess.getClassDeclAccess().getAlternatives(), "rule__ClassDecl__Alternatives");
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getConstructedTypeAccess().getAlternatives_1_0(), "rule__ConstructedType__Alternatives_1_0");
 					put(grammarAccess.getDatatypeConstructorAccess().getAlternatives_1(), "rule__DatatypeConstructor__Alternatives_1");
 					put(grammarAccess.getTypeBodyElementsAccess().getAlternatives(), "rule__TypeBodyElements__Alternatives");
+					put(grammarAccess.getFunctionBodyAccess().getAlternatives(), "rule__FunctionBody__Alternatives");
+					put(grammarAccess.getTHM_NAMEAccess().getGroup(), "rule__THM_NAME__Group__0");
 					put(grammarAccess.getImportStatementAccess().getGroup(), "rule__ImportStatement__Group__0");
 					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
 					put(grammarAccess.getImportAccess().getGroup_1(), "rule__Import__Group_1__0");
@@ -52,6 +55,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeConstructorAccess().getGroup(), "rule__TypeConstructor__Group__0");
 					put(grammarAccess.getTypeDeclContextAccess().getGroup(), "rule__TypeDeclContext__Group__0");
 					put(grammarAccess.getTypeDeclContextAccess().getGroup_2(), "rule__TypeDeclContext__Group_2__0");
+					put(grammarAccess.getTypeStructureAccess().getGroup(), "rule__TypeStructure__Group__0");
 					put(grammarAccess.getWhereAccess().getGroup(), "rule__Where__Group__0");
 					put(grammarAccess.getWhereAccess().getGroup_2(), "rule__Where__Group_2__0");
 					put(grammarAccess.getDatatypeAccess().getGroup(), "rule__Datatype__Group__0");
@@ -59,6 +63,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDTypeConstructorAccess().getGroup(), "rule__DTypeConstructor__Group__0");
 					put(grammarAccess.getExtendAccess().getGroup(), "rule__Extend__Group__0");
 					put(grammarAccess.getFunctionDeclAccess().getGroup(), "rule__FunctionDecl__Group__0");
+					put(grammarAccess.getFuncInductiveAccess().getGroup(), "rule__FuncInductive__Group__0");
+					put(grammarAccess.getFuncInductiveCaseAccess().getGroup(), "rule__FuncInductiveCase__Group__0");
+					put(grammarAccess.getTheoremBodyAccess().getGroup(), "rule__TheoremBody__Group__0");
 					put(grammarAccess.getTypedVariableListAccess().getGroup(), "rule__TypedVariableList__Group__0");
 					put(grammarAccess.getTypedVariableListAccess().getGroup_1(), "rule__TypedVariableList__Group_1__0");
 					put(grammarAccess.getTypedVariableAccess().getGroup(), "rule__TypedVariable__Group__0");
@@ -71,8 +78,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassAccess().getTypeNameAssignment_1(), "rule__Class__TypeNameAssignment_1");
 					put(grammarAccess.getClassAccess().getContextAssignment_2(), "rule__Class__ContextAssignment_2");
 					put(grammarAccess.getClassAccess().getSupertypesAssignment_3(), "rule__Class__SupertypesAssignment_3");
-					put(grammarAccess.getClassAccess().getWhereAssignment_4(), "rule__Class__WhereAssignment_4");
-					put(grammarAccess.getClassAccess().getBodyElementsAssignment_6(), "rule__Class__BodyElementsAssignment_6");
+					put(grammarAccess.getClassAccess().getTypeStructureAssignment_4(), "rule__Class__TypeStructureAssignment_4");
+					put(grammarAccess.getClassAccess().getWhereAssignment_5(), "rule__Class__WhereAssignment_5");
+					put(grammarAccess.getClassAccess().getBodyElementsAssignment_8(), "rule__Class__BodyElementsAssignment_8");
 					put(grammarAccess.getTypeNameAccess().getNameAssignment(), "rule__TypeName__NameAssignment");
 					put(grammarAccess.getPolymorphicTypeNameAccess().getNameAssignment(), "rule__PolymorphicTypeName__NameAssignment");
 					put(grammarAccess.getPolyContextAccess().getPolyTypesAssignment_1(), "rule__PolyContext__PolyTypesAssignment_1");
@@ -88,6 +96,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeConstructorAccess().getContextAssignment_1(), "rule__TypeConstructor__ContextAssignment_1");
 					put(grammarAccess.getTypeDeclContextAccess().getTypeNameAssignment_1(), "rule__TypeDeclContext__TypeNameAssignment_1");
 					put(grammarAccess.getTypeDeclContextAccess().getTypeNameAssignment_2_1(), "rule__TypeDeclContext__TypeNameAssignment_2_1");
+					put(grammarAccess.getTypeStructureAccess().getVariablesAssignment_1(), "rule__TypeStructure__VariablesAssignment_1");
 					put(grammarAccess.getWhereAccess().getExpessionsAssignment_1(), "rule__Where__ExpessionsAssignment_1");
 					put(grammarAccess.getWhereAccess().getExpressionsAssignment_2_1(), "rule__Where__ExpressionsAssignment_2_1");
 					put(grammarAccess.getDatatypeAccess().getNameAssignment_1(), "rule__Datatype__NameAssignment_1");
@@ -108,9 +117,13 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionDeclAccess().getBodyAssignment_5(), "rule__FunctionDecl__BodyAssignment_5");
 					put(grammarAccess.getFunctionDeclAccess().getReturnTypeAssignment_7(), "rule__FunctionDecl__ReturnTypeAssignment_7");
 					put(grammarAccess.getFuncDirectDefAccess().getExpressionAssignment(), "rule__FuncDirectDef__ExpressionAssignment");
-					put(grammarAccess.getFuncInductiveAccess().getNameAssignment(), "rule__FuncInductive__NameAssignment");
-					put(grammarAccess.getFuncInductiveCaseAccess().getNameAssignment(), "rule__FuncInductiveCase__NameAssignment");
-					put(grammarAccess.getTheoremBodyAccess().getNameAssignment(), "rule__TheoremBody__NameAssignment");
+					put(grammarAccess.getFuncInductiveAccess().getVariableNameAssignment_1(), "rule__FuncInductive__VariableNameAssignment_1");
+					put(grammarAccess.getFuncInductiveAccess().getInductCaseAssignment_2(), "rule__FuncInductive__InductCaseAssignment_2");
+					put(grammarAccess.getFuncInductiveAccess().getInductCaseAssignment_3(), "rule__FuncInductive__InductCaseAssignment_3");
+					put(grammarAccess.getFuncInductiveCaseAccess().getDeconNameAssignment_1(), "rule__FuncInductiveCase__DeconNameAssignment_1");
+					put(grammarAccess.getFuncInductiveCaseAccess().getExpreAssignment_3(), "rule__FuncInductiveCase__ExpreAssignment_3");
+					put(grammarAccess.getTheoremBodyAccess().getTheoremDeclAssignment_2(), "rule__TheoremBody__TheoremDeclAssignment_2");
+					put(grammarAccess.getTheoremDeclAccess().getThmNameAssignment(), "rule__TheoremDecl__ThmNameAssignment");
 					put(grammarAccess.getTypedVariableListAccess().getTypeVarAssignment_0(), "rule__TypedVariableList__TypeVarAssignment_0");
 					put(grammarAccess.getTypedVariableListAccess().getTypeVarAssignment_1_1(), "rule__TypedVariableList__TypeVarAssignment_1_1");
 					put(grammarAccess.getTypedVariableAccess().getNameAssignment_0(), "rule__TypedVariable__NameAssignment_0");

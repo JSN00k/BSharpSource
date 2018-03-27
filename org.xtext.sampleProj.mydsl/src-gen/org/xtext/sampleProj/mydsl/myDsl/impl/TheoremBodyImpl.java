@@ -3,15 +3,23 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.TheoremBody;
+import org.xtext.sampleProj.mydsl.myDsl.TheoremDecl;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +29,7 @@ import org.xtext.sampleProj.mydsl.myDsl.TheoremBody;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TheoremBodyImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TheoremBodyImpl#getTheoremDecl <em>Theorem Decl</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +37,14 @@ import org.xtext.sampleProj.mydsl.myDsl.TheoremBody;
 public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements TheoremBody
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getTheoremDecl() <em>Theorem Decl</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getTheoremDecl()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected EList<TheoremDecl> theoremDecl;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,9 +72,13 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public EList<TheoremDecl> getTheoremDecl()
   {
-    return name;
+    if (theoremDecl == null)
+    {
+      theoremDecl = new EObjectContainmentEList<TheoremDecl>(TheoremDecl.class, this, MyDslPackage.THEOREM_BODY__THEOREM_DECL);
+    }
+    return theoremDecl;
   }
 
   /**
@@ -84,12 +86,15 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.THEOREM_BODY__NAME, oldName, name));
+    switch (featureID)
+    {
+      case MyDslPackage.THEOREM_BODY__THEOREM_DECL:
+        return ((InternalEList<?>)getTheoremDecl()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -102,8 +107,8 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
   {
     switch (featureID)
     {
-      case MyDslPackage.THEOREM_BODY__NAME:
-        return getName();
+      case MyDslPackage.THEOREM_BODY__THEOREM_DECL:
+        return getTheoremDecl();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -113,13 +118,15 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case MyDslPackage.THEOREM_BODY__NAME:
-        setName((String)newValue);
+      case MyDslPackage.THEOREM_BODY__THEOREM_DECL:
+        getTheoremDecl().clear();
+        getTheoremDecl().addAll((Collection<? extends TheoremDecl>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,8 +142,8 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
   {
     switch (featureID)
     {
-      case MyDslPackage.THEOREM_BODY__NAME:
-        setName(NAME_EDEFAULT);
+      case MyDslPackage.THEOREM_BODY__THEOREM_DECL:
+        getTheoremDecl().clear();
         return;
     }
     super.eUnset(featureID);
@@ -152,27 +159,10 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
   {
     switch (featureID)
     {
-      case MyDslPackage.THEOREM_BODY__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.THEOREM_BODY__THEOREM_DECL:
+        return theoremDecl != null && !theoremDecl.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //TheoremBodyImpl

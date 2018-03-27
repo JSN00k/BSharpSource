@@ -4,12 +4,16 @@
 package org.xtext.sampleProj.mydsl.myDsl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.sampleProj.mydsl.myDsl.DTypeConstructor;
+import org.xtext.sampleProj.mydsl.myDsl.Expression;
 import org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 
@@ -21,7 +25,8 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveCaseImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveCaseImpl#getDeconName <em>Decon Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveCaseImpl#getExpre <em>Expre</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +34,24 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implements FuncInductiveCase
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getDeconName() <em>Decon Name</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getDeconName()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected DTypeConstructor deconName;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getExpre() <em>Expre</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getExpre()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected Expression expre;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,9 +79,19 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public DTypeConstructor getDeconName()
   {
-    return name;
+    if (deconName != null && deconName.eIsProxy())
+    {
+      InternalEObject oldDeconName = (InternalEObject)deconName;
+      deconName = (DTypeConstructor)eResolveProxy(oldDeconName);
+      if (deconName != oldDeconName)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME, oldDeconName, deconName));
+      }
+    }
+    return deconName;
   }
 
   /**
@@ -84,12 +99,86 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public DTypeConstructor basicGetDeconName()
   {
-    String oldName = name;
-    name = newName;
+    return deconName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDeconName(DTypeConstructor newDeconName)
+  {
+    DTypeConstructor oldDeconName = deconName;
+    deconName = newDeconName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE_CASE__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME, oldDeconName, deconName));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expression getExpre()
+  {
+    return expre;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExpre(Expression newExpre, NotificationChain msgs)
+  {
+    Expression oldExpre = expre;
+    expre = newExpre;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE, oldExpre, newExpre);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExpre(Expression newExpre)
+  {
+    if (newExpre != expre)
+    {
+      NotificationChain msgs = null;
+      if (expre != null)
+        msgs = ((InternalEObject)expre).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE, null, msgs);
+      if (newExpre != null)
+        msgs = ((InternalEObject)newExpre).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE, null, msgs);
+      msgs = basicSetExpre(newExpre, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE, newExpre, newExpre));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
+        return basicSetExpre(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -102,8 +191,11 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.FUNC_INDUCTIVE_CASE__NAME:
-        return getName();
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
+        if (resolve) return getDeconName();
+        return basicGetDeconName();
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
+        return getExpre();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -118,8 +210,11 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.FUNC_INDUCTIVE_CASE__NAME:
-        setName((String)newValue);
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
+        setDeconName((DTypeConstructor)newValue);
+        return;
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
+        setExpre((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,8 +230,11 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.FUNC_INDUCTIVE_CASE__NAME:
-        setName(NAME_EDEFAULT);
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
+        setDeconName((DTypeConstructor)null);
+        return;
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
+        setExpre((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,27 +250,12 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.FUNC_INDUCTIVE_CASE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
+        return deconName != null;
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
+        return expre != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //FuncInductiveCaseImpl

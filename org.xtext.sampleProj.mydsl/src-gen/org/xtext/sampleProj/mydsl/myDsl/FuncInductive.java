@@ -3,7 +3,7 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,39 +14,56 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getVariableName <em>Variable Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getInductCase <em>Induct Case</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductive()
  * @model
  * @generated
  */
-public interface FuncInductive extends EObject
+public interface FuncInductive extends FunctionBody
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Variable Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Variable Name</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductive_Name()
+   * @return the value of the '<em>Variable Name</em>' reference.
+   * @see #setVariableName(TypedVariable)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductive_VariableName()
    * @model
    * @generated
    */
-  String getName();
+  TypedVariable getVariableName();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductive#getVariableName <em>Variable Name</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Variable Name</em>' reference.
+   * @see #getVariableName()
    * @generated
    */
-  void setName(String value);
+  void setVariableName(TypedVariable value);
+
+  /**
+   * Returns the value of the '<em><b>Induct Case</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Induct Case</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Induct Case</em>' containment reference list.
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductive_InductCase()
+   * @model containment="true"
+   * @generated
+   */
+  EList<FuncInductiveCase> getInductCase();
 
 } // FuncInductive

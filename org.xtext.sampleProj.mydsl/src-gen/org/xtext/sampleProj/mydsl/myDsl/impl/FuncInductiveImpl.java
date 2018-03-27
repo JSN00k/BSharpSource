@@ -3,15 +3,25 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.FuncInductive;
+import org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,32 +31,33 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveImpl#getVariableName <em>Variable Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveImpl#getInductCase <em>Induct Case</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FuncInductiveImpl extends MinimalEObjectImpl.Container implements FuncInductive
+public class FuncInductiveImpl extends FunctionBodyImpl implements FuncInductive
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getVariableName() <em>Variable Name</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getVariableName()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected TypedVariable variableName;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getInductCase() <em>Induct Case</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getInductCase()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected EList<FuncInductiveCase> inductCase;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,9 +85,19 @@ public class FuncInductiveImpl extends MinimalEObjectImpl.Container implements F
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public TypedVariable getVariableName()
   {
-    return name;
+    if (variableName != null && variableName.eIsProxy())
+    {
+      InternalEObject oldVariableName = (InternalEObject)variableName;
+      variableName = (TypedVariable)eResolveProxy(oldVariableName);
+      if (variableName != oldVariableName)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.FUNC_INDUCTIVE__VARIABLE_NAME, oldVariableName, variableName));
+      }
+    }
+    return variableName;
   }
 
   /**
@@ -84,12 +105,52 @@ public class FuncInductiveImpl extends MinimalEObjectImpl.Container implements F
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public TypedVariable basicGetVariableName()
   {
-    String oldName = name;
-    name = newName;
+    return variableName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setVariableName(TypedVariable newVariableName)
+  {
+    TypedVariable oldVariableName = variableName;
+    variableName = newVariableName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE__VARIABLE_NAME, oldVariableName, variableName));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<FuncInductiveCase> getInductCase()
+  {
+    if (inductCase == null)
+    {
+      inductCase = new EObjectContainmentEList<FuncInductiveCase>(FuncInductiveCase.class, this, MyDslPackage.FUNC_INDUCTIVE__INDUCT_CASE);
+    }
+    return inductCase;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.FUNC_INDUCTIVE__INDUCT_CASE:
+        return ((InternalEList<?>)getInductCase()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -102,8 +163,11 @@ public class FuncInductiveImpl extends MinimalEObjectImpl.Container implements F
   {
     switch (featureID)
     {
-      case MyDslPackage.FUNC_INDUCTIVE__NAME:
-        return getName();
+      case MyDslPackage.FUNC_INDUCTIVE__VARIABLE_NAME:
+        if (resolve) return getVariableName();
+        return basicGetVariableName();
+      case MyDslPackage.FUNC_INDUCTIVE__INDUCT_CASE:
+        return getInductCase();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -113,13 +177,18 @@ public class FuncInductiveImpl extends MinimalEObjectImpl.Container implements F
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case MyDslPackage.FUNC_INDUCTIVE__NAME:
-        setName((String)newValue);
+      case MyDslPackage.FUNC_INDUCTIVE__VARIABLE_NAME:
+        setVariableName((TypedVariable)newValue);
+        return;
+      case MyDslPackage.FUNC_INDUCTIVE__INDUCT_CASE:
+        getInductCase().clear();
+        getInductCase().addAll((Collection<? extends FuncInductiveCase>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,8 +204,11 @@ public class FuncInductiveImpl extends MinimalEObjectImpl.Container implements F
   {
     switch (featureID)
     {
-      case MyDslPackage.FUNC_INDUCTIVE__NAME:
-        setName(NAME_EDEFAULT);
+      case MyDslPackage.FUNC_INDUCTIVE__VARIABLE_NAME:
+        setVariableName((TypedVariable)null);
+        return;
+      case MyDslPackage.FUNC_INDUCTIVE__INDUCT_CASE:
+        getInductCase().clear();
         return;
     }
     super.eUnset(featureID);
@@ -152,27 +224,12 @@ public class FuncInductiveImpl extends MinimalEObjectImpl.Container implements F
   {
     switch (featureID)
     {
-      case MyDslPackage.FUNC_INDUCTIVE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.FUNC_INDUCTIVE__VARIABLE_NAME:
+        return variableName != null;
+      case MyDslPackage.FUNC_INDUCTIVE__INDUCT_CASE:
+        return inductCase != null && !inductCase.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //FuncInductiveImpl
