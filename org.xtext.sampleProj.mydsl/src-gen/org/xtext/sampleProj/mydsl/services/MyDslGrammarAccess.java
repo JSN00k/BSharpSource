@@ -6,6 +6,7 @@ package org.xtext.sampleProj.mydsl.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
+import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
@@ -637,42 +638,42 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cWhereKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cExpessionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cExpessionsExpressionParserRuleCall_1_0 = (RuleCall)cExpessionsAssignment_1.eContents().get(0);
+		private final RuleCall cExpessionsInfixParserRuleCall_1_0 = (RuleCall)cExpessionsAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cSemicolonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cExpressionsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cExpressionsExpressionParserRuleCall_2_1_0 = (RuleCall)cExpressionsAssignment_2_1.eContents().get(0);
+		private final RuleCall cExpressionsInfixParserRuleCall_2_1_0 = (RuleCall)cExpressionsAssignment_2_1.eContents().get(0);
 		
 		///* -------------------- Where Statement -------------------------------- */ /* Type checking (which is not implemented yet) is used to type check that Expression returns a 
 		// * predicate. Expression has not yet been written, but is far too general to be included in the where
 		// * statement.
 		// */ Where:
-		//	'where' expessions+=Expression (';' expressions+=Expression)*;
+		//	'where' expessions+=Infix (';' expressions+=Infix)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'where' expessions+=Expression (';' expressions+=Expression)*
+		//'where' expessions+=Infix (';' expressions+=Infix)*
 		public Group getGroup() { return cGroup; }
 		
 		//'where'
 		public Keyword getWhereKeyword_0() { return cWhereKeyword_0; }
 		
-		//expessions+=Expression
+		//expessions+=Infix
 		public Assignment getExpessionsAssignment_1() { return cExpessionsAssignment_1; }
 		
-		//Expression
-		public RuleCall getExpessionsExpressionParserRuleCall_1_0() { return cExpessionsExpressionParserRuleCall_1_0; }
+		//Infix
+		public RuleCall getExpessionsInfixParserRuleCall_1_0() { return cExpessionsInfixParserRuleCall_1_0; }
 		
-		//(';' expressions+=Expression)*
+		//(';' expressions+=Infix)*
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_2_0() { return cSemicolonKeyword_2_0; }
 		
-		//expressions+=Expression
+		//expressions+=Infix
 		public Assignment getExpressionsAssignment_2_1() { return cExpressionsAssignment_2_1; }
 		
-		//Expression
-		public RuleCall getExpressionsExpressionParserRuleCall_2_1_0() { return cExpressionsExpressionParserRuleCall_2_1_0; }
+		//Infix
+		public RuleCall getExpressionsInfixParserRuleCall_2_1_0() { return cExpressionsInfixParserRuleCall_2_1_0; }
 	}
 	public class DatatypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Datatype");
@@ -956,6 +957,21 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeConstructor
 		public RuleCall getReturnTypeTypeConstructorParserRuleCall_7_0() { return cReturnTypeTypeConstructorParserRuleCall_7_0; }
 	}
+	public class FunctionNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.FunctionName");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//FunctionName:
+		//	name=ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=ID
+		public Assignment getNameAssignment() { return cNameAssignment; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
+	}
 	public class FunctionBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.FunctionBody");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1111,18 +1127,30 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class TheoremDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.TheoremDecl");
-		private final Assignment cThmNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cThmNameTHM_NAMEParserRuleCall_0 = (RuleCall)cThmNameAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cThmNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cThmNameTHM_NAMEParserRuleCall_0_0 = (RuleCall)cThmNameAssignment_0.eContents().get(0);
+		private final Assignment cExpAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExpExpressionParserRuleCall_1_0 = (RuleCall)cExpAssignment_1.eContents().get(0);
 		
-		//TheoremDecl:
-		//	thmName=THM_NAME;
+		///* Type check that the expression is a predicate expression. */ TheoremDecl:
+		//	thmName=THM_NAME exp=Expression;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//thmName=THM_NAME exp=Expression
+		public Group getGroup() { return cGroup; }
+		
 		//thmName=THM_NAME
-		public Assignment getThmNameAssignment() { return cThmNameAssignment; }
+		public Assignment getThmNameAssignment_0() { return cThmNameAssignment_0; }
 		
 		//THM_NAME
-		public RuleCall getThmNameTHM_NAMEParserRuleCall_0() { return cThmNameTHM_NAMEParserRuleCall_0; }
+		public RuleCall getThmNameTHM_NAMEParserRuleCall_0_0() { return cThmNameTHM_NAMEParserRuleCall_0_0; }
+		
+		//exp=Expression
+		public Assignment getExpAssignment_1() { return cExpAssignment_1; }
+		
+		//Expression
+		public RuleCall getExpExpressionParserRuleCall_1_0() { return cExpExpressionParserRuleCall_1_0; }
 	}
 	public class TypedVariableListElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.TypedVariableList");
@@ -1221,27 +1249,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeDeclContext
 		public RuleCall getContextTypeDeclContextParserRuleCall_1_0() { return cContextTypeDeclContextParserRuleCall_1_0; }
 	}
-	public class FunctionNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.FunctionName");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
-		
-		//FunctionName:
-		//	name=ID;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID
-		public Assignment getNameAssignment() { return cNameAssignment; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
-	}
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Expression");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
-		//Expression:
+		///* --------------------------- Expressions -------------------------- */ Expression:
 		//	name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1253,6 +1266,316 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
+	}
+	public class BuiltInElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.BuiltIn");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cLambdaParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cQuantifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//BuiltIn:
+		//	Lambda | Quantifier //| Prefix | Infix
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Lambda | Quantifier
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Lambda
+		public RuleCall getLambdaParserRuleCall_0() { return cLambdaParserRuleCall_0; }
+		
+		//Quantifier
+		public RuleCall getQuantifierParserRuleCall_1() { return cQuantifierParserRuleCall_1; }
+	}
+	public class LambdaElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Lambda");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cGreekSmallLetterLamdaKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cVarListAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cVarListTypedVariableListParserRuleCall_1_0 = (RuleCall)cVarListAssignment_1.eContents().get(0);
+		private final Keyword cVerticalLineKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cExprAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cExprExpressionParserRuleCall_3_0 = (RuleCall)cExprAssignment_3.eContents().get(0);
+		
+		//Lambda:
+		//	'λ' varList=TypedVariableList? '|' expr=Expression;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'λ' varList=TypedVariableList? '|' expr=Expression
+		public Group getGroup() { return cGroup; }
+		
+		//'λ'
+		public Keyword getGreekSmallLetterLamdaKeyword_0() { return cGreekSmallLetterLamdaKeyword_0; }
+		
+		//varList=TypedVariableList?
+		public Assignment getVarListAssignment_1() { return cVarListAssignment_1; }
+		
+		//TypedVariableList
+		public RuleCall getVarListTypedVariableListParserRuleCall_1_0() { return cVarListTypedVariableListParserRuleCall_1_0; }
+		
+		//'|'
+		public Keyword getVerticalLineKeyword_2() { return cVerticalLineKeyword_2; }
+		
+		//expr=Expression
+		public Assignment getExprAssignment_3() { return cExprAssignment_3; }
+		
+		//Expression
+		public RuleCall getExprExpressionParserRuleCall_3_0() { return cExprExpressionParserRuleCall_3_0; }
+	}
+	public class QuantifierElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Quantifier");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cForAllKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Keyword cThereExistsKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
+		private final Assignment cVarListAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cVarListTypedVariableListParserRuleCall_1_0 = (RuleCall)cVarListAssignment_1.eContents().get(0);
+		private final Keyword cMiddleDotKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cExprAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cExprInfixParserRuleCall_3_0 = (RuleCall)cExprAssignment_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		///* --------------------- Quantifiers ------------------------- */ Quantifier:
+		//	('∀' | '∃') varList=TypedVariableList? '·' expr=Infix ';';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//('∀' | '∃') varList=TypedVariableList? '·' expr=Infix ';'
+		public Group getGroup() { return cGroup; }
+		
+		//'∀' | '∃'
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		
+		//'∀'
+		public Keyword getForAllKeyword_0_0() { return cForAllKeyword_0_0; }
+		
+		//'∃'
+		public Keyword getThereExistsKeyword_0_1() { return cThereExistsKeyword_0_1; }
+		
+		//varList=TypedVariableList?
+		public Assignment getVarListAssignment_1() { return cVarListAssignment_1; }
+		
+		//TypedVariableList
+		public RuleCall getVarListTypedVariableListParserRuleCall_1_0() { return cVarListTypedVariableListParserRuleCall_1_0; }
+		
+		//'·'
+		public Keyword getMiddleDotKeyword_2() { return cMiddleDotKeyword_2; }
+		
+		//expr=Infix
+		public Assignment getExprAssignment_3() { return cExprAssignment_3; }
+		
+		//Infix
+		public RuleCall getExprInfixParserRuleCall_3_0() { return cExprInfixParserRuleCall_3_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+	}
+	public class PrefixElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Prefix");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNamePrefixBuiltInParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cElemAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cElemElementParserRuleCall_1_0 = (RuleCall)cElemAssignment_1.eContents().get(0);
+		
+		///* ---------------------- *Fix ------------------------------ */ Prefix:
+		//	name=PrefixBuiltIn elem=Element;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=PrefixBuiltIn elem=Element
+		public Group getGroup() { return cGroup; }
+		
+		//name=PrefixBuiltIn
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//PrefixBuiltIn
+		public RuleCall getNamePrefixBuiltInParserRuleCall_0_0() { return cNamePrefixBuiltInParserRuleCall_0_0; }
+		
+		//elem=Element
+		public Assignment getElemAssignment_1() { return cElemAssignment_1; }
+		
+		//Element
+		public RuleCall getElemElementParserRuleCall_1_0() { return cElemElementParserRuleCall_1_0; }
+	}
+	public class PrefixBuiltInElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.PrefixBuiltIn");
+		private final Keyword cNotSignKeyword = (Keyword)rule.eContents().get(1);
+		
+		//PrefixBuiltIn:
+		//	'¬';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'¬'
+		public Keyword getNotSignKeyword() { return cNotSignKeyword; }
+	}
+	public class InfixElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Infix");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cElementParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cInfixLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cFuncNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final CrossReference cFuncNameFunctionNameCrossReference_1_1_0 = (CrossReference)cFuncNameAssignment_1_1.eContents().get(0);
+		private final RuleCall cFuncNameFunctionNameIDTerminalRuleCall_1_1_0_1 = (RuleCall)cFuncNameFunctionNameCrossReference_1_1_0.eContents().get(1);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightElementParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		///* Infix operators cause problems, there are two issues one is avoiding left recursion this 
+		// * is covered adequately here: https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions 
+		// * The second issue is precedence, this is also covered in the link above, however, implementing it in the 
+		// * way suggested above will not scale to the creation of ones own infix functions, instead the initial implementation
+		// * will require brackets for precedence. After that a system will be implemented where each infix operator will 
+		// * be given a precedence value with higher values being higher precedence. It looks like this can be done by
+		// * changing the parser using the MyDSLRuntimeModule to build the abstract syntax tree based on the value of the 
+		// * operators.
+		// * Before the precedence code is written into a parser override, all the expressions are in effect right bracketed,
+		// * as you may expect from a language that is read from left to right.
+		// * 
+		// * TODO: Programmatically check that the function is an infix function.
+		// */ Infix Expression:
+		//	Element ({Infix.left=current} funcName=[FunctionName] right=Element)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Element ({Infix.left=current} funcName=[FunctionName] right=Element)*
+		public Group getGroup() { return cGroup; }
+		
+		//Element
+		public RuleCall getElementParserRuleCall_0() { return cElementParserRuleCall_0; }
+		
+		//({Infix.left=current} funcName=[FunctionName] right=Element)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{Infix.left=current}
+		public Action getInfixLeftAction_1_0() { return cInfixLeftAction_1_0; }
+		
+		//funcName=[FunctionName]
+		public Assignment getFuncNameAssignment_1_1() { return cFuncNameAssignment_1_1; }
+		
+		//[FunctionName]
+		public CrossReference getFuncNameFunctionNameCrossReference_1_1_0() { return cFuncNameFunctionNameCrossReference_1_1_0; }
+		
+		//ID
+		public RuleCall getFuncNameFunctionNameIDTerminalRuleCall_1_1_0_1() { return cFuncNameFunctionNameIDTerminalRuleCall_1_1_0_1; }
+		
+		//right=Element
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//Element
+		public RuleCall getRightElementParserRuleCall_1_2_0() { return cRightElementParserRuleCall_1_2_0; }
+	}
+	public class ElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Element");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cBracketParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cQuantifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cFunctionCallParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cPrefixParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		
+		///* currently it will not build because the quantifier is causing recursion I think. */ Element Expression:
+		//	Bracket | Quantifier | FunctionCall | Prefix;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Bracket | Quantifier | FunctionCall | Prefix
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Bracket
+		public RuleCall getBracketParserRuleCall_0() { return cBracketParserRuleCall_0; }
+		
+		//Quantifier
+		public RuleCall getQuantifierParserRuleCall_1() { return cQuantifierParserRuleCall_1; }
+		
+		//FunctionCall
+		public RuleCall getFunctionCallParserRuleCall_2() { return cFunctionCallParserRuleCall_2; }
+		
+		//Prefix
+		public RuleCall getPrefixParserRuleCall_3() { return cPrefixParserRuleCall_3; }
+	}
+	public class BracketElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.Bracket");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cInfixParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//Bracket Expression:
+		//	'(' Infix ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'(' Infix ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+		
+		//Infix
+		public RuleCall getInfixParserRuleCall_1() { return cInfixParserRuleCall_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+	}
+	public class FunctionCallElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.FunctionCall");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cFuncNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cFuncNameFunctionNameCrossReference_0_0 = (CrossReference)cFuncNameAssignment_0.eContents().get(0);
+		private final RuleCall cFuncNameFunctionNameIDTerminalRuleCall_0_0_1 = (RuleCall)cFuncNameFunctionNameCrossReference_0_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cArgumentsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cArgumentsInfixParserRuleCall_2_0 = (RuleCall)cArgumentsAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cArgumentsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cArgumentsInfixParserRuleCall_3_1_0 = (RuleCall)cArgumentsAssignment_3_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		///* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
+		// * scenarios: 
+		// * A function call f(arguments)
+		// * A infix function with a bracketed argument on the right 10 f (arguments)
+		// * A function used without any arguments f add g 
+		// * 
+		// * To solve this functions can either be Prefix, Infix, or called with bracketed arguments. You cannot call a Infix function with bracketd 
+		// * arguments. To do this you would need to write another function to make this call for you. In coq this is achieved when you declare a function
+		// * you can add a operator name to the function, which is either infix or prefix, this again gives the two names for the function allowing 
+		// * it to be called either as an operator or a functional call.
+		// */ FunctionCall Expression:
+		//	funcName=[FunctionName] '(' arguments+=Infix? (',' arguments+=Infix)* ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//funcName=[FunctionName] '(' arguments+=Infix? (',' arguments+=Infix)* ')'
+		public Group getGroup() { return cGroup; }
+		
+		//funcName=[FunctionName]
+		public Assignment getFuncNameAssignment_0() { return cFuncNameAssignment_0; }
+		
+		//[FunctionName]
+		public CrossReference getFuncNameFunctionNameCrossReference_0_0() { return cFuncNameFunctionNameCrossReference_0_0; }
+		
+		//ID
+		public RuleCall getFuncNameFunctionNameIDTerminalRuleCall_0_0_1() { return cFuncNameFunctionNameIDTerminalRuleCall_0_0_1; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		
+		//arguments+=Infix?
+		public Assignment getArgumentsAssignment_2() { return cArgumentsAssignment_2; }
+		
+		//Infix
+		public RuleCall getArgumentsInfixParserRuleCall_2_0() { return cArgumentsInfixParserRuleCall_2_0; }
+		
+		//(',' arguments+=Infix)*
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//','
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		
+		//arguments+=Infix
+		public Assignment getArgumentsAssignment_3_1() { return cArgumentsAssignment_3_1; }
+		
+		//Infix
+		public RuleCall getArgumentsInfixParserRuleCall_3_1_0() { return cArgumentsInfixParserRuleCall_3_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 	
 	
@@ -1283,6 +1606,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final ExtendElements pExtend;
 	private final TypeBodyElementsElements pTypeBodyElements;
 	private final FunctionDeclElements pFunctionDecl;
+	private final FunctionNameElements pFunctionName;
 	private final FunctionBodyElements pFunctionBody;
 	private final FuncDirectDefElements pFuncDirectDef;
 	private final FuncInductiveElements pFuncInductive;
@@ -1292,8 +1616,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final TypedVariableListElements pTypedVariableList;
 	private final TypedVariableElements pTypedVariable;
 	private final TypeDeclarationElements pTypeDeclaration;
-	private final FunctionNameElements pFunctionName;
 	private final ExpressionElements pExpression;
+	private final BuiltInElements pBuiltIn;
+	private final LambdaElements pLambda;
+	private final QuantifierElements pQuantifier;
+	private final PrefixElements pPrefix;
+	private final PrefixBuiltInElements pPrefixBuiltIn;
+	private final InfixElements pInfix;
+	private final ElementElements pElement;
+	private final BracketElements pBracket;
+	private final FunctionCallElements pFunctionCall;
 	
 	private final Grammar grammar;
 	
@@ -1331,6 +1663,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pExtend = new ExtendElements();
 		this.pTypeBodyElements = new TypeBodyElementsElements();
 		this.pFunctionDecl = new FunctionDeclElements();
+		this.pFunctionName = new FunctionNameElements();
 		this.pFunctionBody = new FunctionBodyElements();
 		this.pFuncDirectDef = new FuncDirectDefElements();
 		this.pFuncInductive = new FuncInductiveElements();
@@ -1340,8 +1673,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTypedVariableList = new TypedVariableListElements();
 		this.pTypedVariable = new TypedVariableElements();
 		this.pTypeDeclaration = new TypeDeclarationElements();
-		this.pFunctionName = new FunctionNameElements();
 		this.pExpression = new ExpressionElements();
+		this.pBuiltIn = new BuiltInElements();
+		this.pLambda = new LambdaElements();
+		this.pQuantifier = new QuantifierElements();
+		this.pPrefix = new PrefixElements();
+		this.pPrefixBuiltIn = new PrefixBuiltInElements();
+		this.pInfix = new InfixElements();
+		this.pElement = new ElementElements();
+		this.pBracket = new BracketElements();
+		this.pFunctionCall = new FunctionCallElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1576,7 +1917,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	// * predicate. Expression has not yet been written, but is far too general to be included in the where
 	// * statement.
 	// */ Where:
-	//	'where' expessions+=Expression (';' expressions+=Expression)*;
+	//	'where' expessions+=Infix (';' expressions+=Infix)*;
 	public WhereElements getWhereAccess() {
 		return pWhere;
 	}
@@ -1659,6 +2000,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionDeclAccess().getRule();
 	}
 	
+	//FunctionName:
+	//	name=ID;
+	public FunctionNameElements getFunctionNameAccess() {
+		return pFunctionName;
+	}
+	
+	public ParserRule getFunctionNameRule() {
+		return getFunctionNameAccess().getRule();
+	}
+	
 	//FunctionBody:
 	//	FuncInductive | FuncDirectDef;
 	public FunctionBodyElements getFunctionBodyAccess() {
@@ -1715,8 +2066,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getTheoremBodyAccess().getRule();
 	}
 	
-	//TheoremDecl:
-	//	thmName=THM_NAME;
+	///* Type check that the expression is a predicate expression. */ TheoremDecl:
+	//	thmName=THM_NAME exp=Expression;
 	public TheoremDeclElements getTheoremDeclAccess() {
 		return pTheoremDecl;
 	}
@@ -1755,17 +2106,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeDeclarationAccess().getRule();
 	}
 	
-	//FunctionName:
-	//	name=ID;
-	public FunctionNameElements getFunctionNameAccess() {
-		return pFunctionName;
-	}
-	
-	public ParserRule getFunctionNameRule() {
-		return getFunctionNameAccess().getRule();
-	}
-	
-	//Expression:
+	///* --------------------------- Expressions -------------------------- */ Expression:
 	//	name=ID;
 	public ExpressionElements getExpressionAccess() {
 		return pExpression;
@@ -1773,6 +2114,119 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getExpressionRule() {
 		return getExpressionAccess().getRule();
+	}
+	
+	//BuiltIn:
+	//	Lambda | Quantifier //| Prefix | Infix
+	//;
+	public BuiltInElements getBuiltInAccess() {
+		return pBuiltIn;
+	}
+	
+	public ParserRule getBuiltInRule() {
+		return getBuiltInAccess().getRule();
+	}
+	
+	//Lambda:
+	//	'λ' varList=TypedVariableList? '|' expr=Expression;
+	public LambdaElements getLambdaAccess() {
+		return pLambda;
+	}
+	
+	public ParserRule getLambdaRule() {
+		return getLambdaAccess().getRule();
+	}
+	
+	///* --------------------- Quantifiers ------------------------- */ Quantifier:
+	//	('∀' | '∃') varList=TypedVariableList? '·' expr=Infix ';';
+	public QuantifierElements getQuantifierAccess() {
+		return pQuantifier;
+	}
+	
+	public ParserRule getQuantifierRule() {
+		return getQuantifierAccess().getRule();
+	}
+	
+	///* ---------------------- *Fix ------------------------------ */ Prefix:
+	//	name=PrefixBuiltIn elem=Element;
+	public PrefixElements getPrefixAccess() {
+		return pPrefix;
+	}
+	
+	public ParserRule getPrefixRule() {
+		return getPrefixAccess().getRule();
+	}
+	
+	//PrefixBuiltIn:
+	//	'¬';
+	public PrefixBuiltInElements getPrefixBuiltInAccess() {
+		return pPrefixBuiltIn;
+	}
+	
+	public ParserRule getPrefixBuiltInRule() {
+		return getPrefixBuiltInAccess().getRule();
+	}
+	
+	///* Infix operators cause problems, there are two issues one is avoiding left recursion this 
+	// * is covered adequately here: https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions 
+	// * The second issue is precedence, this is also covered in the link above, however, implementing it in the 
+	// * way suggested above will not scale to the creation of ones own infix functions, instead the initial implementation
+	// * will require brackets for precedence. After that a system will be implemented where each infix operator will 
+	// * be given a precedence value with higher values being higher precedence. It looks like this can be done by
+	// * changing the parser using the MyDSLRuntimeModule to build the abstract syntax tree based on the value of the 
+	// * operators.
+	// * Before the precedence code is written into a parser override, all the expressions are in effect right bracketed,
+	// * as you may expect from a language that is read from left to right.
+	// * 
+	// * TODO: Programmatically check that the function is an infix function.
+	// */ Infix Expression:
+	//	Element ({Infix.left=current} funcName=[FunctionName] right=Element)*;
+	public InfixElements getInfixAccess() {
+		return pInfix;
+	}
+	
+	public ParserRule getInfixRule() {
+		return getInfixAccess().getRule();
+	}
+	
+	///* currently it will not build because the quantifier is causing recursion I think. */ Element Expression:
+	//	Bracket | Quantifier | FunctionCall | Prefix;
+	public ElementElements getElementAccess() {
+		return pElement;
+	}
+	
+	public ParserRule getElementRule() {
+		return getElementAccess().getRule();
+	}
+	
+	//Bracket Expression:
+	//	'(' Infix ')';
+	public BracketElements getBracketAccess() {
+		return pBracket;
+	}
+	
+	public ParserRule getBracketRule() {
+		return getBracketAccess().getRule();
+	}
+	
+	///* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
+	// * scenarios: 
+	// * A function call f(arguments)
+	// * A infix function with a bracketed argument on the right 10 f (arguments)
+	// * A function used without any arguments f add g 
+	// * 
+	// * To solve this functions can either be Prefix, Infix, or called with bracketed arguments. You cannot call a Infix function with bracketd 
+	// * arguments. To do this you would need to write another function to make this call for you. In coq this is achieved when you declare a function
+	// * you can add a operator name to the function, which is either infix or prefix, this again gives the two names for the function allowing 
+	// * it to be called either as an operator or a functional call.
+	// */ FunctionCall Expression:
+	//	funcName=[FunctionName] '(' arguments+=Infix? (',' arguments+=Infix)* ')';
+	public FunctionCallElements getFunctionCallAccess() {
+		return pFunctionCall;
+	}
+	
+	public ParserRule getFunctionCallRule() {
+		return getFunctionCallAccess().getRule();
 	}
 	
 	//terminal ID:

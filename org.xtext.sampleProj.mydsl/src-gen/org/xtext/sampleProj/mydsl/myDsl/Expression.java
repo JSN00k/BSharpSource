@@ -3,6 +3,8 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,6 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getFuncName <em>Func Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getArguments <em>Arguments</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getExpression()
@@ -48,5 +52,47 @@ public interface Expression extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Func Name</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Func Name</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Func Name</em>' reference.
+   * @see #setFuncName(FunctionName)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getExpression_FuncName()
+   * @model
+   * @generated
+   */
+  FunctionName getFuncName();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getFuncName <em>Func Name</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Func Name</em>' reference.
+   * @see #getFuncName()
+   * @generated
+   */
+  void setFuncName(FunctionName value);
+
+  /**
+   * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.Expression}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Arguments</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Arguments</em>' containment reference list.
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getExpression_Arguments()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Expression> getArguments();
 
 } // Expression

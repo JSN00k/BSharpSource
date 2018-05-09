@@ -91,6 +91,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.EXTEND: return createExtend();
       case MyDslPackage.TYPE_BODY_ELEMENTS: return createTypeBodyElements();
       case MyDslPackage.FUNCTION_DECL: return createFunctionDecl();
+      case MyDslPackage.FUNCTION_NAME: return createFunctionName();
       case MyDslPackage.FUNCTION_BODY: return createFunctionBody();
       case MyDslPackage.FUNC_DIRECT_DEF: return createFuncDirectDef();
       case MyDslPackage.FUNC_INDUCTIVE: return createFuncInductive();
@@ -100,8 +101,12 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.TYPED_VARIABLE_LIST: return createTypedVariableList();
       case MyDslPackage.TYPED_VARIABLE: return createTypedVariable();
       case MyDslPackage.TYPE_DECLARATION: return createTypeDeclaration();
-      case MyDslPackage.FUNCTION_NAME: return createFunctionName();
       case MyDslPackage.EXPRESSION: return createExpression();
+      case MyDslPackage.BUILT_IN: return createBuiltIn();
+      case MyDslPackage.LAMBDA: return createLambda();
+      case MyDslPackage.QUANTIFIER: return createQuantifier();
+      case MyDslPackage.PREFIX: return createPrefix();
+      case MyDslPackage.INFIX: return createInfix();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -398,6 +403,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public FunctionName createFunctionName()
+  {
+    FunctionNameImpl functionName = new FunctionNameImpl();
+    return functionName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FunctionBody createFunctionBody()
   {
     FunctionBodyImpl functionBody = new FunctionBodyImpl();
@@ -497,10 +513,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public FunctionName createFunctionName()
+  public Expression createExpression()
   {
-    FunctionNameImpl functionName = new FunctionNameImpl();
-    return functionName;
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
   }
 
   /**
@@ -508,10 +524,54 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression createExpression()
+  public BuiltIn createBuiltIn()
   {
-    ExpressionImpl expression = new ExpressionImpl();
-    return expression;
+    BuiltInImpl builtIn = new BuiltInImpl();
+    return builtIn;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Lambda createLambda()
+  {
+    LambdaImpl lambda = new LambdaImpl();
+    return lambda;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Quantifier createQuantifier()
+  {
+    QuantifierImpl quantifier = new QuantifierImpl();
+    return quantifier;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Prefix createPrefix()
+  {
+    PrefixImpl prefix = new PrefixImpl();
+    return prefix;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Infix createInfix()
+  {
+    InfixImpl infix = new InfixImpl();
+    return infix;
   }
 
   /**

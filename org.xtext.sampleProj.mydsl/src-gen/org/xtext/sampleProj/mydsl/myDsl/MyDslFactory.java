@@ -258,6 +258,15 @@ public interface MyDslFactory extends EFactory
   FunctionDecl createFunctionDecl();
 
   /**
+   * Returns a new object of class '<em>Function Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Name</em>'.
+   * @generated
+   */
+  FunctionName createFunctionName();
+
+  /**
    * Returns a new object of class '<em>Function Body</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -339,15 +348,6 @@ public interface MyDslFactory extends EFactory
   TypeDeclaration createTypeDeclaration();
 
   /**
-   * Returns a new object of class '<em>Function Name</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Function Name</em>'.
-   * @generated
-   */
-  FunctionName createFunctionName();
-
-  /**
    * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -355,6 +355,51 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Expression createExpression();
+
+  /**
+   * Returns a new object of class '<em>Built In</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Built In</em>'.
+   * @generated
+   */
+  BuiltIn createBuiltIn();
+
+  /**
+   * Returns a new object of class '<em>Lambda</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lambda</em>'.
+   * @generated
+   */
+  Lambda createLambda();
+
+  /**
+   * Returns a new object of class '<em>Quantifier</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Quantifier</em>'.
+   * @generated
+   */
+  Quantifier createQuantifier();
+
+  /**
+   * Returns a new object of class '<em>Prefix</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Prefix</em>'.
+   * @generated
+   */
+  Prefix createPrefix();
+
+  /**
+   * Returns a new object of class '<em>Infix</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Infix</em>'.
+   * @generated
+   */
+  Infix createInfix();
 
   /**
    * Returns the package supported by this factory.

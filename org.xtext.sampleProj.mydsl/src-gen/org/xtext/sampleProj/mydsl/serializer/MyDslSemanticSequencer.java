@@ -30,11 +30,15 @@ import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
 import org.xtext.sampleProj.mydsl.myDsl.Import;
 import org.xtext.sampleProj.mydsl.myDsl.ImportComponent;
 import org.xtext.sampleProj.mydsl.myDsl.ImportStatement;
+import org.xtext.sampleProj.mydsl.myDsl.Infix;
+import org.xtext.sampleProj.mydsl.myDsl.Lambda;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.PolyContextTypes;
 import org.xtext.sampleProj.mydsl.myDsl.PolyTypeConstraints;
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
+import org.xtext.sampleProj.mydsl.myDsl.Prefix;
+import org.xtext.sampleProj.mydsl.myDsl.Quantifier;
 import org.xtext.sampleProj.mydsl.myDsl.SuperTypeList;
 import org.xtext.sampleProj.mydsl.myDsl.TheoremBody;
 import org.xtext.sampleProj.mydsl.myDsl.TheoremDecl;
@@ -82,8 +86,19 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_DomainModel(context, (DomainModel) semanticObject); 
 				return; 
 			case MyDslPackage.EXPRESSION:
-				sequence_Expression(context, (Expression) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getExpressionRule()) {
+					sequence_Expression(context, (Expression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getInfixRule()
+						|| action == grammarAccess.getInfixAccess().getInfixLeftAction_1_0()
+						|| rule == grammarAccess.getElementRule()
+						|| rule == grammarAccess.getBracketRule()
+						|| rule == grammarAccess.getFunctionCallRule()) {
+					sequence_FunctionCall(context, (Expression) semanticObject); 
+					return; 
+				}
+				else break;
 			case MyDslPackage.EXTEND:
 				sequence_Extend(context, (Extend) semanticObject); 
 				return; 
@@ -111,6 +126,12 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.IMPORT_STATEMENT:
 				sequence_ImportStatement(context, (ImportStatement) semanticObject); 
 				return; 
+			case MyDslPackage.INFIX:
+				sequence_Infix(context, (Infix) semanticObject); 
+				return; 
+			case MyDslPackage.LAMBDA:
+				sequence_Lambda(context, (Lambda) semanticObject); 
+				return; 
 			case MyDslPackage.POLY_CONTEXT:
 				sequence_PolyContext(context, (PolyContext) semanticObject); 
 				return; 
@@ -122,6 +143,12 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.POLYMORPHIC_TYPE_NAME:
 				sequence_PolymorphicTypeName(context, (PolymorphicTypeName) semanticObject); 
+				return; 
+			case MyDslPackage.PREFIX:
+				sequence_Prefix(context, (Prefix) semanticObject); 
+				return; 
+			case MyDslPackage.QUANTIFIER:
+				sequence_Quantifier(context, (Quantifier) semanticObject); 
 				return; 
 			case MyDslPackage.SUPER_TYPE_LIST:
 				sequence_SuperTypeList(context, (SuperTypeList) semanticObject); 
@@ -351,6 +378,22 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Infix returns Expression
+	 *     Infix.Infix_1_0 returns Expression
+	 *     Element returns Expression
+	 *     Bracket returns Expression
+	 *     FunctionCall returns Expression
+	 *
+	 * Constraint:
+	 *     (funcName=[FunctionName|ID] arguments+=Infix? arguments+=Infix*)
+	 */
+	protected void sequence_FunctionCall(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     FunctionDecl returns FunctionDecl
 	 *
 	 * Constraint:
@@ -424,6 +467,46 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Infix returns Infix
+	 *     Infix.Infix_1_0 returns Infix
+	 *     Element returns Infix
+	 *     Bracket returns Infix
+	 *
+	 * Constraint:
+	 *     (left=Infix_Infix_1_0 funcName=[FunctionName|ID] right=Element)
+	 */
+	protected void sequence_Infix(ISerializationContext context, Infix semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.INFIX__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.INFIX__LEFT));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EXPRESSION__FUNC_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EXPRESSION__FUNC_NAME));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.INFIX__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.INFIX__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getInfixAccess().getInfixLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getInfixAccess().getFuncNameFunctionNameIDTerminalRuleCall_1_1_0_1(), semanticObject.eGet(MyDslPackage.Literals.EXPRESSION__FUNC_NAME, false));
+		feeder.accept(grammarAccess.getInfixAccess().getRightElementParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BuiltIn returns Lambda
+	 *     Lambda returns Lambda
+	 *
+	 * Constraint:
+	 *     (varList=TypedVariableList? expr=Expression)
+	 */
+	protected void sequence_Lambda(ISerializationContext context, Lambda semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     PolyContextTypes returns PolyContextTypes
 	 *
 	 * Constraint:
@@ -479,6 +562,48 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Prefix returns Prefix
+	 *     Infix returns Prefix
+	 *     Infix.Infix_1_0 returns Prefix
+	 *     Element returns Prefix
+	 *     Bracket returns Prefix
+	 *
+	 * Constraint:
+	 *     (name=PrefixBuiltIn elem=Element)
+	 */
+	protected void sequence_Prefix(ISerializationContext context, Prefix semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EXPRESSION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EXPRESSION__NAME));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.PREFIX__ELEM) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.PREFIX__ELEM));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrefixAccess().getNamePrefixBuiltInParserRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getPrefixAccess().getElemElementParserRuleCall_1_0(), semanticObject.getElem());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BuiltIn returns Quantifier
+	 *     Quantifier returns Quantifier
+	 *     Infix returns Quantifier
+	 *     Infix.Infix_1_0 returns Quantifier
+	 *     Element returns Quantifier
+	 *     Bracket returns Quantifier
+	 *
+	 * Constraint:
+	 *     (varList=TypedVariableList? expr=Infix)
+	 */
+	protected void sequence_Quantifier(ISerializationContext context, Quantifier semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     SuperTypeList returns SuperTypeList
 	 *
 	 * Constraint:
@@ -506,15 +631,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TheoremDecl returns TheoremDecl
 	 *
 	 * Constraint:
-	 *     thmName=THM_NAME
+	 *     (thmName=THM_NAME exp=Expression)
 	 */
 	protected void sequence_TheoremDecl(ISerializationContext context, TheoremDecl semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.THEOREM_DECL__THM_NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.THEOREM_DECL__THM_NAME));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.THEOREM_DECL__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.THEOREM_DECL__EXP));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTheoremDeclAccess().getThmNameTHM_NAMEParserRuleCall_0(), semanticObject.getThmName());
+		feeder.accept(grammarAccess.getTheoremDeclAccess().getThmNameTHM_NAMEParserRuleCall_0_0(), semanticObject.getThmName());
+		feeder.accept(grammarAccess.getTheoremDeclAccess().getExpExpressionParserRuleCall_1_0(), semanticObject.getExp());
 		feeder.finish();
 	}
 	
@@ -651,7 +779,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Where returns Where
 	 *
 	 * Constraint:
-	 *     (expessions+=Expression expressions+=Expression*)
+	 *     (expessions+=Infix expressions+=Infix*)
 	 */
 	protected void sequence_Where(ISerializationContext context, Where semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

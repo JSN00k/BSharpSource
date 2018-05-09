@@ -21,14 +21,20 @@ import org.xtext.sampleProj.mydsl.services.MyDslGrammarAccess;
 public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected MyDslGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_Bracket_LeftParenthesisKeyword_0_a;
+	protected AbstractElementAlias match_Bracket_LeftParenthesisKeyword_0_p;
 	protected AbstractElementAlias match_Class_SemicolonKeyword_6_q;
 	protected AbstractElementAlias match_ConstructedType_LeftRightArrowKeyword_1_0_4_or_MultiplicationSignKeyword_1_0_0_or_PrivateUseAreaE100Keyword_1_0_3_or_PrivateUseAreaE102Keyword_1_0_2_or_RightwardsArrowKeyword_1_0_1_or_RightwardsArrowWithTailKeyword_1_0_7_or_RightwardsArrowWithVerticalStrokeKeyword_1_0_6_or_RightwardsTwoHeadedArrowKeyword_1_0_9_or_RightwardsTwoHeadedArrowWithTailKeyword_1_0_5_or_RightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8;
+	protected AbstractElementAlias match_Quantifier_ForAllKeyword_0_0_or_ThereExistsKeyword_0_1;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (MyDslGrammarAccess) access;
+		match_Bracket_LeftParenthesisKeyword_0_a = new TokenAlias(true, true, grammarAccess.getBracketAccess().getLeftParenthesisKeyword_0());
+		match_Bracket_LeftParenthesisKeyword_0_p = new TokenAlias(true, false, grammarAccess.getBracketAccess().getLeftParenthesisKeyword_0());
 		match_Class_SemicolonKeyword_6_q = new TokenAlias(false, true, grammarAccess.getClassAccess().getSemicolonKeyword_6());
 		match_ConstructedType_LeftRightArrowKeyword_1_0_4_or_MultiplicationSignKeyword_1_0_0_or_PrivateUseAreaE100Keyword_1_0_3_or_PrivateUseAreaE102Keyword_1_0_2_or_RightwardsArrowKeyword_1_0_1_or_RightwardsArrowWithTailKeyword_1_0_7_or_RightwardsArrowWithVerticalStrokeKeyword_1_0_6_or_RightwardsTwoHeadedArrowKeyword_1_0_9_or_RightwardsTwoHeadedArrowWithTailKeyword_1_0_5_or_RightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getLeftRightArrowKeyword_1_0_4()), new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getMultiplicationSignKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getPrivateUseAreaE100Keyword_1_0_3()), new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getPrivateUseAreaE102Keyword_1_0_2()), new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getRightwardsArrowKeyword_1_0_1()), new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getRightwardsArrowWithTailKeyword_1_0_7()), new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getRightwardsArrowWithVerticalStrokeKeyword_1_0_6()), new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getRightwardsTwoHeadedArrowKeyword_1_0_9()), new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getRightwardsTwoHeadedArrowWithTailKeyword_1_0_5()), new TokenAlias(false, false, grammarAccess.getConstructedTypeAccess().getRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8()));
+		match_Quantifier_ForAllKeyword_0_0_or_ThereExistsKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getQuantifierAccess().getForAllKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getQuantifierAccess().getThereExistsKeyword_0_1()));
 	}
 	
 	@Override
@@ -43,14 +49,50 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Class_SemicolonKeyword_6_q.equals(syntax))
+			if (match_Bracket_LeftParenthesisKeyword_0_a.equals(syntax))
+				emit_Bracket_LeftParenthesisKeyword_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Bracket_LeftParenthesisKeyword_0_p.equals(syntax))
+				emit_Bracket_LeftParenthesisKeyword_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Class_SemicolonKeyword_6_q.equals(syntax))
 				emit_Class_SemicolonKeyword_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConstructedType_LeftRightArrowKeyword_1_0_4_or_MultiplicationSignKeyword_1_0_0_or_PrivateUseAreaE100Keyword_1_0_3_or_PrivateUseAreaE102Keyword_1_0_2_or_RightwardsArrowKeyword_1_0_1_or_RightwardsArrowWithTailKeyword_1_0_7_or_RightwardsArrowWithVerticalStrokeKeyword_1_0_6_or_RightwardsTwoHeadedArrowKeyword_1_0_9_or_RightwardsTwoHeadedArrowWithTailKeyword_1_0_5_or_RightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8.equals(syntax))
 				emit_ConstructedType_LeftRightArrowKeyword_1_0_4_or_MultiplicationSignKeyword_1_0_0_or_PrivateUseAreaE100Keyword_1_0_3_or_PrivateUseAreaE102Keyword_1_0_2_or_RightwardsArrowKeyword_1_0_1_or_RightwardsArrowWithTailKeyword_1_0_7_or_RightwardsArrowWithVerticalStrokeKeyword_1_0_6_or_RightwardsTwoHeadedArrowKeyword_1_0_9_or_RightwardsTwoHeadedArrowWithTailKeyword_1_0_5_or_RightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Quantifier_ForAllKeyword_0_0_or_ThereExistsKeyword_0_1.equals(syntax))
+				emit_Quantifier_ForAllKeyword_0_0_or_ThereExistsKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     '('*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) ('∀' | '∃') '·' expr=Infix
+	 *     (rule start) (ambiguity) ('∀' | '∃') varList=TypedVariableList
+	 *     (rule start) (ambiguity) funcName=[FunctionName|ID]
+	 *     (rule start) (ambiguity) name=PrefixBuiltIn
+	 *     (rule start) (ambiguity) {Infix.left=}
+	 */
+	protected void emit_Bracket_LeftParenthesisKeyword_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '('+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) ('∀' | '∃') '·' expr=Infix
+	 *     (rule start) (ambiguity) ('∀' | '∃') varList=TypedVariableList
+	 *     (rule start) (ambiguity) funcName=[FunctionName|ID]
+	 *     (rule start) (ambiguity) name=PrefixBuiltIn
+	 *     (rule start) (ambiguity) {Infix.left=}
+	 */
+	protected void emit_Bracket_LeftParenthesisKeyword_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     ';'?
@@ -90,6 +132,22 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     type+=TypeConstructor (ambiguity) type+=ConstructedType
 	 */
 	protected void emit_ConstructedType_LeftRightArrowKeyword_1_0_4_or_MultiplicationSignKeyword_1_0_0_or_PrivateUseAreaE100Keyword_1_0_3_or_PrivateUseAreaE102Keyword_1_0_2_or_RightwardsArrowKeyword_1_0_1_or_RightwardsArrowWithTailKeyword_1_0_7_or_RightwardsArrowWithVerticalStrokeKeyword_1_0_6_or_RightwardsTwoHeadedArrowKeyword_1_0_9_or_RightwardsTwoHeadedArrowWithTailKeyword_1_0_5_or_RightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '∀' | '∃'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) '('* (ambiguity) '·' expr=Infix
+	 *     (rule start) '('* (ambiguity) varList=TypedVariableList
+	 *     (rule start) '('+ (ambiguity) '·' expr=Infix
+	 *     (rule start) '('+ (ambiguity) varList=TypedVariableList
+	 *     (rule start) (ambiguity) '·' expr=Infix
+	 *     (rule start) (ambiguity) varList=TypedVariableList
+	 */
+	protected void emit_Quantifier_ForAllKeyword_0_0_or_ThereExistsKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -98,7 +98,7 @@ TypeStructure:
  * statement.
  */
 Where:
-	'where' expessions+=Expression (';' expressions+=Expression)*
+	'where' expessions+=Infix (';' expressions+=Infix)*
 ;
 
 /* ---------------------- Datatype declarations -------------------------- */
@@ -203,7 +203,7 @@ Expression:
 ;
 
 BuiltIn:
-	Lambda | Quantifier | Prefix | Infix | Functional
+	Lambda | Quantifier //| Prefix | Infix
 ;
 
 Lambda:
@@ -213,13 +213,13 @@ Lambda:
 /* --------------------- Quantifiers ------------------------- */
 Quantifier:
 
-	('∀' | '∃') varList=TypedVariableList? '·' expr=Expression
+	('∀' | '∃') varList=TypedVariableList? '·' expr=Infix ';'
 ;
 
 /* ---------------------- *Fix ------------------------------ */
 
 Prefix:
-	name=PrefixBuiltIn expr=Expression
+	name=PrefixBuiltIn elem=Element
 ;
 
 PrefixBuiltIn:
@@ -236,21 +236,37 @@ PrefixBuiltIn:
  * operators.
  * Before the precedence code is written into a parser override, all the expressions are in effect right bracketed,
  * as you may expect from a language that is read from left to right.
+ * 
+ * TODO: Programmatically check that the function is an infix function.
  */
- 
-Infix:
-	left=Element (name+=InfixOpName expr2+=Infix)* 
+Infix returns Expression:
+	Element ({Infix.left=current} funcName=[FunctionName] right=Element)* 
 ;
 
-Element:
-	Bracket | FunctionCall | Instance
+/* currently it will not build because the quantifier is causing recursion I think. 
+ * I think that we need a quantifier free expression to solve the problem Similar to the way
+ * precedence is handled here: https://typefox.io/parsing-expressions-with-xtext
+ */
+Element returns Expression:
+	Bracket | Quantifier | FunctionCall | Prefix
 ;
 
-Bracket:
+Bracket returns Expression:
 	'(' Infix ')'
 ;
 
-/* Change this to be builtin infix operators, and declared infix operators. */
-InfixOpName:
-	name=ID
+
+/* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
+ * scenarios: 
+ * A function call f(arguments)
+ * A infix function with a bracketed argument on the right 10 f (arguments)
+ * A function used without any arguments f add g 
+ * 
+ * To solve this functions can either be Prefix, Infix, or called with bracketed arguments. You cannot call a Infix function with bracketd 
+ * arguments. To do this you would need to write another function to make this call for you. In coq this is achieved when you declare a function
+ * you can add a operator name to the function, which is either infix or prefix, this again gives the two names for the function allowing 
+ * it to be called either as an operator or a functional call.
+ */ 
+FunctionCall returns Expression:
+	funcName=[FunctionName] '(' (arguments+=Infix)? (',' arguments+=Infix)* ')'
 ;
