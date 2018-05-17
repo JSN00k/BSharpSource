@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getFuncName <em>Func Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getTypeInst <em>Type Inst</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getArguments <em>Arguments</em>}</li>
  * </ul>
  *
@@ -54,30 +54,30 @@ public interface Expression extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Func Name</b></em>' reference.
+   * Returns the value of the '<em><b>Type Inst</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Func Name</em>' reference isn't clear,
+   * If the meaning of the '<em>Type Inst</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Func Name</em>' reference.
-   * @see #setFuncName(FunctionName)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getExpression_FuncName()
-   * @model
+   * @return the value of the '<em>Type Inst</em>' containment reference.
+   * @see #setTypeInst(TypeInstance)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getExpression_TypeInst()
+   * @model containment="true"
    * @generated
    */
-  FunctionName getFuncName();
+  TypeInstance getTypeInst();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getFuncName <em>Func Name</em>}' reference.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getTypeInst <em>Type Inst</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Func Name</em>' reference.
-   * @see #getFuncName()
+   * @param value the new value of the '<em>Type Inst</em>' containment reference.
+   * @see #getTypeInst()
    * @generated
    */
-  void setFuncName(FunctionName value);
+  void setTypeInst(TypeInstance value);
 
   /**
    * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.

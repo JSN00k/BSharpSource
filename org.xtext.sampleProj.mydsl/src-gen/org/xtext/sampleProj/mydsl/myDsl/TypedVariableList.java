@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariableList#getTypeVar <em>Type Var</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariableList#getVariablesOfType <em>Variables Of Type</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypedVariableList()
@@ -26,19 +26,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface TypedVariableList extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Type Var</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable}.
+   * Returns the value of the '<em><b>Variables Of Type</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.VariableTyping}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type Var</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Variables Of Type</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type Var</em>' containment reference list.
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypedVariableList_TypeVar()
+   * @return the value of the '<em>Variables Of Type</em>' containment reference list.
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypedVariableList_VariablesOfType()
    * @model containment="true"
    * @generated
    */
-  EList<TypedVariable> getTypeVar();
+  EList<VariableTyping> getVariablesOfType();
 
 } // TypedVariableList

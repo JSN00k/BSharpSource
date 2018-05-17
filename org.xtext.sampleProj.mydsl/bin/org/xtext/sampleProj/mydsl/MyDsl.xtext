@@ -5,11 +5,11 @@ generate myDsl "http://www.xtext.org/sampleProj/mydsl/MyDsl"
 DomainModel:
 	(elements+=TopLevel)*;
 	
-// Theorem names can include white space.
-THM_NAME: (ID | WS)* ":";
+// Theorem names can include white space. Work out how to change this to any string without a ':'
+THM_NAME: (INT | ID | WS)* ":";
 	
 TopLevel:
-	ImportStatement | ClassDecl;
+	ImportStatement | ClassDecl  | Instance;
 	
 
 ImportStatement:
@@ -33,14 +33,15 @@ ClassDecl:
 
 
 Class returns BppClass:
-	'Class' typeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? (typeStructure=TypeStructure)? (where=Where)? (';')? '{' (bodyElements+=TypeBodyElements)* '}'
+	'Class' TypeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? (varList=TypeStructure)? (where=Where)? (';')? 
+	'{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
-Name: PolymorphicTypeName | TypeName;
+GenName: PolymorphicTypeName | TypeName;
 
 TypeName: name=ID;
 
-/*---------------- Polymorphic Context -------------------------- */
+/*---------------- Polymorphic Context of -------------------------- */
 
 PolymorphicTypeName: name=ID;
 
@@ -53,7 +54,7 @@ PolyContextTypes:
 ;
 
 PolyTypeConstraints:
-	':' typeName+=[TypeName] (',' typeName+=[TypeName])*
+	':' TypeName+=[TypeName] (',' TypeName+=[TypeName])*
 ;
 
 /* ------------------- SuperTypes ---------------------------------- */
@@ -78,11 +79,11 @@ ConstructedType:
  * Probably need to add the predicate type to this.
  */
 TypeConstructor:
-	typeName=[Name] (context+=TypeDeclContext)?
+	(TypeName=[GenName] | InbuiltTypeScan) (context+=TypeDeclContext)?
 ;
 
 TypeDeclContext:
-	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
+	'<' TypeName+=ConstructedType (',' TypeName+=ConstructedType)* '>'
 ;
 
 /* -------------------- Type Structure ---------------------------------- */
@@ -98,7 +99,7 @@ TypeStructure:
  * statement.
  */
 Where:
-	'where' expessions+=Infix (';' expressions+=Infix)*
+	'where' expessions+=Quantifier (';' expressions+=RootExpression)*
 ;
 
 /* ---------------------- Datatype declarations -------------------------- */
@@ -139,7 +140,7 @@ TypeBodyElements:
 /*------------------------- Functions --------------------------------- */
 
 FunctionDecl:
-	name+=FunctionName (context=PolyContext)? '(' (variables=TypedVariableList)? ')' body=FunctionBody ':' returnType=TypeConstructor
+	name+=FunctionName (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=TypeConstructor body=FunctionBody
 ;
 
 FunctionName:
@@ -178,19 +179,23 @@ TheoremBody:
 
 /* Type check that the expression is a predicate expression. */
 TheoremDecl:
-	thmName=THM_NAME exp=Expression
+	thmName=THM_NAME exp=RootExpression ';'
 ;
 
 TypedVariableList:
-	typeVar+=TypedVariable (',' typeVar+=TypedVariable)*
+	 variablesOfType+=VariableTyping (',' variablesOfType+=VariableTyping)*
+;
+
+VariableTyping:
+	((typeVar+=TypedVariable) (',' typeVar+=TypedVariable)* ':' type=ConstructedType)
 ;
 
 TypedVariable:
-	name=ID ':' type=ConstructedType
+	name=ID
 ;
 
 TypeDeclaration:
-	typeName=[TypeName] context=TypeDeclContext
+	TypeName=[TypeName] context=TypeDeclContext
 ;
 
 /* --------------------------- Expressions -------------------------- */
@@ -202,18 +207,18 @@ Expression:
 	name=ID
 ;
 
-BuiltIn:
-	Lambda | Quantifier //| Prefix | Infix
-;
-
 Lambda:
-	'λ' (varList=TypedVariableList)? '|' expr=Expression
+	'λ' (context=PolyContext)? varList=TypedVariableList '|' expr=RootExpression
 ;
 
 /* --------------------- Quantifiers ------------------------- */
-Quantifier:
 
-	('∀' | '∃') varList=TypedVariableList? '·' expr=Infix ';'
+RootExpression returns Expression:
+	Lambda | Quantifier | Infix
+;
+
+Quantifier:
+	('∀' | '∃') (context=PolyContext)? varList=TypedVariableList '·' expr=RootExpression
 ;
 
 /* ---------------------- *Fix ------------------------------ */
@@ -240,7 +245,7 @@ PrefixBuiltIn:
  * TODO: Programmatically check that the function is an infix function.
  */
 Infix returns Expression:
-	Element ({Infix.left=current} funcName=[FunctionName] right=Element)* 
+	Element ({Infix.left=current} (funcName+=[FunctionName] | opName+=InbuiltInfix) right+=Element)* 
 ;
 
 /* currently it will not build because the quantifier is causing recursion I think. 
@@ -248,11 +253,11 @@ Infix returns Expression:
  * precedence is handled here: https://typefox.io/parsing-expressions-with-xtext
  */
 Element returns Expression:
-	Bracket | Quantifier | FunctionCall | Prefix
+	Bracket | Prefix | FunctionCall
 ;
 
 Bracket returns Expression:
-	'(' Infix ')'
+	'(' RootExpression ')'
 ;
 
 
@@ -266,7 +271,62 @@ Bracket returns Expression:
  * arguments. To do this you would need to write another function to make this call for you. In coq this is achieved when you declare a function
  * you can add a operator name to the function, which is either infix or prefix, this again gives the two names for the function allowing 
  * it to be called either as an operator or a functional call.
- */ 
+ * 
+ * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
+ */
 FunctionCall returns Expression:
-	funcName=[FunctionName] '(' (arguments+=Infix)? (',' arguments+=Infix)* ')'
+	(typeInst=TypeInstance) ('(' (arguments+=Infix)? (',' arguments+=Infix)* ')')?
 ;
+
+ExpressionType:
+	TypeName
+;
+
+ExpressionVariable:
+	 FunctionName | TypedVariable | ExpressionType
+;
+
+/* With Parametric polymorphism classes e.g., Class ReflexRel<T> : T × T → Pred we can use ReflexRel directly 
+ * within an expression as it is the ReflexRel operator. However, with similar type class declarations:
+ * Class Group : Monoid where ... Does it make sense to be able to be able to use Group directly? it 
+ * refers to the whole type. I think that I'm conceptually ok to treat Group or ReflexRel as a polymorphic
+ * instance of the super type, and later treat it more like a set, It strikes me that this is a concept 
+ * already familiar to Generics where we're reasoning using a generic type (which is in a sense a subtype of
+ * its own.
+ * 
+ * The below statement needs scoping all polymorphic types have to be locally declared.
+ */
+ TypeInstance:
+ 	(instance=[ExpressionVariable]) | (typeName=[GenName] ('.' element+=[TypedVariable])+)
+ ;
+
+InbuiltInfix:
+	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
+;
+
+/* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
+ * recursion in the inbuilt types it may be better to  */
+InbuiltType:
+	'Pred'
+;
+
+InbuiltTypeScan:
+	name=InbuiltType
+;
+
+/* I feel like I should need these, however, I'm not sure when they would be necessary. */
+//InbuiltTypeInstance:
+//	'⊤' | '⊥'
+//;
+//
+//InbuiltTypeInstanceScan:
+//	name=InbuiltTypeInstance
+//;
+
+/* ------------------------------ Instance ---------------------------------------------*/
+
+Instance:
+	'Instance' className=[TypeName] context=TypeDeclContext '(' (arguments+=Infix)? (',' arguments+=Infix)* ')'
+;
+
+/* TODO: Implement Methods,  Infix keyword and precedence on Infix operators. */

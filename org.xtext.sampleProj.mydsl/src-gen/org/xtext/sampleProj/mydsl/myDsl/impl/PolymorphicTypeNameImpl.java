@@ -15,7 +15,7 @@ import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
  *
  * @generated
  */
-public class PolymorphicTypeNameImpl extends NameImpl implements PolymorphicTypeName
+public class PolymorphicTypeNameImpl extends GenNameImpl implements PolymorphicTypeName
 {
   /**
    * <!-- begin-user-doc -->

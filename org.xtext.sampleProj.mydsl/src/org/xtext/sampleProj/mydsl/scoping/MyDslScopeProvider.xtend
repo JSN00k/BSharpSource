@@ -7,7 +7,22 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.Scopes
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName
 import org.eclipse.xtext.EcoreUtil2
+import org.xtext.sampleProj.mydsl.myDsl.TypeName
+import org.xtext.sampleProj.mydsl.myDsl.GenName
+import org.xtext.sampleProj.mydsl.myDsl.BppClass
+import org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstructorImpl
+import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage
+import java.util.ArrayList
+import org.eclipse.xtext.xbase.lib.Functions.Function1
 import org.xtext.sampleProj.mydsl.myDsl.ClassDecl
+import org.xtext.sampleProj.mydsl.myDsl.FunctionName
+import org.eclipse.xtext.scoping.IScope
+import org.xtext.sampleProj.mydsl.myDsl.Lambda
+import org.xtext.sampleProj.mydsl.myDsl.Quantifier
+import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl
+import org.xtext.sampleProj.mydsl.myDsl.Extend
+import java.util.List
+import org.xtext.sampleProj.mydsl.myDsl.TypedVariable
 
 /**
  * This class contains custom scoping description.
@@ -16,18 +31,197 @@ import org.xtext.sampleProj.mydsl.myDsl.ClassDecl
  * on how and when to use it.
  */
 class MyDslScopeProvider extends AbstractMyDslScopeProvider {
-	override getScope (EObject context, EReference reference) {
-		if (reference instanceof PolymorphicTypeName) {
-			/* Get scope for the class, and use it to cech for polymorphic variable. Care needs to 
+	
+	override getScope(EObject context, EReference reference) {
+		/* This doesn't work, I believe that the issue is that  */
+		if (context instanceof TypeConstructorImpl && reference.getEReferenceType() == MyDslPackage.Literals.GEN_NAME) {
+			/* Get scope for the class, and use it to check for polymorphic variable. Care needs to 
 			 * be taken here  as this is not complete, and will need to be added to when declaring 
 			 * functions and methods. */
-			val classAncestor = EcoreUtil2.getContainerOfType(context, ClassDecl) as ClassDecl
-			if (classAncestor !== null) {
-				var polyTypes = EcoreUtil2.getAllContentsOfType(classAncestor, PolymorphicTypeName)
-				return Scopes.scopeFor(polyTypes)
-			} 
+			val classDecl = EcoreUtil2.getContainerOfType(context, BppClass)
+			if (classDecl !== null) {
+				val polyTypes = EcoreUtil2.getAllContentsOfType(classDecl.context, PolymorphicTypeName)
+
+				/* TODO: Turn this into a look up that includes imports */
+				val rootElement = EcoreUtil2.getRootContainer(context)
+				/* Predictably The Class elements returned from the statement above are in the
+				 * order in which they appear in the file. I can therefore simply remove any elements
+				 * from the returned list that appear after the current ndx.
+				 */
+				val earlierDeclTypes = eFilterUpToWith(rootElement, [object | object==classDecl],
+					[object | object instanceof TypeName]) as ArrayList<TypeName>
+
+				val allElems = new ArrayList<GenName>()
+				allElems.addAll(polyTypes)
+				allElems.addAll(earlierDeclTypes)
+				val scope = Scopes.scopeFor(allElems)
+				return scope
+			}
+		} else if (reference.getEReferenceType == MyDslPackage.Literals.TYPE_NAME) {
+			/* Only allow type names above the current typename
+			 * TODO: Need to include global imports.
+			 */
+			 
+			 val rootObj = EcoreUtil2.getRootContainer(context)
+			 var typeNames = eFilterUpToIncludingWith(rootObj, [object | object == context], [object | object instanceof TypeName])
+			 return Scopes.scopeFor(typeNames)
+		} else if (reference.getEReferenceType == MyDslPackage.Literals.EXPRESSION_VARIABLE) {
+			/* Here's the definition:
+			 * ExpressionVariable:
+			 *	 FunctionName | TypedVariable
+			 *  ;
+			 * 
+			 * I can use scoping to check for obvious mistakes in these references. However, believe that I 
+			 * will need to use validation to do the more complicated type checking. Currently this only checks
+			 * that the names are available to me.
+			 */
+			 
+			 /* If this becomes to computationally expensive it is possible to do this in a 
+			  * single iteration of the tree, however it's harder to write the code, so first 
+			  * attempt users multiple iterations.
+			  * 
+			  * TODO: Global scope it all!
+			  */
+			 
+			 val rootObj = EcoreUtil2.getRootContainer(context)
+			 val currentClass = EcoreUtil2.getContainerOfType(context, ClassDecl)
+			 
+			 /* FunctionName can be any function within the current body, or any body above. 
+			  */
+			 var functionNames = eFilterUpToIncludingWith(rootObj, [object | object == currentClass], [object | object instanceof FunctionName])
+			 
+			 /* TypedVariableScope */
+			 var instVariableScope = getTypeVariableScopeFor(context, [object | 
+			 	/* I'm not experienced enough with Xtext/Java to work out how to give the 
+			 	 * object a shared interface, so I'm going to be really bad and use 
+			 	 * reflection instead. This relies on all variable lists being called
+			 	 * "varList"
+			 	 */
+			 	 val method = object.getClass().getMethod("getVarList", null)
+			 	val varList = method.invoke(object, null) as EObject
+			 	if (varList === null)
+			 		return null
+			 		
+			 	return EcoreUtil2.getAllContentsOfType(varList, TypedVariable)
+			 ])
+			 
+			 /* TODO:Get the class name of the local type class do all the things for datatype declarations. */
+			 val currentTypeClass = EcoreUtil2.getContainerOfType(context, BppClass)
+			 if (currentTypeClass !== null) {
+			 	
+			 }
+			 
+			 return Scopes.scopeFor(functionNames, instVariableScope)
+		}
+
+		return super.getScope(context, reference)
+	}
+	
+	def IScope getTypeVariableScopeFor(EObject context, Function1<EObject, List<? extends EObject>> nameGetter) {
+		/* Typed variable scopes can come from any ancestor that declares typed variables.
+		 * This includes Lambdas, Quantifiers, FunctionDeclarations, and Class Declarations */
+		 val containerWithTypeVariable = eContainerMatchingLambda(context, [object | object instanceof Lambda
+		 	|| object instanceof Quantifier || object instanceof FunctionDecl || object instanceof BppClass || object instanceof Extend])
+		 
+		 if (containerWithTypeVariable === null)
+		 	return null
+		 
+		 if (containerWithTypeVariable instanceof Extend) {
+		 	/* We need to resolve the cross reference  */
+		 	return getTypeVariableScopeForExtension(containerWithTypeVariable as Extend)
+		 }
+
+		val names = nameGetter.apply(containerWithTypeVariable)
+		val parentScope = getTypeVariableScopeFor(containerWithTypeVariable, nameGetter)
+
+		if (parentScope === null) {
+			if (names === null)
+				return null
+			else
+				return Scopes.scopeFor(names)
+		} else {
+			if (names === null)
+				return parentScope
+			else
+				return Scopes.scopeFor(names, parentScope)
+		}
+	}
+		 
+	
+	def IScope getTypeVariableScopeForExtension(Extend context) {
+		/* TODO: Handle global scope */
+		
+		/* First try to find the referenced class in the current file. */ 
+		val typeClass = eFilterUpToCurrentWith(context, [object | object instanceof BppClass && (object as BppClass).typeName == context.name]) as ArrayList<BppClass>
+		
+		if (typeClass === null || typeClass.length == 0) {
+			return null
 		}
 		
-		return super.getScope(context, reference)
+		return Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(typeClass.get(0), TypeName)) 
+	}
+	
+	/* Finds the root of the current context and filters up to the current context using the filter */
+	def ArrayList<? extends EObject> eFilterUpToCurrentWith(EObject context, Function1<EObject, Boolean> filter) {
+		val root = EcoreUtil2.getRootContainer(context)
+		return eFilterUpToWith(root, [object | object == context], filter)
+	}
+	
+	def ArrayList<? extends EObject> eFilterUpToIncludingCurrentWith(EObject context, Function1<EObject, Boolean> filter) {
+		val root = EcoreUtil2.getRootContainer(context)
+		return eFilterUpToIncludingWith(root, [object | object == context], filter)
+	}
+	
+	def ArrayList<? extends EObject> eFilterUpToWith(EObject tree, Function1<EObject, Boolean> stopFilter,
+		Function1<EObject, Boolean> objectFilter) {
+		val iterable = tree.eAllContents
+		val result = new ArrayList<EObject>()
+		var EObject next = iterable.next
+
+		while (next !== null && !stopFilter.apply(next)) {
+			
+			if (next === null)
+				return result
+
+			if (objectFilter.apply(next))
+				result.add(next)
+
+			next = iterable.next
+		}
+
+		return result
+	}
+	
+	def ArrayList<? extends EObject> eFilterUpToIncludingWith(EObject tree, Function1<EObject, Boolean> stopFilter,
+		Function1<EObject, Boolean> objectFilter) {
+		val iterable = tree.eAllContents
+		val result = new ArrayList<EObject>()
+		var EObject next = null
+
+		do {
+			next = iterable.next
+			if (next === null)
+				return result
+
+			if (objectFilter.apply(next))
+				result.add(next)
+
+		} while (next !== null && !stopFilter.apply(next))
+
+		return result
+	}
+	
+	/* Does not scan the current object. */
+	def EObject eContainerMatchingLambda(EObject context, Function1<EObject, Boolean> criteria) {
+		val parent = context.eContainer
+		if (parent === null) {
+			return null
+		}
+		
+		if (criteria.apply(parent)) {
+			return parent
+		}
+		
+		eContainerMatchingLambda(parent, criteria)
 	}
 }

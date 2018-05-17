@@ -14,6 +14,6 @@ package org.xtext.sampleProj.mydsl.myDsl;
  * @model
  * @generated
  */
-public interface PolymorphicTypeName extends Name
+public interface PolymorphicTypeName extends GenName
 {
 } // PolymorphicTypeName

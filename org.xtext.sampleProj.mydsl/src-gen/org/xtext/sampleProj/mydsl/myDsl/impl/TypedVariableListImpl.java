@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
 import org.xtext.sampleProj.mydsl.myDsl.TypedVariableList;
+import org.xtext.sampleProj.mydsl.myDsl.VariableTyping;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +29,7 @@ import org.xtext.sampleProj.mydsl.myDsl.TypedVariableList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableListImpl#getTypeVar <em>Type Var</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableListImpl#getVariablesOfType <em>Variables Of Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,14 +37,14 @@ import org.xtext.sampleProj.mydsl.myDsl.TypedVariableList;
 public class TypedVariableListImpl extends MinimalEObjectImpl.Container implements TypedVariableList
 {
   /**
-   * The cached value of the '{@link #getTypeVar() <em>Type Var</em>}' containment reference list.
+   * The cached value of the '{@link #getVariablesOfType() <em>Variables Of Type</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTypeVar()
+   * @see #getVariablesOfType()
    * @generated
    * @ordered
    */
-  protected EList<TypedVariable> typeVar;
+  protected EList<VariableTyping> variablesOfType;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,13 +72,13 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypedVariable> getTypeVar()
+  public EList<VariableTyping> getVariablesOfType()
   {
-    if (typeVar == null)
+    if (variablesOfType == null)
     {
-      typeVar = new EObjectContainmentEList<TypedVariable>(TypedVariable.class, this, MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR);
+      variablesOfType = new EObjectContainmentEList<VariableTyping>(VariableTyping.class, this, MyDslPackage.TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE);
     }
-    return typeVar;
+    return variablesOfType;
   }
 
   /**
@@ -91,8 +91,8 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
-        return ((InternalEList<?>)getTypeVar()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE:
+        return ((InternalEList<?>)getVariablesOfType()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -107,8 +107,8 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
-        return getTypeVar();
+      case MyDslPackage.TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE:
+        return getVariablesOfType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -124,9 +124,9 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
-        getTypeVar().clear();
-        getTypeVar().addAll((Collection<? extends TypedVariable>)newValue);
+      case MyDslPackage.TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE:
+        getVariablesOfType().clear();
+        getVariablesOfType().addAll((Collection<? extends VariableTyping>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,8 +142,8 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
-        getTypeVar().clear();
+      case MyDslPackage.TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE:
+        getVariablesOfType().clear();
         return;
     }
     super.eUnset(featureID);
@@ -159,8 +159,8 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.TYPED_VARIABLE_LIST__TYPE_VAR:
-        return typeVar != null && !typeVar.isEmpty();
+      case MyDslPackage.TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE:
+        return variablesOfType != null && !variablesOfType.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -72,7 +72,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.IMPORT_COMPONENT: return createImportComponent();
       case MyDslPackage.CLASS_DECL: return createClassDecl();
       case MyDslPackage.BPP_CLASS: return createBppClass();
-      case MyDslPackage.NAME: return createName();
+      case MyDslPackage.GEN_NAME: return createGenName();
       case MyDslPackage.TYPE_NAME: return createTypeName();
       case MyDslPackage.POLYMORPHIC_TYPE_NAME: return createPolymorphicTypeName();
       case MyDslPackage.POLY_CONTEXT: return createPolyContext();
@@ -99,13 +99,18 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.THEOREM_BODY: return createTheoremBody();
       case MyDslPackage.THEOREM_DECL: return createTheoremDecl();
       case MyDslPackage.TYPED_VARIABLE_LIST: return createTypedVariableList();
+      case MyDslPackage.VARIABLE_TYPING: return createVariableTyping();
       case MyDslPackage.TYPED_VARIABLE: return createTypedVariable();
       case MyDslPackage.TYPE_DECLARATION: return createTypeDeclaration();
       case MyDslPackage.EXPRESSION: return createExpression();
-      case MyDslPackage.BUILT_IN: return createBuiltIn();
       case MyDslPackage.LAMBDA: return createLambda();
       case MyDslPackage.QUANTIFIER: return createQuantifier();
       case MyDslPackage.PREFIX: return createPrefix();
+      case MyDslPackage.EXPRESSION_TYPE: return createExpressionType();
+      case MyDslPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
+      case MyDslPackage.TYPE_INSTANCE: return createTypeInstance();
+      case MyDslPackage.INBUILT_TYPE_SCAN: return createInbuiltTypeScan();
+      case MyDslPackage.INSTANCE: return createInstance();
       case MyDslPackage.INFIX: return createInfix();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -194,10 +199,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Name createName()
+  public GenName createGenName()
   {
-    NameImpl name = new NameImpl();
-    return name;
+    GenNameImpl genName = new GenNameImpl();
+    return genName;
   }
 
   /**
@@ -491,6 +496,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public VariableTyping createVariableTyping()
+  {
+    VariableTypingImpl variableTyping = new VariableTypingImpl();
+    return variableTyping;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public TypedVariable createTypedVariable()
   {
     TypedVariableImpl typedVariable = new TypedVariableImpl();
@@ -524,17 +540,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public BuiltIn createBuiltIn()
-  {
-    BuiltInImpl builtIn = new BuiltInImpl();
-    return builtIn;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Lambda createLambda()
   {
     LambdaImpl lambda = new LambdaImpl();
@@ -561,6 +566,61 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     PrefixImpl prefix = new PrefixImpl();
     return prefix;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExpressionType createExpressionType()
+  {
+    ExpressionTypeImpl expressionType = new ExpressionTypeImpl();
+    return expressionType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExpressionVariable createExpressionVariable()
+  {
+    ExpressionVariableImpl expressionVariable = new ExpressionVariableImpl();
+    return expressionVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeInstance createTypeInstance()
+  {
+    TypeInstanceImpl typeInstance = new TypeInstanceImpl();
+    return typeInstance;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InbuiltTypeScan createInbuiltTypeScan()
+  {
+    InbuiltTypeScanImpl inbuiltTypeScan = new InbuiltTypeScanImpl();
+    return inbuiltTypeScan;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Instance createInstance()
+  {
+    InstanceImpl instance = new InstanceImpl();
+    return instance;
   }
 
   /**

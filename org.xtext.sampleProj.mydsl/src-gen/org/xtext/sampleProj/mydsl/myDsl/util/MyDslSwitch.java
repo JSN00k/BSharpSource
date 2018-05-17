@@ -126,10 +126,10 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.NAME:
+      case MyDslPackage.GEN_NAME:
       {
-        Name name = (Name)theEObject;
-        T result = caseName(name);
+        GenName genName = (GenName)theEObject;
+        T result = caseGenName(genName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -137,7 +137,9 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         TypeName typeName = (TypeName)theEObject;
         T result = caseTypeName(typeName);
-        if (result == null) result = caseName(typeName);
+        if (result == null) result = caseGenName(typeName);
+        if (result == null) result = caseExpressionType(typeName);
+        if (result == null) result = caseExpressionVariable(typeName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -145,7 +147,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         PolymorphicTypeName polymorphicTypeName = (PolymorphicTypeName)theEObject;
         T result = casePolymorphicTypeName(polymorphicTypeName);
-        if (result == null) result = caseName(polymorphicTypeName);
+        if (result == null) result = caseGenName(polymorphicTypeName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -271,6 +273,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         FunctionName functionName = (FunctionName)theEObject;
         T result = caseFunctionName(functionName);
+        if (result == null) result = caseExpressionVariable(functionName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -325,10 +328,18 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.VARIABLE_TYPING:
+      {
+        VariableTyping variableTyping = (VariableTyping)theEObject;
+        T result = caseVariableTyping(variableTyping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.TYPED_VARIABLE:
       {
         TypedVariable typedVariable = (TypedVariable)theEObject;
         T result = caseTypedVariable(typedVariable);
+        if (result == null) result = caseExpressionVariable(typedVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -346,18 +357,11 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.BUILT_IN:
-      {
-        BuiltIn builtIn = (BuiltIn)theEObject;
-        T result = caseBuiltIn(builtIn);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case MyDslPackage.LAMBDA:
       {
         Lambda lambda = (Lambda)theEObject;
         T result = caseLambda(lambda);
-        if (result == null) result = caseBuiltIn(lambda);
+        if (result == null) result = caseExpression(lambda);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -365,7 +369,6 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Quantifier quantifier = (Quantifier)theEObject;
         T result = caseQuantifier(quantifier);
-        if (result == null) result = caseBuiltIn(quantifier);
         if (result == null) result = caseExpression(quantifier);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -375,6 +378,44 @@ public class MyDslSwitch<T> extends Switch<T>
         Prefix prefix = (Prefix)theEObject;
         T result = casePrefix(prefix);
         if (result == null) result = caseExpression(prefix);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.EXPRESSION_TYPE:
+      {
+        ExpressionType expressionType = (ExpressionType)theEObject;
+        T result = caseExpressionType(expressionType);
+        if (result == null) result = caseExpressionVariable(expressionType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.EXPRESSION_VARIABLE:
+      {
+        ExpressionVariable expressionVariable = (ExpressionVariable)theEObject;
+        T result = caseExpressionVariable(expressionVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.TYPE_INSTANCE:
+      {
+        TypeInstance typeInstance = (TypeInstance)theEObject;
+        T result = caseTypeInstance(typeInstance);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.INBUILT_TYPE_SCAN:
+      {
+        InbuiltTypeScan inbuiltTypeScan = (InbuiltTypeScan)theEObject;
+        T result = caseInbuiltTypeScan(inbuiltTypeScan);
+        if (result == null) result = caseTypeConstructor(inbuiltTypeScan);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.INSTANCE:
+      {
+        Instance instance = (Instance)theEObject;
+        T result = caseInstance(instance);
+        if (result == null) result = caseTopLevel(instance);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -503,17 +544,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Name</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Gen Name</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Name</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Gen Name</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseName(Name object)
+  public T caseGenName(GenName object)
   {
     return null;
   }
@@ -935,6 +976,22 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Variable Typing</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variable Typing</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVariableTyping(VariableTyping object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Typed Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -983,22 +1040,6 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Built In</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Built In</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBuiltIn(BuiltIn object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Lambda</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1042,6 +1083,86 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrefix(Prefix object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expression Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expression Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpressionType(ExpressionType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expression Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expression Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpressionVariable(ExpressionVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Instance</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Instance</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeInstance(TypeInstance object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Inbuilt Type Scan</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Inbuilt Type Scan</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInbuiltTypeScan(InbuiltTypeScan object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Instance</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Instance</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInstance(Instance object)
   {
     return null;
   }

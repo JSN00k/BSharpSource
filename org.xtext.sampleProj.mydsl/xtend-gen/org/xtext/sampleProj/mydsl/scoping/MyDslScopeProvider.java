@@ -3,14 +3,33 @@
  */
 package org.xtext.sampleProj.mydsl.scoping;
 
+import com.google.common.base.Objects;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.xtext.sampleProj.mydsl.myDsl.BppClass;
 import org.xtext.sampleProj.mydsl.myDsl.ClassDecl;
+import org.xtext.sampleProj.mydsl.myDsl.Extend;
+import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
+import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
+import org.xtext.sampleProj.mydsl.myDsl.GenName;
+import org.xtext.sampleProj.mydsl.myDsl.Lambda;
+import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
+import org.xtext.sampleProj.mydsl.myDsl.Quantifier;
+import org.xtext.sampleProj.mydsl.myDsl.TypeName;
+import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
+import org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstructorImpl;
 import org.xtext.sampleProj.mydsl.scoping.AbstractMyDslScopeProvider;
 
 /**
@@ -23,14 +42,188 @@ import org.xtext.sampleProj.mydsl.scoping.AbstractMyDslScopeProvider;
 public class MyDslScopeProvider extends AbstractMyDslScopeProvider {
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
-    if ((reference instanceof PolymorphicTypeName)) {
-      ClassDecl _containerOfType = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
-      final ClassDecl classAncestor = ((ClassDecl) _containerOfType);
-      if ((classAncestor != null)) {
-        List<PolymorphicTypeName> polyTypes = EcoreUtil2.<PolymorphicTypeName>getAllContentsOfType(classAncestor, PolymorphicTypeName.class);
-        return Scopes.scopeFor(polyTypes);
+    if (((context instanceof TypeConstructorImpl) && Objects.equal(reference.getEReferenceType(), MyDslPackage.Literals.GEN_NAME))) {
+      final BppClass classDecl = EcoreUtil2.<BppClass>getContainerOfType(context, BppClass.class);
+      if ((classDecl != null)) {
+        final List<PolymorphicTypeName> polyTypes = EcoreUtil2.<PolymorphicTypeName>getAllContentsOfType(classDecl.getContext(), PolymorphicTypeName.class);
+        final EObject rootElement = EcoreUtil2.getRootContainer(context);
+        final Function1<EObject, Boolean> _function = (EObject object) -> {
+          return Boolean.valueOf(Objects.equal(object, classDecl));
+        };
+        final Function1<EObject, Boolean> _function_1 = (EObject object) -> {
+          return Boolean.valueOf((object instanceof TypeName));
+        };
+        ArrayList<? extends EObject> _eFilterUpToWith = this.eFilterUpToWith(rootElement, _function, _function_1);
+        final ArrayList<TypeName> earlierDeclTypes = ((ArrayList<TypeName>) _eFilterUpToWith);
+        final ArrayList<GenName> allElems = new ArrayList<GenName>();
+        allElems.addAll(polyTypes);
+        allElems.addAll(earlierDeclTypes);
+        final IScope scope = Scopes.scopeFor(allElems);
+        return scope;
+      }
+    } else {
+      EClass _eReferenceType = reference.getEReferenceType();
+      boolean _equals = Objects.equal(_eReferenceType, MyDslPackage.Literals.TYPE_NAME);
+      if (_equals) {
+        final EObject rootObj = EcoreUtil2.getRootContainer(context);
+        final Function1<EObject, Boolean> _function_2 = (EObject object) -> {
+          return Boolean.valueOf(Objects.equal(object, context));
+        };
+        final Function1<EObject, Boolean> _function_3 = (EObject object) -> {
+          return Boolean.valueOf((object instanceof TypeName));
+        };
+        ArrayList<? extends EObject> typeNames = this.eFilterUpToIncludingWith(rootObj, _function_2, _function_3);
+        return Scopes.scopeFor(typeNames);
+      } else {
+        EClass _eReferenceType_1 = reference.getEReferenceType();
+        boolean _equals_1 = Objects.equal(_eReferenceType_1, MyDslPackage.Literals.EXPRESSION_VARIABLE);
+        if (_equals_1) {
+          final EObject rootObj_1 = EcoreUtil2.getRootContainer(context);
+          final ClassDecl currentClass = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
+          final Function1<EObject, Boolean> _function_4 = (EObject object) -> {
+            return Boolean.valueOf(Objects.equal(object, currentClass));
+          };
+          final Function1<EObject, Boolean> _function_5 = (EObject object) -> {
+            return Boolean.valueOf((object instanceof FunctionName));
+          };
+          ArrayList<? extends EObject> functionNames = this.eFilterUpToIncludingWith(rootObj_1, _function_4, _function_5);
+          final Function1<EObject, List<? extends EObject>> _function_6 = (EObject object) -> {
+            try {
+              final Method method = object.getClass().getMethod("getVarList", null);
+              Object _invoke = method.invoke(object, null);
+              final EObject varList = ((EObject) _invoke);
+              if ((varList == null)) {
+                return null;
+              }
+              return EcoreUtil2.<TypedVariable>getAllContentsOfType(varList, TypedVariable.class);
+            } catch (Throwable _e) {
+              throw Exceptions.sneakyThrow(_e);
+            }
+          };
+          IScope instVariableScope = this.getTypeVariableScopeFor(context, _function_6);
+          final BppClass currentTypeClass = EcoreUtil2.<BppClass>getContainerOfType(context, BppClass.class);
+          if ((currentTypeClass != null)) {
+          }
+          return Scopes.scopeFor(functionNames, instVariableScope);
+        }
       }
     }
     return super.getScope(context, reference);
+  }
+  
+  public IScope getTypeVariableScopeFor(final EObject context, final Function1<EObject, List<? extends EObject>> nameGetter) {
+    final Function1<EObject, Boolean> _function = (EObject object) -> {
+      return Boolean.valueOf((((((object instanceof Lambda) || (object instanceof Quantifier)) || (object instanceof FunctionDecl)) || (object instanceof BppClass)) || (object instanceof Extend)));
+    };
+    final EObject containerWithTypeVariable = this.eContainerMatchingLambda(context, _function);
+    if ((containerWithTypeVariable == null)) {
+      return null;
+    }
+    if ((containerWithTypeVariable instanceof Extend)) {
+      return this.getTypeVariableScopeForExtension(((Extend) containerWithTypeVariable));
+    }
+    final List<? extends EObject> names = nameGetter.apply(containerWithTypeVariable);
+    final IScope parentScope = this.getTypeVariableScopeFor(containerWithTypeVariable, nameGetter);
+    if ((parentScope == null)) {
+      if ((names == null)) {
+        return null;
+      } else {
+        return Scopes.scopeFor(names);
+      }
+    } else {
+      if ((names == null)) {
+        return parentScope;
+      } else {
+        return Scopes.scopeFor(names, parentScope);
+      }
+    }
+  }
+  
+  public IScope getTypeVariableScopeForExtension(final Extend context) {
+    final Function1<EObject, Boolean> _function = (EObject object) -> {
+      return Boolean.valueOf(((object instanceof BppClass) && Objects.equal(((BppClass) object).getTypeName(), context.getName())));
+    };
+    ArrayList<? extends EObject> _eFilterUpToCurrentWith = this.eFilterUpToCurrentWith(context, _function);
+    final ArrayList<BppClass> typeClass = ((ArrayList<BppClass>) _eFilterUpToCurrentWith);
+    if (((typeClass == null) || (((Object[])Conversions.unwrapArray(typeClass, Object.class)).length == 0))) {
+      return null;
+    }
+    return Scopes.scopeFor(EcoreUtil2.<TypeName>getAllContentsOfType(typeClass.get(0), TypeName.class));
+  }
+  
+  /**
+   * Finds the root of the current context and filters up to the current context using the filter
+   */
+  public ArrayList<? extends EObject> eFilterUpToCurrentWith(final EObject context, final Function1<EObject, Boolean> filter) {
+    final EObject root = EcoreUtil2.getRootContainer(context);
+    final Function1<EObject, Boolean> _function = (EObject object) -> {
+      return Boolean.valueOf(Objects.equal(object, context));
+    };
+    return this.eFilterUpToWith(root, _function, filter);
+  }
+  
+  public ArrayList<? extends EObject> eFilterUpToIncludingCurrentWith(final EObject context, final Function1<EObject, Boolean> filter) {
+    final EObject root = EcoreUtil2.getRootContainer(context);
+    final Function1<EObject, Boolean> _function = (EObject object) -> {
+      return Boolean.valueOf(Objects.equal(object, context));
+    };
+    return this.eFilterUpToIncludingWith(root, _function, filter);
+  }
+  
+  public ArrayList<? extends EObject> eFilterUpToWith(final EObject tree, final Function1<EObject, Boolean> stopFilter, final Function1<EObject, Boolean> objectFilter) {
+    final TreeIterator<EObject> iterable = tree.eAllContents();
+    final ArrayList<EObject> result = new ArrayList<EObject>();
+    EObject next = iterable.next();
+    while (((next != null) && (!(stopFilter.apply(next)).booleanValue()))) {
+      {
+        if ((next == null)) {
+          return result;
+        }
+        Boolean _apply = objectFilter.apply(next);
+        if ((_apply).booleanValue()) {
+          result.add(next);
+        }
+        next = iterable.next();
+      }
+    }
+    return result;
+  }
+  
+  public ArrayList<? extends EObject> eFilterUpToIncludingWith(final EObject tree, final Function1<EObject, Boolean> stopFilter, final Function1<EObject, Boolean> objectFilter) {
+    final TreeIterator<EObject> iterable = tree.eAllContents();
+    final ArrayList<EObject> result = new ArrayList<EObject>();
+    EObject next = null;
+    do {
+      {
+        next = iterable.next();
+        if ((next == null)) {
+          return result;
+        }
+        Boolean _apply = objectFilter.apply(next);
+        if ((_apply).booleanValue()) {
+          result.add(next);
+        }
+      }
+    } while(((next != null) && (!(stopFilter.apply(next)).booleanValue())));
+    return result;
+  }
+  
+  /**
+   * Does not scan the current object.
+   */
+  public EObject eContainerMatchingLambda(final EObject context, final Function1<EObject, Boolean> criteria) {
+    EObject _xblockexpression = null;
+    {
+      final EObject parent = context.eContainer();
+      if ((parent == null)) {
+        return null;
+      }
+      Boolean _apply = criteria.apply(parent);
+      if ((_apply).booleanValue()) {
+        return parent;
+      }
+      _xblockexpression = this.eContainerMatchingLambda(parent, criteria);
+    }
+    return _xblockexpression;
   }
 }

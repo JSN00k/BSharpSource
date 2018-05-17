@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.xtext.sampleProj.mydsl.myDsl.GenName;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.Name;
 import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.TypeDeclContext;
 
@@ -48,7 +48,7 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected Name typeName;
+  protected GenName typeName;
 
   /**
    * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference list.
@@ -86,12 +86,12 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public Name getTypeName()
+  public GenName getTypeName()
   {
     if (typeName != null && typeName.eIsProxy())
     {
       InternalEObject oldTypeName = (InternalEObject)typeName;
-      typeName = (Name)eResolveProxy(oldTypeName);
+      typeName = (GenName)eResolveProxy(oldTypeName);
       if (typeName != oldTypeName)
       {
         if (eNotificationRequired())
@@ -106,7 +106,7 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public Name basicGetTypeName()
+  public GenName basicGetTypeName()
   {
     return typeName;
   }
@@ -116,9 +116,9 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTypeName(Name newTypeName)
+  public void setTypeName(GenName newTypeName)
   {
-    Name oldTypeName = typeName;
+    GenName oldTypeName = typeName;
     typeName = newTypeName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME, oldTypeName, typeName));
@@ -185,7 +185,7 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
-        setTypeName((Name)newValue);
+        setTypeName((GenName)newValue);
         return;
       case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
         getContext().clear();
@@ -206,7 +206,7 @@ public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case MyDslPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
-        setTypeName((Name)null);
+        setTypeName((GenName)null);
         return;
       case MyDslPackage.TYPE_CONSTRUCTOR__CONTEXT:
         getContext().clear();

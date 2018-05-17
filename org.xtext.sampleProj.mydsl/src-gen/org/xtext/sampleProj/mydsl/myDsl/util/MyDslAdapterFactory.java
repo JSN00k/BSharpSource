@@ -111,9 +111,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createBppClassAdapter();
       }
       @Override
-      public Adapter caseName(Name object)
+      public Adapter caseGenName(GenName object)
       {
-        return createNameAdapter();
+        return createGenNameAdapter();
       }
       @Override
       public Adapter caseTypeName(TypeName object)
@@ -246,6 +246,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createTypedVariableListAdapter();
       }
       @Override
+      public Adapter caseVariableTyping(VariableTyping object)
+      {
+        return createVariableTypingAdapter();
+      }
+      @Override
       public Adapter caseTypedVariable(TypedVariable object)
       {
         return createTypedVariableAdapter();
@@ -261,11 +266,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseBuiltIn(BuiltIn object)
-      {
-        return createBuiltInAdapter();
-      }
-      @Override
       public Adapter caseLambda(Lambda object)
       {
         return createLambdaAdapter();
@@ -279,6 +279,31 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePrefix(Prefix object)
       {
         return createPrefixAdapter();
+      }
+      @Override
+      public Adapter caseExpressionType(ExpressionType object)
+      {
+        return createExpressionTypeAdapter();
+      }
+      @Override
+      public Adapter caseExpressionVariable(ExpressionVariable object)
+      {
+        return createExpressionVariableAdapter();
+      }
+      @Override
+      public Adapter caseTypeInstance(TypeInstance object)
+      {
+        return createTypeInstanceAdapter();
+      }
+      @Override
+      public Adapter caseInbuiltTypeScan(InbuiltTypeScan object)
+      {
+        return createInbuiltTypeScanAdapter();
+      }
+      @Override
+      public Adapter caseInstance(Instance object)
+      {
+        return createInstanceAdapter();
       }
       @Override
       public Adapter caseInfix(Infix object)
@@ -413,16 +438,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Name <em>Name</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.GenName <em>Gen Name</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Name
+   * @see org.xtext.sampleProj.mydsl.myDsl.GenName
    * @generated
    */
-  public Adapter createNameAdapter()
+  public Adapter createGenNameAdapter()
   {
     return null;
   }
@@ -818,6 +843,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.VariableTyping <em>Variable Typing</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.VariableTyping
+   * @generated
+   */
+  public Adapter createVariableTypingAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable <em>Typed Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -863,21 +903,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.BuiltIn <em>Built In</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.BuiltIn
-   * @generated
-   */
-  public Adapter createBuiltInAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Lambda <em>Lambda</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -918,6 +943,81 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrefixAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.ExpressionType <em>Expression Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.ExpressionType
+   * @generated
+   */
+  public Adapter createExpressionTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.ExpressionVariable <em>Expression Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.ExpressionVariable
+   * @generated
+   */
+  public Adapter createExpressionVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeInstance <em>Type Instance</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.TypeInstance
+   * @generated
+   */
+  public Adapter createTypeInstanceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.InbuiltTypeScan <em>Inbuilt Type Scan</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.InbuiltTypeScan
+   * @generated
+   */
+  public Adapter createInbuiltTypeScanAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Instance <em>Instance</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.Instance
+   * @generated
+   */
+  public Adapter createInstanceAdapter()
   {
     return null;
   }

@@ -16,7 +16,7 @@ package org.xtext.sampleProj.mydsl.myDsl;
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getSupertypes <em>Supertypes</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeStructure <em>Type Structure</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getVarList <em>Var List</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getWhere <em>Where</em>}</li>
  * </ul>
  *
@@ -105,30 +105,30 @@ public interface BppClass extends ClassDecl
   void setSupertypes(SuperTypeList value);
 
   /**
-   * Returns the value of the '<em><b>Type Structure</b></em>' containment reference.
+   * Returns the value of the '<em><b>Var List</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type Structure</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Var List</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type Structure</em>' containment reference.
-   * @see #setTypeStructure(TypeStructure)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getBppClass_TypeStructure()
+   * @return the value of the '<em>Var List</em>' containment reference.
+   * @see #setVarList(TypeStructure)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getBppClass_VarList()
    * @model containment="true"
    * @generated
    */
-  TypeStructure getTypeStructure();
+  TypeStructure getVarList();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeStructure <em>Type Structure</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getVarList <em>Var List</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type Structure</em>' containment reference.
-   * @see #getTypeStructure()
+   * @param value the new value of the '<em>Var List</em>' containment reference.
+   * @see #getVarList()
    * @generated
    */
-  void setTypeStructure(TypeStructure value);
+  void setVarList(TypeStructure value);
 
   /**
    * Returns the value of the '<em><b>Where</b></em>' containment reference.

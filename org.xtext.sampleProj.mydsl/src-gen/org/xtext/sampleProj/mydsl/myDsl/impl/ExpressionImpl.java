@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.Expression;
-import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.TypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +32,7 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExpressionImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExpressionImpl#getFuncName <em>Func Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExpressionImpl#getTypeInst <em>Type Inst</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExpressionImpl#getArguments <em>Arguments</em>}</li>
  * </ul>
  *
@@ -61,14 +61,14 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getFuncName() <em>Func Name</em>}' reference.
+   * The cached value of the '{@link #getTypeInst() <em>Type Inst</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFuncName()
+   * @see #getTypeInst()
    * @generated
    * @ordered
    */
-  protected FunctionName funcName;
+  protected TypeInstance typeInst;
 
   /**
    * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
@@ -129,19 +129,9 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public FunctionName getFuncName()
+  public TypeInstance getTypeInst()
   {
-    if (funcName != null && funcName.eIsProxy())
-    {
-      InternalEObject oldFuncName = (InternalEObject)funcName;
-      funcName = (FunctionName)eResolveProxy(oldFuncName);
-      if (funcName != oldFuncName)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.EXPRESSION__FUNC_NAME, oldFuncName, funcName));
-      }
-    }
-    return funcName;
+    return typeInst;
   }
 
   /**
@@ -149,22 +139,37 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public FunctionName basicGetFuncName()
+  public NotificationChain basicSetTypeInst(TypeInstance newTypeInst, NotificationChain msgs)
   {
-    return funcName;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFuncName(FunctionName newFuncName)
-  {
-    FunctionName oldFuncName = funcName;
-    funcName = newFuncName;
+    TypeInstance oldTypeInst = typeInst;
+    typeInst = newTypeInst;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.EXPRESSION__FUNC_NAME, oldFuncName, funcName));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.EXPRESSION__TYPE_INST, oldTypeInst, newTypeInst);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTypeInst(TypeInstance newTypeInst)
+  {
+    if (newTypeInst != typeInst)
+    {
+      NotificationChain msgs = null;
+      if (typeInst != null)
+        msgs = ((InternalEObject)typeInst).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.EXPRESSION__TYPE_INST, null, msgs);
+      if (newTypeInst != null)
+        msgs = ((InternalEObject)newTypeInst).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.EXPRESSION__TYPE_INST, null, msgs);
+      msgs = basicSetTypeInst(newTypeInst, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.EXPRESSION__TYPE_INST, newTypeInst, newTypeInst));
   }
 
   /**
@@ -191,6 +196,8 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
+      case MyDslPackage.EXPRESSION__TYPE_INST:
+        return basicSetTypeInst(null, msgs);
       case MyDslPackage.EXPRESSION__ARGUMENTS:
         return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
     }
@@ -209,9 +216,8 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
     {
       case MyDslPackage.EXPRESSION__NAME:
         return getName();
-      case MyDslPackage.EXPRESSION__FUNC_NAME:
-        if (resolve) return getFuncName();
-        return basicGetFuncName();
+      case MyDslPackage.EXPRESSION__TYPE_INST:
+        return getTypeInst();
       case MyDslPackage.EXPRESSION__ARGUMENTS:
         return getArguments();
     }
@@ -232,8 +238,8 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
       case MyDslPackage.EXPRESSION__NAME:
         setName((String)newValue);
         return;
-      case MyDslPackage.EXPRESSION__FUNC_NAME:
-        setFuncName((FunctionName)newValue);
+      case MyDslPackage.EXPRESSION__TYPE_INST:
+        setTypeInst((TypeInstance)newValue);
         return;
       case MyDslPackage.EXPRESSION__ARGUMENTS:
         getArguments().clear();
@@ -256,8 +262,8 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
       case MyDslPackage.EXPRESSION__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case MyDslPackage.EXPRESSION__FUNC_NAME:
-        setFuncName((FunctionName)null);
+      case MyDslPackage.EXPRESSION__TYPE_INST:
+        setTypeInst((TypeInstance)null);
         return;
       case MyDslPackage.EXPRESSION__ARGUMENTS:
         getArguments().clear();
@@ -278,8 +284,8 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
     {
       case MyDslPackage.EXPRESSION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case MyDslPackage.EXPRESSION__FUNC_NAME:
-        return funcName != null;
+      case MyDslPackage.EXPRESSION__TYPE_INST:
+        return typeInst != null;
       case MyDslPackage.EXPRESSION__ARGUMENTS:
         return arguments != null && !arguments.isEmpty();
     }

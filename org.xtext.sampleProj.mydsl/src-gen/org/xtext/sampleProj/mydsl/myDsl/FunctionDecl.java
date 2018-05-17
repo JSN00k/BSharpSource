@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getContext <em>Context</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getVariables <em>Variables</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getBody <em>Body</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getVarList <em>Var List</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getBody <em>Body</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFunctionDecl()
@@ -72,56 +72,30 @@ public interface FunctionDecl extends EObject
   void setContext(PolyContext value);
 
   /**
-   * Returns the value of the '<em><b>Variables</b></em>' containment reference.
+   * Returns the value of the '<em><b>Var List</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Variables</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Var List</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Variables</em>' containment reference.
-   * @see #setVariables(TypedVariableList)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFunctionDecl_Variables()
+   * @return the value of the '<em>Var List</em>' containment reference.
+   * @see #setVarList(TypedVariableList)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFunctionDecl_VarList()
    * @model containment="true"
    * @generated
    */
-  TypedVariableList getVariables();
+  TypedVariableList getVarList();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getVariables <em>Variables</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getVarList <em>Var List</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Variables</em>' containment reference.
-   * @see #getVariables()
+   * @param value the new value of the '<em>Var List</em>' containment reference.
+   * @see #getVarList()
    * @generated
    */
-  void setVariables(TypedVariableList value);
-
-  /**
-   * Returns the value of the '<em><b>Body</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Body</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Body</em>' containment reference.
-   * @see #setBody(FunctionBody)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFunctionDecl_Body()
-   * @model containment="true"
-   * @generated
-   */
-  FunctionBody getBody();
-
-  /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getBody <em>Body</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Body</em>' containment reference.
-   * @see #getBody()
-   * @generated
-   */
-  void setBody(FunctionBody value);
+  void setVarList(TypedVariableList value);
 
   /**
    * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
@@ -148,5 +122,31 @@ public interface FunctionDecl extends EObject
    * @generated
    */
   void setReturnType(TypeConstructor value);
+
+  /**
+   * Returns the value of the '<em><b>Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Body</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Body</em>' containment reference.
+   * @see #setBody(FunctionBody)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFunctionDecl_Body()
+   * @model containment="true"
+   * @generated
+   */
+  FunctionBody getBody();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getBody <em>Body</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Body</em>' containment reference.
+   * @see #getBody()
+   * @generated
+   */
+  void setBody(FunctionBody value);
 
 } // FunctionDecl

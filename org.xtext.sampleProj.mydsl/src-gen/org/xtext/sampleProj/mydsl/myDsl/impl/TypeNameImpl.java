@@ -15,7 +15,7 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeName;
  *
  * @generated
  */
-public class TypeNameImpl extends NameImpl implements TypeName
+public class TypeNameImpl extends GenNameImpl implements TypeName
 {
   /**
    * <!-- begin-user-doc -->

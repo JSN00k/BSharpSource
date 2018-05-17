@@ -3,7 +3,6 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,14 +14,13 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypedVariable()
  * @model
  * @generated
  */
-public interface TypedVariable extends EObject
+public interface TypedVariable extends ExpressionVariable
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -49,31 +47,5 @@ public interface TypedVariable extends EObject
    * @generated
    */
   void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(ConstructedType)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTypedVariable_Type()
-   * @model containment="true"
-   * @generated
-   */
-  ConstructedType getType();
-
-  /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable#getType <em>Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' containment reference.
-   * @see #getType()
-   * @generated
-   */
-  void setType(ConstructedType value);
 
 } // TypedVariable

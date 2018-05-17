@@ -14,6 +14,6 @@ package org.xtext.sampleProj.mydsl.myDsl;
  * @model
  * @generated
  */
-public interface TypeName extends Name
+public interface TypeName extends GenName, ExpressionType
 {
 } // TypeName

@@ -3,7 +3,6 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface FunctionName extends EObject
+public interface FunctionName extends ExpressionVariable
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

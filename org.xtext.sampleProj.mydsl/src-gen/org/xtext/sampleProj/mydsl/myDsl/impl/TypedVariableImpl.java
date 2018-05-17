@@ -4,15 +4,11 @@
 package org.xtext.sampleProj.mydsl.myDsl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
 
@@ -25,12 +21,11 @@ import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypedVariableImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TypedVariableImpl extends MinimalEObjectImpl.Container implements TypedVariable
+public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVariable
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -51,16 +46,6 @@ public class TypedVariableImpl extends MinimalEObjectImpl.Container implements T
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected ConstructedType type;
 
   /**
    * <!-- begin-user-doc -->
@@ -111,70 +96,6 @@ public class TypedVariableImpl extends MinimalEObjectImpl.Container implements T
    * <!-- end-user-doc -->
    * @generated
    */
-  public ConstructedType getType()
-  {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetType(ConstructedType newType, NotificationChain msgs)
-  {
-    ConstructedType oldType = type;
-    type = newType;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.TYPED_VARIABLE__TYPE, oldType, newType);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(ConstructedType newType)
-  {
-    if (newType != type)
-    {
-      NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.TYPED_VARIABLE__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.TYPED_VARIABLE__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.TYPED_VARIABLE__TYPE, newType, newType));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case MyDslPackage.TYPED_VARIABLE__TYPE:
-        return basicSetType(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -182,8 +103,6 @@ public class TypedVariableImpl extends MinimalEObjectImpl.Container implements T
     {
       case MyDslPackage.TYPED_VARIABLE__NAME:
         return getName();
-      case MyDslPackage.TYPED_VARIABLE__TYPE:
-        return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -200,9 +119,6 @@ public class TypedVariableImpl extends MinimalEObjectImpl.Container implements T
     {
       case MyDslPackage.TYPED_VARIABLE__NAME:
         setName((String)newValue);
-        return;
-      case MyDslPackage.TYPED_VARIABLE__TYPE:
-        setType((ConstructedType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,9 +137,6 @@ public class TypedVariableImpl extends MinimalEObjectImpl.Container implements T
       case MyDslPackage.TYPED_VARIABLE__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case MyDslPackage.TYPED_VARIABLE__TYPE:
-        setType((ConstructedType)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -240,8 +153,6 @@ public class TypedVariableImpl extends MinimalEObjectImpl.Container implements T
     {
       case MyDslPackage.TYPED_VARIABLE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case MyDslPackage.TYPED_VARIABLE__TYPE:
-        return type != null;
     }
     return super.eIsSet(featureID);
   }

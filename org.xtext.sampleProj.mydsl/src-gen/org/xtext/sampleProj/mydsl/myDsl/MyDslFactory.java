@@ -87,13 +87,13 @@ public interface MyDslFactory extends EFactory
   BppClass createBppClass();
 
   /**
-   * Returns a new object of class '<em>Name</em>'.
+   * Returns a new object of class '<em>Gen Name</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Name</em>'.
+   * @return a new object of class '<em>Gen Name</em>'.
    * @generated
    */
-  Name createName();
+  GenName createGenName();
 
   /**
    * Returns a new object of class '<em>Type Name</em>'.
@@ -330,6 +330,15 @@ public interface MyDslFactory extends EFactory
   TypedVariableList createTypedVariableList();
 
   /**
+   * Returns a new object of class '<em>Variable Typing</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable Typing</em>'.
+   * @generated
+   */
+  VariableTyping createVariableTyping();
+
+  /**
    * Returns a new object of class '<em>Typed Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -357,15 +366,6 @@ public interface MyDslFactory extends EFactory
   Expression createExpression();
 
   /**
-   * Returns a new object of class '<em>Built In</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Built In</em>'.
-   * @generated
-   */
-  BuiltIn createBuiltIn();
-
-  /**
    * Returns a new object of class '<em>Lambda</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -391,6 +391,51 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Prefix createPrefix();
+
+  /**
+   * Returns a new object of class '<em>Expression Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expression Type</em>'.
+   * @generated
+   */
+  ExpressionType createExpressionType();
+
+  /**
+   * Returns a new object of class '<em>Expression Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expression Variable</em>'.
+   * @generated
+   */
+  ExpressionVariable createExpressionVariable();
+
+  /**
+   * Returns a new object of class '<em>Type Instance</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Instance</em>'.
+   * @generated
+   */
+  TypeInstance createTypeInstance();
+
+  /**
+   * Returns a new object of class '<em>Inbuilt Type Scan</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Inbuilt Type Scan</em>'.
+   * @generated
+   */
+  InbuiltTypeScan createInbuiltTypeScan();
+
+  /**
+   * Returns a new object of class '<em>Instance</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Instance</em>'.
+   * @generated
+   */
+  Instance createInstance();
 
   /**
    * Returns a new object of class '<em>Infix</em>'.
