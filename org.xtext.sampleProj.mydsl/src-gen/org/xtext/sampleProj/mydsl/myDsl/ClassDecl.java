@@ -14,6 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getBodyElements <em>Body Elements</em>}</li>
  * </ul>
  *
@@ -23,6 +25,58 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ClassDecl extends TopLevel
 {
+  /**
+   * Returns the value of the '<em><b>Type Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Type Name</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type Name</em>' containment reference.
+   * @see #setTypeName(TypeName)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getClassDecl_TypeName()
+   * @model containment="true"
+   * @generated
+   */
+  TypeName getTypeName();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getTypeName <em>Type Name</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type Name</em>' containment reference.
+   * @see #getTypeName()
+   * @generated
+   */
+  void setTypeName(TypeName value);
+
+  /**
+   * Returns the value of the '<em><b>Context</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Context</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Context</em>' containment reference.
+   * @see #setContext(PolyContext)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getClassDecl_Context()
+   * @model containment="true"
+   * @generated
+   */
+  PolyContext getContext();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getContext <em>Context</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Context</em>' containment reference.
+   * @see #getContext()
+   * @generated
+   */
+  void setContext(PolyContext value);
+
   /**
    * Returns the value of the '<em><b>Body Elements</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements}.

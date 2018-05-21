@@ -3,6 +3,7 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,14 +15,15 @@ package org.xtext.sampleProj.mydsl.myDsl;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Extend#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Extend#getExtesnion <em>Extesnion</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Extend#getExtension <em>Extension</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Extend#getBodyElements <em>Body Elements</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getExtend()
  * @model
  * @generated
  */
-public interface Extend extends ClassDecl
+public interface Extend extends TopLevel
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' reference.
@@ -50,29 +52,45 @@ public interface Extend extends ClassDecl
   void setName(TypeName value);
 
   /**
-   * Returns the value of the '<em><b>Extesnion</b></em>' attribute.
+   * Returns the value of the '<em><b>Extension</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Extesnion</em>' attribute isn't clear,
+   * If the meaning of the '<em>Extension</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Extesnion</em>' attribute.
-   * @see #setExtesnion(String)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getExtend_Extesnion()
+   * @return the value of the '<em>Extension</em>' attribute.
+   * @see #setExtension(String)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getExtend_Extension()
    * @model
    * @generated
    */
-  String getExtesnion();
+  String getExtension();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.Extend#getExtesnion <em>Extesnion</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.Extend#getExtension <em>Extension</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Extesnion</em>' attribute.
-   * @see #getExtesnion()
+   * @param value the new value of the '<em>Extension</em>' attribute.
+   * @see #getExtension()
    * @generated
    */
-  void setExtesnion(String value);
+  void setExtension(String value);
+
+  /**
+   * Returns the value of the '<em><b>Body Elements</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Body Elements</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Body Elements</em>' containment reference list.
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getExtend_BodyElements()
+   * @model containment="true"
+   * @generated
+   */
+  EList<TypeBodyElements> getBodyElements();
 
 } // Extend

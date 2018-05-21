@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.Expression;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.Quantifier;
+import org.xtext.sampleProj.mydsl.myDsl.QuantLambda;
 import org.xtext.sampleProj.mydsl.myDsl.Where;
 
 /**
@@ -46,7 +46,7 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where
    * @generated
    * @ordered
    */
-  protected EList<Quantifier> expessions;
+  protected EList<QuantLambda> expessions;
 
   /**
    * The cached value of the '{@link #getExpressions() <em>Expressions</em>}' containment reference list.
@@ -84,11 +84,11 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Quantifier> getExpessions()
+  public EList<QuantLambda> getExpessions()
   {
     if (expessions == null)
     {
-      expessions = new EObjectContainmentEList<Quantifier>(Quantifier.class, this, MyDslPackage.WHERE__EXPESSIONS);
+      expessions = new EObjectContainmentEList<QuantLambda>(QuantLambda.class, this, MyDslPackage.WHERE__EXPESSIONS);
     }
     return expessions;
   }
@@ -156,7 +156,7 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where
     {
       case MyDslPackage.WHERE__EXPESSIONS:
         getExpessions().clear();
-        getExpessions().addAll((Collection<? extends Quantifier>)newValue);
+        getExpessions().addAll((Collection<? extends QuantLambda>)newValue);
         return;
       case MyDslPackage.WHERE__EXPRESSIONS:
         getExpressions().clear();

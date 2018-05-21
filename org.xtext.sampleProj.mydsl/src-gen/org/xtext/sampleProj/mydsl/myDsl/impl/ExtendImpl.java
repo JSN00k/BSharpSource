@@ -3,15 +3,24 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.xtext.sampleProj.mydsl.myDsl.Extend;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
 import org.xtext.sampleProj.mydsl.myDsl.TypeName;
 
 /**
@@ -23,12 +32,13 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeName;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExtendImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExtendImpl#getExtesnion <em>Extesnion</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExtendImpl#getExtension <em>Extension</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExtendImpl#getBodyElements <em>Body Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ExtendImpl extends ClassDeclImpl implements Extend
+public class ExtendImpl extends TopLevelImpl implements Extend
 {
   /**
    * The cached value of the '{@link #getName() <em>Name</em>}' reference.
@@ -41,24 +51,34 @@ public class ExtendImpl extends ClassDeclImpl implements Extend
   protected TypeName name;
 
   /**
-   * The default value of the '{@link #getExtesnion() <em>Extesnion</em>}' attribute.
+   * The default value of the '{@link #getExtension() <em>Extension</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExtesnion()
+   * @see #getExtension()
    * @generated
    * @ordered
    */
-  protected static final String EXTESNION_EDEFAULT = null;
+  protected static final String EXTENSION_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getExtesnion() <em>Extesnion</em>}' attribute.
+   * The cached value of the '{@link #getExtension() <em>Extension</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExtesnion()
+   * @see #getExtension()
    * @generated
    * @ordered
    */
-  protected String extesnion = EXTESNION_EDEFAULT;
+  protected String extension = EXTENSION_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBodyElements()
+   * @generated
+   * @ordered
+   */
+  protected EList<TypeBodyElements> bodyElements;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,9 +149,9 @@ public class ExtendImpl extends ClassDeclImpl implements Extend
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getExtesnion()
+  public String getExtension()
   {
-    return extesnion;
+    return extension;
   }
 
   /**
@@ -139,12 +159,42 @@ public class ExtendImpl extends ClassDeclImpl implements Extend
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExtesnion(String newExtesnion)
+  public void setExtension(String newExtension)
   {
-    String oldExtesnion = extesnion;
-    extesnion = newExtesnion;
+    String oldExtension = extension;
+    extension = newExtension;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.EXTEND__EXTESNION, oldExtesnion, extesnion));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.EXTEND__EXTENSION, oldExtension, extension));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<TypeBodyElements> getBodyElements()
+  {
+    if (bodyElements == null)
+    {
+      bodyElements = new EObjectContainmentEList<TypeBodyElements>(TypeBodyElements.class, this, MyDslPackage.EXTEND__BODY_ELEMENTS);
+    }
+    return bodyElements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.EXTEND__BODY_ELEMENTS:
+        return ((InternalEList<?>)getBodyElements()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -160,8 +210,10 @@ public class ExtendImpl extends ClassDeclImpl implements Extend
       case MyDslPackage.EXTEND__NAME:
         if (resolve) return getName();
         return basicGetName();
-      case MyDslPackage.EXTEND__EXTESNION:
-        return getExtesnion();
+      case MyDslPackage.EXTEND__EXTENSION:
+        return getExtension();
+      case MyDslPackage.EXTEND__BODY_ELEMENTS:
+        return getBodyElements();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -171,6 +223,7 @@ public class ExtendImpl extends ClassDeclImpl implements Extend
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -179,8 +232,12 @@ public class ExtendImpl extends ClassDeclImpl implements Extend
       case MyDslPackage.EXTEND__NAME:
         setName((TypeName)newValue);
         return;
-      case MyDslPackage.EXTEND__EXTESNION:
-        setExtesnion((String)newValue);
+      case MyDslPackage.EXTEND__EXTENSION:
+        setExtension((String)newValue);
+        return;
+      case MyDslPackage.EXTEND__BODY_ELEMENTS:
+        getBodyElements().clear();
+        getBodyElements().addAll((Collection<? extends TypeBodyElements>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -199,8 +256,11 @@ public class ExtendImpl extends ClassDeclImpl implements Extend
       case MyDslPackage.EXTEND__NAME:
         setName((TypeName)null);
         return;
-      case MyDslPackage.EXTEND__EXTESNION:
-        setExtesnion(EXTESNION_EDEFAULT);
+      case MyDslPackage.EXTEND__EXTENSION:
+        setExtension(EXTENSION_EDEFAULT);
+        return;
+      case MyDslPackage.EXTEND__BODY_ELEMENTS:
+        getBodyElements().clear();
         return;
     }
     super.eUnset(featureID);
@@ -218,8 +278,10 @@ public class ExtendImpl extends ClassDeclImpl implements Extend
     {
       case MyDslPackage.EXTEND__NAME:
         return name != null;
-      case MyDslPackage.EXTEND__EXTESNION:
-        return EXTESNION_EDEFAULT == null ? extesnion != null : !EXTESNION_EDEFAULT.equals(extesnion);
+      case MyDslPackage.EXTEND__EXTENSION:
+        return EXTENSION_EDEFAULT == null ? extension != null : !EXTENSION_EDEFAULT.equals(extension);
+      case MyDslPackage.EXTEND__BODY_ELEMENTS:
+        return bodyElements != null && !bodyElements.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -235,8 +297,8 @@ public class ExtendImpl extends ClassDeclImpl implements Extend
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (extesnion: ");
-    result.append(extesnion);
+    result.append(" (extension: ");
+    result.append(extension);
     result.append(')');
     return result.toString();
   }

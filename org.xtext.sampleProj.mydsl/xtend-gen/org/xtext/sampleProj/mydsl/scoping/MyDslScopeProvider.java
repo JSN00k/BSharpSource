@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
-import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.xtext.sampleProj.mydsl.myDsl.BppClass;
@@ -23,13 +22,13 @@ import org.xtext.sampleProj.mydsl.myDsl.Extend;
 import org.xtext.sampleProj.mydsl.myDsl.FunctionDecl;
 import org.xtext.sampleProj.mydsl.myDsl.FunctionName;
 import org.xtext.sampleProj.mydsl.myDsl.GenName;
-import org.xtext.sampleProj.mydsl.myDsl.Lambda;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 import org.xtext.sampleProj.mydsl.myDsl.PolymorphicTypeName;
-import org.xtext.sampleProj.mydsl.myDsl.Quantifier;
+import org.xtext.sampleProj.mydsl.myDsl.QuantLambda;
+import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.TypeName;
+import org.xtext.sampleProj.mydsl.myDsl.TypeStructure;
 import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
-import org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstructorImpl;
 import org.xtext.sampleProj.mydsl.scoping.AbstractMyDslScopeProvider;
 
 /**
@@ -40,15 +39,29 @@ import org.xtext.sampleProj.mydsl.scoping.AbstractMyDslScopeProvider;
  */
 @SuppressWarnings("all")
 public class MyDslScopeProvider extends AbstractMyDslScopeProvider {
+  private enum PolyOrVariable {
+    POLY,
+    
+    VARIABLE;
+  }
+  
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
-    if (((context instanceof TypeConstructorImpl) && Objects.equal(reference.getEReferenceType(), MyDslPackage.Literals.GEN_NAME))) {
-      final BppClass classDecl = EcoreUtil2.<BppClass>getContainerOfType(context, BppClass.class);
+    if (((context instanceof TypeConstructor) && Objects.equal(reference.getEReferenceType(), MyDslPackage.Literals.GEN_NAME))) {
+      ClassDecl classDecl = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
+      if ((classDecl == null)) {
+        final Extend extend = EcoreUtil2.<Extend>getContainerOfType(context, Extend.class);
+        if ((extend != null)) {
+          EObject _eContainer = extend.getName().eContainer();
+          classDecl = ((ClassDecl) _eContainer);
+        }
+      }
       if ((classDecl != null)) {
+        final ClassDecl finalClassDecl = classDecl;
         final List<PolymorphicTypeName> polyTypes = EcoreUtil2.<PolymorphicTypeName>getAllContentsOfType(classDecl.getContext(), PolymorphicTypeName.class);
         final EObject rootElement = EcoreUtil2.getRootContainer(context);
         final Function1<EObject, Boolean> _function = (EObject object) -> {
-          return Boolean.valueOf(Objects.equal(object, classDecl));
+          return Boolean.valueOf(Objects.equal(object, finalClassDecl));
         };
         final Function1<EObject, Boolean> _function_1 = (EObject object) -> {
           return Boolean.valueOf((object instanceof TypeName));
@@ -87,43 +100,91 @@ public class MyDslScopeProvider extends AbstractMyDslScopeProvider {
             return Boolean.valueOf((object instanceof FunctionName));
           };
           ArrayList<? extends EObject> functionNames = this.eFilterUpToIncludingWith(rootObj_1, _function_4, _function_5);
-          final Function1<EObject, List<? extends EObject>> _function_6 = (EObject object) -> {
-            try {
-              final Method method = object.getClass().getMethod("getVarList", null);
-              Object _invoke = method.invoke(object, null);
-              final EObject varList = ((EObject) _invoke);
-              if ((varList == null)) {
-                return null;
-              }
-              return EcoreUtil2.<TypedVariable>getAllContentsOfType(varList, TypedVariable.class);
-            } catch (Throwable _e) {
-              throw Exceptions.sneakyThrow(_e);
-            }
-          };
-          IScope instVariableScope = this.getTypeVariableScopeFor(context, _function_6);
-          final BppClass currentTypeClass = EcoreUtil2.<BppClass>getContainerOfType(context, BppClass.class);
-          if ((currentTypeClass != null)) {
-          }
-          return Scopes.scopeFor(functionNames, instVariableScope);
+          IScope scope_1 = this.getLocalVariableScopeForContext(context);
+          return Scopes.scopeFor(functionNames, scope_1);
         }
       }
     }
     return super.getScope(context, reference);
   }
   
-  public IScope getTypeVariableScopeFor(final EObject context, final Function1<EObject, List<? extends EObject>> nameGetter) {
-    final Function1<EObject, Boolean> _function = (EObject object) -> {
-      return Boolean.valueOf((((((object instanceof Lambda) || (object instanceof Quantifier)) || (object instanceof FunctionDecl)) || (object instanceof BppClass)) || (object instanceof Extend)));
+  public IScope getLocalVariableScopeForContext(final EObject context) {
+    return this.getPolyOrVariableScopeFor(context, MyDslScopeProvider.PolyOrVariable.VARIABLE);
+  }
+  
+  public IScope getPolymorphicScopeForContext(final EObject context) {
+    return this.getPolyOrVariableScopeFor(context, MyDslScopeProvider.PolyOrVariable.POLY);
+  }
+  
+  private IScope getPolyOrVariableScopeFor(final EObject context, final MyDslScopeProvider.PolyOrVariable polyOrVar) {
+    Function1<EObject, List<? extends EObject>> nameGetter = ((Function1<EObject, List<? extends EObject>>) null);
+    boolean _equals = Objects.equal(polyOrVar, MyDslScopeProvider.PolyOrVariable.VARIABLE);
+    if (_equals) {
+      final Function1<EObject, List<? extends EObject>> _function = (EObject object) -> {
+        try {
+          final Method method = object.getClass().getMethod("getVarList", null);
+          Object _invoke = method.invoke(object, null);
+          final EObject varList = ((EObject) _invoke);
+          ArrayList<EObject> allResults = new ArrayList<EObject>();
+          if ((varList != null)) {
+            allResults.addAll(EcoreUtil2.<TypedVariable>getAllContentsOfType(varList, TypedVariable.class));
+          }
+          if ((object instanceof BppClass)) {
+            allResults.add(((BppClass) object).getTypeName());
+          }
+          return allResults;
+        } catch (Throwable _e) {
+          throw Exceptions.sneakyThrow(_e);
+        }
+      };
+      nameGetter = _function;
+    } else {
+      final Function1<EObject, List<? extends EObject>> _function_1 = (EObject object) -> {
+        try {
+          final Method method = object.getClass().getMethod("getContext", null);
+          Object _invoke = method.invoke(object, null);
+          final EObject polyContext = ((EObject) _invoke);
+          if ((polyContext == null)) {
+            return null;
+          }
+          return EcoreUtil2.<PolymorphicTypeName>getAllContentsOfType(polyContext, PolymorphicTypeName.class);
+        } catch (Throwable _e) {
+          throw Exceptions.sneakyThrow(_e);
+        }
+      };
+      nameGetter = _function_1;
+    }
+    final Function1<EObject, Boolean> _function_2 = (EObject object) -> {
+      return Boolean.valueOf(((((object instanceof QuantLambda) || (object instanceof FunctionDecl)) || (object instanceof ClassDecl)) || (object instanceof Extend)));
     };
-    final EObject containerWithTypeVariable = this.eContainerMatchingLambda(context, _function);
+    final EObject containerWithTypeVariable = this.eContainerMatchingLambda(context, _function_2);
     if ((containerWithTypeVariable == null)) {
       return null;
     }
     if ((containerWithTypeVariable instanceof Extend)) {
-      return this.getTypeVariableScopeForExtension(((Extend) containerWithTypeVariable));
+      final Extend extend = ((Extend) containerWithTypeVariable);
+      EObject _eContainer = extend.getName().eContainer();
+      if ((_eContainer instanceof BppClass)) {
+        EObject _eContainer_1 = extend.getName().eContainer();
+        final BppClass bppClass = ((BppClass) _eContainer_1);
+        boolean _equals_1 = Objects.equal(polyOrVar, MyDslScopeProvider.PolyOrVariable.VARIABLE);
+        if (_equals_1) {
+          ArrayList<EObject> scopeVars = new ArrayList<EObject>();
+          TypeStructure _varList = bppClass.getVarList();
+          boolean _tripleNotEquals = (_varList != null);
+          if (_tripleNotEquals) {
+            scopeVars.addAll(EcoreUtil2.<TypedVariable>getAllContentsOfType(bppClass.getVarList(), TypedVariable.class));
+          }
+          scopeVars.add(bppClass.getTypeName());
+          return Scopes.scopeFor(scopeVars);
+        } else {
+          return Scopes.scopeFor(EcoreUtil2.<PolymorphicTypeName>getAllContentsOfType(bppClass.getContext(), PolymorphicTypeName.class));
+        }
+      }
+      return null;
     }
     final List<? extends EObject> names = nameGetter.apply(containerWithTypeVariable);
-    final IScope parentScope = this.getTypeVariableScopeFor(containerWithTypeVariable, nameGetter);
+    final IScope parentScope = this.getPolyOrVariableScopeFor(containerWithTypeVariable, polyOrVar);
     if ((parentScope == null)) {
       if ((names == null)) {
         return null;
@@ -137,18 +198,6 @@ public class MyDslScopeProvider extends AbstractMyDslScopeProvider {
         return Scopes.scopeFor(names, parentScope);
       }
     }
-  }
-  
-  public IScope getTypeVariableScopeForExtension(final Extend context) {
-    final Function1<EObject, Boolean> _function = (EObject object) -> {
-      return Boolean.valueOf(((object instanceof BppClass) && Objects.equal(((BppClass) object).getTypeName(), context.getName())));
-    };
-    ArrayList<? extends EObject> _eFilterUpToCurrentWith = this.eFilterUpToCurrentWith(context, _function);
-    final ArrayList<BppClass> typeClass = ((ArrayList<BppClass>) _eFilterUpToCurrentWith);
-    if (((typeClass == null) || (((Object[])Conversions.unwrapArray(typeClass, Object.class)).length == 0))) {
-      return null;
-    }
-    return Scopes.scopeFor(EcoreUtil2.<TypeName>getAllContentsOfType(typeClass.get(0), TypeName.class));
   }
   
   /**
@@ -195,6 +244,11 @@ public class MyDslScopeProvider extends AbstractMyDslScopeProvider {
     EObject next = null;
     do {
       {
+        boolean _hasNext = iterable.hasNext();
+        boolean _not = (!_hasNext);
+        if (_not) {
+          return result;
+        }
         next = iterable.next();
         if ((next == null)) {
           return result;
@@ -204,7 +258,7 @@ public class MyDslScopeProvider extends AbstractMyDslScopeProvider {
           result.add(next);
         }
       }
-    } while(((next != null) && (!(stopFilter.apply(next)).booleanValue())));
+    } while((!(stopFilter.apply(next)).booleanValue()));
     return result;
   }
   

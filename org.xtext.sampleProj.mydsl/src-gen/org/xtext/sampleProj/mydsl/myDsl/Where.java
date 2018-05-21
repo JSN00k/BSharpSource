@@ -28,7 +28,7 @@ public interface Where extends EObject
 {
   /**
    * Returns the value of the '<em><b>Expessions</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.Quantifier}.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.QuantLambda}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Expessions</em>' containment reference list isn't clear,
@@ -40,7 +40,7 @@ public interface Where extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Quantifier> getExpessions();
+  EList<QuantLambda> getExpessions();
 
   /**
    * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.

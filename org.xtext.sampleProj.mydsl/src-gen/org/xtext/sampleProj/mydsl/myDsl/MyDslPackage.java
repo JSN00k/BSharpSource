@@ -199,13 +199,31 @@ public interface MyDslPackage extends EPackage
   int CLASS_DECL = 5;
 
   /**
+   * The feature id for the '<em><b>Type Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS_DECL__TYPE_NAME = TOP_LEVEL_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS_DECL__CONTEXT = TOP_LEVEL_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS_DECL__BODY_ELEMENTS = TOP_LEVEL_FEATURE_COUNT + 0;
+  int CLASS_DECL__BODY_ELEMENTS = TOP_LEVEL_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Class Decl</em>' class.
@@ -214,7 +232,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS_DECL_FEATURE_COUNT = TOP_LEVEL_FEATURE_COUNT + 1;
+  int CLASS_DECL_FEATURE_COUNT = TOP_LEVEL_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl <em>Bpp Class</em>}' class.
@@ -227,6 +245,24 @@ public interface MyDslPackage extends EPackage
   int BPP_CLASS = 6;
 
   /**
+   * The feature id for the '<em><b>Type Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BPP_CLASS__TYPE_NAME = CLASS_DECL__TYPE_NAME;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BPP_CLASS__CONTEXT = CLASS_DECL__CONTEXT;
+
+  /**
    * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -236,31 +272,13 @@ public interface MyDslPackage extends EPackage
   int BPP_CLASS__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
 
   /**
-   * The feature id for the '<em><b>Type Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BPP_CLASS__TYPE_NAME = CLASS_DECL_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Context</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BPP_CLASS__CONTEXT = CLASS_DECL_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Supertypes</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BPP_CLASS__SUPERTYPES = CLASS_DECL_FEATURE_COUNT + 2;
+  int BPP_CLASS__SUPERTYPES = CLASS_DECL_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Var List</b></em>' containment reference.
@@ -269,7 +287,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BPP_CLASS__VAR_LIST = CLASS_DECL_FEATURE_COUNT + 3;
+  int BPP_CLASS__VAR_LIST = CLASS_DECL_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Where</b></em>' containment reference.
@@ -278,7 +296,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BPP_CLASS__WHERE = CLASS_DECL_FEATURE_COUNT + 4;
+  int BPP_CLASS__WHERE = CLASS_DECL_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Bpp Class</em>' class.
@@ -287,7 +305,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BPP_CLASS_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 5;
+  int BPP_CLASS_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.GenNameImpl <em>Gen Name</em>}' class.
@@ -663,6 +681,24 @@ public interface MyDslPackage extends EPackage
   int DATATYPE = 19;
 
   /**
+   * The feature id for the '<em><b>Type Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATATYPE__TYPE_NAME = CLASS_DECL__TYPE_NAME;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATATYPE__CONTEXT = CLASS_DECL__CONTEXT;
+
+  /**
    * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -672,31 +708,13 @@ public interface MyDslPackage extends EPackage
   int DATATYPE__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATATYPE__NAME = CLASS_DECL_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Context</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DATATYPE__CONTEXT = CLASS_DECL_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Constructors</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DATATYPE__CONSTRUCTORS = CLASS_DECL_FEATURE_COUNT + 2;
+  int DATATYPE__CONSTRUCTORS = CLASS_DECL_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Datatype</em>' class.
@@ -705,7 +723,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DATATYPE_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 3;
+  int DATATYPE_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.DatatypeConstructorImpl <em>Datatype Constructor</em>}' class.
@@ -811,31 +829,31 @@ public interface MyDslPackage extends EPackage
   int EXTEND = 23;
 
   /**
-   * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXTEND__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
-
-  /**
    * The feature id for the '<em><b>Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXTEND__NAME = CLASS_DECL_FEATURE_COUNT + 0;
+  int EXTEND__NAME = TOP_LEVEL_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Extesnion</b></em>' attribute.
+   * The feature id for the '<em><b>Extension</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXTEND__EXTESNION = CLASS_DECL_FEATURE_COUNT + 1;
+  int EXTEND__EXTENSION = TOP_LEVEL_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTEND__BODY_ELEMENTS = TOP_LEVEL_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Extend</em>' class.
@@ -844,7 +862,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXTEND_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 2;
+  int EXTEND_FEATURE_COUNT = TOP_LEVEL_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeBodyElementsImpl <em>Type Body Elements</em>}' class.
@@ -955,7 +973,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getExpressionVariable()
    * @generated
    */
-  int EXPRESSION_VARIABLE = 42;
+  int EXPRESSION_VARIABLE = 41;
 
   /**
    * The number of structural features of the '<em>Expression Variable</em>' class.
@@ -1318,16 +1336,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 37;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPRESSION__NAME = 0;
+  int EXPRESSION = 38;
 
   /**
    * The feature id for the '<em><b>Type Inst</b></em>' containment reference.
@@ -1336,7 +1345,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__TYPE_INST = 1;
+  int EXPRESSION__TYPE_INST = 0;
 
   /**
    * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -1345,7 +1354,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__ARGUMENTS = 2;
+  int EXPRESSION__ARGUMENTS = 1;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -1354,26 +1363,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = 3;
+  int EXPRESSION_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.LambdaImpl <em>Lambda</em>}' class.
+   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.QuantLambdaImpl <em>Quant Lambda</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.LambdaImpl
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getLambda()
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.QuantLambdaImpl
+   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getQuantLambda()
    * @generated
    */
-  int LAMBDA = 38;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LAMBDA__NAME = EXPRESSION__NAME;
+  int QUANT_LAMBDA = 37;
 
   /**
    * The feature id for the '<em><b>Type Inst</b></em>' containment reference.
@@ -1382,7 +1382,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LAMBDA__TYPE_INST = EXPRESSION__TYPE_INST;
+  int QUANT_LAMBDA__TYPE_INST = EXPRESSION__TYPE_INST;
 
   /**
    * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -1391,7 +1391,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LAMBDA__ARGUMENTS = EXPRESSION__ARGUMENTS;
+  int QUANT_LAMBDA__ARGUMENTS = EXPRESSION__ARGUMENTS;
+
+  /**
+   * The feature id for the '<em><b>QType</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUANT_LAMBDA__QTYPE = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -1400,7 +1409,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LAMBDA__CONTEXT = EXPRESSION_FEATURE_COUNT + 0;
+  int QUANT_LAMBDA__CONTEXT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Var List</b></em>' containment reference.
@@ -1409,98 +1418,25 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LAMBDA__VAR_LIST = EXPRESSION_FEATURE_COUNT + 1;
+  int QUANT_LAMBDA__VAR_LIST = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * The feature id for the '<em><b>Child</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LAMBDA__EXPR = EXPRESSION_FEATURE_COUNT + 2;
+  int QUANT_LAMBDA__CHILD = EXPRESSION_FEATURE_COUNT + 3;
 
   /**
-   * The number of structural features of the '<em>Lambda</em>' class.
+   * The number of structural features of the '<em>Quant Lambda</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LAMBDA_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.QuantifierImpl <em>Quantifier</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.QuantifierImpl
-   * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getQuantifier()
-   * @generated
-   */
-  int QUANTIFIER = 39;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUANTIFIER__NAME = EXPRESSION__NAME;
-
-  /**
-   * The feature id for the '<em><b>Type Inst</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUANTIFIER__TYPE_INST = EXPRESSION__TYPE_INST;
-
-  /**
-   * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUANTIFIER__ARGUMENTS = EXPRESSION__ARGUMENTS;
-
-  /**
-   * The feature id for the '<em><b>Context</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUANTIFIER__CONTEXT = EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Var List</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUANTIFIER__VAR_LIST = EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUANTIFIER__EXPR = EXPRESSION_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Quantifier</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUANTIFIER_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+  int QUANT_LAMBDA_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.PrefixImpl <em>Prefix</em>}' class.
@@ -1510,16 +1446,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getPrefix()
    * @generated
    */
-  int PREFIX = 40;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PREFIX__NAME = EXPRESSION__NAME;
+  int PREFIX = 39;
 
   /**
    * The feature id for the '<em><b>Type Inst</b></em>' containment reference.
@@ -1540,13 +1467,22 @@ public interface MyDslPackage extends EPackage
   int PREFIX__ARGUMENTS = EXPRESSION__ARGUMENTS;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREFIX__NAME = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Elem</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PREFIX__ELEM = EXPRESSION_FEATURE_COUNT + 0;
+  int PREFIX__ELEM = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Prefix</em>' class.
@@ -1555,7 +1491,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PREFIX_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+  int PREFIX_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExpressionTypeImpl <em>Expression Type</em>}' class.
@@ -1565,7 +1501,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getExpressionType()
    * @generated
    */
-  int EXPRESSION_TYPE = 41;
+  int EXPRESSION_TYPE = 40;
 
   /**
    * The number of structural features of the '<em>Expression Type</em>' class.
@@ -1584,7 +1520,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getTypeInstance()
    * @generated
    */
-  int TYPE_INSTANCE = 43;
+  int TYPE_INSTANCE = 42;
 
   /**
    * The feature id for the '<em><b>Instance</b></em>' reference.
@@ -1630,7 +1566,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getInbuiltTypeScan()
    * @generated
    */
-  int INBUILT_TYPE_SCAN = 44;
+  int INBUILT_TYPE_SCAN = 43;
 
   /**
    * The feature id for the '<em><b>Type Name</b></em>' reference.
@@ -1676,7 +1612,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getInstance()
    * @generated
    */
-  int INSTANCE = 45;
+  int INSTANCE = 44;
 
   /**
    * The feature id for the '<em><b>Class Name</b></em>' reference.
@@ -1722,16 +1658,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getInfix()
    * @generated
    */
-  int INFIX = 46;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INFIX__NAME = EXPRESSION__NAME;
+  int INFIX = 45;
 
   /**
    * The feature id for the '<em><b>Type Inst</b></em>' containment reference.
@@ -1902,6 +1829,28 @@ public interface MyDslPackage extends EPackage
   EClass getClassDecl();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getTypeName <em>Type Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type Name</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getTypeName()
+   * @see #getClassDecl()
+   * @generated
+   */
+  EReference getClassDecl_TypeName();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Context</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getContext()
+   * @see #getClassDecl()
+   * @generated
+   */
+  EReference getClassDecl_Context();
+
+  /**
    * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.ClassDecl#getBodyElements <em>Body Elements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1921,28 +1870,6 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getBppClass();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeName <em>Type Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeName()
-   * @see #getBppClass()
-   * @generated
-   */
-  EReference getBppClass_TypeName();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getContext <em>Context</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Context</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.BppClass#getContext()
-   * @see #getBppClass()
-   * @generated
-   */
-  EReference getBppClass_Context();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getSupertypes <em>Supertypes</em>}'.
@@ -2251,28 +2178,6 @@ public interface MyDslPackage extends EPackage
   EClass getDatatype();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Datatype#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Datatype#getName()
-   * @see #getDatatype()
-   * @generated
-   */
-  EReference getDatatype_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Datatype#getContext <em>Context</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Context</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Datatype#getContext()
-   * @see #getDatatype()
-   * @generated
-   */
-  EReference getDatatype_Context();
-
-  /**
    * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.Datatype#getConstructors <em>Constructors</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2357,15 +2262,26 @@ public interface MyDslPackage extends EPackage
   EReference getExtend_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.Extend#getExtesnion <em>Extesnion</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.Extend#getExtension <em>Extension</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Extesnion</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Extend#getExtesnion()
+   * @return the meta object for the attribute '<em>Extension</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.Extend#getExtension()
    * @see #getExtend()
    * @generated
    */
-  EAttribute getExtend_Extesnion();
+  EAttribute getExtend_Extension();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.sampleProj.mydsl.myDsl.Extend#getBodyElements <em>Body Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Body Elements</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.Extend#getBodyElements()
+   * @see #getExtend()
+   * @generated
+   */
+  EReference getExtend_BodyElements();
 
   /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements <em>Type Body Elements</em>}'.
@@ -2740,6 +2656,60 @@ public interface MyDslPackage extends EPackage
   EReference getTypeDeclaration_Context();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.QuantLambda <em>Quant Lambda</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Quant Lambda</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.QuantLambda
+   * @generated
+   */
+  EClass getQuantLambda();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.QuantLambda#getQType <em>QType</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>QType</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.QuantLambda#getQType()
+   * @see #getQuantLambda()
+   * @generated
+   */
+  EAttribute getQuantLambda_QType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.QuantLambda#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Context</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.QuantLambda#getContext()
+   * @see #getQuantLambda()
+   * @generated
+   */
+  EReference getQuantLambda_Context();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.QuantLambda#getVarList <em>Var List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Var List</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.QuantLambda#getVarList()
+   * @see #getQuantLambda()
+   * @generated
+   */
+  EReference getQuantLambda_VarList();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.QuantLambda#getChild <em>Child</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Child</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.QuantLambda#getChild()
+   * @see #getQuantLambda()
+   * @generated
+   */
+  EReference getQuantLambda_Child();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2748,17 +2718,6 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getExpression();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Expression#getName()
-   * @see #getExpression()
-   * @generated
-   */
-  EAttribute getExpression_Name();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Expression#getTypeInst <em>Type Inst</em>}'.
@@ -2783,92 +2742,6 @@ public interface MyDslPackage extends EPackage
   EReference getExpression_Arguments();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.Lambda <em>Lambda</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Lambda</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Lambda
-   * @generated
-   */
-  EClass getLambda();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Lambda#getContext <em>Context</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Context</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Lambda#getContext()
-   * @see #getLambda()
-   * @generated
-   */
-  EReference getLambda_Context();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Lambda#getVarList <em>Var List</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Var List</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Lambda#getVarList()
-   * @see #getLambda()
-   * @generated
-   */
-  EReference getLambda_VarList();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Lambda#getExpr <em>Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expr</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Lambda#getExpr()
-   * @see #getLambda()
-   * @generated
-   */
-  EReference getLambda_Expr();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.Quantifier <em>Quantifier</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Quantifier</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Quantifier
-   * @generated
-   */
-  EClass getQuantifier();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Quantifier#getContext <em>Context</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Context</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Quantifier#getContext()
-   * @see #getQuantifier()
-   * @generated
-   */
-  EReference getQuantifier_Context();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Quantifier#getVarList <em>Var List</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Var List</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Quantifier#getVarList()
-   * @see #getQuantifier()
-   * @generated
-   */
-  EReference getQuantifier_VarList();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Quantifier#getExpr <em>Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expr</em>'.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Quantifier#getExpr()
-   * @see #getQuantifier()
-   * @generated
-   */
-  EReference getQuantifier_Expr();
-
-  /**
    * Returns the meta object for class '{@link org.xtext.sampleProj.mydsl.myDsl.Prefix <em>Prefix</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2877,6 +2750,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getPrefix();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.sampleProj.mydsl.myDsl.Prefix#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.sampleProj.mydsl.myDsl.Prefix#getName()
+   * @see #getPrefix()
+   * @generated
+   */
+  EAttribute getPrefix_Name();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.sampleProj.mydsl.myDsl.Prefix#getElem <em>Elem</em>}'.
@@ -3186,6 +3070,22 @@ public interface MyDslPackage extends EPackage
     EClass CLASS_DECL = eINSTANCE.getClassDecl();
 
     /**
+     * The meta object literal for the '<em><b>Type Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CLASS_DECL__TYPE_NAME = eINSTANCE.getClassDecl_TypeName();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CLASS_DECL__CONTEXT = eINSTANCE.getClassDecl_Context();
+
+    /**
      * The meta object literal for the '<em><b>Body Elements</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3202,22 +3102,6 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass BPP_CLASS = eINSTANCE.getBppClass();
-
-    /**
-     * The meta object literal for the '<em><b>Type Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BPP_CLASS__TYPE_NAME = eINSTANCE.getBppClass_TypeName();
-
-    /**
-     * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BPP_CLASS__CONTEXT = eINSTANCE.getBppClass_Context();
 
     /**
      * The meta object literal for the '<em><b>Supertypes</b></em>' containment reference feature.
@@ -3478,22 +3362,6 @@ public interface MyDslPackage extends EPackage
     EClass DATATYPE = eINSTANCE.getDatatype();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATATYPE__NAME = eINSTANCE.getDatatype_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DATATYPE__CONTEXT = eINSTANCE.getDatatype_Context();
-
-    /**
      * The meta object literal for the '<em><b>Constructors</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3566,12 +3434,20 @@ public interface MyDslPackage extends EPackage
     EReference EXTEND__NAME = eINSTANCE.getExtend_Name();
 
     /**
-     * The meta object literal for the '<em><b>Extesnion</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Extension</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute EXTEND__EXTESNION = eINSTANCE.getExtend_Extesnion();
+    EAttribute EXTEND__EXTENSION = eINSTANCE.getExtend_Extension();
+
+    /**
+     * The meta object literal for the '<em><b>Body Elements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXTEND__BODY_ELEMENTS = eINSTANCE.getExtend_BodyElements();
 
     /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.TypeBodyElementsImpl <em>Type Body Elements</em>}' class.
@@ -3880,6 +3756,48 @@ public interface MyDslPackage extends EPackage
     EReference TYPE_DECLARATION__CONTEXT = eINSTANCE.getTypeDeclaration_Context();
 
     /**
+     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.QuantLambdaImpl <em>Quant Lambda</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.QuantLambdaImpl
+     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getQuantLambda()
+     * @generated
+     */
+    EClass QUANT_LAMBDA = eINSTANCE.getQuantLambda();
+
+    /**
+     * The meta object literal for the '<em><b>QType</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute QUANT_LAMBDA__QTYPE = eINSTANCE.getQuantLambda_QType();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUANT_LAMBDA__CONTEXT = eINSTANCE.getQuantLambda_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Var List</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUANT_LAMBDA__VAR_LIST = eINSTANCE.getQuantLambda_VarList();
+
+    /**
+     * The meta object literal for the '<em><b>Child</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUANT_LAMBDA__CHILD = eINSTANCE.getQuantLambda_Child();
+
+    /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.ExpressionImpl <em>Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3888,14 +3806,6 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass EXPRESSION = eINSTANCE.getExpression();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXPRESSION__NAME = eINSTANCE.getExpression_Name();
 
     /**
      * The meta object literal for the '<em><b>Type Inst</b></em>' containment reference feature.
@@ -3914,74 +3824,6 @@ public interface MyDslPackage extends EPackage
     EReference EXPRESSION__ARGUMENTS = eINSTANCE.getExpression_Arguments();
 
     /**
-     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.LambdaImpl <em>Lambda</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.LambdaImpl
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getLambda()
-     * @generated
-     */
-    EClass LAMBDA = eINSTANCE.getLambda();
-
-    /**
-     * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LAMBDA__CONTEXT = eINSTANCE.getLambda_Context();
-
-    /**
-     * The meta object literal for the '<em><b>Var List</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LAMBDA__VAR_LIST = eINSTANCE.getLambda_VarList();
-
-    /**
-     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LAMBDA__EXPR = eINSTANCE.getLambda_Expr();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.QuantifierImpl <em>Quantifier</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.QuantifierImpl
-     * @see org.xtext.sampleProj.mydsl.myDsl.impl.MyDslPackageImpl#getQuantifier()
-     * @generated
-     */
-    EClass QUANTIFIER = eINSTANCE.getQuantifier();
-
-    /**
-     * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference QUANTIFIER__CONTEXT = eINSTANCE.getQuantifier_Context();
-
-    /**
-     * The meta object literal for the '<em><b>Var List</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference QUANTIFIER__VAR_LIST = eINSTANCE.getQuantifier_VarList();
-
-    /**
-     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference QUANTIFIER__EXPR = eINSTANCE.getQuantifier_Expr();
-
-    /**
      * The meta object literal for the '{@link org.xtext.sampleProj.mydsl.myDsl.impl.PrefixImpl <em>Prefix</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3990,6 +3832,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass PREFIX = eINSTANCE.getPrefix();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PREFIX__NAME = eINSTANCE.getPrefix_Name();
 
     /**
      * The meta object literal for the '<em><b>Elem</b></em>' containment reference feature.

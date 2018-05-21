@@ -5,7 +5,6 @@ package org.xtext.sampleProj.mydsl.myDsl.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -13,16 +12,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.Datatype;
 import org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
-import org.xtext.sampleProj.mydsl.myDsl.TypeName;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,8 +27,6 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeName;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.DatatypeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.DatatypeImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.DatatypeImpl#getConstructors <em>Constructors</em>}</li>
  * </ul>
  *
@@ -41,26 +34,6 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeName;
  */
 public class DatatypeImpl extends ClassDeclImpl implements Datatype
 {
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected TypeName name;
-
-  /**
-   * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getContext()
-   * @generated
-   * @ordered
-   */
-  protected PolyContext context;
-
   /**
    * The cached value of the '{@link #getConstructors() <em>Constructors</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -97,102 +70,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypeName getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetName(TypeName newName, NotificationChain msgs)
-  {
-    TypeName oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE__NAME, oldName, newName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(TypeName newName)
-  {
-    if (newName != name)
-    {
-      NotificationChain msgs = null;
-      if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE__NAME, null, msgs);
-      if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE__NAME, null, msgs);
-      msgs = basicSetName(newName, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE__NAME, newName, newName));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PolyContext getContext()
-  {
-    return context;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetContext(PolyContext newContext, NotificationChain msgs)
-  {
-    PolyContext oldContext = context;
-    context = newContext;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE__CONTEXT, oldContext, newContext);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setContext(PolyContext newContext)
-  {
-    if (newContext != context)
-    {
-      NotificationChain msgs = null;
-      if (context != null)
-        msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE__CONTEXT, null, msgs);
-      if (newContext != null)
-        msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE__CONTEXT, null, msgs);
-      msgs = basicSetContext(newContext, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE__CONTEXT, newContext, newContext));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EList<DatatypeConstructor> getConstructors()
   {
     if (constructors == null)
@@ -212,10 +89,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__NAME:
-        return basicSetName(null, msgs);
-      case MyDslPackage.DATATYPE__CONTEXT:
-        return basicSetContext(null, msgs);
       case MyDslPackage.DATATYPE__CONSTRUCTORS:
         return ((InternalEList<?>)getConstructors()).basicRemove(otherEnd, msgs);
     }
@@ -232,10 +105,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__NAME:
-        return getName();
-      case MyDslPackage.DATATYPE__CONTEXT:
-        return getContext();
       case MyDslPackage.DATATYPE__CONSTRUCTORS:
         return getConstructors();
     }
@@ -253,12 +122,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__NAME:
-        setName((TypeName)newValue);
-        return;
-      case MyDslPackage.DATATYPE__CONTEXT:
-        setContext((PolyContext)newValue);
-        return;
       case MyDslPackage.DATATYPE__CONSTRUCTORS:
         getConstructors().clear();
         getConstructors().addAll((Collection<? extends DatatypeConstructor>)newValue);
@@ -277,12 +140,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__NAME:
-        setName((TypeName)null);
-        return;
-      case MyDslPackage.DATATYPE__CONTEXT:
-        setContext((PolyContext)null);
-        return;
       case MyDslPackage.DATATYPE__CONSTRUCTORS:
         getConstructors().clear();
         return;
@@ -300,10 +157,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__NAME:
-        return name != null;
-      case MyDslPackage.DATATYPE__CONTEXT:
-        return context != null;
       case MyDslPackage.DATATYPE__CONSTRUCTORS:
         return constructors != null && !constructors.isEmpty();
     }

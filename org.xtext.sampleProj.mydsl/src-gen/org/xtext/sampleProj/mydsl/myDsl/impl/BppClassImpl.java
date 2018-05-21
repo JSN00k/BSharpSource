@@ -13,9 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.sampleProj.mydsl.myDsl.BppClass;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
-import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.SuperTypeList;
-import org.xtext.sampleProj.mydsl.myDsl.TypeName;
 import org.xtext.sampleProj.mydsl.myDsl.TypeStructure;
 import org.xtext.sampleProj.mydsl.myDsl.Where;
 
@@ -27,8 +25,6 @@ import org.xtext.sampleProj.mydsl.myDsl.Where;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getTypeName <em>Type Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getSupertypes <em>Supertypes</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getVarList <em>Var List</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.BppClassImpl#getWhere <em>Where</em>}</li>
@@ -38,26 +34,6 @@ import org.xtext.sampleProj.mydsl.myDsl.Where;
  */
 public class BppClassImpl extends ClassDeclImpl implements BppClass
 {
-  /**
-   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTypeName()
-   * @generated
-   * @ordered
-   */
-  protected TypeName typeName;
-
-  /**
-   * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getContext()
-   * @generated
-   * @ordered
-   */
-  protected PolyContext context;
-
   /**
    * The cached value of the '{@link #getSupertypes() <em>Supertypes</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -107,102 +83,6 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
   protected EClass eStaticClass()
   {
     return MyDslPackage.Literals.BPP_CLASS;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TypeName getTypeName()
-  {
-    return typeName;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetTypeName(TypeName newTypeName, NotificationChain msgs)
-  {
-    TypeName oldTypeName = typeName;
-    typeName = newTypeName;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.BPP_CLASS__TYPE_NAME, oldTypeName, newTypeName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setTypeName(TypeName newTypeName)
-  {
-    if (newTypeName != typeName)
-    {
-      NotificationChain msgs = null;
-      if (typeName != null)
-        msgs = ((InternalEObject)typeName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.BPP_CLASS__TYPE_NAME, null, msgs);
-      if (newTypeName != null)
-        msgs = ((InternalEObject)newTypeName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.BPP_CLASS__TYPE_NAME, null, msgs);
-      msgs = basicSetTypeName(newTypeName, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.BPP_CLASS__TYPE_NAME, newTypeName, newTypeName));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PolyContext getContext()
-  {
-    return context;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetContext(PolyContext newContext, NotificationChain msgs)
-  {
-    PolyContext oldContext = context;
-    context = newContext;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.BPP_CLASS__CONTEXT, oldContext, newContext);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setContext(PolyContext newContext)
-  {
-    if (newContext != context)
-    {
-      NotificationChain msgs = null;
-      if (context != null)
-        msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.BPP_CLASS__CONTEXT, null, msgs);
-      if (newContext != null)
-        msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.BPP_CLASS__CONTEXT, null, msgs);
-      msgs = basicSetContext(newContext, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.BPP_CLASS__CONTEXT, newContext, newContext));
   }
 
   /**
@@ -359,10 +239,6 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
   {
     switch (featureID)
     {
-      case MyDslPackage.BPP_CLASS__TYPE_NAME:
-        return basicSetTypeName(null, msgs);
-      case MyDslPackage.BPP_CLASS__CONTEXT:
-        return basicSetContext(null, msgs);
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         return basicSetSupertypes(null, msgs);
       case MyDslPackage.BPP_CLASS__VAR_LIST:
@@ -383,10 +259,6 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
   {
     switch (featureID)
     {
-      case MyDslPackage.BPP_CLASS__TYPE_NAME:
-        return getTypeName();
-      case MyDslPackage.BPP_CLASS__CONTEXT:
-        return getContext();
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         return getSupertypes();
       case MyDslPackage.BPP_CLASS__VAR_LIST:
@@ -407,12 +279,6 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
   {
     switch (featureID)
     {
-      case MyDslPackage.BPP_CLASS__TYPE_NAME:
-        setTypeName((TypeName)newValue);
-        return;
-      case MyDslPackage.BPP_CLASS__CONTEXT:
-        setContext((PolyContext)newValue);
-        return;
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         setSupertypes((SuperTypeList)newValue);
         return;
@@ -436,12 +302,6 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
   {
     switch (featureID)
     {
-      case MyDslPackage.BPP_CLASS__TYPE_NAME:
-        setTypeName((TypeName)null);
-        return;
-      case MyDslPackage.BPP_CLASS__CONTEXT:
-        setContext((PolyContext)null);
-        return;
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         setSupertypes((SuperTypeList)null);
         return;
@@ -465,10 +325,6 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass
   {
     switch (featureID)
     {
-      case MyDslPackage.BPP_CLASS__TYPE_NAME:
-        return typeName != null;
-      case MyDslPackage.BPP_CLASS__CONTEXT:
-        return context != null;
       case MyDslPackage.BPP_CLASS__SUPERTYPES:
         return supertypes != null;
       case MyDslPackage.BPP_CLASS__VAR_LIST:

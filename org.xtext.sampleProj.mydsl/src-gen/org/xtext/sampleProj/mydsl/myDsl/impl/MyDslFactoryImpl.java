@@ -102,9 +102,8 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.VARIABLE_TYPING: return createVariableTyping();
       case MyDslPackage.TYPED_VARIABLE: return createTypedVariable();
       case MyDslPackage.TYPE_DECLARATION: return createTypeDeclaration();
+      case MyDslPackage.QUANT_LAMBDA: return createQuantLambda();
       case MyDslPackage.EXPRESSION: return createExpression();
-      case MyDslPackage.LAMBDA: return createLambda();
-      case MyDslPackage.QUANTIFIER: return createQuantifier();
       case MyDslPackage.PREFIX: return createPrefix();
       case MyDslPackage.EXPRESSION_TYPE: return createExpressionType();
       case MyDslPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
@@ -529,32 +528,21 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public QuantLambda createQuantLambda()
+  {
+    QuantLambdaImpl quantLambda = new QuantLambdaImpl();
+    return quantLambda;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Expression createExpression()
   {
     ExpressionImpl expression = new ExpressionImpl();
     return expression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Lambda createLambda()
-  {
-    LambdaImpl lambda = new LambdaImpl();
-    return lambda;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Quantifier createQuantifier()
-  {
-    QuantifierImpl quantifier = new QuantifierImpl();
-    return quantifier;
   }
 
   /**

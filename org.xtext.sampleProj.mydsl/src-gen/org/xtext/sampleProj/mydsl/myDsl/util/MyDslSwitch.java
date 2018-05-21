@@ -250,7 +250,6 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Extend extend = (Extend)theEObject;
         T result = caseExtend(extend);
-        if (result == null) result = caseClassDecl(extend);
         if (result == null) result = caseTopLevel(extend);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -350,26 +349,18 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.QUANT_LAMBDA:
+      {
+        QuantLambda quantLambda = (QuantLambda)theEObject;
+        T result = caseQuantLambda(quantLambda);
+        if (result == null) result = caseExpression(quantLambda);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.EXPRESSION:
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.LAMBDA:
-      {
-        Lambda lambda = (Lambda)theEObject;
-        T result = caseLambda(lambda);
-        if (result == null) result = caseExpression(lambda);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.QUANTIFIER:
-      {
-        Quantifier quantifier = (Quantifier)theEObject;
-        T result = caseQuantifier(quantifier);
-        if (result == null) result = caseExpression(quantifier);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1024,6 +1015,22 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Quant Lambda</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Quant Lambda</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseQuantLambda(QuantLambda object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1035,38 +1042,6 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExpression(Expression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Lambda</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Lambda</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseLambda(Lambda object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Quantifier</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Quantifier</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseQuantifier(Quantifier object)
   {
     return null;
   }

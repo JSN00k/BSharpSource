@@ -357,6 +357,15 @@ public interface MyDslFactory extends EFactory
   TypeDeclaration createTypeDeclaration();
 
   /**
+   * Returns a new object of class '<em>Quant Lambda</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Quant Lambda</em>'.
+   * @generated
+   */
+  QuantLambda createQuantLambda();
+
+  /**
    * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -364,24 +373,6 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Expression createExpression();
-
-  /**
-   * Returns a new object of class '<em>Lambda</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Lambda</em>'.
-   * @generated
-   */
-  Lambda createLambda();
-
-  /**
-   * Returns a new object of class '<em>Quantifier</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Quantifier</em>'.
-   * @generated
-   */
-  Quantifier createQuantifier();
 
   /**
    * Returns a new object of class '<em>Prefix</em>'.

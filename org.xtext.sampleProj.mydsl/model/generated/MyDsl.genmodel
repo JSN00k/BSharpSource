@@ -20,11 +20,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ImportComponent/name"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ClassDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ClassDecl/typeName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ClassDecl/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ClassDecl/bodyElements"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//BppClass">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/TypeName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/supertypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/varList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//BppClass/where"/>
@@ -65,8 +65,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Where/expressions"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Datatype">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Datatype/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Datatype/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Datatype/constructors"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//DatatypeConstructor">
@@ -78,7 +76,8 @@
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Extend">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Extend/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Extend/extesnion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Extend/extension"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Extend/bodyElements"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TypeBodyElements">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypeBodyElements/functions"/>
@@ -127,22 +126,18 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypeDeclaration/TypeName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypeDeclaration/context"/>
     </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//QuantLambda">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//QuantLambda/qType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//QuantLambda/context"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//QuantLambda/varList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//QuantLambda/child"/>
+    </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Expression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Expression/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Expression/typeInst"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Expression/arguments"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Lambda">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Lambda/context"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Lambda/varList"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Lambda/expr"/>
-    </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Quantifier">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Quantifier/context"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Quantifier/varList"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Quantifier/expr"/>
-    </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Prefix">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Prefix/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Prefix/elem"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ExpressionType"/>

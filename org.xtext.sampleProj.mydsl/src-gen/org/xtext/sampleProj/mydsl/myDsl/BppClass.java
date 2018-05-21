@@ -13,8 +13,6 @@ package org.xtext.sampleProj.mydsl.myDsl;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeName <em>Type Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getSupertypes <em>Supertypes</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getVarList <em>Var List</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getWhere <em>Where</em>}</li>
@@ -26,58 +24,6 @@ package org.xtext.sampleProj.mydsl.myDsl;
  */
 public interface BppClass extends ClassDecl
 {
-  /**
-   * Returns the value of the '<em><b>Type Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type Name</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type Name</em>' containment reference.
-   * @see #setTypeName(TypeName)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getBppClass_TypeName()
-   * @model containment="true"
-   * @generated
-   */
-  TypeName getTypeName();
-
-  /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getTypeName <em>Type Name</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type Name</em>' containment reference.
-   * @see #getTypeName()
-   * @generated
-   */
-  void setTypeName(TypeName value);
-
-  /**
-   * Returns the value of the '<em><b>Context</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Context</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Context</em>' containment reference.
-   * @see #setContext(PolyContext)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getBppClass_Context()
-   * @model containment="true"
-   * @generated
-   */
-  PolyContext getContext();
-
-  /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.BppClass#getContext <em>Context</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Context</em>' containment reference.
-   * @see #getContext()
-   * @generated
-   */
-  void setContext(PolyContext value);
-
   /**
    * Returns the value of the '<em><b>Supertypes</b></em>' containment reference.
    * <!-- begin-user-doc -->

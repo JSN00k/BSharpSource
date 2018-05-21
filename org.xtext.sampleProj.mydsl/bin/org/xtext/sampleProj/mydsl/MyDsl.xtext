@@ -9,7 +9,7 @@ DomainModel:
 THM_NAME: (INT | ID | WS)* ":";
 	
 TopLevel:
-	ImportStatement | ClassDecl  | Instance;
+	ImportStatement | ClassDecl | Extend | Instance;
 	
 
 ImportStatement:
@@ -25,15 +25,15 @@ ImportComponent:
 	name=ID
 ;
 
-ClassDecl:
-	Class | Datatype | Extend
+ClassDecl returns ClassDecl:
+	Class | Datatype
 ;
 
 /* ------------------------ Class statements --------------------- */
 
 
 Class returns BppClass:
-	'Class' TypeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? (varList=TypeStructure)? (where=Where)? (';')? 
+	'Class' typeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? (varList=TypeStructure)? (where=Where)? (';')? 
 	'{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
@@ -105,7 +105,7 @@ Where:
 /* ---------------------- Datatype declarations -------------------------- */
 
 Datatype:
-	'Datatype' name=TypeName (context=PolyContext)? (constructors+=DatatypeConstructor)* '{' (bodyElements+=TypeBodyElements)* '}'
+	'Datatype' typeName=TypeName (context=PolyContext)? (constructors+=DatatypeConstructor)* '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 /* PolyContext is the same as PolyContext used by the class declaration above. */
@@ -128,7 +128,7 @@ DTypeConstructor:
 /* ------------------------ Extension statement ---------------------------- */
 
 Extend: 
-	name=[TypeName] '(' extesnion=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
+	'Extend' name=[TypeName] '(' extension=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 /* ------------------------ TypeBodyElements ------------------------------- */
@@ -159,7 +159,7 @@ FunctionBody:
  * assumes that the declaration is true, however, there will still be the unsatisfied proof obligation showing
  * that the system is unproven */
 FuncDirectDef:
-	expression=Expression
+	expression=RootExpression
 ;
 
 FuncInductive:
@@ -168,7 +168,7 @@ FuncInductive:
 ;
 
 FuncInductiveCase:
-	'|' deconName=[DTypeConstructor] ':' expre=Expression
+	'|' deconName=[DTypeConstructor] ':' expre=RootExpression
 ;
 
 /* ----------------------------- Theorems -------------------------*/
@@ -200,25 +200,20 @@ TypeDeclaration:
 
 /* --------------------------- Expressions -------------------------- */
 
-Expression:
-	// This needs to be written. Could be worth separating this out into another 
-	// dsl reducing the complexity of this section. Specifically I need to look out for
-	// the following expressions forall exists lambda function calls.
-	name=ID
+/* --------------------------- Lambda and Quantifier ---------------- */
+
+/* The structure of Lambda and Quantifier are so similar that they're going to share a class */
+
+Lambda returns QuantLambda:
+	qType='λ' (context=PolyContext)? varList=TypedVariableList '|' child=RootExpression
 ;
 
-Lambda:
-	'λ' (context=PolyContext)? varList=TypedVariableList '|' expr=RootExpression
+Quantifier returns QuantLambda:
+	qType=('∀' | '∃') (context=PolyContext)? varList=TypedVariableList '·' child=RootExpression
 ;
-
-/* --------------------- Quantifiers ------------------------- */
 
 RootExpression returns Expression:
 	Lambda | Quantifier | Infix
-;
-
-Quantifier:
-	('∀' | '∃') (context=PolyContext)? varList=TypedVariableList '·' expr=RootExpression
 ;
 
 /* ---------------------- *Fix ------------------------------ */

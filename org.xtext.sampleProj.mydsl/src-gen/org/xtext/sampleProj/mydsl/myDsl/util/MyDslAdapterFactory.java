@@ -261,19 +261,14 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createTypeDeclarationAdapter();
       }
       @Override
+      public Adapter caseQuantLambda(QuantLambda object)
+      {
+        return createQuantLambdaAdapter();
+      }
+      @Override
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
-      }
-      @Override
-      public Adapter caseLambda(Lambda object)
-      {
-        return createLambdaAdapter();
-      }
-      @Override
-      public Adapter caseQuantifier(Quantifier object)
-      {
-        return createQuantifierAdapter();
       }
       @Override
       public Adapter casePrefix(Prefix object)
@@ -888,6 +883,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.QuantLambda <em>Quant Lambda</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.QuantLambda
+   * @generated
+   */
+  public Adapter createQuantLambdaAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -898,36 +908,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Lambda <em>Lambda</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Lambda
-   * @generated
-   */
-  public Adapter createLambdaAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Quantifier <em>Quantifier</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.Quantifier
-   * @generated
-   */
-  public Adapter createQuantifierAdapter()
   {
     return null;
   }

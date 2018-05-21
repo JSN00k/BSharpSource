@@ -5,6 +5,7 @@ package org.xtext.sampleProj.mydsl.myDsl.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,12 +13,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.sampleProj.mydsl.myDsl.ClassDecl;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.PolyContext;
 import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
+import org.xtext.sampleProj.mydsl.myDsl.TypeName;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +32,8 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ClassDeclImpl#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ClassDeclImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.ClassDeclImpl#getBodyElements <em>Body Elements</em>}</li>
  * </ul>
  *
@@ -34,6 +41,26 @@ import org.xtext.sampleProj.mydsl.myDsl.TypeBodyElements;
  */
 public class ClassDeclImpl extends TopLevelImpl implements ClassDecl
 {
+  /**
+   * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTypeName()
+   * @generated
+   * @ordered
+   */
+  protected TypeName typeName;
+
+  /**
+   * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContext()
+   * @generated
+   * @ordered
+   */
+  protected PolyContext context;
+
   /**
    * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -70,6 +97,102 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl
    * <!-- end-user-doc -->
    * @generated
    */
+  public TypeName getTypeName()
+  {
+    return typeName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTypeName(TypeName newTypeName, NotificationChain msgs)
+  {
+    TypeName oldTypeName = typeName;
+    typeName = newTypeName;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.CLASS_DECL__TYPE_NAME, oldTypeName, newTypeName);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTypeName(TypeName newTypeName)
+  {
+    if (newTypeName != typeName)
+    {
+      NotificationChain msgs = null;
+      if (typeName != null)
+        msgs = ((InternalEObject)typeName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLASS_DECL__TYPE_NAME, null, msgs);
+      if (newTypeName != null)
+        msgs = ((InternalEObject)newTypeName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLASS_DECL__TYPE_NAME, null, msgs);
+      msgs = basicSetTypeName(newTypeName, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CLASS_DECL__TYPE_NAME, newTypeName, newTypeName));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PolyContext getContext()
+  {
+    return context;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetContext(PolyContext newContext, NotificationChain msgs)
+  {
+    PolyContext oldContext = context;
+    context = newContext;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.CLASS_DECL__CONTEXT, oldContext, newContext);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContext(PolyContext newContext)
+  {
+    if (newContext != context)
+    {
+      NotificationChain msgs = null;
+      if (context != null)
+        msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLASS_DECL__CONTEXT, null, msgs);
+      if (newContext != null)
+        msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLASS_DECL__CONTEXT, null, msgs);
+      msgs = basicSetContext(newContext, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CLASS_DECL__CONTEXT, newContext, newContext));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<TypeBodyElements> getBodyElements()
   {
     if (bodyElements == null)
@@ -89,6 +212,10 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl
   {
     switch (featureID)
     {
+      case MyDslPackage.CLASS_DECL__TYPE_NAME:
+        return basicSetTypeName(null, msgs);
+      case MyDslPackage.CLASS_DECL__CONTEXT:
+        return basicSetContext(null, msgs);
       case MyDslPackage.CLASS_DECL__BODY_ELEMENTS:
         return ((InternalEList<?>)getBodyElements()).basicRemove(otherEnd, msgs);
     }
@@ -105,6 +232,10 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl
   {
     switch (featureID)
     {
+      case MyDslPackage.CLASS_DECL__TYPE_NAME:
+        return getTypeName();
+      case MyDslPackage.CLASS_DECL__CONTEXT:
+        return getContext();
       case MyDslPackage.CLASS_DECL__BODY_ELEMENTS:
         return getBodyElements();
     }
@@ -122,6 +253,12 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl
   {
     switch (featureID)
     {
+      case MyDslPackage.CLASS_DECL__TYPE_NAME:
+        setTypeName((TypeName)newValue);
+        return;
+      case MyDslPackage.CLASS_DECL__CONTEXT:
+        setContext((PolyContext)newValue);
+        return;
       case MyDslPackage.CLASS_DECL__BODY_ELEMENTS:
         getBodyElements().clear();
         getBodyElements().addAll((Collection<? extends TypeBodyElements>)newValue);
@@ -140,6 +277,12 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl
   {
     switch (featureID)
     {
+      case MyDslPackage.CLASS_DECL__TYPE_NAME:
+        setTypeName((TypeName)null);
+        return;
+      case MyDslPackage.CLASS_DECL__CONTEXT:
+        setContext((PolyContext)null);
+        return;
       case MyDslPackage.CLASS_DECL__BODY_ELEMENTS:
         getBodyElements().clear();
         return;
@@ -157,6 +300,10 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl
   {
     switch (featureID)
     {
+      case MyDslPackage.CLASS_DECL__TYPE_NAME:
+        return typeName != null;
+      case MyDslPackage.CLASS_DECL__CONTEXT:
+        return context != null;
       case MyDslPackage.CLASS_DECL__BODY_ELEMENTS:
         return bodyElements != null && !bodyElements.isEmpty();
     }
