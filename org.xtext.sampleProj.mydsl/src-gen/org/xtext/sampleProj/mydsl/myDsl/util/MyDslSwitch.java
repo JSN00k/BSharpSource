@@ -230,22 +230,6 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.BASE_CONSTRUCTOR:
-      {
-        BaseConstructor baseConstructor = (BaseConstructor)theEObject;
-        T result = caseBaseConstructor(baseConstructor);
-        if (result == null) result = caseDatatypeConstructor(baseConstructor);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.DTYPE_CONSTRUCTOR:
-      {
-        DTypeConstructor dTypeConstructor = (DTypeConstructor)theEObject;
-        T result = caseDTypeConstructor(dTypeConstructor);
-        if (result == null) result = caseDatatypeConstructor(dTypeConstructor);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case MyDslPackage.EXTEND:
       {
         Extend extend = (Extend)theEObject;
@@ -369,6 +353,14 @@ public class MyDslSwitch<T> extends Switch<T>
         Prefix prefix = (Prefix)theEObject;
         T result = casePrefix(prefix);
         if (result == null) result = caseExpression(prefix);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.BRACKET:
+      {
+        Bracket bracket = (Bracket)theEObject;
+        T result = caseBracket(bracket);
+        if (result == null) result = caseExpression(bracket);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -759,38 +751,6 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Base Constructor</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Base Constructor</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBaseConstructor(BaseConstructor object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>DType Constructor</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>DType Constructor</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDTypeConstructor(DTypeConstructor object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Extend</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1058,6 +1018,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrefix(Prefix object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Bracket</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Bracket</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBracket(Bracket object)
   {
     return null;
   }

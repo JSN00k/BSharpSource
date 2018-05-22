@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Datatype#getConstructors <em>Constructors</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.Datatype#getVarList <em>Var List</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getDatatype()
@@ -24,19 +24,19 @@ import org.eclipse.emf.common.util.EList;
 public interface Datatype extends ClassDecl
 {
   /**
-   * Returns the value of the '<em><b>Constructors</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Var List</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Constructors</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Var List</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Constructors</em>' containment reference list.
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getDatatype_Constructors()
+   * @return the value of the '<em>Var List</em>' containment reference list.
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getDatatype_VarList()
    * @model containment="true"
    * @generated
    */
-  EList<DatatypeConstructor> getConstructors();
+  EList<DatatypeConstructor> getVarList();
 
 } // Datatype

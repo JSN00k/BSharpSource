@@ -3,8 +3,12 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -12,10 +16,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.sampleProj.mydsl.myDsl.DTypeConstructor;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.Expression;
 import org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +34,8 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveCaseImpl#getDeconName <em>Decon Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveCaseImpl#getExpre <em>Expre</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveCaseImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FuncInductiveCaseImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,17 +50,27 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    * @ordered
    */
-  protected DTypeConstructor deconName;
+  protected DatatypeConstructor deconName;
 
   /**
-   * The cached value of the '{@link #getExpre() <em>Expre</em>}' containment reference.
+   * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExpre()
+   * @see #getVariables()
    * @generated
    * @ordered
    */
-  protected Expression expre;
+  protected EList<TypedVariable> variables;
+
+  /**
+   * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExpr()
+   * @generated
+   * @ordered
+   */
+  protected Expression expr;
 
   /**
    * <!-- begin-user-doc -->
@@ -79,12 +98,12 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public DTypeConstructor getDeconName()
+  public DatatypeConstructor getDeconName()
   {
     if (deconName != null && deconName.eIsProxy())
     {
       InternalEObject oldDeconName = (InternalEObject)deconName;
-      deconName = (DTypeConstructor)eResolveProxy(oldDeconName);
+      deconName = (DatatypeConstructor)eResolveProxy(oldDeconName);
       if (deconName != oldDeconName)
       {
         if (eNotificationRequired())
@@ -99,7 +118,7 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public DTypeConstructor basicGetDeconName()
+  public DatatypeConstructor basicGetDeconName()
   {
     return deconName;
   }
@@ -109,9 +128,9 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDeconName(DTypeConstructor newDeconName)
+  public void setDeconName(DatatypeConstructor newDeconName)
   {
-    DTypeConstructor oldDeconName = deconName;
+    DatatypeConstructor oldDeconName = deconName;
     deconName = newDeconName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME, oldDeconName, deconName));
@@ -122,9 +141,13 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression getExpre()
+  public EList<TypedVariable> getVariables()
   {
-    return expre;
+    if (variables == null)
+    {
+      variables = new EObjectContainmentEList<TypedVariable>(TypedVariable.class, this, MyDslPackage.FUNC_INDUCTIVE_CASE__VARIABLES);
+    }
+    return variables;
   }
 
   /**
@@ -132,13 +155,23 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExpre(Expression newExpre, NotificationChain msgs)
+  public Expression getExpr()
   {
-    Expression oldExpre = expre;
-    expre = newExpre;
+    return expr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExpr(Expression newExpr, NotificationChain msgs)
+  {
+    Expression oldExpr = expr;
+    expr = newExpr;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE, oldExpre, newExpre);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE_CASE__EXPR, oldExpr, newExpr);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -149,20 +182,20 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExpre(Expression newExpre)
+  public void setExpr(Expression newExpr)
   {
-    if (newExpre != expre)
+    if (newExpr != expr)
     {
       NotificationChain msgs = null;
-      if (expre != null)
-        msgs = ((InternalEObject)expre).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE, null, msgs);
-      if (newExpre != null)
-        msgs = ((InternalEObject)newExpre).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE, null, msgs);
-      msgs = basicSetExpre(newExpre, msgs);
+      if (expr != null)
+        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNC_INDUCTIVE_CASE__EXPR, null, msgs);
+      if (newExpr != null)
+        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FUNC_INDUCTIVE_CASE__EXPR, null, msgs);
+      msgs = basicSetExpr(newExpr, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE, newExpre, newExpre));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNC_INDUCTIVE_CASE__EXPR, newExpr, newExpr));
   }
 
   /**
@@ -175,8 +208,10 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
-        return basicSetExpre(null, msgs);
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__VARIABLES:
+        return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPR:
+        return basicSetExpr(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -194,8 +229,10 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
       case MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
         if (resolve) return getDeconName();
         return basicGetDeconName();
-      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
-        return getExpre();
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__VARIABLES:
+        return getVariables();
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPR:
+        return getExpr();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -205,16 +242,21 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
       case MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
-        setDeconName((DTypeConstructor)newValue);
+        setDeconName((DatatypeConstructor)newValue);
         return;
-      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
-        setExpre((Expression)newValue);
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__VARIABLES:
+        getVariables().clear();
+        getVariables().addAll((Collection<? extends TypedVariable>)newValue);
+        return;
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPR:
+        setExpr((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -231,10 +273,13 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
     switch (featureID)
     {
       case MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
-        setDeconName((DTypeConstructor)null);
+        setDeconName((DatatypeConstructor)null);
         return;
-      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
-        setExpre((Expression)null);
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__VARIABLES:
+        getVariables().clear();
+        return;
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPR:
+        setExpr((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -252,8 +297,10 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
     {
       case MyDslPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
         return deconName != null;
-      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPRE:
-        return expre != null;
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__VARIABLES:
+        return variables != null && !variables.isEmpty();
+      case MyDslPackage.FUNC_INDUCTIVE_CASE__EXPR:
+        return expr != null;
     }
     return super.eIsSet(featureID);
   }

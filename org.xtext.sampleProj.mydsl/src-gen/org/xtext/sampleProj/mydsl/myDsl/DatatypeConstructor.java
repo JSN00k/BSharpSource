@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor#getDecons <em>Decons</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getDatatypeConstructor()
@@ -24,29 +25,55 @@ import org.eclipse.emf.ecore.EObject;
 public interface DatatypeConstructor extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Name</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
+   * @return the value of the '<em>Name</em>' containment reference.
+   * @see #setName(TypedVariable)
    * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getDatatypeConstructor_Name()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getName();
+  TypedVariable getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor#getName <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
+   * @param value the new value of the '<em>Name</em>' containment reference.
    * @see #getName()
    * @generated
    */
-  void setName(String value);
+  void setName(TypedVariable value);
+
+  /**
+   * Returns the value of the '<em><b>Decons</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Decons</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Decons</em>' containment reference.
+   * @see #setDecons(TypedVariableList)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getDatatypeConstructor_Decons()
+   * @model containment="true"
+   * @generated
+   */
+  TypedVariableList getDecons();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor#getDecons <em>Decons</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Decons</em>' containment reference.
+   * @see #getDecons()
+   * @generated
+   */
+  void setDecons(TypedVariableList value);
 
 } // DatatypeConstructor

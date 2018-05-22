@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getVarList <em>Var List</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getInfix <em>Infix</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getBody <em>Body</em>}</li>
  * </ul>
  *
@@ -122,6 +124,58 @@ public interface FunctionDecl extends EObject
    * @generated
    */
   void setReturnType(TypeConstructor value);
+
+  /**
+   * Returns the value of the '<em><b>Infix</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Infix</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Infix</em>' attribute.
+   * @see #setInfix(String)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFunctionDecl_Infix()
+   * @model
+   * @generated
+   */
+  String getInfix();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getInfix <em>Infix</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Infix</em>' attribute.
+   * @see #getInfix()
+   * @generated
+   */
+  void setInfix(String value);
+
+  /**
+   * Returns the value of the '<em><b>Precedence</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Precedence</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Precedence</em>' attribute.
+   * @see #setPrecedence(int)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFunctionDecl_Precedence()
+   * @model
+   * @generated
+   */
+  int getPrecedence();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FunctionDecl#getPrecedence <em>Precedence</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Precedence</em>' attribute.
+   * @see #getPrecedence()
+   * @generated
+   */
+  void setPrecedence(int value);
 
   /**
    * Returns the value of the '<em><b>Body</b></em>' containment reference.

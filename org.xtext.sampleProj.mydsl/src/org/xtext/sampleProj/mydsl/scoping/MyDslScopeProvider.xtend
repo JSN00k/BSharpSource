@@ -10,7 +10,6 @@ import org.eclipse.xtext.EcoreUtil2
 import org.xtext.sampleProj.mydsl.myDsl.TypeName
 import org.xtext.sampleProj.mydsl.myDsl.GenName
 import org.xtext.sampleProj.mydsl.myDsl.BppClass
-//import org.xtext.sampleProj.mydsl.myDsl.impl.TypeConstructorImpl
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage
 import java.util.ArrayList
 import org.eclipse.xtext.xbase.lib.Functions.Function1
@@ -23,6 +22,9 @@ import org.xtext.sampleProj.mydsl.myDsl.Extend
 import java.util.List
 import org.xtext.sampleProj.mydsl.myDsl.TypedVariable
 import org.xtext.sampleProj.mydsl.myDsl.TypeConstructor
+import org.xtext.sampleProj.mydsl.myDsl.Datatype
+import java.util.Collection
+import org.xtext.sampleProj.mydsl.EcoreUtilJ
 
 /**
  * This class contains custom scoping description.
@@ -48,7 +50,10 @@ class MyDslScopeProvider extends AbstractMyDslScopeProvider {
 			
 			if (classDecl !== null) {
 				val finalClassDecl = classDecl
-				val polyTypes = EcoreUtil2.getAllContentsOfType(classDecl.context, PolymorphicTypeName)
+				val allElems = new ArrayList<GenName>()
+				if (classDecl.context !== null) {
+					allElems.addAll(EcoreUtil2.getAllContentsOfType(classDecl.context, PolymorphicTypeName))
+				 }
 
 				/* TODO: Turn this into a look up that includes imports */
 				val rootElement = EcoreUtil2.getRootContainer(context)
@@ -56,12 +61,15 @@ class MyDslScopeProvider extends AbstractMyDslScopeProvider {
 				 * order in which they appear in the file. I can therefore simply remove any elements
 				 * from the returned list that appear after the current ndx.
 				 */
-				val earlierDeclTypes = eFilterUpToWith(rootElement, [object | object==finalClassDecl],
-					[object | object instanceof TypeName]) as ArrayList<TypeName>
+				 
+				 if (classDecl instanceof Datatype) {
+				   allElems.addAll(EcoreUtilJ.eFilterUpToIncludingWith(rootElement, [object | object==finalClassDecl],
+					[object | object instanceof TypeName]) as Collection<TypeName>)
+				} else {
+					allElems.addAll(EcoreUtilJ.eFilterUpToWith(rootElement, [object | object==finalClassDecl],
+					[object | object instanceof TypeName]) as Collection<TypeName>)
+				}
 
-				val allElems = new ArrayList<GenName>()
-				allElems.addAll(polyTypes)
-				allElems.addAll(earlierDeclTypes)
 				val scope = Scopes.scopeFor(allElems)
 				return scope
 			}
@@ -71,7 +79,7 @@ class MyDslScopeProvider extends AbstractMyDslScopeProvider {
 			 */
 			 
 			 val rootObj = EcoreUtil2.getRootContainer(context)
-			 var typeNames = eFilterUpToIncludingWith(rootObj, [object | object == context], [object | object instanceof TypeName])
+			 var typeNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object | object == context], [object | object instanceof TypeName])
 			 return Scopes.scopeFor(typeNames)
 		} else if (reference.getEReferenceType == MyDslPackage.Literals.EXPRESSION_VARIABLE) {
 			/* Here's the definition:
@@ -96,13 +104,20 @@ class MyDslScopeProvider extends AbstractMyDslScopeProvider {
 			 
 			 /* FunctionName can be any function within the current body, or any body above. 
 			  */
-			 var functionNames = eFilterUpToIncludingWith(rootObj, [object | object == currentClass], [object | object instanceof FunctionName])
+			 var functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object | object == currentClass], [object | object instanceof FunctionName])
 			 
 			 /* TypedVariableScope */
 			 var scope = getLocalVariableScopeForContext(context)
 			 
-			 return Scopes.scopeFor(functionNames, scope)
+			 if (scope !== null)
+			 	return Scopes.scopeFor(functionNames, scope)
+			 else
+			 	return Scopes.scopeFor(functionNames)
+		} else if (reference == MyDslPackage.Literals.FUNC_INDUCTIVE__VARIABLE_NAME) {
+			print (reference)
 		}
+		
+		
 
 		return super.getScope(context, reference)
 	}
@@ -158,8 +173,8 @@ class MyDslScopeProvider extends AbstractMyDslScopeProvider {
 		
 		/* Typed variable scopes can come from any ancestor that declares typed variables.
 		 * This includes Lambdas, Quantifiers, FunctionDeclarations, and Class Declarations */
-		 val containerWithTypeVariable = eContainerMatchingLambda(context, [object | object instanceof QuantLambda
-		 	|| object instanceof FunctionDecl || object instanceof ClassDecl || object instanceof Extend
+		 val containerWithTypeVariable = EcoreUtilJ.eContainerMatchingLambda(context, [object | object instanceof QuantLambda
+		 	|| object instanceof FunctionDecl || object instanceof BppClass || object instanceof Extend
 		 ])
 		 
 		 if (containerWithTypeVariable === null)
@@ -204,70 +219,5 @@ class MyDslScopeProvider extends AbstractMyDslScopeProvider {
 		}
 	}
 	
-	/* Finds the root of the current context and filters up to the current context using the filter */
-	def ArrayList<? extends EObject> eFilterUpToCurrentWith(EObject context, Function1<EObject, Boolean> filter) {
-		val root = EcoreUtil2.getRootContainer(context)
-		return eFilterUpToWith(root, [object | object == context], filter)
-	}
-	
-	def ArrayList<? extends EObject> eFilterUpToIncludingCurrentWith(EObject context, Function1<EObject, Boolean> filter) {
-		val root = EcoreUtil2.getRootContainer(context)
-		return eFilterUpToIncludingWith(root, [object | object == context], filter)
-	}
-	
-	def ArrayList<? extends EObject> eFilterUpToWith(EObject tree, Function1<EObject, Boolean> stopFilter,
-		Function1<EObject, Boolean> objectFilter) {
-		val iterable = tree.eAllContents
-		val result = new ArrayList<EObject>()
-		var EObject next = iterable.next
 
-		while (next !== null && !stopFilter.apply(next)) {
-			
-			if (next === null)
-				return result
-
-			if (objectFilter.apply(next))
-				result.add(next)
-
-			next = iterable.next
-		}
-
-		return result
-	}
-	
-	def ArrayList<? extends EObject> eFilterUpToIncludingWith(EObject tree, Function1<EObject, Boolean> stopFilter,
-		Function1<EObject, Boolean> objectFilter) {
-		val iterable = tree.eAllContents
-		val result = new ArrayList<EObject>()
-		var EObject next = null
-
-		do {
-			if (!iterable.hasNext)
-				return result
-				
-			next = iterable.next
-			if (next === null)
-				return result
-
-			if (objectFilter.apply(next))
-				result.add(next)
-
-		} while (!stopFilter.apply(next))
-
-		return result
-	}
-	
-	/* Does not scan the current object. */
-	def EObject eContainerMatchingLambda(EObject context, Function1<EObject, Boolean> criteria) {
-		val parent = context.eContainer
-		if (parent === null) {
-			return null
-		}
-		
-		if (criteria.apply(parent)) {
-			return parent
-		}
-		
-		eContainerMatchingLambda(parent, criteria)
-	}
 }

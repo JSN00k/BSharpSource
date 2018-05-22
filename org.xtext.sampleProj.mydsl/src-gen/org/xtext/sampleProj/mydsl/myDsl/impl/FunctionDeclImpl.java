@@ -39,6 +39,8 @@ import org.xtext.sampleProj.mydsl.myDsl.TypedVariableList;
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getVarList <em>Var List</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getInfix <em>Infix</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.FunctionDeclImpl#getBody <em>Body</em>}</li>
  * </ul>
  *
@@ -85,6 +87,46 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
    * @ordered
    */
   protected TypeConstructor returnType;
+
+  /**
+   * The default value of the '{@link #getInfix() <em>Infix</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getInfix()
+   * @generated
+   * @ordered
+   */
+  protected static final String INFIX_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getInfix() <em>Infix</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getInfix()
+   * @generated
+   * @ordered
+   */
+  protected String infix = INFIX_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getPrecedence() <em>Precedence</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPrecedence()
+   * @generated
+   * @ordered
+   */
+  protected static final int PRECEDENCE_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPrecedence()
+   * @generated
+   * @ordered
+   */
+  protected int precedence = PRECEDENCE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
@@ -280,6 +322,52 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getInfix()
+  {
+    return infix;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setInfix(String newInfix)
+  {
+    String oldInfix = infix;
+    infix = newInfix;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__INFIX, oldInfix, infix));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public int getPrecedence()
+  {
+    return precedence;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPrecedence(int newPrecedence)
+  {
+    int oldPrecedence = precedence;
+    precedence = newPrecedence;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FUNCTION_DECL__PRECEDENCE, oldPrecedence, precedence));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FunctionBody getBody()
   {
     return body;
@@ -365,6 +453,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
         return getVarList();
       case MyDslPackage.FUNCTION_DECL__RETURN_TYPE:
         return getReturnType();
+      case MyDslPackage.FUNCTION_DECL__INFIX:
+        return getInfix();
+      case MyDslPackage.FUNCTION_DECL__PRECEDENCE:
+        return getPrecedence();
       case MyDslPackage.FUNCTION_DECL__BODY:
         return getBody();
     }
@@ -395,6 +487,12 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
       case MyDslPackage.FUNCTION_DECL__RETURN_TYPE:
         setReturnType((TypeConstructor)newValue);
         return;
+      case MyDslPackage.FUNCTION_DECL__INFIX:
+        setInfix((String)newValue);
+        return;
+      case MyDslPackage.FUNCTION_DECL__PRECEDENCE:
+        setPrecedence((Integer)newValue);
+        return;
       case MyDslPackage.FUNCTION_DECL__BODY:
         setBody((FunctionBody)newValue);
         return;
@@ -424,6 +522,12 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
       case MyDslPackage.FUNCTION_DECL__RETURN_TYPE:
         setReturnType((TypeConstructor)null);
         return;
+      case MyDslPackage.FUNCTION_DECL__INFIX:
+        setInfix(INFIX_EDEFAULT);
+        return;
+      case MyDslPackage.FUNCTION_DECL__PRECEDENCE:
+        setPrecedence(PRECEDENCE_EDEFAULT);
+        return;
       case MyDslPackage.FUNCTION_DECL__BODY:
         setBody((FunctionBody)null);
         return;
@@ -449,10 +553,33 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
         return varList != null;
       case MyDslPackage.FUNCTION_DECL__RETURN_TYPE:
         return returnType != null;
+      case MyDslPackage.FUNCTION_DECL__INFIX:
+        return INFIX_EDEFAULT == null ? infix != null : !INFIX_EDEFAULT.equals(infix);
+      case MyDslPackage.FUNCTION_DECL__PRECEDENCE:
+        return precedence != PRECEDENCE_EDEFAULT;
       case MyDslPackage.FUNCTION_DECL__BODY:
         return body != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (infix: ");
+    result.append(infix);
+    result.append(", precedence: ");
+    result.append(precedence);
+    result.append(')');
+    return result.toString();
   }
 
 } //FunctionDeclImpl

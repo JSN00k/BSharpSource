@@ -105,24 +105,13 @@ Where:
 /* ---------------------- Datatype declarations -------------------------- */
 
 Datatype:
-	'Datatype' typeName=TypeName (context=PolyContext)? (constructors+=DatatypeConstructor)* '{' (bodyElements+=TypeBodyElements)* '}'
+	'Datatype' typeName=TypeName (context=PolyContext)? ('|' varList+=DatatypeConstructor)+ '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 /* PolyContext is the same as PolyContext used by the class declaration above. */
 
 DatatypeConstructor:
-	'|' (BaseConstructor | DTypeConstructor)
-;
-
-BaseConstructor:
-	name=ID
-;
-
-/* Typed Variable list is declared below, it is used in several situations such as functions/lambdas
- * not just in Datatypes.
- */
-DTypeConstructor:
-	name=ID '(' decons=TypedVariableList ')'
+	 name=TypedVariable ('(' decons=TypedVariableList ')')?
 ;
 
 /* ------------------------ Extension statement ---------------------------- */
@@ -140,7 +129,7 @@ TypeBodyElements:
 /*------------------------- Functions --------------------------------- */
 
 FunctionDecl:
-	name+=FunctionName (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=TypeConstructor body=FunctionBody
+	name+=FunctionName (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=TypeConstructor (infix='INFIX')? precedence=INT? body=FunctionBody
 ;
 
 FunctionName:
@@ -168,7 +157,7 @@ FuncInductive:
 ;
 
 FuncInductiveCase:
-	'|' deconName=[DTypeConstructor] ':' expre=RootExpression
+	'|' deconName=[DatatypeConstructor] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':' expr=RootExpression
 ;
 
 /* ----------------------------- Theorems -------------------------*/
@@ -240,7 +229,7 @@ PrefixBuiltIn:
  * TODO: Programmatically check that the function is an infix function.
  */
 Infix returns Expression:
-	Element ({Infix.left=current} (funcName+=[FunctionName] | opName+=InbuiltInfix) right+=Element)* 
+	Element ({Infix.left=current} (funcName=[FunctionName] | opName=InbuiltInfix) right=Element)*
 ;
 
 /* currently it will not build because the quantifier is causing recursion I think. 
@@ -251,8 +240,8 @@ Element returns Expression:
 	Bracket | Prefix | FunctionCall
 ;
 
-Bracket returns Expression:
-	'(' RootExpression ')'
+Bracket returns Bracket:
+	'(' child=RootExpression ')'
 ;
 
 
@@ -270,7 +259,7 @@ Bracket returns Expression:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns Expression:
-	(typeInst=TypeInstance) ('(' (arguments+=Infix)? (',' arguments+=Infix)* ')')?
+	(typeInst=TypeInstance) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
 ;
 
 ExpressionType:
@@ -321,7 +310,7 @@ InbuiltTypeScan:
 /* ------------------------------ Instance ---------------------------------------------*/
 
 Instance:
-	'Instance' className=[TypeName] context=TypeDeclContext '(' (arguments+=Infix)? (',' arguments+=Infix)* ')'
+	'Instance' className=[TypeName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')'
 ;
 
 /* TODO: Implement Methods,  Infix keyword and precedence on Infix operators. */

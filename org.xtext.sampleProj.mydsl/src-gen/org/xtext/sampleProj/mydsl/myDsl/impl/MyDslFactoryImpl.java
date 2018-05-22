@@ -86,8 +86,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.WHERE: return createWhere();
       case MyDslPackage.DATATYPE: return createDatatype();
       case MyDslPackage.DATATYPE_CONSTRUCTOR: return createDatatypeConstructor();
-      case MyDslPackage.BASE_CONSTRUCTOR: return createBaseConstructor();
-      case MyDslPackage.DTYPE_CONSTRUCTOR: return createDTypeConstructor();
       case MyDslPackage.EXTEND: return createExtend();
       case MyDslPackage.TYPE_BODY_ELEMENTS: return createTypeBodyElements();
       case MyDslPackage.FUNCTION_DECL: return createFunctionDecl();
@@ -105,6 +103,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.QUANT_LAMBDA: return createQuantLambda();
       case MyDslPackage.EXPRESSION: return createExpression();
       case MyDslPackage.PREFIX: return createPrefix();
+      case MyDslPackage.BRACKET: return createBracket();
       case MyDslPackage.EXPRESSION_TYPE: return createExpressionType();
       case MyDslPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
       case MyDslPackage.TYPE_INSTANCE: return createTypeInstance();
@@ -352,28 +351,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public BaseConstructor createBaseConstructor()
-  {
-    BaseConstructorImpl baseConstructor = new BaseConstructorImpl();
-    return baseConstructor;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DTypeConstructor createDTypeConstructor()
-  {
-    DTypeConstructorImpl dTypeConstructor = new DTypeConstructorImpl();
-    return dTypeConstructor;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Extend createExtend()
   {
     ExtendImpl extend = new ExtendImpl();
@@ -554,6 +531,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     PrefixImpl prefix = new PrefixImpl();
     return prefix;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Bracket createBracket()
+  {
+    BracketImpl bracket = new BracketImpl();
+    return bracket;
   }
 
   /**

@@ -3,7 +3,12 @@
  */
 package org.xtext.sampleProj.mydsl.validation;
 
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.xtext.sampleProj.mydsl.myDsl.Infix;
 import org.xtext.sampleProj.mydsl.validation.AbstractMyDslValidator;
+import rewriteAST.ASTRewriter;
 
 /**
  * This class contains custom validation rules.
@@ -15,4 +20,15 @@ public class MyDslValidator extends AbstractMyDslValidator {
   public final static String UNEXPECTED_POLY_CONTEXT = "unexpectedPolyContext";
   
   public final static String POLYMORPHIC_TYPE_OUT_OF_SCOPE = "PolymorphicTypeOutOfScope";
+  
+  @Check
+  public Infix checkExpressionTree(final Infix expression) {
+    Infix _xblockexpression = null;
+    {
+      Infix copy = EcoreUtil2.<Infix>copy(expression);
+      copy = ASTRewriter.reorderInfixTree(copy);
+      _xblockexpression = InputOutput.<Infix>print(copy);
+    }
+    return _xblockexpression;
+  }
 }

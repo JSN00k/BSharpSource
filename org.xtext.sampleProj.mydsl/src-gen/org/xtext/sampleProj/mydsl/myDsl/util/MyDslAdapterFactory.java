@@ -181,16 +181,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createDatatypeConstructorAdapter();
       }
       @Override
-      public Adapter caseBaseConstructor(BaseConstructor object)
-      {
-        return createBaseConstructorAdapter();
-      }
-      @Override
-      public Adapter caseDTypeConstructor(DTypeConstructor object)
-      {
-        return createDTypeConstructorAdapter();
-      }
-      @Override
       public Adapter caseExtend(Extend object)
       {
         return createExtendAdapter();
@@ -274,6 +264,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter casePrefix(Prefix object)
       {
         return createPrefixAdapter();
+      }
+      @Override
+      public Adapter caseBracket(Bracket object)
+      {
+        return createBracketAdapter();
       }
       @Override
       public Adapter caseExpressionType(ExpressionType object)
@@ -643,36 +638,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.BaseConstructor <em>Base Constructor</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.BaseConstructor
-   * @generated
-   */
-  public Adapter createBaseConstructorAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.DTypeConstructor <em>DType Constructor</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.sampleProj.mydsl.myDsl.DTypeConstructor
-   * @generated
-   */
-  public Adapter createDTypeConstructorAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Extend <em>Extend</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -923,6 +888,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrefixAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.sampleProj.mydsl.myDsl.Bracket <em>Bracket</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.sampleProj.mydsl.myDsl.Bracket
+   * @generated
+   */
+  public Adapter createBracketAdapter()
   {
     return null;
   }

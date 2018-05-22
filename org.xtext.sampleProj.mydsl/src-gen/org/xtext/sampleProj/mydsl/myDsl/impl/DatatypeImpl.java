@@ -27,7 +27,7 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.DatatypeImpl#getConstructors <em>Constructors</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.DatatypeImpl#getVarList <em>Var List</em>}</li>
  * </ul>
  *
  * @generated
@@ -35,14 +35,14 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 public class DatatypeImpl extends ClassDeclImpl implements Datatype
 {
   /**
-   * The cached value of the '{@link #getConstructors() <em>Constructors</em>}' containment reference list.
+   * The cached value of the '{@link #getVarList() <em>Var List</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getConstructors()
+   * @see #getVarList()
    * @generated
    * @ordered
    */
-  protected EList<DatatypeConstructor> constructors;
+  protected EList<DatatypeConstructor> varList;
 
   /**
    * <!-- begin-user-doc -->
@@ -70,13 +70,13 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<DatatypeConstructor> getConstructors()
+  public EList<DatatypeConstructor> getVarList()
   {
-    if (constructors == null)
+    if (varList == null)
     {
-      constructors = new EObjectContainmentEList<DatatypeConstructor>(DatatypeConstructor.class, this, MyDslPackage.DATATYPE__CONSTRUCTORS);
+      varList = new EObjectContainmentEList<DatatypeConstructor>(DatatypeConstructor.class, this, MyDslPackage.DATATYPE__VAR_LIST);
     }
-    return constructors;
+    return varList;
   }
 
   /**
@@ -89,8 +89,8 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__CONSTRUCTORS:
-        return ((InternalEList<?>)getConstructors()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.DATATYPE__VAR_LIST:
+        return ((InternalEList<?>)getVarList()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -105,8 +105,8 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__CONSTRUCTORS:
-        return getConstructors();
+      case MyDslPackage.DATATYPE__VAR_LIST:
+        return getVarList();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -122,9 +122,9 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__CONSTRUCTORS:
-        getConstructors().clear();
-        getConstructors().addAll((Collection<? extends DatatypeConstructor>)newValue);
+      case MyDslPackage.DATATYPE__VAR_LIST:
+        getVarList().clear();
+        getVarList().addAll((Collection<? extends DatatypeConstructor>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -140,8 +140,8 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__CONSTRUCTORS:
-        getConstructors().clear();
+      case MyDslPackage.DATATYPE__VAR_LIST:
+        getVarList().clear();
         return;
     }
     super.eUnset(featureID);
@@ -157,8 +157,8 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype
   {
     switch (featureID)
     {
-      case MyDslPackage.DATATYPE__CONSTRUCTORS:
-        return constructors != null && !constructors.isEmpty();
+      case MyDslPackage.DATATYPE__VAR_LIST:
+        return varList != null && !varList.isEmpty();
     }
     return super.eIsSet(featureID);
   }

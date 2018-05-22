@@ -3,6 +3,8 @@
  */
 package org.xtext.sampleProj.mydsl.myDsl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,7 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getDeconName <em>Decon Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getExpre <em>Expre</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getVariables <em>Variables</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getExpr <em>Expr</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductiveCase()
@@ -33,12 +36,12 @@ public interface FuncInductiveCase extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Decon Name</em>' reference.
-   * @see #setDeconName(DTypeConstructor)
+   * @see #setDeconName(DatatypeConstructor)
    * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductiveCase_DeconName()
    * @model
    * @generated
    */
-  DTypeConstructor getDeconName();
+  DatatypeConstructor getDeconName();
 
   /**
    * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getDeconName <em>Decon Name</em>}' reference.
@@ -48,32 +51,48 @@ public interface FuncInductiveCase extends EObject
    * @see #getDeconName()
    * @generated
    */
-  void setDeconName(DTypeConstructor value);
+  void setDeconName(DatatypeConstructor value);
 
   /**
-   * Returns the value of the '<em><b>Expre</b></em>' containment reference.
+   * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.sampleProj.mydsl.myDsl.TypedVariable}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Expre</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Expre</em>' containment reference.
-   * @see #setExpre(Expression)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductiveCase_Expre()
+   * @return the value of the '<em>Variables</em>' containment reference list.
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductiveCase_Variables()
    * @model containment="true"
    * @generated
    */
-  Expression getExpre();
+  EList<TypedVariable> getVariables();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getExpre <em>Expre</em>}' containment reference.
+   * Returns the value of the '<em><b>Expr</b></em>' containment reference.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Expr</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expre</em>' containment reference.
-   * @see #getExpre()
+   * @return the value of the '<em>Expr</em>' containment reference.
+   * @see #setExpr(Expression)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getFuncInductiveCase_Expr()
+   * @model containment="true"
    * @generated
    */
-  void setExpre(Expression value);
+  Expression getExpr();
+
+  /**
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.FuncInductiveCase#getExpr <em>Expr</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Expr</em>' containment reference.
+   * @see #getExpr()
+   * @generated
+   */
+  void setExpr(Expression value);
 
 } // FuncInductiveCase

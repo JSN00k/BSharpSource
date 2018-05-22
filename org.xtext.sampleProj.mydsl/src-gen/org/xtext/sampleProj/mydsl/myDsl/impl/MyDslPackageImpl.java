@@ -10,11 +10,10 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.xtext.sampleProj.mydsl.myDsl.BaseConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.BppClass;
+import org.xtext.sampleProj.mydsl.myDsl.Bracket;
 import org.xtext.sampleProj.mydsl.myDsl.ClassDecl;
 import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
-import org.xtext.sampleProj.mydsl.myDsl.DTypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.Datatype;
 import org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.DomainModel;
@@ -219,20 +218,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass baseConstructorEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass dTypeConstructorEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass extendEClass = null;
 
   /**
@@ -346,6 +331,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass prefixEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bracketEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -887,7 +879,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDatatype_Constructors()
+  public EReference getDatatype_VarList()
   {
     return (EReference)datatypeEClass.getEStructuralFeatures().get(0);
   }
@@ -907,9 +899,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDatatypeConstructor_Name()
+  public EReference getDatatypeConstructor_Name()
   {
-    return (EAttribute)datatypeConstructorEClass.getEStructuralFeatures().get(0);
+    return (EReference)datatypeConstructorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -917,29 +909,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBaseConstructor()
+  public EReference getDatatypeConstructor_Decons()
   {
-    return baseConstructorEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getDTypeConstructor()
-  {
-    return dTypeConstructorEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDTypeConstructor_Decons()
-  {
-    return (EReference)dTypeConstructorEClass.getEStructuralFeatures().get(0);
+    return (EReference)datatypeConstructorEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1067,9 +1039,29 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getFunctionDecl_Infix()
+  {
+    return (EAttribute)functionDeclEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFunctionDecl_Precedence()
+  {
+    return (EAttribute)functionDeclEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getFunctionDecl_Body()
   {
-    return (EReference)functionDeclEClass.getEStructuralFeatures().get(4);
+    return (EReference)functionDeclEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1177,9 +1169,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFuncInductiveCase_Expre()
+  public EReference getFuncInductiveCase_Variables()
   {
     return (EReference)funcInductiveCaseEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFuncInductiveCase_Expr()
+  {
+    return (EReference)funcInductiveCaseEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1447,6 +1449,26 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getBracket()
+  {
+    return bracketEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBracket_Child()
+  {
+    return (EReference)bracketEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getExpressionType()
   {
     return expressionTypeEClass;
@@ -1704,15 +1726,11 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(whereEClass, WHERE__EXPRESSIONS);
 
     datatypeEClass = createEClass(DATATYPE);
-    createEReference(datatypeEClass, DATATYPE__CONSTRUCTORS);
+    createEReference(datatypeEClass, DATATYPE__VAR_LIST);
 
     datatypeConstructorEClass = createEClass(DATATYPE_CONSTRUCTOR);
-    createEAttribute(datatypeConstructorEClass, DATATYPE_CONSTRUCTOR__NAME);
-
-    baseConstructorEClass = createEClass(BASE_CONSTRUCTOR);
-
-    dTypeConstructorEClass = createEClass(DTYPE_CONSTRUCTOR);
-    createEReference(dTypeConstructorEClass, DTYPE_CONSTRUCTOR__DECONS);
+    createEReference(datatypeConstructorEClass, DATATYPE_CONSTRUCTOR__NAME);
+    createEReference(datatypeConstructorEClass, DATATYPE_CONSTRUCTOR__DECONS);
 
     extendEClass = createEClass(EXTEND);
     createEReference(extendEClass, EXTEND__NAME);
@@ -1728,6 +1746,8 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(functionDeclEClass, FUNCTION_DECL__CONTEXT);
     createEReference(functionDeclEClass, FUNCTION_DECL__VAR_LIST);
     createEReference(functionDeclEClass, FUNCTION_DECL__RETURN_TYPE);
+    createEAttribute(functionDeclEClass, FUNCTION_DECL__INFIX);
+    createEAttribute(functionDeclEClass, FUNCTION_DECL__PRECEDENCE);
     createEReference(functionDeclEClass, FUNCTION_DECL__BODY);
 
     functionNameEClass = createEClass(FUNCTION_NAME);
@@ -1744,7 +1764,8 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     funcInductiveCaseEClass = createEClass(FUNC_INDUCTIVE_CASE);
     createEReference(funcInductiveCaseEClass, FUNC_INDUCTIVE_CASE__DECON_NAME);
-    createEReference(funcInductiveCaseEClass, FUNC_INDUCTIVE_CASE__EXPRE);
+    createEReference(funcInductiveCaseEClass, FUNC_INDUCTIVE_CASE__VARIABLES);
+    createEReference(funcInductiveCaseEClass, FUNC_INDUCTIVE_CASE__EXPR);
 
     theoremBodyEClass = createEClass(THEOREM_BODY);
     createEReference(theoremBodyEClass, THEOREM_BODY__THEOREM_DECL);
@@ -1780,6 +1801,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     prefixEClass = createEClass(PREFIX);
     createEAttribute(prefixEClass, PREFIX__NAME);
     createEReference(prefixEClass, PREFIX__ELEM);
+
+    bracketEClass = createEClass(BRACKET);
+    createEReference(bracketEClass, BRACKET__CHILD);
 
     expressionTypeEClass = createEClass(EXPRESSION_TYPE);
 
@@ -1841,8 +1865,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     typeNameEClass.getESuperTypes().add(this.getExpressionType());
     polymorphicTypeNameEClass.getESuperTypes().add(this.getGenName());
     datatypeEClass.getESuperTypes().add(this.getClassDecl());
-    baseConstructorEClass.getESuperTypes().add(this.getDatatypeConstructor());
-    dTypeConstructorEClass.getESuperTypes().add(this.getDatatypeConstructor());
     extendEClass.getESuperTypes().add(this.getTopLevel());
     functionNameEClass.getESuperTypes().add(this.getExpressionVariable());
     funcDirectDefEClass.getESuperTypes().add(this.getFunctionBody());
@@ -1850,6 +1872,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     typedVariableEClass.getESuperTypes().add(this.getExpressionVariable());
     quantLambdaEClass.getESuperTypes().add(this.getExpression());
     prefixEClass.getESuperTypes().add(this.getExpression());
+    bracketEClass.getESuperTypes().add(this.getExpression());
     expressionTypeEClass.getESuperTypes().add(this.getExpressionVariable());
     inbuiltTypeScanEClass.getESuperTypes().add(this.getTypeConstructor());
     instanceEClass.getESuperTypes().add(this.getTopLevel());
@@ -1918,15 +1941,11 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getWhere_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, Where.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(datatypeEClass, Datatype.class, "Datatype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDatatype_Constructors(), this.getDatatypeConstructor(), null, "constructors", null, 0, -1, Datatype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatatype_VarList(), this.getDatatypeConstructor(), null, "varList", null, 0, -1, Datatype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(datatypeConstructorEClass, DatatypeConstructor.class, "DatatypeConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDatatypeConstructor_Name(), ecorePackage.getEString(), "name", null, 0, 1, DatatypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(baseConstructorEClass, BaseConstructor.class, "BaseConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(dTypeConstructorEClass, DTypeConstructor.class, "DTypeConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDTypeConstructor_Decons(), this.getTypedVariableList(), null, "decons", null, 0, 1, DTypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatatypeConstructor_Name(), this.getTypedVariable(), null, "name", null, 0, 1, DatatypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDatatypeConstructor_Decons(), this.getTypedVariableList(), null, "decons", null, 0, 1, DatatypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extendEClass, Extend.class, "Extend", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExtend_Name(), this.getTypeName(), null, "name", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1942,6 +1961,8 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getFunctionDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunctionDecl_VarList(), this.getTypedVariableList(), null, "varList", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunctionDecl_ReturnType(), this.getTypeConstructor(), null, "returnType", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFunctionDecl_Infix(), ecorePackage.getEString(), "infix", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFunctionDecl_Precedence(), ecorePackage.getEInt(), "precedence", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunctionDecl_Body(), this.getFunctionBody(), null, "body", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(functionNameEClass, FunctionName.class, "FunctionName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1957,8 +1978,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getFuncInductive_InductCase(), this.getFuncInductiveCase(), null, "inductCase", null, 0, -1, FuncInductive.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(funcInductiveCaseEClass, FuncInductiveCase.class, "FuncInductiveCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFuncInductiveCase_DeconName(), this.getDTypeConstructor(), null, "deconName", null, 0, 1, FuncInductiveCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFuncInductiveCase_Expre(), this.getExpression(), null, "expre", null, 0, 1, FuncInductiveCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFuncInductiveCase_DeconName(), this.getDatatypeConstructor(), null, "deconName", null, 0, 1, FuncInductiveCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFuncInductiveCase_Variables(), this.getTypedVariable(), null, "variables", null, 0, -1, FuncInductiveCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFuncInductiveCase_Expr(), this.getExpression(), null, "expr", null, 0, 1, FuncInductiveCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(theoremBodyEClass, TheoremBody.class, "TheoremBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTheoremBody_TheoremDecl(), this.getTheoremDecl(), null, "theoremDecl", null, 0, -1, TheoremBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1995,6 +2017,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getPrefix_Name(), ecorePackage.getEString(), "name", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrefix_Elem(), this.getExpression(), null, "elem", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(bracketEClass, Bracket.class, "Bracket", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBracket_Child(), this.getExpression(), null, "child", null, 0, 1, Bracket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(expressionTypeEClass, ExpressionType.class, "ExpressionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(expressionVariableEClass, ExpressionVariable.class, "ExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2014,9 +2039,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(infixEClass, Infix.class, "Infix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInfix_Left(), this.getExpression(), null, "left", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInfix_FuncName(), this.getFunctionName(), null, "funcName", null, 0, -1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getInfix_OpName(), ecorePackage.getEString(), "opName", null, 0, -1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInfix_Right(), this.getExpression(), null, "right", null, 0, -1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInfix_FuncName(), this.getFunctionName(), null, "funcName", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInfix_OpName(), ecorePackage.getEString(), "opName", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInfix_Right(), this.getExpression(), null, "right", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

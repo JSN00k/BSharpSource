@@ -14,11 +14,11 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
-import org.xtext.sampleProj.mydsl.myDsl.BaseConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.BppClass;
+import org.xtext.sampleProj.mydsl.myDsl.Bracket;
 import org.xtext.sampleProj.mydsl.myDsl.ConstructedType;
-import org.xtext.sampleProj.mydsl.myDsl.DTypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.Datatype;
+import org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.DomainModel;
 import org.xtext.sampleProj.mydsl.myDsl.Expression;
 import org.xtext.sampleProj.mydsl.myDsl.Extend;
@@ -70,20 +70,20 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == MyDslPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case MyDslPackage.BASE_CONSTRUCTOR:
-				sequence_BaseConstructor(context, (BaseConstructor) semanticObject); 
-				return; 
 			case MyDslPackage.BPP_CLASS:
 				sequence_Class(context, (BppClass) semanticObject); 
+				return; 
+			case MyDslPackage.BRACKET:
+				sequence_Bracket(context, (Bracket) semanticObject); 
 				return; 
 			case MyDslPackage.CONSTRUCTED_TYPE:
 				sequence_ConstructedType(context, (ConstructedType) semanticObject); 
 				return; 
-			case MyDslPackage.DTYPE_CONSTRUCTOR:
-				sequence_DTypeConstructor(context, (DTypeConstructor) semanticObject); 
-				return; 
 			case MyDslPackage.DATATYPE:
 				sequence_Datatype(context, (Datatype) semanticObject); 
+				return; 
+			case MyDslPackage.DATATYPE_CONSTRUCTOR:
+				sequence_DatatypeConstructor(context, (DatatypeConstructor) semanticObject); 
 				return; 
 			case MyDslPackage.DOMAIN_MODEL:
 				sequence_DomainModel(context, (DomainModel) semanticObject); 
@@ -154,11 +154,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_Lambda(context, (QuantLambda) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getRootExpressionRule()
-						|| rule == grammarAccess.getInfixRule()
-						|| action == grammarAccess.getInfixAccess().getInfixLeftAction_1_0()
-						|| rule == grammarAccess.getElementRule()
-						|| rule == grammarAccess.getBracketRule()) {
+				else if (rule == grammarAccess.getRootExpressionRule()) {
 					sequence_Lambda_Quantifier(context, (QuantLambda) semanticObject); 
 					return; 
 				}
@@ -216,19 +212,22 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     DatatypeConstructor returns BaseConstructor
-	 *     BaseConstructor returns BaseConstructor
+	 *     RootExpression returns Bracket
+	 *     Infix returns Bracket
+	 *     Infix.Infix_1_0 returns Bracket
+	 *     Element returns Bracket
+	 *     Bracket returns Bracket
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     child=RootExpression
 	 */
-	protected void sequence_BaseConstructor(ISerializationContext context, BaseConstructor semanticObject) {
+	protected void sequence_Bracket(ISerializationContext context, Bracket semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATATYPE_CONSTRUCTOR__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATATYPE_CONSTRUCTOR__NAME));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.BRACKET__CHILD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.BRACKET__CHILD));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBaseConstructorAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getBracketAccess().getChildRootExpressionParserRuleCall_1_0(), semanticObject.getChild());
 		feeder.finish();
 	}
 	
@@ -268,23 +267,13 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     DatatypeConstructor returns DTypeConstructor
-	 *     DTypeConstructor returns DTypeConstructor
+	 *     DatatypeConstructor returns DatatypeConstructor
 	 *
 	 * Constraint:
-	 *     (name=ID decons=TypedVariableList)
+	 *     (name=TypedVariable decons=TypedVariableList?)
 	 */
-	protected void sequence_DTypeConstructor(ISerializationContext context, DTypeConstructor semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DATATYPE_CONSTRUCTOR__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DATATYPE_CONSTRUCTOR__NAME));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.DTYPE_CONSTRUCTOR__DECONS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.DTYPE_CONSTRUCTOR__DECONS));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDTypeConstructorAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getDTypeConstructorAccess().getDeconsTypedVariableListParserRuleCall_2_0(), semanticObject.getDecons());
-		feeder.finish();
+	protected void sequence_DatatypeConstructor(ISerializationContext context, DatatypeConstructor semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -295,7 +284,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Datatype returns Datatype
 	 *
 	 * Constraint:
-	 *     (typeName=TypeName context=PolyContext? constructors+=DatatypeConstructor* bodyElements+=TypeBodyElements*)
+	 *     (typeName=TypeName context=PolyContext? varList+=DatatypeConstructor+ bodyElements+=TypeBodyElements*)
 	 */
 	protected void sequence_Datatype(ISerializationContext context, Datatype semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -351,19 +340,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     FuncInductiveCase returns FuncInductiveCase
 	 *
 	 * Constraint:
-	 *     (deconName=[DTypeConstructor|ID] expre=RootExpression)
+	 *     (deconName=[DatatypeConstructor|ID] (variables+=TypedVariable variables+=TypedVariable*)? expr=RootExpression)
 	 */
 	protected void sequence_FuncInductiveCase(ISerializationContext context, FuncInductiveCase semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.FUNC_INDUCTIVE_CASE__DECON_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.FUNC_INDUCTIVE_CASE__DECON_NAME));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.FUNC_INDUCTIVE_CASE__EXPRE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.FUNC_INDUCTIVE_CASE__EXPRE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFuncInductiveCaseAccess().getDeconNameDTypeConstructorIDTerminalRuleCall_1_0_1(), semanticObject.eGet(MyDslPackage.Literals.FUNC_INDUCTIVE_CASE__DECON_NAME, false));
-		feeder.accept(grammarAccess.getFuncInductiveCaseAccess().getExpreRootExpressionParserRuleCall_3_0(), semanticObject.getExpre());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -386,11 +366,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Infix returns Expression
 	 *     Infix.Infix_1_0 returns Expression
 	 *     Element returns Expression
-	 *     Bracket returns Expression
 	 *     FunctionCall returns Expression
 	 *
 	 * Constraint:
-	 *     (typeInst=TypeInstance arguments+=Infix? arguments+=Infix*)
+	 *     (typeInst=TypeInstance arguments+=RootExpression? arguments+=RootExpression*)
 	 */
 	protected void sequence_FunctionCall(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -402,7 +381,15 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     FunctionDecl returns FunctionDecl
 	 *
 	 * Constraint:
-	 *     (name+=FunctionName context=PolyContext? varList=TypedVariableList? returnType=TypeConstructor body=FunctionBody)
+	 *     (
+	 *         name+=FunctionName 
+	 *         context=PolyContext? 
+	 *         varList=TypedVariableList? 
+	 *         returnType=TypeConstructor 
+	 *         infix='INFIX'? 
+	 *         precedence=INT? 
+	 *         body=FunctionBody
+	 *     )
 	 */
 	protected void sequence_FunctionDecl(ISerializationContext context, FunctionDecl semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -506,11 +493,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     RootExpression returns Infix
 	 *     Infix returns Infix
 	 *     Infix.Infix_1_0 returns Infix
-	 *     Element returns Infix
-	 *     Bracket returns Infix
 	 *
 	 * Constraint:
-	 *     (left=Infix_Infix_1_0 (funcName+=[FunctionName|ID] | opName+=InbuiltInfix) right+=Element)
+	 *     (left=Infix_Infix_1_0 (funcName=[FunctionName|ID] | opName=InbuiltInfix) right=Element)
 	 */
 	protected void sequence_Infix(ISerializationContext context, Infix semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -523,7 +508,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
-	 *     (className=[TypeName|ID] context=TypeDeclContext arguments+=Infix? arguments+=Infix*)
+	 *     (className=[TypeName|ID] context=TypeDeclContext arguments+=RootExpression? arguments+=RootExpression*)
 	 */
 	protected void sequence_Instance(ISerializationContext context, Instance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -545,10 +530,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     RootExpression returns QuantLambda
-	 *     Infix returns QuantLambda
-	 *     Infix.Infix_1_0 returns QuantLambda
-	 *     Element returns QuantLambda
-	 *     Bracket returns QuantLambda
 	 *
 	 * Constraint:
 	 *     (
@@ -623,7 +604,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Infix returns Prefix
 	 *     Infix.Infix_1_0 returns Prefix
 	 *     Element returns Prefix
-	 *     Bracket returns Prefix
 	 *
 	 * Constraint:
 	 *     (name=PrefixBuiltIn elem=Element)

@@ -65,14 +65,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Where/expressions"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Datatype">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Datatype/constructors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Datatype/varList"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//DatatypeConstructor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//DatatypeConstructor/name"/>
-    </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//BaseConstructor"/>
-    <genClasses ecoreClass="MyDsl.ecore#//DTypeConstructor">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//DTypeConstructor/decons"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//DatatypeConstructor/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//DatatypeConstructor/decons"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Extend">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Extend/name"/>
@@ -88,6 +85,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FunctionDecl/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FunctionDecl/varList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FunctionDecl/returnType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FunctionDecl/infix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FunctionDecl/precedence"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FunctionDecl/body"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//FunctionName">
@@ -103,7 +102,8 @@
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//FuncInductiveCase">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FuncInductiveCase/deconName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FuncInductiveCase/expre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FuncInductiveCase/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FuncInductiveCase/expr"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TheoremBody">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TheoremBody/theoremDecl"/>
@@ -139,6 +139,9 @@
     <genClasses ecoreClass="MyDsl.ecore#//Prefix">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Prefix/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Prefix/elem"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Bracket">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Bracket/child"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ExpressionType"/>
     <genClasses ecoreClass="MyDsl.ecore#//ExpressionVariable"/>

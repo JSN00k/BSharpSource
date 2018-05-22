@@ -213,24 +213,6 @@ public interface MyDslFactory extends EFactory
   DatatypeConstructor createDatatypeConstructor();
 
   /**
-   * Returns a new object of class '<em>Base Constructor</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Base Constructor</em>'.
-   * @generated
-   */
-  BaseConstructor createBaseConstructor();
-
-  /**
-   * Returns a new object of class '<em>DType Constructor</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>DType Constructor</em>'.
-   * @generated
-   */
-  DTypeConstructor createDTypeConstructor();
-
-  /**
    * Returns a new object of class '<em>Extend</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -382,6 +364,15 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Prefix createPrefix();
+
+  /**
+   * Returns a new object of class '<em>Bracket</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bracket</em>'.
+   * @generated
+   */
+  Bracket createBracket();
 
   /**
    * Returns a new object of class '<em>Expression Type</em>'.

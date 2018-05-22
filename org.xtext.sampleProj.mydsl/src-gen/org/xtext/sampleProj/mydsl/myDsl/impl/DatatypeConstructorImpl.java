@@ -4,14 +4,18 @@
 package org.xtext.sampleProj.mydsl.myDsl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.sampleProj.mydsl.myDsl.DatatypeConstructor;
 import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
+import org.xtext.sampleProj.mydsl.myDsl.TypedVariable;
+import org.xtext.sampleProj.mydsl.myDsl.TypedVariableList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +26,7 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.DatatypeConstructorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.DatatypeConstructorImpl#getDecons <em>Decons</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +34,24 @@ import org.xtext.sampleProj.mydsl.myDsl.MyDslPackage;
 public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implements DatatypeConstructor
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected TypedVariable name;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getDecons() <em>Decons</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getDecons()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected TypedVariableList decons;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,7 +79,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public TypedVariable getName()
   {
     return name;
   }
@@ -84,12 +89,103 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public NotificationChain basicSetName(TypedVariable newName, NotificationChain msgs)
   {
-    String oldName = name;
+    TypedVariable oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE_CONSTRUCTOR__NAME, oldName, name));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE_CONSTRUCTOR__NAME, oldName, newName);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(TypedVariable newName)
+  {
+    if (newName != name)
+    {
+      NotificationChain msgs = null;
+      if (name != null)
+        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE_CONSTRUCTOR__NAME, null, msgs);
+      if (newName != null)
+        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE_CONSTRUCTOR__NAME, null, msgs);
+      msgs = basicSetName(newName, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE_CONSTRUCTOR__NAME, newName, newName));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypedVariableList getDecons()
+  {
+    return decons;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetDecons(TypedVariableList newDecons, NotificationChain msgs)
+  {
+    TypedVariableList oldDecons = decons;
+    decons = newDecons;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE_CONSTRUCTOR__DECONS, oldDecons, newDecons);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDecons(TypedVariableList newDecons)
+  {
+    if (newDecons != decons)
+    {
+      NotificationChain msgs = null;
+      if (decons != null)
+        msgs = ((InternalEObject)decons).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE_CONSTRUCTOR__DECONS, null, msgs);
+      if (newDecons != null)
+        msgs = ((InternalEObject)newDecons).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.DATATYPE_CONSTRUCTOR__DECONS, null, msgs);
+      msgs = basicSetDecons(newDecons, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DATATYPE_CONSTRUCTOR__DECONS, newDecons, newDecons));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.DATATYPE_CONSTRUCTOR__NAME:
+        return basicSetName(null, msgs);
+      case MyDslPackage.DATATYPE_CONSTRUCTOR__DECONS:
+        return basicSetDecons(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -104,6 +200,8 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
     {
       case MyDslPackage.DATATYPE_CONSTRUCTOR__NAME:
         return getName();
+      case MyDslPackage.DATATYPE_CONSTRUCTOR__DECONS:
+        return getDecons();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -119,7 +217,10 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
     switch (featureID)
     {
       case MyDslPackage.DATATYPE_CONSTRUCTOR__NAME:
-        setName((String)newValue);
+        setName((TypedVariable)newValue);
+        return;
+      case MyDslPackage.DATATYPE_CONSTRUCTOR__DECONS:
+        setDecons((TypedVariableList)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,7 +237,10 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
     switch (featureID)
     {
       case MyDslPackage.DATATYPE_CONSTRUCTOR__NAME:
-        setName(NAME_EDEFAULT);
+        setName((TypedVariable)null);
+        return;
+      case MyDslPackage.DATATYPE_CONSTRUCTOR__DECONS:
+        setDecons((TypedVariableList)null);
         return;
     }
     super.eUnset(featureID);
@@ -153,26 +257,11 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
     switch (featureID)
     {
       case MyDslPackage.DATATYPE_CONSTRUCTOR__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+        return name != null;
+      case MyDslPackage.DATATYPE_CONSTRUCTOR__DECONS:
+        return decons != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //DatatypeConstructorImpl

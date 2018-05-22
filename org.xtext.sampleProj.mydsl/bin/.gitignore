@@ -1,2 +1,6 @@
-/.gitignore
+/.EcoreUtilJ.java._trace
+/.EcoreUtilJ.xtendbin
+/EcoreUtilJ.class
 /org/
+/parser/
+/rewriteAST/
