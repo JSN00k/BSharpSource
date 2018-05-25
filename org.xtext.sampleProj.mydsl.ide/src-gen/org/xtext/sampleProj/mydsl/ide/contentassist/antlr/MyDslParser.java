@@ -31,7 +31,6 @@ public class MyDslParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getTHM_NAMEAccess().getAlternatives_0(), "rule__THM_NAME__Alternatives_0");
 					put(grammarAccess.getTopLevelAccess().getAlternatives(), "rule__TopLevel__Alternatives");
 					put(grammarAccess.getClassDeclAccess().getAlternatives(), "rule__ClassDecl__Alternatives");
 					put(grammarAccess.getGenNameAccess().getAlternatives(), "rule__GenName__Alternatives");
@@ -153,7 +152,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFuncInductiveCaseAccess().getExprAssignment_4(), "rule__FuncInductiveCase__ExprAssignment_4");
 					put(grammarAccess.getTheoremBodyAccess().getTheoremDeclAssignment_2(), "rule__TheoremBody__TheoremDeclAssignment_2");
 					put(grammarAccess.getTheoremDeclAccess().getThmNameAssignment_0(), "rule__TheoremDecl__ThmNameAssignment_0");
-					put(grammarAccess.getTheoremDeclAccess().getExpAssignment_1(), "rule__TheoremDecl__ExpAssignment_1");
+					put(grammarAccess.getTheoremDeclAccess().getExprAssignment_1(), "rule__TheoremDecl__ExprAssignment_1");
 					put(grammarAccess.getTypedVariableListAccess().getVariablesOfTypeAssignment_0(), "rule__TypedVariableList__VariablesOfTypeAssignment_0");
 					put(grammarAccess.getTypedVariableListAccess().getVariablesOfTypeAssignment_1_1(), "rule__TypedVariableList__VariablesOfTypeAssignment_1_1");
 					put(grammarAccess.getVariableTypingAccess().getTypeVarAssignment_0(), "rule__VariableTyping__TypeVarAssignment_0");

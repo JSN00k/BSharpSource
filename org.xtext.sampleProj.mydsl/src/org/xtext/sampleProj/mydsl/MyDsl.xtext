@@ -166,9 +166,11 @@ TheoremBody:
 	'Theorems' '{' (theoremDecl+=TheoremDecl)+ '}'
 ;
 
-/* Type check that the expression is a predicate expression. */
+/* Type check that the expression is a predicate expression. From a lexing point
+ * of view the semicolon is necessary because the THM_NAME rule is not good enough.
+ */
 TheoremDecl:
-	thmName=THM_NAME exp=RootExpression ';'
+	thmName=THM_NAME expr=RootExpression ';'
 ;
 
 TypedVariableList:

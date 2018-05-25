@@ -663,18 +663,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TheoremDecl returns TheoremDecl
 	 *
 	 * Constraint:
-	 *     (thmName=THM_NAME exp=RootExpression)
+	 *     (thmName=THM_NAME expr=RootExpression)
 	 */
 	protected void sequence_TheoremDecl(ISerializationContext context, TheoremDecl semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.THEOREM_DECL__THM_NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.THEOREM_DECL__THM_NAME));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.THEOREM_DECL__EXP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.THEOREM_DECL__EXP));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.THEOREM_DECL__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.THEOREM_DECL__EXPR));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTheoremDeclAccess().getThmNameTHM_NAMEParserRuleCall_0_0(), semanticObject.getThmName());
-		feeder.accept(grammarAccess.getTheoremDeclAccess().getExpRootExpressionParserRuleCall_1_0(), semanticObject.getExp());
+		feeder.accept(grammarAccess.getTheoremDeclAccess().getExprRootExpressionParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
 	}
 	

@@ -110,7 +110,7 @@
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TheoremDecl">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//TheoremDecl/thmName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TheoremDecl/exp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TheoremDecl/expr"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//TypedVariableList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//TypedVariableList/variablesOfType"/>

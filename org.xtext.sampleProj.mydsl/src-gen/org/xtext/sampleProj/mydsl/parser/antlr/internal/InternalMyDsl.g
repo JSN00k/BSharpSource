@@ -113,28 +113,10 @@ ruleTHM_NAME returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
 }:
 	(
 		(
-			this_INT_0=RULE_INT
+			kw='^'
 			{
-				$current.merge(this_INT_0);
-			}
-			{
-				newLeafNode(this_INT_0, grammarAccess.getTHM_NAMEAccess().getINTTerminalRuleCall_0_0());
-			}
-			    |
-			this_ID_1=RULE_ID
-			{
-				$current.merge(this_ID_1);
-			}
-			{
-				newLeafNode(this_ID_1, grammarAccess.getTHM_NAMEAccess().getIDTerminalRuleCall_0_1());
-			}
-			    |
-			this_WS_2=RULE_WS
-			{
-				$current.merge(this_WS_2);
-			}
-			{
-				newLeafNode(this_WS_2, grammarAccess.getTHM_NAMEAccess().getWSTerminalRuleCall_0_2());
+				$current.merge(kw);
+				newLeafNode(kw, grammarAccess.getTHM_NAMEAccess().getCircumflexAccentKeyword_0());
 			}
 		)*
 		kw=':'
@@ -2044,17 +2026,17 @@ ruleTheoremDecl returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTheoremDeclAccess().getExpRootExpressionParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getTheoremDeclAccess().getExprRootExpressionParserRuleCall_1_0());
 				}
-				lv_exp_1_0=ruleRootExpression
+				lv_expr_1_0=ruleRootExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTheoremDeclRule());
 					}
 					set(
 						$current,
-						"exp",
-						lv_exp_1_0,
+						"expr",
+						lv_expr_1_0,
 						"org.xtext.sampleProj.mydsl.MyDsl.RootExpression");
 					afterParserOrEnumRuleCall();
 				}

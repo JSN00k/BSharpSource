@@ -1229,7 +1229,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTheoremDecl_Exp()
+  public EReference getTheoremDecl_Expr()
   {
     return (EReference)theoremDeclEClass.getEStructuralFeatures().get(1);
   }
@@ -1772,7 +1772,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     theoremDeclEClass = createEClass(THEOREM_DECL);
     createEAttribute(theoremDeclEClass, THEOREM_DECL__THM_NAME);
-    createEReference(theoremDeclEClass, THEOREM_DECL__EXP);
+    createEReference(theoremDeclEClass, THEOREM_DECL__EXPR);
 
     typedVariableListEClass = createEClass(TYPED_VARIABLE_LIST);
     createEReference(typedVariableListEClass, TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE);
@@ -1987,7 +1987,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(theoremDeclEClass, TheoremDecl.class, "TheoremDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTheoremDecl_ThmName(), ecorePackage.getEString(), "thmName", null, 0, 1, TheoremDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTheoremDecl_Exp(), this.getExpression(), null, "exp", null, 0, 1, TheoremDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTheoremDecl_Expr(), this.getExpression(), null, "expr", null, 0, 1, TheoremDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typedVariableListEClass, TypedVariableList.class, "TypedVariableList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTypedVariableList_VariablesOfType(), this.getVariableTyping(), null, "variablesOfType", null, 0, -1, TypedVariableList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

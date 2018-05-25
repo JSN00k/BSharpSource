@@ -25,7 +25,7 @@ import org.xtext.sampleProj.mydsl.myDsl.TheoremDecl;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TheoremDeclImpl#getThmName <em>Thm Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TheoremDeclImpl#getExp <em>Exp</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.impl.TheoremDeclImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  *
  * @generated
@@ -53,14 +53,14 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
   protected String thmName = THM_NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getExp() <em>Exp</em>}' containment reference.
+   * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExp()
+   * @see #getExpr()
    * @generated
    * @ordered
    */
-  protected Expression exp;
+  protected Expression expr;
 
   /**
    * <!-- begin-user-doc -->
@@ -111,9 +111,9 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression getExp()
+  public Expression getExpr()
   {
-    return exp;
+    return expr;
   }
 
   /**
@@ -121,13 +121,13 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExp(Expression newExp, NotificationChain msgs)
+  public NotificationChain basicSetExpr(Expression newExpr, NotificationChain msgs)
   {
-    Expression oldExp = exp;
-    exp = newExp;
+    Expression oldExpr = expr;
+    expr = newExpr;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.THEOREM_DECL__EXP, oldExp, newExp);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.THEOREM_DECL__EXPR, oldExpr, newExpr);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -138,20 +138,20 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExp(Expression newExp)
+  public void setExpr(Expression newExpr)
   {
-    if (newExp != exp)
+    if (newExpr != expr)
     {
       NotificationChain msgs = null;
-      if (exp != null)
-        msgs = ((InternalEObject)exp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.THEOREM_DECL__EXP, null, msgs);
-      if (newExp != null)
-        msgs = ((InternalEObject)newExp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.THEOREM_DECL__EXP, null, msgs);
-      msgs = basicSetExp(newExp, msgs);
+      if (expr != null)
+        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.THEOREM_DECL__EXPR, null, msgs);
+      if (newExpr != null)
+        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.THEOREM_DECL__EXPR, null, msgs);
+      msgs = basicSetExpr(newExpr, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.THEOREM_DECL__EXP, newExp, newExp));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.THEOREM_DECL__EXPR, newExpr, newExpr));
   }
 
   /**
@@ -164,8 +164,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
   {
     switch (featureID)
     {
-      case MyDslPackage.THEOREM_DECL__EXP:
-        return basicSetExp(null, msgs);
+      case MyDslPackage.THEOREM_DECL__EXPR:
+        return basicSetExpr(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -182,8 +182,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
     {
       case MyDslPackage.THEOREM_DECL__THM_NAME:
         return getThmName();
-      case MyDslPackage.THEOREM_DECL__EXP:
-        return getExp();
+      case MyDslPackage.THEOREM_DECL__EXPR:
+        return getExpr();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -201,8 +201,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
       case MyDslPackage.THEOREM_DECL__THM_NAME:
         setThmName((String)newValue);
         return;
-      case MyDslPackage.THEOREM_DECL__EXP:
-        setExp((Expression)newValue);
+      case MyDslPackage.THEOREM_DECL__EXPR:
+        setExpr((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,8 +221,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
       case MyDslPackage.THEOREM_DECL__THM_NAME:
         setThmName(THM_NAME_EDEFAULT);
         return;
-      case MyDslPackage.THEOREM_DECL__EXP:
-        setExp((Expression)null);
+      case MyDslPackage.THEOREM_DECL__EXPR:
+        setExpr((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -240,8 +240,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
     {
       case MyDslPackage.THEOREM_DECL__THM_NAME:
         return THM_NAME_EDEFAULT == null ? thmName != null : !THM_NAME_EDEFAULT.equals(thmName);
-      case MyDslPackage.THEOREM_DECL__EXP:
-        return exp != null;
+      case MyDslPackage.THEOREM_DECL__EXPR:
+        return expr != null;
     }
     return super.eIsSet(featureID);
   }

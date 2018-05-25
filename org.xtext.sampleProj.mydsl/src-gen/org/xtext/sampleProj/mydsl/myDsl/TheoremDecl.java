@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TheoremDecl#getThmName <em>Thm Name</em>}</li>
- *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TheoremDecl#getExp <em>Exp</em>}</li>
+ *   <li>{@link org.xtext.sampleProj.mydsl.myDsl.TheoremDecl#getExpr <em>Expr</em>}</li>
  * </ul>
  *
  * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTheoremDecl()
@@ -51,29 +51,29 @@ public interface TheoremDecl extends EObject
   void setThmName(String value);
 
   /**
-   * Returns the value of the '<em><b>Exp</b></em>' containment reference.
+   * Returns the value of the '<em><b>Expr</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Exp</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Expr</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Exp</em>' containment reference.
-   * @see #setExp(Expression)
-   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTheoremDecl_Exp()
+   * @return the value of the '<em>Expr</em>' containment reference.
+   * @see #setExpr(Expression)
+   * @see org.xtext.sampleProj.mydsl.myDsl.MyDslPackage#getTheoremDecl_Expr()
    * @model containment="true"
    * @generated
    */
-  Expression getExp();
+  Expression getExpr();
 
   /**
-   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.TheoremDecl#getExp <em>Exp</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.sampleProj.mydsl.myDsl.TheoremDecl#getExpr <em>Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Exp</em>' containment reference.
-   * @see #getExp()
+   * @param value the new value of the '<em>Expr</em>' containment reference.
+   * @see #getExpr()
    * @generated
    */
-  void setExp(Expression value);
+  void setExpr(Expression value);
 
 } // TheoremDecl

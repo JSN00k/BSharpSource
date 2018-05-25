@@ -42,31 +42,19 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class THM_NAMEElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.sampleProj.mydsl.MyDsl.THM_NAME");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
-		private final RuleCall cIDTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
+		private final Keyword cCircumflexAccentKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//// Theorem names can include white space. Work out how to change this to any string without a ':'
 		//THM_NAME:
-		//	(INT | ID | WS)* ":";
+		//	'^'* ":";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(INT | ID | WS)* ":"
+		//'^'* ":"
 		public Group getGroup() { return cGroup; }
 		
-		//(INT | ID | WS)*
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-		
-		//INT
-		public RuleCall getINTTerminalRuleCall_0_0() { return cINTTerminalRuleCall_0_0; }
-		
-		//ID
-		public RuleCall getIDTerminalRuleCall_0_1() { return cIDTerminalRuleCall_0_1; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_0_2() { return cWSTerminalRuleCall_0_2; }
+		//'^'*
+		public Keyword getCircumflexAccentKeyword_0() { return cCircumflexAccentKeyword_0; }
 		
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
@@ -1173,15 +1161,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cThmNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cThmNameTHM_NAMEParserRuleCall_0_0 = (RuleCall)cThmNameAssignment_0.eContents().get(0);
-		private final Assignment cExpAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cExpRootExpressionParserRuleCall_1_0 = (RuleCall)cExpAssignment_1.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprRootExpressionParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		///* Type check that the expression is a predicate expression. */ TheoremDecl:
-		//	thmName=THM_NAME exp=RootExpression ';';
+		///* Type check that the expression is a predicate expression. From a lexing point
+		// * of view the semicolon is necessary because the THM_NAME rule is not good enough.
+		// */ TheoremDecl:
+		//	thmName=THM_NAME expr=RootExpression ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//thmName=THM_NAME exp=RootExpression ';'
+		//thmName=THM_NAME expr=RootExpression ';'
 		public Group getGroup() { return cGroup; }
 		
 		//thmName=THM_NAME
@@ -1190,11 +1180,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//THM_NAME
 		public RuleCall getThmNameTHM_NAMEParserRuleCall_0_0() { return cThmNameTHM_NAMEParserRuleCall_0_0; }
 		
-		//exp=RootExpression
-		public Assignment getExpAssignment_1() { return cExpAssignment_1; }
+		//expr=RootExpression
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
 		
 		//RootExpression
-		public RuleCall getExpRootExpressionParserRuleCall_1_0() { return cExpRootExpressionParserRuleCall_1_0; }
+		public RuleCall getExprRootExpressionParserRuleCall_1_0() { return cExprRootExpressionParserRuleCall_1_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
@@ -2076,7 +2066,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// Theorem names can include white space. Work out how to change this to any string without a ':'
 	//THM_NAME:
-	//	(INT | ID | WS)* ":";
+	//	'^'* ":";
 	public THM_NAMEElements getTHM_NAMEAccess() {
 		return pTHM_NAME;
 	}
@@ -2397,8 +2387,10 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getTheoremBodyAccess().getRule();
 	}
 	
-	///* Type check that the expression is a predicate expression. */ TheoremDecl:
-	//	thmName=THM_NAME exp=RootExpression ';';
+	///* Type check that the expression is a predicate expression. From a lexing point
+	// * of view the semicolon is necessary because the THM_NAME rule is not good enough.
+	// */ TheoremDecl:
+	//	thmName=THM_NAME expr=RootExpression ';';
 	public TheoremDeclElements getTheoremDeclAccess() {
 		return pTheoremDecl;
 	}

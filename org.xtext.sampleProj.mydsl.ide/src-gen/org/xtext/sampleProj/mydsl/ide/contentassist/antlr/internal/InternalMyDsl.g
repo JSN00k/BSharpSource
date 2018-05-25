@@ -1274,33 +1274,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__THM_NAME__Alternatives_0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getTHM_NAMEAccess().getINTTerminalRuleCall_0_0()); }
-		RULE_INT
-		{ after(grammarAccess.getTHM_NAMEAccess().getINTTerminalRuleCall_0_0()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getTHM_NAMEAccess().getIDTerminalRuleCall_0_1()); }
-		RULE_ID
-		{ after(grammarAccess.getTHM_NAMEAccess().getIDTerminalRuleCall_0_1()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getTHM_NAMEAccess().getWSTerminalRuleCall_0_2()); }
-		RULE_WS
-		{ after(grammarAccess.getTHM_NAMEAccess().getWSTerminalRuleCall_0_2()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__TopLevel__Alternatives
 	@init {
 		int stackSize = keepStackSize();
@@ -1667,9 +1640,9 @@ rule__THM_NAME__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getTHM_NAMEAccess().getAlternatives_0()); }
-	(rule__THM_NAME__Alternatives_0)*
-	{ after(grammarAccess.getTHM_NAMEAccess().getAlternatives_0()); }
+	{ before(grammarAccess.getTHM_NAMEAccess().getCircumflexAccentKeyword_0()); }
+	('^')*
+	{ after(grammarAccess.getTHM_NAMEAccess().getCircumflexAccentKeyword_0()); }
 )
 ;
 finally {
@@ -4523,9 +4496,9 @@ rule__TheoremDecl__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getTheoremDeclAccess().getExpAssignment_1()); }
-	(rule__TheoremDecl__ExpAssignment_1)
-	{ after(grammarAccess.getTheoremDeclAccess().getExpAssignment_1()); }
+	{ before(grammarAccess.getTheoremDeclAccess().getExprAssignment_1()); }
+	(rule__TheoremDecl__ExprAssignment_1)
+	{ after(grammarAccess.getTheoremDeclAccess().getExprAssignment_1()); }
 )
 ;
 finally {
@@ -6841,15 +6814,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__TheoremDecl__ExpAssignment_1
+rule__TheoremDecl__ExprAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getTheoremDeclAccess().getExpRootExpressionParserRuleCall_1_0()); }
+		{ before(grammarAccess.getTheoremDeclAccess().getExprRootExpressionParserRuleCall_1_0()); }
 		ruleRootExpression
-		{ after(grammarAccess.getTheoremDeclAccess().getExpRootExpressionParserRuleCall_1_0()); }
+		{ after(grammarAccess.getTheoremDeclAccess().getExprRootExpressionParserRuleCall_1_0()); }
 	)
 ;
 finally {
