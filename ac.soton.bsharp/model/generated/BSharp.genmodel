@@ -97,7 +97,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FuncDirectDef/expression"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FuncInductive">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FuncInductive/variableName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FuncInductive/match"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FuncInductive/inductCase"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FuncInductiveCase">

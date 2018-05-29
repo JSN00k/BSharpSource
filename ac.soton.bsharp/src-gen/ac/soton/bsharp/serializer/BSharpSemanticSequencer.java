@@ -340,7 +340,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FuncInductiveCase returns FuncInductiveCase
 	 *
 	 * Constraint:
-	 *     (deconName=[DatatypeConstructor|ID] (variables+=TypedVariable variables+=TypedVariable*)? expr=RootExpression)
+	 *     (deconName=[TypedVariable|ID] (variables+=TypedVariable variables+=TypedVariable*)? expr=RootExpression)
 	 */
 	protected void sequence_FuncInductiveCase(ISerializationContext context, FuncInductiveCase semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -353,7 +353,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FuncInductive returns FuncInductive
 	 *
 	 * Constraint:
-	 *     (variableName=[TypedVariable|ID] inductCase+=FuncInductiveCase inductCase+=FuncInductiveCase*)
+	 *     (match=[TypedVariable|ID] inductCase+=FuncInductiveCase inductCase+=FuncInductiveCase*)
 	 */
 	protected void sequence_FuncInductive(ISerializationContext context, FuncInductive semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -1129,7 +1129,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFuncInductive_VariableName()
+  public EReference getFuncInductive_Match()
   {
     return (EReference)funcInductiveEClass.getEStructuralFeatures().get(0);
   }
@@ -1759,7 +1759,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage
     createEReference(funcDirectDefEClass, FUNC_DIRECT_DEF__EXPRESSION);
 
     funcInductiveEClass = createEClass(FUNC_INDUCTIVE);
-    createEReference(funcInductiveEClass, FUNC_INDUCTIVE__VARIABLE_NAME);
+    createEReference(funcInductiveEClass, FUNC_INDUCTIVE__MATCH);
     createEReference(funcInductiveEClass, FUNC_INDUCTIVE__INDUCT_CASE);
 
     funcInductiveCaseEClass = createEClass(FUNC_INDUCTIVE_CASE);
@@ -1974,11 +1974,11 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage
     initEReference(getFuncDirectDef_Expression(), this.getExpression(), null, "expression", null, 0, 1, FuncDirectDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(funcInductiveEClass, FuncInductive.class, "FuncInductive", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFuncInductive_VariableName(), this.getTypedVariable(), null, "variableName", null, 0, 1, FuncInductive.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFuncInductive_Match(), this.getTypedVariable(), null, "match", null, 0, 1, FuncInductive.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFuncInductive_InductCase(), this.getFuncInductiveCase(), null, "inductCase", null, 0, -1, FuncInductive.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(funcInductiveCaseEClass, FuncInductiveCase.class, "FuncInductiveCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFuncInductiveCase_DeconName(), this.getDatatypeConstructor(), null, "deconName", null, 0, 1, FuncInductiveCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFuncInductiveCase_DeconName(), this.getTypedVariable(), null, "deconName", null, 0, 1, FuncInductiveCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFuncInductiveCase_Variables(), this.getTypedVariable(), null, "variables", null, 0, -1, FuncInductiveCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFuncInductiveCase_Expr(), this.getExpression(), null, "expr", null, 0, 1, FuncInductiveCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

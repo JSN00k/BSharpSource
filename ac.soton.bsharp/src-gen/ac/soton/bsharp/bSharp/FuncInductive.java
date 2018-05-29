@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.FuncInductive#getVariableName <em>Variable Name</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FuncInductive#getMatch <em>Match</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FuncInductive#getInductCase <em>Induct Case</em>}</li>
  * </ul>
  *
@@ -25,30 +25,30 @@ import org.eclipse.emf.common.util.EList;
 public interface FuncInductive extends FunctionBody
 {
   /**
-   * Returns the value of the '<em><b>Variable Name</b></em>' reference.
+   * Returns the value of the '<em><b>Match</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Variable Name</em>' reference isn't clear,
+   * If the meaning of the '<em>Match</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Variable Name</em>' reference.
-   * @see #setVariableName(TypedVariable)
-   * @see ac.soton.bsharp.bSharp.BSharpPackage#getFuncInductive_VariableName()
+   * @return the value of the '<em>Match</em>' reference.
+   * @see #setMatch(TypedVariable)
+   * @see ac.soton.bsharp.bSharp.BSharpPackage#getFuncInductive_Match()
    * @model
    * @generated
    */
-  TypedVariable getVariableName();
+  TypedVariable getMatch();
 
   /**
-   * Sets the value of the '{@link ac.soton.bsharp.bSharp.FuncInductive#getVariableName <em>Variable Name</em>}' reference.
+   * Sets the value of the '{@link ac.soton.bsharp.bSharp.FuncInductive#getMatch <em>Match</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Variable Name</em>' reference.
-   * @see #getVariableName()
+   * @param value the new value of the '<em>Match</em>' reference.
+   * @see #getMatch()
    * @generated
    */
-  void setVariableName(TypedVariable value);
+  void setMatch(TypedVariable value);
 
   /**
    * Returns the value of the '<em><b>Induct Case</b></em>' containment reference list.

@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FuncInductiveImpl#getVariableName <em>Variable Name</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FuncInductiveImpl#getMatch <em>Match</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FuncInductiveImpl#getInductCase <em>Induct Case</em>}</li>
  * </ul>
  *
@@ -40,14 +40,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class FuncInductiveImpl extends FunctionBodyImpl implements FuncInductive
 {
   /**
-   * The cached value of the '{@link #getVariableName() <em>Variable Name</em>}' reference.
+   * The cached value of the '{@link #getMatch() <em>Match</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVariableName()
+   * @see #getMatch()
    * @generated
    * @ordered
    */
-  protected TypedVariable variableName;
+  protected TypedVariable match;
 
   /**
    * The cached value of the '{@link #getInductCase() <em>Induct Case</em>}' containment reference list.
@@ -85,19 +85,19 @@ public class FuncInductiveImpl extends FunctionBodyImpl implements FuncInductive
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypedVariable getVariableName()
+  public TypedVariable getMatch()
   {
-    if (variableName != null && variableName.eIsProxy())
+    if (match != null && match.eIsProxy())
     {
-      InternalEObject oldVariableName = (InternalEObject)variableName;
-      variableName = (TypedVariable)eResolveProxy(oldVariableName);
-      if (variableName != oldVariableName)
+      InternalEObject oldMatch = (InternalEObject)match;
+      match = (TypedVariable)eResolveProxy(oldMatch);
+      if (match != oldMatch)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.FUNC_INDUCTIVE__VARIABLE_NAME, oldVariableName, variableName));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.FUNC_INDUCTIVE__MATCH, oldMatch, match));
       }
     }
-    return variableName;
+    return match;
   }
 
   /**
@@ -105,9 +105,9 @@ public class FuncInductiveImpl extends FunctionBodyImpl implements FuncInductive
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypedVariable basicGetVariableName()
+  public TypedVariable basicGetMatch()
   {
-    return variableName;
+    return match;
   }
 
   /**
@@ -115,12 +115,12 @@ public class FuncInductiveImpl extends FunctionBodyImpl implements FuncInductive
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVariableName(TypedVariable newVariableName)
+  public void setMatch(TypedVariable newMatch)
   {
-    TypedVariable oldVariableName = variableName;
-    variableName = newVariableName;
+    TypedVariable oldMatch = match;
+    match = newMatch;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNC_INDUCTIVE__VARIABLE_NAME, oldVariableName, variableName));
+      eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNC_INDUCTIVE__MATCH, oldMatch, match));
   }
 
   /**
@@ -163,9 +163,9 @@ public class FuncInductiveImpl extends FunctionBodyImpl implements FuncInductive
   {
     switch (featureID)
     {
-      case BSharpPackage.FUNC_INDUCTIVE__VARIABLE_NAME:
-        if (resolve) return getVariableName();
-        return basicGetVariableName();
+      case BSharpPackage.FUNC_INDUCTIVE__MATCH:
+        if (resolve) return getMatch();
+        return basicGetMatch();
       case BSharpPackage.FUNC_INDUCTIVE__INDUCT_CASE:
         return getInductCase();
     }
@@ -183,8 +183,8 @@ public class FuncInductiveImpl extends FunctionBodyImpl implements FuncInductive
   {
     switch (featureID)
     {
-      case BSharpPackage.FUNC_INDUCTIVE__VARIABLE_NAME:
-        setVariableName((TypedVariable)newValue);
+      case BSharpPackage.FUNC_INDUCTIVE__MATCH:
+        setMatch((TypedVariable)newValue);
         return;
       case BSharpPackage.FUNC_INDUCTIVE__INDUCT_CASE:
         getInductCase().clear();
@@ -204,8 +204,8 @@ public class FuncInductiveImpl extends FunctionBodyImpl implements FuncInductive
   {
     switch (featureID)
     {
-      case BSharpPackage.FUNC_INDUCTIVE__VARIABLE_NAME:
-        setVariableName((TypedVariable)null);
+      case BSharpPackage.FUNC_INDUCTIVE__MATCH:
+        setMatch((TypedVariable)null);
         return;
       case BSharpPackage.FUNC_INDUCTIVE__INDUCT_CASE:
         getInductCase().clear();
@@ -224,8 +224,8 @@ public class FuncInductiveImpl extends FunctionBodyImpl implements FuncInductive
   {
     switch (featureID)
     {
-      case BSharpPackage.FUNC_INDUCTIVE__VARIABLE_NAME:
-        return variableName != null;
+      case BSharpPackage.FUNC_INDUCTIVE__MATCH:
+        return match != null;
       case BSharpPackage.FUNC_INDUCTIVE__INDUCT_CASE:
         return inductCase != null && !inductCase.isEmpty();
     }

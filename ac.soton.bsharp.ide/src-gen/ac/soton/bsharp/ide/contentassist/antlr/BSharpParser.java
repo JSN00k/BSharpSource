@@ -144,7 +144,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionDeclAccess().getBodyAssignment_9(), "rule__FunctionDecl__BodyAssignment_9");
 					put(grammarAccess.getFunctionNameAccess().getNameAssignment(), "rule__FunctionName__NameAssignment");
 					put(grammarAccess.getFuncDirectDefAccess().getExpressionAssignment(), "rule__FuncDirectDef__ExpressionAssignment");
-					put(grammarAccess.getFuncInductiveAccess().getVariableNameAssignment_1(), "rule__FuncInductive__VariableNameAssignment_1");
+					put(grammarAccess.getFuncInductiveAccess().getMatchAssignment_1(), "rule__FuncInductive__MatchAssignment_1");
 					put(grammarAccess.getFuncInductiveAccess().getInductCaseAssignment_2(), "rule__FuncInductive__InductCaseAssignment_2");
 					put(grammarAccess.getFuncInductiveAccess().getInductCaseAssignment_3(), "rule__FuncInductive__InductCaseAssignment_3");
 					put(grammarAccess.getFuncInductiveCaseAccess().getDeconNameAssignment_1(), "rule__FuncInductiveCase__DeconNameAssignment_1");

@@ -1021,32 +1021,32 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FuncInductive");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMatchKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cVariableNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cVariableNameTypedVariableCrossReference_1_0 = (CrossReference)cVariableNameAssignment_1.eContents().get(0);
-		private final RuleCall cVariableNameTypedVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cVariableNameTypedVariableCrossReference_1_0.eContents().get(1);
+		private final Assignment cMatchAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cMatchTypedVariableCrossReference_1_0 = (CrossReference)cMatchAssignment_1.eContents().get(0);
+		private final RuleCall cMatchTypedVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cMatchTypedVariableCrossReference_1_0.eContents().get(1);
 		private final Assignment cInductCaseAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cInductCaseFuncInductiveCaseParserRuleCall_2_0 = (RuleCall)cInductCaseAssignment_2.eContents().get(0);
 		private final Assignment cInductCaseAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cInductCaseFuncInductiveCaseParserRuleCall_3_0 = (RuleCall)cInductCaseAssignment_3.eContents().get(0);
 		
 		//FuncInductive:
-		//	'match' variableName=[TypedVariable] inductCase+=FuncInductiveCase inductCase+=FuncInductiveCase*;
+		//	'match' match=[TypedVariable] inductCase+=FuncInductiveCase inductCase+=FuncInductiveCase*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'match' variableName=[TypedVariable] inductCase+=FuncInductiveCase inductCase+=FuncInductiveCase*
+		//'match' match=[TypedVariable] inductCase+=FuncInductiveCase inductCase+=FuncInductiveCase*
 		public Group getGroup() { return cGroup; }
 		
 		//'match'
 		public Keyword getMatchKeyword_0() { return cMatchKeyword_0; }
 		
-		//variableName=[TypedVariable]
-		public Assignment getVariableNameAssignment_1() { return cVariableNameAssignment_1; }
+		//match=[TypedVariable]
+		public Assignment getMatchAssignment_1() { return cMatchAssignment_1; }
 		
 		//[TypedVariable]
-		public CrossReference getVariableNameTypedVariableCrossReference_1_0() { return cVariableNameTypedVariableCrossReference_1_0; }
+		public CrossReference getMatchTypedVariableCrossReference_1_0() { return cMatchTypedVariableCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getVariableNameTypedVariableIDTerminalRuleCall_1_0_1() { return cVariableNameTypedVariableIDTerminalRuleCall_1_0_1; }
+		public RuleCall getMatchTypedVariableIDTerminalRuleCall_1_0_1() { return cMatchTypedVariableIDTerminalRuleCall_1_0_1; }
 		
 		//inductCase+=FuncInductiveCase
 		public Assignment getInductCaseAssignment_2() { return cInductCaseAssignment_2; }
@@ -1065,8 +1065,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cVerticalLineKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cDeconNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cDeconNameDatatypeConstructorCrossReference_1_0 = (CrossReference)cDeconNameAssignment_1.eContents().get(0);
-		private final RuleCall cDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1 = (RuleCall)cDeconNameDatatypeConstructorCrossReference_1_0.eContents().get(1);
+		private final CrossReference cDeconNameTypedVariableCrossReference_1_0 = (CrossReference)cDeconNameAssignment_1.eContents().get(0);
+		private final RuleCall cDeconNameTypedVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cDeconNameTypedVariableCrossReference_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cLeftParenthesisKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cVariablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -1081,25 +1081,25 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprRootExpressionParserRuleCall_4_0 = (RuleCall)cExprAssignment_4.eContents().get(0);
 		
 		//FuncInductiveCase:
-		//	'|' deconName=[DatatypeConstructor] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
+		//	'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
 		//	expr=RootExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'|' deconName=[DatatypeConstructor] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
+		//'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
 		//expr=RootExpression
 		public Group getGroup() { return cGroup; }
 		
 		//'|'
 		public Keyword getVerticalLineKeyword_0() { return cVerticalLineKeyword_0; }
 		
-		//deconName=[DatatypeConstructor]
+		//deconName=[TypedVariable]
 		public Assignment getDeconNameAssignment_1() { return cDeconNameAssignment_1; }
 		
-		//[DatatypeConstructor]
-		public CrossReference getDeconNameDatatypeConstructorCrossReference_1_0() { return cDeconNameDatatypeConstructorCrossReference_1_0; }
+		//[TypedVariable]
+		public CrossReference getDeconNameTypedVariableCrossReference_1_0() { return cDeconNameTypedVariableCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1() { return cDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1; }
+		public RuleCall getDeconNameTypedVariableIDTerminalRuleCall_1_0_1() { return cDeconNameTypedVariableIDTerminalRuleCall_1_0_1; }
 		
 		//('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')?
 		public Group getGroup_2() { return cGroup_2; }
@@ -2369,7 +2369,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FuncInductive:
-	//	'match' variableName=[TypedVariable] inductCase+=FuncInductiveCase inductCase+=FuncInductiveCase*;
+	//	'match' match=[TypedVariable] inductCase+=FuncInductiveCase inductCase+=FuncInductiveCase*;
 	public FuncInductiveElements getFuncInductiveAccess() {
 		return pFuncInductive;
 	}
@@ -2379,7 +2379,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FuncInductiveCase:
-	//	'|' deconName=[DatatypeConstructor] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
+	//	'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
 	//	expr=RootExpression;
 	public FuncInductiveCaseElements getFuncInductiveCaseAccess() {
 		return pFuncInductiveCase;

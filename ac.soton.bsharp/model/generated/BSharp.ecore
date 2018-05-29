@@ -124,12 +124,12 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FuncInductive" eSuperTypes="#//FunctionBody">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variableName" eType="#//TypedVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="match" eType="#//TypedVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inductCase" upperBound="-1"
         eType="#//FuncInductiveCase" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FuncInductiveCase">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deconName" eType="#//DatatypeConstructor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deconName" eType="#//TypedVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
         eType="#//TypedVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"

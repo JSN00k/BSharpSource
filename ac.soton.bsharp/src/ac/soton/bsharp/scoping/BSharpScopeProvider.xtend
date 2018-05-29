@@ -26,6 +26,10 @@ import ac.soton.bsharp.bSharp.TypeConstructor
 import ac.soton.bsharp.bSharp.Datatype
 import java.util.Collection
 import ac.soton.bsharp.EcoreUtilJ
+import ac.soton.bsharp.bSharp.FuncInductive
+import ac.soton.bsharp.bSharp.VariableTyping
+import ac.soton.bsharp.bSharp.DatatypeConstructor
+import ac.soton.bsharp.bSharp.FuncInductiveCase
 
 /**
  * This class contains custom scoping description.
@@ -114,7 +118,18 @@ class BSharpScopeProvider extends AbstractBSharpScopeProvider {
 			 	return Scopes.scopeFor(functionNames, scope)
 			 else
 			 	return Scopes.scopeFor(functionNames)
-		} else if (reference == BSharpPackage.Literals.FUNC_INDUCTIVE__VARIABLE_NAME) {
+		} else if (reference.getEReferenceType() == BSharpPackage.Literals.TYPED_VARIABLE && context instanceof FuncInductiveCase){
+			/* Assumes we're in a function declaration, as there isn't anywhere else for a match statement
+			 * yet. */
+			val datatype = EcoreUtil2.getContainerOfType((context.eContainer as FuncInductive).match, Datatype)
+			
+			if (datatype !== null) {
+				val allResults = new ArrayList<EObject>
+				
+				datatype.varList.forEach[obj | allResults.addAll(EcoreUtil2.getAllContentsOfType(obj, TypedVariable))]
+				return Scopes.scopeFor(allResults)
+			}
+		} else if (reference == BSharpPackage.Literals.FUNC_INDUCTIVE__MATCH) {
 			print (reference)
 		}
 		

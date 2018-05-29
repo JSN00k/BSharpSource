@@ -8,7 +8,10 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.FuncInductive;
+import ac.soton.bsharp.bSharp.FuncInductiveCase;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.GenName;
@@ -25,6 +28,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -124,9 +128,22 @@ public class BSharpScopeProvider extends AbstractBSharpScopeProvider {
             return Scopes.scopeFor(functionNames);
           }
         } else {
-          boolean _equals_2 = Objects.equal(reference, BSharpPackage.Literals.FUNC_INDUCTIVE__VARIABLE_NAME);
-          if (_equals_2) {
-            InputOutput.<EReference>print(reference);
+          if ((Objects.equal(reference.getEReferenceType(), BSharpPackage.Literals.TYPED_VARIABLE) && (context instanceof FuncInductiveCase))) {
+            EObject _eContainer_1 = context.eContainer();
+            final Datatype datatype = EcoreUtil2.<Datatype>getContainerOfType(((FuncInductive) _eContainer_1).getMatch(), Datatype.class);
+            if ((datatype != null)) {
+              final ArrayList<EObject> allResults = new ArrayList<EObject>();
+              final Consumer<DatatypeConstructor> _function_8 = (DatatypeConstructor obj) -> {
+                allResults.addAll(EcoreUtil2.<TypedVariable>getAllContentsOfType(obj, TypedVariable.class));
+              };
+              datatype.getVarList().forEach(_function_8);
+              return Scopes.scopeFor(allResults);
+            }
+          } else {
+            boolean _equals_2 = Objects.equal(reference, BSharpPackage.Literals.FUNC_INDUCTIVE__MATCH);
+            if (_equals_2) {
+              InputOutput.<EReference>print(reference);
+            }
           }
         }
       }

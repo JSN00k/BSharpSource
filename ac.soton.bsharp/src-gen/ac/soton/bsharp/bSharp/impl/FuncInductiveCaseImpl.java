@@ -4,7 +4,6 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FuncInductiveCase;
 import ac.soton.bsharp.bSharp.TypedVariable;
@@ -50,7 +49,7 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    * @ordered
    */
-  protected DatatypeConstructor deconName;
+  protected TypedVariable deconName;
 
   /**
    * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
@@ -98,12 +97,12 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public DatatypeConstructor getDeconName()
+  public TypedVariable getDeconName()
   {
     if (deconName != null && deconName.eIsProxy())
     {
       InternalEObject oldDeconName = (InternalEObject)deconName;
-      deconName = (DatatypeConstructor)eResolveProxy(oldDeconName);
+      deconName = (TypedVariable)eResolveProxy(oldDeconName);
       if (deconName != oldDeconName)
       {
         if (eNotificationRequired())
@@ -118,7 +117,7 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public DatatypeConstructor basicGetDeconName()
+  public TypedVariable basicGetDeconName()
   {
     return deconName;
   }
@@ -128,9 +127,9 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDeconName(DatatypeConstructor newDeconName)
+  public void setDeconName(TypedVariable newDeconName)
   {
-    DatatypeConstructor oldDeconName = deconName;
+    TypedVariable oldDeconName = deconName;
     deconName = newDeconName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNC_INDUCTIVE_CASE__DECON_NAME, oldDeconName, deconName));
@@ -249,7 +248,7 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
     switch (featureID)
     {
       case BSharpPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
-        setDeconName((DatatypeConstructor)newValue);
+        setDeconName((TypedVariable)newValue);
         return;
       case BSharpPackage.FUNC_INDUCTIVE_CASE__VARIABLES:
         getVariables().clear();
@@ -273,7 +272,7 @@ public class FuncInductiveCaseImpl extends MinimalEObjectImpl.Container implemen
     switch (featureID)
     {
       case BSharpPackage.FUNC_INDUCTIVE_CASE__DECON_NAME:
-        setDeconName((DatatypeConstructor)null);
+        setDeconName((TypedVariable)null);
         return;
       case BSharpPackage.FUNC_INDUCTIVE_CASE__VARIABLES:
         getVariables().clear();

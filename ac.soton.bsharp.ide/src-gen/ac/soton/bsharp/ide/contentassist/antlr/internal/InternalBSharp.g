@@ -4003,9 +4003,9 @@ rule__FuncInductive__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFuncInductiveAccess().getVariableNameAssignment_1()); }
-	(rule__FuncInductive__VariableNameAssignment_1)
-	{ after(grammarAccess.getFuncInductiveAccess().getVariableNameAssignment_1()); }
+	{ before(grammarAccess.getFuncInductiveAccess().getMatchAssignment_1()); }
+	(rule__FuncInductive__MatchAssignment_1)
+	{ after(grammarAccess.getFuncInductiveAccess().getMatchAssignment_1()); }
 )
 ;
 finally {
@@ -6698,19 +6698,19 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__FuncInductive__VariableNameAssignment_1
+rule__FuncInductive__MatchAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getFuncInductiveAccess().getVariableNameTypedVariableCrossReference_1_0()); }
+		{ before(grammarAccess.getFuncInductiveAccess().getMatchTypedVariableCrossReference_1_0()); }
 		(
-			{ before(grammarAccess.getFuncInductiveAccess().getVariableNameTypedVariableIDTerminalRuleCall_1_0_1()); }
+			{ before(grammarAccess.getFuncInductiveAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getFuncInductiveAccess().getVariableNameTypedVariableIDTerminalRuleCall_1_0_1()); }
+			{ after(grammarAccess.getFuncInductiveAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); }
 		)
-		{ after(grammarAccess.getFuncInductiveAccess().getVariableNameTypedVariableCrossReference_1_0()); }
+		{ after(grammarAccess.getFuncInductiveAccess().getMatchTypedVariableCrossReference_1_0()); }
 	)
 ;
 finally {
@@ -6753,13 +6753,13 @@ rule__FuncInductiveCase__DeconNameAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getFuncInductiveCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0()); }
+		{ before(grammarAccess.getFuncInductiveCaseAccess().getDeconNameTypedVariableCrossReference_1_0()); }
 		(
-			{ before(grammarAccess.getFuncInductiveCaseAccess().getDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1()); }
+			{ before(grammarAccess.getFuncInductiveCaseAccess().getDeconNameTypedVariableIDTerminalRuleCall_1_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getFuncInductiveCaseAccess().getDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1()); }
+			{ after(grammarAccess.getFuncInductiveCaseAccess().getDeconNameTypedVariableIDTerminalRuleCall_1_0_1()); }
 		)
-		{ after(grammarAccess.getFuncInductiveCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0()); }
+		{ after(grammarAccess.getFuncInductiveCaseAccess().getDeconNameTypedVariableCrossReference_1_0()); }
 	)
 ;
 finally {

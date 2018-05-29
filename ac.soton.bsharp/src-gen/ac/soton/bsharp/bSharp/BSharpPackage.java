@@ -1032,13 +1032,13 @@ public interface BSharpPackage extends EPackage
   int FUNC_INDUCTIVE = 27;
 
   /**
-   * The feature id for the '<em><b>Variable Name</b></em>' reference.
+   * The feature id for the '<em><b>Match</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNC_INDUCTIVE__VARIABLE_NAME = FUNCTION_BODY_FEATURE_COUNT + 0;
+  int FUNC_INDUCTIVE__MATCH = FUNCTION_BODY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Induct Case</b></em>' containment reference list.
@@ -2462,15 +2462,15 @@ public interface BSharpPackage extends EPackage
   EClass getFuncInductive();
 
   /**
-   * Returns the meta object for the reference '{@link ac.soton.bsharp.bSharp.FuncInductive#getVariableName <em>Variable Name</em>}'.
+   * Returns the meta object for the reference '{@link ac.soton.bsharp.bSharp.FuncInductive#getMatch <em>Match</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Variable Name</em>'.
-   * @see ac.soton.bsharp.bSharp.FuncInductive#getVariableName()
+   * @return the meta object for the reference '<em>Match</em>'.
+   * @see ac.soton.bsharp.bSharp.FuncInductive#getMatch()
    * @see #getFuncInductive()
    * @generated
    */
-  EReference getFuncInductive_VariableName();
+  EReference getFuncInductive_Match();
 
   /**
    * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.FuncInductive#getInductCase <em>Induct Case</em>}'.
@@ -3629,12 +3629,12 @@ public interface BSharpPackage extends EPackage
     EClass FUNC_INDUCTIVE = eINSTANCE.getFuncInductive();
 
     /**
-     * The meta object literal for the '<em><b>Variable Name</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Match</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUNC_INDUCTIVE__VARIABLE_NAME = eINSTANCE.getFuncInductive_VariableName();
+    EReference FUNC_INDUCTIVE__MATCH = eINSTANCE.getFuncInductive_Match();
 
     /**
      * The meta object literal for the '<em><b>Induct Case</b></em>' containment reference list feature.

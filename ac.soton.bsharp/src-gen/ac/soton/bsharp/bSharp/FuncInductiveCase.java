@@ -36,12 +36,12 @@ public interface FuncInductiveCase extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Decon Name</em>' reference.
-   * @see #setDeconName(DatatypeConstructor)
+   * @see #setDeconName(TypedVariable)
    * @see ac.soton.bsharp.bSharp.BSharpPackage#getFuncInductiveCase_DeconName()
    * @model
    * @generated
    */
-  DatatypeConstructor getDeconName();
+  TypedVariable getDeconName();
 
   /**
    * Sets the value of the '{@link ac.soton.bsharp.bSharp.FuncInductiveCase#getDeconName <em>Decon Name</em>}' reference.
@@ -51,7 +51,7 @@ public interface FuncInductiveCase extends EObject
    * @see #getDeconName()
    * @generated
    */
-  void setDeconName(DatatypeConstructor value);
+  void setDeconName(TypedVariable value);
 
   /**
    * Returns the value of the '<em><b>Variables</b></em>' containment reference list.

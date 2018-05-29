@@ -1798,7 +1798,7 @@ ruleFuncInductive returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getFuncInductiveAccess().getVariableNameTypedVariableCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getFuncInductiveAccess().getMatchTypedVariableCrossReference_1_0());
 				}
 			)
 		)
@@ -1872,7 +1872,7 @@ ruleFuncInductiveCase returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getFuncInductiveCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getFuncInductiveCaseAccess().getDeconNameTypedVariableCrossReference_1_0());
 				}
 			)
 		)

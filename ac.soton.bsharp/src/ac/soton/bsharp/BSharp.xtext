@@ -152,12 +152,12 @@ FuncDirectDef:
 ;
 
 FuncInductive:
-	'match' variableName=[TypedVariable]
+	'match' match=[TypedVariable]
 	inductCase+=FuncInductiveCase (inductCase+=FuncInductiveCase)*
 ;
 
 FuncInductiveCase:
-	'|' deconName=[DatatypeConstructor] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':' expr=RootExpression
+	'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':' expr=RootExpression
 ;
 
 /* ----------------------------- Theorems -------------------------*/

@@ -12583,31 +12583,31 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FuncInductive__Group__1__Impl"
-    // InternalBSharp.g:4000:1: rule__FuncInductive__Group__1__Impl : ( ( rule__FuncInductive__VariableNameAssignment_1 ) ) ;
+    // InternalBSharp.g:4000:1: rule__FuncInductive__Group__1__Impl : ( ( rule__FuncInductive__MatchAssignment_1 ) ) ;
     public final void rule__FuncInductive__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4004:1: ( ( ( rule__FuncInductive__VariableNameAssignment_1 ) ) )
-            // InternalBSharp.g:4005:1: ( ( rule__FuncInductive__VariableNameAssignment_1 ) )
+            // InternalBSharp.g:4004:1: ( ( ( rule__FuncInductive__MatchAssignment_1 ) ) )
+            // InternalBSharp.g:4005:1: ( ( rule__FuncInductive__MatchAssignment_1 ) )
             {
-            // InternalBSharp.g:4005:1: ( ( rule__FuncInductive__VariableNameAssignment_1 ) )
-            // InternalBSharp.g:4006:2: ( rule__FuncInductive__VariableNameAssignment_1 )
+            // InternalBSharp.g:4005:1: ( ( rule__FuncInductive__MatchAssignment_1 ) )
+            // InternalBSharp.g:4006:2: ( rule__FuncInductive__MatchAssignment_1 )
             {
-             before(grammarAccess.getFuncInductiveAccess().getVariableNameAssignment_1()); 
-            // InternalBSharp.g:4007:2: ( rule__FuncInductive__VariableNameAssignment_1 )
-            // InternalBSharp.g:4007:3: rule__FuncInductive__VariableNameAssignment_1
+             before(grammarAccess.getFuncInductiveAccess().getMatchAssignment_1()); 
+            // InternalBSharp.g:4007:2: ( rule__FuncInductive__MatchAssignment_1 )
+            // InternalBSharp.g:4007:3: rule__FuncInductive__MatchAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__FuncInductive__VariableNameAssignment_1();
+            rule__FuncInductive__MatchAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getFuncInductiveAccess().getVariableNameAssignment_1()); 
+             after(grammarAccess.getFuncInductiveAccess().getMatchAssignment_1()); 
 
             }
 
@@ -20603,9 +20603,9 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FuncDirectDef__ExpressionAssignment"
 
 
-    // $ANTLR start "rule__FuncInductive__VariableNameAssignment_1"
-    // InternalBSharp.g:6701:1: rule__FuncInductive__VariableNameAssignment_1 : ( ( RULE_ID ) ) ;
-    public final void rule__FuncInductive__VariableNameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__FuncInductive__MatchAssignment_1"
+    // InternalBSharp.g:6701:1: rule__FuncInductive__MatchAssignment_1 : ( ( RULE_ID ) ) ;
+    public final void rule__FuncInductive__MatchAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -20616,17 +20616,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6706:2: ( ( RULE_ID ) )
             // InternalBSharp.g:6707:3: ( RULE_ID )
             {
-             before(grammarAccess.getFuncInductiveAccess().getVariableNameTypedVariableCrossReference_1_0()); 
+             before(grammarAccess.getFuncInductiveAccess().getMatchTypedVariableCrossReference_1_0()); 
             // InternalBSharp.g:6708:3: ( RULE_ID )
             // InternalBSharp.g:6709:4: RULE_ID
             {
-             before(grammarAccess.getFuncInductiveAccess().getVariableNameTypedVariableIDTerminalRuleCall_1_0_1()); 
+             before(grammarAccess.getFuncInductiveAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getFuncInductiveAccess().getVariableNameTypedVariableIDTerminalRuleCall_1_0_1()); 
+             after(grammarAccess.getFuncInductiveAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); 
 
             }
 
-             after(grammarAccess.getFuncInductiveAccess().getVariableNameTypedVariableCrossReference_1_0()); 
+             after(grammarAccess.getFuncInductiveAccess().getMatchTypedVariableCrossReference_1_0()); 
 
             }
 
@@ -20645,7 +20645,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FuncInductive__VariableNameAssignment_1"
+    // $ANTLR end "rule__FuncInductive__MatchAssignment_1"
 
 
     // $ANTLR start "rule__FuncInductive__InductCaseAssignment_2"
@@ -20743,17 +20743,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6755:2: ( ( RULE_ID ) )
             // InternalBSharp.g:6756:3: ( RULE_ID )
             {
-             before(grammarAccess.getFuncInductiveCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0()); 
+             before(grammarAccess.getFuncInductiveCaseAccess().getDeconNameTypedVariableCrossReference_1_0()); 
             // InternalBSharp.g:6757:3: ( RULE_ID )
             // InternalBSharp.g:6758:4: RULE_ID
             {
-             before(grammarAccess.getFuncInductiveCaseAccess().getDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1()); 
+             before(grammarAccess.getFuncInductiveCaseAccess().getDeconNameTypedVariableIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getFuncInductiveCaseAccess().getDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1()); 
+             after(grammarAccess.getFuncInductiveCaseAccess().getDeconNameTypedVariableIDTerminalRuleCall_1_0_1()); 
 
             }
 
-             after(grammarAccess.getFuncInductiveCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0()); 
+             after(grammarAccess.getFuncInductiveCaseAccess().getDeconNameTypedVariableCrossReference_1_0()); 
 
             }
 
