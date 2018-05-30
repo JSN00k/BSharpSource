@@ -1,6 +1,7 @@
 grammar ac.soton.bsharp.BSharp with org.eclipse.xtext.common.Terminals
 
-generate bSharp "http://www.soton.ac/bsharp/BSharp"
+import "http://www.soton.ac/bsharp/BSharp" 
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 DomainModel:
 	(elements+=TopLevel)*;
@@ -129,34 +130,19 @@ TypeBodyElements:
 /*------------------------- Functions --------------------------------- */
 
 FunctionDecl:
-	name+=FunctionName (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=TypeConstructor (infix='INFIX')? precedence=INT? body=FunctionBody
+	name=FunctionName (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=TypeConstructor (infix='INFIX')? precedence=INT? expr=RootExpression
 ;
 
 FunctionName:
 	name=ID
 ;
 
-FunctionBody:
-	FuncInductive | FuncDirectDef
+MatchStatement:
+	'match' match=[TypedVariable] '{'
+	inductCase+=MatchCase (inductCase+=MatchCase)* '}'
 ;
 
-/* The expression will be type checked to make sure that it returns the expected type. The result of type checking
- * will have three possible result. A negative result giving an error e.g., the type returned by the expression 
- * cannot match the return type. An undetermined result, a proof obligation is generated so the user can prove
- * demonstrate the expression returns the correct type. A positive result, the expected type is returned by the
- * expression, and the user is not required to do anything. In the case of an intermediate result the type system
- * assumes that the declaration is true, however, there will still be the unsatisfied proof obligation showing
- * that the system is unproven */
-FuncDirectDef:
-	expression=RootExpression
-;
-
-FuncInductive:
-	'match' match=[TypedVariable]
-	inductCase+=FuncInductiveCase (inductCase+=FuncInductiveCase)*
-;
-
-FuncInductiveCase:
+MatchCase:
 	'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':' expr=RootExpression
 ;
 
@@ -204,7 +190,7 @@ Quantifier returns QuantLambda:
 ;
 
 RootExpression returns Expression:
-	Lambda | Quantifier | Infix
+	Lambda | Quantifier | Infix | MatchStatement
 ;
 
 /* ---------------------- *Fix ------------------------------ */

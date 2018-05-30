@@ -10,11 +10,11 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Extend;
-import ac.soton.bsharp.bSharp.FuncInductive;
-import ac.soton.bsharp.bSharp.FuncInductiveCase;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.MatchCase;
+import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.QuantLambda;
@@ -128,9 +128,9 @@ public class BSharpScopeProvider extends AbstractBSharpScopeProvider {
             return Scopes.scopeFor(functionNames);
           }
         } else {
-          if ((Objects.equal(reference.getEReferenceType(), BSharpPackage.Literals.TYPED_VARIABLE) && (context instanceof FuncInductiveCase))) {
+          if ((Objects.equal(reference.getEReferenceType(), BSharpPackage.Literals.TYPED_VARIABLE) && (context instanceof MatchCase))) {
             EObject _eContainer_1 = context.eContainer();
-            final Datatype datatype = EcoreUtil2.<Datatype>getContainerOfType(((FuncInductive) _eContainer_1).getMatch(), Datatype.class);
+            final Datatype datatype = EcoreUtil2.<Datatype>getContainerOfType(((MatchStatement) _eContainer_1).getMatch(), Datatype.class);
             if ((datatype != null)) {
               final ArrayList<EObject> allResults = new ArrayList<EObject>();
               final Consumer<DatatypeConstructor> _function_8 = (DatatypeConstructor obj) -> {
@@ -140,7 +140,7 @@ public class BSharpScopeProvider extends AbstractBSharpScopeProvider {
               return Scopes.scopeFor(allResults);
             }
           } else {
-            boolean _equals_2 = Objects.equal(reference, BSharpPackage.Literals.FUNC_INDUCTIVE__MATCH);
+            boolean _equals_2 = Objects.equal(reference, BSharpPackage.Literals.MATCH_CASE);
             if (_equals_2) {
               InputOutput.<EReference>print(reference);
             }

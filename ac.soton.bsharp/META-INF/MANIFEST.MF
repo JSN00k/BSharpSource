@@ -25,5 +25,6 @@ Export-Package: ac.soton.bsharp.scoping,
  ac.soton.bsharp.bSharp,
  ac.soton.bsharp.services,
  ac.soton.bsharp.serializer,
- ac.soton.bsharp.generator
+ ac.soton.bsharp.generator,
+ ac.soton.bsharp.formatting2
 Import-Package: org.apache.log4j

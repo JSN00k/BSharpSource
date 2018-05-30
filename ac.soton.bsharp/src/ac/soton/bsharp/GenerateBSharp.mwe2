@@ -32,6 +32,13 @@ Workflow {
 		language = StandardLanguage {
 			name = "ac.soton.bsharp.BSharp"
 			fileExtensions = "bs"
+			referencedResource = "platform:/resource/ac.soton.bsharp/model/BSharp.genmodel"
+			
+			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
+
+			formatter = {
+				generateStub = true
+			}
 
 			serializer = {
 				generateStub = false
