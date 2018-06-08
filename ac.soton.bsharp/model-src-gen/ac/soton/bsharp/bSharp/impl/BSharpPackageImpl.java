@@ -13,10 +13,9 @@ import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.DomainModel;
 import ac.soton.bsharp.bSharp.Expression;
-import ac.soton.bsharp.bSharp.ExpressionType;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
-import ac.soton.bsharp.bSharp.FuncDirectDef;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.GenName;
@@ -314,6 +313,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass functionCallEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass prefixEClass = null;
 
 	/**
@@ -322,13 +328,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass bracketEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass expressionTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1268,8 +1267,26 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpression_Arguments() {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(1);
+	public EClass getFunctionCall() {
+		return functionCallEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionCall_TypeInstance() {
+		return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionCall_Arguments() {
+		return (EReference)functionCallEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1315,15 +1332,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 */
 	public EReference getBracket_Child() {
 		return (EReference)bracketEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getExpressionType() {
-		return expressionTypeEClass;
 	}
 
 	/**
@@ -1625,7 +1633,10 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		expressionEClass = createEClass(EXPRESSION);
 		createEReference(expressionEClass, EXPRESSION__TYPE_INST);
-		createEReference(expressionEClass, EXPRESSION__ARGUMENTS);
+
+		functionCallEClass = createEClass(FUNCTION_CALL);
+		createEReference(functionCallEClass, FUNCTION_CALL__TYPE_INSTANCE);
+		createEReference(functionCallEClass, FUNCTION_CALL__ARGUMENTS);
 
 		prefixEClass = createEClass(PREFIX);
 		createEAttribute(prefixEClass, PREFIX__NAME);
@@ -1633,8 +1644,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		bracketEClass = createEClass(BRACKET);
 		createEReference(bracketEClass, BRACKET__CHILD);
-
-		expressionTypeEClass = createEClass(EXPRESSION_TYPE);
 
 		expressionVariableEClass = createEClass(EXPRESSION_VARIABLE);
 
@@ -1690,7 +1699,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		classDeclEClass.getESuperTypes().add(this.getTopLevel());
 		bppClassEClass.getESuperTypes().add(this.getClassDecl());
 		typeNameEClass.getESuperTypes().add(this.getGenName());
-		typeNameEClass.getESuperTypes().add(this.getExpressionType());
+		typeNameEClass.getESuperTypes().add(this.getExpressionVariable());
 		polymorphicTypeNameEClass.getESuperTypes().add(this.getGenName());
 		datatypeEClass.getESuperTypes().add(this.getClassDecl());
 		extendEClass.getESuperTypes().add(this.getTopLevel());
@@ -1698,9 +1707,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		matchStatementEClass.getESuperTypes().add(this.getExpression());
 		typedVariableEClass.getESuperTypes().add(this.getExpressionVariable());
 		quantLambdaEClass.getESuperTypes().add(this.getExpression());
+		functionCallEClass.getESuperTypes().add(this.getExpression());
 		prefixEClass.getESuperTypes().add(this.getExpression());
 		bracketEClass.getESuperTypes().add(this.getExpression());
-		expressionTypeEClass.getESuperTypes().add(this.getExpressionVariable());
 		inbuiltTypeScanEClass.getESuperTypes().add(this.getTypeConstructor());
 		instanceEClass.getESuperTypes().add(this.getTopLevel());
 		infixEClass.getESuperTypes().add(this.getExpression());
@@ -1833,7 +1842,10 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExpression_TypeInst(), this.getTypeInstance(), null, "typeInst", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExpression_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFunctionCall_TypeInstance(), this.getTypeInstance(), null, "TypeInstance", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCall_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(prefixEClass, Prefix.class, "Prefix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPrefix_Name(), ecorePackage.getEString(), "name", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1841,8 +1853,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		initEClass(bracketEClass, Bracket.class, "Bracket", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBracket_Child(), this.getExpression(), null, "child", null, 0, 1, Bracket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(expressionTypeEClass, ExpressionType.class, "ExpressionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(expressionVariableEClass, ExpressionVariable.class, "ExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

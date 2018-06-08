@@ -27,6 +27,10 @@ public class BSharpValidator extends AbstractBSharpValidator {
     {
       Infix copy = EcoreUtil2.<Infix>copy(expression);
       copy = ASTRewriter.reorderInfixTree(copy);
+      Infix copy2 = EcoreUtil2.<Infix>copy(expression);
+      InputOutput.<String>print("\n\n");
+      InputOutput.<String>print(copy2.constructLatexExpressionTree(""));
+      InputOutput.<String>print("\n\n\n");
       _xblockexpression = InputOutput.<Infix>print(copy);
     }
     return _xblockexpression;

@@ -195,8 +195,8 @@ RootExpression returns Expression:
 
 /* ---------------------- *Fix ------------------------------ */
 
-Prefix:
-	name=PrefixBuiltIn elem=Element
+Prefix returns Prefix:
+	name=PrefixBuiltIn  elem=Element
 ;
 
 PrefixBuiltIn:
@@ -246,16 +246,12 @@ Bracket returns Bracket:
  * 
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
-FunctionCall returns Expression:
+FunctionCall returns FunctionCall:
 	(typeInst=TypeInstance) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
 ;
 
-ExpressionType:
-	TypeName
-;
-
 ExpressionVariable:
-	 FunctionName | TypedVariable | ExpressionType
+	 FunctionName | TypedVariable | TypeName
 ;
 
 /* With Parametric polymorphism classes e.g., Class ReflexRel<T> : T × T → Pred we can use ReflexRel directly 

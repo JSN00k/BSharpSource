@@ -2794,31 +2794,6 @@ ruleFunctionCall returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleExpressionType
-entryRuleExpressionType returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getExpressionTypeRule()); }
-	iv_ruleExpressionType=ruleExpressionType
-	{ $current=$iv_ruleExpressionType.current; }
-	EOF;
-
-// Rule ExpressionType
-ruleExpressionType returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	{
-		newCompositeNode(grammarAccess.getExpressionTypeAccess().getTypeNameParserRuleCall());
-	}
-	this_TypeName_0=ruleTypeName
-	{
-		$current = $this_TypeName_0.current;
-		afterParserOrEnumRuleCall();
-	}
-;
-
 // Entry rule entryRuleTypeInstance
 entryRuleTypeInstance returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getTypeInstanceRule()); }

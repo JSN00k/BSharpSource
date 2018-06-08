@@ -93,5 +93,11 @@ public interface TypeInstance extends EObject {
 	 * @generated
 	 */
 	EList<TypedVariable> getElement();
+	
+	/**
+	 * @return Gets the name for the type instance regardless of whether it is in instance 
+	 * or in typename and element.
+	 */
+	String getDescriptiveName();
 
 } // TypeInstance

@@ -212,4 +212,16 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String constructLatexExpressionTree(String indent) {
+		String result = indent + "[.$match\\ " + getMatch() + "$ \n";
+		EList<MatchCase> cases = getInductCase();
+		for (MatchCase matchCase : cases) {
+			result += "[.$" + matchCase.getDeconName() + "$\n";
+			result += matchCase.getExpr().constructLatexExpressionTree("  " + indent);
+		}
+		
+		return result;
+	}
+
 } //MatchStatementImpl

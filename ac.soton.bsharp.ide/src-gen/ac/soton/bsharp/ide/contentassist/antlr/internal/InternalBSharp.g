@@ -1074,31 +1074,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleExpressionType
-entryRuleExpressionType
-:
-{ before(grammarAccess.getExpressionTypeRule()); }
-	 ruleExpressionType
-{ after(grammarAccess.getExpressionTypeRule()); } 
-	 EOF 
-;
-
-// Rule ExpressionType
-ruleExpressionType 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getExpressionTypeAccess().getTypeNameParserRuleCall()); }
-		ruleTypeName
-		{ after(grammarAccess.getExpressionTypeAccess().getTypeNameParserRuleCall()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRuleTypeInstance
 entryRuleTypeInstance
 :

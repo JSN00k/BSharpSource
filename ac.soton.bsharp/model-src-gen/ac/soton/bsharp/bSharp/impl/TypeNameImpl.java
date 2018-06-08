@@ -35,4 +35,10 @@ public class TypeNameImpl extends GenNameImpl implements TypeName {
 		return BSharpPackage.Literals.TYPE_NAME;
 	}
 
+	@Override
+	public String descriptiveName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
 } //TypeNameImpl

@@ -375,4 +375,12 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		return result.toString();
 	}
 
+	@Override
+	public String constructLatexExpressionTree(String indent) {
+		String result = "[.$" + qType + "$\n";
+		result += child.constructLatexExpressionTree("  " + indent) + "\n";
+		result += indent + "]";
+		return result;
+	}
+
 } //QuantLambdaImpl

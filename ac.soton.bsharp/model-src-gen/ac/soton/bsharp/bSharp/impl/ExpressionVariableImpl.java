@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * An implementation of the model object '<em><b>Expression Variable</b></em>'.
  * <!-- end-user-doc -->
  *
- * @generated
  */
 public class ExpressionVariableImpl extends MinimalEObjectImpl.Container implements ExpressionVariable {
 	/**
@@ -35,6 +34,11 @@ public class ExpressionVariableImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	protected EClass eStaticClass() {
 		return BSharpPackage.Literals.EXPRESSION_VARIABLE;
+	}
+
+	@Override
+	public String descriptiveName() {
+		return "unnamed";
 	}
 
 } //ExpressionVariableImpl

@@ -209,16 +209,16 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createExpressionAdapter();
 			}
 			@Override
+			public Adapter caseFunctionCall(FunctionCall object) {
+				return createFunctionCallAdapter();
+			}
+			@Override
 			public Adapter casePrefix(Prefix object) {
 				return createPrefixAdapter();
 			}
 			@Override
 			public Adapter caseBracket(Bracket object) {
 				return createBracketAdapter();
-			}
-			@Override
-			public Adapter caseExpressionType(ExpressionType object) {
-				return createExpressionTypeAdapter();
 			}
 			@Override
 			public Adapter caseExpressionVariable(ExpressionVariable object) {
@@ -751,6 +751,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.FunctionCall <em>Function Call</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.FunctionCall
+	 * @generated
+	 */
+	public Adapter createFunctionCallAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.Prefix <em>Prefix</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -775,20 +789,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBracketAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.ExpressionType <em>Expression Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.ExpressionType
-	 * @generated
-	 */
-	public Adapter createExpressionTypeAdapter() {
 		return null;
 	}
 

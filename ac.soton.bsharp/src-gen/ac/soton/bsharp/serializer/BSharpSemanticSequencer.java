@@ -10,8 +10,8 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.DomainModel;
-import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.Import;
@@ -87,11 +87,11 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.DOMAIN_MODEL:
 				sequence_DomainModel(context, (DomainModel) semanticObject); 
 				return; 
-			case BSharpPackage.EXPRESSION:
-				sequence_FunctionCall(context, (Expression) semanticObject); 
-				return; 
 			case BSharpPackage.EXTEND:
 				sequence_Extend(context, (Extend) semanticObject); 
+				return; 
+			case BSharpPackage.FUNCTION_CALL:
+				sequence_FunctionCall(context, (FunctionCall) semanticObject); 
 				return; 
 			case BSharpPackage.FUNCTION_DECL:
 				sequence_FunctionDecl(context, (FunctionDecl) semanticObject); 
@@ -314,16 +314,16 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     RootExpression returns Expression
-	 *     Infix returns Expression
-	 *     Infix.Infix_1_0 returns Expression
-	 *     Element returns Expression
-	 *     FunctionCall returns Expression
+	 *     RootExpression returns FunctionCall
+	 *     Infix returns FunctionCall
+	 *     Infix.Infix_1_0 returns FunctionCall
+	 *     Element returns FunctionCall
+	 *     FunctionCall returns FunctionCall
 	 *
 	 * Constraint:
 	 *     (typeInst=TypeInstance arguments+=RootExpression? arguments+=RootExpression*)
 	 */
-	protected void sequence_FunctionCall(ISerializationContext context, Expression semanticObject) {
+	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -729,7 +729,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     GenName returns TypeName
 	 *     TypeName returns TypeName
-	 *     ExpressionType returns TypeName
 	 *     ExpressionVariable returns TypeName
 	 *
 	 * Constraint:

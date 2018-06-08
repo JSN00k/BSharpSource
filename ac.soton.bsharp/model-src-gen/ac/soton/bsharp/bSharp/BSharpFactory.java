@@ -338,6 +338,15 @@ public interface BSharpFactory extends EFactory {
 	Expression createExpression();
 
 	/**
+	 * Returns a new object of class '<em>Function Call</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Function Call</em>'.
+	 * @generated
+	 */
+	FunctionCall createFunctionCall();
+
+	/**
 	 * Returns a new object of class '<em>Prefix</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -354,15 +363,6 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	Bracket createBracket();
-
-	/**
-	 * Returns a new object of class '<em>Expression Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expression Type</em>'.
-	 * @generated
-	 */
-	ExpressionType createExpressionType();
 
 	/**
 	 * Returns a new object of class '<em>Expression Variable</em>'.

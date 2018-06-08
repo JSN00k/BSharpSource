@@ -77,9 +77,9 @@ class ASTRewriter {
 		if (tree.left instanceof Infix) {
 		var leftInfix = tree.left as Infix
 		val myPrec = getInfixPrecedence(tree)
-		val rightPrec = getInfixPrecedence(leftInfix)
+		val leftPrec = getInfixPrecedence(leftInfix)
 		
-		if (myPrec > rightPrec) {
+		if (myPrec > leftPrec) {
 				tree.left = leftInfix.right
 				leftInfix.right = tree
 				return leftInfix

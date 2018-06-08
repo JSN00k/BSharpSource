@@ -7,21 +7,14 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.TypeInstance;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,12 +25,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ExpressionImpl#getTypeInst <em>Type Inst</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.ExpressionImpl#getArguments <em>Arguments</em>}</li>
  * </ul>
  *
- * @generated
  */
-public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression {
+public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression {
 	/**
 	 * The cached value of the '{@link #getTypeInst() <em>Type Inst</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -47,16 +38,6 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
 	 * @ordered
 	 */
 	protected TypeInstance typeInst;
-
-	/**
-	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getArguments()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Expression> arguments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,25 +106,11 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Expression> getArguments() {
-		if (arguments == null) {
-			arguments = new EObjectContainmentEList<Expression>(Expression.class, this, BSharpPackage.EXPRESSION__ARGUMENTS);
-		}
-		return arguments;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BSharpPackage.EXPRESSION__TYPE_INST:
 				return basicSetTypeInst(null, msgs);
-			case BSharpPackage.EXPRESSION__ARGUMENTS:
-				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -158,8 +125,6 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
 		switch (featureID) {
 			case BSharpPackage.EXPRESSION__TYPE_INST:
 				return getTypeInst();
-			case BSharpPackage.EXPRESSION__ARGUMENTS:
-				return getArguments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,16 +134,11 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BSharpPackage.EXPRESSION__TYPE_INST:
 				setTypeInst((TypeInstance)newValue);
-				return;
-			case BSharpPackage.EXPRESSION__ARGUMENTS:
-				getArguments().clear();
-				getArguments().addAll((Collection<? extends Expression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,9 +155,6 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
 			case BSharpPackage.EXPRESSION__TYPE_INST:
 				setTypeInst((TypeInstance)null);
 				return;
-			case BSharpPackage.EXPRESSION__ARGUMENTS:
-				getArguments().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -212,8 +169,6 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
 		switch (featureID) {
 			case BSharpPackage.EXPRESSION__TYPE_INST:
 				return typeInst != null;
-			case BSharpPackage.EXPRESSION__ARGUMENTS:
-				return arguments != null && !arguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

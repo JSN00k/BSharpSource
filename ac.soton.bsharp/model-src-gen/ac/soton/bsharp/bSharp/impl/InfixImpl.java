@@ -368,4 +368,25 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		return result.toString();
 	}
 
+	@Override
+	public String getInfixName() {
+		String opName = getOpName();
+		
+		if (opName != null)
+			return opName;
+					
+		return getFuncName().getName();
+	}
+
+	@Override
+	public String constructLatexExpressionTree(String indent) {
+		String result = indent + "[.$" + getInfixName() + "$\n";
+		
+		result += left.constructLatexExpressionTree("  " + indent) + "\n";
+		result += right.constructLatexExpressionTree("  " + indent) + "\n" ;
+		result += indent + "]";
+		
+		return result;
+	}
+
 } //InfixImpl

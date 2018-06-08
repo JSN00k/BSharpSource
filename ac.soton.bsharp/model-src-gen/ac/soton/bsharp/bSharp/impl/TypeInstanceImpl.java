@@ -258,4 +258,18 @@ public class TypeInstanceImpl extends MinimalEObjectImpl.Container implements Ty
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String getDescriptiveName() {
+		if (instance != null) {
+			return instance.descriptiveName();
+		}
+		
+		String result = typeName.getName();
+		for (TypedVariable elem : element) {
+			result += "." + elem.getName();
+		}
+		
+		return result;
+	}
+
 } //TypeInstanceImpl

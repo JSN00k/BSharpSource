@@ -993,22 +993,13 @@ public interface BSharpPackage extends EPackage {
 	int EXPRESSION__TYPE_INST = 0;
 
 	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION__ARGUMENTS = 1;
-
-	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_FEATURE_COUNT = 2;
+	int EXPRESSION_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.MatchStatementImpl <em>Match Statement</em>}' class.
@@ -1028,15 +1019,6 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int MATCH_STATEMENT__TYPE_INST = EXPRESSION__TYPE_INST;
-
-	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_STATEMENT__ARGUMENTS = EXPRESSION__ARGUMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Match</b></em>' reference.
@@ -1326,15 +1308,6 @@ public interface BSharpPackage extends EPackage {
 	int QUANT_LAMBDA__TYPE_INST = EXPRESSION__TYPE_INST;
 
 	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUANT_LAMBDA__ARGUMENTS = EXPRESSION__ARGUMENTS;
-
-	/**
 	 * The feature id for the '<em><b>QType</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1380,6 +1353,52 @@ public interface BSharpPackage extends EPackage {
 	int QUANT_LAMBDA_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl <em>Function Call</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.FunctionCallImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionCall()
+	 * @generated
+	 */
+	int FUNCTION_CALL = 35;
+
+	/**
+	 * The feature id for the '<em><b>Type Inst</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__TYPE_INST = EXPRESSION__TYPE_INST;
+
+	/**
+	 * The feature id for the '<em><b>Type Instance</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__TYPE_INSTANCE = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__ARGUMENTS = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Function Call</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.PrefixImpl <em>Prefix</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1387,7 +1406,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPrefix()
 	 * @generated
 	 */
-	int PREFIX = 35;
+	int PREFIX = 36;
 
 	/**
 	 * The feature id for the '<em><b>Type Inst</b></em>' containment reference.
@@ -1397,15 +1416,6 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREFIX__TYPE_INST = EXPRESSION__TYPE_INST;
-
-	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX__ARGUMENTS = EXPRESSION__ARGUMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1442,7 +1452,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBracket()
 	 * @generated
 	 */
-	int BRACKET = 36;
+	int BRACKET = 37;
 
 	/**
 	 * The feature id for the '<em><b>Type Inst</b></em>' containment reference.
@@ -1452,15 +1462,6 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int BRACKET__TYPE_INST = EXPRESSION__TYPE_INST;
-
-	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BRACKET__ARGUMENTS = EXPRESSION__ARGUMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Child</b></em>' containment reference.
@@ -1479,25 +1480,6 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int BRACKET_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionTypeImpl <em>Expression Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.ExpressionTypeImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getExpressionType()
-	 * @generated
-	 */
-	int EXPRESSION_TYPE = 37;
-
-	/**
-	 * The number of structural features of the '<em>Expression Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_TYPE_FEATURE_COUNT = EXPRESSION_VARIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeInstanceImpl <em>Type Instance</em>}' class.
@@ -1655,15 +1637,6 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int INFIX__TYPE_INST = EXPRESSION__TYPE_INST;
-
-	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX__ARGUMENTS = EXPRESSION__ARGUMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2700,15 +2673,36 @@ public interface BSharpPackage extends EPackage {
 	EReference getExpression_TypeInst();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.Expression#getArguments <em>Arguments</em>}'.
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.FunctionCall <em>Function Call</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Function Call</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionCall
+	 * @generated
+	 */
+	EClass getFunctionCall();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.FunctionCall#getTypeInstance <em>Type Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Type Instance</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionCall#getTypeInstance()
+	 * @see #getFunctionCall()
+	 * @generated
+	 */
+	EReference getFunctionCall_TypeInstance();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.FunctionCall#getArguments <em>Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Arguments</em>'.
-	 * @see ac.soton.bsharp.bSharp.Expression#getArguments()
-	 * @see #getExpression()
+	 * @see ac.soton.bsharp.bSharp.FunctionCall#getArguments()
+	 * @see #getFunctionCall()
 	 * @generated
 	 */
-	EReference getExpression_Arguments();
+	EReference getFunctionCall_Arguments();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Prefix <em>Prefix</em>}'.
@@ -2762,16 +2756,6 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getBracket_Child();
-
-	/**
-	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ExpressionType <em>Expression Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Expression Type</em>'.
-	 * @see ac.soton.bsharp.bSharp.ExpressionType
-	 * @generated
-	 */
-	EClass getExpressionType();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ExpressionVariable <em>Expression Variable</em>}'.
@@ -3781,12 +3765,30 @@ public interface BSharpPackage extends EPackage {
 		EReference EXPRESSION__TYPE_INST = eINSTANCE.getExpression_TypeInst();
 
 		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl <em>Function Call</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.FunctionCallImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionCall()
+		 * @generated
+		 */
+		EClass FUNCTION_CALL = eINSTANCE.getFunctionCall();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Instance</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_CALL__TYPE_INSTANCE = eINSTANCE.getFunctionCall_TypeInstance();
+
+		/**
 		 * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXPRESSION__ARGUMENTS = eINSTANCE.getExpression_Arguments();
+		EReference FUNCTION_CALL__ARGUMENTS = eINSTANCE.getFunctionCall_Arguments();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.PrefixImpl <em>Prefix</em>}' class.
@@ -3831,16 +3833,6 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BRACKET__CHILD = eINSTANCE.getBracket_Child();
-
-		/**
-		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionTypeImpl <em>Expression Type</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see ac.soton.bsharp.bSharp.impl.ExpressionTypeImpl
-		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getExpressionType()
-		 * @generated
-		 */
-		EClass EXPRESSION_TYPE = eINSTANCE.getExpressionType();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.

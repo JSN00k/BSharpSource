@@ -92,9 +92,9 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.TYPE_DECLARATION: return createTypeDeclaration();
 			case BSharpPackage.QUANT_LAMBDA: return createQuantLambda();
 			case BSharpPackage.EXPRESSION: return createExpression();
+			case BSharpPackage.FUNCTION_CALL: return createFunctionCall();
 			case BSharpPackage.PREFIX: return createPrefix();
 			case BSharpPackage.BRACKET: return createBracket();
-			case BSharpPackage.EXPRESSION_TYPE: return createExpressionType();
 			case BSharpPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
 			case BSharpPackage.TYPE_INSTANCE: return createTypeInstance();
 			case BSharpPackage.INBUILT_TYPE_SCAN: return createInbuiltTypeScan();
@@ -448,11 +448,20 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public Expression createExpression() {
-		ExpressionImpl expression = new ExpressionImpl();
-		return expression;
+		assert false : "I don't think I should ever return a raw expression";
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FunctionCall createFunctionCall() {
+		FunctionCallImpl functionCall = new FunctionCallImpl();
+		return functionCall;
 	}
 
 	/**
@@ -473,16 +482,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public Bracket createBracket() {
 		BracketImpl bracket = new BracketImpl();
 		return bracket;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpressionType createExpressionType() {
-		ExpressionTypeImpl expressionType = new ExpressionTypeImpl();
-		return expressionType;
 	}
 
 	/**

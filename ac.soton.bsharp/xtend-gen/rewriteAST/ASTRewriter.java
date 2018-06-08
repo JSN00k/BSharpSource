@@ -92,8 +92,8 @@ public class ASTRewriter {
       Expression _left_5 = tree.getLeft();
       Infix leftInfix = ((Infix) _left_5);
       final Integer myPrec = ASTRewriter.getInfixPrecedence(tree);
-      final Integer rightPrec = ASTRewriter.getInfixPrecedence(leftInfix);
-      boolean _greaterThan = (myPrec.compareTo(rightPrec) > 0);
+      final Integer leftPrec = ASTRewriter.getInfixPrecedence(leftInfix);
+      boolean _greaterThan = (myPrec.compareTo(leftPrec) > 0);
       if (_greaterThan) {
         tree.setLeft(leftInfix.getRight());
         leftInfix.setRight(tree);

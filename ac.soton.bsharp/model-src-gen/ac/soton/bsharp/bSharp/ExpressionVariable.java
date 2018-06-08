@@ -16,4 +16,5 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ExpressionVariable extends EObject {
+	String descriptiveName();
 } // ExpressionVariable

@@ -241,4 +241,13 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 		return result.toString();
 	}
 
+	@Override
+	public String constructLatexExpressionTree(String indent) {
+		// TODO Update this to deal with user defined prefix functions.
+		String result = indent + "[.$" + getName() + "$\n";
+		result += elem.constructLatexExpressionTree("  " + indent) + "\n";
+		result += indent + "]";
+		return result;
+	}
+
 } //PrefixImpl

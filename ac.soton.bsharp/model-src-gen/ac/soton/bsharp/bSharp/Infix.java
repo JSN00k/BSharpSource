@@ -127,5 +127,11 @@ public interface Infix extends Expression {
 	 * @generated
 	 */
 	void setRight(Expression value);
+	
+	/**
+	 * 
+	 * @return Returns the name regardless of whether it is a built in op or a named function/
+	 */
+	String getInfixName();
 
 } // Infix

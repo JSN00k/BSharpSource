@@ -173,4 +173,18 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String constructLatexExpressionTree(String indent) {
+		String exprString;
+		Expression child = getChild();
+		
+		if (child != null) {
+			exprString = child.constructLatexExpressionTree("  " + indent);
+		} else {
+			return indent + "$()$";
+		}
+		
+		return indent + "[.$()$\n" + exprString + "\n" + indent + "]";
+	}
+
 } //BracketImpl

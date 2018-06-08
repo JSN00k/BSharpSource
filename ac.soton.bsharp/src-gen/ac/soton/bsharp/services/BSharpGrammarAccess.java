@@ -1614,7 +1614,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * it to be called either as an operator or a functional call.
 		// * 
 		// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
-		// */ FunctionCall Expression:
+		// */ FunctionCall:
 		//	typeInst=TypeInstance ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1654,29 +1654,18 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
 	}
-	public class ExpressionTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ExpressionType");
-		private final RuleCall cTypeNameParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		//ExpressionType:
-		//	TypeName;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//TypeName
-		public RuleCall getTypeNameParserRuleCall() { return cTypeNameParserRuleCall; }
-	}
 	public class ExpressionVariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ExpressionVariable");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cFunctionNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTypedVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cExpressionTypeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cTypeNameParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//ExpressionVariable:
-		//	FunctionName | TypedVariable | ExpressionType;
+		//	FunctionName | TypedVariable | TypeName;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FunctionName | TypedVariable | ExpressionType
+		//FunctionName | TypedVariable | TypeName
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//FunctionName
@@ -1685,8 +1674,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//TypedVariable
 		public RuleCall getTypedVariableParserRuleCall_1() { return cTypedVariableParserRuleCall_1; }
 		
-		//ExpressionType
-		public RuleCall getExpressionTypeParserRuleCall_2() { return cExpressionTypeParserRuleCall_2; }
+		//TypeName
+		public RuleCall getTypeNameParserRuleCall_2() { return cTypeNameParserRuleCall_2; }
 	}
 	public class TypeInstanceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeInstance");
@@ -1939,7 +1928,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final ElementElements pElement;
 	private final BracketElements pBracket;
 	private final FunctionCallElements pFunctionCall;
-	private final ExpressionTypeElements pExpressionType;
 	private final ExpressionVariableElements pExpressionVariable;
 	private final TypeInstanceElements pTypeInstance;
 	private final InbuiltInfixElements pInbuiltInfix;
@@ -1999,7 +1987,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pElement = new ElementElements();
 		this.pBracket = new BracketElements();
 		this.pFunctionCall = new FunctionCallElements();
-		this.pExpressionType = new ExpressionTypeElements();
 		this.pExpressionVariable = new ExpressionVariableElements();
 		this.pTypeInstance = new TypeInstanceElements();
 		this.pInbuiltInfix = new InbuiltInfixElements();
@@ -2504,7 +2491,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * it to be called either as an operator or a functional call.
 	// * 
 	// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
-	// */ FunctionCall Expression:
+	// */ FunctionCall:
 	//	typeInst=TypeInstance ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
 	public FunctionCallElements getFunctionCallAccess() {
 		return pFunctionCall;
@@ -2514,18 +2501,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionCallAccess().getRule();
 	}
 	
-	//ExpressionType:
-	//	TypeName;
-	public ExpressionTypeElements getExpressionTypeAccess() {
-		return pExpressionType;
-	}
-	
-	public ParserRule getExpressionTypeRule() {
-		return getExpressionTypeAccess().getRule();
-	}
-	
 	//ExpressionVariable:
-	//	FunctionName | TypedVariable | ExpressionType;
+	//	FunctionName | TypedVariable | TypeName;
 	public ExpressionVariableElements getExpressionVariableAccess() {
 		return pExpressionVariable;
 	}

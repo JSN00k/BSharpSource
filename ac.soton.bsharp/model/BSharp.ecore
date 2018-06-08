@@ -36,7 +36,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="GenName">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeName" eSuperTypes="#//GenName #//ExpressionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeName" eSuperTypes="#//GenName #//ExpressionVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="PolymorphicTypeName" eSuperTypes="#//GenName"/>
   <eClassifiers xsi:type="ecore:EClass" name="PolyContext">
     <eStructuralFeatures xsi:type="ecore:EReference" name="polyTypes" upperBound="-1"
@@ -169,6 +169,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeInst" eType="#//TypeInstance"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TypeInstance" eType="#//TypeInstance"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
@@ -181,7 +185,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExpressionType" eSuperTypes="#//ExpressionVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypeInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="#//ExpressionVariable"/>

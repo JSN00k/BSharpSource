@@ -17,12 +17,10 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.Expression#getTypeInst <em>Type Inst</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.Expression#getArguments <em>Arguments</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getExpression()
  * @model
- * @generated
  */
 public interface Expression extends EObject {
 	/**
@@ -52,19 +50,9 @@ public interface Expression extends EObject {
 	void setTypeInst(TypeInstance value);
 
 	/**
-	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.Expression}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Arguments</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Arguments</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getExpression_Arguments()
-	 * @model containment="true"
-	 * @generated
+	 * Returns a latex \Tree expression that represents the expression tree.
+	 * @return Returns a latex \Tree expression that represents the expression tree.
 	 */
-	EList<Expression> getArguments();
+	String constructLatexExpressionTree(String indent);
 
 } // Expression

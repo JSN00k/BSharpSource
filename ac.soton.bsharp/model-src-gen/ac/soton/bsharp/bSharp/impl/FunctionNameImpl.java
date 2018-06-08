@@ -160,4 +160,10 @@ public class FunctionNameImpl extends ExpressionVariableImpl implements Function
 		return result.toString();
 	}
 
+	@Override
+	public String descriptiveName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
 } //FunctionNameImpl

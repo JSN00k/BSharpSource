@@ -14,5 +14,5 @@ package ac.soton.bsharp.bSharp;
  * @model
  * @generated
  */
-public interface TypeName extends GenName, ExpressionType {
+public interface TypeName extends GenName, ExpressionVariable {
 } // TypeName

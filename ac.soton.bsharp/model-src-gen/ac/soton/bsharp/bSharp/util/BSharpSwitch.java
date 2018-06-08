@@ -123,7 +123,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				TypeName typeName = (TypeName)theEObject;
 				T result = caseTypeName(typeName);
 				if (result == null) result = caseGenName(typeName);
-				if (result == null) result = caseExpressionType(typeName);
 				if (result == null) result = caseExpressionVariable(typeName);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -292,6 +291,13 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.FUNCTION_CALL: {
+				FunctionCall functionCall = (FunctionCall)theEObject;
+				T result = caseFunctionCall(functionCall);
+				if (result == null) result = caseExpression(functionCall);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.PREFIX: {
 				Prefix prefix = (Prefix)theEObject;
 				T result = casePrefix(prefix);
@@ -303,13 +309,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				Bracket bracket = (Bracket)theEObject;
 				T result = caseBracket(bracket);
 				if (result == null) result = caseExpression(bracket);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.EXPRESSION_TYPE: {
-				ExpressionType expressionType = (ExpressionType)theEObject;
-				T result = caseExpressionType(expressionType);
-				if (result == null) result = caseExpressionVariable(expressionType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -876,6 +875,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Function Call</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Function Call</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFunctionCall(FunctionCall object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Prefix</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -902,21 +916,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBracket(Bracket object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Expression Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Expression Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExpressionType(ExpressionType object) {
 		return null;
 	}
 

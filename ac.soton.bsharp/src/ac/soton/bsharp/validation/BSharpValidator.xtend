@@ -35,6 +35,11 @@ class BSharpValidator extends AbstractBSharpValidator {
 		var copy = EcoreUtil2.copy(expression)
 		copy = ASTRewriter.reorderInfixTree(copy)
 		
+		var copy2 = EcoreUtil2.copy(expression)
+		print("\n\n")
+		print(copy2.constructLatexExpressionTree(""))
+		print("\n\n\n")
+		
 		/* The tree structure now represents the equation and the order of operations
 		 * so we can do validation on it.
 		 */
