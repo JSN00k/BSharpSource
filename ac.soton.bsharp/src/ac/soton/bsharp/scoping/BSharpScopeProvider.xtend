@@ -26,8 +26,6 @@ import ac.soton.bsharp.bSharp.TypeConstructor
 import ac.soton.bsharp.bSharp.Datatype
 import java.util.Collection
 import ac.soton.bsharp.EcoreUtilJ
-import ac.soton.bsharp.bSharp.VariableTyping
-import ac.soton.bsharp.bSharp.DatatypeConstructor
 import ac.soton.bsharp.bSharp.MatchCase
 import ac.soton.bsharp.bSharp.MatchStatement
 

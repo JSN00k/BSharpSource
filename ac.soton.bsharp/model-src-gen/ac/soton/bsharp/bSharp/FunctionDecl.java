@@ -3,8 +3,6 @@
  */
 package ac.soton.bsharp.bSharp;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -27,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl()
  * @model
- * @generated
  */
 public interface FunctionDecl extends EObject {
 	/**

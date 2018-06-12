@@ -16,12 +16,11 @@ package ac.soton.bsharp.bSharp;
  *   <li>{@link ac.soton.bsharp.bSharp.QuantLambda#getQType <em>QType</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.QuantLambda#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.QuantLambda#getVarList <em>Var List</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.QuantLambda#getChild <em>Child</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.QuantLambda#getExpr <em>Expr</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getQuantLambda()
  * @model
- * @generated
  */
 public interface QuantLambda extends Expression {
 	/**
@@ -103,29 +102,29 @@ public interface QuantLambda extends Expression {
 	void setVarList(TypedVariableList value);
 
 	/**
-	 * Returns the value of the '<em><b>Child</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Expr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Child</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Expr</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Child</em>' containment reference.
-	 * @see #setChild(Expression)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getQuantLambda_Child()
+	 * @return the value of the '<em>Expr</em>' containment reference.
+	 * @see #setExpr(Expression)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getQuantLambda_Expr()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Expression getChild();
+	Expression getExpr();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.QuantLambda#getChild <em>Child</em>}' containment reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.QuantLambda#getExpr <em>Expr</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Child</em>' containment reference.
-	 * @see #getChild()
+	 * @param value the new value of the '<em>Expr</em>' containment reference.
+	 * @see #getExpr()
 	 * @generated
 	 */
-	void setChild(Expression value);
+	void setExpr(Expression value);
 
 } // QuantLambda

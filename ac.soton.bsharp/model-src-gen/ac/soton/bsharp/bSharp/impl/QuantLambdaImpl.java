@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl#getQType <em>QType</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl#getVarList <em>Var List</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl#getChild <em>Child</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  *
  * @generated
@@ -75,14 +75,14 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	protected TypedVariableList varList;
 
 	/**
-	 * The cached value of the '{@link #getChild() <em>Child</em>}' containment reference.
+	 * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getChild()
+	 * @see #getExpr()
 	 * @generated
 	 * @ordered
 	 */
-	protected Expression child;
+	protected Expression expr;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -215,8 +215,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression getChild() {
-		return child;
+	public Expression getExpr() {
+		return expr;
 	}
 
 	/**
@@ -224,11 +224,11 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetChild(Expression newChild, NotificationChain msgs) {
-		Expression oldChild = child;
-		child = newChild;
+	public NotificationChain basicSetExpr(Expression newExpr, NotificationChain msgs) {
+		Expression oldExpr = expr;
+		expr = newExpr;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.QUANT_LAMBDA__CHILD, oldChild, newChild);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.QUANT_LAMBDA__EXPR, oldExpr, newExpr);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -239,18 +239,18 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setChild(Expression newChild) {
-		if (newChild != child) {
+	public void setExpr(Expression newExpr) {
+		if (newExpr != expr) {
 			NotificationChain msgs = null;
-			if (child != null)
-				msgs = ((InternalEObject)child).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.QUANT_LAMBDA__CHILD, null, msgs);
-			if (newChild != null)
-				msgs = ((InternalEObject)newChild).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.QUANT_LAMBDA__CHILD, null, msgs);
-			msgs = basicSetChild(newChild, msgs);
+			if (expr != null)
+				msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.QUANT_LAMBDA__EXPR, null, msgs);
+			if (newExpr != null)
+				msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.QUANT_LAMBDA__EXPR, null, msgs);
+			msgs = basicSetExpr(newExpr, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.QUANT_LAMBDA__CHILD, newChild, newChild));
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.QUANT_LAMBDA__EXPR, newExpr, newExpr));
 	}
 
 	/**
@@ -265,8 +265,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 				return basicSetContext(null, msgs);
 			case BSharpPackage.QUANT_LAMBDA__VAR_LIST:
 				return basicSetVarList(null, msgs);
-			case BSharpPackage.QUANT_LAMBDA__CHILD:
-				return basicSetChild(null, msgs);
+			case BSharpPackage.QUANT_LAMBDA__EXPR:
+				return basicSetExpr(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -285,8 +285,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 				return getContext();
 			case BSharpPackage.QUANT_LAMBDA__VAR_LIST:
 				return getVarList();
-			case BSharpPackage.QUANT_LAMBDA__CHILD:
-				return getChild();
+			case BSharpPackage.QUANT_LAMBDA__EXPR:
+				return getExpr();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -308,8 +308,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 			case BSharpPackage.QUANT_LAMBDA__VAR_LIST:
 				setVarList((TypedVariableList)newValue);
 				return;
-			case BSharpPackage.QUANT_LAMBDA__CHILD:
-				setChild((Expression)newValue);
+			case BSharpPackage.QUANT_LAMBDA__EXPR:
+				setExpr((Expression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -332,8 +332,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 			case BSharpPackage.QUANT_LAMBDA__VAR_LIST:
 				setVarList((TypedVariableList)null);
 				return;
-			case BSharpPackage.QUANT_LAMBDA__CHILD:
-				setChild((Expression)null);
+			case BSharpPackage.QUANT_LAMBDA__EXPR:
+				setExpr((Expression)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -353,8 +353,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 				return context != null;
 			case BSharpPackage.QUANT_LAMBDA__VAR_LIST:
 				return varList != null;
-			case BSharpPackage.QUANT_LAMBDA__CHILD:
-				return child != null;
+			case BSharpPackage.QUANT_LAMBDA__EXPR:
+				return expr != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -378,7 +378,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	@Override
 	public String constructLatexExpressionTree(String indent) {
 		String result = "[.$" + qType + "$\n";
-		result += child.constructLatexExpressionTree("  " + indent) + "\n";
+		result += expr.constructLatexExpressionTree("  " + indent) + "\n";
 		result += indent + "]";
 		return result;
 	}

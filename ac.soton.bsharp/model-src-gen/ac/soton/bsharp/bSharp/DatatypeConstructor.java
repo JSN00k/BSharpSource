@@ -20,9 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getDatatypeConstructor()
  * @model
- * @generated
  */
-public interface DatatypeConstructor extends EObject {
+public interface DatatypeConstructor extends EObject, IVariableProvider {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

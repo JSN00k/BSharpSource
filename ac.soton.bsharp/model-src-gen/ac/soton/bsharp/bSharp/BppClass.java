@@ -20,7 +20,6 @@ package ac.soton.bsharp.bSharp;
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getBppClass()
  * @model
- * @generated
  */
 public interface BppClass extends ClassDecl {
 	/**

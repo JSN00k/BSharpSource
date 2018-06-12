@@ -6,7 +6,9 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
+import ac.soton.bsharp.bSharp.TypedVariable;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -27,22 +29,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.DatatypeImpl#getVarList <em>Var List</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.DatatypeImpl#getConstructors <em>Constructors</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	/**
-	 * The cached value of the '{@link #getVarList() <em>Var List</em>}' containment reference list.
+	 * The cached value of the '{@link #getConstructors() <em>Constructors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVarList()
+	 * @see #getConstructors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DatatypeConstructor> varList;
-
+	protected EList<DatatypeConstructor> constructors;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,11 +68,11 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DatatypeConstructor> getVarList() {
-		if (varList == null) {
-			varList = new EObjectContainmentEList<DatatypeConstructor>(DatatypeConstructor.class, this, BSharpPackage.DATATYPE__VAR_LIST);
+	public EList<DatatypeConstructor> getConstructors() {
+		if (constructors == null) {
+			constructors = new EObjectContainmentEList<DatatypeConstructor>(DatatypeConstructor.class, this, BSharpPackage.DATATYPE__CONSTRUCTORS);
 		}
-		return varList;
+		return constructors;
 	}
 
 	/**
@@ -82,8 +83,8 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.DATATYPE__VAR_LIST:
-				return ((InternalEList<?>)getVarList()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.DATATYPE__CONSTRUCTORS:
+				return ((InternalEList<?>)getConstructors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +97,8 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.DATATYPE__VAR_LIST:
-				return getVarList();
+			case BSharpPackage.DATATYPE__CONSTRUCTORS:
+				return getConstructors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +112,9 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.DATATYPE__VAR_LIST:
-				getVarList().clear();
-				getVarList().addAll((Collection<? extends DatatypeConstructor>)newValue);
+			case BSharpPackage.DATATYPE__CONSTRUCTORS:
+				getConstructors().clear();
+				getConstructors().addAll((Collection<? extends DatatypeConstructor>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +128,8 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.DATATYPE__VAR_LIST:
-				getVarList().clear();
+			case BSharpPackage.DATATYPE__CONSTRUCTORS:
+				getConstructors().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,10 +143,21 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.DATATYPE__VAR_LIST:
-				return varList != null && !varList.isEmpty();
+			case BSharpPackage.DATATYPE__CONSTRUCTORS:
+				return constructors != null && !constructors.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public Collection<TypedVariable> getVariablesNames() {
+		ArrayList<TypedVariable> result = new ArrayList<TypedVariable>();
+		
+		for (DatatypeConstructor constr : constructors) {
+			result.add(constr.getName());
+		}
+		
+		return result;
 	}
 
 } //DatatypeImpl

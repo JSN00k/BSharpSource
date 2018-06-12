@@ -80,7 +80,7 @@
         eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Datatype" eSuperTypes="#//ClassDecl">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="varList" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constructors" upperBound="-1"
         eType="#//DatatypeConstructor" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DatatypeConstructor">
@@ -163,7 +163,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypedVariableList"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression">

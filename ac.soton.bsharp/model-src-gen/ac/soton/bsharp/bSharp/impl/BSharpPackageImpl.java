@@ -817,7 +817,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDatatype_VarList() {
+	public EReference getDatatype_Constructors() {
 		return (EReference)datatypeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1240,7 +1240,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getQuantLambda_Child() {
+	public EReference getQuantLambda_Expr() {
 		return (EReference)quantLambdaEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1568,7 +1568,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(whereEClass, WHERE__EXPRESSIONS);
 
 		datatypeEClass = createEClass(DATATYPE);
-		createEReference(datatypeEClass, DATATYPE__VAR_LIST);
+		createEReference(datatypeEClass, DATATYPE__CONSTRUCTORS);
 
 		datatypeConstructorEClass = createEClass(DATATYPE_CONSTRUCTOR);
 		createEReference(datatypeConstructorEClass, DATATYPE_CONSTRUCTOR__NAME);
@@ -1629,7 +1629,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEAttribute(quantLambdaEClass, QUANT_LAMBDA__QTYPE);
 		createEReference(quantLambdaEClass, QUANT_LAMBDA__CONTEXT);
 		createEReference(quantLambdaEClass, QUANT_LAMBDA__VAR_LIST);
-		createEReference(quantLambdaEClass, QUANT_LAMBDA__CHILD);
+		createEReference(quantLambdaEClass, QUANT_LAMBDA__EXPR);
 
 		expressionEClass = createEClass(EXPRESSION);
 		createEReference(expressionEClass, EXPRESSION__TYPE_INST);
@@ -1777,7 +1777,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getWhere_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, Where.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(datatypeEClass, Datatype.class, "Datatype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDatatype_VarList(), this.getDatatypeConstructor(), null, "varList", null, 0, -1, Datatype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDatatype_Constructors(), this.getDatatypeConstructor(), null, "constructors", null, 0, -1, Datatype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(datatypeConstructorEClass, DatatypeConstructor.class, "DatatypeConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDatatypeConstructor_Name(), this.getTypedVariable(), null, "name", null, 0, 1, DatatypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1838,7 +1838,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEAttribute(getQuantLambda_QType(), ecorePackage.getEString(), "qType", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getQuantLambda_Context(), this.getPolyContext(), null, "context", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getQuantLambda_VarList(), this.getTypedVariableList(), null, "varList", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getQuantLambda_Child(), this.getExpression(), null, "child", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuantLambda_Expr(), this.getExpression(), null, "expr", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExpression_TypeInst(), this.getTypeInstance(), null, "typeInst", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

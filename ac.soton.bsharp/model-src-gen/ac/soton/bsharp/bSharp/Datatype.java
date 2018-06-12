@@ -14,28 +14,27 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.Datatype#getVarList <em>Var List</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.Datatype#getConstructors <em>Constructors</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getDatatype()
  * @model
- * @generated
  */
-public interface Datatype extends ClassDecl {
+public interface Datatype extends ClassDecl, IVariableProvider {
 	/**
-	 * Returns the value of the '<em><b>Var List</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Constructors</b></em>' containment reference list.
 	 * The list contents are of type {@link ac.soton.bsharp.bSharp.DatatypeConstructor}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Var List</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Constructors</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Var List</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getDatatype_VarList()
+	 * @return the value of the '<em>Constructors</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getDatatype_Constructors()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<DatatypeConstructor> getVarList();
+	EList<DatatypeConstructor> getConstructors();
 
 } // Datatype

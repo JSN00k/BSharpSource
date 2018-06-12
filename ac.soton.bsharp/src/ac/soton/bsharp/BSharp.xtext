@@ -106,7 +106,7 @@ Where:
 /* ---------------------- Datatype declarations -------------------------- */
 
 Datatype:
-	'Datatype' typeName=TypeName (context=PolyContext)? ('|' varList+=DatatypeConstructor)+ '{' (bodyElements+=TypeBodyElements)* '}'
+	'Datatype' typeName=TypeName (context=PolyContext)? ('|' constructors+=DatatypeConstructor)+ '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 /* PolyContext is the same as PolyContext used by the class declaration above. */
@@ -182,11 +182,11 @@ TypeDeclaration:
 /* The structure of Lambda and Quantifier are so similar that they're going to share a class */
 
 Lambda returns QuantLambda:
-	qType='λ' (context=PolyContext)? varList=TypedVariableList '|' child=RootExpression
+	qType='λ' (context=PolyContext)? varList=TypedVariableList '|' expr=RootExpression
 ;
 
 Quantifier returns QuantLambda:
-	qType=('∀' | '∃') (context=PolyContext)? varList=TypedVariableList '·' child=RootExpression
+	qType=('∀' | '∃') (context=PolyContext)? varList=TypedVariableList '·' expr=RootExpression
 ;
 
 RootExpression returns Expression:

@@ -707,13 +707,13 @@ public interface BSharpPackage extends EPackage {
 	int DATATYPE__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Var List</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Constructors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATATYPE__VAR_LIST = CLASS_DECL_FEATURE_COUNT + 0;
+	int DATATYPE__CONSTRUCTORS = CLASS_DECL_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Datatype</em>' class.
@@ -1335,13 +1335,13 @@ public interface BSharpPackage extends EPackage {
 	int QUANT_LAMBDA__VAR_LIST = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUANT_LAMBDA__CHILD = EXPRESSION_FEATURE_COUNT + 3;
+	int QUANT_LAMBDA__EXPR = EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Quant Lambda</em>' class.
@@ -2138,15 +2138,15 @@ public interface BSharpPackage extends EPackage {
 	EClass getDatatype();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.Datatype#getVarList <em>Var List</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.Datatype#getConstructors <em>Constructors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Var List</em>'.
-	 * @see ac.soton.bsharp.bSharp.Datatype#getVarList()
+	 * @return the meta object for the containment reference list '<em>Constructors</em>'.
+	 * @see ac.soton.bsharp.bSharp.Datatype#getConstructors()
 	 * @see #getDatatype()
 	 * @generated
 	 */
-	EReference getDatatype_VarList();
+	EReference getDatatype_Constructors();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.DatatypeConstructor <em>Datatype Constructor</em>}'.
@@ -2641,15 +2641,15 @@ public interface BSharpPackage extends EPackage {
 	EReference getQuantLambda_VarList();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.QuantLambda#getChild <em>Child</em>}'.
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.QuantLambda#getExpr <em>Expr</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Child</em>'.
-	 * @see ac.soton.bsharp.bSharp.QuantLambda#getChild()
+	 * @return the meta object for the containment reference '<em>Expr</em>'.
+	 * @see ac.soton.bsharp.bSharp.QuantLambda#getExpr()
 	 * @see #getQuantLambda()
 	 * @generated
 	 */
-	EReference getQuantLambda_Child();
+	EReference getQuantLambda_Expr();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Expression <em>Expression</em>}'.
@@ -3335,12 +3335,12 @@ public interface BSharpPackage extends EPackage {
 		EClass DATATYPE = eINSTANCE.getDatatype();
 
 		/**
-		 * The meta object literal for the '<em><b>Var List</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Constructors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATATYPE__VAR_LIST = eINSTANCE.getDatatype_VarList();
+		EReference DATATYPE__CONSTRUCTORS = eINSTANCE.getDatatype_Constructors();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.DatatypeConstructorImpl <em>Datatype Constructor</em>}' class.
@@ -3739,12 +3739,12 @@ public interface BSharpPackage extends EPackage {
 		EReference QUANT_LAMBDA__VAR_LIST = eINSTANCE.getQuantLambda_VarList();
 
 		/**
-		 * The meta object literal for the '<em><b>Child</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference QUANT_LAMBDA__CHILD = eINSTANCE.getQuantLambda_Child();
+		EReference QUANT_LAMBDA__EXPR = eINSTANCE.getQuantLambda_Expr();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionImpl <em>Expression</em>}' class.

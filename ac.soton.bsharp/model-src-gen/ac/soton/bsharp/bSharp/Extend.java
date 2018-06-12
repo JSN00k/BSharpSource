@@ -21,7 +21,6 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend()
  * @model
- * @generated
  */
 public interface Extend extends TopLevel {
 	/**
