@@ -7,17 +7,17 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1
 
 class EcoreUtilJ extends EcoreUtil2 {
 		/* Finds the root of the current context and filters up to the current context using the filter */
-	public static def ArrayList<? extends EObject> eFilterUpToCurrentWith(EObject context, Function1<EObject, Boolean> filter) {
+	static def ArrayList<? extends EObject> eFilterUpToCurrentWith(EObject context, Function1<EObject, Boolean> filter) {
 		val root = EcoreUtil2.getRootContainer(context)
 		return eFilterUpToWith(root, [object | object == context], filter)
 	}
 	
-	public static def ArrayList<? extends EObject> eFilterUpToIncludingCurrentWith(EObject context, Function1<EObject, Boolean> filter) {
+	static def ArrayList<? extends EObject> eFilterUpToIncludingCurrentWith(EObject context, Function1<EObject, Boolean> filter) {
 		val root = EcoreUtil2.getRootContainer(context)
 		return eFilterUpToIncludingWith(root, [object | object == context], filter)
 	}
 	
-	public static def ArrayList<? extends EObject> eFilterUpToWith(EObject tree, Function1<EObject, Boolean> stopFilter,
+	static def ArrayList<? extends EObject> eFilterUpToWith(EObject tree, Function1<EObject, Boolean> stopFilter,
 		Function1<EObject, Boolean> objectFilter) {
 		val iterable = tree.eAllContents
 		val result = new ArrayList<EObject>()
@@ -43,7 +43,7 @@ class EcoreUtilJ extends EcoreUtil2 {
 	 * scanning the children of the deepest object that matches the stop filter even if a shallower match has been 
 	 * found.
 	 */
-	public static def ArrayList<? extends EObject> eFilterUpToIncludingWith(EObject tree, Function1<EObject, Boolean> stopFilter,
+	static def ArrayList<? extends EObject> eFilterUpToIncludingWith(EObject tree, Function1<EObject, Boolean> stopFilter,
 		Function1<EObject, Boolean> objectFilter) {
 			var resultArray = new ArrayList<EObject>
 			eFilterUpToIncludingWithInternal(tree, stopFilter, objectFilter, resultArray)
@@ -81,7 +81,7 @@ class EcoreUtilJ extends EcoreUtil2 {
 	}
 	
 	/* Does not scan the current object. */
-	public static def EObject eContainerMatchingLambda(EObject context, Function1<EObject, Boolean> criteria) {
+	static def EObject eContainerMatchingLambda(EObject context, Function1<EObject, Boolean> criteria) {
 		val parent = context.eContainer
 		if (parent === null) {
 			return null

@@ -28,6 +28,7 @@ import java.util.Collection
 import ac.soton.bsharp.EcoreUtilJ
 import ac.soton.bsharp.bSharp.MatchCase
 import ac.soton.bsharp.bSharp.MatchStatement
+import ac.soton.bsharp.bSharp.IVariableProvider
 
 /**
  * This class contains custom scoping description.
@@ -124,7 +125,7 @@ class BSharpScopeProvider extends AbstractBSharpScopeProvider {
 			if (datatype !== null) {
 				val allResults = new ArrayList<EObject>
 				
-				datatype.varList.forEach[obj | allResults.addAll(EcoreUtil2.getAllContentsOfType(obj, TypedVariable))]
+				//datatype.varList.forEach[obj | allResults.addAll(EcoreUtil2.getAllContentsOfType(obj, TypedVariable))]
 				return Scopes.scopeFor(allResults)
 			}
 		} else if (reference == BSharpPackage.Literals.MATCH_CASE) {
@@ -233,5 +234,20 @@ class BSharpScopeProvider extends AbstractBSharpScopeProvider {
 		}
 	}
 	
-
+	def IScope getVariableScopeFor(EObject context) {
+		val variableProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IVariableProvider
+		
+		if (variableProvider === null) {
+			return null
+		}
+		
+		val parentScope = getVariableScopeFor(variableProvider as EObject)
+		
+		if (parentScope === null) {
+			return Scopes.scopeFor(variableProvider.variablesNames)
+		} else {
+			return Scopes.scopeFor(variableProvider.variablesNames, parentScope)
+		}
+		
+	}
 }

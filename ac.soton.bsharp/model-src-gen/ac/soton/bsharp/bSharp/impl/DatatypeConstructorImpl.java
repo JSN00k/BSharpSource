@@ -8,6 +8,9 @@ import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -239,6 +242,13 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 				return decons != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public Collection<TypedVariable> getVariablesNames() {
+		ArrayList<TypedVariable> result = new ArrayList<TypedVariable>();
+		result.add(name);
+		return result;
 	}
 
 } //DatatypeConstructorImpl

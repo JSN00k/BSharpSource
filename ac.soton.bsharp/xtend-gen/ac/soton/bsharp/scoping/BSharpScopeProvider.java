@@ -8,11 +8,11 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
-import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyContext;
@@ -28,7 +28,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -133,10 +132,6 @@ public class BSharpScopeProvider extends AbstractBSharpScopeProvider {
             final Datatype datatype = EcoreUtil2.<Datatype>getContainerOfType(((MatchStatement) _eContainer_1).getMatch(), Datatype.class);
             if ((datatype != null)) {
               final ArrayList<EObject> allResults = new ArrayList<EObject>();
-              final Consumer<DatatypeConstructor> _function_8 = (DatatypeConstructor obj) -> {
-                allResults.addAll(EcoreUtil2.<TypedVariable>getAllContentsOfType(obj, TypedVariable.class));
-              };
-              datatype.getVarList().forEach(_function_8);
               return Scopes.scopeFor(allResults);
             }
           } else {
@@ -240,6 +235,23 @@ public class BSharpScopeProvider extends AbstractBSharpScopeProvider {
       } else {
         return Scopes.scopeFor(names, parentScope);
       }
+    }
+  }
+  
+  public IScope getVariableScopeFor(final EObject context) {
+    final Function1<EObject, Boolean> _function = (EObject obj) -> {
+      return Boolean.valueOf((obj instanceof IVariableProvider));
+    };
+    EObject _eContainerMatchingLambda = EcoreUtilJ.eContainerMatchingLambda(context, _function);
+    final IVariableProvider variableProvider = ((IVariableProvider) _eContainerMatchingLambda);
+    if ((variableProvider == null)) {
+      return null;
+    }
+    final IScope parentScope = this.getVariableScopeFor(((EObject) variableProvider));
+    if ((parentScope == null)) {
+      return Scopes.scopeFor(variableProvider.getVariablesNames());
+    } else {
+      return Scopes.scopeFor(variableProvider.getVariablesNames(), parentScope);
     }
   }
 }

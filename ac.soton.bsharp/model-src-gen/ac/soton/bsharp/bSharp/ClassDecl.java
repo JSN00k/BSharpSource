@@ -21,9 +21,8 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl()
  * @model
- * @generated
  */
-public interface ClassDecl extends TopLevel {
+public interface ClassDecl extends TopLevel, IPolyTypeProvider {
 	/**
 	 * Returns the value of the '<em><b>Type Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

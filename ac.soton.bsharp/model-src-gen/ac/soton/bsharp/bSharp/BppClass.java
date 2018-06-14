@@ -21,7 +21,7 @@ package ac.soton.bsharp.bSharp;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getBppClass()
  * @model
  */
-public interface BppClass extends ClassDecl {
+public interface BppClass extends ClassDecl, IVariableProvider {
 	/**
 	 * Returns the value of the '<em><b>Supertypes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

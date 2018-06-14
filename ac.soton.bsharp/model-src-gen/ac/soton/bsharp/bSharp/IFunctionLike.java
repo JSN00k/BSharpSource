@@ -8,7 +8,7 @@ import java.util.Collection;
  * Lambdas as expected are nameless function declarations where the return type is inferred 
  * from the type that the expression expects.
  */
-public interface IFunctionLike extends IVariableProvider {
+public interface IFunctionLike extends IVariableProvider, IPolyTypeProvider {
 
 	public String getFuncName();
 	public Collection<TypedVariable> getVariablesNames();
