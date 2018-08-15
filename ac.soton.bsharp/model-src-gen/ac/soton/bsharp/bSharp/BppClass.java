@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import ac.soton.bsharp.bSharp.abstractInterfaces.IPolyTypeProvider;
+import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +23,7 @@ package ac.soton.bsharp.bSharp;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getBppClass()
  * @model
  */
-public interface BppClass extends ClassDecl, IVariableProvider {
+public interface BppClass extends ClassDecl, IVariableProvider, IPolyTypeProvider {
 	/**
 	 * Returns the value of the '<em><b>Supertypes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

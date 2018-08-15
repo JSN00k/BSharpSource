@@ -149,7 +149,8 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 		return super.eIsSet(featureID);
 	}
 
-	@Override
+	
+	
 	public Collection<TypedVariable> getVariablesNames() {
 		ArrayList<TypedVariable> result = new ArrayList<TypedVariable>();
 		

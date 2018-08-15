@@ -8,19 +8,26 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.PolyContext;
+import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
 
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.xtext.EcoreUtil2;
 
 
 /**
@@ -566,6 +573,18 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		result.append(precedence);
 		result.append(')');
 		return result.toString();
+	}
+	
+	@Override
+	public Collection<EObject> getVariablesNames() {
+		ArrayList<EObject> result = new ArrayList<EObject>();
+		result.addAll(EcoreUtil2.getAllContentsOfType(varList, TypedVariable.class));
+		return result;
+	}
+
+	@Override
+	public Collection<PolymorphicTypeName> getPolyTypeNames() {
+		return EcoreUtil2.getAllContentsOfType(getContext(), PolymorphicTypeName.class);
 	}
 
 } //FunctionDeclImpl

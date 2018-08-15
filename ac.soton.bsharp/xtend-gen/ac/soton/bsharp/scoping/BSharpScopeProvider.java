@@ -5,36 +5,29 @@ package ac.soton.bsharp.scoping;
 
 import ac.soton.bsharp.EcoreUtilJ;
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Extend;
-import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.GenName;
-import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolymorphicTypeName;
-import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeName;
-import ac.soton.bsharp.bSharp.TypeStructure;
-import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.abstractInterfaces.IPolyTypeProvider;
+import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
 import ac.soton.bsharp.scoping.AbstractBSharpScopeProvider;
 import com.google.common.base.Objects;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
-import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 
@@ -46,12 +39,6 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
  */
 @SuppressWarnings("all")
 public class BSharpScopeProvider extends AbstractBSharpScopeProvider {
-  private enum PolyOrVariable {
-    POLY,
-    
-    VARIABLE;
-  }
-  
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
     if (((context instanceof TypeConstructor) && Objects.equal(reference.getEReferenceType(), BSharpPackage.Literals.GEN_NAME))) {
@@ -120,7 +107,7 @@ public class BSharpScopeProvider extends AbstractBSharpScopeProvider {
             return Boolean.valueOf((object instanceof FunctionName));
           };
           ArrayList<? extends EObject> functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj_1, _function_6, _function_7);
-          IScope scope_1 = this.getLocalVariableScopeForContext(context);
+          IScope scope_1 = this.getVariableScopeFor(context);
           if ((scope_1 != null)) {
             return Scopes.scopeFor(functionNames, scope_1);
           } else {
@@ -146,112 +133,46 @@ public class BSharpScopeProvider extends AbstractBSharpScopeProvider {
     return super.getScope(context, reference);
   }
   
-  public IScope getLocalVariableScopeForContext(final EObject context) {
-    return this.getPolyOrVariableScopeFor(context, BSharpScopeProvider.PolyOrVariable.VARIABLE);
-  }
-  
-  public IScope getPolymorphicScopeForContext(final EObject context) {
-    return this.getPolyOrVariableScopeFor(context, BSharpScopeProvider.PolyOrVariable.POLY);
-  }
-  
-  private IScope getPolyOrVariableScopeFor(final EObject context, final BSharpScopeProvider.PolyOrVariable polyOrVar) {
-    Function1<EObject, List<? extends EObject>> nameGetter = ((Function1<EObject, List<? extends EObject>>) null);
-    boolean _equals = Objects.equal(polyOrVar, BSharpScopeProvider.PolyOrVariable.VARIABLE);
-    if (_equals) {
-      final Function1<EObject, List<? extends EObject>> _function = (EObject object) -> {
-        try {
-          final Method method = object.getClass().getMethod("getVarList", null);
-          Object _invoke = method.invoke(object, null);
-          final EObject varList = ((EObject) _invoke);
-          ArrayList<EObject> allResults = new ArrayList<EObject>();
-          if ((varList != null)) {
-            allResults.addAll(EcoreUtil2.<TypedVariable>getAllContentsOfType(varList, TypedVariable.class));
-          }
-          if ((object instanceof BppClass)) {
-            allResults.add(((BppClass) object).getTypeName());
-          }
-          return allResults;
-        } catch (Throwable _e) {
-          throw Exceptions.sneakyThrow(_e);
-        }
-      };
-      nameGetter = _function;
-    } else {
-      final Function1<EObject, List<? extends EObject>> _function_1 = (EObject object) -> {
-        try {
-          final Method method = object.getClass().getMethod("getContext", null);
-          Object _invoke = method.invoke(object, null);
-          final EObject polyContext = ((EObject) _invoke);
-          if ((polyContext == null)) {
-            return null;
-          }
-          return EcoreUtil2.<PolymorphicTypeName>getAllContentsOfType(polyContext, PolymorphicTypeName.class);
-        } catch (Throwable _e) {
-          throw Exceptions.sneakyThrow(_e);
-        }
-      };
-      nameGetter = _function_1;
-    }
-    final Function1<EObject, Boolean> _function_2 = (EObject object) -> {
-      return Boolean.valueOf(((((object instanceof QuantLambda) || (object instanceof FunctionDecl)) || (object instanceof BppClass)) || (object instanceof Extend)));
-    };
-    final EObject containerWithTypeVariable = EcoreUtilJ.eContainerMatchingLambda(context, _function_2);
-    if ((containerWithTypeVariable == null)) {
-      return null;
-    }
-    if ((containerWithTypeVariable instanceof Extend)) {
-      final Extend extend = ((Extend) containerWithTypeVariable);
-      EObject _eContainer = extend.getName().eContainer();
-      if ((_eContainer instanceof BppClass)) {
-        EObject _eContainer_1 = extend.getName().eContainer();
-        final BppClass bppClass = ((BppClass) _eContainer_1);
-        boolean _equals_1 = Objects.equal(polyOrVar, BSharpScopeProvider.PolyOrVariable.VARIABLE);
-        if (_equals_1) {
-          ArrayList<EObject> scopeVars = new ArrayList<EObject>();
-          TypeStructure _varList = bppClass.getVarList();
-          boolean _tripleNotEquals = (_varList != null);
-          if (_tripleNotEquals) {
-            scopeVars.addAll(EcoreUtil2.<TypedVariable>getAllContentsOfType(bppClass.getVarList(), TypedVariable.class));
-          }
-          scopeVars.add(bppClass.getTypeName());
-          return Scopes.scopeFor(scopeVars);
-        } else {
-          return Scopes.scopeFor(EcoreUtil2.<PolymorphicTypeName>getAllContentsOfType(bppClass.getContext(), PolymorphicTypeName.class));
-        }
-      }
-      return null;
-    }
-    final List<? extends EObject> names = nameGetter.apply(containerWithTypeVariable);
-    final IScope parentScope = this.getPolyOrVariableScopeFor(containerWithTypeVariable, polyOrVar);
-    if ((parentScope == null)) {
-      if ((names == null)) {
-        return null;
-      } else {
-        return Scopes.scopeFor(names);
-      }
-    } else {
-      if ((names == null)) {
-        return parentScope;
-      } else {
-        return Scopes.scopeFor(names, parentScope);
-      }
-    }
-  }
-  
   public IScope getVariableScopeFor(final EObject context) {
     final Function1<EObject, Boolean> _function = (EObject obj) -> {
       return Boolean.valueOf((obj instanceof IVariableProvider));
     };
     EObject _eContainerMatchingLambda = EcoreUtilJ.eContainerMatchingLambda(context, _function);
-    final IVariableProvider variableProvider = ((IVariableProvider) _eContainerMatchingLambda);
+    final IVariableProvider polyProvider = ((IVariableProvider) _eContainerMatchingLambda);
+    if ((polyProvider == null)) {
+      return null;
+    }
+    final IScope parentScope = this.getVariableScopeFor(((EObject) polyProvider));
+    Collection<EObject> _variablesNames = polyProvider.getVariablesNames();
+    boolean _tripleEquals = (_variablesNames == null);
+    if (_tripleEquals) {
+      return parentScope;
+    }
+    if ((parentScope == null)) {
+      return Scopes.scopeFor(polyProvider.getVariablesNames());
+    } else {
+      return Scopes.scopeFor(polyProvider.getVariablesNames(), parentScope);
+    }
+  }
+  
+  public IScope getTypeScope(final EObject context) {
+    return null;
+  }
+  
+  public IScope getPolyScopeFor(final EObject context) {
+    final Function1<EObject, Boolean> _function = (EObject obj) -> {
+      return Boolean.valueOf((obj instanceof IVariableProvider));
+    };
+    EObject _eContainerMatchingLambda = EcoreUtilJ.eContainerMatchingLambda(context, _function);
+    final IPolyTypeProvider variableProvider = ((IPolyTypeProvider) _eContainerMatchingLambda);
     if ((variableProvider == null)) {
       return null;
     }
     final IScope parentScope = this.getVariableScopeFor(((EObject) variableProvider));
     if ((parentScope == null)) {
-      return Scopes.scopeFor(variableProvider.getVariablesNames());
+      return Scopes.scopeFor(variableProvider.getPolyTypeNames());
     } else {
-      return Scopes.scopeFor(variableProvider.getVariablesNames(), parentScope);
+      return Scopes.scopeFor(variableProvider.getPolyTypeNames(), parentScope);
     }
   }
 }

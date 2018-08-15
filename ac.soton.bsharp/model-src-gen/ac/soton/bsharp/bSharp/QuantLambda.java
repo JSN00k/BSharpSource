@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import ac.soton.bsharp.bSharp.abstractInterfaces.IPolyTypeProvider;
+import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +24,7 @@ package ac.soton.bsharp.bSharp;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getQuantLambda()
  * @model
  */
-public interface QuantLambda extends Expression {
+public interface QuantLambda extends Expression, IVariableProvider, IPolyTypeProvider {
 	/**
 	 * Returns the value of the '<em><b>QType</b></em>' attribute.
 	 * <!-- begin-user-doc -->

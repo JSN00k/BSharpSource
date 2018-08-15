@@ -10,25 +10,20 @@ import ac.soton.bsharp.bSharp.PolymorphicTypeName
 import org.eclipse.xtext.EcoreUtil2
 import ac.soton.bsharp.bSharp.TypeName
 import ac.soton.bsharp.bSharp.GenName
-import ac.soton.bsharp.bSharp.BppClass
 import ac.soton.bsharp.bSharp.BSharpPackage
 import java.util.ArrayList
-import org.eclipse.xtext.xbase.lib.Functions.Function1
 import ac.soton.bsharp.bSharp.ClassDecl
 import ac.soton.bsharp.bSharp.FunctionName
 import org.eclipse.xtext.scoping.IScope
-import ac.soton.bsharp.bSharp.QuantLambda
-import ac.soton.bsharp.bSharp.FunctionDecl
 import ac.soton.bsharp.bSharp.Extend
-import java.util.List
-import ac.soton.bsharp.bSharp.TypedVariable
 import ac.soton.bsharp.bSharp.TypeConstructor
 import ac.soton.bsharp.bSharp.Datatype
 import java.util.Collection
 import ac.soton.bsharp.EcoreUtilJ
 import ac.soton.bsharp.bSharp.MatchCase
 import ac.soton.bsharp.bSharp.MatchStatement
-import ac.soton.bsharp.bSharp.IVariableProvider
+import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider
+import ac.soton.bsharp.bSharp.abstractInterfaces.IPolyTypeProvider
 
 /**
  * This class contains custom scoping description.
@@ -111,7 +106,7 @@ class BSharpScopeProvider extends AbstractBSharpScopeProvider {
 			 var functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object | object == currentClass], [object | object instanceof FunctionName])
 			 
 			 /* TypedVariableScope */
-			 var scope = getLocalVariableScopeForContext(context)
+			 var scope = getVariableScopeFor(context)
 			 
 			 if (scope !== null)
 			 	return Scopes.scopeFor(functionNames, scope)
@@ -132,110 +127,41 @@ class BSharpScopeProvider extends AbstractBSharpScopeProvider {
 			print (reference)
 		}
 		
-		
-
 		return super.getScope(context, reference)
 	}
 	
-	def IScope getLocalVariableScopeForContext(EObject context) {
-		return getPolyOrVariableScopeFor(context, PolyOrVariable.VARIABLE )
-	}
-	
-	def IScope getPolymorphicScopeForContext(EObject context) {
-		return getPolyOrVariableScopeFor(context, PolyOrVariable.POLY)
-	}
-	
-	private enum PolyOrVariable { POLY, VARIABLE}
-	
-	private def IScope getPolyOrVariableScopeFor(EObject context, PolyOrVariable polyOrVar) {
-		var nameGetter = null as Function1<EObject, List<? extends EObject>>
-		if (polyOrVar == PolyOrVariable.VARIABLE){
-		nameGetter = [object | 
-			 	/* I'm not experienced enough with Xtext/Java to work out how to give the 
-			 	 * object a shared interface, so I'm going to be really bad and use 
-			 	 * reflection instead. This relies on all variable lists being called
-			 	 * "varList"
-			 	 */
-			 	val method = object.getClass().getMethod("getVarList", null)
-			 	val varList = method.invoke(object, null) as EObject
-			 		
-			 	var allResults = new ArrayList<EObject>
-			 	
-			 	if (varList !== null)
-			 		allResults.addAll(EcoreUtil2.getAllContentsOfType(varList, TypedVariable))
-			 	
-			 	if (object instanceof BppClass) {
-			 		allResults.add((object as BppClass).typeName)
-			 	}
-			 	
-			 	return  allResults
-			 ]
-		} else {
-			nameGetter = [object | 
-			 	/* I'm not experienced enough with Xtext/Java to work out how to give the 
-			 	 * object a shared interface, so I'm going to be really bad and use 
-			 	 * reflection instead. This relies on all variable lists being called
-			 	 * "varList"
-			 	 */
-			 	 val method = object.getClass().getMethod("getContext", null)
-			 	val polyContext = method.invoke(object, null) as EObject
-			 	if (polyContext === null)
-			 		return null
-			 		
-			 	return EcoreUtil2.getAllContentsOfType(polyContext, PolymorphicTypeName)
-			 ]
-		}
-		
-		/* Typed variable scopes can come from any ancestor that declares typed variables.
-		 * This includes Lambdas, Quantifiers, FunctionDeclarations, and Class Declarations */
-		 val containerWithTypeVariable = EcoreUtilJ.eContainerMatchingLambda(context, [object | object instanceof QuantLambda
-		 	|| object instanceof FunctionDecl || object instanceof BppClass || object instanceof Extend
-		 ])
-		 
-		 if (containerWithTypeVariable === null)
-		 	return null
-//		 
-		 if (containerWithTypeVariable instanceof Extend) {
-		 	/* An Extend declaration is the end of the recursion. There's nowhere higher that
-		 	 * TypeVariables could be declared.
-		 	 */ 
-		 	val extend = containerWithTypeVariable as Extend
-		 	if (extend.name.eContainer instanceof BppClass) {
-		 		val bppClass = extend.name.eContainer as BppClass
-		 		if (polyOrVar == PolyOrVariable.VARIABLE) {
-		 			var scopeVars = new ArrayList<EObject>
-		 			if (bppClass.varList !== null)
-		 				scopeVars.addAll(EcoreUtil2.getAllContentsOfType(bppClass.varList, TypedVariable))
-		 				
-		 			scopeVars.add(bppClass.typeName)
-		 			return Scopes.scopeFor(scopeVars)
-		 		} else {
-		 			return Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(bppClass.context, PolymorphicTypeName))
-		 		}	
-		 	}
-		 	
-		 	return null
-		 }
-
-		val names = nameGetter.apply(containerWithTypeVariable)
-		val parentScope = getPolyOrVariableScopeFor(containerWithTypeVariable, polyOrVar)
-		
-
-		if (parentScope === null) {
-			if (names === null)
-				return null
-			else
-				return Scopes.scopeFor(names)
-		} else {
-			if (names === null)
-				return parentScope
-			else
-				return Scopes.scopeFor(names, parentScope)
-		}
-	}
-	
 	def IScope getVariableScopeFor(EObject context) {
-		val variableProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IVariableProvider
+		val polyProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IVariableProvider
+		
+		if (polyProvider === null) {
+			return null
+		}
+		
+		val parentScope = getVariableScopeFor(polyProvider as EObject)
+		
+		if (polyProvider.variablesNames === null) {
+			return parentScope;
+		}
+		
+		if (parentScope === null) {
+			return Scopes.scopeFor(polyProvider.variablesNames)
+		} else {
+			return Scopes.scopeFor(polyProvider.variablesNames, parentScope)
+		}
+		
+	}
+	
+	def IScope getTypeScope(EObject context) {
+		/* This is called when a GenName is referenced (GenName: PolymorphicTypeName | TypeName;)
+		 * Basically a type has been scanned. In this case we need to check all valid polymorphic 
+		 * types (these go backwards up the scope hierarchy), and types previously declared in the file
+		 * and previously imported files.
+		 */
+		 
+	}
+	
+	def IScope getPolyScopeFor(EObject context) {
+		val variableProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IPolyTypeProvider
 		
 		if (variableProvider === null) {
 			return null
@@ -244,9 +170,9 @@ class BSharpScopeProvider extends AbstractBSharpScopeProvider {
 		val parentScope = getVariableScopeFor(variableProvider as EObject)
 		
 		if (parentScope === null) {
-			return Scopes.scopeFor(variableProvider.variablesNames)
+			return Scopes.scopeFor(variableProvider.polyTypeNames)
 		} else {
-			return Scopes.scopeFor(variableProvider.variablesNames, parentScope)
+			return Scopes.scopeFor(variableProvider.polyTypeNames, parentScope)
 		}
 		
 	}

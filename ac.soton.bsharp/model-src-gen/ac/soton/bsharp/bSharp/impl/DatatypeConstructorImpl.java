@@ -244,7 +244,6 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 		return super.eIsSet(featureID);
 	}
 
-	@Override
 	public Collection<TypedVariable> getVariablesNames() {
 		ArrayList<TypedVariable> result = new ArrayList<TypedVariable>();
 		result.add(name);

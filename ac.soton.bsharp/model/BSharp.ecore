@@ -12,9 +12,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import">
     <eStructuralFeatures xsi:type="ecore:EReference" name="importName" upperBound="-1"
-        eType="#//ImportComponent" containment="true"/>
+        eType="#//QualifiedNameWithWildcard" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImportComponent">
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedNameWithWildcard">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" eSuperTypes="#//TopLevel">

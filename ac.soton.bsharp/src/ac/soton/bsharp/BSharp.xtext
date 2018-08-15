@@ -12,6 +12,21 @@ THM_NAME: (INT | ID | WS)* ":";
 TopLevel:
 	ImportStatement | ClassDecl | Extend | Instance;
 	
+ClassDecl returns ClassDecl:
+	Class | Datatype
+;
+
+/* -------------------------- Import Statements -------------------- */
+/* I had hoped to use a python style import, however this seems to be fighting 
+ * the system, and would require a custom implementation of DefaultDeclarativeQualifiedNameProvider.
+ * To increase the development speed I am using the java style imports instead.
+ */
+
+QualifiedName:
+    ID ('.' ID)*;
+
+QualifiedNameWithWildcard:
+    QualifiedName '.*'?;
 
 ImportStatement:
 	'Import'
@@ -19,15 +34,11 @@ ImportStatement:
 ;
 
 Import:
-	importName+=ImportComponent ('.' importName+=ImportComponent)
+	importName+=QualifiedNameWithWildcard
 ;
 
 ImportComponent:
 	name=ID
-;
-
-ClassDecl returns ClassDecl:
-	Class | Datatype
 ;
 
 /* ------------------------ Class statements --------------------- */

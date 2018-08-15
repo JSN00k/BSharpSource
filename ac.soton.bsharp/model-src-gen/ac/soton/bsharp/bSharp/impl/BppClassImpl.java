@@ -5,18 +5,20 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BppClass;
-import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.Where;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -34,8 +36,6 @@ import org.eclipse.xtext.EcoreUtil2;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.BppClassImpl#getVarList <em>Var List</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.BppClassImpl#getWhere <em>Where</em>}</li>
  * </ul>
- *
- * @generated
  */
 public class BppClassImpl extends ClassDeclImpl implements BppClass {
 	/**
@@ -312,9 +312,20 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 		return super.eIsSet(featureID);
 	}
 
+	public Collection<EObject> getVariablesNames() {		
+		ArrayList<EObject> result = new ArrayList<EObject>();
+		result.add(typeName);
+		if (varList == null) {
+			return result;
+		}
+		
+		result.addAll(EcoreUtil2.getAllContentsOfType(varList, TypedVariable.class));
+		return result;
+	}
+	
 	@Override
-	public Collection<TypedVariable> getVariablesNames() {
-		return EcoreUtil2.getAllContentsOfType(varList, TypedVariable.class);
+	public Collection<PolymorphicTypeName> getPolyTypeNames() {
+		return EcoreUtil2.getAllContentsOfType(getContext(), PolymorphicTypeName.class);
 	}
 
 } //BppClassImpl

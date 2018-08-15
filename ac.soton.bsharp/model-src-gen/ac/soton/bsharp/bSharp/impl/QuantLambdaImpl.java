@@ -6,16 +6,24 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.PolyContext;
+import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.QuantLambda;
+import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,8 +38,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl#getVarList <em>Var List</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl#getExpr <em>Expr</em>}</li>
  * </ul>
- *
- * @generated
  */
 public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	/**
@@ -381,6 +387,18 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		result += expr.constructLatexExpressionTree("  " + indent) + "\n";
 		result += indent + "]";
 		return result;
+	}
+
+	@Override
+	public Collection<EObject> getVariablesNames() {
+		ArrayList<EObject> result = new ArrayList<EObject>();
+		result.addAll(EcoreUtil2.getAllContentsOfType(varList, TypedVariable.class));
+		return result;
+	}
+
+	@Override
+	public Collection<PolymorphicTypeName> getPolyTypeNames() {
+		return EcoreUtil2.getAllContentsOfType(getContext(), PolymorphicTypeName.class);
 	}
 
 } //QuantLambdaImpl

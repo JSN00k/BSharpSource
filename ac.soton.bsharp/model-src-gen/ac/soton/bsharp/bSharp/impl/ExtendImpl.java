@@ -4,9 +4,12 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
 import ac.soton.bsharp.bSharp.TypeName;
+import ac.soton.bsharp.bSharp.TypedVariable;
 
 import java.util.Collection;
 
@@ -16,6 +19,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -279,5 +283,30 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 		result.append(')');
 		return result.toString();
 	}
+
+	@Override
+	public Collection<EObject> getVariablesNames() {
+		/* Note datatypes don't create type variables, I think these may be 
+		 * covered when looking for function names instead.
+		 */
+		EObject extended = name.eContainer();
+		if (extended instanceof BppClass) {
+			return ((BppClass)extended).getVariablesNames();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public Collection<PolymorphicTypeName> getPolyTypeNames() {
+		EObject extended = name.eContainer();
+		if (extended instanceof BppClass) {
+			return ((BppClass)extended).getPolyTypeNames();
+		} else {
+			return null;
+		}
+	}
+	
+	
 
 } //ExtendImpl

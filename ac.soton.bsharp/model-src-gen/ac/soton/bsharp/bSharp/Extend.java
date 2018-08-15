@@ -5,6 +5,9 @@ package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.common.util.EList;
 
+import ac.soton.bsharp.bSharp.abstractInterfaces.IPolyTypeProvider;
+import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Extend</b></em>'.
@@ -22,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend()
  * @model
  */
-public interface Extend extends TopLevel {
+public interface Extend extends TopLevel, IVariableProvider, IPolyTypeProvider {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
