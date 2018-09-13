@@ -4,8 +4,6 @@
 package ac.soton.bsharp.formatting2;
 
 import ac.soton.bsharp.bSharp.DomainModel;
-import ac.soton.bsharp.bSharp.Import;
-import ac.soton.bsharp.bSharp.ImportStatement;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.services.BSharpGrammarAccess;
 import com.google.inject.Inject;
@@ -30,35 +28,25 @@ public class BSharpFormatter extends AbstractFormatter2 {
     }
   }
   
-  protected void _format(final ImportStatement importStatement, @Extension final IFormattableDocument document) {
-    EList<Import> _imports = importStatement.getImports();
-    for (final Import _import : _imports) {
-      document.<Import>format(_import);
-    }
-  }
-  
-  public void format(final Object importStatement, final IFormattableDocument document) {
-    if (importStatement instanceof XtextResource) {
-      _format((XtextResource)importStatement, document);
+  public void format(final Object domainModel, final IFormattableDocument document) {
+    if (domainModel instanceof XtextResource) {
+      _format((XtextResource)domainModel, document);
       return;
-    } else if (importStatement instanceof ImportStatement) {
-      _format((ImportStatement)importStatement, document);
+    } else if (domainModel instanceof DomainModel) {
+      _format((DomainModel)domainModel, document);
       return;
-    } else if (importStatement instanceof DomainModel) {
-      _format((DomainModel)importStatement, document);
+    } else if (domainModel instanceof EObject) {
+      _format((EObject)domainModel, document);
       return;
-    } else if (importStatement instanceof EObject) {
-      _format((EObject)importStatement, document);
-      return;
-    } else if (importStatement == null) {
+    } else if (domainModel == null) {
       _format((Void)null, document);
       return;
-    } else if (importStatement != null) {
-      _format(importStatement, document);
+    } else if (domainModel != null) {
+      _format(domainModel, document);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(importStatement, document).toString());
+        Arrays.<Object>asList(domainModel, document).toString());
     }
   }
 }

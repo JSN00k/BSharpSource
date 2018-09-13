@@ -25,19 +25,19 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Import extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Import Name</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.ImportComponent}.
+	 * Returns the value of the '<em><b>Import Name</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Import Name</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Import Name</em>' containment reference list.
+	 * @return the value of the '<em>Import Name</em>' attribute list.
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getImport_ImportName()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	EList<ImportComponent> getImportName();
+	EList<String> getImportName();
 
 } // Import

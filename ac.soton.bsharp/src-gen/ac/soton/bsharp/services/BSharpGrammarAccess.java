@@ -98,80 +98,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//Instance
 		public RuleCall getInstanceParserRuleCall_3() { return cInstanceParserRuleCall_3; }
 	}
-	public class ImportStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ImportStatement");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cImportsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cImportsImportParserRuleCall_1_0 = (RuleCall)cImportsAssignment_1.eContents().get(0);
-		
-		//ImportStatement:
-		//	'Import'
-		//	imports+=Import;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'Import' imports+=Import
-		public Group getGroup() { return cGroup; }
-		
-		//'Import'
-		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
-		
-		//imports+=Import
-		public Assignment getImportsAssignment_1() { return cImportsAssignment_1; }
-		
-		//Import
-		public RuleCall getImportsImportParserRuleCall_1_0() { return cImportsImportParserRuleCall_1_0; }
-	}
-	public class ImportElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Import");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cImportNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cImportNameImportComponentParserRuleCall_0_0 = (RuleCall)cImportNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cImportNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cImportNameImportComponentParserRuleCall_1_1_0 = (RuleCall)cImportNameAssignment_1_1.eContents().get(0);
-		
-		//Import:
-		//	importName+=ImportComponent ('.' importName+=ImportComponent);
-		@Override public ParserRule getRule() { return rule; }
-		
-		//importName+=ImportComponent ('.' importName+=ImportComponent)
-		public Group getGroup() { return cGroup; }
-		
-		//importName+=ImportComponent
-		public Assignment getImportNameAssignment_0() { return cImportNameAssignment_0; }
-		
-		//ImportComponent
-		public RuleCall getImportNameImportComponentParserRuleCall_0_0() { return cImportNameImportComponentParserRuleCall_0_0; }
-		
-		//'.' importName+=ImportComponent
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//'.'
-		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
-		
-		//importName+=ImportComponent
-		public Assignment getImportNameAssignment_1_1() { return cImportNameAssignment_1_1; }
-		
-		//ImportComponent
-		public RuleCall getImportNameImportComponentParserRuleCall_1_1_0() { return cImportNameImportComponentParserRuleCall_1_1_0; }
-	}
-	public class ImportComponentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ImportComponent");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
-		
-		//ImportComponent:
-		//	name=ID;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID
-		public Assignment getNameAssignment() { return cNameAssignment; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
-	}
 	public class ClassDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ClassDecl");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -190,6 +116,79 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Datatype
 		public RuleCall getDatatypeParserRuleCall_1() { return cDatatypeParserRuleCall_1; }
+	}
+	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.QualifiedName");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		///* -------------------------- Import Statements -------------------- */ /* I had hoped to use a python style import, however this seems to be fighting 
+		// * the system, and would require a custom implementation of DefaultDeclarativeQualifiedNameProvider.
+		// * To increase the development speed I am using the java style imports instead.
+		// */ QualifiedName:
+		//	ID ('.' ID)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ID ('.' ID)*
+		public Group getGroup() { return cGroup; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		
+		//('.' ID)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
+	}
+	public class QualifiedNameWithWildcardElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.QualifiedNameWithWildcard");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cQualifiedNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cFullStopAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//QualifiedNameWithWildcard:
+		//	QualifiedName '.*'?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//QualifiedName '.*'?
+		public Group getGroup() { return cGroup; }
+		
+		//QualifiedName
+		public RuleCall getQualifiedNameParserRuleCall_0() { return cQualifiedNameParserRuleCall_0; }
+		
+		//'.*'?
+		public Keyword getFullStopAsteriskKeyword_1() { return cFullStopAsteriskKeyword_1; }
+	}
+	public class ImportStatementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ImportStatement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cImportsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cImportsQualifiedNameWithWildcardParserRuleCall_1_0 = (RuleCall)cImportsAssignment_1.eContents().get(0);
+		
+		//ImportStatement:
+		//	'Import'
+		//	imports+=QualifiedNameWithWildcard+;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Import' imports+=QualifiedNameWithWildcard+
+		public Group getGroup() { return cGroup; }
+		
+		//'Import'
+		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
+		
+		//imports+=QualifiedNameWithWildcard+
+		public Assignment getImportsAssignment_1() { return cImportsAssignment_1; }
+		
+		//QualifiedNameWithWildcard
+		public RuleCall getImportsQualifiedNameWithWildcardParserRuleCall_1_0() { return cImportsQualifiedNameWithWildcardParserRuleCall_1_0; }
 	}
 	public class ClassElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Class");
@@ -290,17 +289,17 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	public class TypeNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeName");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		private final RuleCall cNameQualifiedNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
 		//TypeName:
-		//	name=ID;
+		//	name=QualifiedName;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID
+		//name=QualifiedName
 		public Assignment getNameAssignment() { return cNameAssignment; }
 		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
+		//QualifiedName
+		public RuleCall getNameQualifiedNameParserRuleCall_0() { return cNameQualifiedNameParserRuleCall_0; }
 	}
 	public class PolymorphicTypeNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.PolymorphicTypeName");
@@ -377,46 +376,46 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypeNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cTypeNameTypeNameCrossReference_1_0 = (CrossReference)cTypeNameAssignment_1.eContents().get(0);
-		private final RuleCall cTypeNameTypeNameIDTerminalRuleCall_1_0_1 = (RuleCall)cTypeNameTypeNameCrossReference_1_0.eContents().get(1);
+		private final RuleCall cTypeNameTypeNameQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cTypeNameTypeNameCrossReference_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cTypeNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final CrossReference cTypeNameTypeNameCrossReference_2_1_0 = (CrossReference)cTypeNameAssignment_2_1.eContents().get(0);
-		private final RuleCall cTypeNameTypeNameIDTerminalRuleCall_2_1_0_1 = (RuleCall)cTypeNameTypeNameCrossReference_2_1_0.eContents().get(1);
+		private final RuleCall cTypeNameTypeNameQualifiedNameParserRuleCall_2_1_0_1 = (RuleCall)cTypeNameTypeNameCrossReference_2_1_0.eContents().get(1);
 		
 		//PolyTypeConstraints:
-		//	':' TypeName+=[TypeName] (',' TypeName+=[TypeName])*;
+		//	':' TypeName+=[TypeName|QualifiedName] (',' TypeName+=[TypeName|QualifiedName])*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//':' TypeName+=[TypeName] (',' TypeName+=[TypeName])*
+		//':' TypeName+=[TypeName|QualifiedName] (',' TypeName+=[TypeName|QualifiedName])*
 		public Group getGroup() { return cGroup; }
 		
 		//':'
 		public Keyword getColonKeyword_0() { return cColonKeyword_0; }
 		
-		//TypeName+=[TypeName]
+		//TypeName+=[TypeName|QualifiedName]
 		public Assignment getTypeNameAssignment_1() { return cTypeNameAssignment_1; }
 		
-		//[TypeName]
+		//[TypeName|QualifiedName]
 		public CrossReference getTypeNameTypeNameCrossReference_1_0() { return cTypeNameTypeNameCrossReference_1_0; }
 		
-		//ID
-		public RuleCall getTypeNameTypeNameIDTerminalRuleCall_1_0_1() { return cTypeNameTypeNameIDTerminalRuleCall_1_0_1; }
+		//QualifiedName
+		public RuleCall getTypeNameTypeNameQualifiedNameParserRuleCall_1_0_1() { return cTypeNameTypeNameQualifiedNameParserRuleCall_1_0_1; }
 		
-		//(',' TypeName+=[TypeName])*
+		//(',' TypeName+=[TypeName|QualifiedName])*
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//','
 		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
 		
-		//TypeName+=[TypeName]
+		//TypeName+=[TypeName|QualifiedName]
 		public Assignment getTypeNameAssignment_2_1() { return cTypeNameAssignment_2_1; }
 		
-		//[TypeName]
+		//[TypeName|QualifiedName]
 		public CrossReference getTypeNameTypeNameCrossReference_2_1_0() { return cTypeNameTypeNameCrossReference_2_1_0; }
 		
-		//ID
-		public RuleCall getTypeNameTypeNameIDTerminalRuleCall_2_1_0_1() { return cTypeNameTypeNameIDTerminalRuleCall_2_1_0_1; }
+		//QualifiedName
+		public RuleCall getTypeNameTypeNameQualifiedNameParserRuleCall_2_1_0_1() { return cTypeNameTypeNameQualifiedNameParserRuleCall_2_1_0_1; }
 	}
 	public class SuperTypeListElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.SuperTypeList");
@@ -543,7 +542,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final Assignment cTypeNameAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
 		private final CrossReference cTypeNameGenNameCrossReference_0_0_0 = (CrossReference)cTypeNameAssignment_0_0.eContents().get(0);
-		private final RuleCall cTypeNameGenNameIDTerminalRuleCall_0_0_0_1 = (RuleCall)cTypeNameGenNameCrossReference_0_0_0.eContents().get(1);
+		private final RuleCall cTypeNameGenNameQualifiedNameParserRuleCall_0_0_0_1 = (RuleCall)cTypeNameGenNameCrossReference_0_0_0.eContents().get(1);
 		private final RuleCall cInbuiltTypeScanParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final Assignment cContextAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cContextTypeDeclContextParserRuleCall_1_0 = (RuleCall)cContextAssignment_1.eContents().get(0);
@@ -552,23 +551,23 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
 		// * Probably need to add the predicate type to this.
 		// */ TypeConstructor:
-		//	(TypeName=[GenName] | InbuiltTypeScan) context+=TypeDeclContext?;
+		//	(TypeName=[GenName|QualifiedName] | InbuiltTypeScan) context+=TypeDeclContext?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(TypeName=[GenName] | InbuiltTypeScan) context+=TypeDeclContext?
+		//(TypeName=[GenName|QualifiedName] | InbuiltTypeScan) context+=TypeDeclContext?
 		public Group getGroup() { return cGroup; }
 		
-		//TypeName=[GenName] | InbuiltTypeScan
+		//TypeName=[GenName|QualifiedName] | InbuiltTypeScan
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
-		//TypeName=[GenName]
+		//TypeName=[GenName|QualifiedName]
 		public Assignment getTypeNameAssignment_0_0() { return cTypeNameAssignment_0_0; }
 		
-		//[GenName]
+		//[GenName|QualifiedName]
 		public CrossReference getTypeNameGenNameCrossReference_0_0_0() { return cTypeNameGenNameCrossReference_0_0_0; }
 		
-		//ID
-		public RuleCall getTypeNameGenNameIDTerminalRuleCall_0_0_0_1() { return cTypeNameGenNameIDTerminalRuleCall_0_0_0_1; }
+		//QualifiedName
+		public RuleCall getTypeNameGenNameQualifiedNameParserRuleCall_0_0_0_1() { return cTypeNameGenNameQualifiedNameParserRuleCall_0_0_0_1; }
 		
 		//InbuiltTypeScan
 		public RuleCall getInbuiltTypeScanParserRuleCall_0_1() { return cInbuiltTypeScanParserRuleCall_0_1; }
@@ -801,7 +800,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cExtendKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cNameTypeNameCrossReference_1_0 = (CrossReference)cNameAssignment_1.eContents().get(0);
-		private final RuleCall cNameTypeNameIDTerminalRuleCall_1_0_1 = (RuleCall)cNameTypeNameCrossReference_1_0.eContents().get(1);
+		private final RuleCall cNameTypeNameQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cNameTypeNameCrossReference_1_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cExtensionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cExtensionIDTerminalRuleCall_3_0 = (RuleCall)cExtensionAssignment_3.eContents().get(0);
@@ -812,23 +811,23 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		///* ------------------------ Extension statement ---------------------------- */ Extend:
-		//	'Extend' name=[TypeName] '(' extension=ID ')' '{' bodyElements+=TypeBodyElements* '}';
+		//	'Extend' name=[TypeName|QualifiedName] '(' extension=ID ')' '{' bodyElements+=TypeBodyElements* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Extend' name=[TypeName] '(' extension=ID ')' '{' bodyElements+=TypeBodyElements* '}'
+		//'Extend' name=[TypeName|QualifiedName] '(' extension=ID ')' '{' bodyElements+=TypeBodyElements* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Extend'
 		public Keyword getExtendKeyword_0() { return cExtendKeyword_0; }
 		
-		//name=[TypeName]
+		//name=[TypeName|QualifiedName]
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//[TypeName]
+		//[TypeName|QualifiedName]
 		public CrossReference getNameTypeNameCrossReference_1_0() { return cNameTypeNameCrossReference_1_0; }
 		
-		//ID
-		public RuleCall getNameTypeNameIDTerminalRuleCall_1_0_1() { return cNameTypeNameIDTerminalRuleCall_1_0_1; }
+		//QualifiedName
+		public RuleCall getNameTypeNameQualifiedNameParserRuleCall_1_0_1() { return cNameTypeNameQualifiedNameParserRuleCall_1_0_1; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
@@ -1267,37 +1266,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
 	}
-	public class TypeDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTypeNameTypeNameCrossReference_0_0 = (CrossReference)cTypeNameAssignment_0.eContents().get(0);
-		private final RuleCall cTypeNameTypeNameIDTerminalRuleCall_0_0_1 = (RuleCall)cTypeNameTypeNameCrossReference_0_0.eContents().get(1);
-		private final Assignment cContextAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cContextTypeDeclContextParserRuleCall_1_0 = (RuleCall)cContextAssignment_1.eContents().get(0);
-		
-		//TypeDeclaration:
-		//	TypeName=[TypeName] context=TypeDeclContext;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//TypeName=[TypeName] context=TypeDeclContext
-		public Group getGroup() { return cGroup; }
-		
-		//TypeName=[TypeName]
-		public Assignment getTypeNameAssignment_0() { return cTypeNameAssignment_0; }
-		
-		//[TypeName]
-		public CrossReference getTypeNameTypeNameCrossReference_0_0() { return cTypeNameTypeNameCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getTypeNameTypeNameIDTerminalRuleCall_0_0_1() { return cTypeNameTypeNameIDTerminalRuleCall_0_0_1; }
-		
-		//context=TypeDeclContext
-		public Assignment getContextAssignment_1() { return cContextAssignment_1; }
-		
-		//TypeDeclContext
-		public RuleCall getContextTypeDeclContextParserRuleCall_1_0() { return cContextTypeDeclContextParserRuleCall_1_0; }
-	}
 	public class LambdaElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Lambda");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1693,16 +1661,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cElementTypedVariableCrossReference_1_1_1_0 = (CrossReference)cElementAssignment_1_1_1.eContents().get(0);
 		private final RuleCall cElementTypedVariableIDTerminalRuleCall_1_1_1_0_1 = (RuleCall)cElementTypedVariableCrossReference_1_1_1_0.eContents().get(1);
 		
-		///* With Parametric polymorphism classes e.g., Class ReflexRel<T> : T × T → Pred we can use ReflexRel directly 
-		// * within an expression as it is the ReflexRel operator. However, with similar type class declarations:
-		// * Class Group : Monoid where ... Does it make sense to be able to be able to use Group directly? it 
-		// * refers to the whole type. I think that I'm conceptually ok to treat Group or ReflexRel as a polymorphic
-		// * instance of the super type, and later treat it more like a set, It strikes me that this is a concept 
-		// * already familiar to Generics where we're reasoning using a generic type (which is in a sense a subtype of
-		// * its own.
-		// * 
-		// * The below statement needs scoping all polymorphic types have to be locally declared.
-		// */ TypeInstance:
+		//TypeInstance:
 		//	instance=[ExpressionVariable] | typeName=[GenName] ('.' element+=[TypedVariable])+;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1813,7 +1772,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInstanceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cClassNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cClassNameTypeNameCrossReference_1_0 = (CrossReference)cClassNameAssignment_1.eContents().get(0);
-		private final RuleCall cClassNameTypeNameIDTerminalRuleCall_1_0_1 = (RuleCall)cClassNameTypeNameCrossReference_1_0.eContents().get(1);
+		private final RuleCall cClassNameTypeNameQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cClassNameTypeNameCrossReference_1_0.eContents().get(1);
 		private final Assignment cContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cContextTypeDeclContextParserRuleCall_2_0 = (RuleCall)cContextAssignment_2.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -1833,25 +1792,25 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		////	name=InbuiltTypeInstance
 		////;
 		///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-		//	'Instance' className=[TypeName] context=TypeDeclContext '(' arguments+=RootExpression? (','
+		//	'Instance' className=[TypeName|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
 		//	arguments+=RootExpression)* ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Instance' className=[TypeName] context=TypeDeclContext '(' arguments+=RootExpression? (',' arguments+=RootExpression)*
-		//')'
+		//'Instance' className=[TypeName|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
+		//arguments+=RootExpression)* ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'Instance'
 		public Keyword getInstanceKeyword_0() { return cInstanceKeyword_0; }
 		
-		//className=[TypeName]
+		//className=[TypeName|QualifiedName]
 		public Assignment getClassNameAssignment_1() { return cClassNameAssignment_1; }
 		
-		//[TypeName]
+		//[TypeName|QualifiedName]
 		public CrossReference getClassNameTypeNameCrossReference_1_0() { return cClassNameTypeNameCrossReference_1_0; }
 		
-		//ID
-		public RuleCall getClassNameTypeNameIDTerminalRuleCall_1_0_1() { return cClassNameTypeNameIDTerminalRuleCall_1_0_1; }
+		//QualifiedName
+		public RuleCall getClassNameTypeNameQualifiedNameParserRuleCall_1_0_1() { return cClassNameTypeNameQualifiedNameParserRuleCall_1_0_1; }
 		
 		//context=TypeDeclContext
 		public Assignment getContextAssignment_2() { return cContextAssignment_2; }
@@ -1888,10 +1847,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final DomainModelElements pDomainModel;
 	private final THM_NAMEElements pTHM_NAME;
 	private final TopLevelElements pTopLevel;
-	private final ImportStatementElements pImportStatement;
-	private final ImportElements pImport;
-	private final ImportComponentElements pImportComponent;
 	private final ClassDeclElements pClassDecl;
+	private final QualifiedNameElements pQualifiedName;
+	private final QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
+	private final ImportStatementElements pImportStatement;
 	private final ClassElements pClass;
 	private final GenNameElements pGenName;
 	private final TypeNameElements pTypeName;
@@ -1918,7 +1877,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final TypedVariableListElements pTypedVariableList;
 	private final VariableTypingElements pVariableTyping;
 	private final TypedVariableElements pTypedVariable;
-	private final TypeDeclarationElements pTypeDeclaration;
 	private final LambdaElements pLambda;
 	private final QuantifierElements pQuantifier;
 	private final RootExpressionElements pRootExpression;
@@ -1947,10 +1905,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDomainModel = new DomainModelElements();
 		this.pTHM_NAME = new THM_NAMEElements();
 		this.pTopLevel = new TopLevelElements();
-		this.pImportStatement = new ImportStatementElements();
-		this.pImport = new ImportElements();
-		this.pImportComponent = new ImportComponentElements();
 		this.pClassDecl = new ClassDeclElements();
+		this.pQualifiedName = new QualifiedNameElements();
+		this.pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements();
+		this.pImportStatement = new ImportStatementElements();
 		this.pClass = new ClassElements();
 		this.pGenName = new GenNameElements();
 		this.pTypeName = new TypeNameElements();
@@ -1977,7 +1935,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTypedVariableList = new TypedVariableListElements();
 		this.pVariableTyping = new VariableTypingElements();
 		this.pTypedVariable = new TypedVariableElements();
-		this.pTypeDeclaration = new TypeDeclarationElements();
 		this.pLambda = new LambdaElements();
 		this.pQuantifier = new QuantifierElements();
 		this.pRootExpression = new RootExpressionElements();
@@ -2053,37 +2010,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getTopLevelAccess().getRule();
 	}
 	
-	//ImportStatement:
-	//	'Import'
-	//	imports+=Import;
-	public ImportStatementElements getImportStatementAccess() {
-		return pImportStatement;
-	}
-	
-	public ParserRule getImportStatementRule() {
-		return getImportStatementAccess().getRule();
-	}
-	
-	//Import:
-	//	importName+=ImportComponent ('.' importName+=ImportComponent);
-	public ImportElements getImportAccess() {
-		return pImport;
-	}
-	
-	public ParserRule getImportRule() {
-		return getImportAccess().getRule();
-	}
-	
-	//ImportComponent:
-	//	name=ID;
-	public ImportComponentElements getImportComponentAccess() {
-		return pImportComponent;
-	}
-	
-	public ParserRule getImportComponentRule() {
-		return getImportComponentAccess().getRule();
-	}
-	
 	//ClassDecl:
 	//	Class | Datatype;
 	public ClassDeclElements getClassDeclAccess() {
@@ -2092,6 +2018,40 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getClassDeclRule() {
 		return getClassDeclAccess().getRule();
+	}
+	
+	///* -------------------------- Import Statements -------------------- */ /* I had hoped to use a python style import, however this seems to be fighting 
+	// * the system, and would require a custom implementation of DefaultDeclarativeQualifiedNameProvider.
+	// * To increase the development speed I am using the java style imports instead.
+	// */ QualifiedName:
+	//	ID ('.' ID)*;
+	public QualifiedNameElements getQualifiedNameAccess() {
+		return pQualifiedName;
+	}
+	
+	public ParserRule getQualifiedNameRule() {
+		return getQualifiedNameAccess().getRule();
+	}
+	
+	//QualifiedNameWithWildcard:
+	//	QualifiedName '.*'?;
+	public QualifiedNameWithWildcardElements getQualifiedNameWithWildcardAccess() {
+		return pQualifiedNameWithWildcard;
+	}
+	
+	public ParserRule getQualifiedNameWithWildcardRule() {
+		return getQualifiedNameWithWildcardAccess().getRule();
+	}
+	
+	//ImportStatement:
+	//	'Import'
+	//	imports+=QualifiedNameWithWildcard+;
+	public ImportStatementElements getImportStatementAccess() {
+		return pImportStatement;
+	}
+	
+	public ParserRule getImportStatementRule() {
+		return getImportStatementAccess().getRule();
 	}
 	
 	///* ------------------------ Class statements --------------------- */ Class BppClass:
@@ -2116,7 +2076,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TypeName:
-	//	name=ID;
+	//	name=QualifiedName;
 	public TypeNameElements getTypeNameAccess() {
 		return pTypeName;
 	}
@@ -2156,7 +2116,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PolyTypeConstraints:
-	//	':' TypeName+=[TypeName] (',' TypeName+=[TypeName])*;
+	//	':' TypeName+=[TypeName|QualifiedName] (',' TypeName+=[TypeName|QualifiedName])*;
 	public PolyTypeConstraintsElements getPolyTypeConstraintsAccess() {
 		return pPolyTypeConstraints;
 	}
@@ -2194,7 +2154,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
 	// * Probably need to add the predicate type to this.
 	// */ TypeConstructor:
-	//	(TypeName=[GenName] | InbuiltTypeScan) context+=TypeDeclContext?;
+	//	(TypeName=[GenName|QualifiedName] | InbuiltTypeScan) context+=TypeDeclContext?;
 	public TypeConstructorElements getTypeConstructorAccess() {
 		return pTypeConstructor;
 	}
@@ -2258,7 +2218,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ------------------------ Extension statement ---------------------------- */ Extend:
-	//	'Extend' name=[TypeName] '(' extension=ID ')' '{' bodyElements+=TypeBodyElements* '}';
+	//	'Extend' name=[TypeName|QualifiedName] '(' extension=ID ')' '{' bodyElements+=TypeBodyElements* '}';
 	public ExtendElements getExtendAccess() {
 		return pExtend;
 	}
@@ -2370,16 +2330,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTypedVariableRule() {
 		return getTypedVariableAccess().getRule();
-	}
-	
-	//TypeDeclaration:
-	//	TypeName=[TypeName] context=TypeDeclContext;
-	public TypeDeclarationElements getTypeDeclarationAccess() {
-		return pTypeDeclaration;
-	}
-	
-	public ParserRule getTypeDeclarationRule() {
-		return getTypeDeclarationAccess().getRule();
 	}
 	
 	///* --------------------------- Expressions -------------------------- */
@@ -2511,16 +2461,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionVariableAccess().getRule();
 	}
 	
-	///* With Parametric polymorphism classes e.g., Class ReflexRel<T> : T × T → Pred we can use ReflexRel directly 
-	// * within an expression as it is the ReflexRel operator. However, with similar type class declarations:
-	// * Class Group : Monoid where ... Does it make sense to be able to be able to use Group directly? it 
-	// * refers to the whole type. I think that I'm conceptually ok to treat Group or ReflexRel as a polymorphic
-	// * instance of the super type, and later treat it more like a set, It strikes me that this is a concept 
-	// * already familiar to Generics where we're reasoning using a generic type (which is in a sense a subtype of
-	// * its own.
-	// * 
-	// * The below statement needs scoping all polymorphic types have to be locally declared.
-	// */ TypeInstance:
+	//TypeInstance:
 	//	instance=[ExpressionVariable] | typeName=[GenName] ('.' element+=[TypedVariable])+;
 	public TypeInstanceElements getTypeInstanceAccess() {
 		return pTypeInstance;
@@ -2569,7 +2510,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	////	name=InbuiltTypeInstance
 	////;
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-	//	'Instance' className=[TypeName] context=TypeDeclContext '(' arguments+=RootExpression? (','
+	//	'Instance' className=[TypeName|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
 	//	arguments+=RootExpression)* ')';
 	public InstanceElements getInstanceAccess() {
 		return pInstance;

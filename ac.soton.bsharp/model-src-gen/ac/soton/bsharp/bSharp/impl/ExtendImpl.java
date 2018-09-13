@@ -9,7 +9,6 @@ import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
 import ac.soton.bsharp.bSharp.TypeName;
-import ac.soton.bsharp.bSharp.TypedVariable;
 
 import java.util.Collection;
 
@@ -39,8 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ExtendImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ExtendImpl#getBodyElements <em>Body Elements</em>}</li>
  * </ul>
- *
- * @generated
  */
 public class ExtendImpl extends TopLevelImpl implements Extend {
 	/**

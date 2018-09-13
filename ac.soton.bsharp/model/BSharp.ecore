@@ -7,15 +7,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TopLevel"/>
   <eClassifiers xsi:type="ecore:EClass" name="ImportStatement" eSuperTypes="#//TopLevel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
-        eType="#//Import" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imports" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="importName" upperBound="-1"
-        eType="#//QualifiedNameWithWildcard" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QualifiedNameWithWildcard">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importName" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" eSuperTypes="#//TopLevel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="#//TypeName"
@@ -25,7 +22,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" upperBound="-1"
         eType="#//TypeBodyElements" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BppClass" eSuperTypes="#//ClassDecl">
+  <eClassifiers xsi:type="ecore:EClass" name="BppClass" eSuperTypes="#//ClassDecl #//IVariableProvider #//IPolyTypeProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertypes" eType="#//SuperTypeList"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypeStructure"
@@ -89,7 +86,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="decons" eType="#//TypedVariableList"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Extend" eSuperTypes="#//TopLevel">
+  <eClassifiers xsi:type="ecore:EClass" name="Extend" eSuperTypes="#//TopLevel #//IVariableProvider #//IPolyTypeProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//TypeName"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="extension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" upperBound="-1"
@@ -101,7 +98,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="theorems" upperBound="-1"
         eType="#//TheoremBody" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionDecl">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionDecl" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypedVariableList"
@@ -157,7 +154,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QuantLambda" eSuperTypes="#//Expression">
+  <eClassifiers xsi:type="ecore:EClass" name="QuantLambda" eSuperTypes="#//Expression #//IVariableProvider #//IPolyTypeProvider">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
         containment="true"/>
@@ -210,4 +207,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IVariableProvider" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IPolyTypeProvider" abstract="true" interface="true"/>
 </ecore:EPackage>

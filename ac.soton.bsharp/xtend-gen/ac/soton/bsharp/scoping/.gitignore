@@ -2,3 +2,4 @@
 /.MyDslScopeProvider.java._trace
 /.BSharpScopeProvider.xtendbin
 /BSharpScopeProvider.java
+/.BSharpImportedNamespaceAwareLocalScopeProvider.java._trace

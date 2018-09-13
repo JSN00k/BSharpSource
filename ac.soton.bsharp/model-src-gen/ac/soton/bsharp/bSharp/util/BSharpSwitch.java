@@ -92,12 +92,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.IMPORT_COMPONENT: {
-				ImportComponent importComponent = (ImportComponent)theEObject;
-				T result = caseImportComponent(importComponent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.CLASS_DECL: {
 				ClassDecl classDecl = (ClassDecl)theEObject;
 				T result = caseClassDecl(classDecl);
@@ -109,6 +103,8 @@ public class BSharpSwitch<T> extends Switch<T> {
 				BppClass bppClass = (BppClass)theEObject;
 				T result = caseBppClass(bppClass);
 				if (result == null) result = caseClassDecl(bppClass);
+				if (result == null) result = caseIVariableProvider(bppClass);
+				if (result == null) result = caseIPolyTypeProvider(bppClass);
 				if (result == null) result = caseTopLevel(bppClass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -206,6 +202,8 @@ public class BSharpSwitch<T> extends Switch<T> {
 				Extend extend = (Extend)theEObject;
 				T result = caseExtend(extend);
 				if (result == null) result = caseTopLevel(extend);
+				if (result == null) result = caseIVariableProvider(extend);
+				if (result == null) result = caseIPolyTypeProvider(extend);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -218,6 +216,8 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.FUNCTION_DECL: {
 				FunctionDecl functionDecl = (FunctionDecl)theEObject;
 				T result = caseFunctionDecl(functionDecl);
+				if (result == null) result = caseIVariableProvider(functionDecl);
+				if (result == null) result = caseIPolyTypeProvider(functionDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -282,6 +282,8 @@ public class BSharpSwitch<T> extends Switch<T> {
 				QuantLambda quantLambda = (QuantLambda)theEObject;
 				T result = caseQuantLambda(quantLambda);
 				if (result == null) result = caseExpression(quantLambda);
+				if (result == null) result = caseIVariableProvider(quantLambda);
+				if (result == null) result = caseIPolyTypeProvider(quantLambda);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -342,6 +344,18 @@ public class BSharpSwitch<T> extends Switch<T> {
 				Infix infix = (Infix)theEObject;
 				T result = caseInfix(infix);
 				if (result == null) result = caseExpression(infix);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.IVARIABLE_PROVIDER: {
+				IVariableProvider iVariableProvider = (IVariableProvider)theEObject;
+				T result = caseIVariableProvider(iVariableProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.IPOLY_TYPE_PROVIDER: {
+				IPolyTypeProvider iPolyTypeProvider = (IPolyTypeProvider)theEObject;
+				T result = caseIPolyTypeProvider(iPolyTypeProvider);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -406,21 +420,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseImport(Import object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Import Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Import Component</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseImportComponent(ImportComponent object) {
 		return null;
 	}
 
@@ -991,6 +990,36 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInfix(Infix object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IVariable Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IVariable Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIVariableProvider(IVariableProvider object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IPoly Type Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IPoly Type Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIPolyTypeProvider(IPolyTypeProvider object) {
 		return null;
 	}
 

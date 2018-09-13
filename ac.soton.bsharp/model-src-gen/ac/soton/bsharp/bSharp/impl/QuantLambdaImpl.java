@@ -10,7 +10,6 @@ import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
-import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
 
 import java.util.ArrayList;
 import java.util.Collection;

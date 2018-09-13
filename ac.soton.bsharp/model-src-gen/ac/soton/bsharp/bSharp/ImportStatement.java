@@ -23,19 +23,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ImportStatement extends TopLevel {
 	/**
-	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.Import}.
+	 * Returns the value of the '<em><b>Imports</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imports</em>' containment reference list.
+	 * @return the value of the '<em>Imports</em>' attribute list.
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getImportStatement_Imports()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	EList<Import> getImports();
+	EList<String> getImports();
 
 } // ImportStatement

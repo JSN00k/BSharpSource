@@ -3,9 +3,6 @@
  */
 package ac.soton.bsharp.bSharp;
 
-import ac.soton.bsharp.bSharp.abstractInterfaces.IPolyTypeProvider;
-import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Quant Lambda</b></em>'.

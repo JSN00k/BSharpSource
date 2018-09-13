@@ -5,21 +5,16 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Import;
-import ac.soton.bsharp.bSharp.ImportComponent;
 
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,14 +31,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ImportImpl extends MinimalEObjectImpl.Container implements Import {
 	/**
-	 * The cached value of the '{@link #getImportName() <em>Import Name</em>}' containment reference list.
+	 * The cached value of the '{@link #getImportName() <em>Import Name</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getImportName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ImportComponent> importName;
+	protected EList<String> importName;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,25 +64,11 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ImportComponent> getImportName() {
+	public EList<String> getImportName() {
 		if (importName == null) {
-			importName = new EObjectContainmentEList<ImportComponent>(ImportComponent.class, this, BSharpPackage.IMPORT__IMPORT_NAME);
+			importName = new EDataTypeUniqueEList<String>(String.class, this, BSharpPackage.IMPORT__IMPORT_NAME);
 		}
 		return importName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BSharpPackage.IMPORT__IMPORT_NAME:
-				return ((InternalEList<?>)getImportName()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -115,7 +96,7 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import {
 		switch (featureID) {
 			case BSharpPackage.IMPORT__IMPORT_NAME:
 				getImportName().clear();
-				getImportName().addAll((Collection<? extends ImportComponent>)newValue);
+				getImportName().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -148,6 +129,22 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import {
 				return importName != null && !importName.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (importName: ");
+		result.append(importName);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ImportImpl

@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -34,14 +35,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ImportStatementImpl extends TopLevelImpl implements ImportStatement {
 	/**
-	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
+	 * The cached value of the '{@link #getImports() <em>Imports</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getImports()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Import> imports;
+	protected EList<String> imports;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,25 +68,11 @@ public class ImportStatementImpl extends TopLevelImpl implements ImportStatement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Import> getImports() {
+	public EList<String> getImports() {
 		if (imports == null) {
-			imports = new EObjectContainmentEList<Import>(Import.class, this, BSharpPackage.IMPORT_STATEMENT__IMPORTS);
+			imports = new EDataTypeUniqueEList<String>(String.class, this, BSharpPackage.IMPORT_STATEMENT__IMPORTS);
 		}
 		return imports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BSharpPackage.IMPORT_STATEMENT__IMPORTS:
-				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -113,7 +100,7 @@ public class ImportStatementImpl extends TopLevelImpl implements ImportStatement
 		switch (featureID) {
 			case BSharpPackage.IMPORT_STATEMENT__IMPORTS:
 				getImports().clear();
-				getImports().addAll((Collection<? extends Import>)newValue);
+				getImports().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -146,6 +133,22 @@ public class ImportStatementImpl extends TopLevelImpl implements ImportStatement
 				return imports != null && !imports.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (imports: ");
+		result.append(imports);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ImportStatementImpl

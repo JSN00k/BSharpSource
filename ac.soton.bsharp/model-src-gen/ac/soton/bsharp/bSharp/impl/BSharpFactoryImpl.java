@@ -61,7 +61,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.TOP_LEVEL: return createTopLevel();
 			case BSharpPackage.IMPORT_STATEMENT: return createImportStatement();
 			case BSharpPackage.IMPORT: return createImport();
-			case BSharpPackage.IMPORT_COMPONENT: return createImportComponent();
 			case BSharpPackage.CLASS_DECL: return createClassDecl();
 			case BSharpPackage.BPP_CLASS: return createBppClass();
 			case BSharpPackage.GEN_NAME: return createGenName();
@@ -143,16 +142,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public Import createImport() {
 		ImportImpl import_ = new ImportImpl();
 		return import_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ImportComponent createImportComponent() {
-		ImportComponentImpl importComponent = new ImportComponentImpl();
-		return importComponent;
 	}
 
 	/**

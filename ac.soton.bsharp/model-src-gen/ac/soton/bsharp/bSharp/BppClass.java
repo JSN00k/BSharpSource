@@ -3,8 +3,6 @@
  */
 package ac.soton.bsharp.bSharp;
 
-import ac.soton.bsharp.bSharp.abstractInterfaces.IPolyTypeProvider;
-import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +20,7 @@ import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getBppClass()
  * @model
+ * @generated
  */
 public interface BppClass extends ClassDecl, IVariableProvider, IPolyTypeProvider {
 	/**

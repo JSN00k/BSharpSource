@@ -20,13 +20,6 @@ class BSharpFormatter extends AbstractFormatter2 {
 			topLevel.format
 		}
 	}
-
-	def dispatch void format(ImportStatement importStatement, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (_import : importStatement.imports) {
-			_import.format
-		}
-	}
 	
 	// TODO: implement for Import, BppClass, PolyContext, PolyContextTypes, SuperTypeList, ConstructedType, TypeConstructor, TypeDeclContext, TypeStructure, Where, Datatype, DatatypeConstructor, Extend, TypeBodyElements, FunctionDecl, FuncDirectDef, MatchStatement, MatchCase, TheoremBody, TheoremDecl, TypedVariableList, VariableTyping, TypeDeclaration, QuantLambda, Prefix, Infix, Bracket, Expression, Instance
 }

@@ -46,9 +46,10 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypeInstanceAccess().getAlternatives(), "rule__TypeInstance__Alternatives");
 			builder.put(grammarAccess.getInbuiltInfixAccess().getAlternatives(), "rule__InbuiltInfix__Alternatives");
 			builder.put(grammarAccess.getTHM_NAMEAccess().getGroup(), "rule__THM_NAME__Group__0");
+			builder.put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
+			builder.put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
+			builder.put(grammarAccess.getQualifiedNameWithWildcardAccess().getGroup(), "rule__QualifiedNameWithWildcard__Group__0");
 			builder.put(grammarAccess.getImportStatementAccess().getGroup(), "rule__ImportStatement__Group__0");
-			builder.put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
-			builder.put(grammarAccess.getImportAccess().getGroup_1(), "rule__Import__Group_1__0");
 			builder.put(grammarAccess.getClassAccess().getGroup(), "rule__Class__Group__0");
 			builder.put(grammarAccess.getPolyContextAccess().getGroup(), "rule__PolyContext__Group__0");
 			builder.put(grammarAccess.getPolyContextTypesAccess().getGroup(), "rule__PolyContextTypes__Group__0");
@@ -80,7 +81,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypedVariableListAccess().getGroup_1(), "rule__TypedVariableList__Group_1__0");
 			builder.put(grammarAccess.getVariableTypingAccess().getGroup(), "rule__VariableTyping__Group__0");
 			builder.put(grammarAccess.getVariableTypingAccess().getGroup_1(), "rule__VariableTyping__Group_1__0");
-			builder.put(grammarAccess.getTypeDeclarationAccess().getGroup(), "rule__TypeDeclaration__Group__0");
 			builder.put(grammarAccess.getLambdaAccess().getGroup(), "rule__Lambda__Group__0");
 			builder.put(grammarAccess.getQuantifierAccess().getGroup(), "rule__Quantifier__Group__0");
 			builder.put(grammarAccess.getPrefixAccess().getGroup(), "rule__Prefix__Group__0");
@@ -96,9 +96,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInstanceAccess().getGroup_5(), "rule__Instance__Group_5__0");
 			builder.put(grammarAccess.getDomainModelAccess().getElementsAssignment(), "rule__DomainModel__ElementsAssignment");
 			builder.put(grammarAccess.getImportStatementAccess().getImportsAssignment_1(), "rule__ImportStatement__ImportsAssignment_1");
-			builder.put(grammarAccess.getImportAccess().getImportNameAssignment_0(), "rule__Import__ImportNameAssignment_0");
-			builder.put(grammarAccess.getImportAccess().getImportNameAssignment_1_1(), "rule__Import__ImportNameAssignment_1_1");
-			builder.put(grammarAccess.getImportComponentAccess().getNameAssignment(), "rule__ImportComponent__NameAssignment");
 			builder.put(grammarAccess.getClassAccess().getTypeNameAssignment_1(), "rule__Class__TypeNameAssignment_1");
 			builder.put(grammarAccess.getClassAccess().getContextAssignment_2(), "rule__Class__ContextAssignment_2");
 			builder.put(grammarAccess.getClassAccess().getSupertypesAssignment_3(), "rule__Class__SupertypesAssignment_3");
@@ -158,8 +155,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getVariableTypingAccess().getTypeVarAssignment_1_1(), "rule__VariableTyping__TypeVarAssignment_1_1");
 			builder.put(grammarAccess.getVariableTypingAccess().getTypeAssignment_3(), "rule__VariableTyping__TypeAssignment_3");
 			builder.put(grammarAccess.getTypedVariableAccess().getNameAssignment(), "rule__TypedVariable__NameAssignment");
-			builder.put(grammarAccess.getTypeDeclarationAccess().getTypeNameAssignment_0(), "rule__TypeDeclaration__TypeNameAssignment_0");
-			builder.put(grammarAccess.getTypeDeclarationAccess().getContextAssignment_1(), "rule__TypeDeclaration__ContextAssignment_1");
 			builder.put(grammarAccess.getLambdaAccess().getQTypeAssignment_0(), "rule__Lambda__QTypeAssignment_0");
 			builder.put(grammarAccess.getLambdaAccess().getContextAssignment_1(), "rule__Lambda__ContextAssignment_1");
 			builder.put(grammarAccess.getLambdaAccess().getVarListAssignment_2(), "rule__Lambda__VarListAssignment_2");

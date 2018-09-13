@@ -59,15 +59,6 @@ public interface BSharpFactory extends EFactory {
 	Import createImport();
 
 	/**
-	 * Returns a new object of class '<em>Import Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Import Component</em>'.
-	 * @generated
-	 */
-	ImportComponent createImportComponent();
-
-	/**
 	 * Returns a new object of class '<em>Class Decl</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

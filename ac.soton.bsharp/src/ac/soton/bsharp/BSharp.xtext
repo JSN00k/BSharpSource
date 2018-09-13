@@ -23,22 +23,16 @@ ClassDecl returns ClassDecl:
  */
 
 QualifiedName:
-    ID ('.' ID)*;
+   ID ('.' ID)*
+ ;
 
 QualifiedNameWithWildcard:
-    QualifiedName '.*'?;
+    QualifiedName '.*'?
+;
 
 ImportStatement:
 	'Import'
-		imports+=Import
-;
-
-Import:
-	importName+=QualifiedNameWithWildcard
-;
-
-ImportComponent:
-	name=ID
+		(imports+=QualifiedNameWithWildcard)+
 ;
 
 /* ------------------------ Class statements --------------------- */
@@ -51,7 +45,7 @@ Class returns BppClass:
 
 GenName: PolymorphicTypeName | TypeName;
 
-TypeName: name=ID;
+TypeName: name=QualifiedName;
 
 /*---------------- Polymorphic Context of -------------------------- */
 
@@ -66,7 +60,7 @@ PolyContextTypes:
 ;
 
 PolyTypeConstraints:
-	':' TypeName+=[TypeName] (',' TypeName+=[TypeName])*
+	':' TypeName+=[TypeName|QualifiedName] (',' TypeName+=[TypeName|QualifiedName])*
 ;
 
 /* ------------------- SuperTypes ---------------------------------- */
@@ -91,7 +85,7 @@ ConstructedType:
  * Probably need to add the predicate type to this.
  */
 TypeConstructor:
-	(TypeName=[GenName] | InbuiltTypeScan) (context+=TypeDeclContext)?
+	(TypeName=[GenName|QualifiedName] | InbuiltTypeScan) (context+=TypeDeclContext)?
 ;
 
 TypeDeclContext:
@@ -129,7 +123,7 @@ DatatypeConstructor:
 /* ------------------------ Extension statement ---------------------------- */
 
 Extend: 
-	'Extend' name=[TypeName] '(' extension=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
+	'Extend' name=[TypeName|QualifiedName] '(' extension=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 /* ------------------------ TypeBodyElements ------------------------------- */
@@ -180,10 +174,6 @@ VariableTyping:
 
 TypedVariable:
 	name=ID
-;
-
-TypeDeclaration:
-	TypeName=[TypeName] context=TypeDeclContext
 ;
 
 /* --------------------------- Expressions -------------------------- */
@@ -265,16 +255,6 @@ ExpressionVariable:
 	 FunctionName | TypedVariable | TypeName
 ;
 
-/* With Parametric polymorphism classes e.g., Class ReflexRel<T> : T × T → Pred we can use ReflexRel directly 
- * within an expression as it is the ReflexRel operator. However, with similar type class declarations:
- * Class Group : Monoid where ... Does it make sense to be able to be able to use Group directly? it 
- * refers to the whole type. I think that I'm conceptually ok to treat Group or ReflexRel as a polymorphic
- * instance of the super type, and later treat it more like a set, It strikes me that this is a concept 
- * already familiar to Generics where we're reasoning using a generic type (which is in a sense a subtype of
- * its own.
- * 
- * The below statement needs scoping all polymorphic types have to be locally declared.
- */
  TypeInstance:
  	(instance=[ExpressionVariable]) | (typeName=[GenName] ('.' element+=[TypedVariable])+)
  ;
@@ -305,7 +285,7 @@ InbuiltTypeScan:
 /* ------------------------------ Instance ---------------------------------------------*/
 
 Instance:
-	'Instance' className=[TypeName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')'
+	'Instance' className=[TypeName|QualifiedName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')'
 ;
 
 /* TODO: Implement Methods,  Infix keyword and precedence on Infix operators. */

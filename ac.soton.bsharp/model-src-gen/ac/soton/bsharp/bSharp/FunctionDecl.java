@@ -3,11 +3,6 @@
  */
 package ac.soton.bsharp.bSharp;
 
-import org.eclipse.emf.ecore.EObject;
-
-import ac.soton.bsharp.bSharp.abstractInterfaces.IPolyTypeProvider;
-import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Function Decl</b></em>'.
@@ -29,7 +24,7 @@ import ac.soton.bsharp.bSharp.abstractInterfaces.IVariableProvider;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl()
  * @model
  */
-public interface FunctionDecl extends EObject, IVariableProvider, IPolyTypeProvider {
+public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

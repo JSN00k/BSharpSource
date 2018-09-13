@@ -85,10 +85,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createImportAdapter();
 			}
 			@Override
-			public Adapter caseImportComponent(ImportComponent object) {
-				return createImportComponentAdapter();
-			}
-			@Override
 			public Adapter caseClassDecl(ClassDecl object) {
 				return createClassDeclAdapter();
 			}
@@ -241,6 +237,14 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createInfixAdapter();
 			}
 			@Override
+			public Adapter caseIVariableProvider(IVariableProvider object) {
+				return createIVariableProviderAdapter();
+			}
+			@Override
+			public Adapter caseIPolyTypeProvider(IPolyTypeProvider object) {
+				return createIPolyTypeProviderAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -313,20 +317,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createImportAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.ImportComponent <em>Import Component</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.ImportComponent
-	 * @generated
-	 */
-	public Adapter createImportComponentAdapter() {
 		return null;
 	}
 
@@ -859,6 +849,34 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInfixAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IVariableProvider <em>IVariable Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.IVariableProvider
+	 * @generated
+	 */
+	public Adapter createIVariableProviderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IPolyTypeProvider <em>IPoly Type Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.IPolyTypeProvider
+	 * @generated
+	 */
+	public Adapter createIPolyTypeProviderAdapter() {
 		return null;
 	}
 
