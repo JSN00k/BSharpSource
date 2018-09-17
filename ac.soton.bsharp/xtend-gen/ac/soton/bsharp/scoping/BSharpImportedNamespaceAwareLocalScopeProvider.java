@@ -19,9 +19,11 @@ import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeName;
 import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -137,24 +139,33 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
   }
   
   @Override
-  public List<ImportNormalizer> getImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
-    return null;
+  public List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
+    List<ImportNormalizer> importedNamespaceResolvers = Lists.<ImportNormalizer>newArrayList();
+    EList<EObject> eContents = context.eContents();
+    for (final EObject child : eContents) {
+      {
+        final EStructuralFeature feature = child.eClass().getEStructuralFeature("imports");
+        if (((feature != null) && String.class.equals(feature.getEType().getInstanceClass()))) {
+          Object _eGet = child.eGet(feature);
+          final EList<String> list = ((EList<String>) _eGet);
+          for (final String importString : list) {
+            {
+              final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, ignoreCase);
+              if ((resolver != null)) {
+                importedNamespaceResolvers.add(resolver);
+              }
+            }
+          }
+        }
+      }
+    }
+    return importedNamespaceResolvers;
   }
   
   /**
    * This method is overridden as imports are only from files imported above the
    * current location where this code is declared.
    */
-  @Override
-  public String getImportedNamespace(final EObject object) {
-    final EStructuralFeature feature = object.eClass().getEStructuralFeature("imports");
-    if (((feature != null) && String.class.equals(feature.getEType().getInstanceClass()))) {
-      Object _eGet = object.eGet(feature);
-      return ((String) _eGet);
-    }
-    return null;
-  }
-  
   public IScope getVariableScopeFor(final EObject context, final IScope parent) {
     final Function1<EObject, Boolean> _function = (EObject obj) -> {
       return Boolean.valueOf((obj instanceof IVariableProvider));

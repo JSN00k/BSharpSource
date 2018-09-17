@@ -26,6 +26,10 @@ import ac.soton.bsharp.bSharp.IVariableProvider
 import ac.soton.bsharp.bSharp.IPolyTypeProvider
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider
 import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.common.util.EList
+import java.util.List
+import org.eclipse.xtext.scoping.impl.ImportNormalizer
+import com.google.common.collect.Lists
 
 /**
  * This class contains custom scoping description.
@@ -135,20 +139,40 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 	}
 	
 	
-	override getImportedNamespaceResolvers(EObject context, boolean ignoreCase) {
+	override internalGetImportedNamespaceResolvers(EObject context, boolean ignoreCase) {
+		/* I need to override this method because getImportedNamespace returns a single object 
+		 * and I need to return a list.
+		 */
+		var List<ImportNormalizer> importedNamespaceResolvers = Lists.newArrayList()
+		var eContents = context.eContents
 		
+		for (child : eContents) {
+			val feature = child.eClass().getEStructuralFeature("imports")
+			if (feature !== null && String.equals(feature.getEType().getInstanceClass())) {
+				val list = child.eGet(feature) as EList<String>
+				for (importString : list) {
+					val resolver = createImportedNamespaceResolver(importString, ignoreCase)
+					if (resolver !== null) {
+						importedNamespaceResolvers.add(resolver)
+					}
+				}
+			}
+		}
+		
+		return importedNamespaceResolvers
 	}
 	
 	/* This method is overridden as imports are only from files imported above the
 	 * current location where this code is declared.
 	 */
-	override getImportedNamespace(EObject object) {
-		val feature = object.eClass().getEStructuralFeature("imports");
-		if (feature !== null && String.equals(feature.getEType().getInstanceClass())) {
-			return object.eGet(feature) as String;
-		}
-		return null;
-	}
+//	override getImportedNamespace(EObject object) {
+//		val feature = object.eClass().getEStructuralFeature("imports");
+//		if (feature !== null && String.equals(feature.getEType().getInstanceClass())) {
+//			val list = object.eGet(feature) as EList<String>;
+//			return list.head
+//		}
+//		return null;
+//	}
 	
 	def IScope getVariableScopeFor(EObject context, IScope parent) {
 		val polyProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IVariableProvider
