@@ -224,7 +224,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
-	 *         typeName=TypeName 
+	 *         name=ID 
 	 *         context=PolyContext? 
 	 *         supertypes=SuperTypeList? 
 	 *         varList=TypeStructure? 
@@ -268,7 +268,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Datatype returns Datatype
 	 *
 	 * Constraint:
-	 *     (typeName=TypeName context=PolyContext? constructors+=DatatypeConstructor+ bodyElements+=TypeBodyElements*)
+	 *     (name=ID context=PolyContext? constructors+=DatatypeConstructor+ bodyElements+=TypeBodyElements*)
 	 */
 	protected void sequence_Datatype(ISerializationContext context, Datatype semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -598,17 +598,17 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TheoremDecl returns TheoremDecl
 	 *
 	 * Constraint:
-	 *     (thmName=THM_NAME expr=RootExpression)
+	 *     (name=THM_NAME expr=RootExpression)
 	 */
 	protected void sequence_TheoremDecl(ISerializationContext context, TheoremDecl semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.THEOREM_DECL__THM_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.THEOREM_DECL__THM_NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.THEOREM_DECL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.THEOREM_DECL__NAME));
 			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.THEOREM_DECL__EXPR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.THEOREM_DECL__EXPR));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTheoremDeclAccess().getThmNameTHM_NAMEParserRuleCall_0_0(), semanticObject.getThmName());
+		feeder.accept(grammarAccess.getTheoremDeclAccess().getNameTHM_NAMEParserRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getTheoremDeclAccess().getExprRootExpressionParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
 	}

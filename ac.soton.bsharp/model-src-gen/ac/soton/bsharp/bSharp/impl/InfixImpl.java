@@ -361,7 +361,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (opName: ");
 		result.append(opName);
 		result.append(')');

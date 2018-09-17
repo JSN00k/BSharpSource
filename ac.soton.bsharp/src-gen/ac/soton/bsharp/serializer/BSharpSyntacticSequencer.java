@@ -63,10 +63,10 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     context=PolyContext (ambiguity) '{' '}' (rule end)
 	 *     context=PolyContext (ambiguity) '{' bodyElements+=TypeBodyElements
+	 *     name=ID (ambiguity) '{' '}' (rule end)
+	 *     name=ID (ambiguity) '{' bodyElements+=TypeBodyElements
 	 *     supertypes=SuperTypeList (ambiguity) '{' '}' (rule end)
 	 *     supertypes=SuperTypeList (ambiguity) '{' bodyElements+=TypeBodyElements
-	 *     typeName=TypeName (ambiguity) '{' '}' (rule end)
-	 *     typeName=TypeName (ambiguity) '{' bodyElements+=TypeBodyElements
 	 *     varList=TypeStructure (ambiguity) '{' '}' (rule end)
 	 *     varList=TypeStructure (ambiguity) '{' bodyElements+=TypeBodyElements
 	 *     where=Where (ambiguity) '{' '}' (rule end)

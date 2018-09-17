@@ -1881,9 +1881,9 @@ rule__Class__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getClassAccess().getTypeNameAssignment_1()); }
-	(rule__Class__TypeNameAssignment_1)
-	{ after(grammarAccess.getClassAccess().getTypeNameAssignment_1()); }
+	{ before(grammarAccess.getClassAccess().getNameAssignment_1()); }
+	(rule__Class__NameAssignment_1)
+	{ after(grammarAccess.getClassAccess().getNameAssignment_1()); }
 )
 ;
 finally {
@@ -3103,9 +3103,9 @@ rule__Datatype__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDatatypeAccess().getTypeNameAssignment_1()); }
-	(rule__Datatype__TypeNameAssignment_1)
-	{ after(grammarAccess.getDatatypeAccess().getTypeNameAssignment_1()); }
+	{ before(grammarAccess.getDatatypeAccess().getNameAssignment_1()); }
+	(rule__Datatype__NameAssignment_1)
+	{ after(grammarAccess.getDatatypeAccess().getNameAssignment_1()); }
 )
 ;
 finally {
@@ -4521,9 +4521,9 @@ rule__TheoremDecl__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getTheoremDeclAccess().getThmNameAssignment_0()); }
-	(rule__TheoremDecl__ThmNameAssignment_0)
-	{ after(grammarAccess.getTheoremDeclAccess().getThmNameAssignment_0()); }
+	{ before(grammarAccess.getTheoremDeclAccess().getNameAssignment_0()); }
+	(rule__TheoremDecl__NameAssignment_0)
+	{ after(grammarAccess.getTheoremDeclAccess().getNameAssignment_0()); }
 )
 ;
 finally {
@@ -5998,15 +5998,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Class__TypeNameAssignment_1
+rule__Class__NameAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getClassAccess().getTypeNameTypeNameParserRuleCall_1_0()); }
-		ruleTypeName
-		{ after(grammarAccess.getClassAccess().getTypeNameTypeNameParserRuleCall_1_0()); }
+		{ before(grammarAccess.getClassAccess().getNameIDTerminalRuleCall_1_0()); }
+		RULE_ID
+		{ after(grammarAccess.getClassAccess().getNameIDTerminalRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -6370,15 +6370,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Datatype__TypeNameAssignment_1
+rule__Datatype__NameAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getDatatypeAccess().getTypeNameTypeNameParserRuleCall_1_0()); }
-		ruleTypeName
-		{ after(grammarAccess.getDatatypeAccess().getTypeNameTypeNameParserRuleCall_1_0()); }
+		{ before(grammarAccess.getDatatypeAccess().getNameIDTerminalRuleCall_1_0()); }
+		RULE_ID
+		{ after(grammarAccess.getDatatypeAccess().getNameIDTerminalRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -6791,15 +6791,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__TheoremDecl__ThmNameAssignment_0
+rule__TheoremDecl__NameAssignment_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getTheoremDeclAccess().getThmNameTHM_NAMEParserRuleCall_0_0()); }
+		{ before(grammarAccess.getTheoremDeclAccess().getNameTHM_NAMEParserRuleCall_0_0()); }
 		ruleTHM_NAME
-		{ after(grammarAccess.getTheoremDeclAccess().getThmNameTHM_NAMEParserRuleCall_0_0()); }
+		{ after(grammarAccess.getTheoremDeclAccess().getNameTHM_NAMEParserRuleCall_0_0()); }
 	)
 ;
 finally {

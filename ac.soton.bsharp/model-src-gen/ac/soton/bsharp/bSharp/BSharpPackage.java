@@ -132,34 +132,6 @@ public interface BSharpPackage extends EPackage {
 	int IMPORT_STATEMENT_FEATURE_COUNT = TOP_LEVEL_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ImportImpl <em>Import</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.ImportImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getImport()
-	 * @generated
-	 */
-	int IMPORT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Import Name</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT__IMPORT_NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Import</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT_FEATURE_COUNT = 1;
-
-	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl <em>Class Decl</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -167,16 +139,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getClassDecl()
 	 * @generated
 	 */
-	int CLASS_DECL = 4;
-
-	/**
-	 * The feature id for the '<em><b>Type Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_DECL__TYPE_NAME = TOP_LEVEL_FEATURE_COUNT + 0;
+	int CLASS_DECL = 3;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -185,7 +148,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DECL__CONTEXT = TOP_LEVEL_FEATURE_COUNT + 1;
+	int CLASS_DECL__CONTEXT = TOP_LEVEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
@@ -194,7 +157,16 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DECL__BODY_ELEMENTS = TOP_LEVEL_FEATURE_COUNT + 2;
+	int CLASS_DECL__BODY_ELEMENTS = TOP_LEVEL_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DECL__NAME = TOP_LEVEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Class Decl</em>' class.
@@ -213,16 +185,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBppClass()
 	 * @generated
 	 */
-	int BPP_CLASS = 5;
-
-	/**
-	 * The feature id for the '<em><b>Type Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BPP_CLASS__TYPE_NAME = CLASS_DECL__TYPE_NAME;
+	int BPP_CLASS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -241,6 +204,15 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int BPP_CLASS__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPP_CLASS__NAME = CLASS_DECL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Supertypes</b></em>' containment reference.
@@ -286,7 +258,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getGenName()
 	 * @generated
 	 */
-	int GEN_NAME = 6;
+	int GEN_NAME = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -314,7 +286,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeName()
 	 * @generated
 	 */
-	int TYPE_NAME = 7;
+	int TYPE_NAME = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -342,7 +314,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPolymorphicTypeName()
 	 * @generated
 	 */
-	int POLYMORPHIC_TYPE_NAME = 8;
+	int POLYMORPHIC_TYPE_NAME = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -370,7 +342,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPolyContext()
 	 * @generated
 	 */
-	int POLY_CONTEXT = 9;
+	int POLY_CONTEXT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Poly Types</b></em>' containment reference list.
@@ -398,7 +370,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPolyContextTypes()
 	 * @generated
 	 */
-	int POLY_CONTEXT_TYPES = 10;
+	int POLY_CONTEXT_TYPES = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -435,7 +407,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPolyTypeConstraints()
 	 * @generated
 	 */
-	int POLY_TYPE_CONSTRAINTS = 11;
+	int POLY_TYPE_CONSTRAINTS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Type Name</b></em>' reference list.
@@ -463,7 +435,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getSuperTypeList()
 	 * @generated
 	 */
-	int SUPER_TYPE_LIST = 12;
+	int SUPER_TYPE_LIST = 11;
 
 	/**
 	 * The feature id for the '<em><b>Super Type</b></em>' containment reference list.
@@ -491,7 +463,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getConstructedType()
 	 * @generated
 	 */
-	int CONSTRUCTED_TYPE = 13;
+	int CONSTRUCTED_TYPE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference list.
@@ -519,7 +491,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeConstructor()
 	 * @generated
 	 */
-	int TYPE_CONSTRUCTOR = 14;
+	int TYPE_CONSTRUCTOR = 13;
 
 	/**
 	 * The feature id for the '<em><b>Type Name</b></em>' reference.
@@ -556,7 +528,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeDeclContext()
 	 * @generated
 	 */
-	int TYPE_DECL_CONTEXT = 15;
+	int TYPE_DECL_CONTEXT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Type Name</b></em>' containment reference list.
@@ -584,7 +556,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeStructure()
 	 * @generated
 	 */
-	int TYPE_STRUCTURE = 16;
+	int TYPE_STRUCTURE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' containment reference.
@@ -612,7 +584,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getWhere()
 	 * @generated
 	 */
-	int WHERE = 17;
+	int WHERE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Expessions</b></em>' containment reference list.
@@ -649,16 +621,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getDatatype()
 	 * @generated
 	 */
-	int DATATYPE = 18;
-
-	/**
-	 * The feature id for the '<em><b>Type Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATATYPE__TYPE_NAME = CLASS_DECL__TYPE_NAME;
+	int DATATYPE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -677,6 +640,15 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATATYPE__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATATYPE__NAME = CLASS_DECL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Constructors</b></em>' containment reference list.
@@ -704,7 +676,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getDatatypeConstructor()
 	 * @generated
 	 */
-	int DATATYPE_CONSTRUCTOR = 19;
+	int DATATYPE_CONSTRUCTOR = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -741,7 +713,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getExtend()
 	 * @generated
 	 */
-	int EXTEND = 20;
+	int EXTEND = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' reference.
@@ -787,7 +759,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeBodyElements()
 	 * @generated
 	 */
-	int TYPE_BODY_ELEMENTS = 21;
+	int TYPE_BODY_ELEMENTS = 20;
 
 	/**
 	 * The feature id for the '<em><b>Functions</b></em>' containment reference list.
@@ -824,7 +796,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionDecl()
 	 * @generated
 	 */
-	int FUNCTION_DECL = 22;
+	int FUNCTION_DECL = 21;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.
@@ -834,7 +806,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getExpressionVariable()
 	 * @generated
 	 */
-	int EXPRESSION_VARIABLE = 37;
+	int EXPRESSION_VARIABLE = 36;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FunctionNameImpl <em>Function Name</em>}' class.
@@ -844,7 +816,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionName()
 	 * @generated
 	 */
-	int FUNCTION_NAME = 23;
+	int FUNCTION_NAME = 22;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -854,7 +826,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getExpression()
 	 * @generated
 	 */
-	int EXPRESSION = 33;
+	int EXPRESSION = 32;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.MatchStatementImpl <em>Match Statement</em>}' class.
@@ -864,7 +836,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getMatchStatement()
 	 * @generated
 	 */
-	int MATCH_STATEMENT = 24;
+	int MATCH_STATEMENT = 23;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.MatchCaseImpl <em>Match Case</em>}' class.
@@ -874,7 +846,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getMatchCase()
 	 * @generated
 	 */
-	int MATCH_CASE = 25;
+	int MATCH_CASE = 24;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TheoremBodyImpl <em>Theorem Body</em>}' class.
@@ -884,7 +856,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTheoremBody()
 	 * @generated
 	 */
-	int THEOREM_BODY = 26;
+	int THEOREM_BODY = 25;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl <em>Theorem Decl</em>}' class.
@@ -894,7 +866,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTheoremDecl()
 	 * @generated
 	 */
-	int THEOREM_DECL = 27;
+	int THEOREM_DECL = 26;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypedVariableListImpl <em>Typed Variable List</em>}' class.
@@ -904,7 +876,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypedVariableList()
 	 * @generated
 	 */
-	int TYPED_VARIABLE_LIST = 28;
+	int TYPED_VARIABLE_LIST = 27;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.VariableTypingImpl <em>Variable Typing</em>}' class.
@@ -914,7 +886,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getVariableTyping()
 	 * @generated
 	 */
-	int VARIABLE_TYPING = 29;
+	int VARIABLE_TYPING = 28;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypedVariableImpl <em>Typed Variable</em>}' class.
@@ -924,7 +896,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypedVariable()
 	 * @generated
 	 */
-	int TYPED_VARIABLE = 30;
+	int TYPED_VARIABLE = 29;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeDeclarationImpl <em>Type Declaration</em>}' class.
@@ -934,7 +906,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeDeclaration()
 	 * @generated
 	 */
-	int TYPE_DECLARATION = 31;
+	int TYPE_DECLARATION = 30;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl <em>Quant Lambda</em>}' class.
@@ -944,7 +916,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getQuantLambda()
 	 * @generated
 	 */
-	int QUANT_LAMBDA = 32;
+	int QUANT_LAMBDA = 31;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl <em>Function Call</em>}' class.
@@ -954,7 +926,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionCall()
 	 * @generated
 	 */
-	int FUNCTION_CALL = 34;
+	int FUNCTION_CALL = 33;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.PrefixImpl <em>Prefix</em>}' class.
@@ -964,7 +936,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPrefix()
 	 * @generated
 	 */
-	int PREFIX = 35;
+	int PREFIX = 34;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BracketImpl <em>Bracket</em>}' class.
@@ -974,7 +946,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBracket()
 	 * @generated
 	 */
-	int BRACKET = 36;
+	int BRACKET = 35;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeInstanceImpl <em>Type Instance</em>}' class.
@@ -984,7 +956,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeInstance()
 	 * @generated
 	 */
-	int TYPE_INSTANCE = 38;
+	int TYPE_INSTANCE = 37;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InbuiltTypeScanImpl <em>Inbuilt Type Scan</em>}' class.
@@ -994,7 +966,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInbuiltTypeScan()
 	 * @generated
 	 */
-	int INBUILT_TYPE_SCAN = 39;
+	int INBUILT_TYPE_SCAN = 38;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InstanceImpl <em>Instance</em>}' class.
@@ -1004,7 +976,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInstance()
 	 * @generated
 	 */
-	int INSTANCE = 40;
+	int INSTANCE = 39;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InfixImpl <em>Infix</em>}' class.
@@ -1014,7 +986,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInfix()
 	 * @generated
 	 */
-	int INFIX = 41;
+	int INFIX = 40;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IPolyTypeProvider <em>IPoly Type Provider</em>}' class.
@@ -1024,7 +996,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIPolyTypeProvider()
 	 * @generated
 	 */
-	int IPOLY_TYPE_PROVIDER = 43;
+	int IPOLY_TYPE_PROVIDER = 42;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IVariableProvider <em>IVariable Provider</em>}' class.
@@ -1034,7 +1006,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIVariableProvider()
 	 * @generated
 	 */
-	int IVARIABLE_PROVIDER = 42;
+	int IVARIABLE_PROVIDER = 41;
 
 	/**
 	 * The number of structural features of the '<em>IVariable Provider</em>' class.
@@ -1253,13 +1225,13 @@ public interface BSharpPackage extends EPackage {
 	int THEOREM_BODY_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Thm Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEOREM_DECL__THM_NAME = 0;
+	int THEOREM_DECL__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1747,27 +1719,6 @@ public interface BSharpPackage extends EPackage {
 	EAttribute getImportStatement_Imports();
 
 	/**
-	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Import <em>Import</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Import</em>'.
-	 * @see ac.soton.bsharp.bSharp.Import
-	 * @generated
-	 */
-	EClass getImport();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link ac.soton.bsharp.bSharp.Import#getImportName <em>Import Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Import Name</em>'.
-	 * @see ac.soton.bsharp.bSharp.Import#getImportName()
-	 * @see #getImport()
-	 * @generated
-	 */
-	EAttribute getImport_ImportName();
-
-	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ClassDecl <em>Class Decl</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1778,15 +1729,15 @@ public interface BSharpPackage extends EPackage {
 	EClass getClassDecl();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.ClassDecl#getTypeName <em>Type Name</em>}'.
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.ClassDecl#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type Name</em>'.
-	 * @see ac.soton.bsharp.bSharp.ClassDecl#getTypeName()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ac.soton.bsharp.bSharp.ClassDecl#getName()
 	 * @see #getClassDecl()
 	 * @generated
 	 */
-	EReference getClassDecl_TypeName();
+	EAttribute getClassDecl_Name();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.ClassDecl#getContext <em>Context</em>}'.
@@ -2459,15 +2410,15 @@ public interface BSharpPackage extends EPackage {
 	EClass getTheoremDecl();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.TheoremDecl#getThmName <em>Thm Name</em>}'.
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.TheoremDecl#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Thm Name</em>'.
-	 * @see ac.soton.bsharp.bSharp.TheoremDecl#getThmName()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ac.soton.bsharp.bSharp.TheoremDecl#getName()
 	 * @see #getTheoremDecl()
 	 * @generated
 	 */
-	EAttribute getTheoremDecl_ThmName();
+	EAttribute getTheoremDecl_Name();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.TheoremDecl#getExpr <em>Expr</em>}'.
@@ -3006,24 +2957,6 @@ public interface BSharpPackage extends EPackage {
 		EAttribute IMPORT_STATEMENT__IMPORTS = eINSTANCE.getImportStatement_Imports();
 
 		/**
-		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ImportImpl <em>Import</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see ac.soton.bsharp.bSharp.impl.ImportImpl
-		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getImport()
-		 * @generated
-		 */
-		EClass IMPORT = eINSTANCE.getImport();
-
-		/**
-		 * The meta object literal for the '<em><b>Import Name</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMPORT__IMPORT_NAME = eINSTANCE.getImport_ImportName();
-
-		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl <em>Class Decl</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3034,12 +2967,12 @@ public interface BSharpPackage extends EPackage {
 		EClass CLASS_DECL = eINSTANCE.getClassDecl();
 
 		/**
-		 * The meta object literal for the '<em><b>Type Name</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASS_DECL__TYPE_NAME = eINSTANCE.getClassDecl_TypeName();
+		EAttribute CLASS_DECL__NAME = eINSTANCE.getClassDecl_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
@@ -3592,12 +3525,12 @@ public interface BSharpPackage extends EPackage {
 		EClass THEOREM_DECL = eINSTANCE.getTheoremDecl();
 
 		/**
-		 * The meta object literal for the '<em><b>Thm Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute THEOREM_DECL__THM_NAME = eINSTANCE.getTheoremDecl_ThmName();
+		EAttribute THEOREM_DECL__NAME = eINSTANCE.getTheoremDecl_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.

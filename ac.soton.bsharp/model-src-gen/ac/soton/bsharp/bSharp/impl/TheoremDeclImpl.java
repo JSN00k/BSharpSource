@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl#getThmName <em>Thm Name</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  *
@@ -32,24 +32,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements TheoremDecl {
 	/**
-	 * The default value of the '{@link #getThmName() <em>Thm Name</em>}' attribute.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getThmName()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String THM_NAME_EDEFAULT = null;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getThmName() <em>Thm Name</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getThmName()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String thmName = THM_NAME_EDEFAULT;
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
@@ -85,8 +85,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getThmName() {
-		return thmName;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -94,11 +94,11 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThmName(String newThmName) {
-		String oldThmName = thmName;
-		thmName = newThmName;
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.THEOREM_DECL__THM_NAME, oldThmName, thmName));
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.THEOREM_DECL__NAME, oldName, name));
 	}
 
 	/**
@@ -166,8 +166,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.THEOREM_DECL__THM_NAME:
-				return getThmName();
+			case BSharpPackage.THEOREM_DECL__NAME:
+				return getName();
 			case BSharpPackage.THEOREM_DECL__EXPR:
 				return getExpr();
 		}
@@ -182,8 +182,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.THEOREM_DECL__THM_NAME:
-				setThmName((String)newValue);
+			case BSharpPackage.THEOREM_DECL__NAME:
+				setName((String)newValue);
 				return;
 			case BSharpPackage.THEOREM_DECL__EXPR:
 				setExpr((Expression)newValue);
@@ -200,8 +200,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.THEOREM_DECL__THM_NAME:
-				setThmName(THM_NAME_EDEFAULT);
+			case BSharpPackage.THEOREM_DECL__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 			case BSharpPackage.THEOREM_DECL__EXPR:
 				setExpr((Expression)null);
@@ -218,8 +218,8 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.THEOREM_DECL__THM_NAME:
-				return THM_NAME_EDEFAULT == null ? thmName != null : !THM_NAME_EDEFAULT.equals(thmName);
+			case BSharpPackage.THEOREM_DECL__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.THEOREM_DECL__EXPR:
 				return expr != null;
 		}
@@ -235,9 +235,9 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (thmName: ");
-		result.append(thmName);
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

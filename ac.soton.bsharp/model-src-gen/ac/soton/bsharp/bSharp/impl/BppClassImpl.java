@@ -314,7 +314,7 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 
 	public Collection<EObject> getVariablesNames() {		
 		ArrayList<EObject> result = new ArrayList<EObject>();
-		result.add(typeName);
+		result.add(this);
 		if (varList == null) {
 			return result;
 		}

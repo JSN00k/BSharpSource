@@ -194,8 +194,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Class");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cClassKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTypeNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeNameTypeNameParserRuleCall_1_0 = (RuleCall)cTypeNameAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cContextPolyContextParserRuleCall_2_0 = (RuleCall)cContextAssignment_2.eContents().get(0);
 		private final Assignment cSupertypesAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -211,22 +211,22 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		///* ------------------------ Class statements --------------------- */ Class BppClass:
-		//	'Class' typeName=TypeName context=PolyContext? supertypes=SuperTypeList? varList=TypeStructure? where=Where? ';'?
+		//	'Class' name=ID context=PolyContext? supertypes=SuperTypeList? varList=TypeStructure? where=Where? ';'?
 		//	'{' bodyElements+=TypeBodyElements* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Class' typeName=TypeName context=PolyContext? supertypes=SuperTypeList? varList=TypeStructure? where=Where? ';'? '{'
+		//'Class' name=ID context=PolyContext? supertypes=SuperTypeList? varList=TypeStructure? where=Where? ';'? '{'
 		//bodyElements+=TypeBodyElements* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Class'
 		public Keyword getClassKeyword_0() { return cClassKeyword_0; }
 		
-		//typeName=TypeName
-		public Assignment getTypeNameAssignment_1() { return cTypeNameAssignment_1; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//TypeName
-		public RuleCall getTypeNameTypeNameParserRuleCall_1_0() { return cTypeNameTypeNameParserRuleCall_1_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
 		//context=PolyContext?
 		public Assignment getContextAssignment_2() { return cContextAssignment_2; }
@@ -694,8 +694,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Datatype");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDatatypeKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTypeNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeNameTypeNameParserRuleCall_1_0 = (RuleCall)cTypeNameAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cContextPolyContextParserRuleCall_2_0 = (RuleCall)cContextAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
@@ -708,22 +708,21 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		///* ---------------------- Datatype declarations -------------------------- */ Datatype:
-		//	'Datatype' typeName=TypeName context=PolyContext? ('|' constructors+=DatatypeConstructor)+ '{'
-		//	bodyElements+=TypeBodyElements* '}';
+		//	'Datatype' name=ID context=PolyContext? ('|' constructors+=DatatypeConstructor)+ '{' bodyElements+=TypeBodyElements*
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Datatype' typeName=TypeName context=PolyContext? ('|' constructors+=DatatypeConstructor)+ '{'
-		//bodyElements+=TypeBodyElements* '}'
+		//'Datatype' name=ID context=PolyContext? ('|' constructors+=DatatypeConstructor)+ '{' bodyElements+=TypeBodyElements* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Datatype'
 		public Keyword getDatatypeKeyword_0() { return cDatatypeKeyword_0; }
 		
-		//typeName=TypeName
-		public Assignment getTypeNameAssignment_1() { return cTypeNameAssignment_1; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//TypeName
-		public RuleCall getTypeNameTypeNameParserRuleCall_1_0() { return cTypeNameTypeNameParserRuleCall_1_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
 		//context=PolyContext?
 		public Assignment getContextAssignment_2() { return cContextAssignment_2; }
@@ -1139,8 +1138,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	public class TheoremDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TheoremDecl");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cThmNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cThmNameTHM_NAMEParserRuleCall_0_0 = (RuleCall)cThmNameAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameTHM_NAMEParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExprRootExpressionParserRuleCall_1_0 = (RuleCall)cExprAssignment_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
@@ -1148,17 +1147,17 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		///* Type check that the expression is a predicate expression. From a lexing point
 		// * of view the semicolon is necessary because the THM_NAME rule is not good enough.
 		// */ TheoremDecl:
-		//	thmName=THM_NAME expr=RootExpression ';';
+		//	name=THM_NAME expr=RootExpression ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//thmName=THM_NAME expr=RootExpression ';'
+		//name=THM_NAME expr=RootExpression ';'
 		public Group getGroup() { return cGroup; }
 		
-		//thmName=THM_NAME
-		public Assignment getThmNameAssignment_0() { return cThmNameAssignment_0; }
+		//name=THM_NAME
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 		
 		//THM_NAME
-		public RuleCall getThmNameTHM_NAMEParserRuleCall_0_0() { return cThmNameTHM_NAMEParserRuleCall_0_0; }
+		public RuleCall getNameTHM_NAMEParserRuleCall_0_0() { return cNameTHM_NAMEParserRuleCall_0_0; }
 		
 		//expr=RootExpression
 		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
@@ -2055,7 +2054,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ------------------------ Class statements --------------------- */ Class BppClass:
-	//	'Class' typeName=TypeName context=PolyContext? supertypes=SuperTypeList? varList=TypeStructure? where=Where? ';'?
+	//	'Class' name=ID context=PolyContext? supertypes=SuperTypeList? varList=TypeStructure? where=Where? ';'?
 	//	'{' bodyElements+=TypeBodyElements* '}';
 	public ClassElements getClassAccess() {
 		return pClass;
@@ -2197,8 +2196,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ---------------------- Datatype declarations -------------------------- */ Datatype:
-	//	'Datatype' typeName=TypeName context=PolyContext? ('|' constructors+=DatatypeConstructor)+ '{'
-	//	bodyElements+=TypeBodyElements* '}';
+	//	'Datatype' name=ID context=PolyContext? ('|' constructors+=DatatypeConstructor)+ '{' bodyElements+=TypeBodyElements*
+	//	'}';
 	public DatatypeElements getDatatypeAccess() {
 		return pDatatype;
 	}
@@ -2293,7 +2292,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	///* Type check that the expression is a predicate expression. From a lexing point
 	// * of view the semicolon is necessary because the THM_NAME rule is not good enough.
 	// */ TheoremDecl:
-	//	thmName=THM_NAME expr=RootExpression ';';
+	//	name=THM_NAME expr=RootExpression ';';
 	public TheoremDeclElements getTheoremDeclAccess() {
 		return pTheoremDecl;
 	}

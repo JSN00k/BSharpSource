@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.TheoremDecl#getThmName <em>Thm Name</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.TheoremDecl#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TheoremDecl#getExpr <em>Expr</em>}</li>
  * </ul>
  *
@@ -24,30 +24,30 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface TheoremDecl extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Thm Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Thm Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Thm Name</em>' attribute.
-	 * @see #setThmName(String)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTheoremDecl_ThmName()
-	 * @model
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTheoremDecl_Name()
+	 * @model id="true"
 	 * @generated
 	 */
-	String getThmName();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.TheoremDecl#getThmName <em>Thm Name</em>}' attribute.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.TheoremDecl#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Thm Name</em>' attribute.
-	 * @see #getThmName()
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setThmName(String value);
+	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Expr</b></em>' containment reference.

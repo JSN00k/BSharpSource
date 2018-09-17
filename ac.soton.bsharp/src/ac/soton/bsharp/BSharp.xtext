@@ -39,7 +39,7 @@ ImportStatement:
 
 
 Class returns BppClass:
-	'Class' typeName=TypeName (context=PolyContext)? (supertypes=SuperTypeList)? (varList=TypeStructure)? (where=Where)? (';')? 
+	'Class' name=ID (context=PolyContext)? (supertypes=SuperTypeList)? (varList=TypeStructure)? (where=Where)? (';')? 
 	'{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
@@ -111,7 +111,7 @@ Where:
 /* ---------------------- Datatype declarations -------------------------- */
 
 Datatype:
-	'Datatype' typeName=TypeName (context=PolyContext)? ('|' constructors+=DatatypeConstructor)+ '{' (bodyElements+=TypeBodyElements)* '}'
+	'Datatype' name=ID (context=PolyContext)? ('|' constructors+=DatatypeConstructor)+ '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 /* PolyContext is the same as PolyContext used by the class declaration above. */
@@ -161,7 +161,7 @@ TheoremBody:
  * of view the semicolon is necessary because the THM_NAME rule is not good enough.
  */
 TheoremDecl:
-	thmName=THM_NAME expr=RootExpression ';'
+	name=THM_NAME expr=RootExpression ';'
 ;
 
 TypedVariableList:

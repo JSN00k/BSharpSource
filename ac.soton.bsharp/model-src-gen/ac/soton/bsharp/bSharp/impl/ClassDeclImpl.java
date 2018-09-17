@@ -32,24 +32,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getBodyElements <em>Body Elements</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
-	/**
-	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeName()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypeName typeName;
-
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -69,6 +59,26 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	 * @ordered
 	 */
 	protected EList<TypeBodyElements> bodyElements;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,8 +104,8 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeName getTypeName() {
-		return typeName;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -103,33 +113,11 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeName(TypeName newTypeName, NotificationChain msgs) {
-		TypeName oldTypeName = typeName;
-		typeName = newTypeName;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_DECL__TYPE_NAME, oldTypeName, newTypeName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTypeName(TypeName newTypeName) {
-		if (newTypeName != typeName) {
-			NotificationChain msgs = null;
-			if (typeName != null)
-				msgs = ((InternalEObject)typeName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.CLASS_DECL__TYPE_NAME, null, msgs);
-			if (newTypeName != null)
-				msgs = ((InternalEObject)newTypeName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.CLASS_DECL__TYPE_NAME, null, msgs);
-			msgs = basicSetTypeName(newTypeName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_DECL__TYPE_NAME, newTypeName, newTypeName));
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_DECL__NAME, oldName, name));
 	}
 
 	/**
@@ -195,8 +183,6 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__TYPE_NAME:
-				return basicSetTypeName(null, msgs);
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return basicSetContext(null, msgs);
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
@@ -213,12 +199,12 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__TYPE_NAME:
-				return getTypeName();
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return getContext();
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
 				return getBodyElements();
+			case BSharpPackage.CLASS_DECL__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -232,15 +218,15 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__TYPE_NAME:
-				setTypeName((TypeName)newValue);
-				return;
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				setContext((PolyContext)newValue);
 				return;
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
 				getBodyElements().clear();
 				getBodyElements().addAll((Collection<? extends TypeBodyElements>)newValue);
+				return;
+			case BSharpPackage.CLASS_DECL__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -254,14 +240,14 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__TYPE_NAME:
-				setTypeName((TypeName)null);
-				return;
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				setContext((PolyContext)null);
 				return;
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
 				getBodyElements().clear();
+				return;
+			case BSharpPackage.CLASS_DECL__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -275,14 +261,30 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__TYPE_NAME:
-				return typeName != null;
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return context != null;
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
 				return bodyElements != null && !bodyElements.isEmpty();
+			case BSharpPackage.CLASS_DECL__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ClassDeclImpl

@@ -144,7 +144,7 @@ public class ImportStatementImpl extends TopLevelImpl implements ImportStatement
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (imports: ");
 		result.append(imports);
 		result.append(')');

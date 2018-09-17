@@ -90,13 +90,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass importEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass classDeclEClass = null;
 
 	/**
@@ -400,7 +393,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link BSharpPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -414,7 +407,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		if (isInited) return (BSharpPackage)EPackage.Registry.INSTANCE.getEPackage(BSharpPackage.eNS_URI);
 
 		// Obtain or create and register package
-		BSharpPackageImpl theBSharpPackage = (BSharpPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BSharpPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new BSharpPackageImpl());
+		Object registeredBSharpPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		BSharpPackageImpl theBSharpPackage = registeredBSharpPackage instanceof BSharpPackageImpl ? (BSharpPackageImpl)registeredBSharpPackage : new BSharpPackageImpl();
 
 		isInited = true;
 
@@ -427,7 +421,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		// Mark meta-data to indicate it can't be changed
 		theBSharpPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BSharpPackage.eNS_URI, theBSharpPackage);
 		return theBSharpPackage;
@@ -483,24 +476,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getImport() {
-		return importEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getImport_ImportName() {
-		return (EAttribute)importEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getClassDecl() {
 		return classDeclEClass;
 	}
@@ -510,8 +485,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassDecl_TypeName() {
-		return (EReference)classDeclEClass.getEStructuralFeatures().get(0);
+	public EAttribute getClassDecl_Name() {
+		return (EAttribute)classDeclEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -520,7 +495,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	public EReference getClassDecl_Context() {
-		return (EReference)classDeclEClass.getEStructuralFeatures().get(1);
+		return (EReference)classDeclEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -529,7 +504,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	public EReference getClassDecl_BodyElements() {
-		return (EReference)classDeclEClass.getEStructuralFeatures().get(2);
+		return (EReference)classDeclEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1086,7 +1061,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTheoremDecl_ThmName() {
+	public EAttribute getTheoremDecl_Name() {
 		return (EAttribute)theoremDeclEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1522,13 +1497,10 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		importStatementEClass = createEClass(IMPORT_STATEMENT);
 		createEAttribute(importStatementEClass, IMPORT_STATEMENT__IMPORTS);
 
-		importEClass = createEClass(IMPORT);
-		createEAttribute(importEClass, IMPORT__IMPORT_NAME);
-
 		classDeclEClass = createEClass(CLASS_DECL);
-		createEReference(classDeclEClass, CLASS_DECL__TYPE_NAME);
 		createEReference(classDeclEClass, CLASS_DECL__CONTEXT);
 		createEReference(classDeclEClass, CLASS_DECL__BODY_ELEMENTS);
+		createEAttribute(classDeclEClass, CLASS_DECL__NAME);
 
 		bppClassEClass = createEClass(BPP_CLASS);
 		createEReference(bppClassEClass, BPP_CLASS__SUPERTYPES);
@@ -1613,7 +1585,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(theoremBodyEClass, THEOREM_BODY__THEOREM_DECL);
 
 		theoremDeclEClass = createEClass(THEOREM_DECL);
-		createEAttribute(theoremDeclEClass, THEOREM_DECL__THM_NAME);
+		createEAttribute(theoremDeclEClass, THEOREM_DECL__NAME);
 		createEReference(theoremDeclEClass, THEOREM_DECL__EXPR);
 
 		typedVariableListEClass = createEClass(TYPED_VARIABLE_LIST);
@@ -1740,13 +1712,10 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(importStatementEClass, ImportStatement.class, "ImportStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImportStatement_Imports(), ecorePackage.getEString(), "imports", null, 0, -1, ImportStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImport_ImportName(), ecorePackage.getEString(), "importName", null, 0, -1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(classDeclEClass, ClassDecl.class, "ClassDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassDecl_TypeName(), this.getTypeName(), null, "typeName", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassDecl_BodyElements(), this.getTypeBodyElements(), null, "bodyElements", null, 0, -1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClassDecl_Name(), ecorePackage.getEString(), "name", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bppClassEClass, BppClass.class, "BppClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBppClass_Supertypes(), this.getSuperTypeList(), null, "supertypes", null, 0, 1, BppClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1831,7 +1800,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getTheoremBody_TheoremDecl(), this.getTheoremDecl(), null, "theoremDecl", null, 0, -1, TheoremBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(theoremDeclEClass, TheoremDecl.class, "TheoremDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTheoremDecl_ThmName(), ecorePackage.getEString(), "thmName", null, 0, 1, TheoremDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTheoremDecl_Name(), ecorePackage.getEString(), "name", null, 0, 1, TheoremDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTheoremDecl_Expr(), this.getExpression(), null, "expr", null, 0, 1, TheoremDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typedVariableListEClass, TypedVariableList.class, "TypedVariableList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

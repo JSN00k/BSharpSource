@@ -24,30 +24,30 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ClassDecl extends TopLevel {
 	/**
-	 * Returns the value of the '<em><b>Type Name</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type Name</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Name</em>' containment reference.
-	 * @see #setTypeName(TypeName)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl_TypeName()
-	 * @model containment="true"
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl_Name()
+	 * @model id="true"
 	 * @generated
 	 */
-	TypeName getTypeName();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ClassDecl#getTypeName <em>Type Name</em>}' containment reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ClassDecl#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type Name</em>' containment reference.
-	 * @see #getTypeName()
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setTypeName(TypeName value);
+	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.

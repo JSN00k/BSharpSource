@@ -375,20 +375,19 @@ ruleClass returns [EObject current=null]
 		}
 		(
 			(
+				lv_name_1_0=RULE_ID
 				{
-					newCompositeNode(grammarAccess.getClassAccess().getTypeNameTypeNameParserRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getClassAccess().getNameIDTerminalRuleCall_1_0());
 				}
-				lv_typeName_1_0=ruleTypeName
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getClassRule());
+						$current = createModelElement(grammarAccess.getClassRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
-						"typeName",
-						lv_typeName_1_0,
-						"ac.soton.bsharp.BSharp.TypeName");
-					afterParserOrEnumRuleCall();
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
@@ -1187,20 +1186,19 @@ ruleDatatype returns [EObject current=null]
 		}
 		(
 			(
+				lv_name_1_0=RULE_ID
 				{
-					newCompositeNode(grammarAccess.getDatatypeAccess().getTypeNameTypeNameParserRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getDatatypeAccess().getNameIDTerminalRuleCall_1_0());
 				}
-				lv_typeName_1_0=ruleTypeName
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDatatypeRule());
+						$current = createModelElement(grammarAccess.getDatatypeRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
-						"typeName",
-						lv_typeName_1_0,
-						"ac.soton.bsharp.BSharp.TypeName");
-					afterParserOrEnumRuleCall();
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
@@ -1952,17 +1950,17 @@ ruleTheoremDecl returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTheoremDeclAccess().getThmNameTHM_NAMEParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getTheoremDeclAccess().getNameTHM_NAMEParserRuleCall_0_0());
 				}
-				lv_thmName_0_0=ruleTHM_NAME
+				lv_name_0_0=ruleTHM_NAME
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTheoremDeclRule());
 					}
 					set(
 						$current,
-						"thmName",
-						lv_thmName_0_0,
+						"name",
+						lv_name_0_0,
 						"ac.soton.bsharp.BSharp.THM_NAME");
 					afterParserOrEnumRuleCall();
 				}
