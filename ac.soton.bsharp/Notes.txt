@@ -1,0 +1,4 @@
+In an xtext file when creating a new entity use name=ID (don't replace 'name' with 
+another word or the automatic fully qualified domain name code won't work and you will
+need to implement a bunch more stuff e.g., https://stackoverflow.com/questions/10316112/xtext-cross-reference-using-custom-terminal-rule#10331251
+ 
