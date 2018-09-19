@@ -235,6 +235,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.MATCH_CASE: {
 				MatchCase matchCase = (MatchCase)theEObject;
 				T result = caseMatchCase(matchCase);
+				if (result == null) result = caseIVariableProvider(matchCase);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

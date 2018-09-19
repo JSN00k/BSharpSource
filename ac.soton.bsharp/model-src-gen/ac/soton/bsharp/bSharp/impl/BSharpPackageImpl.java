@@ -1663,6 +1663,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		functionDeclEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		functionNameEClass.getESuperTypes().add(this.getExpressionVariable());
 		matchStatementEClass.getESuperTypes().add(this.getExpression());
+		matchCaseEClass.getESuperTypes().add(this.getIVariableProvider());
 		typedVariableEClass.getESuperTypes().add(this.getExpressionVariable());
 		quantLambdaEClass.getESuperTypes().add(this.getExpression());
 		quantLambdaEClass.getESuperTypes().add(this.getIVariableProvider());

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface MatchCase extends EObject {
+public interface MatchCase extends IVariableProvider {
 	/**
 	 * Returns the value of the '<em><b>Decon Name</b></em>' reference.
 	 * <!-- begin-user-doc -->

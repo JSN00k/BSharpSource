@@ -1149,7 +1149,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_CASE__DECON_NAME = 0;
+	int MATCH_CASE__DECON_NAME = IVARIABLE_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -1158,7 +1158,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_CASE__VARIABLES = 1;
+	int MATCH_CASE__VARIABLES = IVARIABLE_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1167,7 +1167,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_CASE__EXPR = 2;
+	int MATCH_CASE__EXPR = IVARIABLE_PROVIDER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Match Case</em>' class.
@@ -1176,7 +1176,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_CASE_FEATURE_COUNT = 3;
+	int MATCH_CASE_FEATURE_COUNT = IVARIABLE_PROVIDER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Theorem Decl</b></em>' containment reference list.
