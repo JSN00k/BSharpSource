@@ -4,9 +4,9 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypeDeclaration;
-import ac.soton.bsharp.bSharp.TypeName;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -25,23 +25,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.TypeDeclarationImpl#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.TypeDeclarationImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.TypeDeclarationImpl#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TypeDeclarationImpl extends MinimalEObjectImpl.Container implements TypeDeclaration {
-	/**
-	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeName()
-	 * @generated
-	 * @ordered
-	 */
-	protected TypeName typeName;
-
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -51,6 +41,16 @@ public class TypeDeclarationImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected TypeDeclContext context;
+
+	/**
+	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeName()
+	 * @generated
+	 * @ordered
+	 */
+	protected ClassDecl typeName;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -76,10 +76,10 @@ public class TypeDeclarationImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeName getTypeName() {
+	public ClassDecl getTypeName() {
 		if (typeName != null && typeName.eIsProxy()) {
 			InternalEObject oldTypeName = (InternalEObject)typeName;
-			typeName = (TypeName)eResolveProxy(oldTypeName);
+			typeName = (ClassDecl)eResolveProxy(oldTypeName);
 			if (typeName != oldTypeName) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.TYPE_DECLARATION__TYPE_NAME, oldTypeName, typeName));
@@ -93,7 +93,7 @@ public class TypeDeclarationImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeName basicGetTypeName() {
+	public ClassDecl basicGetTypeName() {
 		return typeName;
 	}
 
@@ -102,8 +102,8 @@ public class TypeDeclarationImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeName(TypeName newTypeName) {
-		TypeName oldTypeName = typeName;
+	public void setTypeName(ClassDecl newTypeName) {
+		ClassDecl oldTypeName = typeName;
 		typeName = newTypeName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.TYPE_DECLARATION__TYPE_NAME, oldTypeName, typeName));
@@ -174,11 +174,11 @@ public class TypeDeclarationImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case BSharpPackage.TYPE_DECLARATION__CONTEXT:
+				return getContext();
 			case BSharpPackage.TYPE_DECLARATION__TYPE_NAME:
 				if (resolve) return getTypeName();
 				return basicGetTypeName();
-			case BSharpPackage.TYPE_DECLARATION__CONTEXT:
-				return getContext();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -191,11 +191,11 @@ public class TypeDeclarationImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.TYPE_DECLARATION__TYPE_NAME:
-				setTypeName((TypeName)newValue);
-				return;
 			case BSharpPackage.TYPE_DECLARATION__CONTEXT:
 				setContext((TypeDeclContext)newValue);
+				return;
+			case BSharpPackage.TYPE_DECLARATION__TYPE_NAME:
+				setTypeName((ClassDecl)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -209,11 +209,11 @@ public class TypeDeclarationImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.TYPE_DECLARATION__TYPE_NAME:
-				setTypeName((TypeName)null);
-				return;
 			case BSharpPackage.TYPE_DECLARATION__CONTEXT:
 				setContext((TypeDeclContext)null);
+				return;
+			case BSharpPackage.TYPE_DECLARATION__TYPE_NAME:
+				setTypeName((ClassDecl)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -227,10 +227,10 @@ public class TypeDeclarationImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.TYPE_DECLARATION__TYPE_NAME:
-				return typeName != null;
 			case BSharpPackage.TYPE_DECLARATION__CONTEXT:
 				return context != null;
+			case BSharpPackage.TYPE_DECLARATION__TYPE_NAME:
+				return typeName != null;
 		}
 		return super.eIsSet(featureID);
 	}

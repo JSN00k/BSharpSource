@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
+import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.TypedVariable;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -151,11 +153,13 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	
 	
-	public Collection<TypedVariable> getVariablesNames() {
-		ArrayList<TypedVariable> result = new ArrayList<TypedVariable>();
+	public Collection<EObject> getVariablesNames() {
+		ArrayList<EObject> result = new ArrayList<EObject>();
+		
+		result.add(this);
 		
 		for (DatatypeConstructor constr : constructors) {
-			result.add(constr.getName());
+			result.addAll(constr.getVariablesNames());
 		}
 		
 		return result;

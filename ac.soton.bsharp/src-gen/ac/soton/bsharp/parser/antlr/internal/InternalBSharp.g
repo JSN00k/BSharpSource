@@ -503,42 +503,6 @@ ruleClass returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleTypeName
-entryRuleTypeName returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypeNameRule()); }
-	iv_ruleTypeName=ruleTypeName
-	{ $current=$iv_ruleTypeName.current; }
-	EOF;
-
-// Rule TypeName
-ruleTypeName returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getTypeNameAccess().getNameQualifiedNameParserRuleCall_0());
-			}
-			lv_name_0_0=ruleQualifiedName
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getTypeNameRule());
-				}
-				set(
-					$current,
-					"name",
-					lv_name_0_0,
-					"ac.soton.bsharp.BSharp.QualifiedName");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
 // Entry rule entryRulePolymorphicTypeName
 entryRulePolymorphicTypeName returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getPolymorphicTypeNameRule()); }
@@ -705,7 +669,7 @@ rulePolyTypeConstraints returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameCrossReference_1_0());
+					newCompositeNode(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclCrossReference_1_0());
 				}
 				ruleQualifiedName
 				{
@@ -726,7 +690,7 @@ rulePolyTypeConstraints returns [EObject current=null]
 						}
 					}
 					{
-						newCompositeNode(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameCrossReference_2_1_0());
+						newCompositeNode(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclCrossReference_2_1_0());
 					}
 					ruleQualifiedName
 					{
@@ -1371,7 +1335,7 @@ ruleExtend returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getExtendAccess().getNameTypeNameCrossReference_1_0());
+					newCompositeNode(grammarAccess.getExtendAccess().getNameClassDeclCrossReference_1_0());
 				}
 				ruleQualifiedName
 				{
@@ -2990,7 +2954,7 @@ ruleInstance returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getInstanceAccess().getClassNameTypeNameCrossReference_1_0());
+					newCompositeNode(grammarAccess.getInstanceAccess().getClassNameClassDeclCrossReference_1_0());
 				}
 				ruleQualifiedName
 				{

@@ -4,8 +4,8 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.PolyTypeConstraints;
-import ac.soton.bsharp.bSharp.TypeName;
 
 import java.util.Collection;
 
@@ -39,7 +39,7 @@ public class PolyTypeConstraintsImpl extends MinimalEObjectImpl.Container implem
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypeName> typeName;
+	protected EList<ClassDecl> typeName;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,9 +65,9 @@ public class PolyTypeConstraintsImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypeName> getTypeName() {
+	public EList<ClassDecl> getTypeName() {
 		if (typeName == null) {
-			typeName = new EObjectResolvingEList<TypeName>(TypeName.class, this, BSharpPackage.POLY_TYPE_CONSTRAINTS__TYPE_NAME);
+			typeName = new EObjectResolvingEList<ClassDecl>(ClassDecl.class, this, BSharpPackage.POLY_TYPE_CONSTRAINTS__TYPE_NAME);
 		}
 		return typeName;
 	}
@@ -97,7 +97,7 @@ public class PolyTypeConstraintsImpl extends MinimalEObjectImpl.Container implem
 		switch (featureID) {
 			case BSharpPackage.POLY_TYPE_CONSTRAINTS__TYPE_NAME:
 				getTypeName().clear();
-				getTypeName().addAll((Collection<? extends TypeName>)newValue);
+				getTypeName().addAll((Collection<? extends ClassDecl>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

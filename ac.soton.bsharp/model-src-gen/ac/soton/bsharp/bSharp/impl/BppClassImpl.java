@@ -314,6 +314,7 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 
 	public Collection<EObject> getVariablesNames() {		
 		ArrayList<EObject> result = new ArrayList<EObject>();
+		
 		result.add(this);
 		if (varList == null) {
 			return result;
@@ -323,9 +324,4 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 		return result;
 	}
 	
-	@Override
-	public Collection<PolymorphicTypeName> getPolyTypeNames() {
-		return EcoreUtil2.getAllContentsOfType(getContext(), PolymorphicTypeName.class);
-	}
-
 } //BppClassImpl

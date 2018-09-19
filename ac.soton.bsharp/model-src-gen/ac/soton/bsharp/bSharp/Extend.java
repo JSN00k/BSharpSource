@@ -32,12 +32,12 @@ public interface Extend extends TopLevel, IVariableProvider, IPolyTypeProvider {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' reference.
-	 * @see #setName(TypeName)
+	 * @see #setName(ClassDecl)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend_Name()
 	 * @model
 	 * @generated
 	 */
-	TypeName getName();
+	ClassDecl getName();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Extend#getName <em>Name</em>}' reference.
@@ -47,7 +47,7 @@ public interface Extend extends TopLevel, IVariableProvider, IPolyTypeProvider {
 	 * @see #getName()
 	 * @generated
 	 */
-	void setName(TypeName value);
+	void setName(ClassDecl value);
 
 	/**
 	 * Returns the value of the '<em><b>Extension</b></em>' attribute.

@@ -5,11 +5,10 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BppClass;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
-import ac.soton.bsharp.bSharp.TypeName;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -48,7 +47,7 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeName name;
+	protected ClassDecl name;
 
 	/**
 	 * The default value of the '{@link #getExtension() <em>Extension</em>}' attribute.
@@ -104,10 +103,10 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeName getName() {
+	public ClassDecl getName() {
 		if (name != null && name.eIsProxy()) {
 			InternalEObject oldName = (InternalEObject)name;
-			name = (TypeName)eResolveProxy(oldName);
+			name = (ClassDecl)eResolveProxy(oldName);
 			if (name != oldName) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.EXTEND__NAME, oldName, name));
@@ -121,7 +120,7 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeName basicGetName() {
+	public ClassDecl basicGetName() {
 		return name;
 	}
 
@@ -130,8 +129,8 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(TypeName newName) {
-		TypeName oldName = name;
+	public void setName(ClassDecl newName) {
+		ClassDecl oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.EXTEND__NAME, oldName, name));
@@ -213,7 +212,7 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BSharpPackage.EXTEND__NAME:
-				setName((TypeName)newValue);
+				setName((ClassDecl)newValue);
 				return;
 			case BSharpPackage.EXTEND__EXTENSION:
 				setExtension((String)newValue);
@@ -235,7 +234,7 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BSharpPackage.EXTEND__NAME:
-				setName((TypeName)null);
+				setName((ClassDecl)null);
 				return;
 			case BSharpPackage.EXTEND__EXTENSION:
 				setExtension(EXTENSION_EDEFAULT);
@@ -286,9 +285,8 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 		/* Note datatypes don't create type variables, I think these may be 
 		 * covered when looking for function names instead.
 		 */
-		EObject extended = name.eContainer();
-		if (extended instanceof BppClass) {
-			return ((BppClass)extended).getVariablesNames();
+		if (name instanceof BppClass) {
+			return ((BppClass)name).getVariablesNames();
 		} else {
 			return null;
 		}
@@ -296,9 +294,8 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 
 	@Override
 	public Collection<PolymorphicTypeName> getPolyTypeNames() {
-		EObject extended = name.eContainer();
-		if (extended instanceof BppClass) {
-			return ((BppClass)extended).getPolyTypeNames();
+		if (name instanceof BppClass) {
+			return ((BppClass)name).getPolyTypeNames();
 		} else {
 			return null;
 		}

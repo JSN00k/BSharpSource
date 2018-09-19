@@ -5,9 +5,13 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.IPolyTypeProvider;
+import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.PolyContext;
+import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
-import ac.soton.bsharp.bSharp.TypeName;
 
 import java.util.Collection;
 
@@ -23,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,34 +37,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getBodyElements <em>Body Elements</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
-	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContext()
-	 * @generated
-	 * @ordered
-	 */
-	protected PolyContext context;
-
-	/**
-	 * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBodyElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypeBodyElements> bodyElements;
-
+public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,6 +64,26 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContext()
+	 * @generated
+	 * @ordered
+	 */
+	protected PolyContext context;
+
+	/**
+	 * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBodyElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TypeBodyElements> bodyElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -199,12 +204,12 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case BSharpPackage.CLASS_DECL__NAME:
+				return getName();
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return getContext();
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
 				return getBodyElements();
-			case BSharpPackage.CLASS_DECL__NAME:
-				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -218,15 +223,15 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case BSharpPackage.CLASS_DECL__NAME:
+				setName((String)newValue);
+				return;
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				setContext((PolyContext)newValue);
 				return;
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
 				getBodyElements().clear();
 				getBodyElements().addAll((Collection<? extends TypeBodyElements>)newValue);
-				return;
-			case BSharpPackage.CLASS_DECL__NAME:
-				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -240,14 +245,14 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.CLASS_DECL__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				setContext((PolyContext)null);
 				return;
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
 				getBodyElements().clear();
-				return;
-			case BSharpPackage.CLASS_DECL__NAME:
-				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -261,14 +266,76 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.CLASS_DECL__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return context != null;
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
 				return bodyElements != null && !bodyElements.isEmpty();
-			case BSharpPackage.CLASS_DECL__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == GenName.class) {
+			switch (derivedFeatureID) {
+				case BSharpPackage.CLASS_DECL__NAME: return BSharpPackage.GEN_NAME__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == ExpressionVariable.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IVariableProvider.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IPolyTypeProvider.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == GenName.class) {
+			switch (baseFeatureID) {
+				case BSharpPackage.GEN_NAME__NAME: return BSharpPackage.CLASS_DECL__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == ExpressionVariable.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IVariableProvider.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IPolyTypeProvider.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -285,6 +352,18 @@ public class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/* Not sure why this wasn't automatically generated :-/ */
+	@Override
+	public String descriptiveName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+	
+	public Collection<PolymorphicTypeName> getPolyTypeNames() {
+		/* Context is the Polynomial context. */
+		return EcoreUtil2.getAllContentsOfType(getContext(), PolymorphicTypeName.class);
 	}
 
 } //ClassDeclImpl

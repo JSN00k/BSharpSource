@@ -4,10 +4,10 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
-import ac.soton.bsharp.bSharp.TypeName;
 
 import java.util.Collection;
 
@@ -48,7 +48,7 @@ public class InstanceImpl extends TopLevelImpl implements Instance {
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeName className;
+	protected ClassDecl className;
 
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
@@ -94,10 +94,10 @@ public class InstanceImpl extends TopLevelImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeName getClassName() {
+	public ClassDecl getClassName() {
 		if (className != null && className.eIsProxy()) {
 			InternalEObject oldClassName = (InternalEObject)className;
-			className = (TypeName)eResolveProxy(oldClassName);
+			className = (ClassDecl)eResolveProxy(oldClassName);
 			if (className != oldClassName) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.INSTANCE__CLASS_NAME, oldClassName, className));
@@ -111,7 +111,7 @@ public class InstanceImpl extends TopLevelImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeName basicGetClassName() {
+	public ClassDecl basicGetClassName() {
 		return className;
 	}
 
@@ -120,8 +120,8 @@ public class InstanceImpl extends TopLevelImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClassName(TypeName newClassName) {
-		TypeName oldClassName = className;
+	public void setClassName(ClassDecl newClassName) {
+		ClassDecl oldClassName = className;
 		className = newClassName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__CLASS_NAME, oldClassName, className));
@@ -227,7 +227,7 @@ public class InstanceImpl extends TopLevelImpl implements Instance {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BSharpPackage.INSTANCE__CLASS_NAME:
-				setClassName((TypeName)newValue);
+				setClassName((ClassDecl)newValue);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
 				setContext((TypeDeclContext)newValue);
@@ -249,7 +249,7 @@ public class InstanceImpl extends TopLevelImpl implements Instance {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BSharpPackage.INSTANCE__CLASS_NAME:
-				setClassName((TypeName)null);
+				setClassName((ClassDecl)null);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
 				setContext((TypeDeclContext)null);

@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface PolyTypeConstraints extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Type Name</b></em>' reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TypeName}.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.ClassDecl}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type Name</em>' reference list isn't clear,
@@ -38,6 +38,6 @@ public interface PolyTypeConstraints extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<TypeName> getTypeName();
+	EList<ClassDecl> getTypeName();
 
 } // PolyTypeConstraints

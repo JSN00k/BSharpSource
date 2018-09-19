@@ -16,7 +16,6 @@
     <genClasses ecoreClass="BSharp.ecore#//ClassDecl">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/bodyElements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute BSharp.ecore#//ClassDecl/name"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//BppClass">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BppClass/supertypes"/>
@@ -26,7 +25,6 @@
     <genClasses ecoreClass="BSharp.ecore#//GenName">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//GenName/name"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//TypeName"/>
     <genClasses ecoreClass="BSharp.ecore#//PolymorphicTypeName"/>
     <genClasses ecoreClass="BSharp.ecore#//PolyContext">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//PolyContext/polyTypes"/>
@@ -113,8 +111,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//TypedVariable/name"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TypeDeclaration">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeDeclaration/TypeName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeDeclaration/context"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeDeclaration/TypeName"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//QuantLambda">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//QuantLambda/qType"/>

@@ -33,12 +33,12 @@ public interface Instance extends TopLevel {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Class Name</em>' reference.
-	 * @see #setClassName(TypeName)
+	 * @see #setClassName(ClassDecl)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance_ClassName()
 	 * @model
 	 * @generated
 	 */
-	TypeName getClassName();
+	ClassDecl getClassName();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Instance#getClassName <em>Class Name</em>}' reference.
@@ -48,7 +48,7 @@ public interface Instance extends TopLevel {
 	 * @see #getClassName()
 	 * @generated
 	 */
-	void setClassName(TypeName value);
+	void setClassName(ClassDecl value);
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.

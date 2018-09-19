@@ -102,7 +102,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getClassAccess().getVarListAssignment_4(), "rule__Class__VarListAssignment_4");
 			builder.put(grammarAccess.getClassAccess().getWhereAssignment_5(), "rule__Class__WhereAssignment_5");
 			builder.put(grammarAccess.getClassAccess().getBodyElementsAssignment_8(), "rule__Class__BodyElementsAssignment_8");
-			builder.put(grammarAccess.getTypeNameAccess().getNameAssignment(), "rule__TypeName__NameAssignment");
 			builder.put(grammarAccess.getPolymorphicTypeNameAccess().getNameAssignment(), "rule__PolymorphicTypeName__NameAssignment");
 			builder.put(grammarAccess.getPolyContextAccess().getPolyTypesAssignment_1(), "rule__PolyContext__PolyTypesAssignment_1");
 			builder.put(grammarAccess.getPolyContextTypesAccess().getNameAssignment_0(), "rule__PolyContextTypes__NameAssignment_0");

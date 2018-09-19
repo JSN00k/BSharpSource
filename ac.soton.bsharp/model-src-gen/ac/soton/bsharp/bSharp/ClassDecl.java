@@ -22,33 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl()
  * @model
  */
-public interface ClassDecl extends TopLevel {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl_Name()
-	 * @model id="true"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ClassDecl#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
+public interface ClassDecl extends TopLevel, GenName, ExpressionVariable, IVariableProvider, IPolyTypeProvider {
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

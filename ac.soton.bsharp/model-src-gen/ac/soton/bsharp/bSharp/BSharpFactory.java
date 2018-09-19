@@ -50,15 +50,6 @@ public interface BSharpFactory extends EFactory {
 	ImportStatement createImportStatement();
 
 	/**
-	 * Returns a new object of class '<em>Class Decl</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Class Decl</em>'.
-	 * @generated
-	 */
-	ClassDecl createClassDecl();
-
-	/**
 	 * Returns a new object of class '<em>Bpp Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,15 +66,6 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	GenName createGenName();
-
-	/**
-	 * Returns a new object of class '<em>Type Name</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Name</em>'.
-	 * @generated
-	 */
-	TypeName createTypeName();
 
 	/**
 	 * Returns a new object of class '<em>Polymorphic Type Name</em>'.

@@ -33,7 +33,6 @@ import ac.soton.bsharp.bSharp.TypeBodyElements;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypeInstance;
-import ac.soton.bsharp.bSharp.TypeName;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
@@ -171,9 +170,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.TYPE_INSTANCE:
 				sequence_TypeInstance(context, (TypeInstance) semanticObject); 
 				return; 
-			case BSharpPackage.TYPE_NAME:
-				sequence_TypeName(context, (TypeName) semanticObject); 
-				return; 
 			case BSharpPackage.TYPE_STRUCTURE:
 				sequence_TypeStructure(context, (TypeStructure) semanticObject); 
 				return; 
@@ -221,6 +217,8 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TopLevel returns BppClass
 	 *     ClassDecl returns BppClass
 	 *     Class returns BppClass
+	 *     GenName returns BppClass
+	 *     ExpressionVariable returns BppClass
 	 *
 	 * Constraint:
 	 *     (
@@ -265,7 +263,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     TopLevel returns Datatype
 	 *     ClassDecl returns Datatype
+	 *     GenName returns Datatype
 	 *     Datatype returns Datatype
+	 *     ExpressionVariable returns Datatype
 	 *
 	 * Constraint:
 	 *     (name=ID context=PolyContext? constructors+=DatatypeConstructor+ bodyElements+=TypeBodyElements*)
@@ -293,7 +293,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Extend returns Extend
 	 *
 	 * Constraint:
-	 *     (name=[TypeName|QualifiedName] extension=ID bodyElements+=TypeBodyElements*)
+	 *     (name=[ClassDecl|QualifiedName] extension=ID bodyElements+=TypeBodyElements*)
 	 */
 	protected void sequence_Extend(ISerializationContext context, Extend semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -418,7 +418,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
-	 *     (className=[TypeName|QualifiedName] context=TypeDeclContext arguments+=RootExpression? arguments+=RootExpression*)
+	 *     (className=[ClassDecl|QualifiedName] context=TypeDeclContext arguments+=RootExpression? arguments+=RootExpression*)
 	 */
 	protected void sequence_Instance(ISerializationContext context, Instance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -506,7 +506,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     PolyTypeConstraints returns PolyTypeConstraints
 	 *
 	 * Constraint:
-	 *     (TypeName+=[TypeName|QualifiedName] TypeName+=[TypeName|QualifiedName]*)
+	 *     (TypeName+=[ClassDecl|QualifiedName] TypeName+=[ClassDecl|QualifiedName]*)
 	 */
 	protected void sequence_PolyTypeConstraints(ISerializationContext context, PolyTypeConstraints semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -659,26 +659,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_TypeInstance(ISerializationContext context, TypeInstance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     GenName returns TypeName
-	 *     TypeName returns TypeName
-	 *     ExpressionVariable returns TypeName
-	 *
-	 * Constraint:
-	 *     name=QualifiedName
-	 */
-	protected void sequence_TypeName(ISerializationContext context, TypeName semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.GEN_NAME__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.GEN_NAME__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeNameAccess().getNameQualifiedNameParserRuleCall_0(), semanticObject.getName());
-		feeder.finish();
 	}
 	
 	

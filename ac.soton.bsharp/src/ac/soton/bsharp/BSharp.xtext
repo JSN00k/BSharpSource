@@ -43,9 +43,7 @@ Class returns BppClass:
 	'{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
-GenName: PolymorphicTypeName | TypeName;
-
-TypeName: name=QualifiedName;
+GenName: PolymorphicTypeName | ClassDecl;
 
 /*---------------- Polymorphic Context of -------------------------- */
 
@@ -60,7 +58,7 @@ PolyContextTypes:
 ;
 
 PolyTypeConstraints:
-	':' TypeName+=[TypeName|QualifiedName] (',' TypeName+=[TypeName|QualifiedName])*
+	':' TypeName+=[ClassDecl|QualifiedName] (',' TypeName+=[ClassDecl|QualifiedName])*
 ;
 
 /* ------------------- SuperTypes ---------------------------------- */
@@ -123,7 +121,7 @@ DatatypeConstructor:
 /* ------------------------ Extension statement ---------------------------- */
 
 Extend: 
-	'Extend' name=[TypeName|QualifiedName] '(' extension=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
+	'Extend' name=[ClassDecl|QualifiedName] '(' extension=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 /* ------------------------ TypeBodyElements ------------------------------- */
@@ -252,7 +250,7 @@ FunctionCall returns FunctionCall:
 ;
 
 ExpressionVariable:
-	 FunctionName | TypedVariable | TypeName
+	 FunctionName | TypedVariable | ClassDecl
 ;
 
  TypeInstance:
@@ -285,7 +283,7 @@ InbuiltTypeScan:
 /* ------------------------------ Instance ---------------------------------------------*/
 
 Instance:
-	'Instance' className=[TypeName|QualifiedName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')'
+	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')'
 ;
 
 /* TODO: Implement Methods,  Infix keyword and precedence on Infix operators. */

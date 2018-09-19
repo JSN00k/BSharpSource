@@ -60,10 +60,8 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.DOMAIN_MODEL: return createDomainModel();
 			case BSharpPackage.TOP_LEVEL: return createTopLevel();
 			case BSharpPackage.IMPORT_STATEMENT: return createImportStatement();
-			case BSharpPackage.CLASS_DECL: return createClassDecl();
 			case BSharpPackage.BPP_CLASS: return createBppClass();
 			case BSharpPackage.GEN_NAME: return createGenName();
-			case BSharpPackage.TYPE_NAME: return createTypeName();
 			case BSharpPackage.POLYMORPHIC_TYPE_NAME: return createPolymorphicTypeName();
 			case BSharpPackage.POLY_CONTEXT: return createPolyContext();
 			case BSharpPackage.POLY_CONTEXT_TYPES: return createPolyContextTypes();
@@ -138,16 +136,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassDecl createClassDecl() {
-		ClassDeclImpl classDecl = new ClassDeclImpl();
-		return classDecl;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BppClass createBppClass() {
 		BppClassImpl bppClass = new BppClassImpl();
 		return bppClass;
@@ -161,16 +149,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public GenName createGenName() {
 		GenNameImpl genName = new GenNameImpl();
 		return genName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeName createTypeName() {
-		TypeNameImpl typeName = new TypeNameImpl();
-		return typeName;
 	}
 
 	/**

@@ -93,10 +93,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createGenNameAdapter();
 			}
 			@Override
-			public Adapter caseTypeName(TypeName object) {
-				return createTypeNameAdapter();
-			}
-			@Override
 			public Adapter casePolymorphicTypeName(PolymorphicTypeName object) {
 				return createPolymorphicTypeNameAdapter();
 			}
@@ -341,20 +337,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGenNameAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TypeName <em>Type Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.TypeName
-	 * @generated
-	 */
-	public Adapter createTypeNameAdapter() {
 		return null;
 	}
 

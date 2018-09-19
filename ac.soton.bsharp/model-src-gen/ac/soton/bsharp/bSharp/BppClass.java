@@ -22,7 +22,7 @@ package ac.soton.bsharp.bSharp;
  * @model
  * @generated
  */
-public interface BppClass extends ClassDecl, IVariableProvider, IPolyTypeProvider {
+public interface BppClass extends ClassDecl {
 	/**
 	 * Returns the value of the '<em><b>Supertypes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

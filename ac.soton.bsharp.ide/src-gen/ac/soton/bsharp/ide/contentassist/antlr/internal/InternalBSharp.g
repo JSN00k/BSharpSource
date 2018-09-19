@@ -249,31 +249,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleTypeName
-entryRuleTypeName
-:
-{ before(grammarAccess.getTypeNameRule()); }
-	 ruleTypeName
-{ after(grammarAccess.getTypeNameRule()); } 
-	 EOF 
-;
-
-// Rule TypeName
-ruleTypeName 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getTypeNameAccess().getNameAssignment()); }
-		(rule__TypeName__NameAssignment)
-		{ after(grammarAccess.getTypeNameAccess().getNameAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRulePolymorphicTypeName
 entryRulePolymorphicTypeName
 :
@@ -6088,21 +6063,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__TypeName__NameAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getTypeNameAccess().getNameQualifiedNameParserRuleCall_0()); }
-		ruleQualifiedName
-		{ after(grammarAccess.getTypeNameAccess().getNameQualifiedNameParserRuleCall_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__PolymorphicTypeName__NameAssignment
 	@init {
 		int stackSize = keepStackSize();
@@ -6169,13 +6129,13 @@ rule__PolyTypeConstraints__TypeNameAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameCrossReference_1_0()); }
+		{ before(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclCrossReference_1_0()); }
 		(
-			{ before(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameQualifiedNameParserRuleCall_1_0_1()); }
+			{ before(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclQualifiedNameParserRuleCall_1_0_1()); }
 			ruleQualifiedName
-			{ after(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameQualifiedNameParserRuleCall_1_0_1()); }
+			{ after(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclQualifiedNameParserRuleCall_1_0_1()); }
 		)
-		{ after(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameCrossReference_1_0()); }
+		{ after(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclCrossReference_1_0()); }
 	)
 ;
 finally {
@@ -6188,13 +6148,13 @@ rule__PolyTypeConstraints__TypeNameAssignment_2_1
 	}
 :
 	(
-		{ before(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameCrossReference_2_1_0()); }
+		{ before(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclCrossReference_2_1_0()); }
 		(
-			{ before(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameQualifiedNameParserRuleCall_2_1_0_1()); }
+			{ before(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclQualifiedNameParserRuleCall_2_1_0_1()); }
 			ruleQualifiedName
-			{ after(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameQualifiedNameParserRuleCall_2_1_0_1()); }
+			{ after(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclQualifiedNameParserRuleCall_2_1_0_1()); }
 		)
-		{ after(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameTypeNameCrossReference_2_1_0()); }
+		{ after(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclCrossReference_2_1_0()); }
 	)
 ;
 finally {
@@ -6466,13 +6426,13 @@ rule__Extend__NameAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getExtendAccess().getNameTypeNameCrossReference_1_0()); }
+		{ before(grammarAccess.getExtendAccess().getNameClassDeclCrossReference_1_0()); }
 		(
-			{ before(grammarAccess.getExtendAccess().getNameTypeNameQualifiedNameParserRuleCall_1_0_1()); }
+			{ before(grammarAccess.getExtendAccess().getNameClassDeclQualifiedNameParserRuleCall_1_0_1()); }
 			ruleQualifiedName
-			{ after(grammarAccess.getExtendAccess().getNameTypeNameQualifiedNameParserRuleCall_1_0_1()); }
+			{ after(grammarAccess.getExtendAccess().getNameClassDeclQualifiedNameParserRuleCall_1_0_1()); }
 		)
-		{ after(grammarAccess.getExtendAccess().getNameTypeNameCrossReference_1_0()); }
+		{ after(grammarAccess.getExtendAccess().getNameClassDeclCrossReference_1_0()); }
 	)
 ;
 finally {
@@ -7252,13 +7212,13 @@ rule__Instance__ClassNameAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getInstanceAccess().getClassNameTypeNameCrossReference_1_0()); }
+		{ before(grammarAccess.getInstanceAccess().getClassNameClassDeclCrossReference_1_0()); }
 		(
-			{ before(grammarAccess.getInstanceAccess().getClassNameTypeNameQualifiedNameParserRuleCall_1_0_1()); }
+			{ before(grammarAccess.getInstanceAccess().getClassNameClassDeclQualifiedNameParserRuleCall_1_0_1()); }
 			ruleQualifiedName
-			{ after(grammarAccess.getInstanceAccess().getClassNameTypeNameQualifiedNameParserRuleCall_1_0_1()); }
+			{ after(grammarAccess.getInstanceAccess().getClassNameClassDeclQualifiedNameParserRuleCall_1_0_1()); }
 		)
-		{ after(grammarAccess.getInstanceAccess().getClassNameTypeNameCrossReference_1_0()); }
+		{ after(grammarAccess.getInstanceAccess().getClassNameClassDeclCrossReference_1_0()); }
 	)
 ;
 finally {

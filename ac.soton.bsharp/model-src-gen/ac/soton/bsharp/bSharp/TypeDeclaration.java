@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.TypeDeclaration#getTypeName <em>Type Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TypeDeclaration#getContext <em>Context</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.TypeDeclaration#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getTypeDeclaration()
@@ -23,32 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface TypeDeclaration extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Type Name</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type Name</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Name</em>' reference.
-	 * @see #setTypeName(TypeName)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTypeDeclaration_TypeName()
-	 * @model
-	 * @generated
-	 */
-	TypeName getTypeName();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.TypeDeclaration#getTypeName <em>Type Name</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type Name</em>' reference.
-	 * @see #getTypeName()
-	 * @generated
-	 */
-	void setTypeName(TypeName value);
-
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -74,5 +48,31 @@ public interface TypeDeclaration extends EObject {
 	 * @generated
 	 */
 	void setContext(TypeDeclContext value);
+
+	/**
+	 * Returns the value of the '<em><b>Type Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type Name</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type Name</em>' reference.
+	 * @see #setTypeName(ClassDecl)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTypeDeclaration_TypeName()
+	 * @model
+	 * @generated
+	 */
+	ClassDecl getTypeName();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.TypeDeclaration#getTypeName <em>Type Name</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type Name</em>' reference.
+	 * @see #getTypeName()
+	 * @generated
+	 */
+	void setTypeName(ClassDecl value);
 
 } // TypeDeclaration

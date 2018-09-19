@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.Scopes
 import ac.soton.bsharp.bSharp.PolymorphicTypeName
 import org.eclipse.xtext.EcoreUtil2
-import ac.soton.bsharp.bSharp.TypeName
 import ac.soton.bsharp.bSharp.GenName
 import ac.soton.bsharp.bSharp.BSharpPackage
 import java.util.ArrayList
@@ -25,11 +24,11 @@ import ac.soton.bsharp.bSharp.MatchStatement
 import ac.soton.bsharp.bSharp.IVariableProvider
 import ac.soton.bsharp.bSharp.IPolyTypeProvider
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider
-import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.common.util.EList
 import java.util.List
 import org.eclipse.xtext.scoping.impl.ImportNormalizer
 import com.google.common.collect.Lists
+import ac.soton.bsharp.bSharp.Expression
 
 /**
  * This class contains custom scoping description.
@@ -51,7 +50,7 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 			if (classDecl === null) {
 				val extend = EcoreUtil2.getContainerOfType(context, Extend)
 				if (extend !== null) {
-					classDecl = extend.name.eContainer as ClassDecl
+					classDecl = extend.name as ClassDecl
 				}
 			}
 			
@@ -71,23 +70,23 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 				 
 				 if (classDecl instanceof Datatype) {
 				   allElems.addAll(EcoreUtilJ.eFilterUpToIncludingWith(rootElement, [object | object==finalClassDecl],
-					[object | object instanceof TypeName]) as Collection<TypeName>)
+					[object | object instanceof ClassDecl]) as Collection<ClassDecl>)
 				} else {
 					allElems.addAll(EcoreUtilJ.eFilterUpToWith(rootElement, [object | object==finalClassDecl],
-					[object | object instanceof TypeName]) as Collection<TypeName>)
+					[object | object instanceof ClassDecl]) as Collection<ClassDecl>)
 				}
 
 				val scope = Scopes.scopeFor(allElems, parent)
 				
 				return scope
 			}
-		} else if (reference.getEReferenceType == BSharpPackage.Literals.TYPE_NAME) {
+		} else if (reference.getEReferenceType == BSharpPackage.Literals.CLASS_DECL) {
 			/* Only allow type names above the current typename
 			 * TODO: Need to include global imports.
 			 */
 			 
 			 val rootObj = EcoreUtil2.getRootContainer(context)
-			 var typeNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object | object == context], [object | object instanceof TypeName])
+			 var typeNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object | object == context], [object | object instanceof ClassDecl])
 			 return Scopes.scopeFor(typeNames, parent)
 		} else if (reference.getEReferenceType == BSharpPackage.Literals.EXPRESSION_VARIABLE) {
 			/* Here's the definition:
@@ -175,22 +174,22 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 //	}
 	
 	def IScope getVariableScopeFor(EObject context, IScope parent) {
-		val polyProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IVariableProvider
+		val variableProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IVariableProvider
 		
-		if (polyProvider === null) {
+		if (variableProvider === null) {
 			return null
 		}
 		
-		val parentScope = getVariableScopeFor(polyProvider as EObject, parent)
+		val parentScope = getVariableScopeFor(variableProvider as EObject, parent)
 		
-		if (polyProvider.variablesNames === null) {
+		if (variableProvider.variablesNames === null) {
 			return parentScope;
 		}
 		
 		if (parentScope === null) {
-			return Scopes.scopeFor(polyProvider.variablesNames)
+			return Scopes.scopeFor(variableProvider.variablesNames)
 		} else {
-			return Scopes.scopeFor(polyProvider.variablesNames, parentScope)
+			return Scopes.scopeFor(variableProvider.variablesNames, parentScope)
 		}
 		
 	}
