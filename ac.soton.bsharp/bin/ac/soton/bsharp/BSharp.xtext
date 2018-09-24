@@ -1,0 +1,289 @@
+grammar ac.soton.bsharp.BSharp with org.eclipse.xtext.common.Terminals
+
+import "http://www.soton.ac/bsharp/BSharp" 
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+DomainModel:
+	(elements+=TopLevel)*;
+	
+// Theorem names can include white space. Work out how to change this to any string without a ':'
+THM_NAME: (INT | ID | WS)* ":";
+	
+TopLevel:
+	ImportStatement | ClassDecl | Extend | Instance;
+	
+ClassDecl returns ClassDecl:
+	Class | Datatype
+;
+
+/* -------------------------- Import Statements -------------------- */
+/* I had hoped to use a python style import, however this seems to be fighting 
+ * the system, and would require a custom implementation of DefaultDeclarativeQualifiedNameProvider.
+ * To increase the development speed I am using the java style imports instead.
+ */
+
+QualifiedName:
+   ID ('.' ID)*
+ ;
+
+QualifiedNameWithWildcard:
+    QualifiedName '.*'?
+;
+
+ImportStatement:
+	'Import'
+		(imports+=QualifiedNameWithWildcard)+
+;
+
+/* ------------------------ Class statements --------------------- */
+
+
+Class returns BppClass:
+	'Class' name=ID (context=PolyContext)? (supertypes=SuperTypeList)? (varList=TypeStructure)? (where=Where)? (';')? 
+	'{' (bodyElements+=TypeBodyElements)* '}'
+;
+
+GenName: PolymorphicTypeName | ClassDecl;
+
+/*---------------- Polymorphic Context of -------------------------- */
+
+PolymorphicTypeName: name=ID;
+
+PolyContext:
+	'<' (polyTypes+=PolyContextTypes)+ '>'
+;
+
+PolyContextTypes:
+	name=PolymorphicTypeName (constraints+=PolyTypeConstraints)*
+;
+
+PolyTypeConstraints:
+	':' TypeName+=[ClassDecl|QualifiedName] (',' TypeName+=[ClassDecl|QualifiedName])*
+;
+
+/* ------------------- SuperTypes ---------------------------------- */
+
+/* Any constriction on the polymorphic context has to be done by declaring the polymorphic context
+ * on the new type. If necessary the polymorphic context can be used within type constructors. In the simple case 
+ * this will be inferred . Required thought on checking the base types of the super types. At some points these
+ * need to be identical declarations. It is also necessary to allow EventB style type constructors at this
+ * point. e.g., an associative operator is a subtype of a closed Event-B total function.
+ */
+SuperTypeList:
+	':' superType+=ConstructedType (',' superType+=ConstructedType)*
+;
+
+/* Along with the normal Event-B type operator, and new B++ types the  */
+ConstructedType:
+	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
+;
+
+/* Type constructor has validation rules to check that there is no context when there is a polymorphic name, 
+ * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
+ * Probably need to add the predicate type to this.
+ */
+TypeConstructor:
+	(TypeName=[GenName|QualifiedName] | InbuiltTypeScan) (context+=TypeDeclContext)?
+;
+
+TypeDeclContext:
+	'<' TypeName+=ConstructedType (',' TypeName+=ConstructedType)* '>'
+;
+
+/* -------------------- Type Structure ---------------------------------- */
+
+TypeStructure:
+	'(' variables=TypedVariableList ')'
+;
+
+/* -------------------- Where Statement -------------------------------- */
+
+/* Type checking (which is not implemented yet) is used to type check that Expression returns a 
+ * predicate. Expression has not yet been written, but is far too general to be included in the where
+ * statement.
+ */
+Where:
+	'where' expessions+=Quantifier (';' expressions+=RootExpression)*
+;
+
+/* ---------------------- Datatype declarations -------------------------- */
+
+Datatype:
+	'Datatype' name=ID (context=PolyContext)? ('|' constructors+=DatatypeConstructor)+ '{' (bodyElements+=TypeBodyElements)* '}'
+;
+
+/* PolyContext is the same as PolyContext used by the class declaration above. */
+
+DatatypeConstructor:
+	 name=TypedVariable ('(' decons=TypedVariableList ')')?
+;
+
+/* ------------------------ Extension statement ---------------------------- */
+
+Extend: 
+	'Extend' name=[ClassDecl|QualifiedName] '(' extension=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
+;
+
+/* ------------------------ TypeBodyElements ------------------------------- */
+
+TypeBodyElements:
+	 (functions+=FunctionDecl) | (theorems+=TheoremBody)
+;
+
+/*------------------------- Functions --------------------------------- */
+
+FunctionDecl:
+	name=FunctionName (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=TypeConstructor (infix='INFIX')? precedence=INT? expr=RootExpression
+;
+
+FunctionName:
+	name=ID
+;
+
+MatchStatement:
+	'match' match=[TypedVariable] '{'
+	inductCase+=MatchCase (inductCase+=MatchCase)* '}'
+;
+
+MatchCase:
+	'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':' expr=RootExpression
+;
+
+/* ----------------------------- Theorems -------------------------*/
+
+TheoremBody:
+	'Theorems' '{' (theoremDecl+=TheoremDecl)+ '}'
+;
+
+/* Type check that the expression is a predicate expression. From a lexing point
+ * of view the semicolon is necessary because the THM_NAME rule is not good enough.
+ */
+TheoremDecl:
+	name=THM_NAME expr=RootExpression ';'
+;
+
+TypedVariableList:
+	 variablesOfType+=VariableTyping (',' variablesOfType+=VariableTyping)*
+;
+
+VariableTyping:
+	((typeVar+=TypedVariable) (',' typeVar+=TypedVariable)* ':' type=ConstructedType)
+;
+
+TypedVariable:
+	name=ID
+;
+
+/* --------------------------- Expressions -------------------------- */
+
+/* --------------------------- Lambda and Quantifier ---------------- */
+
+/* The structure of Lambda and Quantifier are so similar that they're going to share a class */
+
+Lambda returns QuantLambda:
+	qType='λ' (context=PolyContext)? varList=TypedVariableList '|' expr=RootExpression
+;
+
+Quantifier returns QuantLambda:
+	qType=('∀' | '∃') (context=PolyContext)? varList=TypedVariableList '·' expr=RootExpression
+;
+
+RootExpression returns Expression:
+	Lambda | Quantifier | Infix | MatchStatement
+;
+
+/* ---------------------- *Fix ------------------------------ */
+
+Prefix returns Prefix:
+	name=PrefixBuiltIn  elem=Element
+;
+
+PrefixBuiltIn:
+	'¬'
+;
+
+/* Infix operators cause problems, there are two issues one is avoiding left recursion this 
+ * is covered adequately here: https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions 
+ * The second issue is precedence, this is also covered in the link above, however, implementing it in the 
+ * way suggested above will not scale to the creation of ones own infix functions, instead the initial implementation
+ * will require brackets for precedence. After that a system will be implemented where each infix operator will 
+ * be given a precedence value with higher values being higher precedence. It looks like this can be done by
+ * changing the parser using the MyDSLRuntimeModule to build the abstract syntax tree based on the value of the 
+ * operators.
+ * Before the precedence code is written into a parser override, all the expressions are in effect right bracketed,
+ * as you may expect from a language that is read from left to right.
+ * 
+ * TODO: Programmatically check that the function is an infix function.
+ */
+Infix returns Expression:
+	Element ({Infix.left=current} (funcName=[FunctionName] | opName=InbuiltInfix) right=Element)*
+;
+
+/* currently it will not build because the quantifier is causing recursion I think. 
+ * I think that we need a quantifier free expression to solve the problem Similar to the way
+ * precedence is handled here: https://typefox.io/parsing-expressions-with-xtext
+ */
+Element returns Expression:
+	Bracket | Prefix | FunctionCall
+;
+
+Bracket returns Bracket:
+	'(' child=RootExpression ')'
+;
+
+
+/* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
+ * scenarios: 
+ * A function call f(arguments)
+ * A infix function with a bracketed argument on the right 10 f (arguments)
+ * A function used without any arguments f add g 
+ * 
+ * To solve this functions can either be Prefix, Infix, or called with bracketed arguments. You cannot call a Infix function with bracketd 
+ * arguments. To do this you would need to write another function to make this call for you. In coq this is achieved when you declare a function
+ * you can add a operator name to the function, which is either infix or prefix, this again gives the two names for the function allowing 
+ * it to be called either as an operator or a functional call.
+ * 
+ * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
+ */
+FunctionCall returns FunctionCall:
+	(typeInst=TypeInstance) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+;
+
+ExpressionVariable:
+	 FunctionName | TypedVariable | ClassDecl
+;
+
+ TypeInstance:
+ 	(instance=[ExpressionVariable]) | (typeName=[GenName] ('.' element+=[TypedVariable])+)
+ ;
+
+InbuiltInfix:
+	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
+;
+
+/* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
+ * recursion in the inbuilt types it may be better to  */
+InbuiltType:
+	'Pred'
+;
+
+InbuiltTypeScan:
+	name=InbuiltType
+;
+
+/* I feel like I should need these, however, I'm not sure when they would be necessary. */
+//InbuiltTypeInstance:
+//	'⊤' | '⊥'
+//;
+//
+//InbuiltTypeInstanceScan:
+//	name=InbuiltTypeInstance
+//;
+
+/* ------------------------------ Instance ---------------------------------------------*/
+
+Instance:
+	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')'
+;
+
+/* TODO: Implement Methods,  Infix keyword and precedence on Infix operators. */

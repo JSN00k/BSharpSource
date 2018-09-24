@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList
 import java.util.List
 import org.eclipse.xtext.scoping.impl.ImportNormalizer
 import com.google.common.collect.Lists
-import ac.soton.bsharp.bSharp.Expression
 
 /**
  * This class contains custom scoping description.
@@ -37,106 +36,7 @@ import ac.soton.bsharp.bSharp.Expression
  * on how and when to use it.
  */
 class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
-	
-	//override getImportedNameSpace
-	
-	override getLocalElementsScope(IScope parent, EObject context, EReference reference) {		
-		/* This doesn't work, I believe that the issue is that  */
-		if (context instanceof TypeConstructor && reference.getEReferenceType() == BSharpPackage.Literals.GEN_NAME) {
-			/* Get scope for the class, and use it to check for polymorphic variable. Care needs to 
-			 * be taken here  as this is not complete, and will need to be added to when declaring 
-			 * functions and methods. */
-			var classDecl = EcoreUtil2.getContainerOfType(context, ClassDecl)
-			if (classDecl === null) {
-				val extend = EcoreUtil2.getContainerOfType(context, Extend)
-				if (extend !== null) {
-					classDecl = extend.name as ClassDecl
-				}
-			}
-			
-			if (classDecl !== null) {
-				val finalClassDecl = classDecl
-				val allElems = new ArrayList<GenName>()
-				if (classDecl.context !== null) {
-					allElems.addAll(EcoreUtil2.getAllContentsOfType(classDecl.context, PolymorphicTypeName))
-				 }
 
-				/* TODO: Turn this into a look up that includes imports */
-				val rootElement = EcoreUtil2.getRootContainer(context)
-				/* Predictably The Class elements returned from the statement above are in the
-				 * order in which they appear in the file. I can therefore simply remove any elements
-				 * from the returned list that appear after the current ndx.
-				 */
-				 
-				 if (classDecl instanceof Datatype) {
-				   allElems.addAll(EcoreUtilJ.eFilterUpToIncludingWith(rootElement, [object | object==finalClassDecl],
-					[object | object instanceof ClassDecl]) as Collection<ClassDecl>)
-				} else {
-					allElems.addAll(EcoreUtilJ.eFilterUpToWith(rootElement, [object | object==finalClassDecl],
-					[object | object instanceof ClassDecl]) as Collection<ClassDecl>)
-				}
-
-				val scope = Scopes.scopeFor(allElems, parent)
-				
-				return scope
-			}
-		} else if (reference.getEReferenceType == BSharpPackage.Literals.CLASS_DECL) {
-			/* Only allow type names above the current typename
-			 * TODO: Need to include global imports.
-			 */
-			 
-			 val rootObj = EcoreUtil2.getRootContainer(context)
-			 var typeNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object | object == context], [object | object instanceof ClassDecl])
-			 return Scopes.scopeFor(typeNames, parent)
-		} else if (reference.getEReferenceType == BSharpPackage.Literals.EXPRESSION_VARIABLE) {
-			/* Here's the definition:
-			 * ExpressionVariable:
-			 *	 FunctionName | TypedVariable | TypeName
-			 *  ;
-			 * 
-			 * I can use scoping to check for obvious mistakes in these references. However, believe that I 
-			 * will need to use validation to do the more complicated type checking. Currently this only checks
-			 * that the names are available to me.
-			 */
-			 
-			 /* If this becomes to computationally expensive it is possible to do this in a 
-			  * single iteration of the tree, however it's harder to write the code, so first 
-			  * attempt users multiple iterations.
-			  * 
-			  * TODO: Global scope it all!
-			  */
-			 val rootObj = EcoreUtil2.getRootContainer(context)
-			 val currentClass = EcoreUtil2.getContainerOfType(context, ClassDecl)
-			 
-			 /* FunctionName can be any function within the current body, or any body above. 
-			  */
-			 var functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object | object == currentClass], [object | object instanceof FunctionName])
-			 
-			 /* TypedVariableScope */
-			 var scope = getVariableScopeFor(context, parent)
-			 
-			 if (scope !== null)
-			 	return Scopes.scopeFor(functionNames, scope)
-			 else
-			 	return Scopes.scopeFor(functionNames, parent)
-		} else if (reference.getEReferenceType() == BSharpPackage.Literals.TYPED_VARIABLE && context instanceof MatchCase){
-			/* Assumes we're in a function declaration, as there isn't anywhere else for a match statement
-			 * yet. */
-			val datatype = EcoreUtil2.getContainerOfType((context.eContainer as MatchStatement).match, Datatype)
-			
-			if (datatype !== null) {
-				val allResults = new ArrayList<EObject>
-				
-				//datatype.varList.forEach[obj | allResults.addAll(EcoreUtil2.getAllContentsOfType(obj, TypedVariable))]
-				return Scopes.scopeFor(allResults, parent)
-			}
-		} else if (reference == BSharpPackage.Literals.MATCH_CASE) {
-			print (reference)
-		}
-		
-		return super.getLocalElementsScope(parent, context, reference)
-	}
-	
 	
 	override internalGetImportedNamespaceResolvers(EObject context, boolean ignoreCase) {
 		/* I need to override this method because getImportedNamespace returns a single object 
@@ -144,7 +44,7 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		 */
 		var List<ImportNormalizer> importedNamespaceResolvers = Lists.newArrayList()
 		var eContents = context.eContents
-		
+
 		for (child : eContents) {
 			val feature = child.eClass().getEStructuralFeature("imports")
 			if (feature !== null && String.equals(feature.getEType().getInstanceClass())) {
@@ -157,66 +57,170 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 				}
 			}
 		}
-		
+
 		return importedNamespaceResolvers
 	}
 	
-	/* This method is overridden as imports are only from files imported above the
-	 * current location where this code is declared.
-	 */
-//	override getImportedNamespace(EObject object) {
-//		val feature = object.eClass().getEStructuralFeature("imports");
-//		if (feature !== null && String.equals(feature.getEType().getInstanceClass())) {
-//			val list = object.eGet(feature) as EList<String>;
-//			return list.head
+	override getLocalElementsScope(IScope parent, EObject context, EReference reference) {
+		super.getLocalElementsScope(parent, context, reference)
+	}
+	
+//	/* I'd like to be able to put this in a separate ScopeProvider that only dealt with local
+//	 * namespaces, but when I investigated it worked better here and I can't remember why.
+//	 * Re-investigate in the future if I have time.
+//	 */
+//	override getLocalElementsScope(IScope parent, EObject context, EReference reference) {		
+//		if (context instanceof TypeConstructor && reference.getEReferenceType() == BSharpPackage.Literals.GEN_NAME) {
+//			/* Get scope for the class, and use it to check for polymorphic variable. Care needs to 
+//			 * be taken here  as this is not complete, and will need to be added to when declaring 
+//			 * functions and methods. */
+//			var classDecl = EcoreUtil2.getContainerOfType(context, ClassDecl)
+//			if (classDecl === null) {
+//				val extend = EcoreUtil2.getContainerOfType(context, Extend)
+//				if (extend !== null) {
+//					classDecl = extend.name as ClassDecl
+//				}
+//			}
+//			
+//			if (classDecl !== null) {
+//				val finalClassDecl = classDecl
+//				val allElems = new ArrayList<GenName>()
+//				if (classDecl.context !== null) {
+//					allElems.addAll(EcoreUtil2.getAllContentsOfType(classDecl.context, PolymorphicTypeName))
+//				 }
+//
+//				/* TODO: Turn this into a look up that includes imports */
+//				val rootElement = EcoreUtil2.getRootContainer(context)
+//				/* Predictably The Class elements returned from the statement above are in the
+//				 * order in which they appear in the file. I can therefore simply remove any elements
+//				 * from the returned list that appear after the current ndx.
+//				 */
+//				 
+//				 if (classDecl instanceof Datatype) {
+//				   allElems.addAll(EcoreUtilJ.eFilterUpToIncludingWith(rootElement, [object | object==finalClassDecl],
+//					[object | object instanceof ClassDecl]) as Collection<ClassDecl>)
+//				} else {
+//					allElems.addAll(EcoreUtilJ.eFilterUpToWith(rootElement, [object | object==finalClassDecl],
+//					[object | object instanceof ClassDecl]) as Collection<ClassDecl>)
+//				}
+//
+//				val scope = Scopes.scopeFor(allElems, parent)
+//				
+//				return scope
+//			}
+//		} else if (reference.getEReferenceType == BSharpPackage.Literals.CLASS_DECL) {
+//			/* Only allow type names above the current typename
+//			 * TODO: Need to include global imports.
+//			 */
+//			 
+//			 val rootObj = EcoreUtil2.getRootContainer(context)
+//			 var typeNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object | object == context], [object | object instanceof ClassDecl])
+//			 return Scopes.scopeFor(typeNames, parent)
+//		} else if (reference.getEReferenceType == BSharpPackage.Literals.EXPRESSION_VARIABLE) {
+//			/* Here's the definition:
+//			 * ExpressionVariable:
+//			 *	 FunctionName | TypedVariable | TypeName
+//			 *  ;
+//			 * 
+//			 * I can use scoping to check for obvious mistakes in these references. However, believe that I 
+//			 * will need to use validation to do the more complicated type checking. Currently this only checks
+//			 * that the names are available to me.
+//			 */
+//			 
+//			 /* If this becomes to computationally expensive it is possible to do this in a 
+//			  * single iteration of the tree, however it's harder to write the code, so first 
+//			  * attempt users multiple iterations.
+//			  * 
+//			  * TODO: Global scope it all!
+//			  */
+//			 val rootObj = EcoreUtil2.getRootContainer(context)
+//			 val currentClass = EcoreUtil2.getContainerOfType(context, ClassDecl)
+//			 
+//			 /* FunctionName can be any function within the current body, or any body above. 
+//			  */
+//			 var functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object | object == currentClass], [object | object instanceof FunctionName])
+//			 
+//			 /* TypedVariableScope */
+//			 var scope = getVariableScopeFor(context, parent)
+//			 
+//			 if (scope !== null)
+//			 	return Scopes.scopeFor(functionNames, scope)
+//			 else
+//			 	return Scopes.scopeFor(functionNames, parent)
+//		} else if (reference.getEReferenceType() == BSharpPackage.Literals.TYPED_VARIABLE && context instanceof MatchCase){
+//			/* Assumes we're in a function declaration, as there isn't anywhere else for a match statement
+//			 * yet. */
+//			val datatype = EcoreUtil2.getContainerOfType((context.eContainer as MatchStatement).match, Datatype)
+//			
+//			if (datatype !== null) {
+//				val allResults = new ArrayList<EObject>
+//				
+//				//datatype.varList.forEach[obj | allResults.addAll(EcoreUtil2.getAllContentsOfType(obj, TypedVariable))]
+//				return Scopes.scopeFor(allResults, parent)
+//			}
+//		} else if (reference == BSharpPackage.Literals.MATCH_CASE) {
+//			print (reference)
 //		}
-//		return null;
+//		
+//		return super.getLocalElementsScope(parent, context, reference)
 //	}
-	
-	def IScope getVariableScopeFor(EObject context, IScope parent) {
-		val variableProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IVariableProvider
-		
-		if (variableProvider === null) {
-			return null
-		}
-		
-		val parentScope = getVariableScopeFor(variableProvider as EObject, parent)
-		
-		if (variableProvider.variablesNames === null) {
-			return parentScope;
-		}
-		
-		if (parentScope === null) {
-			return Scopes.scopeFor(variableProvider.variablesNames)
-		} else {
-			return Scopes.scopeFor(variableProvider.variablesNames, parentScope)
-		}
-		
-	}
-	
-	def IScope getTypeScope(EObject context) {
-		/* This is called when a GenName is referenced (GenName: PolymorphicTypeName | TypeName;)
-		 * Basically a type has been scanned. In this case we need to check all valid polymorphic 
-		 * types (these go backwards up the scope hierarchy), and types previously declared in the file
-		 * and previously imported files.
-		 */
-		 
-	}
-	
-	def IScope getPolyScopeFor(EObject context, IScope parent) {
-		val variableProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IPolyTypeProvider
-		
-		if (variableProvider === null) {
-			return null
-		}
-		
-		val parentScope = getVariableScopeFor(variableProvider as EObject, parent)
-		
-		if (parentScope === null) {
-			return Scopes.scopeFor(variableProvider.polyTypeNames)
-		} else {
-			return Scopes.scopeFor(variableProvider.polyTypeNames, parentScope)
-		}
-		
-	}
+//	
+//	/* This method is overridden as imports are only from files imported above the
+//	 * current location where this code is declared.
+//	 */
+////	override getImportedNamespace(EObject object) {
+////		val feature = object.eClass().getEStructuralFeature("imports");
+////		if (feature !== null && String.equals(feature.getEType().getInstanceClass())) {
+////			val list = object.eGet(feature) as EList<String>;
+////			return list.head
+////		}
+////		return null;
+////	}
+//	
+//	def IScope getVariableScopeFor(EObject context, IScope parent) {
+//		val variableProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IVariableProvider
+//		
+//		if (variableProvider === null) {
+//			return null
+//		}
+//		
+//		val parentScope = getVariableScopeFor(variableProvider as EObject, parent)
+//		
+//		if (variableProvider.variablesNames === null) {
+//			return parentScope;
+//		}
+//		
+//		if (parentScope === null) {
+//			return Scopes.scopeFor(variableProvider.variablesNames)
+//		} else {
+//			return Scopes.scopeFor(variableProvider.variablesNames, parentScope)
+//		}
+//		
+//	}
+//	
+//	def IScope getTypeScope(EObject context) {
+//		/* This is called when a GenName is referenced (GenName: PolymorphicTypeName | TypeName;)
+//		 * Basically a type has been scanned. In this case we need to check all valid polymorphic 
+//		 * types (these go backwards up the scope hierarchy), and types previously declared in the file
+//		 * and previously imported files.
+//		 */
+//		 
+//	}
+//	
+//	def IScope getPolyScopeFor(EObject context, IScope parent) {
+//		val variableProvider = EcoreUtilJ.eContainerMatchingLambda(context, [obj | obj instanceof IVariableProvider]) as IPolyTypeProvider
+//		
+//		if (variableProvider === null) {
+//			return null
+//		}
+//		
+//		val parentScope = getVariableScopeFor(variableProvider as EObject, parent)
+//		
+//		if (parentScope === null) {
+//			return Scopes.scopeFor(variableProvider.polyTypeNames)
+//		} else {
+//			return Scopes.scopeFor(variableProvider.polyTypeNames, parentScope)
+//		}
+//		
+//	}
 }
