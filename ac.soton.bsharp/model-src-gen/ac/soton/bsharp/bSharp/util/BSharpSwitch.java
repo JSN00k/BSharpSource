@@ -192,6 +192,8 @@ public class BSharpSwitch<T> extends Switch<T> {
 				DatatypeConstructor datatypeConstructor = (DatatypeConstructor)theEObject;
 				T result = caseDatatypeConstructor(datatypeConstructor);
 				if (result == null) result = caseIVariableProvider(datatypeConstructor);
+				if (result == null) result = caseTypedVariable(datatypeConstructor);
+				if (result == null) result = caseExpressionVariable(datatypeConstructor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

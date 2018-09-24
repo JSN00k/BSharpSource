@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 
@@ -37,14 +38,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implements DatatypeConstructor {
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedVariable name;
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDecons() <em>Decons</em>}' containment reference.
@@ -80,7 +91,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedVariable getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -89,33 +100,11 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetName(TypedVariable newName, NotificationChain msgs) {
-		TypedVariable oldName = name;
+	public void setName(String newName) {
+		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.DATATYPE_CONSTRUCTOR__NAME, oldName, newName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(TypedVariable newName) {
-		if (newName != name) {
-			NotificationChain msgs = null;
-			if (name != null)
-				msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.DATATYPE_CONSTRUCTOR__NAME, null, msgs);
-			if (newName != null)
-				msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.DATATYPE_CONSTRUCTOR__NAME, null, msgs);
-			msgs = basicSetName(newName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.DATATYPE_CONSTRUCTOR__NAME, newName, newName));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.DATATYPE_CONSTRUCTOR__NAME, oldName, name));
 	}
 
 	/**
@@ -169,8 +158,6 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.DATATYPE_CONSTRUCTOR__NAME:
-				return basicSetName(null, msgs);
 			case BSharpPackage.DATATYPE_CONSTRUCTOR__DECONS:
 				return basicSetDecons(null, msgs);
 		}
@@ -202,7 +189,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BSharpPackage.DATATYPE_CONSTRUCTOR__NAME:
-				setName((TypedVariable)newValue);
+				setName((String)newValue);
 				return;
 			case BSharpPackage.DATATYPE_CONSTRUCTOR__DECONS:
 				setDecons((TypedVariableList)newValue);
@@ -220,7 +207,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BSharpPackage.DATATYPE_CONSTRUCTOR__NAME:
-				setName((TypedVariable)null);
+				setName(NAME_EDEFAULT);
 				return;
 			case BSharpPackage.DATATYPE_CONSTRUCTOR__DECONS:
 				setDecons((TypedVariableList)null);
@@ -238,17 +225,81 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case BSharpPackage.DATATYPE_CONSTRUCTOR__NAME:
-				return name != null;
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.DATATYPE_CONSTRUCTOR__DECONS:
 				return decons != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ExpressionVariable.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedVariable.class) {
+			switch (derivedFeatureID) {
+				case BSharpPackage.DATATYPE_CONSTRUCTOR__NAME: return BSharpPackage.TYPED_VARIABLE__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ExpressionVariable.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedVariable.class) {
+			switch (baseFeatureID) {
+				case BSharpPackage.TYPED_VARIABLE__NAME: return BSharpPackage.DATATYPE_CONSTRUCTOR__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
+	}
+
 	public Collection<EObject> getVariablesNames() {
 		ArrayList<EObject> result = new ArrayList<EObject>();
-		result.add(name);
+		result.add(this);
 		return result;
+	}
+
+	@Override
+	public String descriptiveName() {
+		// TODO Auto-generated method stub
+		return name;
 	}
 
 } //DatatypeConstructorImpl

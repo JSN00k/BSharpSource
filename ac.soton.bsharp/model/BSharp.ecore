@@ -73,9 +73,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="constructors" upperBound="-1"
         eType="#//DatatypeConstructor" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DatatypeConstructor" eSuperTypes="#//IVariableProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//TypedVariable"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DatatypeConstructor" eSuperTypes="#//IVariableProvider #//TypedVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="decons" eType="#//TypedVariableList"
         containment="true"/>
   </eClassifiers>

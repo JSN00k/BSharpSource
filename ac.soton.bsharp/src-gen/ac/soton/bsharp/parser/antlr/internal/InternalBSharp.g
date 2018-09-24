@@ -1258,20 +1258,19 @@ ruleDatatypeConstructor returns [EObject current=null]
 	(
 		(
 			(
+				lv_name_0_0=RULE_ID
 				{
-					newCompositeNode(grammarAccess.getDatatypeConstructorAccess().getNameTypedVariableParserRuleCall_0_0());
+					newLeafNode(lv_name_0_0, grammarAccess.getDatatypeConstructorAccess().getNameIDTerminalRuleCall_0_0());
 				}
-				lv_name_0_0=ruleTypedVariable
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDatatypeConstructorRule());
+						$current = createModelElement(grammarAccess.getDatatypeConstructorRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
 						"name",
 						lv_name_0_0,
-						"ac.soton.bsharp.BSharp.TypedVariable");
-					afterParserOrEnumRuleCall();
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
@@ -1679,7 +1678,7 @@ ruleMatchStatement returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0());
 				}
 			)
 		)

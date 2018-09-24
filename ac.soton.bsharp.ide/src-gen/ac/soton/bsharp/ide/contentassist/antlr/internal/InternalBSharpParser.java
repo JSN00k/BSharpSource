@@ -19801,25 +19801,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__NameAssignment_0"
-    // InternalBSharp.g:6393:1: rule__DatatypeConstructor__NameAssignment_0 : ( ruleTypedVariable ) ;
+    // InternalBSharp.g:6393:1: rule__DatatypeConstructor__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__DatatypeConstructor__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6397:1: ( ( ruleTypedVariable ) )
-            // InternalBSharp.g:6398:2: ( ruleTypedVariable )
+            // InternalBSharp.g:6397:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:6398:2: ( RULE_ID )
             {
-            // InternalBSharp.g:6398:2: ( ruleTypedVariable )
-            // InternalBSharp.g:6399:3: ruleTypedVariable
+            // InternalBSharp.g:6398:2: ( RULE_ID )
+            // InternalBSharp.g:6399:3: RULE_ID
             {
-             before(grammarAccess.getDatatypeConstructorAccess().getNameTypedVariableParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_2);
-            ruleTypedVariable();
-
-            state._fsp--;
-
-             after(grammarAccess.getDatatypeConstructorAccess().getNameTypedVariableParserRuleCall_0_0()); 
+             before(grammarAccess.getDatatypeConstructorAccess().getNameIDTerminalRuleCall_0_0()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getDatatypeConstructorAccess().getNameIDTerminalRuleCall_0_0()); 
 
             }
 
@@ -20428,17 +20424,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6631:2: ( ( RULE_ID ) )
             // InternalBSharp.g:6632:3: ( RULE_ID )
             {
-             before(grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0()); 
+             before(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0()); 
             // InternalBSharp.g:6633:3: ( RULE_ID )
             // InternalBSharp.g:6634:4: RULE_ID
             {
-             before(grammarAccess.getMatchStatementAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); 
+             before(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getMatchStatementAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); 
+             after(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorIDTerminalRuleCall_1_0_1()); 
 
             }
 
-             after(grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0()); 
+             after(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0()); 
 
             }
 

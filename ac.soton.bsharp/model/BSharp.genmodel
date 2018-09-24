@@ -60,7 +60,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Datatype/constructors"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//DatatypeConstructor">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//DatatypeConstructor/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//DatatypeConstructor/decons"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//Extend">

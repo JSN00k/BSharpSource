@@ -115,7 +115,7 @@ Datatype:
 /* PolyContext is the same as PolyContext used by the class declaration above. */
 
 DatatypeConstructor:
-	 name=TypedVariable ('(' decons=TypedVariableList ')')?
+	 name=ID ('(' decons=TypedVariableList ')')?
 ;
 
 /* ------------------------ Extension statement ---------------------------- */
@@ -141,7 +141,7 @@ FunctionName:
 ;
 
 MatchStatement:
-	'match' match=[TypedVariable] '{'
+	'match' match=[DatatypeConstructor] '{'
 	inductCase+=MatchCase (inductCase+=MatchCase)* '}'
 ;
 

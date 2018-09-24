@@ -773,17 +773,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDatatypeConstructor_Name() {
-		return (EReference)datatypeConstructorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getDatatypeConstructor_Decons() {
-		return (EReference)datatypeConstructorEClass.getEStructuralFeatures().get(1);
+		return (EReference)datatypeConstructorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1518,7 +1509,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(datatypeEClass, DATATYPE__CONSTRUCTORS);
 
 		datatypeConstructorEClass = createEClass(DATATYPE_CONSTRUCTOR);
-		createEReference(datatypeConstructorEClass, DATATYPE_CONSTRUCTOR__NAME);
 		createEReference(datatypeConstructorEClass, DATATYPE_CONSTRUCTOR__DECONS);
 
 		extendEClass = createEClass(EXTEND);
@@ -1656,6 +1646,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		polymorphicTypeNameEClass.getESuperTypes().add(this.getGenName());
 		datatypeEClass.getESuperTypes().add(this.getClassDecl());
 		datatypeConstructorEClass.getESuperTypes().add(this.getIVariableProvider());
+		datatypeConstructorEClass.getESuperTypes().add(this.getTypedVariable());
 		extendEClass.getESuperTypes().add(this.getTopLevel());
 		extendEClass.getESuperTypes().add(this.getIVariableProvider());
 		extendEClass.getESuperTypes().add(this.getIPolyTypeProvider());
@@ -1732,7 +1723,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getDatatype_Constructors(), this.getDatatypeConstructor(), null, "constructors", null, 0, -1, Datatype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(datatypeConstructorEClass, DatatypeConstructor.class, "DatatypeConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDatatypeConstructor_Name(), this.getTypedVariable(), null, "name", null, 0, 1, DatatypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDatatypeConstructor_Decons(), this.getTypedVariableList(), null, "decons", null, 0, 1, DatatypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(extendEClass, Extend.class, "Extend", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

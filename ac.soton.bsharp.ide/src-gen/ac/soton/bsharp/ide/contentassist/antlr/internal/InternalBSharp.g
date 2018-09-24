@@ -6396,9 +6396,9 @@ rule__DatatypeConstructor__NameAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getDatatypeConstructorAccess().getNameTypedVariableParserRuleCall_0_0()); }
-		ruleTypedVariable
-		{ after(grammarAccess.getDatatypeConstructorAccess().getNameTypedVariableParserRuleCall_0_0()); }
+		{ before(grammarAccess.getDatatypeConstructorAccess().getNameIDTerminalRuleCall_0_0()); }
+		RULE_ID
+		{ after(grammarAccess.getDatatypeConstructorAccess().getNameIDTerminalRuleCall_0_0()); }
 	)
 ;
 finally {
@@ -6629,13 +6629,13 @@ rule__MatchStatement__MatchAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0()); }
+		{ before(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0()); }
 		(
-			{ before(grammarAccess.getMatchStatementAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); }
+			{ before(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorIDTerminalRuleCall_1_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getMatchStatementAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); }
+			{ after(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorIDTerminalRuleCall_1_0_1()); }
 		)
-		{ after(grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0()); }
+		{ after(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0()); }
 	)
 ;
 finally {

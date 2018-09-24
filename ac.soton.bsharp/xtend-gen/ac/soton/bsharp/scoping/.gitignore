@@ -5,3 +5,8 @@
 /.BSharpImportedNamespaceAwareLocalScopeProvider.java._trace
 /.BSharpGlobalScopeProvider.java._trace
 /.BSharpDeclarativeScopProvider.java._trace
+/.BSharpDeclarativeScopProvider.xtendbin
+/.BSharpGlobalScopeProvider.xtendbin
+/BSharpDeclarativeScopProvider.java
+/BSharpGlobalScopeProvider.java
+/.BSharpDeclarativeScopeProvider.java._trace

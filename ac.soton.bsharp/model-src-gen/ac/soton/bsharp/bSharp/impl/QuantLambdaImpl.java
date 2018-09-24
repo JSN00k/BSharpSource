@@ -13,6 +13,7 @@ import ac.soton.bsharp.bSharp.TypedVariableList;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -397,6 +398,10 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 
 	@Override
 	public Collection<PolymorphicTypeName> getPolyTypeNames() {
+		if (getContext() == null) {
+			return Collections.emptyList();
+		}
+		
 		return EcoreUtil2.getAllContentsOfType(getContext(), PolymorphicTypeName.class);
 	}
 

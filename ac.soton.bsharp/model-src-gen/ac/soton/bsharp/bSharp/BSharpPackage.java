@@ -900,7 +900,7 @@ public interface BSharpPackage extends EPackage {
 	int IVARIABLE_PROVIDER_FEATURE_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' containment reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2050,17 +2050,6 @@ public interface BSharpPackage extends EPackage {
 	EClass getDatatypeConstructor();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.DatatypeConstructor#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Name</em>'.
-	 * @see ac.soton.bsharp.bSharp.DatatypeConstructor#getName()
-	 * @see #getDatatypeConstructor()
-	 * @generated
-	 */
-	EReference getDatatypeConstructor_Name();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.DatatypeConstructor#getDecons <em>Decons</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3208,14 +3197,6 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DATATYPE_CONSTRUCTOR = eINSTANCE.getDatatypeConstructor();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATATYPE_CONSTRUCTOR__NAME = eINSTANCE.getDatatypeConstructor_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Decons</b></em>' containment reference feature.
