@@ -66,7 +66,7 @@ class BSharpDeclarativeScopeProvider extends AbstractDeclarativeScopeProvider {
 		 * Function names are a special case as they can be cousins of the referenced variable
 		 */
 		 
-		val parent = IScope.NULLSCOPE
+		val parent = delegateGetScope(context, reference)
 		val rootObj = EcoreUtil2.getRootContainer(context)
 		val currentClass = EcoreUtil2.getContainerOfType(context, ClassDecl)
 		

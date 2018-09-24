@@ -1631,62 +1631,22 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class TypeInstanceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeInstance");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cInstanceAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final CrossReference cInstanceExpressionVariableCrossReference_0_0 = (CrossReference)cInstanceAssignment_0.eContents().get(0);
-		private final RuleCall cInstanceExpressionVariableIDTerminalRuleCall_0_0_1 = (RuleCall)cInstanceExpressionVariableCrossReference_0_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Assignment cTypeNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final CrossReference cTypeNameGenNameCrossReference_1_0_0 = (CrossReference)cTypeNameAssignment_1_0.eContents().get(0);
-		private final RuleCall cTypeNameGenNameIDTerminalRuleCall_1_0_0_1 = (RuleCall)cTypeNameGenNameCrossReference_1_0_0.eContents().get(1);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cElementAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final CrossReference cElementTypedVariableCrossReference_1_1_1_0 = (CrossReference)cElementAssignment_1_1_1.eContents().get(0);
-		private final RuleCall cElementTypedVariableIDTerminalRuleCall_1_1_1_0_1 = (RuleCall)cElementTypedVariableCrossReference_1_1_1_0.eContents().get(1);
+		private final Assignment cInstanceAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cInstanceExpressionVariableCrossReference_0 = (CrossReference)cInstanceAssignment.eContents().get(0);
+		private final RuleCall cInstanceExpressionVariableQualifiedNameParserRuleCall_0_1 = (RuleCall)cInstanceExpressionVariableCrossReference_0.eContents().get(1);
 		
 		//TypeInstance:
-		//	instance=[ExpressionVariable] | typeName=[GenName] ('.' element+=[TypedVariable])+;
+		//	instance=[ExpressionVariable|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//instance=[ExpressionVariable] | typeName=[GenName] ('.' element+=[TypedVariable])+
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//instance=[ExpressionVariable|QualifiedName]
+		public Assignment getInstanceAssignment() { return cInstanceAssignment; }
 		
-		//instance=[ExpressionVariable]
-		public Assignment getInstanceAssignment_0() { return cInstanceAssignment_0; }
+		//[ExpressionVariable|QualifiedName]
+		public CrossReference getInstanceExpressionVariableCrossReference_0() { return cInstanceExpressionVariableCrossReference_0; }
 		
-		//[ExpressionVariable]
-		public CrossReference getInstanceExpressionVariableCrossReference_0_0() { return cInstanceExpressionVariableCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getInstanceExpressionVariableIDTerminalRuleCall_0_0_1() { return cInstanceExpressionVariableIDTerminalRuleCall_0_0_1; }
-		
-		//typeName=[GenName] ('.' element+=[TypedVariable])+
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//typeName=[GenName]
-		public Assignment getTypeNameAssignment_1_0() { return cTypeNameAssignment_1_0; }
-		
-		//[GenName]
-		public CrossReference getTypeNameGenNameCrossReference_1_0_0() { return cTypeNameGenNameCrossReference_1_0_0; }
-		
-		//ID
-		public RuleCall getTypeNameGenNameIDTerminalRuleCall_1_0_0_1() { return cTypeNameGenNameIDTerminalRuleCall_1_0_0_1; }
-		
-		//('.' element+=[TypedVariable])+
-		public Group getGroup_1_1() { return cGroup_1_1; }
-		
-		//'.'
-		public Keyword getFullStopKeyword_1_1_0() { return cFullStopKeyword_1_1_0; }
-		
-		//element+=[TypedVariable]
-		public Assignment getElementAssignment_1_1_1() { return cElementAssignment_1_1_1; }
-		
-		//[TypedVariable]
-		public CrossReference getElementTypedVariableCrossReference_1_1_1_0() { return cElementTypedVariableCrossReference_1_1_1_0; }
-		
-		//ID
-		public RuleCall getElementTypedVariableIDTerminalRuleCall_1_1_1_0_1() { return cElementTypedVariableIDTerminalRuleCall_1_1_1_0_1; }
+		//QualifiedName
+		public RuleCall getInstanceExpressionVariableQualifiedNameParserRuleCall_0_1() { return cInstanceExpressionVariableQualifiedNameParserRuleCall_0_1; }
 	}
 	public class InbuiltInfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltInfix");
@@ -2434,7 +2394,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TypeInstance:
-	//	instance=[ExpressionVariable] | typeName=[GenName] ('.' element+=[TypedVariable])+;
+	//	instance=[ExpressionVariable|QualifiedName];
 	public TypeInstanceElements getTypeInstanceAccess() {
 		return pTypeInstance;
 	}

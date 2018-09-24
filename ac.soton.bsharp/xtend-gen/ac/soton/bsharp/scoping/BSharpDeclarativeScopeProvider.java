@@ -62,7 +62,7 @@ public class BSharpDeclarativeScopeProvider extends AbstractDeclarativeScopeProv
   }
   
   public IScope scope_ExpressionVariable(final EObject context, final EReference reference) {
-    final IScope parent = IScope.NULLSCOPE;
+    final IScope parent = this.delegateGetScope(context, reference);
     final EObject rootObj = EcoreUtil2.getRootContainer(context);
     final ClassDecl currentClass = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
     final Function1<EObject, Boolean> _function = (EObject object) -> {

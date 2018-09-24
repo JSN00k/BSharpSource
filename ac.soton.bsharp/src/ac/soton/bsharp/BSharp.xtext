@@ -254,7 +254,7 @@ ExpressionVariable:
 ;
 
  TypeInstance:
- 	(instance=[ExpressionVariable]) | (typeName=[GenName] ('.' element+=[TypedVariable])+)
+ 	(instance=[ExpressionVariable|QualifiedName])
  ;
 
 InbuiltInfix:

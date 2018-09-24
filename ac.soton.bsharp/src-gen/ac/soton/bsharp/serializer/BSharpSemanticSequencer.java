@@ -655,10 +655,16 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TypeInstance returns TypeInstance
 	 *
 	 * Constraint:
-	 *     (instance=[ExpressionVariable|ID] | (typeName=[GenName|ID] element+=[TypedVariable|ID]+))
+	 *     instance=[ExpressionVariable|QualifiedName]
 	 */
 	protected void sequence_TypeInstance(ISerializationContext context, TypeInstance semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TYPE_INSTANCE__INSTANCE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TYPE_INSTANCE__INSTANCE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypeInstanceAccess().getInstanceExpressionVariableQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(BSharpPackage.Literals.TYPE_INSTANCE__INSTANCE, false));
+		feeder.finish();
 	}
 	
 	
