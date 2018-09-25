@@ -117,6 +117,65 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//Datatype
 		public RuleCall getDatatypeParserRuleCall_1() { return cDatatypeParserRuleCall_1; }
 	}
+	public class InbuiltTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltType");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cNamePredKeyword_0 = (Keyword)cNameAssignment.eContents().get(0);
+		
+		///* There are three Types which can be used as type variables, inbuilt types, types create
+		// * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
+		// * occasions where each of these can be used.
+		// */ /* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
+		// * recursion in the inbuilt types it may be better to build them instead. We need Pred
+		// * as it is going to have special rules to deal with the separation of expressions and 
+		// * predicates in Event B. */ InbuiltType:
+		//	name='Pred';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name='Pred'
+		public Assignment getNameAssignment() { return cNameAssignment; }
+		
+		//'Pred'
+		public Keyword getNamePredKeyword_0() { return cNamePredKeyword_0; }
+	}
+	public class TypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Type");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cClassDeclParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cInbuiltTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Type:
+		//	ClassDecl | InbuiltType;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ClassDecl | InbuiltType
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ClassDecl
+		public RuleCall getClassDeclParserRuleCall_0() { return cClassDeclParserRuleCall_0; }
+		
+		//InbuiltType
+		public RuleCall getInbuiltTypeParserRuleCall_1() { return cInbuiltTypeParserRuleCall_1; }
+	}
+	public class GenNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.GenName");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPolymorphicTypeNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//GenName:
+		//	PolymorphicTypeName | Type;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//PolymorphicTypeName | Type
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//PolymorphicTypeName
+		public RuleCall getPolymorphicTypeNameParserRuleCall_0() { return cPolymorphicTypeNameParserRuleCall_0; }
+		
+		//Type
+		public RuleCall getTypeParserRuleCall_1() { return cTypeParserRuleCall_1; }
+	}
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.QualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -266,25 +325,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
-	}
-	public class GenNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.GenName");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPolymorphicTypeNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cClassDeclParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//GenName:
-		//	PolymorphicTypeName | ClassDecl;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//PolymorphicTypeName | ClassDecl
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//PolymorphicTypeName
-		public RuleCall getPolymorphicTypeNameParserRuleCall_0() { return cPolymorphicTypeNameParserRuleCall_0; }
-		
-		//ClassDecl
-		public RuleCall getClassDeclParserRuleCall_1() { return cClassDeclParserRuleCall_1; }
 	}
 	public class PolymorphicTypeNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.PolymorphicTypeName");
@@ -452,25 +492,27 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cTypeTypeConstructorParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final Keyword cMultiplicationSignKeyword_1_0_0 = (Keyword)cAlternatives_1_0.eContents().get(0);
-		private final Keyword cRightwardsArrowKeyword_1_0_1 = (Keyword)cAlternatives_1_0.eContents().get(1);
-		private final Keyword cPrivateUseAreaE102Keyword_1_0_2 = (Keyword)cAlternatives_1_0.eContents().get(2);
-		private final Keyword cPrivateUseAreaE100Keyword_1_0_3 = (Keyword)cAlternatives_1_0.eContents().get(3);
-		private final Keyword cLeftRightArrowKeyword_1_0_4 = (Keyword)cAlternatives_1_0.eContents().get(4);
-		private final Keyword cRightwardsTwoHeadedArrowWithTailKeyword_1_0_5 = (Keyword)cAlternatives_1_0.eContents().get(5);
-		private final Keyword cRightwardsArrowWithVerticalStrokeKeyword_1_0_6 = (Keyword)cAlternatives_1_0.eContents().get(6);
-		private final Keyword cRightwardsArrowWithTailKeyword_1_0_7 = (Keyword)cAlternatives_1_0.eContents().get(7);
-		private final Keyword cRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8 = (Keyword)cAlternatives_1_0.eContents().get(8);
-		private final Keyword cRightwardsTwoHeadedArrowKeyword_1_0_9 = (Keyword)cAlternatives_1_0.eContents().get(9);
+		private final Assignment cConstructorsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Alternatives cConstructorsAlternatives_1_0_0 = (Alternatives)cConstructorsAssignment_1_0.eContents().get(0);
+		private final Keyword cConstructorsMultiplicationSignKeyword_1_0_0_0 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(0);
+		private final Keyword cConstructorsRightwardsArrowKeyword_1_0_0_1 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(1);
+		private final Keyword cConstructorsPrivateUseAreaE102Keyword_1_0_0_2 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(2);
+		private final Keyword cConstructorsPrivateUseAreaE100Keyword_1_0_0_3 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(3);
+		private final Keyword cConstructorsLeftRightArrowKeyword_1_0_0_4 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(4);
+		private final Keyword cConstructorsRightwardsTwoHeadedArrowWithTailKeyword_1_0_0_5 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(5);
+		private final Keyword cConstructorsRightwardsArrowWithVerticalStrokeKeyword_1_0_0_6 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(6);
+		private final Keyword cConstructorsRightwardsArrowWithTailKeyword_1_0_0_7 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(7);
+		private final Keyword cConstructorsRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_0_8 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(8);
+		private final Keyword cConstructorsRightwardsTwoHeadedArrowKeyword_1_0_0_9 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(9);
 		private final Assignment cTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cTypeConstructedTypeParserRuleCall_1_1_0 = (RuleCall)cTypeAssignment_1_1.eContents().get(0);
 		
 		///* Along with the normal Event-B type operator, and new B++ types the  */ ConstructedType:
-		//	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?;
+		//	type+=TypeConstructor (constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
+		//	type+=ConstructedType)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
+		//type+=TypeConstructor (constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
 		public Group getGroup() { return cGroup; }
 		
 		//type+=TypeConstructor
@@ -479,41 +521,44 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeConstructor
 		public RuleCall getTypeTypeConstructorParserRuleCall_0_0() { return cTypeTypeConstructorParserRuleCall_0_0; }
 		
-		//(('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
+		//(constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠'
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		//constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
+		public Assignment getConstructorsAssignment_1_0() { return cConstructorsAssignment_1_0; }
+		
+		//('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
+		public Alternatives getConstructorsAlternatives_1_0_0() { return cConstructorsAlternatives_1_0_0; }
 		
 		//'×'
-		public Keyword getMultiplicationSignKeyword_1_0_0() { return cMultiplicationSignKeyword_1_0_0; }
+		public Keyword getConstructorsMultiplicationSignKeyword_1_0_0_0() { return cConstructorsMultiplicationSignKeyword_1_0_0_0; }
 		
 		//'→'
-		public Keyword getRightwardsArrowKeyword_1_0_1() { return cRightwardsArrowKeyword_1_0_1; }
+		public Keyword getConstructorsRightwardsArrowKeyword_1_0_0_1() { return cConstructorsRightwardsArrowKeyword_1_0_0_1; }
 		
 		//''
-		public Keyword getPrivateUseAreaE102Keyword_1_0_2() { return cPrivateUseAreaE102Keyword_1_0_2; }
+		public Keyword getConstructorsPrivateUseAreaE102Keyword_1_0_0_2() { return cConstructorsPrivateUseAreaE102Keyword_1_0_0_2; }
 		
 		//''
-		public Keyword getPrivateUseAreaE100Keyword_1_0_3() { return cPrivateUseAreaE100Keyword_1_0_3; }
+		public Keyword getConstructorsPrivateUseAreaE100Keyword_1_0_0_3() { return cConstructorsPrivateUseAreaE100Keyword_1_0_0_3; }
 		
 		//'↔'
-		public Keyword getLeftRightArrowKeyword_1_0_4() { return cLeftRightArrowKeyword_1_0_4; }
+		public Keyword getConstructorsLeftRightArrowKeyword_1_0_0_4() { return cConstructorsLeftRightArrowKeyword_1_0_0_4; }
 		
 		//'⤖'
-		public Keyword getRightwardsTwoHeadedArrowWithTailKeyword_1_0_5() { return cRightwardsTwoHeadedArrowWithTailKeyword_1_0_5; }
+		public Keyword getConstructorsRightwardsTwoHeadedArrowWithTailKeyword_1_0_0_5() { return cConstructorsRightwardsTwoHeadedArrowWithTailKeyword_1_0_0_5; }
 		
 		//'⇸'
-		public Keyword getRightwardsArrowWithVerticalStrokeKeyword_1_0_6() { return cRightwardsArrowWithVerticalStrokeKeyword_1_0_6; }
+		public Keyword getConstructorsRightwardsArrowWithVerticalStrokeKeyword_1_0_0_6() { return cConstructorsRightwardsArrowWithVerticalStrokeKeyword_1_0_0_6; }
 		
 		//'↣'
-		public Keyword getRightwardsArrowWithTailKeyword_1_0_7() { return cRightwardsArrowWithTailKeyword_1_0_7; }
+		public Keyword getConstructorsRightwardsArrowWithTailKeyword_1_0_0_7() { return cConstructorsRightwardsArrowWithTailKeyword_1_0_0_7; }
 		
 		//'⤀'
-		public Keyword getRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8() { return cRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8; }
+		public Keyword getConstructorsRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_0_8() { return cConstructorsRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_0_8; }
 		
 		//'↠'
-		public Keyword getRightwardsTwoHeadedArrowKeyword_1_0_9() { return cRightwardsTwoHeadedArrowKeyword_1_0_9; }
+		public Keyword getConstructorsRightwardsTwoHeadedArrowKeyword_1_0_0_9() { return cConstructorsRightwardsTwoHeadedArrowKeyword_1_0_0_9; }
 		
 		//type+=ConstructedType
 		public Assignment getTypeAssignment_1_1() { return cTypeAssignment_1_1; }
@@ -524,11 +569,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	public class TypeConstructorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeConstructor");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Assignment cTypeNameAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
-		private final CrossReference cTypeNameGenNameCrossReference_0_0_0 = (CrossReference)cTypeNameAssignment_0_0.eContents().get(0);
-		private final RuleCall cTypeNameGenNameQualifiedNameParserRuleCall_0_0_0_1 = (RuleCall)cTypeNameGenNameCrossReference_0_0_0.eContents().get(1);
-		private final RuleCall cInbuiltTypeScanParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
+		private final Assignment cTypeNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cTypeNameGenNameCrossReference_0_0 = (CrossReference)cTypeNameAssignment_0.eContents().get(0);
+		private final RuleCall cTypeNameGenNameQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cTypeNameGenNameCrossReference_0_0.eContents().get(1);
 		private final Assignment cContextAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cContextTypeDeclContextParserRuleCall_1_0 = (RuleCall)cContextAssignment_1.eContents().get(0);
 		
@@ -536,26 +579,20 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
 		// * Probably need to add the predicate type to this.
 		// */ TypeConstructor:
-		//	(TypeName=[GenName|QualifiedName] | InbuiltTypeScan) context+=TypeDeclContext?;
+		//	TypeName=[GenName|QualifiedName] context+=TypeDeclContext?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(TypeName=[GenName|QualifiedName] | InbuiltTypeScan) context+=TypeDeclContext?
+		//TypeName=[GenName|QualifiedName] context+=TypeDeclContext?
 		public Group getGroup() { return cGroup; }
 		
-		//TypeName=[GenName|QualifiedName] | InbuiltTypeScan
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-		
 		//TypeName=[GenName|QualifiedName]
-		public Assignment getTypeNameAssignment_0_0() { return cTypeNameAssignment_0_0; }
+		public Assignment getTypeNameAssignment_0() { return cTypeNameAssignment_0; }
 		
 		//[GenName|QualifiedName]
-		public CrossReference getTypeNameGenNameCrossReference_0_0_0() { return cTypeNameGenNameCrossReference_0_0_0; }
+		public CrossReference getTypeNameGenNameCrossReference_0_0() { return cTypeNameGenNameCrossReference_0_0; }
 		
 		//QualifiedName
-		public RuleCall getTypeNameGenNameQualifiedNameParserRuleCall_0_0_0_1() { return cTypeNameGenNameQualifiedNameParserRuleCall_0_0_0_1; }
-		
-		//InbuiltTypeScan
-		public RuleCall getInbuiltTypeScanParserRuleCall_0_1() { return cInbuiltTypeScanParserRuleCall_0_1; }
+		public RuleCall getTypeNameGenNameQualifiedNameParserRuleCall_0_0_1() { return cTypeNameGenNameQualifiedNameParserRuleCall_0_0_1; }
 		
 		//context+=TypeDeclContext?
 		public Assignment getContextAssignment_1() { return cContextAssignment_1; }
@@ -1683,33 +1720,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//'∨'
 		public Keyword getLogicalOrKeyword_5() { return cLogicalOrKeyword_5; }
 	}
-	public class InbuiltTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltType");
-		private final Keyword cPredKeyword = (Keyword)rule.eContents().get(1);
-		
-		///* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
-		// * recursion in the inbuilt types it may be better to  */ InbuiltType:
-		//	'Pred';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'Pred'
-		public Keyword getPredKeyword() { return cPredKeyword; }
-	}
-	public class InbuiltTypeScanElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltTypeScan");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameInbuiltTypeParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
-		
-		//InbuiltTypeScan:
-		//	name=InbuiltType;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=InbuiltType
-		public Assignment getNameAssignment() { return cNameAssignment; }
-		
-		//InbuiltType
-		public RuleCall getNameInbuiltTypeParserRuleCall_0() { return cNameInbuiltTypeParserRuleCall_0; }
-	}
 	public class InstanceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Instance");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1792,11 +1802,13 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final THM_NAMEElements pTHM_NAME;
 	private final TopLevelElements pTopLevel;
 	private final ClassDeclElements pClassDecl;
+	private final InbuiltTypeElements pInbuiltType;
+	private final TypeElements pType;
+	private final GenNameElements pGenName;
 	private final QualifiedNameElements pQualifiedName;
 	private final QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
 	private final ImportStatementElements pImportStatement;
 	private final ClassElements pClass;
-	private final GenNameElements pGenName;
 	private final PolymorphicTypeNameElements pPolymorphicTypeName;
 	private final PolyContextElements pPolyContext;
 	private final PolyContextTypesElements pPolyContextTypes;
@@ -1832,8 +1844,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final ExpressionVariableElements pExpressionVariable;
 	private final TypeInstanceElements pTypeInstance;
 	private final InbuiltInfixElements pInbuiltInfix;
-	private final InbuiltTypeElements pInbuiltType;
-	private final InbuiltTypeScanElements pInbuiltTypeScan;
 	private final InstanceElements pInstance;
 	
 	private final Grammar grammar;
@@ -1849,11 +1859,13 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTHM_NAME = new THM_NAMEElements();
 		this.pTopLevel = new TopLevelElements();
 		this.pClassDecl = new ClassDeclElements();
+		this.pInbuiltType = new InbuiltTypeElements();
+		this.pType = new TypeElements();
+		this.pGenName = new GenNameElements();
 		this.pQualifiedName = new QualifiedNameElements();
 		this.pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements();
 		this.pImportStatement = new ImportStatementElements();
 		this.pClass = new ClassElements();
-		this.pGenName = new GenNameElements();
 		this.pPolymorphicTypeName = new PolymorphicTypeNameElements();
 		this.pPolyContext = new PolyContextElements();
 		this.pPolyContextTypes = new PolyContextTypesElements();
@@ -1889,8 +1901,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pExpressionVariable = new ExpressionVariableElements();
 		this.pTypeInstance = new TypeInstanceElements();
 		this.pInbuiltInfix = new InbuiltInfixElements();
-		this.pInbuiltType = new InbuiltTypeElements();
-		this.pInbuiltTypeScan = new InbuiltTypeScanElements();
 		this.pInstance = new InstanceElements();
 	}
 	
@@ -1962,6 +1972,42 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassDeclAccess().getRule();
 	}
 	
+	///* There are three Types which can be used as type variables, inbuilt types, types create
+	// * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
+	// * occasions where each of these can be used.
+	// */ /* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
+	// * recursion in the inbuilt types it may be better to build them instead. We need Pred
+	// * as it is going to have special rules to deal with the separation of expressions and 
+	// * predicates in Event B. */ InbuiltType:
+	//	name='Pred';
+	public InbuiltTypeElements getInbuiltTypeAccess() {
+		return pInbuiltType;
+	}
+	
+	public ParserRule getInbuiltTypeRule() {
+		return getInbuiltTypeAccess().getRule();
+	}
+	
+	//Type:
+	//	ClassDecl | InbuiltType;
+	public TypeElements getTypeAccess() {
+		return pType;
+	}
+	
+	public ParserRule getTypeRule() {
+		return getTypeAccess().getRule();
+	}
+	
+	//GenName:
+	//	PolymorphicTypeName | Type;
+	public GenNameElements getGenNameAccess() {
+		return pGenName;
+	}
+	
+	public ParserRule getGenNameRule() {
+		return getGenNameAccess().getRule();
+	}
+	
 	///* -------------------------- Import Statements -------------------- */ /* I had hoped to use a python style import, however this seems to be fighting 
 	// * the system, and would require a custom implementation of DefaultDeclarativeQualifiedNameProvider.
 	// * To increase the development speed I am using the java style imports instead.
@@ -2005,16 +2051,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getClassRule() {
 		return getClassAccess().getRule();
-	}
-	
-	//GenName:
-	//	PolymorphicTypeName | ClassDecl;
-	public GenNameElements getGenNameAccess() {
-		return pGenName;
-	}
-	
-	public ParserRule getGenNameRule() {
-		return getGenNameAccess().getRule();
 	}
 	
 	///*---------------- Polymorphic Context of -------------------------- */ PolymorphicTypeName:
@@ -2073,7 +2109,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* Along with the normal Event-B type operator, and new B++ types the  */ ConstructedType:
-	//	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?;
+	//	type+=TypeConstructor (constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
+	//	type+=ConstructedType)?;
 	public ConstructedTypeElements getConstructedTypeAccess() {
 		return pConstructedType;
 	}
@@ -2086,7 +2123,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
 	// * Probably need to add the predicate type to this.
 	// */ TypeConstructor:
-	//	(TypeName=[GenName|QualifiedName] | InbuiltTypeScan) context+=TypeDeclContext?;
+	//	TypeName=[GenName|QualifiedName] context+=TypeDeclContext?;
 	public TypeConstructorElements getTypeConstructorAccess() {
 		return pTypeConstructor;
 	}
@@ -2411,27 +2448,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getInbuiltInfixRule() {
 		return getInbuiltInfixAccess().getRule();
-	}
-	
-	///* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
-	// * recursion in the inbuilt types it may be better to  */ InbuiltType:
-	//	'Pred';
-	public InbuiltTypeElements getInbuiltTypeAccess() {
-		return pInbuiltType;
-	}
-	
-	public ParserRule getInbuiltTypeRule() {
-		return getInbuiltTypeAccess().getRule();
-	}
-	
-	//InbuiltTypeScan:
-	//	name=InbuiltType;
-	public InbuiltTypeScanElements getInbuiltTypeScanAccess() {
-		return pInbuiltTypeScan;
-	}
-	
-	public ParserRule getInbuiltTypeScanRule() {
-		return getInbuiltTypeScanAccess().getRule();
 	}
 	
 	///* I feel like I should need these, however, I'm not sure when they would be necessary. */ //InbuiltTypeInstance:

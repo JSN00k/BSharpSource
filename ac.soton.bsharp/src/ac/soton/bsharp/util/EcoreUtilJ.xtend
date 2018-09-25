@@ -1,4 +1,4 @@
-package ac.soton.bsharp
+package ac.soton.bsharp.util
 
 import org.eclipse.xtext.EcoreUtil2
 import java.util.ArrayList

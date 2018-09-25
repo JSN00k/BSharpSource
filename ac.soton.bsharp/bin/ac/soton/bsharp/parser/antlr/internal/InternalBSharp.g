@@ -235,6 +235,73 @@ ruleClassDecl returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleInbuiltType
+entryRuleInbuiltType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getInbuiltTypeRule()); }
+	iv_ruleInbuiltType=ruleInbuiltType
+	{ $current=$iv_ruleInbuiltType.current; }
+	EOF;
+
+// Rule InbuiltType
+ruleInbuiltType returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_name_0_0='Pred'
+			{
+				newLeafNode(lv_name_0_0, grammarAccess.getInbuiltTypeAccess().getNamePredKeyword_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getInbuiltTypeRule());
+				}
+				setWithLastConsumed($current, "name", lv_name_0_0, "Pred");
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleType
+entryRuleType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTypeRule()); }
+	iv_ruleType=ruleType
+	{ $current=$iv_ruleType.current; }
+	EOF;
+
+// Rule Type
+ruleType returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getTypeAccess().getClassDeclParserRuleCall_0());
+		}
+		this_ClassDecl_0=ruleClassDecl
+		{
+			$current = $this_ClassDecl_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getTypeAccess().getInbuiltTypeParserRuleCall_1());
+		}
+		this_InbuiltType_1=ruleInbuiltType
+		{
+			$current = $this_InbuiltType_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
 // Entry rule entryRuleQualifiedName
 entryRuleQualifiedName returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getQualifiedNameRule()); }
@@ -806,62 +873,126 @@ ruleConstructedType returns [EObject current=null]
 		)
 		(
 			(
-				otherlv_1='\u00D7'
-				{
-					newLeafNode(otherlv_1, grammarAccess.getConstructedTypeAccess().getMultiplicationSignKeyword_1_0_0());
-				}
-				    |
-				otherlv_2='\u2192'
-				{
-					newLeafNode(otherlv_2, grammarAccess.getConstructedTypeAccess().getRightwardsArrowKeyword_1_0_1());
-				}
-				    |
-				otherlv_3='\uE102'
-				{
-					newLeafNode(otherlv_3, grammarAccess.getConstructedTypeAccess().getPrivateUseAreaE102Keyword_1_0_2());
-				}
-				    |
-				otherlv_4='\uE100'
-				{
-					newLeafNode(otherlv_4, grammarAccess.getConstructedTypeAccess().getPrivateUseAreaE100Keyword_1_0_3());
-				}
-				    |
-				otherlv_5='\u2194'
-				{
-					newLeafNode(otherlv_5, grammarAccess.getConstructedTypeAccess().getLeftRightArrowKeyword_1_0_4());
-				}
-				    |
-				otherlv_6='\u2916'
-				{
-					newLeafNode(otherlv_6, grammarAccess.getConstructedTypeAccess().getRightwardsTwoHeadedArrowWithTailKeyword_1_0_5());
-				}
-				    |
-				otherlv_7='\u21F8'
-				{
-					newLeafNode(otherlv_7, grammarAccess.getConstructedTypeAccess().getRightwardsArrowWithVerticalStrokeKeyword_1_0_6());
-				}
-				    |
-				otherlv_8='\u21A3'
-				{
-					newLeafNode(otherlv_8, grammarAccess.getConstructedTypeAccess().getRightwardsArrowWithTailKeyword_1_0_7());
-				}
-				    |
-				otherlv_9='\u2900'
-				{
-					newLeafNode(otherlv_9, grammarAccess.getConstructedTypeAccess().getRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_8());
-				}
-				    |
-				otherlv_10='\u21A0'
-				{
-					newLeafNode(otherlv_10, grammarAccess.getConstructedTypeAccess().getRightwardsTwoHeadedArrowKeyword_1_0_9());
-				}
+				(
+					(
+						lv_constructors_1_1='\u00D7'
+						{
+							newLeafNode(lv_constructors_1_1, grammarAccess.getConstructedTypeAccess().getConstructorsMultiplicationSignKeyword_1_0_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_1, null);
+						}
+						    |
+						lv_constructors_1_2='\u2192'
+						{
+							newLeafNode(lv_constructors_1_2, grammarAccess.getConstructedTypeAccess().getConstructorsRightwardsArrowKeyword_1_0_0_1());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_2, null);
+						}
+						    |
+						lv_constructors_1_3='\uE102'
+						{
+							newLeafNode(lv_constructors_1_3, grammarAccess.getConstructedTypeAccess().getConstructorsPrivateUseAreaE102Keyword_1_0_0_2());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_3, null);
+						}
+						    |
+						lv_constructors_1_4='\uE100'
+						{
+							newLeafNode(lv_constructors_1_4, grammarAccess.getConstructedTypeAccess().getConstructorsPrivateUseAreaE100Keyword_1_0_0_3());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_4, null);
+						}
+						    |
+						lv_constructors_1_5='\u2194'
+						{
+							newLeafNode(lv_constructors_1_5, grammarAccess.getConstructedTypeAccess().getConstructorsLeftRightArrowKeyword_1_0_0_4());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_5, null);
+						}
+						    |
+						lv_constructors_1_6='\u2916'
+						{
+							newLeafNode(lv_constructors_1_6, grammarAccess.getConstructedTypeAccess().getConstructorsRightwardsTwoHeadedArrowWithTailKeyword_1_0_0_5());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_6, null);
+						}
+						    |
+						lv_constructors_1_7='\u21F8'
+						{
+							newLeafNode(lv_constructors_1_7, grammarAccess.getConstructedTypeAccess().getConstructorsRightwardsArrowWithVerticalStrokeKeyword_1_0_0_6());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_7, null);
+						}
+						    |
+						lv_constructors_1_8='\u21A3'
+						{
+							newLeafNode(lv_constructors_1_8, grammarAccess.getConstructedTypeAccess().getConstructorsRightwardsArrowWithTailKeyword_1_0_0_7());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_8, null);
+						}
+						    |
+						lv_constructors_1_9='\u2900'
+						{
+							newLeafNode(lv_constructors_1_9, grammarAccess.getConstructedTypeAccess().getConstructorsRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_0_8());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_9, null);
+						}
+						    |
+						lv_constructors_1_10='\u21A0'
+						{
+							newLeafNode(lv_constructors_1_10, grammarAccess.getConstructedTypeAccess().getConstructorsRightwardsTwoHeadedArrowKeyword_1_0_0_9());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConstructedTypeRule());
+							}
+							addWithLastConsumed($current, "constructors", lv_constructors_1_10, null);
+						}
+					)
+				)
 			)
 			(
 				(
 					{
 						newCompositeNode(grammarAccess.getConstructedTypeAccess().getTypeConstructedTypeParserRuleCall_1_1_0());
 					}
-					lv_type_11_0=ruleConstructedType
+					lv_type_2_0=ruleConstructedType
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConstructedTypeRule());
@@ -869,7 +1000,7 @@ ruleConstructedType returns [EObject current=null]
 						add(
 							$current,
 							"type",
-							lv_type_11_0,
+							lv_type_2_0,
 							"ac.soton.bsharp.BSharp.ConstructedType");
 						afterParserOrEnumRuleCall();
 					}
@@ -897,37 +1028,26 @@ ruleTypeConstructor returns [EObject current=null]
 	(
 		(
 			(
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getTypeConstructorRule());
-						}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTypeConstructorRule());
 					}
-					{
-						newCompositeNode(grammarAccess.getTypeConstructorAccess().getTypeNameGenNameCrossReference_0_0_0());
-					}
-					ruleQualifiedName
-					{
-						afterParserOrEnumRuleCall();
-					}
-				)
+				}
+				{
+					newCompositeNode(grammarAccess.getTypeConstructorAccess().getTypeNameGenNameCrossReference_0_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
 			)
-			    |
-			{
-				newCompositeNode(grammarAccess.getTypeConstructorAccess().getInbuiltTypeScanParserRuleCall_0_1());
-			}
-			this_InbuiltTypeScan_1=ruleInbuiltTypeScan
-			{
-				$current = $this_InbuiltTypeScan_1.current;
-				afterParserOrEnumRuleCall();
-			}
 		)
 		(
 			(
 				{
 					newCompositeNode(grammarAccess.getTypeConstructorAccess().getContextTypeDeclContextParserRuleCall_1_0());
 				}
-				lv_context_2_0=ruleTypeDeclContext
+				lv_context_1_0=ruleTypeDeclContext
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTypeConstructorRule());
@@ -935,7 +1055,7 @@ ruleTypeConstructor returns [EObject current=null]
 					add(
 						$current,
 						"context",
-						lv_context_2_0,
+						lv_context_1_0,
 						"ac.soton.bsharp.BSharp.TypeDeclContext");
 					afterParserOrEnumRuleCall();
 				}
@@ -2830,64 +2950,6 @@ ruleInbuiltInfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getInbuiltInfixAccess().getLogicalOrKeyword_5());
 		}
-	)
-;
-
-// Entry rule entryRuleInbuiltType
-entryRuleInbuiltType returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getInbuiltTypeRule()); }
-	iv_ruleInbuiltType=ruleInbuiltType
-	{ $current=$iv_ruleInbuiltType.current.getText(); }
-	EOF;
-
-// Rule InbuiltType
-ruleInbuiltType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	kw='Pred'
-	{
-		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getInbuiltTypeAccess().getPredKeyword());
-	}
-;
-
-// Entry rule entryRuleInbuiltTypeScan
-entryRuleInbuiltTypeScan returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInbuiltTypeScanRule()); }
-	iv_ruleInbuiltTypeScan=ruleInbuiltTypeScan
-	{ $current=$iv_ruleInbuiltTypeScan.current; }
-	EOF;
-
-// Rule InbuiltTypeScan
-ruleInbuiltTypeScan returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getInbuiltTypeScanAccess().getNameInbuiltTypeParserRuleCall_0());
-			}
-			lv_name_0_0=ruleInbuiltType
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getInbuiltTypeScanRule());
-				}
-				set(
-					$current,
-					"name",
-					lv_name_0_0,
-					"ac.soton.bsharp.BSharp.InbuiltType");
-				afterParserOrEnumRuleCall();
-			}
-		)
 	)
 ;
 

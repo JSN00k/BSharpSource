@@ -1,6 +1,5 @@
 package ac.soton.bsharp.scoping;
 
-import ac.soton.bsharp.EcoreUtilJ;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
@@ -10,6 +9,7 @@ import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.Collection;

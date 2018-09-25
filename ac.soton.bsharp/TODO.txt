@@ -1,5 +1,7 @@
 ---------- Scoping ---------------
 
-1) 	Global imports should only apply when the import statement is above the current statement. I believe that 
-	currently import statements apply wherever they appear in the file.
-2)	When inside a subtype fix the scoping so elements from the super type can be used without errors. 
+1)	When inside a subtype fix the scoping so elements from the super type can be used without errors. 
+2) 	Deal With Constructed types in some meaningful way.
+3) 	Check that when a constructed type is passed as a supertype that it is the only supertype (I think), 
+	either way more needs to be thought out on this concept.
+	

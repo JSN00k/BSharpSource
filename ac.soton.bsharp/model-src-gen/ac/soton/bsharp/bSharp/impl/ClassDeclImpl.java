@@ -11,6 +11,7 @@ import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolymorphicTypeName;
+import ac.soton.bsharp.bSharp.Type;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
 
 import java.util.Collection;
@@ -304,6 +305,11 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 				default: return -1;
 			}
 		}
+		if (baseClass == Type.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -331,6 +337,11 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 			}
 		}
 		if (baseClass == IPolyTypeProvider.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == Type.class) {
 			switch (baseFeatureID) {
 				default: return -1;
 			}

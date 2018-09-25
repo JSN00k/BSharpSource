@@ -15,7 +15,7 @@ import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.ImportStatement;
-import ac.soton.bsharp.bSharp.InbuiltTypeScan;
+import ac.soton.bsharp.bSharp.InbuiltType;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
@@ -98,16 +98,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.IMPORT_STATEMENT:
 				sequence_ImportStatement(context, (ImportStatement) semanticObject); 
 				return; 
-			case BSharpPackage.INBUILT_TYPE_SCAN:
-				if (rule == grammarAccess.getInbuiltTypeScanRule()) {
-					sequence_InbuiltTypeScan(context, (InbuiltTypeScan) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTypeConstructorRule()) {
-					sequence_InbuiltTypeScan_TypeConstructor(context, (InbuiltTypeScan) semanticObject); 
-					return; 
-				}
-				else break;
+			case BSharpPackage.INBUILT_TYPE:
+				sequence_InbuiltType(context, (InbuiltType) semanticObject); 
+				return; 
 			case BSharpPackage.INFIX:
 				sequence_Infix(context, (Infix) semanticObject); 
 				return; 
@@ -216,8 +209,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     TopLevel returns BppClass
 	 *     ClassDecl returns BppClass
-	 *     Class returns BppClass
+	 *     Type returns BppClass
 	 *     GenName returns BppClass
+	 *     Class returns BppClass
 	 *     ExpressionVariable returns BppClass
 	 *
 	 * Constraint:
@@ -240,7 +234,24 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ConstructedType returns ConstructedType
 	 *
 	 * Constraint:
-	 *     (type+=TypeConstructor type+=ConstructedType?)
+	 *     (
+	 *         type+=TypeConstructor 
+	 *         (
+	 *             (
+	 *                 constructors+='×' | 
+	 *                 constructors+='→' | 
+	 *                 constructors+='' | 
+	 *                 constructors+='' | 
+	 *                 constructors+='↔' | 
+	 *                 constructors+='⤖' | 
+	 *                 constructors+='⇸' | 
+	 *                 constructors+='↣' | 
+	 *                 constructors+='⤀' | 
+	 *                 constructors+='↠'
+	 *             ) 
+	 *             type+=ConstructedType
+	 *         )?
+	 *     )
 	 */
 	protected void sequence_ConstructedType(ISerializationContext context, ConstructedType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -263,6 +274,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     TopLevel returns Datatype
 	 *     ClassDecl returns Datatype
+	 *     Type returns Datatype
 	 *     GenName returns Datatype
 	 *     Datatype returns Datatype
 	 *     ExpressionVariable returns Datatype
@@ -370,31 +382,21 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     InbuiltTypeScan returns InbuiltTypeScan
+	 *     InbuiltType returns InbuiltType
+	 *     Type returns InbuiltType
+	 *     GenName returns InbuiltType
 	 *
 	 * Constraint:
-	 *     name=InbuiltType
+	 *     name='Pred'
 	 */
-	protected void sequence_InbuiltTypeScan(ISerializationContext context, InbuiltTypeScan semanticObject) {
+	protected void sequence_InbuiltType(ISerializationContext context, InbuiltType semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.INBUILT_TYPE_SCAN__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.INBUILT_TYPE_SCAN__NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.GEN_NAME__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.GEN_NAME__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getInbuiltTypeScanAccess().getNameInbuiltTypeParserRuleCall_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getInbuiltTypeAccess().getNamePredKeyword_0(), semanticObject.getName());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TypeConstructor returns InbuiltTypeScan
-	 *
-	 * Constraint:
-	 *     (name=InbuiltType context+=TypeDeclContext?)
-	 */
-	protected void sequence_InbuiltTypeScan_TypeConstructor(ISerializationContext context, InbuiltTypeScan semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

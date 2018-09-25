@@ -41,6 +41,7 @@
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ConstructedType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ConstructedType/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//ConstructedType/constructors"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TypeConstructor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/TypeName"/>
@@ -123,8 +124,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Expression/typeInst"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FunctionCall">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/TypeInstance"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/arguments"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/typeInst"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//Prefix">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//Prefix/name"/>
@@ -134,14 +135,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Bracket/child"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ExpressionVariable"/>
-    <genClasses ecoreClass="BSharp.ecore#//TypeInstance">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeInstance/instance"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeInstance/typeName"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeInstance/element"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//InbuiltTypeScan">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//InbuiltTypeScan/name"/>
-    </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//Instance">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/className"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/context"/>
@@ -155,5 +148,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVariableProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IPolyTypeProvider"/>
+    <genClasses ecoreClass="BSharp.ecore#//Type"/>
+    <genClasses ecoreClass="BSharp.ecore#//InbuiltType"/>
   </genPackages>
 </genmodel:GenModel>

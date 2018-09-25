@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.ConstructedType#getType <em>Type</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.ConstructedType#getConstructors <em>Constructors</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getConstructedType()
@@ -39,5 +40,21 @@ public interface ConstructedType extends EObject {
 	 * @generated
 	 */
 	EList<EObject> getType();
+
+	/**
+	 * Returns the value of the '<em><b>Constructors</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constructors</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constructors</em>' attribute list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getConstructedType_Constructors()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getConstructors();
 
 } // ConstructedType

@@ -6,9 +6,8 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.EcoreUtil2
 import ac.soton.bsharp.bSharp.ClassDecl
-import java.util.ArrayList
 import ac.soton.bsharp.bSharp.Datatype
-import ac.soton.bsharp.EcoreUtilJ
+import ac.soton.bsharp.util.EcoreUtilJ
 import org.eclipse.xtext.scoping.Scopes
 import ac.soton.bsharp.bSharp.IPolyTypeProvider
 import ac.soton.bsharp.bSharp.TopLevel

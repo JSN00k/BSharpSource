@@ -7,9 +7,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 
@@ -43,10 +41,5 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
       }
     }
     return importedNamespaceResolvers;
-  }
-  
-  @Override
-  public IScope getLocalElementsScope(final IScope parent, final EObject context, final EReference reference) {
-    return super.getLocalElementsScope(parent, context, reference);
   }
 }

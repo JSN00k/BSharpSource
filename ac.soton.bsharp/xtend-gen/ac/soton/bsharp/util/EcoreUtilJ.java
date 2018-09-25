@@ -1,4 +1,4 @@
-package ac.soton.bsharp;
+package ac.soton.bsharp.util;
 
 import com.google.common.base.Objects;
 import java.util.ArrayList;

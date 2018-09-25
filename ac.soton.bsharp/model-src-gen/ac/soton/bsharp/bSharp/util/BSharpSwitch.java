@@ -90,10 +90,11 @@ public class BSharpSwitch<T> extends Switch<T> {
 				ClassDecl classDecl = (ClassDecl)theEObject;
 				T result = caseClassDecl(classDecl);
 				if (result == null) result = caseTopLevel(classDecl);
-				if (result == null) result = caseGenName(classDecl);
 				if (result == null) result = caseExpressionVariable(classDecl);
 				if (result == null) result = caseIVariableProvider(classDecl);
 				if (result == null) result = caseIPolyTypeProvider(classDecl);
+				if (result == null) result = caseType(classDecl);
+				if (result == null) result = caseGenName(classDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,10 +103,11 @@ public class BSharpSwitch<T> extends Switch<T> {
 				T result = caseBppClass(bppClass);
 				if (result == null) result = caseClassDecl(bppClass);
 				if (result == null) result = caseTopLevel(bppClass);
-				if (result == null) result = caseGenName(bppClass);
 				if (result == null) result = caseExpressionVariable(bppClass);
 				if (result == null) result = caseIVariableProvider(bppClass);
 				if (result == null) result = caseIPolyTypeProvider(bppClass);
+				if (result == null) result = caseType(bppClass);
+				if (result == null) result = caseGenName(bppClass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -181,10 +183,11 @@ public class BSharpSwitch<T> extends Switch<T> {
 				T result = caseDatatype(datatype);
 				if (result == null) result = caseClassDecl(datatype);
 				if (result == null) result = caseTopLevel(datatype);
-				if (result == null) result = caseGenName(datatype);
 				if (result == null) result = caseExpressionVariable(datatype);
 				if (result == null) result = caseIVariableProvider(datatype);
 				if (result == null) result = caseIPolyTypeProvider(datatype);
+				if (result == null) result = caseType(datatype);
+				if (result == null) result = caseGenName(datatype);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -326,13 +329,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.INBUILT_TYPE_SCAN: {
-				InbuiltTypeScan inbuiltTypeScan = (InbuiltTypeScan)theEObject;
-				T result = caseInbuiltTypeScan(inbuiltTypeScan);
-				if (result == null) result = caseTypeConstructor(inbuiltTypeScan);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.INSTANCE: {
 				Instance instance = (Instance)theEObject;
 				T result = caseInstance(instance);
@@ -356,6 +352,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.IPOLY_TYPE_PROVIDER: {
 				IPolyTypeProvider iPolyTypeProvider = (IPolyTypeProvider)theEObject;
 				T result = caseIPolyTypeProvider(iPolyTypeProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TYPE: {
+				Type type = (Type)theEObject;
+				T result = caseType(type);
+				if (result == null) result = caseGenName(type);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.INBUILT_TYPE: {
+				InbuiltType inbuiltType = (InbuiltType)theEObject;
+				T result = caseInbuiltType(inbuiltType);
+				if (result == null) result = caseType(inbuiltType);
+				if (result == null) result = caseGenName(inbuiltType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -919,21 +930,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Inbuilt Type Scan</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Inbuilt Type Scan</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInbuiltTypeScan(InbuiltTypeScan object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -990,6 +986,36 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIPolyTypeProvider(IPolyTypeProvider object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseType(Type object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inbuilt Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inbuilt Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInbuiltType(InbuiltType object) {
 		return null;
 	}
 

@@ -347,15 +347,6 @@ public interface BSharpFactory extends EFactory {
 	TypeInstance createTypeInstance();
 
 	/**
-	 * Returns a new object of class '<em>Inbuilt Type Scan</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Inbuilt Type Scan</em>'.
-	 * @generated
-	 */
-	InbuiltTypeScan createInbuiltTypeScan();
-
-	/**
 	 * Returns a new object of class '<em>Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -372,6 +363,24 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	Infix createInfix();
+
+	/**
+	 * Returns a new object of class '<em>Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type</em>'.
+	 * @generated
+	 */
+	Type createType();
+
+	/**
+	 * Returns a new object of class '<em>Inbuilt Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inbuilt Type</em>'.
+	 * @generated
+	 */
+	InbuiltType createInbuiltType();
 
 	/**
 	 * Returns the package supported by this factory.

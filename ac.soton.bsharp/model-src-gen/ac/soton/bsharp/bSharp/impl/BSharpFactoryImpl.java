@@ -93,9 +93,10 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.BRACKET: return createBracket();
 			case BSharpPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
 			case BSharpPackage.TYPE_INSTANCE: return createTypeInstance();
-			case BSharpPackage.INBUILT_TYPE_SCAN: return createInbuiltTypeScan();
 			case BSharpPackage.INSTANCE: return createInstance();
 			case BSharpPackage.INFIX: return createInfix();
+			case BSharpPackage.TYPE: return createType();
+			case BSharpPackage.INBUILT_TYPE: return createInbuiltType();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -465,16 +466,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InbuiltTypeScan createInbuiltTypeScan() {
-		InbuiltTypeScanImpl inbuiltTypeScan = new InbuiltTypeScanImpl();
-		return inbuiltTypeScan;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Instance createInstance() {
 		InstanceImpl instance = new InstanceImpl();
 		return instance;
@@ -488,6 +479,26 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public Infix createInfix() {
 		InfixImpl infix = new InfixImpl();
 		return infix;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type createType() {
+		TypeImpl type = new TypeImpl();
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InbuiltType createInbuiltType() {
+		InbuiltTypeImpl inbuiltType = new InbuiltTypeImpl();
+		return inbuiltType;
 	}
 
 	/**

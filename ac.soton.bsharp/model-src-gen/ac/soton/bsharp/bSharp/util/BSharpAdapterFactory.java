@@ -217,10 +217,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTypeInstanceAdapter();
 			}
 			@Override
-			public Adapter caseInbuiltTypeScan(InbuiltTypeScan object) {
-				return createInbuiltTypeScanAdapter();
-			}
-			@Override
 			public Adapter caseInstance(Instance object) {
 				return createInstanceAdapter();
 			}
@@ -235,6 +231,14 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseIPolyTypeProvider(IPolyTypeProvider object) {
 				return createIPolyTypeProviderAdapter();
+			}
+			@Override
+			public Adapter caseType(Type object) {
+				return createTypeAdapter();
+			}
+			@Override
+			public Adapter caseInbuiltType(InbuiltType object) {
+				return createInbuiltTypeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -775,20 +779,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.InbuiltTypeScan <em>Inbuilt Type Scan</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.InbuiltTypeScan
-	 * @generated
-	 */
-	public Adapter createInbuiltTypeScanAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.Instance <em>Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -841,6 +831,34 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIPolyTypeProviderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.Type <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.Type
+	 * @generated
+	 */
+	public Adapter createTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.InbuiltType <em>Inbuilt Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.InbuiltType
+	 * @generated
+	 */
+	public Adapter createInbuiltTypeAdapter() {
 		return null;
 	}
 

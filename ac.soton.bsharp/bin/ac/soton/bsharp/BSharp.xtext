@@ -16,6 +16,25 @@ ClassDecl returns ClassDecl:
 	Class | Datatype
 ;
 
+/* There are three Types which can be used as type variables, inbuilt types, types create
+ * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
+ * occasions where each of these can be used.
+ */
+
+/* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
+ * recursion in the inbuilt types it may be better to build them instead. We need Pred
+ * as it is going to have special rules to deal with the separation of expressions and 
+ * predicates in Event B. */
+InbuiltType:
+	name='Pred'
+;
+
+Type:
+	ClassDecl | InbuiltType
+;
+
+GenName: PolymorphicTypeName | Type;
+
 /* -------------------------- Import Statements -------------------- */
 /* I had hoped to use a python style import, however this seems to be fighting 
  * the system, and would require a custom implementation of DefaultDeclarativeQualifiedNameProvider.
@@ -43,7 +62,7 @@ Class returns BppClass:
 	'{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
-GenName: PolymorphicTypeName | ClassDecl;
+
 
 /*---------------- Polymorphic Context of -------------------------- */
 
@@ -75,7 +94,8 @@ SuperTypeList:
 
 /* Along with the normal Event-B type operator, and new B++ types the  */
 ConstructedType:
-	type+=TypeConstructor (('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
+	type+=TypeConstructor 
+		(constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
 ;
 
 /* Type constructor has validation rules to check that there is no context when there is a polymorphic name, 
@@ -83,7 +103,7 @@ ConstructedType:
  * Probably need to add the predicate type to this.
  */
 TypeConstructor:
-	(TypeName=[GenName|QualifiedName] | InbuiltTypeScan) (context+=TypeDeclContext)?
+	TypeName=[GenName|QualifiedName] (context+=TypeDeclContext)?
 ;
 
 TypeDeclContext:
@@ -246,29 +266,15 @@ Bracket returns Bracket:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns FunctionCall:
-	(typeInst=TypeInstance) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+	(typeInst=[ExpressionVariable|QualifiedName]) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
 ;
 
 ExpressionVariable:
 	 FunctionName | TypedVariable | ClassDecl
 ;
 
- TypeInstance:
- 	(instance=[ExpressionVariable|QualifiedName])
- ;
-
 InbuiltInfix:
 	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
-;
-
-/* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
- * recursion in the inbuilt types it may be better to  */
-InbuiltType:
-	'Pred'
-;
-
-InbuiltTypeScan:
-	name=InbuiltType
 ;
 
 /* I feel like I should need these, however, I'm not sure when they would be necessary. */

@@ -447,13 +447,22 @@ public interface BSharpPackage extends EPackage {
 	int CONSTRUCTED_TYPE__TYPE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Constructors</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTED_TYPE__CONSTRUCTORS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Constructed Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTED_TYPE_FEATURE_COUNT = 1;
+	int CONSTRUCTED_TYPE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeConstructorImpl <em>Type Constructor</em>}' class.
@@ -841,16 +850,6 @@ public interface BSharpPackage extends EPackage {
 	int TYPE_INSTANCE = 36;
 
 	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InbuiltTypeScanImpl <em>Inbuilt Type Scan</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.InbuiltTypeScanImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInbuiltTypeScan()
-	 * @generated
-	 */
-	int INBUILT_TYPE_SCAN = 37;
-
-	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InstanceImpl <em>Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -858,7 +857,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInstance()
 	 * @generated
 	 */
-	int INSTANCE = 38;
+	int INSTANCE = 37;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InfixImpl <em>Infix</em>}' class.
@@ -868,7 +867,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInfix()
 	 * @generated
 	 */
-	int INFIX = 39;
+	int INFIX = 38;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IPolyTypeProvider <em>IPoly Type Provider</em>}' class.
@@ -878,7 +877,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIPolyTypeProvider()
 	 * @generated
 	 */
-	int IPOLY_TYPE_PROVIDER = 41;
+	int IPOLY_TYPE_PROVIDER = 40;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IVariableProvider <em>IVariable Provider</em>}' class.
@@ -888,7 +887,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIVariableProvider()
 	 * @generated
 	 */
-	int IVARIABLE_PROVIDER = 40;
+	int IVARIABLE_PROVIDER = 39;
 
 	/**
 	 * The number of structural features of the '<em>IVariable Provider</em>' class.
@@ -1503,42 +1502,6 @@ public interface BSharpPackage extends EPackage {
 	int TYPE_INSTANCE_FEATURE_COUNT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Type Name</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INBUILT_TYPE_SCAN__TYPE_NAME = TYPE_CONSTRUCTOR__TYPE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INBUILT_TYPE_SCAN__CONTEXT = TYPE_CONSTRUCTOR__CONTEXT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INBUILT_TYPE_SCAN__NAME = TYPE_CONSTRUCTOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Inbuilt Type Scan</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INBUILT_TYPE_SCAN_FEATURE_COUNT = TYPE_CONSTRUCTOR_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1636,6 +1599,63 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int IPOLY_TYPE_PROVIDER_FEATURE_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeImpl <em>Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.TypeImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getType()
+	 * @generated
+	 */
+	int TYPE = 41;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE__NAME = GEN_NAME__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_FEATURE_COUNT = GEN_NAME_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InbuiltTypeImpl <em>Inbuilt Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.InbuiltTypeImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInbuiltType()
+	 * @generated
+	 */
+	int INBUILT_TYPE = 42;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INBUILT_TYPE__NAME = TYPE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Inbuilt Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INBUILT_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
 
 
 	/**
@@ -1911,6 +1931,17 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConstructedType_Type();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link ac.soton.bsharp.bSharp.ConstructedType#getConstructors <em>Constructors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Constructors</em>'.
+	 * @see ac.soton.bsharp.bSharp.ConstructedType#getConstructors()
+	 * @see #getConstructedType()
+	 * @generated
+	 */
+	EAttribute getConstructedType_Constructors();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.TypeConstructor <em>Type Constructor</em>}'.
@@ -2691,27 +2722,6 @@ public interface BSharpPackage extends EPackage {
 	EReference getTypeInstance_Element();
 
 	/**
-	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.InbuiltTypeScan <em>Inbuilt Type Scan</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Inbuilt Type Scan</em>'.
-	 * @see ac.soton.bsharp.bSharp.InbuiltTypeScan
-	 * @generated
-	 */
-	EClass getInbuiltTypeScan();
-
-	/**
-	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.InbuiltTypeScan#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see ac.soton.bsharp.bSharp.InbuiltTypeScan#getName()
-	 * @see #getInbuiltTypeScan()
-	 * @generated
-	 */
-	EAttribute getInbuiltTypeScan_Name();
-
-	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Instance <em>Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2827,6 +2837,26 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIPolyTypeProvider();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Type <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Type</em>'.
+	 * @see ac.soton.bsharp.bSharp.Type
+	 * @generated
+	 */
+	EClass getType();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.InbuiltType <em>Inbuilt Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Inbuilt Type</em>'.
+	 * @see ac.soton.bsharp.bSharp.InbuiltType
+	 * @generated
+	 */
+	EClass getInbuiltType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3081,6 +3111,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONSTRUCTED_TYPE__TYPE = eINSTANCE.getConstructedType_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Constructors</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRUCTED_TYPE__CONSTRUCTORS = eINSTANCE.getConstructedType_Constructors();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.TypeConstructorImpl <em>Type Constructor</em>}' class.
@@ -3717,24 +3755,6 @@ public interface BSharpPackage extends EPackage {
 		EReference TYPE_INSTANCE__ELEMENT = eINSTANCE.getTypeInstance_Element();
 
 		/**
-		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.InbuiltTypeScanImpl <em>Inbuilt Type Scan</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see ac.soton.bsharp.bSharp.impl.InbuiltTypeScanImpl
-		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInbuiltTypeScan()
-		 * @generated
-		 */
-		EClass INBUILT_TYPE_SCAN = eINSTANCE.getInbuiltTypeScan();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INBUILT_TYPE_SCAN__NAME = eINSTANCE.getInbuiltTypeScan_Name();
-
-		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.InstanceImpl <em>Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3829,6 +3849,26 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IPOLY_TYPE_PROVIDER = eINSTANCE.getIPolyTypeProvider();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.TypeImpl <em>Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.TypeImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getType()
+		 * @generated
+		 */
+		EClass TYPE = eINSTANCE.getType();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.InbuiltTypeImpl <em>Inbuilt Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.InbuiltTypeImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInbuiltType()
+		 * @generated
+		 */
+		EClass INBUILT_TYPE = eINSTANCE.getInbuiltType();
 
 	}
 

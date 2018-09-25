@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ConstructedTypeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.ConstructedTypeImpl#getConstructors <em>Constructors</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,6 +46,16 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected EList<EObject> type;
+
+	/**
+	 * The cached value of the '{@link #getConstructors() <em>Constructors</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstructors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> constructors;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,6 +93,18 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<String> getConstructors() {
+		if (constructors == null) {
+			constructors = new EDataTypeUniqueEList<String>(String.class, this, BSharpPackage.CONSTRUCTED_TYPE__CONSTRUCTORS);
+		}
+		return constructors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -100,6 +124,8 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case BSharpPackage.CONSTRUCTED_TYPE__TYPE:
 				return getType();
+			case BSharpPackage.CONSTRUCTED_TYPE__CONSTRUCTORS:
+				return getConstructors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -117,6 +143,10 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 				getType().clear();
 				getType().addAll((Collection<? extends EObject>)newValue);
 				return;
+			case BSharpPackage.CONSTRUCTED_TYPE__CONSTRUCTORS:
+				getConstructors().clear();
+				getConstructors().addAll((Collection<? extends String>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -132,6 +162,9 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 			case BSharpPackage.CONSTRUCTED_TYPE__TYPE:
 				getType().clear();
 				return;
+			case BSharpPackage.CONSTRUCTED_TYPE__CONSTRUCTORS:
+				getConstructors().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -146,8 +179,26 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case BSharpPackage.CONSTRUCTED_TYPE__TYPE:
 				return type != null && !type.isEmpty();
+			case BSharpPackage.CONSTRUCTED_TYPE__CONSTRUCTORS:
+				return constructors != null && !constructors.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (constructors: ");
+		result.append(constructors);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ConstructedTypeImpl
