@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getTypeInstance <em>Type Instance</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getArguments <em>Arguments</em>}</li>
  * </ul>
  *
@@ -23,31 +22,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface FunctionCall extends Expression {
-	/**
-	 * Returns the value of the '<em><b>Type Instance</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type Instance</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Instance</em>' containment reference.
-	 * @see #setTypeInstance(TypeInstance)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_TypeInstance()
-	 * @model containment="true"
-	 * @generated
-	 */
-	TypeInstance getTypeInstance();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getTypeInstance <em>Type Instance</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type Instance</em>' containment reference.
-	 * @see #getTypeInstance()
-	 * @generated
-	 */
-	void setTypeInstance(TypeInstance value);
 
 	/**
 	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.

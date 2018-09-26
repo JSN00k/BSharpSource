@@ -95,6 +95,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIPolyTypeProvider(classDecl);
 				if (result == null) result = caseType(classDecl);
 				if (result == null) result = caseGenName(classDecl);
+				if (result == null) result = caseNamedObject(classDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -108,12 +109,14 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIPolyTypeProvider(bppClass);
 				if (result == null) result = caseType(bppClass);
 				if (result == null) result = caseGenName(bppClass);
+				if (result == null) result = caseNamedObject(bppClass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BSharpPackage.GEN_NAME: {
 				GenName genName = (GenName)theEObject;
 				T result = caseGenName(genName);
+				if (result == null) result = caseNamedObject(genName);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -121,6 +124,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				PolymorphicTypeName polymorphicTypeName = (PolymorphicTypeName)theEObject;
 				T result = casePolymorphicTypeName(polymorphicTypeName);
 				if (result == null) result = caseGenName(polymorphicTypeName);
+				if (result == null) result = caseNamedObject(polymorphicTypeName);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -188,6 +192,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIPolyTypeProvider(datatype);
 				if (result == null) result = caseType(datatype);
 				if (result == null) result = caseGenName(datatype);
+				if (result == null) result = caseNamedObject(datatype);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -197,6 +202,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIVariableProvider(datatypeConstructor);
 				if (result == null) result = caseTypedVariable(datatypeConstructor);
 				if (result == null) result = caseExpressionVariable(datatypeConstructor);
+				if (result == null) result = caseNamedObject(datatypeConstructor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -227,6 +233,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				FunctionName functionName = (FunctionName)theEObject;
 				T result = caseFunctionName(functionName);
 				if (result == null) result = caseExpressionVariable(functionName);
+				if (result == null) result = caseNamedObject(functionName);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -272,6 +279,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				TypedVariable typedVariable = (TypedVariable)theEObject;
 				T result = caseTypedVariable(typedVariable);
 				if (result == null) result = caseExpressionVariable(typedVariable);
+				if (result == null) result = caseNamedObject(typedVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -320,12 +328,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.EXPRESSION_VARIABLE: {
 				ExpressionVariable expressionVariable = (ExpressionVariable)theEObject;
 				T result = caseExpressionVariable(expressionVariable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TYPE_INSTANCE: {
-				TypeInstance typeInstance = (TypeInstance)theEObject;
-				T result = caseTypeInstance(typeInstance);
+				if (result == null) result = caseNamedObject(expressionVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -359,6 +362,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				Type type = (Type)theEObject;
 				T result = caseType(type);
 				if (result == null) result = caseGenName(type);
+				if (result == null) result = caseNamedObject(type);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -367,6 +371,13 @@ public class BSharpSwitch<T> extends Switch<T> {
 				T result = caseInbuiltType(inbuiltType);
 				if (result == null) result = caseType(inbuiltType);
 				if (result == null) result = caseGenName(inbuiltType);
+				if (result == null) result = caseNamedObject(inbuiltType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.NAMED_OBJECT: {
+				NamedObject namedObject = (NamedObject)theEObject;
+				T result = caseNamedObject(namedObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -915,21 +926,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Instance</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypeInstance(TypeInstance object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1016,6 +1012,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInbuiltType(InbuiltType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedObject(NamedObject object) {
 		return null;
 	}
 

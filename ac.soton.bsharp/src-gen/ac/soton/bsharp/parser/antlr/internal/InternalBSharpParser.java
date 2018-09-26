@@ -7321,15 +7321,13 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFunctionCall"
-    // InternalBSharp.g:2785:1: ruleFunctionCall returns [EObject current=null] : ( ( (lv_typeInst_0_0= ruleTypeInstance ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )? ) ;
+    // InternalBSharp.g:2785:1: ruleFunctionCall returns [EObject current=null] : ( ( ( ruleQualifiedName ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )? ) ;
     public final EObject ruleFunctionCall() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
         Token otherlv_3=null;
         Token otherlv_5=null;
-        EObject lv_typeInst_0_0 = null;
-
         EObject lv_arguments_2_0 = null;
 
         EObject lv_arguments_4_0 = null;
@@ -7339,35 +7337,32 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBSharp.g:2791:2: ( ( ( (lv_typeInst_0_0= ruleTypeInstance ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )? ) )
-            // InternalBSharp.g:2792:2: ( ( (lv_typeInst_0_0= ruleTypeInstance ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )? )
+            // InternalBSharp.g:2791:2: ( ( ( ( ruleQualifiedName ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )? ) )
+            // InternalBSharp.g:2792:2: ( ( ( ruleQualifiedName ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )? )
             {
-            // InternalBSharp.g:2792:2: ( ( (lv_typeInst_0_0= ruleTypeInstance ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )? )
-            // InternalBSharp.g:2793:3: ( (lv_typeInst_0_0= ruleTypeInstance ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )?
+            // InternalBSharp.g:2792:2: ( ( ( ruleQualifiedName ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )? )
+            // InternalBSharp.g:2793:3: ( ( ruleQualifiedName ) ) (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )?
             {
-            // InternalBSharp.g:2793:3: ( (lv_typeInst_0_0= ruleTypeInstance ) )
-            // InternalBSharp.g:2794:4: (lv_typeInst_0_0= ruleTypeInstance )
+            // InternalBSharp.g:2793:3: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:2794:4: ( ruleQualifiedName )
             {
-            // InternalBSharp.g:2794:4: (lv_typeInst_0_0= ruleTypeInstance )
-            // InternalBSharp.g:2795:5: lv_typeInst_0_0= ruleTypeInstance
+            // InternalBSharp.g:2794:4: ( ruleQualifiedName )
+            // InternalBSharp.g:2795:5: ruleQualifiedName
             {
 
-            					newCompositeNode(grammarAccess.getFunctionCallAccess().getTypeInstTypeInstanceParserRuleCall_0_0());
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getFunctionCallRule());
+            					}
+            				
+
+            					newCompositeNode(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_0_0());
             				
             pushFollow(FOLLOW_29);
-            lv_typeInst_0_0=ruleTypeInstance();
+            ruleQualifiedName();
 
             state._fsp--;
 
 
-            					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getFunctionCallRule());
-            					}
-            					set(
-            						current,
-            						"typeInst",
-            						lv_typeInst_0_0,
-            						"ac.soton.bsharp.BSharp.TypeInstance");
             					afterParserOrEnumRuleCall();
             				
 
@@ -7376,7 +7371,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBSharp.g:2812:3: (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )?
+            // InternalBSharp.g:2809:3: (otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')' )?
             int alt49=2;
             int LA49_0 = input.LA(1);
 
@@ -7385,13 +7380,13 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             }
             switch (alt49) {
                 case 1 :
-                    // InternalBSharp.g:2813:4: otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')'
+                    // InternalBSharp.g:2810:4: otherlv_1= '(' ( (lv_arguments_2_0= ruleRootExpression ) )? (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )* otherlv_5= ')'
                     {
                     otherlv_1=(Token)match(input,33,FOLLOW_46); 
 
                     				newLeafNode(otherlv_1, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_0());
                     			
-                    // InternalBSharp.g:2817:4: ( (lv_arguments_2_0= ruleRootExpression ) )?
+                    // InternalBSharp.g:2814:4: ( (lv_arguments_2_0= ruleRootExpression ) )?
                     int alt47=2;
                     int LA47_0 = input.LA(1);
 
@@ -7400,10 +7395,10 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt47) {
                         case 1 :
-                            // InternalBSharp.g:2818:5: (lv_arguments_2_0= ruleRootExpression )
+                            // InternalBSharp.g:2815:5: (lv_arguments_2_0= ruleRootExpression )
                             {
-                            // InternalBSharp.g:2818:5: (lv_arguments_2_0= ruleRootExpression )
-                            // InternalBSharp.g:2819:6: lv_arguments_2_0= ruleRootExpression
+                            // InternalBSharp.g:2815:5: (lv_arguments_2_0= ruleRootExpression )
+                            // InternalBSharp.g:2816:6: lv_arguments_2_0= ruleRootExpression
                             {
 
                             						newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_1_0());
@@ -7433,7 +7428,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalBSharp.g:2836:4: (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )*
+                    // InternalBSharp.g:2833:4: (otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) ) )*
                     loop48:
                     do {
                         int alt48=2;
@@ -7446,17 +7441,17 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                         switch (alt48) {
                     	case 1 :
-                    	    // InternalBSharp.g:2837:5: otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) )
+                    	    // InternalBSharp.g:2834:5: otherlv_3= ',' ( (lv_arguments_4_0= ruleRootExpression ) )
                     	    {
                     	    otherlv_3=(Token)match(input,22,FOLLOW_25); 
 
                     	    					newLeafNode(otherlv_3, grammarAccess.getFunctionCallAccess().getCommaKeyword_1_2_0());
                     	    				
-                    	    // InternalBSharp.g:2841:5: ( (lv_arguments_4_0= ruleRootExpression ) )
-                    	    // InternalBSharp.g:2842:6: (lv_arguments_4_0= ruleRootExpression )
+                    	    // InternalBSharp.g:2838:5: ( (lv_arguments_4_0= ruleRootExpression ) )
+                    	    // InternalBSharp.g:2839:6: (lv_arguments_4_0= ruleRootExpression )
                     	    {
-                    	    // InternalBSharp.g:2842:6: (lv_arguments_4_0= ruleRootExpression )
-                    	    // InternalBSharp.g:2843:7: lv_arguments_4_0= ruleRootExpression
+                    	    // InternalBSharp.g:2839:6: (lv_arguments_4_0= ruleRootExpression )
+                    	    // InternalBSharp.g:2840:7: lv_arguments_4_0= ruleRootExpression
                     	    {
 
                     	    							newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_1_0());
@@ -7524,103 +7519,8 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleFunctionCall"
 
 
-    // $ANTLR start "entryRuleTypeInstance"
-    // InternalBSharp.g:2870:1: entryRuleTypeInstance returns [EObject current=null] : iv_ruleTypeInstance= ruleTypeInstance EOF ;
-    public final EObject entryRuleTypeInstance() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleTypeInstance = null;
-
-
-        try {
-            // InternalBSharp.g:2870:53: (iv_ruleTypeInstance= ruleTypeInstance EOF )
-            // InternalBSharp.g:2871:2: iv_ruleTypeInstance= ruleTypeInstance EOF
-            {
-             newCompositeNode(grammarAccess.getTypeInstanceRule()); 
-            pushFollow(FOLLOW_1);
-            iv_ruleTypeInstance=ruleTypeInstance();
-
-            state._fsp--;
-
-             current =iv_ruleTypeInstance; 
-            match(input,EOF,FOLLOW_2); 
-
-            }
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleTypeInstance"
-
-
-    // $ANTLR start "ruleTypeInstance"
-    // InternalBSharp.g:2877:1: ruleTypeInstance returns [EObject current=null] : ( ( ruleQualifiedName ) ) ;
-    public final EObject ruleTypeInstance() throws RecognitionException {
-        EObject current = null;
-
-
-        	enterRule();
-
-        try {
-            // InternalBSharp.g:2883:2: ( ( ( ruleQualifiedName ) ) )
-            // InternalBSharp.g:2884:2: ( ( ruleQualifiedName ) )
-            {
-            // InternalBSharp.g:2884:2: ( ( ruleQualifiedName ) )
-            // InternalBSharp.g:2885:3: ( ruleQualifiedName )
-            {
-            // InternalBSharp.g:2885:3: ( ruleQualifiedName )
-            // InternalBSharp.g:2886:4: ruleQualifiedName
-            {
-
-            				if (current==null) {
-            					current = createModelElement(grammarAccess.getTypeInstanceRule());
-            				}
-            			
-
-            				newCompositeNode(grammarAccess.getTypeInstanceAccess().getInstanceExpressionVariableCrossReference_0());
-            			
-            pushFollow(FOLLOW_2);
-            ruleQualifiedName();
-
-            state._fsp--;
-
-
-            				afterParserOrEnumRuleCall();
-            			
-
-            }
-
-
-            }
-
-
-            }
-
-
-            	leaveRule();
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleTypeInstance"
-
-
     // $ANTLR start "entryRuleInbuiltInfix"
-    // InternalBSharp.g:2903:1: entryRuleInbuiltInfix returns [String current=null] : iv_ruleInbuiltInfix= ruleInbuiltInfix EOF ;
+    // InternalBSharp.g:2867:1: entryRuleInbuiltInfix returns [String current=null] : iv_ruleInbuiltInfix= ruleInbuiltInfix EOF ;
     public final String entryRuleInbuiltInfix() throws RecognitionException {
         String current = null;
 
@@ -7628,8 +7528,8 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBSharp.g:2903:52: (iv_ruleInbuiltInfix= ruleInbuiltInfix EOF )
-            // InternalBSharp.g:2904:2: iv_ruleInbuiltInfix= ruleInbuiltInfix EOF
+            // InternalBSharp.g:2867:52: (iv_ruleInbuiltInfix= ruleInbuiltInfix EOF )
+            // InternalBSharp.g:2868:2: iv_ruleInbuiltInfix= ruleInbuiltInfix EOF
             {
              newCompositeNode(grammarAccess.getInbuiltInfixRule()); 
             pushFollow(FOLLOW_1);
@@ -7656,7 +7556,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInbuiltInfix"
-    // InternalBSharp.g:2910:1: ruleInbuiltInfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '\\u21D4' | kw= '\\u21D2' | kw= '=' | kw= '\\u2260' | kw= '\\u2227' | kw= '\\u2228' ) ;
+    // InternalBSharp.g:2874:1: ruleInbuiltInfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '\\u21D4' | kw= '\\u21D2' | kw= '=' | kw= '\\u2260' | kw= '\\u2227' | kw= '\\u2228' ) ;
     public final AntlrDatatypeRuleToken ruleInbuiltInfix() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7666,10 +7566,10 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBSharp.g:2916:2: ( (kw= '\\u21D4' | kw= '\\u21D2' | kw= '=' | kw= '\\u2260' | kw= '\\u2227' | kw= '\\u2228' ) )
-            // InternalBSharp.g:2917:2: (kw= '\\u21D4' | kw= '\\u21D2' | kw= '=' | kw= '\\u2260' | kw= '\\u2227' | kw= '\\u2228' )
+            // InternalBSharp.g:2880:2: ( (kw= '\\u21D4' | kw= '\\u21D2' | kw= '=' | kw= '\\u2260' | kw= '\\u2227' | kw= '\\u2228' ) )
+            // InternalBSharp.g:2881:2: (kw= '\\u21D4' | kw= '\\u21D2' | kw= '=' | kw= '\\u2260' | kw= '\\u2227' | kw= '\\u2228' )
             {
-            // InternalBSharp.g:2917:2: (kw= '\\u21D4' | kw= '\\u21D2' | kw= '=' | kw= '\\u2260' | kw= '\\u2227' | kw= '\\u2228' )
+            // InternalBSharp.g:2881:2: (kw= '\\u21D4' | kw= '\\u21D2' | kw= '=' | kw= '\\u2260' | kw= '\\u2227' | kw= '\\u2228' )
             int alt50=6;
             switch ( input.LA(1) ) {
             case 47:
@@ -7711,7 +7611,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             switch (alt50) {
                 case 1 :
-                    // InternalBSharp.g:2918:3: kw= '\\u21D4'
+                    // InternalBSharp.g:2882:3: kw= '\\u21D4'
                     {
                     kw=(Token)match(input,47,FOLLOW_2); 
 
@@ -7722,7 +7622,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:2924:3: kw= '\\u21D2'
+                    // InternalBSharp.g:2888:3: kw= '\\u21D2'
                     {
                     kw=(Token)match(input,48,FOLLOW_2); 
 
@@ -7733,7 +7633,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalBSharp.g:2930:3: kw= '='
+                    // InternalBSharp.g:2894:3: kw= '='
                     {
                     kw=(Token)match(input,49,FOLLOW_2); 
 
@@ -7744,7 +7644,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalBSharp.g:2936:3: kw= '\\u2260'
+                    // InternalBSharp.g:2900:3: kw= '\\u2260'
                     {
                     kw=(Token)match(input,50,FOLLOW_2); 
 
@@ -7755,7 +7655,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalBSharp.g:2942:3: kw= '\\u2227'
+                    // InternalBSharp.g:2906:3: kw= '\\u2227'
                     {
                     kw=(Token)match(input,51,FOLLOW_2); 
 
@@ -7766,7 +7666,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalBSharp.g:2948:3: kw= '\\u2228'
+                    // InternalBSharp.g:2912:3: kw= '\\u2228'
                     {
                     kw=(Token)match(input,52,FOLLOW_2); 
 
@@ -7799,7 +7699,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInstance"
-    // InternalBSharp.g:2957:1: entryRuleInstance returns [EObject current=null] : iv_ruleInstance= ruleInstance EOF ;
+    // InternalBSharp.g:2921:1: entryRuleInstance returns [EObject current=null] : iv_ruleInstance= ruleInstance EOF ;
     public final EObject entryRuleInstance() throws RecognitionException {
         EObject current = null;
 
@@ -7807,8 +7707,8 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalBSharp.g:2957:49: (iv_ruleInstance= ruleInstance EOF )
-            // InternalBSharp.g:2958:2: iv_ruleInstance= ruleInstance EOF
+            // InternalBSharp.g:2921:49: (iv_ruleInstance= ruleInstance EOF )
+            // InternalBSharp.g:2922:2: iv_ruleInstance= ruleInstance EOF
             {
              newCompositeNode(grammarAccess.getInstanceRule()); 
             pushFollow(FOLLOW_1);
@@ -7835,7 +7735,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInstance"
-    // InternalBSharp.g:2964:1: ruleInstance returns [EObject current=null] : (otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')' ) ;
+    // InternalBSharp.g:2928:1: ruleInstance returns [EObject current=null] : (otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')' ) ;
     public final EObject ruleInstance() throws RecognitionException {
         EObject current = null;
 
@@ -7854,21 +7754,21 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBSharp.g:2970:2: ( (otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')' ) )
-            // InternalBSharp.g:2971:2: (otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')' )
+            // InternalBSharp.g:2934:2: ( (otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')' ) )
+            // InternalBSharp.g:2935:2: (otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')' )
             {
-            // InternalBSharp.g:2971:2: (otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')' )
-            // InternalBSharp.g:2972:3: otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')'
+            // InternalBSharp.g:2935:2: (otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')' )
+            // InternalBSharp.g:2936:3: otherlv_0= 'Instance' ( ( ruleQualifiedName ) ) ( (lv_context_2_0= ruleTypeDeclContext ) ) otherlv_3= '(' ( (lv_arguments_4_0= ruleRootExpression ) )? (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )* otherlv_7= ')'
             {
             otherlv_0=(Token)match(input,53,FOLLOW_6); 
 
             			newLeafNode(otherlv_0, grammarAccess.getInstanceAccess().getInstanceKeyword_0());
             		
-            // InternalBSharp.g:2976:3: ( ( ruleQualifiedName ) )
-            // InternalBSharp.g:2977:4: ( ruleQualifiedName )
+            // InternalBSharp.g:2940:3: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:2941:4: ( ruleQualifiedName )
             {
-            // InternalBSharp.g:2977:4: ( ruleQualifiedName )
-            // InternalBSharp.g:2978:5: ruleQualifiedName
+            // InternalBSharp.g:2941:4: ( ruleQualifiedName )
+            // InternalBSharp.g:2942:5: ruleQualifiedName
             {
 
             					if (current==null) {
@@ -7892,11 +7792,11 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBSharp.g:2992:3: ( (lv_context_2_0= ruleTypeDeclContext ) )
-            // InternalBSharp.g:2993:4: (lv_context_2_0= ruleTypeDeclContext )
+            // InternalBSharp.g:2956:3: ( (lv_context_2_0= ruleTypeDeclContext ) )
+            // InternalBSharp.g:2957:4: (lv_context_2_0= ruleTypeDeclContext )
             {
-            // InternalBSharp.g:2993:4: (lv_context_2_0= ruleTypeDeclContext )
-            // InternalBSharp.g:2994:5: lv_context_2_0= ruleTypeDeclContext
+            // InternalBSharp.g:2957:4: (lv_context_2_0= ruleTypeDeclContext )
+            // InternalBSharp.g:2958:5: lv_context_2_0= ruleTypeDeclContext
             {
 
             					newCompositeNode(grammarAccess.getInstanceAccess().getContextTypeDeclContextParserRuleCall_2_0());
@@ -7927,7 +7827,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_3, grammarAccess.getInstanceAccess().getLeftParenthesisKeyword_3());
             		
-            // InternalBSharp.g:3015:3: ( (lv_arguments_4_0= ruleRootExpression ) )?
+            // InternalBSharp.g:2979:3: ( (lv_arguments_4_0= ruleRootExpression ) )?
             int alt51=2;
             int LA51_0 = input.LA(1);
 
@@ -7936,10 +7836,10 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             }
             switch (alt51) {
                 case 1 :
-                    // InternalBSharp.g:3016:4: (lv_arguments_4_0= ruleRootExpression )
+                    // InternalBSharp.g:2980:4: (lv_arguments_4_0= ruleRootExpression )
                     {
-                    // InternalBSharp.g:3016:4: (lv_arguments_4_0= ruleRootExpression )
-                    // InternalBSharp.g:3017:5: lv_arguments_4_0= ruleRootExpression
+                    // InternalBSharp.g:2980:4: (lv_arguments_4_0= ruleRootExpression )
+                    // InternalBSharp.g:2981:5: lv_arguments_4_0= ruleRootExpression
                     {
 
                     					newCompositeNode(grammarAccess.getInstanceAccess().getArgumentsRootExpressionParserRuleCall_4_0());
@@ -7969,7 +7869,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBSharp.g:3034:3: (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )*
+            // InternalBSharp.g:2998:3: (otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) ) )*
             loop52:
             do {
                 int alt52=2;
@@ -7982,17 +7882,17 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                 switch (alt52) {
             	case 1 :
-            	    // InternalBSharp.g:3035:4: otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) )
+            	    // InternalBSharp.g:2999:4: otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) )
             	    {
             	    otherlv_5=(Token)match(input,22,FOLLOW_25); 
 
             	    				newLeafNode(otherlv_5, grammarAccess.getInstanceAccess().getCommaKeyword_5_0());
             	    			
-            	    // InternalBSharp.g:3039:4: ( (lv_arguments_6_0= ruleRootExpression ) )
-            	    // InternalBSharp.g:3040:5: (lv_arguments_6_0= ruleRootExpression )
+            	    // InternalBSharp.g:3003:4: ( (lv_arguments_6_0= ruleRootExpression ) )
+            	    // InternalBSharp.g:3004:5: (lv_arguments_6_0= ruleRootExpression )
             	    {
-            	    // InternalBSharp.g:3040:5: (lv_arguments_6_0= ruleRootExpression )
-            	    // InternalBSharp.g:3041:6: lv_arguments_6_0= ruleRootExpression
+            	    // InternalBSharp.g:3004:5: (lv_arguments_6_0= ruleRootExpression )
+            	    // InternalBSharp.g:3005:6: lv_arguments_6_0= ruleRootExpression
             	    {
 
             	    						newCompositeNode(grammarAccess.getInstanceAccess().getArgumentsRootExpressionParserRuleCall_5_1_0());

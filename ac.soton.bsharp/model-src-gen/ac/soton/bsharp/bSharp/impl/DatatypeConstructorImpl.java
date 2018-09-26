@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 
@@ -239,6 +240,12 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == NamedObject.class) {
+			switch (derivedFeatureID) {
+				case BSharpPackage.DATATYPE_CONSTRUCTOR__NAME: return BSharpPackage.NAMED_OBJECT__NAME;
+				default: return -1;
+			}
+		}
 		if (baseClass == ExpressionVariable.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -246,7 +253,6 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 		}
 		if (baseClass == TypedVariable.class) {
 			switch (derivedFeatureID) {
-				case BSharpPackage.DATATYPE_CONSTRUCTOR__NAME: return BSharpPackage.TYPED_VARIABLE__NAME;
 				default: return -1;
 			}
 		}
@@ -260,6 +266,12 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == NamedObject.class) {
+			switch (baseFeatureID) {
+				case BSharpPackage.NAMED_OBJECT__NAME: return BSharpPackage.DATATYPE_CONSTRUCTOR__NAME;
+				default: return -1;
+			}
+		}
 		if (baseClass == ExpressionVariable.class) {
 			switch (baseFeatureID) {
 				default: return -1;
@@ -267,7 +279,6 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 		}
 		if (baseClass == TypedVariable.class) {
 			switch (baseFeatureID) {
-				case BSharpPackage.TYPED_VARIABLE__NAME: return BSharpPackage.DATATYPE_CONSTRUCTOR__NAME;
 				default: return -1;
 			}
 		}

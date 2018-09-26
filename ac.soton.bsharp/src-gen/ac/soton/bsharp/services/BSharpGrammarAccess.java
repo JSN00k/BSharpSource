@@ -1580,7 +1580,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FunctionCall");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeInstAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeInstTypeInstanceParserRuleCall_0_0 = (RuleCall)cTypeInstAssignment_0.eContents().get(0);
+		private final CrossReference cTypeInstExpressionVariableCrossReference_0_0 = (CrossReference)cTypeInstAssignment_0.eContents().get(0);
+		private final RuleCall cTypeInstExpressionVariableQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cTypeInstExpressionVariableCrossReference_0_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cArgumentsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
@@ -1604,17 +1605,20 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * 
 		// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
 		// */ FunctionCall:
-		//	typeInst=TypeInstance ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
+		//	typeInst=[ExpressionVariable|QualifiedName] ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//typeInst=TypeInstance ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
+		//typeInst=[ExpressionVariable|QualifiedName] ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
 		public Group getGroup() { return cGroup; }
 		
-		//typeInst=TypeInstance
+		//typeInst=[ExpressionVariable|QualifiedName]
 		public Assignment getTypeInstAssignment_0() { return cTypeInstAssignment_0; }
 		
-		//TypeInstance
-		public RuleCall getTypeInstTypeInstanceParserRuleCall_0_0() { return cTypeInstTypeInstanceParserRuleCall_0_0; }
+		//[ExpressionVariable|QualifiedName]
+		public CrossReference getTypeInstExpressionVariableCrossReference_0_0() { return cTypeInstExpressionVariableCrossReference_0_0; }
+		
+		//QualifiedName
+		public RuleCall getTypeInstExpressionVariableQualifiedNameParserRuleCall_0_0_1() { return cTypeInstExpressionVariableQualifiedNameParserRuleCall_0_0_1; }
 		
 		//('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
 		public Group getGroup_1() { return cGroup_1; }
@@ -1665,25 +1669,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ClassDecl
 		public RuleCall getClassDeclParserRuleCall_2() { return cClassDeclParserRuleCall_2; }
-	}
-	public class TypeInstanceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeInstance");
-		private final Assignment cInstanceAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cInstanceExpressionVariableCrossReference_0 = (CrossReference)cInstanceAssignment.eContents().get(0);
-		private final RuleCall cInstanceExpressionVariableQualifiedNameParserRuleCall_0_1 = (RuleCall)cInstanceExpressionVariableCrossReference_0.eContents().get(1);
-		
-		//TypeInstance:
-		//	instance=[ExpressionVariable|QualifiedName];
-		@Override public ParserRule getRule() { return rule; }
-		
-		//instance=[ExpressionVariable|QualifiedName]
-		public Assignment getInstanceAssignment() { return cInstanceAssignment; }
-		
-		//[ExpressionVariable|QualifiedName]
-		public CrossReference getInstanceExpressionVariableCrossReference_0() { return cInstanceExpressionVariableCrossReference_0; }
-		
-		//QualifiedName
-		public RuleCall getInstanceExpressionVariableQualifiedNameParserRuleCall_0_1() { return cInstanceExpressionVariableQualifiedNameParserRuleCall_0_1; }
 	}
 	public class InbuiltInfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltInfix");
@@ -1842,7 +1827,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final BracketElements pBracket;
 	private final FunctionCallElements pFunctionCall;
 	private final ExpressionVariableElements pExpressionVariable;
-	private final TypeInstanceElements pTypeInstance;
 	private final InbuiltInfixElements pInbuiltInfix;
 	private final InstanceElements pInstance;
 	
@@ -1899,7 +1883,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBracket = new BracketElements();
 		this.pFunctionCall = new FunctionCallElements();
 		this.pExpressionVariable = new ExpressionVariableElements();
-		this.pTypeInstance = new TypeInstanceElements();
 		this.pInbuiltInfix = new InbuiltInfixElements();
 		this.pInstance = new InstanceElements();
 	}
@@ -2411,7 +2394,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * 
 	// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
 	// */ FunctionCall:
-	//	typeInst=TypeInstance ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
+	//	typeInst=[ExpressionVariable|QualifiedName] ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
 	public FunctionCallElements getFunctionCallAccess() {
 		return pFunctionCall;
 	}
@@ -2428,16 +2411,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getExpressionVariableRule() {
 		return getExpressionVariableAccess().getRule();
-	}
-	
-	//TypeInstance:
-	//	instance=[ExpressionVariable|QualifiedName];
-	public TypeInstanceElements getTypeInstanceAccess() {
-		return pTypeInstance;
-	}
-	
-	public ParserRule getTypeInstanceRule() {
-		return getTypeInstanceAccess().getRule();
 	}
 	
 	//InbuiltInfix:

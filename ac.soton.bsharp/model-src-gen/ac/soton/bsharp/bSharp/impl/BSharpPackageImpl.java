@@ -28,6 +28,7 @@ import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
+import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyContextTypes;
 import ac.soton.bsharp.bSharp.PolyTypeConstraints;
@@ -43,7 +44,6 @@ import ac.soton.bsharp.bSharp.TypeBodyElements;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypeDeclaration;
-import ac.soton.bsharp.bSharp.TypeInstance;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
@@ -321,13 +321,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass typeInstanceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass instanceEClass = null;
 
 	/**
@@ -364,6 +357,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass inbuiltTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass namedObjectEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -541,15 +541,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 */
 	public EClass getGenName() {
 		return genNameEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getGenName_Name() {
-		return (EAttribute)genNameEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -944,15 +935,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFunctionName_Name() {
-		return (EAttribute)functionNameEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getMatchStatement() {
 		return matchStatementEClass;
 	}
@@ -1115,15 +1097,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTypedVariable_Name() {
-		return (EAttribute)typedVariableEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTypeDeclaration() {
 		return typeDeclarationEClass;
 	}
@@ -1223,17 +1196,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionCall_TypeInstance() {
-		return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFunctionCall_Arguments() {
-		return (EReference)functionCallEClass.getEStructuralFeatures().get(1);
+		return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1288,42 +1252,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 */
 	public EClass getExpressionVariable() {
 		return expressionVariableEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypeInstance() {
-		return typeInstanceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeInstance_Instance() {
-		return (EReference)typeInstanceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeInstance_TypeName() {
-		return (EReference)typeInstanceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeInstance_Element() {
-		return (EReference)typeInstanceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1448,6 +1376,24 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNamedObject() {
+		return namedObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedObject_Name() {
+		return (EAttribute)namedObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public BSharpFactory getBSharpFactory() {
 		return (BSharpFactory)getEFactoryInstance();
 	}
@@ -1489,7 +1435,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(bppClassEClass, BPP_CLASS__WHERE);
 
 		genNameEClass = createEClass(GEN_NAME);
-		createEAttribute(genNameEClass, GEN_NAME__NAME);
 
 		polymorphicTypeNameEClass = createEClass(POLYMORPHIC_TYPE_NAME);
 
@@ -1549,7 +1494,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(functionDeclEClass, FUNCTION_DECL__NAME);
 
 		functionNameEClass = createEClass(FUNCTION_NAME);
-		createEAttribute(functionNameEClass, FUNCTION_NAME__NAME);
 
 		matchStatementEClass = createEClass(MATCH_STATEMENT);
 		createEReference(matchStatementEClass, MATCH_STATEMENT__MATCH);
@@ -1575,7 +1519,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(variableTypingEClass, VARIABLE_TYPING__TYPE);
 
 		typedVariableEClass = createEClass(TYPED_VARIABLE);
-		createEAttribute(typedVariableEClass, TYPED_VARIABLE__NAME);
 
 		typeDeclarationEClass = createEClass(TYPE_DECLARATION);
 		createEReference(typeDeclarationEClass, TYPE_DECLARATION__CONTEXT);
@@ -1591,7 +1534,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(expressionEClass, EXPRESSION__TYPE_INST);
 
 		functionCallEClass = createEClass(FUNCTION_CALL);
-		createEReference(functionCallEClass, FUNCTION_CALL__TYPE_INSTANCE);
 		createEReference(functionCallEClass, FUNCTION_CALL__ARGUMENTS);
 
 		prefixEClass = createEClass(PREFIX);
@@ -1602,11 +1544,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(bracketEClass, BRACKET__CHILD);
 
 		expressionVariableEClass = createEClass(EXPRESSION_VARIABLE);
-
-		typeInstanceEClass = createEClass(TYPE_INSTANCE);
-		createEReference(typeInstanceEClass, TYPE_INSTANCE__INSTANCE);
-		createEReference(typeInstanceEClass, TYPE_INSTANCE__TYPE_NAME);
-		createEReference(typeInstanceEClass, TYPE_INSTANCE__ELEMENT);
 
 		instanceEClass = createEClass(INSTANCE);
 		createEReference(instanceEClass, INSTANCE__CLASS_NAME);
@@ -1626,6 +1563,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		typeEClass = createEClass(TYPE);
 
 		inbuiltTypeEClass = createEClass(INBUILT_TYPE);
+
+		namedObjectEClass = createEClass(NAMED_OBJECT);
+		createEAttribute(namedObjectEClass, NAMED_OBJECT__NAME);
 	}
 
 	/**
@@ -1664,6 +1604,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		classDeclEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		classDeclEClass.getESuperTypes().add(this.getType());
 		bppClassEClass.getESuperTypes().add(this.getClassDecl());
+		genNameEClass.getESuperTypes().add(this.getNamedObject());
 		polymorphicTypeNameEClass.getESuperTypes().add(this.getGenName());
 		datatypeEClass.getESuperTypes().add(this.getClassDecl());
 		datatypeConstructorEClass.getESuperTypes().add(this.getIVariableProvider());
@@ -1683,6 +1624,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		functionCallEClass.getESuperTypes().add(this.getExpression());
 		prefixEClass.getESuperTypes().add(this.getExpression());
 		bracketEClass.getESuperTypes().add(this.getExpression());
+		expressionVariableEClass.getESuperTypes().add(this.getNamedObject());
 		instanceEClass.getESuperTypes().add(this.getTopLevel());
 		infixEClass.getESuperTypes().add(this.getExpression());
 		typeEClass.getESuperTypes().add(this.getGenName());
@@ -1707,7 +1649,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getBppClass_Where(), this.getWhere(), null, "where", null, 0, 1, BppClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(genNameEClass, GenName.class, "GenName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getGenName_Name(), ecorePackage.getEString(), "name", null, 0, 1, GenName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(polymorphicTypeNameEClass, PolymorphicTypeName.class, "PolymorphicTypeName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1767,7 +1708,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getFunctionDecl_Name(), this.getFunctionName(), null, "name", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionNameEClass, FunctionName.class, "FunctionName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFunctionName_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(matchStatementEClass, MatchStatement.class, "MatchStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMatchStatement_Match(), this.getTypedVariable(), null, "match", null, 0, 1, MatchStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1793,7 +1733,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getVariableTyping_Type(), this.getConstructedType(), null, "type", null, 0, 1, VariableTyping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typedVariableEClass, TypedVariable.class, "TypedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTypedVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeDeclarationEClass, TypeDeclaration.class, "TypeDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeDeclaration_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, TypeDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1806,10 +1745,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getQuantLambda_Expr(), this.getExpression(), null, "expr", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExpression_TypeInst(), this.getTypeInstance(), null, "typeInst", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_TypeInst(), this.getExpressionVariable(), null, "typeInst", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionCall_TypeInstance(), this.getTypeInstance(), null, "TypeInstance", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(prefixEClass, Prefix.class, "Prefix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1820,11 +1758,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getBracket_Child(), this.getExpression(), null, "child", null, 0, 1, Bracket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expressionVariableEClass, ExpressionVariable.class, "ExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(typeInstanceEClass, TypeInstance.class, "TypeInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeInstance_Instance(), this.getExpressionVariable(), null, "instance", null, 0, 1, TypeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeInstance_TypeName(), this.getGenName(), null, "typeName", null, 0, 1, TypeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeInstance_Element(), this.getTypedVariable(), null, "element", null, 0, -1, TypeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(instanceEClass, Instance.class, "Instance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInstance_ClassName(), this.getClassDecl(), null, "className", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1844,6 +1777,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(inbuiltTypeEClass, InbuiltType.class, "InbuiltType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(namedObjectEClass, NamedObject.class, "NamedObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamedObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

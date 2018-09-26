@@ -170,7 +170,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_0(), "rule__FunctionCall__TypeInstAssignment_0");
 			builder.put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_1(), "rule__FunctionCall__ArgumentsAssignment_1_1");
 			builder.put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_2_1(), "rule__FunctionCall__ArgumentsAssignment_1_2_1");
-			builder.put(grammarAccess.getTypeInstanceAccess().getInstanceAssignment(), "rule__TypeInstance__InstanceAssignment");
 			builder.put(grammarAccess.getInstanceAccess().getClassNameAssignment_1(), "rule__Instance__ClassNameAssignment_1");
 			builder.put(grammarAccess.getInstanceAccess().getContextAssignment_2(), "rule__Instance__ContextAssignment_2");
 			builder.put(grammarAccess.getInstanceAccess().getArgumentsAssignment_4(), "rule__Instance__ArgumentsAssignment_4");

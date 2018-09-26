@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
+import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolymorphicTypeName;
 import ac.soton.bsharp.bSharp.Type;
@@ -284,9 +285,14 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == NamedObject.class) {
+			switch (derivedFeatureID) {
+				case BSharpPackage.CLASS_DECL__NAME: return BSharpPackage.NAMED_OBJECT__NAME;
+				default: return -1;
+			}
+		}
 		if (baseClass == GenName.class) {
 			switch (derivedFeatureID) {
-				case BSharpPackage.CLASS_DECL__NAME: return BSharpPackage.GEN_NAME__NAME;
 				default: return -1;
 			}
 		}
@@ -320,9 +326,14 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == NamedObject.class) {
+			switch (baseFeatureID) {
+				case BSharpPackage.NAMED_OBJECT__NAME: return BSharpPackage.CLASS_DECL__NAME;
+				default: return -1;
+			}
+		}
 		if (baseClass == GenName.class) {
 			switch (baseFeatureID) {
-				case BSharpPackage.GEN_NAME__NAME: return BSharpPackage.CLASS_DECL__NAME;
 				default: return -1;
 			}
 		}

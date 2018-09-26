@@ -213,10 +213,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createExpressionVariableAdapter();
 			}
 			@Override
-			public Adapter caseTypeInstance(TypeInstance object) {
-				return createTypeInstanceAdapter();
-			}
-			@Override
 			public Adapter caseInstance(Instance object) {
 				return createInstanceAdapter();
 			}
@@ -239,6 +235,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseInbuiltType(InbuiltType object) {
 				return createInbuiltTypeAdapter();
+			}
+			@Override
+			public Adapter caseNamedObject(NamedObject object) {
+				return createNamedObjectAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -765,20 +765,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TypeInstance <em>Type Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.TypeInstance
-	 * @generated
-	 */
-	public Adapter createTypeInstanceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.Instance <em>Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -859,6 +845,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInbuiltTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.NamedObject <em>Named Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.NamedObject
+	 * @generated
+	 */
+	public Adapter createNamedObjectAdapter() {
 		return null;
 	}
 

@@ -8,15 +8,14 @@ import ac.soton.bsharp.bSharp.ExpressionVariable;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Expression Variable</b></em>'.
  * <!-- end-user-doc -->
  *
+ * @generated
  */
-public class ExpressionVariableImpl extends MinimalEObjectImpl.Container implements ExpressionVariable {
+public class ExpressionVariableImpl extends NamedObjectImpl implements ExpressionVariable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,7 +37,8 @@ public class ExpressionVariableImpl extends MinimalEObjectImpl.Container impleme
 
 	@Override
 	public String descriptiveName() {
-		return "unnamed";
+		// TODO Auto-generated method stub
+		return name;
 	}
 
 } //ExpressionVariableImpl

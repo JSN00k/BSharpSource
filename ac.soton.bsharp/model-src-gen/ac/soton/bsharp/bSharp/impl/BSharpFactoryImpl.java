@@ -92,11 +92,11 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.PREFIX: return createPrefix();
 			case BSharpPackage.BRACKET: return createBracket();
 			case BSharpPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
-			case BSharpPackage.TYPE_INSTANCE: return createTypeInstance();
 			case BSharpPackage.INSTANCE: return createInstance();
 			case BSharpPackage.INFIX: return createInfix();
 			case BSharpPackage.TYPE: return createType();
 			case BSharpPackage.INBUILT_TYPE: return createInbuiltType();
+			case BSharpPackage.NAMED_OBJECT: return createNamedObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -456,16 +456,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeInstance createTypeInstance() {
-		TypeInstanceImpl typeInstance = new TypeInstanceImpl();
-		return typeInstance;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Instance createInstance() {
 		InstanceImpl instance = new InstanceImpl();
 		return instance;
@@ -499,6 +489,16 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public InbuiltType createInbuiltType() {
 		InbuiltTypeImpl inbuiltType = new InbuiltTypeImpl();
 		return inbuiltType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NamedObject createNamedObject() {
+		NamedObjectImpl namedObject = new NamedObjectImpl();
+		return namedObject;
 	}
 
 	/**

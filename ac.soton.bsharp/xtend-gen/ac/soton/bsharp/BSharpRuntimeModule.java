@@ -4,7 +4,6 @@
 package ac.soton.bsharp;
 
 import ac.soton.bsharp.AbstractBSharpRuntimeModule;
-import ac.soton.bsharp.scoping.BSharpDeclarativeScopeProvider;
 import ac.soton.bsharp.scoping.BSharpImportedNamespaceAwareLocalScopeProvider;
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -20,10 +19,5 @@ public class BSharpRuntimeModule extends AbstractBSharpRuntimeModule {
   public void configureIScopeProviderDelegate(final Binder binder) {
     binder.<IScopeProvider>bind(IScopeProvider.class).annotatedWith(
       Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(BSharpImportedNamespaceAwareLocalScopeProvider.class);
-  }
-  
-  @Override
-  public Class<? extends IScopeProvider> bindIScopeProvider() {
-    return BSharpDeclarativeScopeProvider.class;
   }
 }

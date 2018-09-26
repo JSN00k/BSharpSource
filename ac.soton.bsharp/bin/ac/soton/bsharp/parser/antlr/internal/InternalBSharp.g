@@ -2793,18 +2793,15 @@ ruleFunctionCall returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFunctionCallAccess().getTypeInstTypeInstanceParserRuleCall_0_0());
-				}
-				lv_typeInst_0_0=ruleTypeInstance
-				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
+						$current = createModelElement(grammarAccess.getFunctionCallRule());
 					}
-					set(
-						$current,
-						"typeInst",
-						lv_typeInst_0_0,
-						"ac.soton.bsharp.BSharp.TypeInstance");
+				}
+				{
+					newCompositeNode(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_0_0());
+				}
+				ruleQualifiedName
+				{
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2863,39 +2860,6 @@ ruleFunctionCall returns [EObject current=null]
 				newLeafNode(otherlv_5, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_3());
 			}
 		)?
-	)
-;
-
-// Entry rule entryRuleTypeInstance
-entryRuleTypeInstance returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypeInstanceRule()); }
-	iv_ruleTypeInstance=ruleTypeInstance
-	{ $current=$iv_ruleTypeInstance.current; }
-	EOF;
-
-// Rule TypeInstance
-ruleTypeInstance returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getTypeInstanceRule());
-				}
-			}
-			{
-				newCompositeNode(grammarAccess.getTypeInstanceAccess().getInstanceExpressionVariableCrossReference_0());
-			}
-			ruleQualifiedName
-			{
-				afterParserOrEnumRuleCall();
-			}
-		)
 	)
 ;
 

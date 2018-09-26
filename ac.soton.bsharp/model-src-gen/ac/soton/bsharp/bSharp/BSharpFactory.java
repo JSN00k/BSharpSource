@@ -338,15 +338,6 @@ public interface BSharpFactory extends EFactory {
 	ExpressionVariable createExpressionVariable();
 
 	/**
-	 * Returns a new object of class '<em>Type Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Instance</em>'.
-	 * @generated
-	 */
-	TypeInstance createTypeInstance();
-
-	/**
 	 * Returns a new object of class '<em>Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -381,6 +372,15 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	InbuiltType createInbuiltType();
+
+	/**
+	 * Returns a new object of class '<em>Named Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Named Object</em>'.
+	 * @generated
+	 */
+	NamedObject createNamedObject();
 
 	/**
 	 * Returns the package supported by this factory.

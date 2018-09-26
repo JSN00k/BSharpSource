@@ -5,7 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
-import ac.soton.bsharp.bSharp.TypeInstance;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -30,14 +30,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression {
 	/**
-	 * The cached value of the '{@link #getTypeInst() <em>Type Inst</em>}' containment reference.
+	 * The cached value of the '{@link #getTypeInst() <em>Type Inst</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTypeInst()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeInstance typeInst;
+	protected ExpressionVariable typeInst;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,15 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeInstance getTypeInst() {
+	public ExpressionVariable getTypeInst() {
+		if (typeInst != null && typeInst.eIsProxy()) {
+			InternalEObject oldTypeInst = (InternalEObject)typeInst;
+			typeInst = (ExpressionVariable)eResolveProxy(oldTypeInst);
+			if (typeInst != oldTypeInst) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.EXPRESSION__TYPE_INST, oldTypeInst, typeInst));
+			}
+		}
 		return typeInst;
 	}
 
@@ -72,47 +80,20 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeInst(TypeInstance newTypeInst, NotificationChain msgs) {
-		TypeInstance oldTypeInst = typeInst;
+	public ExpressionVariable basicGetTypeInst() {
+		return typeInst;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypeInst(ExpressionVariable newTypeInst) {
+		ExpressionVariable oldTypeInst = typeInst;
 		typeInst = newTypeInst;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.EXPRESSION__TYPE_INST, oldTypeInst, newTypeInst);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTypeInst(TypeInstance newTypeInst) {
-		if (newTypeInst != typeInst) {
-			NotificationChain msgs = null;
-			if (typeInst != null)
-				msgs = ((InternalEObject)typeInst).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.EXPRESSION__TYPE_INST, null, msgs);
-			if (newTypeInst != null)
-				msgs = ((InternalEObject)newTypeInst).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.EXPRESSION__TYPE_INST, null, msgs);
-			msgs = basicSetTypeInst(newTypeInst, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.EXPRESSION__TYPE_INST, newTypeInst, newTypeInst));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BSharpPackage.EXPRESSION__TYPE_INST:
-				return basicSetTypeInst(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.EXPRESSION__TYPE_INST, oldTypeInst, typeInst));
 	}
 
 	/**
@@ -124,7 +105,8 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BSharpPackage.EXPRESSION__TYPE_INST:
-				return getTypeInst();
+				if (resolve) return getTypeInst();
+				return basicGetTypeInst();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -138,7 +120,7 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BSharpPackage.EXPRESSION__TYPE_INST:
-				setTypeInst((TypeInstance)newValue);
+				setTypeInst((ExpressionVariable)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -153,7 +135,7 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BSharpPackage.EXPRESSION__TYPE_INST:
-				setTypeInst((TypeInstance)null);
+				setTypeInst((ExpressionVariable)null);
 				return;
 		}
 		super.eUnset(featureID);

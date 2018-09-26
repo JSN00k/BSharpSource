@@ -1099,31 +1099,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleTypeInstance
-entryRuleTypeInstance
-:
-{ before(grammarAccess.getTypeInstanceRule()); }
-	 ruleTypeInstance
-{ after(grammarAccess.getTypeInstanceRule()); } 
-	 EOF 
-;
-
-// Rule TypeInstance
-ruleTypeInstance 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getTypeInstanceAccess().getInstanceAssignment()); }
-		(rule__TypeInstance__InstanceAssignment)
-		{ after(grammarAccess.getTypeInstanceAccess().getInstanceAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRuleInbuiltInfix
 entryRuleInbuiltInfix
 :
@@ -6993,9 +6968,13 @@ rule__FunctionCall__TypeInstAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getFunctionCallAccess().getTypeInstTypeInstanceParserRuleCall_0_0()); }
-		ruleTypeInstance
-		{ after(grammarAccess.getFunctionCallAccess().getTypeInstTypeInstanceParserRuleCall_0_0()); }
+		{ before(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_0_0()); }
+		(
+			{ before(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableQualifiedNameParserRuleCall_0_0_1()); }
+			ruleQualifiedName
+			{ after(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableQualifiedNameParserRuleCall_0_0_1()); }
+		)
+		{ after(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_0_0()); }
 	)
 ;
 finally {
@@ -7026,25 +7005,6 @@ rule__FunctionCall__ArgumentsAssignment_1_2_1
 		{ before(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_1_0()); }
 		ruleRootExpression
 		{ after(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_1_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__TypeInstance__InstanceAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getTypeInstanceAccess().getInstanceExpressionVariableCrossReference_0()); }
-		(
-			{ before(grammarAccess.getTypeInstanceAccess().getInstanceExpressionVariableQualifiedNameParserRuleCall_0_1()); }
-			ruleQualifiedName
-			{ after(grammarAccess.getTypeInstanceAccess().getInstanceExpressionVariableQualifiedNameParserRuleCall_0_1()); }
-		)
-		{ after(grammarAccess.getTypeInstanceAccess().getInstanceExpressionVariableCrossReference_0()); }
 	)
 ;
 finally {

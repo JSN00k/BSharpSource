@@ -32,7 +32,6 @@ import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
-import ac.soton.bsharp.bSharp.TypeInstance;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
@@ -159,9 +158,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case BSharpPackage.TYPE_DECL_CONTEXT:
 				sequence_TypeDeclContext(context, (TypeDeclContext) semanticObject); 
-				return; 
-			case BSharpPackage.TYPE_INSTANCE:
-				sequence_TypeInstance(context, (TypeInstance) semanticObject); 
 				return; 
 			case BSharpPackage.TYPE_STRUCTURE:
 				sequence_TypeStructure(context, (TypeStructure) semanticObject); 
@@ -321,7 +317,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FunctionCall returns FunctionCall
 	 *
 	 * Constraint:
-	 *     (typeInst=TypeInstance arguments+=RootExpression? arguments+=RootExpression*)
+	 *     (typeInst=[ExpressionVariable|QualifiedName] arguments+=RootExpression? arguments+=RootExpression*)
 	 */
 	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -358,8 +354,8 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_FunctionName(ISerializationContext context, FunctionName semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.FUNCTION_NAME__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.FUNCTION_NAME__NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getFunctionNameAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
@@ -391,8 +387,8 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_InbuiltType(ISerializationContext context, InbuiltType semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.GEN_NAME__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.GEN_NAME__NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getInbuiltTypeAccess().getNamePredKeyword_0(), semanticObject.getName());
@@ -525,8 +521,8 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_PolymorphicTypeName(ISerializationContext context, PolymorphicTypeName semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.GEN_NAME__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.GEN_NAME__NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPolymorphicTypeNameAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
@@ -654,24 +650,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     TypeInstance returns TypeInstance
-	 *
-	 * Constraint:
-	 *     instance=[ExpressionVariable|QualifiedName]
-	 */
-	protected void sequence_TypeInstance(ISerializationContext context, TypeInstance semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TYPE_INSTANCE__INSTANCE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TYPE_INSTANCE__INSTANCE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeInstanceAccess().getInstanceExpressionVariableQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(BSharpPackage.Literals.TYPE_INSTANCE__INSTANCE, false));
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     TypeStructure returns TypeStructure
 	 *
 	 * Constraint:
@@ -710,8 +688,8 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_TypedVariable(ISerializationContext context, TypedVariable semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TYPED_VARIABLE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TYPED_VARIABLE__NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTypedVariableAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());

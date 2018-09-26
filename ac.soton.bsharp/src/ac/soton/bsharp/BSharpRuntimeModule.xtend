@@ -6,7 +6,7 @@ package ac.soton.bsharp
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import ac.soton.bsharp.scoping.BSharpImportedNamespaceAwareLocalScopeProvider
 import org.eclipse.xtext.scoping.IScopeProvider
-import ac.soton.bsharp.scoping.BSharpDeclarativeScopeProvider
+import ac.soton.bsharp.scoping.BSharpScopeProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -18,10 +18,5 @@ class BSharpRuntimeModule extends AbstractBSharpRuntimeModule {
 						com.google.inject.name.Names
 								.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE))
 				.to(BSharpImportedNamespaceAwareLocalScopeProvider);
-	}
-	
-		// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
-	override Class<? extends IScopeProvider> bindIScopeProvider() {
-		return BSharpDeclarativeScopeProvider;
 	}
 }
