@@ -21,7 +21,7 @@ class ASTRewriter {
 	 * re-parse the whole expression when a change is made.
 	 */
 	 
-	 private static final Map<String, Integer> inbuiltPrecedence = createMap();
+	 static final Map<String, Integer> inbuiltPrecedence = createMap();
 	 
 	 def static createMap () {
 	 	val map = new HashMap<String, Integer>()
