@@ -15,7 +15,6 @@ import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.ImportStatement;
-import ac.soton.bsharp.bSharp.InbuiltType;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
@@ -96,9 +95,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case BSharpPackage.IMPORT_STATEMENT:
 				sequence_ImportStatement(context, (ImportStatement) semanticObject); 
-				return; 
-			case BSharpPackage.INBUILT_TYPE:
-				sequence_InbuiltType(context, (InbuiltType) semanticObject); 
 				return; 
 			case BSharpPackage.INFIX:
 				sequence_Infix(context, (Infix) semanticObject); 
@@ -373,26 +369,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_ImportStatement(ISerializationContext context, ImportStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     InbuiltType returns InbuiltType
-	 *     Type returns InbuiltType
-	 *     GenName returns InbuiltType
-	 *
-	 * Constraint:
-	 *     name='Pred'
-	 */
-	protected void sequence_InbuiltType(ISerializationContext context, InbuiltType semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getInbuiltTypeAccess().getNamePredKeyword_0(), semanticObject.getName());
-		feeder.finish();
 	}
 	
 	

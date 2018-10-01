@@ -365,15 +365,6 @@ public interface BSharpFactory extends EFactory {
 	Type createType();
 
 	/**
-	 * Returns a new object of class '<em>Inbuilt Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Inbuilt Type</em>'.
-	 * @generated
-	 */
-	InbuiltType createInbuiltType();
-
-	/**
 	 * Returns a new object of class '<em>Named Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

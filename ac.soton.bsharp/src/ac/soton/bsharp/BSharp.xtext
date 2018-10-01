@@ -6,6 +6,9 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 DomainModel:
 	(elements+=TopLevel)*;
 	
+@Override 
+	terminal ID: ('a'..'z'|'A'..'Z'|'_'| 'i'..'ￜ') ('a'..'z'|'A'..'Z'|'_'| 'i'..'ￜ'|'0'..'9')*;
+	
 // Theorem names can include white space. Work out how to change this to any string without a ':'
 THM_NAME: (INT | ID | WS)* ":";
 	
@@ -21,16 +24,8 @@ ClassDecl returns ClassDecl:
  * occasions where each of these can be used.
  */
 
-/* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
- * recursion in the inbuilt types it may be better to build them instead. We need Pred
- * as it is going to have special rules to deal with the separation of expressions and 
- * predicates in Event B. */
-InbuiltType:
-	name='Pred'
-;
-
 Type:
-	ClassDecl | InbuiltType
+	ClassDecl
 ;
 
 GenName: PolymorphicTypeName | Type;
@@ -219,7 +214,7 @@ Prefix returns Prefix:
 ;
 
 PrefixBuiltIn:
-	'¬'
+  '¬'
 ;
 
 /* Infix operators cause problems, there are two issues one is avoiding left recursion this 
@@ -276,15 +271,6 @@ ExpressionVariable:
 InbuiltInfix:
 	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
 ;
-
-/* I feel like I should need these, however, I'm not sure when they would be necessary. */
-//InbuiltTypeInstance:
-//	'⊤' | '⊥'
-//;
-//
-//InbuiltTypeInstanceScan:
-//	name=InbuiltTypeInstance
-//;
 
 /* ------------------------------ Instance ---------------------------------------------*/
 

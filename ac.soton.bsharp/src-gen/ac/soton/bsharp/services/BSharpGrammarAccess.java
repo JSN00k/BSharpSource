@@ -117,45 +117,19 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//Datatype
 		public RuleCall getDatatypeParserRuleCall_1() { return cDatatypeParserRuleCall_1; }
 	}
-	public class InbuiltTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltType");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final Keyword cNamePredKeyword_0 = (Keyword)cNameAssignment.eContents().get(0);
+	public class TypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Type");
+		private final RuleCall cClassDeclParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		///* There are three Types which can be used as type variables, inbuilt types, types create
 		// * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
 		// * occasions where each of these can be used.
-		// */ /* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
-		// * recursion in the inbuilt types it may be better to build them instead. We need Pred
-		// * as it is going to have special rules to deal with the separation of expressions and 
-		// * predicates in Event B. */ InbuiltType:
-		//	name='Pred';
+		// */ Type:
+		//	ClassDecl;
 		@Override public ParserRule getRule() { return rule; }
-		
-		//name='Pred'
-		public Assignment getNameAssignment() { return cNameAssignment; }
-		
-		//'Pred'
-		public Keyword getNamePredKeyword_0() { return cNamePredKeyword_0; }
-	}
-	public class TypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Type");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cClassDeclParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cInbuiltTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//Type:
-		//	ClassDecl | InbuiltType;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ClassDecl | InbuiltType
-		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ClassDecl
-		public RuleCall getClassDeclParserRuleCall_0() { return cClassDeclParserRuleCall_0; }
-		
-		//InbuiltType
-		public RuleCall getInbuiltTypeParserRuleCall_1() { return cInbuiltTypeParserRuleCall_1; }
+		public RuleCall getClassDeclParserRuleCall() { return cClassDeclParserRuleCall; }
 	}
 	public class GenNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.GenName");
@@ -1447,14 +1421,14 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class PrefixBuiltInElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.PrefixBuiltIn");
-		private final Keyword cNotSignKeyword = (Keyword)rule.eContents().get(1);
+		private final Keyword cAsdglknasdgsajdngKeyword = (Keyword)rule.eContents().get(1);
 		
 		//PrefixBuiltIn:
-		//	'¬';
+		//	'asdglknasdgsajdng';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'¬'
-		public Keyword getNotSignKeyword() { return cNotSignKeyword; }
+		//'asdglknasdgsajdng'
+		public Keyword getAsdglknasdgsajdngKeyword() { return cAsdglknasdgsajdngKeyword; }
 	}
 	public class InfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Infix");
@@ -1723,13 +1697,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentsRootExpressionParserRuleCall_5_1_0 = (RuleCall)cArgumentsAssignment_5_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
-		///* I feel like I should need these, however, I'm not sure when they would be necessary. */ //InbuiltTypeInstance:
-		////	'⊤' | '⊥'
-		////;
-		////
-		////InbuiltTypeInstanceScan:
-		////	name=InbuiltTypeInstance
-		////;
 		///* ------------------------------ Instance ---------------------------------------------*/ Instance:
 		//	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
 		//	arguments+=RootExpression)* ')';
@@ -1784,10 +1751,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private final DomainModelElements pDomainModel;
+	private final TerminalRule tID;
 	private final THM_NAMEElements pTHM_NAME;
 	private final TopLevelElements pTopLevel;
 	private final ClassDeclElements pClassDecl;
-	private final InbuiltTypeElements pInbuiltType;
 	private final TypeElements pType;
 	private final GenNameElements pGenName;
 	private final QualifiedNameElements pQualifiedName;
@@ -1840,10 +1807,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pDomainModel = new DomainModelElements();
+		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ID");
 		this.pTHM_NAME = new THM_NAMEElements();
 		this.pTopLevel = new TopLevelElements();
 		this.pClassDecl = new ClassDeclElements();
-		this.pInbuiltType = new InbuiltTypeElements();
 		this.pType = new TypeElements();
 		this.pGenName = new GenNameElements();
 		this.pQualifiedName = new QualifiedNameElements();
@@ -1924,6 +1891,13 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getDomainModelAccess().getRule();
 	}
 	
+	//@Override
+	//terminal ID:
+	//	('a'..'z' | 'A'..'Z' | '_' | 'i'..'ￜ') ('a'..'z' | 'A'..'Z' | '_' | 'i'..'ￜ' | '0'..'9')*;
+	public TerminalRule getIDRule() {
+		return tID;
+	}
+	
 	//// Theorem names can include white space. Work out how to change this to any string without a ':'
 	//THM_NAME:
 	//	(INT | ID | WS)* ":";
@@ -1958,21 +1932,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	///* There are three Types which can be used as type variables, inbuilt types, types create
 	// * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
 	// * occasions where each of these can be used.
-	// */ /* Consider whether to add other inbuilt types such as Integers etc. Given the lack of 
-	// * recursion in the inbuilt types it may be better to build them instead. We need Pred
-	// * as it is going to have special rules to deal with the separation of expressions and 
-	// * predicates in Event B. */ InbuiltType:
-	//	name='Pred';
-	public InbuiltTypeElements getInbuiltTypeAccess() {
-		return pInbuiltType;
-	}
-	
-	public ParserRule getInbuiltTypeRule() {
-		return getInbuiltTypeAccess().getRule();
-	}
-	
-	//Type:
-	//	ClassDecl | InbuiltType;
+	// */ Type:
+	//	ClassDecl;
 	public TypeElements getTypeAccess() {
 		return pType;
 	}
@@ -2327,7 +2288,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrefixBuiltIn:
-	//	'¬';
+	//	'asdglknasdgsajdng';
 	public PrefixBuiltInElements getPrefixBuiltInAccess() {
 		return pPrefixBuiltIn;
 	}
@@ -2423,13 +2384,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getInbuiltInfixAccess().getRule();
 	}
 	
-	///* I feel like I should need these, however, I'm not sure when they would be necessary. */ //InbuiltTypeInstance:
-	////	'⊤' | '⊥'
-	////;
-	////
-	////InbuiltTypeInstanceScan:
-	////	name=InbuiltTypeInstance
-	////;
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:
 	//	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
 	//	arguments+=RootExpression)* ')';
@@ -2439,12 +2393,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getInstanceRule() {
 		return getInstanceAccess().getRule();
-	}
-	
-	//terminal ID:
-	//	'^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
-	public TerminalRule getIDRule() {
-		return gaTerminals.getIDRule();
 	}
 	
 	//terminal INT returns ecore::EInt:

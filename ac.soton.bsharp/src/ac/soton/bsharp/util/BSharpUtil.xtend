@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.ConstructedType
 import ac.soton.bsharp.bSharp.TypeConstructor
 import ac.soton.bsharp.bSharp.Datatype
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.resource.ResourceSet
 
 class BSharpUtil {
 	/* Constructed types can be a genuine constructed type (e.g., they are created with a 
@@ -34,6 +35,10 @@ class BSharpUtil {
 		}
 		
 		return t
+	}
+	
+	def static getResourceSet (ResourceSet set) {
+		return set
 	}
 	
 	/* This function simply finds all of the supertypes. It doesn't do any work to 

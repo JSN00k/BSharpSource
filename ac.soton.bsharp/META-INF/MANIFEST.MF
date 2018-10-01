@@ -15,16 +15,17 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.eclipse.xtend.lib;bundle-version="2.13.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: ac.soton.bsharp.scoping,
+Export-Package: ac.soton.bsharp,
+ ac.soton.bsharp.bSharp,
  ac.soton.bsharp.bSharp.impl,
  ac.soton.bsharp.bSharp.util,
- ac.soton.bsharp,
- ac.soton.bsharp.validation,
- ac.soton.bsharp.parser.antlr.internal,
- ac.soton.bsharp.parser.antlr,
- ac.soton.bsharp.bSharp,
- ac.soton.bsharp.services,
- ac.soton.bsharp.serializer,
+ ac.soton.bsharp.formatting2,
  ac.soton.bsharp.generator,
- ac.soton.bsharp.formatting2
+ ac.soton.bsharp.main,
+ ac.soton.bsharp.parser.antlr,
+ ac.soton.bsharp.parser.antlr.internal,
+ ac.soton.bsharp.scoping,
+ ac.soton.bsharp.serializer,
+ ac.soton.bsharp.services,
+ ac.soton.bsharp.validation
 Import-Package: org.apache.log4j

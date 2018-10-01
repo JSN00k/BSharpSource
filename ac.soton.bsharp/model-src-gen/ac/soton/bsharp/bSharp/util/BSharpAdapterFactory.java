@@ -233,10 +233,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTypeAdapter();
 			}
 			@Override
-			public Adapter caseInbuiltType(InbuiltType object) {
-				return createInbuiltTypeAdapter();
-			}
-			@Override
 			public Adapter caseNamedObject(NamedObject object) {
 				return createNamedObjectAdapter();
 			}
@@ -831,20 +827,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.InbuiltType <em>Inbuilt Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.InbuiltType
-	 * @generated
-	 */
-	public Adapter createInbuiltTypeAdapter() {
 		return null;
 	}
 

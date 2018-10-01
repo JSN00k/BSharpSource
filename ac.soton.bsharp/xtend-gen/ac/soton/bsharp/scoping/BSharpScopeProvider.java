@@ -9,7 +9,6 @@ import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.TopLevel;
-import ac.soton.bsharp.util.BSharpInbuiltTypeProvider;
 import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   public IScope scope_GenName(final EObject context, final EReference reference) {
     IScope parent = this.delegateGetScope(context, reference);
-    parent = Scopes.scopeFor(BSharpInbuiltTypeProvider.allInbuiltTypes(), parent);
     IScope polyScope = this.getPolyScopeFor(context, parent);
     EObject typeContainer = null;
     if ((context instanceof TopLevel)) {

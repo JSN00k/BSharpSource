@@ -4,6 +4,11 @@
 package ac.soton.bsharp.ui.contentassist;
 
 import ac.soton.bsharp.ui.contentassist.AbstractBSharpProposalProvider;
+import ac.soton.xeventb.common.RodinSymbolsProposalProvider;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.RuleCall;
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
@@ -11,4 +16,13 @@ import ac.soton.bsharp.ui.contentassist.AbstractBSharpProposalProvider;
  */
 @SuppressWarnings("all")
 public class BSharpProposalProvider extends AbstractBSharpProposalProvider {
+  @Override
+  public void complete_ExpressionVariable(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    RodinSymbolsProposalProvider.completeRodinSymbol(this, context, acceptor);
+  }
+  
+  @Override
+  public void complete_InbuiltInfix(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    RodinSymbolsProposalProvider.completeRodinSymbol(this, context, acceptor);
+  }
 }

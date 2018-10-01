@@ -16,17 +16,15 @@ import ac.soton.bsharp.bSharp.IVariableProvider
 import ac.soton.bsharp.bSharp.MatchCase
 import ac.soton.bsharp.bSharp.MatchStatement
 import ac.soton.bsharp.bSharp.DatatypeConstructor
-import ac.soton.bsharp.util.BSharpInbuiltTypeProvider
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
+	
 	def IScope scope_GenName(EObject context, EReference reference) {
 		var parent = delegateGetScope(context, reference)
 		/* Gen_Name is used when we know that the type found is either a Type or a 
 		 * Type Variable. It is necessary to find any polymorphic types, or any type 
 		 * names from the local scope here.
 		 */
-		 parent = Scopes.scopeFor(BSharpInbuiltTypeProvider.allInbuiltTypes(), parent)
-		 
 		 var polyScope = getPolyScopeFor(context, parent)
 		 
 		 /* Find the top level element that the GenName is declared within */

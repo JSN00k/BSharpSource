@@ -142,7 +142,6 @@
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVariableProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IPolyTypeProvider"/>
     <genClasses ecoreClass="BSharp.ecore#//Type"/>
-    <genClasses ecoreClass="BSharp.ecore#//InbuiltType"/>
     <genClasses ecoreClass="BSharp.ecore#//NamedObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//NamedObject/name"/>
     </genClasses>

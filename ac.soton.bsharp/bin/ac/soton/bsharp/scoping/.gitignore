@@ -11,3 +11,5 @@
 /BSharpGlobalScopeProvider.java
 /.BSharpDeclarativeScopeProvider.java._trace
 /.BSharpResourceServiceProvider.java._trace
+/.BSharpResourceServiceProvider.xtendbin
+/BSharpResourceServiceProvider.java

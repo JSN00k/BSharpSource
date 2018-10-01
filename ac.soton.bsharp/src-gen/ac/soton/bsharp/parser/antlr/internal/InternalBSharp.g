@@ -235,37 +235,6 @@ ruleClassDecl returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleInbuiltType
-entryRuleInbuiltType returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInbuiltTypeRule()); }
-	iv_ruleInbuiltType=ruleInbuiltType
-	{ $current=$iv_ruleInbuiltType.current; }
-	EOF;
-
-// Rule InbuiltType
-ruleInbuiltType returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			lv_name_0_0='Pred'
-			{
-				newLeafNode(lv_name_0_0, grammarAccess.getInbuiltTypeAccess().getNamePredKeyword_0());
-			}
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getInbuiltTypeRule());
-				}
-				setWithLastConsumed($current, "name", lv_name_0_0, "Pred");
-			}
-		)
-	)
-;
-
 // Entry rule entryRuleType
 entryRuleType returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getTypeRule()); }
@@ -281,25 +250,14 @@ ruleType returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	(
-		{
-			newCompositeNode(grammarAccess.getTypeAccess().getClassDeclParserRuleCall_0());
-		}
-		this_ClassDecl_0=ruleClassDecl
-		{
-			$current = $this_ClassDecl_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getTypeAccess().getInbuiltTypeParserRuleCall_1());
-		}
-		this_InbuiltType_1=ruleInbuiltType
-		{
-			$current = $this_InbuiltType_1.current;
-			afterParserOrEnumRuleCall();
-		}
-	)
+	{
+		newCompositeNode(grammarAccess.getTypeAccess().getClassDeclParserRuleCall());
+	}
+	this_ClassDecl_0=ruleClassDecl
+	{
+		$current = $this_ClassDecl_0.current;
+		afterParserOrEnumRuleCall();
+	}
 ;
 
 // Entry rule entryRuleQualifiedName
@@ -454,7 +412,7 @@ ruleClass returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"ac.soton.bsharp.BSharp.ID");
 				}
 			)
 		)
@@ -599,7 +557,7 @@ rulePolymorphicTypeName returns [EObject current=null]
 					$current,
 					"name",
 					lv_name_0_0,
-					"org.eclipse.xtext.common.Terminals.ID");
+					"ac.soton.bsharp.BSharp.ID");
 			}
 		)
 	)
@@ -1282,7 +1240,7 @@ ruleDatatype returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"ac.soton.bsharp.BSharp.ID");
 				}
 			)
 		)
@@ -1390,7 +1348,7 @@ ruleDatatypeConstructor returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_0_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"ac.soton.bsharp.BSharp.ID");
 				}
 			)
 		)
@@ -1480,7 +1438,7 @@ ruleExtend returns [EObject current=null]
 						$current,
 						"extension",
 						lv_extension_3_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"ac.soton.bsharp.BSharp.ID");
 				}
 			)
 		)
@@ -1763,7 +1721,7 @@ ruleFunctionName returns [EObject current=null]
 					$current,
 					"name",
 					lv_name_0_0,
-					"org.eclipse.xtext.common.Terminals.ID");
+					"ac.soton.bsharp.BSharp.ID");
 			}
 		)
 	)
@@ -2253,7 +2211,7 @@ ruleTypedVariable returns [EObject current=null]
 					$current,
 					"name",
 					lv_name_0_0,
-					"org.eclipse.xtext.common.Terminals.ID");
+					"ac.soton.bsharp.BSharp.ID");
 			}
 		)
 	)
@@ -2586,10 +2544,10 @@ rulePrefixBuiltIn returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 @after {
 	leaveRule();
 }:
-	kw='\u00AC'
+	kw='asdglknasdgsajdng'
 	{
 		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getPrefixBuiltInAccess().getNotSignKeyword());
+		newLeafNode(kw, grammarAccess.getPrefixBuiltInAccess().getAsdglknasdgsajdngKeyword());
 	}
 ;
 
@@ -3027,7 +2985,7 @@ ruleInstance returns [EObject current=null]
 	)
 ;
 
-RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_ID : ('a'..'z'|'A'..'Z'|'_'|'i'..'\uFFDC') ('a'..'z'|'A'..'Z'|'_'|'i'..'\uFFDC'|'0'..'9')*;
 
 RULE_INT : ('0'..'9')+;
 

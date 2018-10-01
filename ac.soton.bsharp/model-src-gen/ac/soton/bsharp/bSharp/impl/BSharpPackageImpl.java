@@ -22,8 +22,6 @@ import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.ImportStatement;
-import ac.soton.bsharp.bSharp.InbuiltType;
-import ac.soton.bsharp.bSharp.InbuiltTypeScan;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
@@ -350,13 +348,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass typeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass inbuiltTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -863,15 +854,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDecl_Name() {
-		return (EReference)functionDeclEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFunctionDecl_Context() {
 		return (EReference)functionDeclEClass.getEStructuralFeatures().get(0);
 	}
@@ -919,6 +901,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 */
 	public EReference getFunctionDecl_Expr() {
 		return (EReference)functionDeclEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionDecl_Name() {
+		return (EReference)functionDeclEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1106,8 +1097,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypeDeclaration_TypeName() {
-		return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(1);
+	public EReference getTypeDeclaration_Context() {
+		return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1115,8 +1106,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypeDeclaration_Context() {
-		return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(0);
+	public EReference getTypeDeclaration_TypeName() {
+		return (EReference)typeDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1367,15 +1358,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInbuiltType() {
-		return inbuiltTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getNamedObject() {
 		return namedObjectEClass;
 	}
@@ -1562,8 +1544,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		typeEClass = createEClass(TYPE);
 
-		inbuiltTypeEClass = createEClass(INBUILT_TYPE);
-
 		namedObjectEClass = createEClass(NAMED_OBJECT);
 		createEAttribute(namedObjectEClass, NAMED_OBJECT__NAME);
 	}
@@ -1628,7 +1608,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		instanceEClass.getESuperTypes().add(this.getTopLevel());
 		infixEClass.getESuperTypes().add(this.getExpression());
 		typeEClass.getESuperTypes().add(this.getGenName());
-		inbuiltTypeEClass.getESuperTypes().add(this.getType());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainModelEClass, DomainModel.class, "DomainModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1775,8 +1754,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(iPolyTypeProviderEClass, IPolyTypeProvider.class, "IPolyTypeProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(inbuiltTypeEClass, InbuiltType.class, "InbuiltType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(namedObjectEClass, NamedObject.class, "NamedObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

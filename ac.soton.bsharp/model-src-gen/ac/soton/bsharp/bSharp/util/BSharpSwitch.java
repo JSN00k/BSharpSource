@@ -366,15 +366,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.INBUILT_TYPE: {
-				InbuiltType inbuiltType = (InbuiltType)theEObject;
-				T result = caseInbuiltType(inbuiltType);
-				if (result == null) result = caseType(inbuiltType);
-				if (result == null) result = caseGenName(inbuiltType);
-				if (result == null) result = caseNamedObject(inbuiltType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.NAMED_OBJECT: {
 				NamedObject namedObject = (NamedObject)theEObject;
 				T result = caseNamedObject(namedObject);
@@ -997,21 +988,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseType(Type object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Inbuilt Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Inbuilt Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInbuiltType(InbuiltType object) {
 		return null;
 	}
 

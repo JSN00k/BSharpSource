@@ -3,10 +3,23 @@
  */
 package ac.soton.bsharp.ui.contentassist
 
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.RuleCall
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import ac.soton.xeventb.common.RodinSymbolsProposalProvider
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
  * on how to customize the content assistant.
  */
 class BSharpProposalProvider extends AbstractBSharpProposalProvider {
+	
+	override complete_ExpressionVariable(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		RodinSymbolsProposalProvider.completeRodinSymbol(this, context, acceptor)
+	}
+	
+	override complete_InbuiltInfix(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		RodinSymbolsProposalProvider.completeRodinSymbol(this, context, acceptor)
+	}
 }

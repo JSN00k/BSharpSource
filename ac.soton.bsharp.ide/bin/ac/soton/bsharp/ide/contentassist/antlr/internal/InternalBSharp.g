@@ -149,31 +149,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleInbuiltType
-entryRuleInbuiltType
-:
-{ before(grammarAccess.getInbuiltTypeRule()); }
-	 ruleInbuiltType
-{ after(grammarAccess.getInbuiltTypeRule()); } 
-	 EOF 
-;
-
-// Rule InbuiltType
-ruleInbuiltType 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getInbuiltTypeAccess().getNameAssignment()); }
-		(rule__InbuiltType__NameAssignment)
-		{ after(grammarAccess.getInbuiltTypeAccess().getNameAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRuleType
 entryRuleType
 :
@@ -190,9 +165,9 @@ ruleType
 	}
 	:
 	(
-		{ before(grammarAccess.getTypeAccess().getAlternatives()); }
-		(rule__Type__Alternatives)
-		{ after(grammarAccess.getTypeAccess().getAlternatives()); }
+		{ before(grammarAccess.getTypeAccess().getClassDeclParserRuleCall()); }
+		ruleClassDecl
+		{ after(grammarAccess.getTypeAccess().getClassDeclParserRuleCall()); }
 	)
 ;
 finally {
@@ -990,9 +965,9 @@ rulePrefixBuiltIn
 	}
 	:
 	(
-		{ before(grammarAccess.getPrefixBuiltInAccess().getNotSignKeyword()); }
-		'\u00AC'
-		{ after(grammarAccess.getPrefixBuiltInAccess().getNotSignKeyword()); }
+		{ before(grammarAccess.getPrefixBuiltInAccess().getAsdglknasdgsajdngKeyword()); }
+		'asdglknasdgsajdng'
+		{ after(grammarAccess.getPrefixBuiltInAccess().getAsdglknasdgsajdngKeyword()); }
 	)
 ;
 finally {
@@ -1224,27 +1199,6 @@ rule__ClassDecl__Alternatives
 		{ before(grammarAccess.getClassDeclAccess().getDatatypeParserRuleCall_1()); }
 		ruleDatatype
 		{ after(grammarAccess.getClassDeclAccess().getDatatypeParserRuleCall_1()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Type__Alternatives
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getTypeAccess().getClassDeclParserRuleCall_0()); }
-		ruleClassDecl
-		{ after(grammarAccess.getTypeAccess().getClassDeclParserRuleCall_0()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getTypeAccess().getInbuiltTypeParserRuleCall_1()); }
-		ruleInbuiltType
-		{ after(grammarAccess.getTypeAccess().getInbuiltTypeParserRuleCall_1()); }
 	)
 ;
 finally {
@@ -5797,25 +5751,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__InbuiltType__NameAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getInbuiltTypeAccess().getNamePredKeyword_0()); }
-		(
-			{ before(grammarAccess.getInbuiltTypeAccess().getNamePredKeyword_0()); }
-			'Pred'
-			{ after(grammarAccess.getInbuiltTypeAccess().getNamePredKeyword_0()); }
-		)
-		{ after(grammarAccess.getInbuiltTypeAccess().getNamePredKeyword_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__ImportStatement__ImportsAssignment_1
 	@init {
 		int stackSize = keepStackSize();
@@ -7075,7 +7010,7 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_ID : ('a'..'z'|'A'..'Z'|'_'|'i'..'\uFFDC') ('a'..'z'|'A'..'Z'|'_'|'i'..'\uFFDC'|'0'..'9')*;
 
 RULE_INT : ('0'..'9')+;
 

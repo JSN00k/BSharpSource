@@ -95,7 +95,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.INSTANCE: return createInstance();
 			case BSharpPackage.INFIX: return createInfix();
 			case BSharpPackage.TYPE: return createType();
-			case BSharpPackage.INBUILT_TYPE: return createInbuiltType();
 			case BSharpPackage.NAMED_OBJECT: return createNamedObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -479,16 +478,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public Type createType() {
 		TypeImpl type = new TypeImpl();
 		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InbuiltType createInbuiltType() {
-		InbuiltTypeImpl inbuiltType = new InbuiltTypeImpl();
-		return inbuiltType;
 	}
 
 	/**

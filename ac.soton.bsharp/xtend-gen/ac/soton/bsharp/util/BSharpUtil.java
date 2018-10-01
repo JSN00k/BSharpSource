@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.TypeConstructor;
 import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
@@ -33,6 +34,10 @@ public class BSharpUtil {
       return ((TypeConstructor) _head).getTypeName();
     }
     return t;
+  }
+  
+  public static ResourceSet getResourceSet(final ResourceSet set) {
+    return set;
   }
   
   /**
