@@ -69,9 +69,6 @@ class BSharpUtil {
 			  	}
 			  }
 			  
-			 //list.append()
-			 
-			 
 			 if (superclass instanceof BppClass) {
 			 	if (!list.contains(type)) {
 			 		list.add(type as ClassDecl)

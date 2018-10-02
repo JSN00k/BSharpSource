@@ -8,8 +8,10 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 /**
  * This class contains custom scoping description.
@@ -41,5 +43,12 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
       }
     }
     return importedNamespaceResolvers;
+  }
+  
+  @Override
+  public List<ImportNormalizer> getImplicitImports(final boolean ignoreCase) {
+    QualifiedName _create = QualifiedName.create("main");
+    ImportNormalizer _importNormalizer = new ImportNormalizer(_create, true, ignoreCase);
+    return CollectionLiterals.<ImportNormalizer>newArrayList(_importNormalizer);
   }
 }

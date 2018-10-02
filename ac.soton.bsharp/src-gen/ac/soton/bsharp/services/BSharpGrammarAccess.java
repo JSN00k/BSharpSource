@@ -1421,14 +1421,14 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class PrefixBuiltInElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.PrefixBuiltIn");
-		private final Keyword cAsdglknasdgsajdngKeyword = (Keyword)rule.eContents().get(1);
+		private final Keyword cNotSignKeyword = (Keyword)rule.eContents().get(1);
 		
 		//PrefixBuiltIn:
-		//	'asdglknasdgsajdng';
+		//	'¬';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'asdglknasdgsajdng'
-		public Keyword getAsdglknasdgsajdngKeyword() { return cAsdglknasdgsajdngKeyword; }
+		//'¬'
+		public Keyword getNotSignKeyword() { return cNotSignKeyword; }
 	}
 	public class InfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Infix");
@@ -2288,7 +2288,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PrefixBuiltIn:
-	//	'asdglknasdgsajdng';
+	//	'¬';
 	public PrefixBuiltInElements getPrefixBuiltInAccess() {
 		return pPrefixBuiltIn;
 	}

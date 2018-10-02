@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_WS", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_ANY_OTHER", "'asdglknasdgsajdng'", "'\\u00D7'", "'\\u2192'", "'\\uE102'", "'\\uE100'", "'\\u2194'", "'\\u2916'", "'\\u21F8'", "'\\u21A3'", "'\\u2900'", "'\\u21A0'", "'\\u2200'", "'\\u2203'", "'\\u21D4'", "'\\u21D2'", "'='", "'\\u2260'", "'\\u2227'", "'\\u2228'", "':'", "'.'", "'.*'", "'Import'", "'Class'", "';'", "'{'", "'}'", "'<'", "'>'", "','", "'('", "')'", "'where'", "'Datatype'", "'|'", "'Extend'", "'match'", "'Theorems'", "'\\u00B7'", "'Instance'", "'INFIX'", "'\\u03BB'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_WS", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_ANY_OTHER", "'\\u00AC'", "'\\u00D7'", "'\\u2192'", "'\\uE102'", "'\\uE100'", "'\\u2194'", "'\\u2916'", "'\\u21F8'", "'\\u21A3'", "'\\u2900'", "'\\u21A0'", "'\\u2200'", "'\\u2203'", "'\\u21D4'", "'\\u21D2'", "'='", "'\\u2260'", "'\\u2227'", "'\\u2228'", "':'", "'.'", "'.*'", "'Import'", "'Class'", "';'", "'{'", "'}'", "'<'", "'>'", "','", "'('", "')'", "'where'", "'Datatype'", "'|'", "'Extend'", "'match'", "'Theorems'", "'\\u00B7'", "'Instance'", "'INFIX'", "'\\u03BB'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -2925,21 +2925,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rulePrefixBuiltIn"
-    // InternalBSharp.g:962:1: rulePrefixBuiltIn : ( 'asdglknasdgsajdng' ) ;
+    // InternalBSharp.g:962:1: rulePrefixBuiltIn : ( '\\u00AC' ) ;
     public final void rulePrefixBuiltIn() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:966:2: ( ( 'asdglknasdgsajdng' ) )
-            // InternalBSharp.g:967:2: ( 'asdglknasdgsajdng' )
+            // InternalBSharp.g:966:2: ( ( '\\u00AC' ) )
+            // InternalBSharp.g:967:2: ( '\\u00AC' )
             {
-            // InternalBSharp.g:967:2: ( 'asdglknasdgsajdng' )
-            // InternalBSharp.g:968:3: 'asdglknasdgsajdng'
+            // InternalBSharp.g:967:2: ( '\\u00AC' )
+            // InternalBSharp.g:968:3: '\\u00AC'
             {
-             before(grammarAccess.getPrefixBuiltInAccess().getAsdglknasdgsajdngKeyword()); 
+             before(grammarAccess.getPrefixBuiltInAccess().getNotSignKeyword()); 
             match(input,11,FOLLOW_2); 
-             after(grammarAccess.getPrefixBuiltInAccess().getAsdglknasdgsajdngKeyword()); 
+             after(grammarAccess.getPrefixBuiltInAccess().getNotSignKeyword()); 
 
             }
 

@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList
 import java.util.List
 import org.eclipse.xtext.scoping.impl.ImportNormalizer
 import com.google.common.collect.Lists
+import org.eclipse.xtext.naming.QualifiedName
 
 /**
  * This class contains custom scoping description.
@@ -40,5 +41,9 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		}
 
 		return importedNamespaceResolvers
+	}
+	
+	override getImplicitImports(boolean ignoreCase) {
+		newArrayList(new ImportNormalizer(QualifiedName.create("main"), true, ignoreCase))
 	}
 }

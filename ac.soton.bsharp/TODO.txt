@@ -4,4 +4,8 @@
 2) 	Deal With Constructed types in some meaningful way.
 3) 	Check that when a constructed type is passed as a supertype that it is the only supertype (I think), 
 	either way more needs to be thought out on this concept.
+4)  To get stuff working I allowed unicode characters in expression, unfortunately This means that I have
+    to have spaces between special characters like quantifiers and variable names, this is an irritation.
+5)  Follow the instructions from the book into how to make the Main lib available from outside of eclipse.
+	(This may not be necessary if we think that we're never going to use it outside of eclipse).
 	

@@ -2544,10 +2544,10 @@ rulePrefixBuiltIn returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 @after {
 	leaveRule();
 }:
-	kw='asdglknasdgsajdng'
+	kw='\u00AC'
 	{
 		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getPrefixBuiltInAccess().getAsdglknasdgsajdngKeyword());
+		newLeafNode(kw, grammarAccess.getPrefixBuiltInAccess().getNotSignKeyword());
 	}
 ;
 

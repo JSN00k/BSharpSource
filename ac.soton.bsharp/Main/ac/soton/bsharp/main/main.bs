@@ -6,11 +6,11 @@
  */
 
 Datatype Pred
-| true
-| false
+| ⊤
+| ⊥
 {
 	not(a:Pred) : Pred match a {
-		| true : false
-		| false : true
+		| ⊤ : ⊥
+		| ⊥ : ⊤ 
 	}
 }

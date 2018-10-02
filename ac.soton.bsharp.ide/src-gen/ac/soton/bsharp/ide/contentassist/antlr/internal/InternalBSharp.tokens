@@ -15,6 +15,7 @@
 'Import'=33
 'Instance'=50
 'Theorems'=48
+'\u00AC'=11
 '\u00B7'=49
 '\u00D7'=12
 '\u03BB'=52
@@ -34,7 +35,6 @@
 '\u2916'=17
 '\uE100'=15
 '\uE102'=14
-'asdglknasdgsajdng'=11
 'match'=47
 'where'=43
 '{'=36

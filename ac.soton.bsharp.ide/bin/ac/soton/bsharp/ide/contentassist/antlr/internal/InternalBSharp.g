@@ -965,9 +965,9 @@ rulePrefixBuiltIn
 	}
 	:
 	(
-		{ before(grammarAccess.getPrefixBuiltInAccess().getAsdglknasdgsajdngKeyword()); }
-		'asdglknasdgsajdng'
-		{ after(grammarAccess.getPrefixBuiltInAccess().getAsdglknasdgsajdngKeyword()); }
+		{ before(grammarAccess.getPrefixBuiltInAccess().getNotSignKeyword()); }
+		'\u00AC'
+		{ after(grammarAccess.getPrefixBuiltInAccess().getNotSignKeyword()); }
 	)
 ;
 finally {
