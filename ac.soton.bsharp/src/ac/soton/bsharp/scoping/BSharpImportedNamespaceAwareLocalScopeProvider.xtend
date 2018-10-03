@@ -44,6 +44,6 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 	}
 	
 	override getImplicitImports(boolean ignoreCase) {
-		newArrayList(new ImportNormalizer(QualifiedName.create("main"), true, ignoreCase))
+		newArrayList(new ImportNormalizer(QualifiedName.create("ac", "soton", "bsharp", "main"), true, ignoreCase))
 	}
 }

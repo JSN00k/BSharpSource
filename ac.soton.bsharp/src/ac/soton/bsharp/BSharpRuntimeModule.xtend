@@ -20,3 +20,4 @@ class BSharpRuntimeModule extends AbstractBSharpRuntimeModule {
 				.to(BSharpImportedNamespaceAwareLocalScopeProvider);
 	}
 }
+

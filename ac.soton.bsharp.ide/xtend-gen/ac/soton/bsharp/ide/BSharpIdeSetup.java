@@ -3,12 +3,8 @@
  */
 package ac.soton.bsharp.ide;
 
-import ac.soton.bsharp.BSharpRuntimeModule;
 import ac.soton.bsharp.BSharpStandaloneSetup;
-import ac.soton.bsharp.ide.BSharpIdeModule;
-import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.eclipse.xtext.util.Modules2;
 
 /**
  * Initialization support for running Xtext languages as language servers.
@@ -17,8 +13,8 @@ import org.eclipse.xtext.util.Modules2;
 public class BSharpIdeSetup extends BSharpStandaloneSetup {
   @Override
   public Injector createInjector() {
-    BSharpRuntimeModule _bSharpRuntimeModule = new BSharpRuntimeModule();
-    BSharpIdeModule _bSharpIdeModule = new BSharpIdeModule();
-    return Guice.createInjector(Modules2.mixin(_bSharpRuntimeModule, _bSharpIdeModule));
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from BSharpRuntimeModule to Module"
+      + "\nType mismatch: cannot convert from BSharpIdeModule to Module");
   }
 }

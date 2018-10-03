@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -39,7 +40,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class InstanceImpl extends TopLevelImpl implements Instance {
+public class InstanceImpl extends MinimalEObjectImpl.Container implements Instance {
 	/**
 	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' reference.
 	 * <!-- begin-user-doc -->

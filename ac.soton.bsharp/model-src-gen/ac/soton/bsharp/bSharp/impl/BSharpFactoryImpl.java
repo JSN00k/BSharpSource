@@ -67,8 +67,8 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.POLY_CONTEXT_TYPES: return createPolyContextTypes();
 			case BSharpPackage.POLY_TYPE_CONSTRAINTS: return createPolyTypeConstraints();
 			case BSharpPackage.SUPER_TYPE_LIST: return createSuperTypeList();
-			case BSharpPackage.CONSTRUCTED_TYPE: return createConstructedType();
 			case BSharpPackage.TYPE_CONSTRUCTOR: return createTypeConstructor();
+			case BSharpPackage.CONSTRUCTED_TYPE: return createConstructedType();
 			case BSharpPackage.TYPE_DECL_CONTEXT: return createTypeDeclContext();
 			case BSharpPackage.TYPE_STRUCTURE: return createTypeStructure();
 			case BSharpPackage.WHERE: return createWhere();

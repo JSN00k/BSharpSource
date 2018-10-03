@@ -249,6 +249,15 @@
 		<super type="org.eclipse.xtext.ui.check.expensive"/>
 		<persistent value="true"/>
 	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="ac.soton.bsharp.BSharp"
+			class="ac.soton.bsharp.ui.BSharpExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
+			id="ac.soton.bsharp.BSharp.validator.preferencePage"
+			name="Errors/Warnings">
+			<keywordReference id="ac.soton.bsharp.ui.keyword_BSharp"/>
+		</page>
+	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
 			class="ac.soton.bsharp.ui.BSharpExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
@@ -397,12 +406,18 @@
 			class="ac.soton.bsharp.ui.BSharpExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="bs">
 		</viewer>
+		<contentTypeBinding
+			contentTypeId="ac.soton.bsharp.BSharp.contenttype"
+			contentViewerId="ac.soton.bsharp.BSharp.compare.contentViewers" />
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
 		<viewer id="ac.soton.bsharp.BSharp.compare.contentMergeViewers"
 			class="ac.soton.bsharp.ui.BSharpExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="bs" label="BSharp Compare">
 		</viewer>
+		<contentTypeBinding
+			contentTypeId="ac.soton.bsharp.BSharp.contenttype"
+			contentMergeViewerId="ac.soton.bsharp.BSharp.compare.contentMergeViewers" />
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
 		<provider id="ac.soton.bsharp.BSharp.editors.documentProviders"
@@ -415,5 +430,34 @@
 			extension="bs"
 			type="text">
 		</fileTypes>
+	</extension>
+	<extension
+		point="org.eclipse.ui.newWizards">
+		<category id="ac.soton.bsharp.ui.category" name="BSharp">
+		</category>
+		<wizard
+			category="ac.soton.bsharp.ui.category"
+			class="ac.soton.bsharp.ui.BSharpExecutableExtensionFactory:org.eclipse.xtext.ui.wizard.template.TemplateNewProjectWizard"
+			id="ac.soton.bsharp.ui.wizard.BSharpNewProjectWizard"
+			name="BSharp Project"
+			icon="icons/new_BSharp_proj.gif"
+			project="true">
+		</wizard>
+	</extension>
+	<extension
+	      point="org.eclipse.xtext.ui.projectTemplate">
+	   <projectTemplateProvider
+	         class="ac.soton.bsharp.ui.wizard.BSharpProjectTemplateProvider"
+	         grammarName="ac.soton.bsharp.BSharp">
+	   </projectTemplateProvider>
+	</extension>
+	<extension
+		point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+			<newWizardShortcut id="ac.soton.bsharp.ui.wizard.BSharpNewProjectWizard"/>
+		</perspectiveExtension>
+		<perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+			<newWizardShortcut id="ac.soton.bsharp.ui.wizard.BSharpNewProjectWizard"/>
+		</perspectiveExtension>
 	</extension>
 </plugin>

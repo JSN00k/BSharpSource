@@ -28,6 +28,7 @@ import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TheoremBody;
 import ac.soton.bsharp.bSharp.TheoremDecl;
+import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -146,6 +147,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.THEOREM_DECL:
 				sequence_TheoremDecl(context, (TheoremDecl) semanticObject); 
 				return; 
+			case BSharpPackage.TOP_LEVEL:
+				sequence_TopLevel(context, (TopLevel) semanticObject); 
+				return; 
 			case BSharpPackage.TYPE_BODY_ELEMENTS:
 				sequence_TypeBodyElements(context, (TypeBodyElements) semanticObject); 
 				return; 
@@ -199,7 +203,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     TopLevel returns BppClass
 	 *     ClassDecl returns BppClass
 	 *     Type returns BppClass
 	 *     GenName returns BppClass
@@ -264,7 +267,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     TopLevel returns Datatype
 	 *     ClassDecl returns Datatype
 	 *     Type returns Datatype
 	 *     GenName returns Datatype
@@ -293,11 +295,10 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     TopLevel returns Extend
 	 *     Extend returns Extend
 	 *
 	 * Constraint:
-	 *     (name=[ClassDecl|QualifiedName] extension=ID bodyElements+=TypeBodyElements*)
+	 *     (extendedClass=[ClassDecl|QualifiedName] name=ID bodyElements+=TypeBodyElements*)
 	 */
 	protected void sequence_Extend(ISerializationContext context, Extend semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -361,7 +362,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     TopLevel returns ImportStatement
 	 *     ImportStatement returns ImportStatement
 	 *
 	 * Constraint:
@@ -388,7 +388,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     TopLevel returns Instance
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
@@ -585,6 +584,18 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getTheoremDeclAccess().getNameTHM_NAMEParserRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getTheoremDeclAccess().getExprRootExpressionParserRuleCall_1_0(), semanticObject.getExpr());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TopLevel returns TopLevel
+	 *
+	 * Constraint:
+	 *     (name=ID? imports+=ImportStatement* classes+=Class*)
+	 */
+	protected void sequence_TopLevel(ISerializationContext context, TopLevel semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

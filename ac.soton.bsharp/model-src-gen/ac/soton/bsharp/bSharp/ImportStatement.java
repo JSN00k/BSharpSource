@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ImportStatement extends TopLevel {
+public interface ImportStatement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Imports</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.

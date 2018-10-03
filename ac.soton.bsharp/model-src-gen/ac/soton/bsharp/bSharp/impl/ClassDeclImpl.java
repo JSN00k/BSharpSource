@@ -39,34 +39,13 @@ import org.eclipse.xtext.EcoreUtil2;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getBodyElements <em>Body Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
+public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -104,27 +83,6 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	protected EClass eStaticClass() {
 		return BSharpPackage.Literals.CLASS_DECL;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_DECL__NAME, oldName, name));
 	}
 
 	/**
@@ -206,8 +164,6 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__NAME:
-				return getName();
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return getContext();
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
@@ -225,9 +181,6 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__NAME:
-				setName((String)newValue);
-				return;
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				setContext((PolyContext)newValue);
 				return;
@@ -247,9 +200,6 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				setContext((PolyContext)null);
 				return;
@@ -268,8 +218,6 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return context != null;
 			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
@@ -278,104 +226,6 @@ public abstract class ClassDeclImpl extends TopLevelImpl implements ClassDecl {
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == NamedObject.class) {
-			switch (derivedFeatureID) {
-				case BSharpPackage.CLASS_DECL__NAME: return BSharpPackage.NAMED_OBJECT__NAME;
-				default: return -1;
-			}
-		}
-		if (baseClass == GenName.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ExpressionVariable.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == IVariableProvider.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == IPolyTypeProvider.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == Type.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == NamedObject.class) {
-			switch (baseFeatureID) {
-				case BSharpPackage.NAMED_OBJECT__NAME: return BSharpPackage.CLASS_DECL__NAME;
-				default: return -1;
-			}
-		}
-		if (baseClass == GenName.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ExpressionVariable.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == IVariableProvider.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == IPolyTypeProvider.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == Type.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
-	
 	/* Not sure why this wasn't automatically generated :-/ */
 	@Override
 	public String descriptiveName() {

@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Instance extends TopLevel {
+public interface Instance extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Class Name</b></em>' reference.
 	 * <!-- begin-user-doc -->

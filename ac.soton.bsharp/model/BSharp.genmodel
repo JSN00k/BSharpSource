@@ -9,7 +9,13 @@
     <genClasses ecoreClass="BSharp.ecore#//DomainModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//DomainModel/elements"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//TopLevel"/>
+    <genClasses ecoreClass="BSharp.ecore#//TopLevel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//TopLevel/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevel/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevel/classes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevel/extends"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevel/instances"/>
+    </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ImportStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute BSharp.ecore#//ImportStatement/imports"/>
     </genClasses>
@@ -37,13 +43,13 @@
     <genClasses ecoreClass="BSharp.ecore#//SuperTypeList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//SuperTypeList/superType"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//ConstructedType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ConstructedType/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//ConstructedType/constructors"/>
-    </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TypeConstructor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/TypeName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/context"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//ConstructedType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ConstructedType/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//ConstructedType/constructors"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TypeDeclContext">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeDeclContext/TypeName"/>
@@ -62,8 +68,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//DatatypeConstructor/decons"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//Extend">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Extend/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//Extend/extension"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Extend/extendedClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute BSharp.ecore#//Extend/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Extend/bodyElements"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TypeBodyElements">

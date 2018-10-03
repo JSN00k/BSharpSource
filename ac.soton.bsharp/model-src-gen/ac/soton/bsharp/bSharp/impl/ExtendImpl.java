@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -38,36 +39,36 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ExtendImpl#getBodyElements <em>Body Elements</em>}</li>
  * </ul>
  */
-public class ExtendImpl extends TopLevelImpl implements Extend {
+public class ExtendImpl extends NamedObjectImpl implements Extend {
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' reference.
+	 * The cached value of the '{@link #getExtendedClass() <em>Extended Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected ClassDecl extendedClass;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected ClassDecl name;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getExtension() <em>Extension</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtension()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String EXTENSION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getExtension() <em>Extension</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExtension()
-	 * @generated
-	 * @ordered
-	 */
-	protected String extension = EXTENSION_EDEFAULT;
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
@@ -103,15 +104,45 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassDecl getName() {
-		if (name != null && name.eIsProxy()) {
-			InternalEObject oldName = (InternalEObject)name;
-			name = (ClassDecl)eResolveProxy(oldName);
-			if (name != oldName) {
+	public ClassDecl getExtendedClass() {
+		if (extendedClass != null && extendedClass.eIsProxy()) {
+			InternalEObject oldExtendedClass = (InternalEObject)extendedClass;
+			extendedClass = (ClassDecl)eResolveProxy(oldExtendedClass);
+			if (extendedClass != oldExtendedClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.EXTEND__NAME, oldName, name));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.EXTEND__EXTENDED_CLASS, oldExtendedClass, extendedClass));
 			}
 		}
+		return extendedClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClassDecl basicGetExtendedClass() {
+		return extendedClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtendedClass(ClassDecl newExtendedClass) {
+		ClassDecl oldExtendedClass = extendedClass;
+		extendedClass = newExtendedClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.EXTEND__EXTENDED_CLASS, oldExtendedClass, extendedClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
 		return name;
 	}
 
@@ -120,41 +151,11 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassDecl basicGetName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(ClassDecl newName) {
-		ClassDecl oldName = name;
+	public void setName(String newName) {
+		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.EXTEND__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getExtension() {
-		return extension;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setExtension(String newExtension) {
-		String oldExtension = extension;
-		extension = newExtension;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.EXTEND__EXTENSION, oldExtension, extension));
 	}
 
 	/**
@@ -191,11 +192,11 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case BSharpPackage.EXTEND__EXTENDED_CLASS:
+				if (resolve) return getExtendedClass();
+				return basicGetExtendedClass();
 			case BSharpPackage.EXTEND__NAME:
-				if (resolve) return getName();
-				return basicGetName();
-			case BSharpPackage.EXTEND__EXTENSION:
-				return getExtension();
+				return getName();
 			case BSharpPackage.EXTEND__BODY_ELEMENTS:
 				return getBodyElements();
 		}
@@ -211,11 +212,11 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.EXTEND__NAME:
-				setName((ClassDecl)newValue);
+			case BSharpPackage.EXTEND__EXTENDED_CLASS:
+				setExtendedClass((ClassDecl)newValue);
 				return;
-			case BSharpPackage.EXTEND__EXTENSION:
-				setExtension((String)newValue);
+			case BSharpPackage.EXTEND__NAME:
+				setName((String)newValue);
 				return;
 			case BSharpPackage.EXTEND__BODY_ELEMENTS:
 				getBodyElements().clear();
@@ -233,11 +234,11 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.EXTEND__NAME:
-				setName((ClassDecl)null);
+			case BSharpPackage.EXTEND__EXTENDED_CLASS:
+				setExtendedClass((ClassDecl)null);
 				return;
-			case BSharpPackage.EXTEND__EXTENSION:
-				setExtension(EXTENSION_EDEFAULT);
+			case BSharpPackage.EXTEND__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 			case BSharpPackage.EXTEND__BODY_ELEMENTS:
 				getBodyElements().clear();
@@ -254,10 +255,10 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.EXTEND__EXTENDED_CLASS:
+				return extendedClass != null;
 			case BSharpPackage.EXTEND__NAME:
-				return name != null;
-			case BSharpPackage.EXTEND__EXTENSION:
-				return EXTENSION_EDEFAULT == null ? extension != null : !EXTENSION_EDEFAULT.equals(extension);
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.EXTEND__BODY_ELEMENTS:
 				return bodyElements != null && !bodyElements.isEmpty();
 		}
@@ -274,8 +275,8 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (extension: ");
-		result.append(extension);
+		result.append(" (name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}
@@ -285,8 +286,8 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 		/* Note datatypes don't create type variables, I think these may be 
 		 * covered when looking for function names instead.
 		 */
-		if (name instanceof BppClass) {
-			return ((BppClass)name).getVariablesNames();
+		if (extendedClass instanceof BppClass) {
+			return ((BppClass)extendedClass).getVariablesNames();
 		} else {
 			return null;
 		}
@@ -294,8 +295,8 @@ public class ExtendImpl extends TopLevelImpl implements Extend {
 
 	@Override
 	public Collection<PolymorphicTypeName> getPolyTypeNames() {
-		if (name instanceof BppClass) {
-			return ((BppClass)name).getPolyTypeNames();
+		if (extendedClass instanceof BppClass) {
+			return ((BppClass)extendedClass).getPolyTypeNames();
 		} else {
 			return null;
 		}

@@ -113,12 +113,12 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createSuperTypeListAdapter();
 			}
 			@Override
-			public Adapter caseConstructedType(ConstructedType object) {
-				return createConstructedTypeAdapter();
-			}
-			@Override
 			public Adapter caseTypeConstructor(TypeConstructor object) {
 				return createTypeConstructorAdapter();
+			}
+			@Override
+			public Adapter caseConstructedType(ConstructedType object) {
+				return createConstructedTypeAdapter();
 			}
 			@Override
 			public Adapter caseTypeDeclContext(TypeDeclContext object) {

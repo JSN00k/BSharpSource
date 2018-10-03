@@ -1,3 +1,5 @@
+package ac.soton.bsharp.main
+
 /* Definition of the Pred type, this allows it to be used within the language
  * I'd rather build this using emf then I would be able to use unicode charaters
  * but I can't figure out how to add EMF to the resource set. Unlike other types

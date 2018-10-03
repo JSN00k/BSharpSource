@@ -73,30 +73,51 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class TopLevelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TopLevel");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cImportStatementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cClassDeclParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cExtendParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cInstanceParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cTopLevelAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cPackageKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
+		private final Assignment cImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cImportsImportStatementParserRuleCall_2_0 = (RuleCall)cImportsAssignment_2.eContents().get(0);
+		private final Assignment cClassesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cClassesClassParserRuleCall_3_0 = (RuleCall)cClassesAssignment_3.eContents().get(0);
 		
 		//TopLevel:
-		//	ImportStatement | ClassDecl | Extend | Instance;
+		//	{TopLevel} ('package' name=ID)?
+		//	imports+=ImportStatement* classes+=Class*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ImportStatement | ClassDecl | Extend | Instance
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//{TopLevel} ('package' name=ID)? imports+=ImportStatement* classes+=Class*
+		public Group getGroup() { return cGroup; }
+		
+		//{TopLevel}
+		public Action getTopLevelAction_0() { return cTopLevelAction_0; }
+		
+		//('package' name=ID)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'package'
+		public Keyword getPackageKeyword_1_0() { return cPackageKeyword_1_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_1_0() { return cNameIDTerminalRuleCall_1_1_0; }
+		
+		//imports+=ImportStatement*
+		public Assignment getImportsAssignment_2() { return cImportsAssignment_2; }
 		
 		//ImportStatement
-		public RuleCall getImportStatementParserRuleCall_0() { return cImportStatementParserRuleCall_0; }
+		public RuleCall getImportsImportStatementParserRuleCall_2_0() { return cImportsImportStatementParserRuleCall_2_0; }
 		
-		//ClassDecl
-		public RuleCall getClassDeclParserRuleCall_1() { return cClassDeclParserRuleCall_1; }
+		//classes+=Class*
+		public Assignment getClassesAssignment_3() { return cClassesAssignment_3; }
 		
-		//Extend
-		public RuleCall getExtendParserRuleCall_2() { return cExtendParserRuleCall_2; }
-		
-		//Instance
-		public RuleCall getInstanceParserRuleCall_3() { return cInstanceParserRuleCall_3; }
+		//Class
+		public RuleCall getClassesClassParserRuleCall_3_0() { return cClassesClassParserRuleCall_3_0; }
 	}
 	public class ClassDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ClassDecl");
@@ -793,12 +814,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Extend");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cExtendKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cNameClassDeclCrossReference_1_0 = (CrossReference)cNameAssignment_1.eContents().get(0);
-		private final RuleCall cNameClassDeclQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cNameClassDeclCrossReference_1_0.eContents().get(1);
+		private final Assignment cExtendedClassAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cExtendedClassClassDeclCrossReference_1_0 = (CrossReference)cExtendedClassAssignment_1.eContents().get(0);
+		private final RuleCall cExtendedClassClassDeclQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cExtendedClassClassDeclCrossReference_1_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cExtensionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cExtensionIDTerminalRuleCall_3_0 = (RuleCall)cExtensionAssignment_3.eContents().get(0);
+		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNameIDTerminalRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cBodyElementsAssignment_6 = (Assignment)cGroup.eContents().get(6);
@@ -806,32 +827,32 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		///* ------------------------ Extension statement ---------------------------- */ Extend:
-		//	'Extend' name=[ClassDecl|QualifiedName] '(' extension=ID ')' '{' bodyElements+=TypeBodyElements* '}';
+		//	'Extend' extendedClass=[ClassDecl|QualifiedName] '(' name=ID ')' '{' bodyElements+=TypeBodyElements* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Extend' name=[ClassDecl|QualifiedName] '(' extension=ID ')' '{' bodyElements+=TypeBodyElements* '}'
+		//'Extend' extendedClass=[ClassDecl|QualifiedName] '(' name=ID ')' '{' bodyElements+=TypeBodyElements* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Extend'
 		public Keyword getExtendKeyword_0() { return cExtendKeyword_0; }
 		
-		//name=[ClassDecl|QualifiedName]
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//extendedClass=[ClassDecl|QualifiedName]
+		public Assignment getExtendedClassAssignment_1() { return cExtendedClassAssignment_1; }
 		
 		//[ClassDecl|QualifiedName]
-		public CrossReference getNameClassDeclCrossReference_1_0() { return cNameClassDeclCrossReference_1_0; }
+		public CrossReference getExtendedClassClassDeclCrossReference_1_0() { return cExtendedClassClassDeclCrossReference_1_0; }
 		
 		//QualifiedName
-		public RuleCall getNameClassDeclQualifiedNameParserRuleCall_1_0_1() { return cNameClassDeclQualifiedNameParserRuleCall_1_0_1; }
+		public RuleCall getExtendedClassClassDeclQualifiedNameParserRuleCall_1_0_1() { return cExtendedClassClassDeclQualifiedNameParserRuleCall_1_0_1; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
-		//extension=ID
-		public Assignment getExtensionAssignment_3() { return cExtensionAssignment_3; }
+		//name=ID
+		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
 		
 		//ID
-		public RuleCall getExtensionIDTerminalRuleCall_3_0() { return cExtensionIDTerminalRuleCall_3_0; }
+		public RuleCall getNameIDTerminalRuleCall_3_0() { return cNameIDTerminalRuleCall_3_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
@@ -1910,7 +1931,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TopLevel:
-	//	ImportStatement | ClassDecl | Extend | Instance;
+	//	{TopLevel} ('package' name=ID)?
+	//	imports+=ImportStatement* classes+=Class*;
 	public TopLevelElements getTopLevelAccess() {
 		return pTopLevel;
 	}
@@ -2131,7 +2153,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ------------------------ Extension statement ---------------------------- */ Extend:
-	//	'Extend' name=[ClassDecl|QualifiedName] '(' extension=ID ')' '{' bodyElements+=TypeBodyElements* '}';
+	//	'Extend' extendedClass=[ClassDecl|QualifiedName] '(' name=ID ')' '{' bodyElements+=TypeBodyElements* '}';
 	public ExtendElements getExtendAccess() {
 		return pExtend;
 	}

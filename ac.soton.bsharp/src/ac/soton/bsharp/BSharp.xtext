@@ -13,7 +13,10 @@ DomainModel:
 THM_NAME: (INT | ID | WS)* ":";
 	
 TopLevel:
-	ImportStatement | ClassDecl | Extend | Instance;
+	{TopLevel}
+	'package' name=ID';'
+	(imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
+;
 	
 ClassDecl returns ClassDecl:
 	Class | Datatype
@@ -136,7 +139,7 @@ DatatypeConstructor:
 /* ------------------------ Extension statement ---------------------------- */
 
 Extend: 
-	'Extend' name=[ClassDecl|QualifiedName] '(' extension=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
+	'Extend' extendedClass=[ClassDecl|QualifiedName] '(' name=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
 ;
 
 /* ------------------------ TypeBodyElements ------------------------------- */

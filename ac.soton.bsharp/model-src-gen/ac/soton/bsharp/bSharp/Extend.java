@@ -22,58 +22,58 @@ import org.eclipse.emf.common.util.EList;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend()
  * @model
  */
-public interface Extend extends TopLevel, IVariableProvider, IPolyTypeProvider {
+public interface Extend extends IVariableProvider, IPolyTypeProvider {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' reference.
+	 * Returns the value of the '<em><b>Extended Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extended Class</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extended Class</em>' reference.
+	 * @see #setExtendedClass(ClassDecl)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend_ExtendedClass()
+	 * @model
+	 * @generated
+	 */
+	ClassDecl getExtendedClass();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Extend#getExtendedClass <em>Extended Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extended Class</em>' reference.
+	 * @see #getExtendedClass()
+	 * @generated
+	 */
+	void setExtendedClass(ClassDecl value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' reference.
-	 * @see #setName(ClassDecl)
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend_Name()
-	 * @model
+	 * @model id="true"
 	 * @generated
 	 */
-	ClassDecl getName();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Extend#getName <em>Name</em>}' reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Extend#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' reference.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
-	void setName(ClassDecl value);
-
-	/**
-	 * Returns the value of the '<em><b>Extension</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extension</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extension</em>' attribute.
-	 * @see #setExtension(String)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend_Extension()
-	 * @model
-	 * @generated
-	 */
-	String getExtension();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Extend#getExtension <em>Extension</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Extension</em>' attribute.
-	 * @see #getExtension()
-	 * @generated
-	 */
-	void setExtension(String value);
+	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Body Elements</b></em>' containment reference list.

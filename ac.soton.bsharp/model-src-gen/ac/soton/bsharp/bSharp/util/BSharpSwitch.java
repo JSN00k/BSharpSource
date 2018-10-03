@@ -82,14 +82,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.IMPORT_STATEMENT: {
 				ImportStatement importStatement = (ImportStatement)theEObject;
 				T result = caseImportStatement(importStatement);
-				if (result == null) result = caseTopLevel(importStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BSharpPackage.CLASS_DECL: {
 				ClassDecl classDecl = (ClassDecl)theEObject;
 				T result = caseClassDecl(classDecl);
-				if (result == null) result = caseTopLevel(classDecl);
 				if (result == null) result = caseExpressionVariable(classDecl);
 				if (result == null) result = caseIVariableProvider(classDecl);
 				if (result == null) result = caseIPolyTypeProvider(classDecl);
@@ -103,7 +101,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				BppClass bppClass = (BppClass)theEObject;
 				T result = caseBppClass(bppClass);
 				if (result == null) result = caseClassDecl(bppClass);
-				if (result == null) result = caseTopLevel(bppClass);
 				if (result == null) result = caseExpressionVariable(bppClass);
 				if (result == null) result = caseIVariableProvider(bppClass);
 				if (result == null) result = caseIPolyTypeProvider(bppClass);
@@ -152,15 +149,15 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.CONSTRUCTED_TYPE: {
-				ConstructedType constructedType = (ConstructedType)theEObject;
-				T result = caseConstructedType(constructedType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.TYPE_CONSTRUCTOR: {
 				TypeConstructor typeConstructor = (TypeConstructor)theEObject;
 				T result = caseTypeConstructor(typeConstructor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.CONSTRUCTED_TYPE: {
+				ConstructedType constructedType = (ConstructedType)theEObject;
+				T result = caseConstructedType(constructedType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -186,7 +183,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				Datatype datatype = (Datatype)theEObject;
 				T result = caseDatatype(datatype);
 				if (result == null) result = caseClassDecl(datatype);
-				if (result == null) result = caseTopLevel(datatype);
 				if (result == null) result = caseExpressionVariable(datatype);
 				if (result == null) result = caseIVariableProvider(datatype);
 				if (result == null) result = caseIPolyTypeProvider(datatype);
@@ -209,7 +205,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.EXTEND: {
 				Extend extend = (Extend)theEObject;
 				T result = caseExtend(extend);
-				if (result == null) result = caseTopLevel(extend);
 				if (result == null) result = caseIVariableProvider(extend);
 				if (result == null) result = caseIPolyTypeProvider(extend);
 				if (result == null) result = defaultCase(theEObject);
@@ -335,7 +330,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.INSTANCE: {
 				Instance instance = (Instance)theEObject;
 				T result = caseInstance(instance);
-				if (result == null) result = caseTopLevel(instance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
