@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionCall;
 
+import ac.soton.bsharp.bSharp.GenName;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getOwnerType <em>Owner Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,6 +46,16 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * @ordered
 	 */
 	protected EList<Expression> arguments;
+
+	/**
+	 * The cached value of the '{@link #getOwnerType() <em>Owner Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnerType()
+	 * @generated
+	 * @ordered
+	 */
+	protected GenName ownerType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,6 +93,44 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public GenName getOwnerType() {
+		if (ownerType != null && ownerType.eIsProxy()) {
+			InternalEObject oldOwnerType = (InternalEObject)ownerType;
+			ownerType = (GenName)eResolveProxy(oldOwnerType);
+			if (ownerType != oldOwnerType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.FUNCTION_CALL__OWNER_TYPE, oldOwnerType, ownerType));
+			}
+		}
+		return ownerType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenName basicGetOwnerType() {
+		return ownerType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnerType(GenName newOwnerType) {
+		GenName oldOwnerType = ownerType;
+		ownerType = newOwnerType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__OWNER_TYPE, oldOwnerType, ownerType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -100,6 +150,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		switch (featureID) {
 			case BSharpPackage.FUNCTION_CALL__ARGUMENTS:
 				return getArguments();
+			case BSharpPackage.FUNCTION_CALL__OWNER_TYPE:
+				if (resolve) return getOwnerType();
+				return basicGetOwnerType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -117,6 +170,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				getArguments().clear();
 				getArguments().addAll((Collection<? extends Expression>)newValue);
 				return;
+			case BSharpPackage.FUNCTION_CALL__OWNER_TYPE:
+				setOwnerType((GenName)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -132,6 +188,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			case BSharpPackage.FUNCTION_CALL__ARGUMENTS:
 				getArguments().clear();
 				return;
+			case BSharpPackage.FUNCTION_CALL__OWNER_TYPE:
+				setOwnerType((GenName)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -146,6 +205,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		switch (featureID) {
 			case BSharpPackage.FUNCTION_CALL__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
+			case BSharpPackage.FUNCTION_CALL__OWNER_TYPE:
+				return ownerType != null;
 		}
 		return super.eIsSet(featureID);
 	}

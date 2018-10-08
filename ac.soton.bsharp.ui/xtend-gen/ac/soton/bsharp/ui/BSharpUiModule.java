@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.ui;
 
+import ac.soton.bsharp.ui.AbstractBSharpUiModule;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
 
 /**
@@ -10,5 +12,8 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor;
  */
 @FinalFieldsConstructor
 @SuppressWarnings("all")
-public class BSharpUiModule /* implements AbstractBSharpUiModule  */{
+public class BSharpUiModule extends AbstractBSharpUiModule {
+  public BSharpUiModule(final AbstractUIPlugin plugin) {
+    super(plugin);
+  }
 }

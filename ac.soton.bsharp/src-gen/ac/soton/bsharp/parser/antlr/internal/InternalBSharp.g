@@ -161,73 +161,111 @@ ruleTopLevel returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		otherlv_0='package'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getTopLevelAccess().getPackageKeyword_0());
+		}
 		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getTopLevelAccess().getTopLevelAction_0(),
-					$current);
-			}
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getTopLevelAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTopLevelRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"ac.soton.bsharp.BSharp.ID");
+				}
+			)
 		)
+		otherlv_2=';'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getTopLevelAccess().getSemicolonKeyword_2());
+		}
 		(
-			otherlv_1='package'
-			{
-				newLeafNode(otherlv_1, grammarAccess.getTopLevelAccess().getPackageKeyword_1_0());
-			}
 			(
 				(
-					lv_name_2_0=RULE_ID
 					{
-						newLeafNode(lv_name_2_0, grammarAccess.getTopLevelAccess().getNameIDTerminalRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getTopLevelAccess().getImportsImportStatementParserRuleCall_3_0_0());
 					}
+					lv_imports_3_0=ruleImportStatement
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getTopLevelRule());
+							$current = createModelElementForParent(grammarAccess.getTopLevelRule());
 						}
-						setWithLastConsumed(
+						add(
 							$current,
-							"name",
-							lv_name_2_0,
-							"ac.soton.bsharp.BSharp.ID");
+							"imports",
+							lv_imports_3_0,
+							"ac.soton.bsharp.BSharp.ImportStatement");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)?
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getTopLevelAccess().getImportsImportStatementParserRuleCall_2_0());
-				}
-				lv_imports_3_0=ruleImportStatement
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getTopLevelRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getTopLevelAccess().getClassesClassDeclParserRuleCall_3_1_0());
 					}
-					add(
-						$current,
-						"imports",
-						lv_imports_3_0,
-						"ac.soton.bsharp.BSharp.ImportStatement");
-					afterParserOrEnumRuleCall();
-				}
+					lv_classes_4_0=ruleClassDecl
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTopLevelRule());
+						}
+						add(
+							$current,
+							"classes",
+							lv_classes_4_0,
+							"ac.soton.bsharp.BSharp.ClassDecl");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)*
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getTopLevelAccess().getClassesClassParserRuleCall_3_0());
-				}
-				lv_classes_4_0=ruleClass
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getTopLevelRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getTopLevelAccess().getExtendsExtendParserRuleCall_3_2_0());
 					}
-					add(
-						$current,
-						"classes",
-						lv_classes_4_0,
-						"ac.soton.bsharp.BSharp.Class");
-					afterParserOrEnumRuleCall();
-				}
+					lv_extends_5_0=ruleExtend
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTopLevelRule());
+						}
+						add(
+							$current,
+							"extends",
+							lv_extends_5_0,
+							"ac.soton.bsharp.BSharp.Extend");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getTopLevelAccess().getInstancesInstanceParserRuleCall_3_3_0());
+					}
+					lv_instances_6_0=ruleInstance
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTopLevelRule());
+						}
+						add(
+							$current,
+							"instances",
+							lv_instances_6_0,
+							"ac.soton.bsharp.BSharp.Instance");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)*
 	)
@@ -1415,6 +1453,98 @@ ruleDatatypeConstructor returns [EObject current=null]
 				newLeafNode(otherlv_3, grammarAccess.getDatatypeConstructorAccess().getRightParenthesisKeyword_1_2());
 			}
 		)?
+	)
+;
+
+// Entry rule entryRuleExtend
+entryRuleExtend returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExtendRule()); }
+	iv_ruleExtend=ruleExtend
+	{ $current=$iv_ruleExtend.current; }
+	EOF;
+
+// Rule Extend
+ruleExtend returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='Extend'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getExtendAccess().getExtendKeyword_0());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getExtendRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getExtendAccess().getExtendedClassClassDeclCrossReference_1_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2='('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getExtendAccess().getLeftParenthesisKeyword_2());
+		}
+		(
+			(
+				lv_name_3_0=RULE_ID
+				{
+					newLeafNode(lv_name_3_0, grammarAccess.getExtendAccess().getNameIDTerminalRuleCall_3_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getExtendRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_3_0,
+						"ac.soton.bsharp.BSharp.ID");
+				}
+			)
+		)
+		otherlv_4=')'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getExtendAccess().getRightParenthesisKeyword_4());
+		}
+		otherlv_5='{'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getExtendAccess().getLeftCurlyBracketKeyword_5());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getExtendAccess().getBodyElementsTypeBodyElementsParserRuleCall_6_0());
+				}
+				lv_bodyElements_6_0=ruleTypeBodyElements
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getExtendRule());
+					}
+					add(
+						$current,
+						"bodyElements",
+						lv_bodyElements_6_0,
+						"ac.soton.bsharp.BSharp.TypeBodyElements");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		otherlv_7='}'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getExtendAccess().getRightCurlyBracketKeyword_7());
+		}
 	)
 ;
 
@@ -2813,6 +2943,116 @@ ruleInbuiltInfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
 		{
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getInbuiltInfixAccess().getLogicalOrKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleInstance
+entryRuleInstance returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getInstanceRule()); }
+	iv_ruleInstance=ruleInstance
+	{ $current=$iv_ruleInstance.current; }
+	EOF;
+
+// Rule Instance
+ruleInstance returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='Instance'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getInstanceAccess().getInstanceKeyword_0());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getInstanceRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getInstanceAccess().getClassNameClassDeclCrossReference_1_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getInstanceAccess().getContextTypeDeclContextParserRuleCall_2_0());
+				}
+				lv_context_2_0=ruleTypeDeclContext
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getInstanceRule());
+					}
+					set(
+						$current,
+						"context",
+						lv_context_2_0,
+						"ac.soton.bsharp.BSharp.TypeDeclContext");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='('
+		{
+			newLeafNode(otherlv_3, grammarAccess.getInstanceAccess().getLeftParenthesisKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getInstanceAccess().getArgumentsRootExpressionParserRuleCall_4_0());
+				}
+				lv_arguments_4_0=ruleRootExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getInstanceRule());
+					}
+					add(
+						$current,
+						"arguments",
+						lv_arguments_4_0,
+						"ac.soton.bsharp.BSharp.RootExpression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		(
+			otherlv_5=','
+			{
+				newLeafNode(otherlv_5, grammarAccess.getInstanceAccess().getCommaKeyword_5_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getInstanceAccess().getArgumentsRootExpressionParserRuleCall_5_1_0());
+					}
+					lv_arguments_6_0=ruleRootExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstanceRule());
+						}
+						add(
+							$current,
+							"arguments",
+							lv_arguments_6_0,
+							"ac.soton.bsharp.BSharp.RootExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+		otherlv_7=')'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getInstanceAccess().getRightParenthesisKeyword_6());
 		}
 	)
 ;

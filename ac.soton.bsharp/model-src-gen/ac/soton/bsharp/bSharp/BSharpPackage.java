@@ -1407,13 +1407,22 @@ public interface BSharpPackage extends EPackage {
 	int FUNCTION_CALL__ARGUMENTS = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owner Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__OWNER_TYPE = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Function Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.PrefixImpl <em>Prefix</em>}' class.
@@ -2625,6 +2634,17 @@ public interface BSharpPackage extends EPackage {
 	EReference getFunctionCall_Arguments();
 
 	/**
+	 * Returns the meta object for the reference '{@link ac.soton.bsharp.bSharp.FunctionCall#getOwnerType <em>Owner Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owner Type</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionCall#getOwnerType()
+	 * @see #getFunctionCall()
+	 * @generated
+	 */
+	EReference getFunctionCall_OwnerType();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Prefix <em>Prefix</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3650,6 +3670,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTION_CALL__ARGUMENTS = eINSTANCE.getFunctionCall_Arguments();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_CALL__OWNER_TYPE = eINSTANCE.getFunctionCall_OwnerType();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.PrefixImpl <em>Prefix</em>}' class.

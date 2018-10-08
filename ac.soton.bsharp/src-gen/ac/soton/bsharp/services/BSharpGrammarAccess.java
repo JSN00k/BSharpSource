@@ -74,50 +74,65 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	public class TopLevelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TopLevel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cTopLevelAction_0 = (Action)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cPackageKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
-		private final Assignment cImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cImportsImportStatementParserRuleCall_2_0 = (RuleCall)cImportsAssignment_2.eContents().get(0);
-		private final Assignment cClassesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cClassesClassParserRuleCall_3_0 = (RuleCall)cClassesAssignment_3.eContents().get(0);
+		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cImportsAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cImportsImportStatementParserRuleCall_3_0_0 = (RuleCall)cImportsAssignment_3_0.eContents().get(0);
+		private final Assignment cClassesAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cClassesClassDeclParserRuleCall_3_1_0 = (RuleCall)cClassesAssignment_3_1.eContents().get(0);
+		private final Assignment cExtendsAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
+		private final RuleCall cExtendsExtendParserRuleCall_3_2_0 = (RuleCall)cExtendsAssignment_3_2.eContents().get(0);
+		private final Assignment cInstancesAssignment_3_3 = (Assignment)cAlternatives_3.eContents().get(3);
+		private final RuleCall cInstancesInstanceParserRuleCall_3_3_0 = (RuleCall)cInstancesAssignment_3_3.eContents().get(0);
 		
 		//TopLevel:
-		//	{TopLevel} ('package' name=ID)?
-		//	imports+=ImportStatement* classes+=Class*;
+		//	'package' name=ID ';' (imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{TopLevel} ('package' name=ID)? imports+=ImportStatement* classes+=Class*
+		//'package' name=ID ';' (imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
 		public Group getGroup() { return cGroup; }
 		
-		//{TopLevel}
-		public Action getTopLevelAction_0() { return cTopLevelAction_0; }
-		
-		//('package' name=ID)?
-		public Group getGroup_1() { return cGroup_1; }
-		
 		//'package'
-		public Keyword getPackageKeyword_1_0() { return cPackageKeyword_1_0; }
+		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
 		
 		//name=ID
-		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_1_0() { return cNameIDTerminalRuleCall_1_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//imports+=ImportStatement*
-		public Assignment getImportsAssignment_2() { return cImportsAssignment_2; }
+		//';'
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+		
+		//(imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//imports+=ImportStatement
+		public Assignment getImportsAssignment_3_0() { return cImportsAssignment_3_0; }
 		
 		//ImportStatement
-		public RuleCall getImportsImportStatementParserRuleCall_2_0() { return cImportsImportStatementParserRuleCall_2_0; }
+		public RuleCall getImportsImportStatementParserRuleCall_3_0_0() { return cImportsImportStatementParserRuleCall_3_0_0; }
 		
-		//classes+=Class*
-		public Assignment getClassesAssignment_3() { return cClassesAssignment_3; }
+		//classes+=ClassDecl
+		public Assignment getClassesAssignment_3_1() { return cClassesAssignment_3_1; }
 		
-		//Class
-		public RuleCall getClassesClassParserRuleCall_3_0() { return cClassesClassParserRuleCall_3_0; }
+		//ClassDecl
+		public RuleCall getClassesClassDeclParserRuleCall_3_1_0() { return cClassesClassDeclParserRuleCall_3_1_0; }
+		
+		//extends+=Extend
+		public Assignment getExtendsAssignment_3_2() { return cExtendsAssignment_3_2; }
+		
+		//Extend
+		public RuleCall getExtendsExtendParserRuleCall_3_2_0() { return cExtendsExtendParserRuleCall_3_2_0; }
+		
+		//instances+=Instance
+		public Assignment getInstancesAssignment_3_3() { return cInstancesAssignment_3_3; }
+		
+		//Instance
+		public RuleCall getInstancesInstanceParserRuleCall_3_3_0() { return cInstancesInstanceParserRuleCall_3_3_0; }
 	}
 	public class ClassDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ClassDecl");
@@ -1931,8 +1946,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TopLevel:
-	//	{TopLevel} ('package' name=ID)?
-	//	imports+=ImportStatement* classes+=Class*;
+	//	'package' name=ID ';' (imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*;
 	public TopLevelElements getTopLevelAccess() {
 		return pTopLevel;
 	}

@@ -1,5 +1,6 @@
 package ac.soton.bsharp.scoping;
 
+import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
@@ -9,8 +10,12 @@ import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.bSharp.TypeStructure;
+import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.util.BSharpUtil;
 import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,6 +32,20 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   public IScope scope_GenName(final EObject context, final EReference reference) {
     IScope parent = this.delegateGetScope(context, reference);
     IScope polyScope = this.getPolyScopeFor(context, parent);
+    BppClass bppClass = EcoreUtil2.<BppClass>getContainerOfType(context, BppClass.class);
+    ArrayList<TypedVariable> variables = new ArrayList<TypedVariable>();
+    if ((bppClass != null)) {
+      ArrayList<EObject> _superClasses = BSharpUtil.superClasses(bppClass);
+      for (final EObject st : _superClasses) {
+        TypeStructure _varList = bppClass.getVarList();
+        boolean _tripleNotEquals = (_varList != null);
+        if (_tripleNotEquals) {
+          List<TypedVariable> _allContentsOfType = EcoreUtil2.<TypedVariable>getAllContentsOfType(bppClass.getVarList(), TypedVariable.class);
+          Iterables.<TypedVariable>addAll(variables, _allContentsOfType);
+        }
+      }
+      polyScope = Scopes.scopeFor(variables, polyScope);
+    }
     EObject typeContainer = null;
     if ((context instanceof TopLevel)) {
       typeContainer = context;

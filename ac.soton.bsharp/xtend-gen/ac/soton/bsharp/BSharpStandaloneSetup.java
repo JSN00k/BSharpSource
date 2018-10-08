@@ -3,13 +3,14 @@
  */
 package ac.soton.bsharp;
 
+import ac.soton.bsharp.BSharpStandaloneSetupGenerated;
+
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
  */
 @SuppressWarnings("all")
-public class BSharpStandaloneSetup /* implements BSharpStandaloneSetupGenerated  */{
+public class BSharpStandaloneSetup extends BSharpStandaloneSetupGenerated {
   public static void doSetup() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method createInjectorAndDoEMFRegistration() is undefined for the type BSharpStandaloneSetup");
+    new BSharpStandaloneSetup().createInjectorAndDoEMFRegistration();
   }
 }

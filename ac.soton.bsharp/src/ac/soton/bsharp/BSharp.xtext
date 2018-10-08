@@ -13,7 +13,6 @@ DomainModel:
 THM_NAME: (INT | ID | WS)* ":";
 	
 TopLevel:
-	{TopLevel}
 	'package' name=ID';'
 	(imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
 ;
@@ -21,6 +20,7 @@ TopLevel:
 ClassDecl returns ClassDecl:
 	Class | Datatype
 ;
+
 
 /* There are three Types which can be used as type variables, inbuilt types, types create
  * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
@@ -144,6 +144,10 @@ Extend:
 
 /* ------------------------ TypeBodyElements ------------------------------- */
 
+BSharpBlock:
+	'{' *bodyElements+=TypedBodyElements)* '}'
+;
+
 TypeBodyElements:
 	 (functions+=FunctionDecl) | (theorems+=TheoremBody)
 ;
@@ -264,7 +268,7 @@ Bracket returns Bracket:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns FunctionCall:
-	(typeInst=[ExpressionVariable|QualifiedName]) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+	(typeInst=[ExpressionVariable] | (ownerType=[GenName|QualifiedName] '.' typeInst=[ExpressionVariable])) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
 ;
 
 ExpressionVariable:

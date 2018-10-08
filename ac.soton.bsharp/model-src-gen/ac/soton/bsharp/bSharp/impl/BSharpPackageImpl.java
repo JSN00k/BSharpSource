@@ -27,6 +27,7 @@ import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.NamedObject;
+import ac.soton.bsharp.bSharp.OuterSyntax;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyContextTypes;
 import ac.soton.bsharp.bSharp.PolyTypeConstraints;
@@ -1241,6 +1242,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFunctionCall_OwnerType() {
+		return (EReference)functionCallEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPrefix() {
 		return prefixEClass;
 	}
@@ -1567,6 +1577,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		functionCallEClass = createEClass(FUNCTION_CALL);
 		createEReference(functionCallEClass, FUNCTION_CALL__ARGUMENTS);
+		createEReference(functionCallEClass, FUNCTION_CALL__OWNER_TYPE);
 
 		prefixEClass = createEClass(PREFIX);
 		createEAttribute(prefixEClass, PREFIX__NAME);
@@ -1779,6 +1790,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionCall_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCall_OwnerType(), this.getGenName(), null, "ownerType", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(prefixEClass, Prefix.class, "Prefix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPrefix_Name(), ecorePackage.getEString(), "name", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

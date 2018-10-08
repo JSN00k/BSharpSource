@@ -16,6 +16,10 @@ import ac.soton.bsharp.bSharp.IVariableProvider
 import ac.soton.bsharp.bSharp.MatchCase
 import ac.soton.bsharp.bSharp.MatchStatement
 import ac.soton.bsharp.bSharp.DatatypeConstructor
+import ac.soton.bsharp.util.BSharpUtil
+import ac.soton.bsharp.bSharp.BppClass
+import ac.soton.bsharp.bSharp.TypedVariable
+import java.util.ArrayList
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -26,6 +30,19 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 * names from the local scope here.
 		 */
 		 var polyScope = getPolyScopeFor(context, parent)
+		 
+		 var bppClass = EcoreUtil2.getContainerOfType(context, BppClass)
+		 
+		 var ArrayList<TypedVariable> variables = new ArrayList
+		 
+		 if (bppClass !== null) {
+		 	for (st : BSharpUtil.superClasses(bppClass)) {
+		 		if (bppClass.varList !== null)
+		 		variables += EcoreUtil2.getAllContentsOfType(bppClass.varList, TypedVariable)
+		 	}
+		 	
+		 	polyScope = Scopes.scopeFor(variables, polyScope)
+		 }
 		 
 		 /* Find the top level element that the GenName is declared within */
 		 var EObject typeContainer

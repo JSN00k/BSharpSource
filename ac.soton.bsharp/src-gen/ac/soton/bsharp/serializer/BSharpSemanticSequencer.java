@@ -592,7 +592,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TopLevel returns TopLevel
 	 *
 	 * Constraint:
-	 *     (name=ID? imports+=ImportStatement* classes+=Class*)
+	 *     (name=ID (imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*)
 	 */
 	protected void sequence_TopLevel(ISerializationContext context, TopLevel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

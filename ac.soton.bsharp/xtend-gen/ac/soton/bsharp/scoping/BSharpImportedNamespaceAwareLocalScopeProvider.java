@@ -3,15 +3,19 @@
  */
 package ac.soton.bsharp.scoping;
 
+import ac.soton.bsharp.bSharp.TopLevel;
 import com.google.common.collect.Lists;
 import java.util.List;
+import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Extension;
 
 /**
  * This class contains custom scoping description.
@@ -21,6 +25,10 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
  */
 @SuppressWarnings("all")
 public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
+  @Inject
+  @Extension
+  private IQualifiedNameProvider _iQualifiedNameProvider;
+  
   @Override
   public List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
     List<ImportNormalizer> importedNamespaceResolvers = Lists.<ImportNormalizer>newArrayList();
@@ -40,6 +48,13 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
             }
           }
         }
+      }
+    }
+    if ((context instanceof TopLevel)) {
+      final QualifiedName fqn = this._iQualifiedNameProvider.getFullyQualifiedName(context);
+      if ((fqn != null)) {
+        ImportNormalizer _importNormalizer = new ImportNormalizer(fqn, true, ignoreCase);
+        importedNamespaceResolvers.add(_importNormalizer);
       }
     }
     return importedNamespaceResolvers;

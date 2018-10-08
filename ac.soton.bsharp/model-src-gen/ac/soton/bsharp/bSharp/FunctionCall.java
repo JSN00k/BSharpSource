@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getOwnerType <em>Owner Type</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall()
@@ -38,5 +39,31 @@ public interface FunctionCall extends Expression {
 	 * @generated
 	 */
 	EList<Expression> getArguments();
+
+	/**
+	 * Returns the value of the '<em><b>Owner Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owner Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owner Type</em>' reference.
+	 * @see #setOwnerType(GenName)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_OwnerType()
+	 * @model
+	 * @generated
+	 */
+	GenName getOwnerType();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getOwnerType <em>Owner Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owner Type</em>' reference.
+	 * @see #getOwnerType()
+	 * @generated
+	 */
+	void setOwnerType(GenName value);
 
 } // FunctionCall

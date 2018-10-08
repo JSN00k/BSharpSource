@@ -10,6 +10,9 @@ import java.util.List
 import org.eclipse.xtext.scoping.impl.ImportNormalizer
 import com.google.common.collect.Lists
 import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import javax.inject.Inject
+import ac.soton.bsharp.bSharp.TopLevel
 
 /**
  * This class contains custom scoping description.
@@ -18,7 +21,7 @@ import org.eclipse.xtext.naming.QualifiedName
  * on how and when to use it.
  */
 class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
-
+	@Inject extension IQualifiedNameProvider
 	
 	override internalGetImportedNamespaceResolvers(EObject context, boolean ignoreCase) {
 		/* I need to override this method because getImportedNamespace returns a single object 
@@ -37,6 +40,15 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 						importedNamespaceResolvers.add(resolver)
 					}
 				}
+			}
+		}
+		
+		/* Add the package to the fully qualified domain names */
+		if (context instanceof TopLevel) {
+			val fqn = context.fullyQualifiedName
+			//fqn is the package of this file
+			if (fqn !== null) {
+				importedNamespaceResolvers += new ImportNormalizer(fqn, true, ignoreCase)
 			}
 		}
 

@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.ImportStatement;
 import ac.soton.bsharp.bSharp.Instance;
+import ac.soton.bsharp.bSharp.OuterSyntax;
 import ac.soton.bsharp.bSharp.TopLevel;
 
 import java.util.Collection;
