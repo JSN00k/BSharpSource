@@ -3,7 +3,7 @@
  */
 package ac.soton.bsharp.tests
 
-import ac.soton.bsharp.bSharp.DomainModel
+import ac.soton.bsharp.bSharp.TopLevel
 import com.google.inject.Inject
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
@@ -16,7 +16,7 @@ import org.junit.runner.RunWith
 @InjectWith(BSharpInjectorProvider)
 class BSharpParsingTest {
 	@Inject
-	ParseHelper<DomainModel> parseHelper
+	ParseHelper<TopLevel> parseHelper
 	
 	@Test
 	def void loadModel() {

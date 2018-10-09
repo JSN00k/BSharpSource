@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
@@ -79,6 +80,16 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	 * @ordered
 	 */
 	protected EList<TypeBodyElements> bodyElements;
+
+	/**
+	 * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlock()
+	 * @generated
+	 * @ordered
+	 */
+	protected BSharpBlock block;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -175,11 +186,56 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BSharpBlock getBlock() {
+		return block;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBlock(BSharpBlock newBlock, NotificationChain msgs) {
+		BSharpBlock oldBlock = block;
+		block = newBlock;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.EXTEND__BLOCK, oldBlock, newBlock);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBlock(BSharpBlock newBlock) {
+		if (newBlock != block) {
+			NotificationChain msgs = null;
+			if (block != null)
+				msgs = ((InternalEObject)block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.EXTEND__BLOCK, null, msgs);
+			if (newBlock != null)
+				msgs = ((InternalEObject)newBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.EXTEND__BLOCK, null, msgs);
+			msgs = basicSetBlock(newBlock, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.EXTEND__BLOCK, newBlock, newBlock));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BSharpPackage.EXTEND__BODY_ELEMENTS:
 				return ((InternalEList<?>)getBodyElements()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.EXTEND__BLOCK:
+				return basicSetBlock(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -199,6 +255,8 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 				return getName();
 			case BSharpPackage.EXTEND__BODY_ELEMENTS:
 				return getBodyElements();
+			case BSharpPackage.EXTEND__BLOCK:
+				return getBlock();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -222,6 +280,9 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 				getBodyElements().clear();
 				getBodyElements().addAll((Collection<? extends TypeBodyElements>)newValue);
 				return;
+			case BSharpPackage.EXTEND__BLOCK:
+				setBlock((BSharpBlock)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -243,6 +304,9 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 			case BSharpPackage.EXTEND__BODY_ELEMENTS:
 				getBodyElements().clear();
 				return;
+			case BSharpPackage.EXTEND__BLOCK:
+				setBlock((BSharpBlock)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -261,6 +325,8 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.EXTEND__BODY_ELEMENTS:
 				return bodyElements != null && !bodyElements.isEmpty();
+			case BSharpPackage.EXTEND__BLOCK:
+				return block != null;
 		}
 		return super.eIsSet(featureID);
 	}

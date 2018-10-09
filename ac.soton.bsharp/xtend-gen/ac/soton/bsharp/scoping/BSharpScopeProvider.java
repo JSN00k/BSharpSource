@@ -32,20 +32,6 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   public IScope scope_GenName(final EObject context, final EReference reference) {
     IScope parent = this.delegateGetScope(context, reference);
     IScope polyScope = this.getPolyScopeFor(context, parent);
-    BppClass bppClass = EcoreUtil2.<BppClass>getContainerOfType(context, BppClass.class);
-    ArrayList<TypedVariable> variables = new ArrayList<TypedVariable>();
-    if ((bppClass != null)) {
-      ArrayList<EObject> _superClasses = BSharpUtil.superClasses(bppClass);
-      for (final EObject st : _superClasses) {
-        TypeStructure _varList = bppClass.getVarList();
-        boolean _tripleNotEquals = (_varList != null);
-        if (_tripleNotEquals) {
-          List<TypedVariable> _allContentsOfType = EcoreUtil2.<TypedVariable>getAllContentsOfType(bppClass.getVarList(), TypedVariable.class);
-          Iterables.<TypedVariable>addAll(variables, _allContentsOfType);
-        }
-      }
-      polyScope = Scopes.scopeFor(variables, polyScope);
-    }
     EObject typeContainer = null;
     if ((context instanceof TopLevel)) {
       typeContainer = context;
@@ -81,7 +67,24 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   }
   
   public IScope scope_ExpressionVariable(final EObject context, final EReference reference) {
-    final IScope parent = this.delegateGetScope(context, reference);
+    IScope parent = this.delegateGetScope(context, reference);
+    BppClass bppClass = EcoreUtil2.<BppClass>getContainerOfType(context, BppClass.class);
+    ArrayList<TypedVariable> variables = new ArrayList<TypedVariable>();
+    if ((bppClass != null)) {
+      ArrayList<EObject> _superClasses = BSharpUtil.superClasses(bppClass);
+      for (final EObject sc : _superClasses) {
+        if ((sc instanceof BppClass)) {
+          final BppClass superClass = ((BppClass) sc);
+          TypeStructure _varList = superClass.getVarList();
+          boolean _tripleNotEquals = (_varList != null);
+          if (_tripleNotEquals) {
+            List<TypedVariable> _allContentsOfType = EcoreUtil2.<TypedVariable>getAllContentsOfType(superClass.getVarList(), TypedVariable.class);
+            Iterables.<TypedVariable>addAll(variables, _allContentsOfType);
+          }
+        }
+      }
+      parent = Scopes.scopeFor(variables, parent);
+    }
     final EObject rootObj = EcoreUtil2.getRootContainer(context);
     final ClassDecl currentClass = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
     final Function1<EObject, Boolean> _function = (EObject object) -> {

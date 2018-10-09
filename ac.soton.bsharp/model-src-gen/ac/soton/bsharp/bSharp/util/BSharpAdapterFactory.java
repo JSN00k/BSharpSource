@@ -69,12 +69,24 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	protected BSharpSwitch<Adapter> modelSwitch =
 		new BSharpSwitch<Adapter>() {
 			@Override
-			public Adapter caseDomainModel(DomainModel object) {
-				return createDomainModelAdapter();
+			public Adapter caseIVariableProvider(IVariableProvider object) {
+				return createIVariableProviderAdapter();
+			}
+			@Override
+			public Adapter caseIPolyTypeProvider(IPolyTypeProvider object) {
+				return createIPolyTypeProviderAdapter();
+			}
+			@Override
+			public Adapter caseType(Type object) {
+				return createTypeAdapter();
 			}
 			@Override
 			public Adapter caseTopLevel(TopLevel object) {
 				return createTopLevelAdapter();
+			}
+			@Override
+			public Adapter caseTopLevelFile(TopLevelFile object) {
+				return createTopLevelFileAdapter();
 			}
 			@Override
 			public Adapter caseImportStatement(ImportStatement object) {
@@ -87,6 +99,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseBppClass(BppClass object) {
 				return createBppClassAdapter();
+			}
+			@Override
+			public Adapter caseBSharpBlock(BSharpBlock object) {
+				return createBSharpBlockAdapter();
 			}
 			@Override
 			public Adapter caseGenName(GenName object) {
@@ -221,18 +237,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createInfixAdapter();
 			}
 			@Override
-			public Adapter caseIVariableProvider(IVariableProvider object) {
-				return createIVariableProviderAdapter();
-			}
-			@Override
-			public Adapter caseIPolyTypeProvider(IPolyTypeProvider object) {
-				return createIPolyTypeProviderAdapter();
-			}
-			@Override
-			public Adapter caseType(Type object) {
-				return createTypeAdapter();
-			}
-			@Override
 			public Adapter caseNamedObject(NamedObject object) {
 				return createNamedObjectAdapter();
 			}
@@ -257,20 +261,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.DomainModel <em>Domain Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.DomainModel
-	 * @generated
-	 */
-	public Adapter createDomainModelAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TopLevel <em>Top Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -281,6 +271,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTopLevelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TopLevelFile <em>Top Level File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.TopLevelFile
+	 * @generated
+	 */
+	public Adapter createTopLevelFileAdapter() {
 		return null;
 	}
 
@@ -323,6 +327,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBppClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.BSharpBlock <em>Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.BSharpBlock
+	 * @generated
+	 */
+	public Adapter createBSharpBlockAdapter() {
 		return null;
 	}
 

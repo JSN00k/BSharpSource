@@ -27,7 +27,7 @@ public class BSharpParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "DomainModel";
+		return "TopLevel";
 	}
 
 	public BSharpGrammarAccess getGrammarAccess() {

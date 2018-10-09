@@ -1,5 +1,6 @@
 package ac.soton.bsharp.scoping;
 
+import ac.soton.bsharp.bSharp.BSharpBlock;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import org.eclipse.emf.ecore.EObject;
@@ -18,10 +19,10 @@ public class BSharpResourceDescriptionStrategy extends DefaultResourceDescriptio
   
   @Override
   public boolean createEObjectDescriptions(final EObject object, final IAcceptor<IEObjectDescription> acceptor) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nno viable alternative at input \'}\'"
-      + "\nTypeBodyElements cannot be resolved to a type."
-      + "\nThe method or field eObject is undefined"
-      + "\nType mismatch: cannot convert from null to boolean");
+    if ((object instanceof BSharpBlock)) {
+      return false;
+    } else {
+      return super.createEObjectDescriptions(object, acceptor);
+    }
   }
 }

@@ -57,10 +57,12 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case BSharpPackage.DOMAIN_MODEL: return createDomainModel();
+			case BSharpPackage.TYPE: return createType();
 			case BSharpPackage.TOP_LEVEL: return createTopLevel();
+			case BSharpPackage.TOP_LEVEL_FILE: return createTopLevelFile();
 			case BSharpPackage.IMPORT_STATEMENT: return createImportStatement();
 			case BSharpPackage.BPP_CLASS: return createBppClass();
+			case BSharpPackage.BSHARP_BLOCK: return createBSharpBlock();
 			case BSharpPackage.GEN_NAME: return createGenName();
 			case BSharpPackage.POLYMORPHIC_TYPE_NAME: return createPolymorphicTypeName();
 			case BSharpPackage.POLY_CONTEXT: return createPolyContext();
@@ -94,7 +96,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
 			case BSharpPackage.INSTANCE: return createInstance();
 			case BSharpPackage.INFIX: return createInfix();
-			case BSharpPackage.TYPE: return createType();
 			case BSharpPackage.NAMED_OBJECT: return createNamedObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -106,9 +107,9 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DomainModel createDomainModel() {
-		DomainModelImpl domainModel = new DomainModelImpl();
-		return domainModel;
+	public TopLevel createTopLevel() {
+		TopLevelImpl topLevel = new TopLevelImpl();
+		return topLevel;
 	}
 
 	/**
@@ -116,9 +117,9 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TopLevel createTopLevel() {
-		TopLevelImpl topLevel = new TopLevelImpl();
-		return topLevel;
+	public TopLevelFile createTopLevelFile() {
+		TopLevelFileImpl topLevelFile = new TopLevelFileImpl();
+		return topLevelFile;
 	}
 
 	/**
@@ -139,6 +140,16 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public BppClass createBppClass() {
 		BppClassImpl bppClass = new BppClassImpl();
 		return bppClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BSharpBlock createBSharpBlock() {
+		BSharpBlockImpl bSharpBlock = new BSharpBlockImpl();
+		return bSharpBlock;
 	}
 
 	/**

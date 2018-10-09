@@ -31,19 +31,6 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 */
 		 var polyScope = getPolyScopeFor(context, parent)
 		 
-		 var bppClass = EcoreUtil2.getContainerOfType(context, BppClass)
-		 
-		 var ArrayList<TypedVariable> variables = new ArrayList
-		 
-		 if (bppClass !== null) {
-		 	for (st : BSharpUtil.superClasses(bppClass)) {
-		 		if (bppClass.varList !== null)
-		 		variables += EcoreUtil2.getAllContentsOfType(bppClass.varList, TypedVariable)
-		 	}
-		 	
-		 	polyScope = Scopes.scopeFor(variables, polyScope)
-		 }
-		 
 		 /* Find the top level element that the GenName is declared within */
 		 var EObject typeContainer
 		 if (context instanceof TopLevel)
@@ -83,7 +70,24 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 * Function names are a special case as they can be cousins of the referenced variable
 		 */
 		 
-		val parent = delegateGetScope(context, reference)
+		var parent = delegateGetScope(context, reference)
+		
+		var bppClass = EcoreUtil2.getContainerOfType(context, BppClass)
+		 
+		var ArrayList<TypedVariable> variables = new ArrayList
+		 
+		 if (bppClass !== null) {
+		 	for (sc : BSharpUtil.superClasses(bppClass)) {
+		 		if (sc instanceof BppClass) {
+		 			val superClass = sc as BppClass	
+		 			if (superClass.varList !== null)	
+		 				variables += EcoreUtil2.getAllContentsOfType(superClass.varList, TypedVariable)
+		 		}
+		 	}
+		 	
+		 	parent = Scopes.scopeFor(variables, parent)
+		 }
+		
 		val rootObj = EcoreUtil2.getRootContainer(context)
 		val currentClass = EcoreUtil2.getContainerOfType(context, ClassDecl)
 		

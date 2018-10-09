@@ -4,11 +4,10 @@
 package ac.soton.bsharp.validation;
 
 import ac.soton.bsharp.bSharp.Infix;
+import ac.soton.bsharp.rewriteAST.ASTRewriter;
 import ac.soton.bsharp.validation.AbstractBSharpValidator;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
-import org.eclipse.xtext.xbase.lib.InputOutput;
-import rewriteAST.ASTRewriter;
 
 /**
  * This class contains custom validation rules.
@@ -22,17 +21,9 @@ public class BSharpValidator extends AbstractBSharpValidator {
   public final static String POLYMORPHIC_TYPE_OUT_OF_SCOPE = "PolymorphicTypeOutOfScope";
   
   @Check
-  public Infix checkExpressionTree(final Infix expression) {
-    Infix _xblockexpression = null;
-    {
-      Infix copy = EcoreUtil2.<Infix>copy(expression);
-      copy = ASTRewriter.reorderInfixTree(copy);
-      Infix copy2 = EcoreUtil2.<Infix>copy(expression);
-      InputOutput.<String>print("\n\n");
-      InputOutput.<String>print(copy2.constructLatexExpressionTree(""));
-      InputOutput.<String>print("\n\n\n");
-      _xblockexpression = InputOutput.<Infix>print(copy);
-    }
-    return _xblockexpression;
+  public void checkExpressionTree(final Infix expression) {
+    Infix copy = EcoreUtil2.<Infix>copy(expression);
+    copy = ASTRewriter.reorderInfixTree(copy);
+    Infix copy2 = EcoreUtil2.<Infix>copy(expression);
   }
 }

@@ -1,4 +1,4 @@
-package rewriteAST
+package ac.soton.bsharp.rewriteAST
 
 import ac.soton.bsharp.bSharp.Infix
 import java.util.Map

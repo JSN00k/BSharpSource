@@ -3,24 +3,28 @@ grammar ac.soton.bsharp.BSharp with org.eclipse.xtext.common.Terminals
 import "http://www.soton.ac/bsharp/BSharp" 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
-DomainModel:
-	(elements+=TopLevel)*;
+TopLevel:
+	'package' name=QualifiedName
+	topLevelFile=TopLevelFile
+;
 	
 @Override 
 	terminal ID: ('a'..'z'|'A'..'Z'|'_'| 'i'..'ￜ') ('a'..'z'|'A'..'Z'|'_'| 'i'..'ￜ'|'0'..'9')*;
 	
 // Theorem names can include white space. Work out how to change this to any string without a ':'
 THM_NAME: (INT | ID | WS)* ":";
-	
-TopLevel:
-	'package' name=ID';'
+
+/* TopLevelFile has a hidden name tag which is the file name, this gets the filename into the
+ * fully qualified domain names allowing multiple classes per file nicely.
+ */
+TopLevelFile:
+	{TopLevelFile}
 	(imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
 ;
 	
 ClassDecl returns ClassDecl:
 	Class | Datatype
 ;
-
 
 /* There are three Types which can be used as type variables, inbuilt types, types create
  * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
@@ -57,7 +61,7 @@ ImportStatement:
 
 Class returns BppClass:
 	'Class' name=ID (context=PolyContext)? (supertypes=SuperTypeList)? (varList=TypeStructure)? (where=Where)? (';')? 
-	'{' (bodyElements+=TypeBodyElements)* '}'
+	block=BSharpBlock
 ;
 
 
@@ -127,7 +131,7 @@ Where:
 /* ---------------------- Datatype declarations -------------------------- */
 
 Datatype:
-	'Datatype' name=ID (context=PolyContext)? ('|' constructors+=DatatypeConstructor)+ '{' (bodyElements+=TypeBodyElements)* '}'
+	'Datatype' name=ID (context=PolyContext)? ('|' constructors+=DatatypeConstructor)+ block=BSharpBlock
 ;
 
 /* PolyContext is the same as PolyContext used by the class declaration above. */
@@ -139,13 +143,14 @@ DatatypeConstructor:
 /* ------------------------ Extension statement ---------------------------- */
 
 Extend: 
-	'Extend' extendedClass=[ClassDecl|QualifiedName] '(' name=ID ')' '{' (bodyElements+=TypeBodyElements)* '}'
+	'Extend' extendedClass=[ClassDecl|QualifiedName] '(' name=ID ')' block=BSharpBlock
 ;
 
 /* ------------------------ TypeBodyElements ------------------------------- */
 
 BSharpBlock:
-	'{' *bodyElements+=TypedBodyElements)* '}'
+	{BSharpBlock}
+	'{' bodyElements+=TypeBodyElements* '}'
 ;
 
 TypeBodyElements:
@@ -268,7 +273,7 @@ Bracket returns Bracket:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns FunctionCall:
-	(typeInst=[ExpressionVariable] | (ownerType=[GenName|QualifiedName] '.' typeInst=[ExpressionVariable])) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+	(typeInst=[ExpressionVariable] | (ownerType=[GenName] '.' typeInst=[ExpressionVariable])) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
 ;
 
 ExpressionVariable:

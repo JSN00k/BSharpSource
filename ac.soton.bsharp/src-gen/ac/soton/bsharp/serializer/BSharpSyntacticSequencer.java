@@ -56,16 +56,11 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     context=PolyContext (ambiguity) '{' '}' (rule end)
-	 *     context=PolyContext (ambiguity) '{' bodyElements+=TypeBodyElements
-	 *     name=ID (ambiguity) '{' '}' (rule end)
-	 *     name=ID (ambiguity) '{' bodyElements+=TypeBodyElements
-	 *     supertypes=SuperTypeList (ambiguity) '{' '}' (rule end)
-	 *     supertypes=SuperTypeList (ambiguity) '{' bodyElements+=TypeBodyElements
-	 *     varList=TypeStructure (ambiguity) '{' '}' (rule end)
-	 *     varList=TypeStructure (ambiguity) '{' bodyElements+=TypeBodyElements
-	 *     where=Where (ambiguity) '{' '}' (rule end)
-	 *     where=Where (ambiguity) '{' bodyElements+=TypeBodyElements
+	 *     context=PolyContext (ambiguity) block=BSharpBlock
+	 *     name=ID (ambiguity) block=BSharpBlock
+	 *     supertypes=SuperTypeList (ambiguity) block=BSharpBlock
+	 *     varList=TypeStructure (ambiguity) block=BSharpBlock
+	 *     where=Where (ambiguity) block=BSharpBlock
 	 */
 	protected void emit_Class_SemicolonKeyword_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -76,7 +71,7 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('(' ')')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     typeInst=[ExpressionVariable|QualifiedName] (ambiguity) (rule end)
+	 *     typeInst=[ExpressionVariable|ID] (ambiguity) (rule end)
 	 */
 	protected void emit_FunctionCall___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

@@ -67,15 +67,35 @@ public class BSharpSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case BSharpPackage.DOMAIN_MODEL: {
-				DomainModel domainModel = (DomainModel)theEObject;
-				T result = caseDomainModel(domainModel);
+			case BSharpPackage.IVARIABLE_PROVIDER: {
+				IVariableProvider iVariableProvider = (IVariableProvider)theEObject;
+				T result = caseIVariableProvider(iVariableProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.IPOLY_TYPE_PROVIDER: {
+				IPolyTypeProvider iPolyTypeProvider = (IPolyTypeProvider)theEObject;
+				T result = caseIPolyTypeProvider(iPolyTypeProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TYPE: {
+				Type type = (Type)theEObject;
+				T result = caseType(type);
+				if (result == null) result = caseGenName(type);
+				if (result == null) result = caseNamedObject(type);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BSharpPackage.TOP_LEVEL: {
 				TopLevel topLevel = (TopLevel)theEObject;
 				T result = caseTopLevel(topLevel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TOP_LEVEL_FILE: {
+				TopLevelFile topLevelFile = (TopLevelFile)theEObject;
+				T result = caseTopLevelFile(topLevelFile);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,6 +127,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(bppClass);
 				if (result == null) result = caseGenName(bppClass);
 				if (result == null) result = caseNamedObject(bppClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.BSHARP_BLOCK: {
+				BSharpBlock bSharpBlock = (BSharpBlock)theEObject;
+				T result = caseBSharpBlock(bSharpBlock);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -340,26 +366,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.IVARIABLE_PROVIDER: {
-				IVariableProvider iVariableProvider = (IVariableProvider)theEObject;
-				T result = caseIVariableProvider(iVariableProvider);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.IPOLY_TYPE_PROVIDER: {
-				IPolyTypeProvider iPolyTypeProvider = (IPolyTypeProvider)theEObject;
-				T result = caseIPolyTypeProvider(iPolyTypeProvider);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TYPE: {
-				Type type = (Type)theEObject;
-				T result = caseType(type);
-				if (result == null) result = caseGenName(type);
-				if (result == null) result = caseNamedObject(type);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.NAMED_OBJECT: {
 				NamedObject namedObject = (NamedObject)theEObject;
 				T result = caseNamedObject(namedObject);
@@ -368,21 +374,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Domain Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Domain Model</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDomainModel(DomainModel object) {
-		return null;
 	}
 
 	/**
@@ -397,6 +388,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTopLevel(TopLevel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Top Level File</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Top Level File</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTopLevelFile(TopLevelFile object) {
 		return null;
 	}
 
@@ -442,6 +448,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBppClass(BppClass object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Block</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBSharpBlock(BSharpBlock object) {
 		return null;
 	}
 

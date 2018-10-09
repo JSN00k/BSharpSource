@@ -3,7 +3,7 @@
  */
 package ac.soton.bsharp.tests;
 
-import ac.soton.bsharp.bSharp.DomainModel;
+import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.tests.BSharpInjectorProvider;
 import com.google.inject.Inject;
 import org.eclipse.emf.common.util.EList;
@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class BSharpParsingTest {
   @Inject
-  private ParseHelper<DomainModel> parseHelper;
+  private ParseHelper<TopLevel> parseHelper;
   
   @Test
   public void loadModel() {
@@ -31,7 +31,7 @@ public class BSharpParsingTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Hello Xtext!");
       _builder.newLine();
-      final DomainModel result = this.parseHelper.parse(_builder);
+      final TopLevel result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();

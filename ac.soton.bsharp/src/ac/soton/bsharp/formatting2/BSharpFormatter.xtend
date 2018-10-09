@@ -3,8 +3,8 @@
  */
 package ac.soton.bsharp.formatting2
 
-import ac.soton.bsharp.bSharp.DomainModel
-import ac.soton.bsharp.bSharp.ImportStatement
+import ac.soton.bsharp.bSharp.BppClass
+import ac.soton.bsharp.bSharp.TopLevelFile
 import ac.soton.bsharp.services.BSharpGrammarAccess
 import com.google.inject.Inject
 import org.eclipse.xtext.formatting2.AbstractFormatter2
@@ -14,12 +14,30 @@ class BSharpFormatter extends AbstractFormatter2 {
 	
 	@Inject extension BSharpGrammarAccess
 
-	def dispatch void format(DomainModel domainModel, extension IFormattableDocument document) {
+	def dispatch void format(TopLevelFile topLevelFile, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (topLevel : domainModel.elements) {
-			topLevel.format
+		for (importStatement : topLevelFile.imports) {
+			importStatement.format
+		}
+		for (classDecl : topLevelFile.classes) {
+			classDecl.format
+		}
+		for (extend : topLevelFile.extends) {
+			extend.format
+		}
+		for (instance : topLevelFile.instances) {
+			instance.format
 		}
 	}
+
+	def dispatch void format(BppClass bppClass, extension IFormattableDocument document) {
+		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+		bppClass.context.format
+		bppClass.supertypes.format
+		bppClass.varList.format
+		bppClass.where.format
+		bppClass.block.format
+	}
 	
-	// TODO: implement for Import, BppClass, PolyContext, PolyContextTypes, SuperTypeList, ConstructedType, TypeConstructor, TypeDeclContext, TypeStructure, Where, Datatype, DatatypeConstructor, Extend, TypeBodyElements, FunctionDecl, FuncDirectDef, MatchStatement, MatchCase, TheoremBody, TheoremDecl, TypedVariableList, VariableTyping, TypeDeclaration, QuantLambda, Prefix, Infix, Bracket, Expression, Instance
+	// TODO: implement for PolyContext, PolyContextTypes, SuperTypeList, ConstructedType, TypeConstructor, TypeDeclContext, TypeStructure, Where, Datatype, DatatypeConstructor, Extend, BSharpBlock, TypeBodyElements, FunctionDecl, MatchStatement, MatchCase, TheoremBody, TheoremDecl, TypedVariableList, VariableTyping, QuantLambda, Prefix, Infix, Bracket, FunctionCall, Instance
 }

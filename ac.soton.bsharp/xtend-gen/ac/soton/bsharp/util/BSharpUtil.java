@@ -58,7 +58,7 @@ public class BSharpUtil {
             return;
           }
         }
-        if ((superclass instanceof BppClass)) {
+        if ((type instanceof BppClass)) {
           boolean _contains_1 = list.contains(type);
           boolean _not_1 = (!_contains_1);
           if (_not_1) {

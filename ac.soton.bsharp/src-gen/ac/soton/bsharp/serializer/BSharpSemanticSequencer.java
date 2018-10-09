@@ -3,13 +3,13 @@
  */
 package ac.soton.bsharp.serializer;
 
+import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.Bracket;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
-import ac.soton.bsharp.bSharp.DomainModel;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
@@ -29,6 +29,7 @@ import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TheoremBody;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -64,6 +65,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == BSharpPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case BSharpPackage.BSHARP_BLOCK:
+				sequence_BSharpBlock(context, (BSharpBlock) semanticObject); 
+				return; 
 			case BSharpPackage.BPP_CLASS:
 				sequence_Class(context, (BppClass) semanticObject); 
 				return; 
@@ -78,9 +82,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case BSharpPackage.DATATYPE_CONSTRUCTOR:
 				sequence_DatatypeConstructor(context, (DatatypeConstructor) semanticObject); 
-				return; 
-			case BSharpPackage.DOMAIN_MODEL:
-				sequence_DomainModel(context, (DomainModel) semanticObject); 
 				return; 
 			case BSharpPackage.EXTEND:
 				sequence_Extend(context, (Extend) semanticObject); 
@@ -150,6 +151,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.TOP_LEVEL:
 				sequence_TopLevel(context, (TopLevel) semanticObject); 
 				return; 
+			case BSharpPackage.TOP_LEVEL_FILE:
+				sequence_TopLevelFile(context, (TopLevelFile) semanticObject); 
+				return; 
 			case BSharpPackage.TYPE_BODY_ELEMENTS:
 				sequence_TypeBodyElements(context, (TypeBodyElements) semanticObject); 
 				return; 
@@ -178,6 +182,18 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     BSharpBlock returns BSharpBlock
+	 *
+	 * Constraint:
+	 *     bodyElements+=TypeBodyElements*
+	 */
+	protected void sequence_BSharpBlock(ISerializationContext context, BSharpBlock semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -216,7 +232,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         supertypes=SuperTypeList? 
 	 *         varList=TypeStructure? 
 	 *         where=Where? 
-	 *         bodyElements+=TypeBodyElements*
+	 *         block=BSharpBlock
 	 *     )
 	 */
 	protected void sequence_Class(ISerializationContext context, BppClass semanticObject) {
@@ -274,21 +290,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ExpressionVariable returns Datatype
 	 *
 	 * Constraint:
-	 *     (name=ID context=PolyContext? constructors+=DatatypeConstructor+ bodyElements+=TypeBodyElements*)
+	 *     (name=ID context=PolyContext? constructors+=DatatypeConstructor+ block=BSharpBlock)
 	 */
 	protected void sequence_Datatype(ISerializationContext context, Datatype semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     DomainModel returns DomainModel
-	 *
-	 * Constraint:
-	 *     elements+=TopLevel+
-	 */
-	protected void sequence_DomainModel(ISerializationContext context, DomainModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -298,10 +302,22 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Extend returns Extend
 	 *
 	 * Constraint:
-	 *     (extendedClass=[ClassDecl|QualifiedName] name=ID bodyElements+=TypeBodyElements*)
+	 *     (extendedClass=[ClassDecl|QualifiedName] name=ID block=BSharpBlock)
 	 */
 	protected void sequence_Extend(ISerializationContext context, Extend semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.EXTEND__EXTENDED_CLASS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.EXTEND__EXTENDED_CLASS));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.EXTEND__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.EXTEND__NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.EXTEND__BLOCK) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.EXTEND__BLOCK));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getExtendAccess().getExtendedClassClassDeclQualifiedNameParserRuleCall_1_0_1(), semanticObject.eGet(BSharpPackage.Literals.EXTEND__EXTENDED_CLASS, false));
+		feeder.accept(grammarAccess.getExtendAccess().getNameIDTerminalRuleCall_3_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getExtendAccess().getBlockBSharpBlockParserRuleCall_5_0(), semanticObject.getBlock());
+		feeder.finish();
 	}
 	
 	
@@ -314,7 +330,11 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FunctionCall returns FunctionCall
 	 *
 	 * Constraint:
-	 *     (typeInst=[ExpressionVariable|QualifiedName] arguments+=RootExpression? arguments+=RootExpression*)
+	 *     (
+	 *         (typeInst=[ExpressionVariable|ID] | (ownerType=[GenName|ID] typeInst=[ExpressionVariable|ID])) 
+	 *         arguments+=RootExpression? 
+	 *         arguments+=RootExpression*
+	 *     )
 	 */
 	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -589,13 +609,34 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     TopLevelFile returns TopLevelFile
+	 *
+	 * Constraint:
+	 *     (imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
+	 */
+	protected void sequence_TopLevelFile(ISerializationContext context, TopLevelFile semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     TopLevel returns TopLevel
 	 *
 	 * Constraint:
-	 *     (name=ID (imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*)
+	 *     (name=QualifiedName topLevelFile=TopLevelFile)
 	 */
 	protected void sequence_TopLevel(ISerializationContext context, TopLevel semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TOP_LEVEL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TOP_LEVEL__NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TOP_LEVEL__TOP_LEVEL_FILE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TOP_LEVEL__TOP_LEVEL_FILE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTopLevelAccess().getNameQualifiedNameParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTopLevelAccess().getTopLevelFileTopLevelFileParserRuleCall_2_0(), semanticObject.getTopLevelFile());
+		feeder.finish();
 	}
 	
 	

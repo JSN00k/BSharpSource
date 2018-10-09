@@ -3,10 +3,10 @@
  */
 package ac.soton.bsharp.validation
 
+import ac.soton.bsharp.bSharp.Infix
+import ac.soton.bsharp.rewriteAST.ASTRewriter
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.validation.Check
-import ac.soton.bsharp.bSharp.Infix
-import rewriteAST.ASTRewriter
 
 /**
  * This class contains custom validation rules. 
@@ -36,15 +36,15 @@ class BSharpValidator extends AbstractBSharpValidator {
 		copy = ASTRewriter.reorderInfixTree(copy)
 		
 		var copy2 = EcoreUtil2.copy(expression)
-		print("\n\n")
-		print(copy2.constructLatexExpressionTree(""))
-		print("\n\n\n")
+		//print("\n\n")
+		//print(copy2.constructLatexExpressionTree(""))
+		//print("\n\n\n")
 		
 		/* The tree structure now represents the equation and the order of operations
 		 * so we can do validation on it.
 		 */
 		
-		print(copy)
+		//print(copy)
 	}
 
 	

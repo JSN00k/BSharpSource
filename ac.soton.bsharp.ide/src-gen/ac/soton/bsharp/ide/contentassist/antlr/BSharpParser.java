@@ -32,7 +32,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, BSharpGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getTHM_NAMEAccess().getAlternatives_0(), "rule__THM_NAME__Alternatives_0");
-			builder.put(grammarAccess.getTopLevelAccess().getAlternatives_3(), "rule__TopLevel__Alternatives_3");
+			builder.put(grammarAccess.getTopLevelFileAccess().getAlternatives_1(), "rule__TopLevelFile__Alternatives_1");
 			builder.put(grammarAccess.getClassDeclAccess().getAlternatives(), "rule__ClassDecl__Alternatives");
 			builder.put(grammarAccess.getGenNameAccess().getAlternatives(), "rule__GenName__Alternatives");
 			builder.put(grammarAccess.getConstructedTypeAccess().getConstructorsAlternatives_1_0_0(), "rule__ConstructedType__ConstructorsAlternatives_1_0_0");
@@ -41,10 +41,12 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRootExpressionAccess().getAlternatives(), "rule__RootExpression__Alternatives");
 			builder.put(grammarAccess.getInfixAccess().getAlternatives_1_1(), "rule__Infix__Alternatives_1_1");
 			builder.put(grammarAccess.getElementAccess().getAlternatives(), "rule__Element__Alternatives");
+			builder.put(grammarAccess.getFunctionCallAccess().getAlternatives_0(), "rule__FunctionCall__Alternatives_0");
 			builder.put(grammarAccess.getExpressionVariableAccess().getAlternatives(), "rule__ExpressionVariable__Alternatives");
 			builder.put(grammarAccess.getInbuiltInfixAccess().getAlternatives(), "rule__InbuiltInfix__Alternatives");
-			builder.put(grammarAccess.getTHM_NAMEAccess().getGroup(), "rule__THM_NAME__Group__0");
 			builder.put(grammarAccess.getTopLevelAccess().getGroup(), "rule__TopLevel__Group__0");
+			builder.put(grammarAccess.getTHM_NAMEAccess().getGroup(), "rule__THM_NAME__Group__0");
+			builder.put(grammarAccess.getTopLevelFileAccess().getGroup(), "rule__TopLevelFile__Group__0");
 			builder.put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 			builder.put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
 			builder.put(grammarAccess.getQualifiedNameWithWildcardAccess().getGroup(), "rule__QualifiedNameWithWildcard__Group__0");
@@ -69,6 +71,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDatatypeConstructorAccess().getGroup(), "rule__DatatypeConstructor__Group__0");
 			builder.put(grammarAccess.getDatatypeConstructorAccess().getGroup_1(), "rule__DatatypeConstructor__Group_1__0");
 			builder.put(grammarAccess.getExtendAccess().getGroup(), "rule__Extend__Group__0");
+			builder.put(grammarAccess.getBSharpBlockAccess().getGroup(), "rule__BSharpBlock__Group__0");
 			builder.put(grammarAccess.getFunctionDeclAccess().getGroup(), "rule__FunctionDecl__Group__0");
 			builder.put(grammarAccess.getMatchStatementAccess().getGroup(), "rule__MatchStatement__Group__0");
 			builder.put(grammarAccess.getMatchCaseAccess().getGroup(), "rule__MatchCase__Group__0");
@@ -87,23 +90,24 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInfixAccess().getGroup_1(), "rule__Infix__Group_1__0");
 			builder.put(grammarAccess.getBracketAccess().getGroup(), "rule__Bracket__Group__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
+			builder.put(grammarAccess.getFunctionCallAccess().getGroup_0_1(), "rule__FunctionCall__Group_0_1__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1(), "rule__FunctionCall__Group_1__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1_2(), "rule__FunctionCall__Group_1_2__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup(), "rule__Instance__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup_5(), "rule__Instance__Group_5__0");
-			builder.put(grammarAccess.getDomainModelAccess().getElementsAssignment(), "rule__DomainModel__ElementsAssignment");
 			builder.put(grammarAccess.getTopLevelAccess().getNameAssignment_1(), "rule__TopLevel__NameAssignment_1");
-			builder.put(grammarAccess.getTopLevelAccess().getImportsAssignment_3_0(), "rule__TopLevel__ImportsAssignment_3_0");
-			builder.put(grammarAccess.getTopLevelAccess().getClassesAssignment_3_1(), "rule__TopLevel__ClassesAssignment_3_1");
-			builder.put(grammarAccess.getTopLevelAccess().getExtendsAssignment_3_2(), "rule__TopLevel__ExtendsAssignment_3_2");
-			builder.put(grammarAccess.getTopLevelAccess().getInstancesAssignment_3_3(), "rule__TopLevel__InstancesAssignment_3_3");
+			builder.put(grammarAccess.getTopLevelAccess().getTopLevelFileAssignment_2(), "rule__TopLevel__TopLevelFileAssignment_2");
+			builder.put(grammarAccess.getTopLevelFileAccess().getImportsAssignment_1_0(), "rule__TopLevelFile__ImportsAssignment_1_0");
+			builder.put(grammarAccess.getTopLevelFileAccess().getClassesAssignment_1_1(), "rule__TopLevelFile__ClassesAssignment_1_1");
+			builder.put(grammarAccess.getTopLevelFileAccess().getExtendsAssignment_1_2(), "rule__TopLevelFile__ExtendsAssignment_1_2");
+			builder.put(grammarAccess.getTopLevelFileAccess().getInstancesAssignment_1_3(), "rule__TopLevelFile__InstancesAssignment_1_3");
 			builder.put(grammarAccess.getImportStatementAccess().getImportsAssignment_1(), "rule__ImportStatement__ImportsAssignment_1");
 			builder.put(grammarAccess.getClassAccess().getNameAssignment_1(), "rule__Class__NameAssignment_1");
 			builder.put(grammarAccess.getClassAccess().getContextAssignment_2(), "rule__Class__ContextAssignment_2");
 			builder.put(grammarAccess.getClassAccess().getSupertypesAssignment_3(), "rule__Class__SupertypesAssignment_3");
 			builder.put(grammarAccess.getClassAccess().getVarListAssignment_4(), "rule__Class__VarListAssignment_4");
 			builder.put(grammarAccess.getClassAccess().getWhereAssignment_5(), "rule__Class__WhereAssignment_5");
-			builder.put(grammarAccess.getClassAccess().getBodyElementsAssignment_8(), "rule__Class__BodyElementsAssignment_8");
+			builder.put(grammarAccess.getClassAccess().getBlockAssignment_7(), "rule__Class__BlockAssignment_7");
 			builder.put(grammarAccess.getPolymorphicTypeNameAccess().getNameAssignment(), "rule__PolymorphicTypeName__NameAssignment");
 			builder.put(grammarAccess.getPolyContextAccess().getPolyTypesAssignment_1(), "rule__PolyContext__PolyTypesAssignment_1");
 			builder.put(grammarAccess.getPolyContextTypesAccess().getNameAssignment_0(), "rule__PolyContextTypes__NameAssignment_0");
@@ -125,12 +129,13 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDatatypeAccess().getNameAssignment_1(), "rule__Datatype__NameAssignment_1");
 			builder.put(grammarAccess.getDatatypeAccess().getContextAssignment_2(), "rule__Datatype__ContextAssignment_2");
 			builder.put(grammarAccess.getDatatypeAccess().getConstructorsAssignment_3_1(), "rule__Datatype__ConstructorsAssignment_3_1");
-			builder.put(grammarAccess.getDatatypeAccess().getBodyElementsAssignment_5(), "rule__Datatype__BodyElementsAssignment_5");
+			builder.put(grammarAccess.getDatatypeAccess().getBlockAssignment_4(), "rule__Datatype__BlockAssignment_4");
 			builder.put(grammarAccess.getDatatypeConstructorAccess().getNameAssignment_0(), "rule__DatatypeConstructor__NameAssignment_0");
 			builder.put(grammarAccess.getDatatypeConstructorAccess().getDeconsAssignment_1_1(), "rule__DatatypeConstructor__DeconsAssignment_1_1");
 			builder.put(grammarAccess.getExtendAccess().getExtendedClassAssignment_1(), "rule__Extend__ExtendedClassAssignment_1");
 			builder.put(grammarAccess.getExtendAccess().getNameAssignment_3(), "rule__Extend__NameAssignment_3");
-			builder.put(grammarAccess.getExtendAccess().getBodyElementsAssignment_6(), "rule__Extend__BodyElementsAssignment_6");
+			builder.put(grammarAccess.getExtendAccess().getBlockAssignment_5(), "rule__Extend__BlockAssignment_5");
+			builder.put(grammarAccess.getBSharpBlockAccess().getBodyElementsAssignment_2(), "rule__BSharpBlock__BodyElementsAssignment_2");
 			builder.put(grammarAccess.getTypeBodyElementsAccess().getFunctionsAssignment_0(), "rule__TypeBodyElements__FunctionsAssignment_0");
 			builder.put(grammarAccess.getTypeBodyElementsAccess().getTheoremsAssignment_1(), "rule__TypeBodyElements__TheoremsAssignment_1");
 			builder.put(grammarAccess.getFunctionDeclAccess().getNameAssignment_0(), "rule__FunctionDecl__NameAssignment_0");
@@ -171,7 +176,9 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInfixAccess().getOpNameAssignment_1_1_1(), "rule__Infix__OpNameAssignment_1_1_1");
 			builder.put(grammarAccess.getInfixAccess().getRightAssignment_1_2(), "rule__Infix__RightAssignment_1_2");
 			builder.put(grammarAccess.getBracketAccess().getChildAssignment_1(), "rule__Bracket__ChildAssignment_1");
-			builder.put(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_0(), "rule__FunctionCall__TypeInstAssignment_0");
+			builder.put(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_0_0(), "rule__FunctionCall__TypeInstAssignment_0_0");
+			builder.put(grammarAccess.getFunctionCallAccess().getOwnerTypeAssignment_0_1_0(), "rule__FunctionCall__OwnerTypeAssignment_0_1_0");
+			builder.put(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_0_1_2(), "rule__FunctionCall__TypeInstAssignment_0_1_2");
 			builder.put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_1(), "rule__FunctionCall__ArgumentsAssignment_1_1");
 			builder.put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_2_1(), "rule__FunctionCall__ArgumentsAssignment_1_2_1");
 			builder.put(grammarAccess.getInstanceAccess().getClassNameAssignment_1(), "rule__Instance__ClassNameAssignment_1");

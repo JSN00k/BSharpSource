@@ -1,4 +1,4 @@
-package rewriteAST;
+package ac.soton.bsharp.rewriteAST;
 
 import ac.soton.bsharp.bSharp.Bracket;
 import ac.soton.bsharp.bSharp.Expression;

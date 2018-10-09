@@ -3,8 +3,17 @@
  */
 package ac.soton.bsharp.formatting2;
 
-import ac.soton.bsharp.bSharp.DomainModel;
-import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.bSharp.BSharpBlock;
+import ac.soton.bsharp.bSharp.BppClass;
+import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.ImportStatement;
+import ac.soton.bsharp.bSharp.Instance;
+import ac.soton.bsharp.bSharp.PolyContext;
+import ac.soton.bsharp.bSharp.SuperTypeList;
+import ac.soton.bsharp.bSharp.TopLevelFile;
+import ac.soton.bsharp.bSharp.TypeStructure;
+import ac.soton.bsharp.bSharp.Where;
 import ac.soton.bsharp.services.BSharpGrammarAccess;
 import com.google.inject.Inject;
 import java.util.Arrays;
@@ -21,32 +30,55 @@ public class BSharpFormatter extends AbstractFormatter2 {
   @Extension
   private BSharpGrammarAccess _bSharpGrammarAccess;
   
-  protected void _format(final DomainModel domainModel, @Extension final IFormattableDocument document) {
-    EList<TopLevel> _elements = domainModel.getElements();
-    for (final TopLevel topLevel : _elements) {
-      document.<TopLevel>format(topLevel);
+  protected void _format(final TopLevelFile topLevelFile, @Extension final IFormattableDocument document) {
+    EList<ImportStatement> _imports = topLevelFile.getImports();
+    for (final ImportStatement importStatement : _imports) {
+      document.<ImportStatement>format(importStatement);
+    }
+    EList<ClassDecl> _classes = topLevelFile.getClasses();
+    for (final ClassDecl classDecl : _classes) {
+      document.<ClassDecl>format(classDecl);
+    }
+    EList<Extend> _extends = topLevelFile.getExtends();
+    for (final Extend extend : _extends) {
+      document.<Extend>format(extend);
+    }
+    EList<Instance> _instances = topLevelFile.getInstances();
+    for (final Instance instance : _instances) {
+      document.<Instance>format(instance);
     }
   }
   
-  public void format(final Object domainModel, final IFormattableDocument document) {
-    if (domainModel instanceof XtextResource) {
-      _format((XtextResource)domainModel, document);
+  protected void _format(final BppClass bppClass, @Extension final IFormattableDocument document) {
+    document.<PolyContext>format(bppClass.getContext());
+    document.<SuperTypeList>format(bppClass.getSupertypes());
+    document.<TypeStructure>format(bppClass.getVarList());
+    document.<Where>format(bppClass.getWhere());
+    document.<BSharpBlock>format(bppClass.getBlock());
+  }
+  
+  public void format(final Object bppClass, final IFormattableDocument document) {
+    if (bppClass instanceof BppClass) {
+      _format((BppClass)bppClass, document);
       return;
-    } else if (domainModel instanceof DomainModel) {
-      _format((DomainModel)domainModel, document);
+    } else if (bppClass instanceof XtextResource) {
+      _format((XtextResource)bppClass, document);
       return;
-    } else if (domainModel instanceof EObject) {
-      _format((EObject)domainModel, document);
+    } else if (bppClass instanceof TopLevelFile) {
+      _format((TopLevelFile)bppClass, document);
       return;
-    } else if (domainModel == null) {
+    } else if (bppClass instanceof EObject) {
+      _format((EObject)bppClass, document);
+      return;
+    } else if (bppClass == null) {
       _format((Void)null, document);
       return;
-    } else if (domainModel != null) {
-      _format(domainModel, document);
+    } else if (bppClass != null) {
+      _format(bppClass, document);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(domainModel, document).toString());
+        Arrays.<Object>asList(bppClass, document).toString());
     }
   }
 }

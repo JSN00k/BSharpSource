@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bSharp" nsURI="http://www.soton.ac/bsharp/BSharp" nsPrefix="bSharp">
-  <eClassifiers xsi:type="ecore:EClass" name="DomainModel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//TopLevel" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IVariableProvider" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IPolyTypeProvider" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//GenName"/>
   <eClassifiers xsi:type="ecore:EClass" name="TopLevel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelFile" eType="#//TopLevelFile"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelFile">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
         eType="#//ImportStatement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
@@ -25,6 +30,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" upperBound="-1"
         eType="#//TypeBodyElements" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BppClass" eSuperTypes="#//ClassDecl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertypes" eType="#//SuperTypeList"
@@ -33,6 +40,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Where"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BSharpBlock">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" upperBound="-1"
+        eType="#//TypeBodyElements" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenName" eSuperTypes="#//NamedObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="PolymorphicTypeName" eSuperTypes="#//GenName"/>
@@ -93,6 +104,8 @@
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" upperBound="-1"
         eType="#//TypeBodyElements" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeBodyElements">
     <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
@@ -195,9 +208,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IVariableProvider" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IPolyTypeProvider" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//GenName"/>
   <eClassifiers xsi:type="ecore:EClass" name="NamedObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

@@ -3,9 +3,9 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.DomainModel;
-import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.bSharp.TypeBodyElements;
 
 import java.util.Collection;
 
@@ -23,34 +23,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Domain Model</b></em>'.
+ * An implementation of the model object '<em><b>Block</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.DomainModelImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.BSharpBlockImpl#getBodyElements <em>Body Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DomainModelImpl extends MinimalEObjectImpl.Container implements DomainModel {
+public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSharpBlock {
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
+	 * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElements()
+	 * @see #getBodyElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TopLevel> elements;
+	protected EList<TypeBodyElements> bodyElements;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DomainModelImpl() {
+	protected BSharpBlockImpl() {
 		super();
 	}
 
@@ -61,7 +61,7 @@ public class DomainModelImpl extends MinimalEObjectImpl.Container implements Dom
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BSharpPackage.Literals.DOMAIN_MODEL;
+		return BSharpPackage.Literals.BSHARP_BLOCK;
 	}
 
 	/**
@@ -69,11 +69,11 @@ public class DomainModelImpl extends MinimalEObjectImpl.Container implements Dom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TopLevel> getElements() {
-		if (elements == null) {
-			elements = new EObjectContainmentEList<TopLevel>(TopLevel.class, this, BSharpPackage.DOMAIN_MODEL__ELEMENTS);
+	public EList<TypeBodyElements> getBodyElements() {
+		if (bodyElements == null) {
+			bodyElements = new EObjectContainmentEList<TypeBodyElements>(TypeBodyElements.class, this, BSharpPackage.BSHARP_BLOCK__BODY_ELEMENTS);
 		}
-		return elements;
+		return bodyElements;
 	}
 
 	/**
@@ -84,8 +84,8 @@ public class DomainModelImpl extends MinimalEObjectImpl.Container implements Dom
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.DOMAIN_MODEL__ELEMENTS:
-				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.BSHARP_BLOCK__BODY_ELEMENTS:
+				return ((InternalEList<?>)getBodyElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -98,8 +98,8 @@ public class DomainModelImpl extends MinimalEObjectImpl.Container implements Dom
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.DOMAIN_MODEL__ELEMENTS:
-				return getElements();
+			case BSharpPackage.BSHARP_BLOCK__BODY_ELEMENTS:
+				return getBodyElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,9 +113,9 @@ public class DomainModelImpl extends MinimalEObjectImpl.Container implements Dom
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.DOMAIN_MODEL__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends TopLevel>)newValue);
+			case BSharpPackage.BSHARP_BLOCK__BODY_ELEMENTS:
+				getBodyElements().clear();
+				getBodyElements().addAll((Collection<? extends TypeBodyElements>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -129,8 +129,8 @@ public class DomainModelImpl extends MinimalEObjectImpl.Container implements Dom
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.DOMAIN_MODEL__ELEMENTS:
-				getElements().clear();
+			case BSharpPackage.BSHARP_BLOCK__BODY_ELEMENTS:
+				getBodyElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -144,10 +144,10 @@ public class DomainModelImpl extends MinimalEObjectImpl.Container implements Dom
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.DOMAIN_MODEL__ELEMENTS:
-				return elements != null && !elements.isEmpty();
+			case BSharpPackage.BSHARP_BLOCK__BODY_ELEMENTS:
+				return bodyElements != null && !bodyElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //DomainModelImpl
+} //BSharpBlockImpl

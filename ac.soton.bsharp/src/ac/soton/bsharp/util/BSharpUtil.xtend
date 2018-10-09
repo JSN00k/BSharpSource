@@ -64,7 +64,7 @@ class BSharpUtil {
 			  	}
 			  }
 			  
-			 if (superclass instanceof BppClass) {
+			 if (type instanceof BppClass) {
 			 	if (!list.contains(type)) {
 			 		list.add(type as ClassDecl)
 			 		superClassesInternal(type as BppClass, list)

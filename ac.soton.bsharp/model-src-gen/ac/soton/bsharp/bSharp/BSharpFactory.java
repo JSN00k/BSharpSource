@@ -23,15 +23,6 @@ public interface BSharpFactory extends EFactory {
 	BSharpFactory eINSTANCE = ac.soton.bsharp.bSharp.impl.BSharpFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Domain Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Domain Model</em>'.
-	 * @generated
-	 */
-	DomainModel createDomainModel();
-
-	/**
 	 * Returns a new object of class '<em>Top Level</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39,6 +30,15 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	TopLevel createTopLevel();
+
+	/**
+	 * Returns a new object of class '<em>Top Level File</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Top Level File</em>'.
+	 * @generated
+	 */
+	TopLevelFile createTopLevelFile();
 
 	/**
 	 * Returns a new object of class '<em>Import Statement</em>'.
@@ -57,6 +57,15 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	BppClass createBppClass();
+
+	/**
+	 * Returns a new object of class '<em>Block</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Block</em>'.
+	 * @generated
+	 */
+	BSharpBlock createBSharpBlock();
 
 	/**
 	 * Returns a new object of class '<em>Gen Name</em>'.

@@ -3,6 +3,15 @@
  */
 package ac.soton.bsharp.generator;
 
+import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.ImportStatement;
+import ac.soton.bsharp.bSharp.TopLevel;
+import com.google.common.collect.Iterables;
+import java.util.ArrayList;
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
@@ -15,7 +24,53 @@ import org.eclipse.xtext.generator.IGeneratorContext;
  */
 @SuppressWarnings("all")
 public class BSharpGenerator extends AbstractGenerator {
+  private String pkgName;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    EObject _get = resource.getContents().get(0);
+    final TopLevel topLevel = ((TopLevel) _get);
+    ArrayList<String> toImport = new ArrayList<String>();
+    ArrayList<String> prevImports = null;
+    EList<EObject> _eContents = topLevel.eContents();
+    for (final EObject eObject : _eContents) {
+      if ((eObject instanceof ImportStatement)) {
+        this.addToToImports(toImport, ((ImportStatement) eObject).getImports(), prevImports);
+      } else {
+        if ((eObject instanceof ClassDecl)) {
+          this.generate_ClassDecl(((ClassDecl) eObject), toImport, fsa, context);
+          Iterables.<String>addAll(prevImports, toImport);
+          ArrayList<String> _arrayList = new ArrayList<String>();
+          toImport = _arrayList;
+        } else {
+          if ((eObject instanceof Extend)) {
+            this.generate_Extend(((Extend) eObject), toImport, fsa, context);
+            Iterables.<String>addAll(prevImports, toImport);
+            ArrayList<String> _arrayList_1 = new ArrayList<String>();
+            toImport = _arrayList_1;
+          }
+        }
+      }
+    }
+  }
+  
+  /**
+   * Importing in the theory plug-in we don't want to import the same file more than once so
+   * we make sure we only import each file once. This doesn't check across files yet.
+   */
+  public void addToToImports(final ArrayList<String> toImport, final Collection<String> newImports, final ArrayList<String> allImports) {
+    for (final String string : newImports) {
+      if (((!allImports.contains(string)) && (!toImport.contains(string)))) {
+        toImport.add(string);
+      }
+    }
+  }
+  
+  public Object generate_ClassDecl(final ClassDecl classDecl, final ArrayList<String> imports, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    return null;
+  }
+  
+  public Object generate_Extend(final Extend extend, final ArrayList<String> imports, final IFileSystemAccess2 fsa, final IGeneratorContext ctx) {
+    return null;
   }
 }

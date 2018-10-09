@@ -16,10 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevel#getName <em>Name</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.TopLevel#getImports <em>Imports</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.TopLevel#getClasses <em>Classes</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.TopLevel#getExtends <em>Extends</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.TopLevel#getInstances <em>Instances</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.TopLevel#getTopLevelFile <em>Top Level File</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevel()
@@ -55,66 +52,28 @@ public interface TopLevel extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.ImportStatement}.
+	 * Returns the value of the '<em><b>Top Level File</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Top Level File</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imports</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevel_Imports()
+	 * @return the value of the '<em>Top Level File</em>' containment reference.
+	 * @see #setTopLevelFile(TopLevelFile)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevel_TopLevelFile()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ImportStatement> getImports();
+	TopLevelFile getTopLevelFile();
 
 	/**
-	 * Returns the value of the '<em><b>Classes</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.ClassDecl}.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.TopLevel#getTopLevelFile <em>Top Level File</em>}' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Classes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Classes</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevel_Classes()
-	 * @model containment="true"
+	 * @param value the new value of the '<em>Top Level File</em>' containment reference.
+	 * @see #getTopLevelFile()
 	 * @generated
 	 */
-	EList<ClassDecl> getClasses();
-
-	/**
-	 * Returns the value of the '<em><b>Extends</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.Extend}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extends</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extends</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevel_Extends()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Extend> getExtends();
-
-	/**
-	 * Returns the value of the '<em><b>Instances</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.Instance}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Instances</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instances</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevel_Instances()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Instance> getInstances();
+	void setTopLevelFile(TopLevelFile value);
 } // TopLevel
