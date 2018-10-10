@@ -7,6 +7,8 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.ImportStatement;
 import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.bSharp.TopLevelFile;
+import ch.ethz.eventb.utils.EventBUtils;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +18,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eventb.core.IEventBProject;
 
 /**
  * Generates code from your model files on save.
@@ -24,33 +28,51 @@ import org.eclipse.xtext.generator.IGeneratorContext;
  */
 @SuppressWarnings("all")
 public class BSharpGenerator extends AbstractGenerator {
-  private String pkgName;
+  private IEventBProject proj;
+  
+  private String fileName;
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    EObject _get = resource.getContents().get(0);
-    final TopLevel topLevel = ((TopLevel) _get);
-    ArrayList<String> toImport = new ArrayList<String>();
-    ArrayList<String> prevImports = null;
-    EList<EObject> _eContents = topLevel.eContents();
-    for (final EObject eObject : _eContents) {
-      if ((eObject instanceof ImportStatement)) {
-        this.addToToImports(toImport, ((ImportStatement) eObject).getImports(), prevImports);
-      } else {
-        if ((eObject instanceof ClassDecl)) {
-          this.generate_ClassDecl(((ClassDecl) eObject), toImport, fsa, context);
-          Iterables.<String>addAll(prevImports, toImport);
-          ArrayList<String> _arrayList = new ArrayList<String>();
-          toImport = _arrayList;
+    try {
+      EObject _get = resource.getContents().get(0);
+      final TopLevel topLevel = ((TopLevel) _get);
+      final String pkgName = topLevel.getName();
+      this.proj = EventBUtils.getEventBProject(pkgName);
+      boolean _exists = this.proj.getRodinProject().exists();
+      boolean _not = (!_exists);
+      if (_not) {
+        this.proj = EventBUtils.createEventBProject(pkgName, null);
+      }
+      final TopLevelFile topLevelFile = topLevel.getTopLevelFile();
+      this.fileName = topLevelFile.getName();
+      ArrayList<String> toImport = new ArrayList<String>();
+      ArrayList<String> prevImports = new ArrayList<String>();
+      boolean importing = true;
+      boolean firstImport = true;
+      EList<EObject> _eContents = topLevelFile.eContents();
+      for (final EObject eObject : _eContents) {
+        if ((eObject instanceof ImportStatement)) {
+          importing = true;
+          this.addToToImports(toImport, ((ImportStatement) eObject).getImports(), prevImports);
         } else {
-          if ((eObject instanceof Extend)) {
-            this.generate_Extend(((Extend) eObject), toImport, fsa, context);
+          if ((eObject instanceof ClassDecl)) {
+            this.generate_ClassDecl(((ClassDecl) eObject), toImport, fsa, context);
             Iterables.<String>addAll(prevImports, toImport);
-            ArrayList<String> _arrayList_1 = new ArrayList<String>();
-            toImport = _arrayList_1;
+            ArrayList<String> _arrayList = new ArrayList<String>();
+            toImport = _arrayList;
+          } else {
+            if ((eObject instanceof Extend)) {
+              this.generate_Extend(((Extend) eObject), toImport, fsa, context);
+              Iterables.<String>addAll(prevImports, toImport);
+              ArrayList<String> _arrayList_1 = new ArrayList<String>();
+              toImport = _arrayList_1;
+            }
           }
         }
       }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
   }
   

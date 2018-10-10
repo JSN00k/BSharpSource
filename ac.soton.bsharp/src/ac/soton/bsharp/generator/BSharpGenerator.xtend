@@ -13,6 +13,8 @@ import ac.soton.bsharp.bSharp.ImportStatement
 import java.util.Collection
 import ac.soton.bsharp.bSharp.ClassDecl
 import ac.soton.bsharp.bSharp.Extend
+import org.eventb.core.IEventBProject
+import ch.ethz.eventb.utils.EventBUtils
 
 /**
  * Generates code from your model files on save.
@@ -21,7 +23,8 @@ import ac.soton.bsharp.bSharp.Extend
  */
 class BSharpGenerator extends AbstractGenerator {
 	
-	var String pkgName
+	var IEventBProject proj
+	var String fileName
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		/* When we come into this we're expecting the resource to be at the very top level
@@ -31,6 +34,21 @@ class BSharpGenerator extends AbstractGenerator {
 		 */
 		
 		val topLevel = resource.contents.get(0) as TopLevel
+		val pkgName = topLevel.name
+		
+		proj = EventBUtils.getEventBProject(pkgName)
+		if (!proj.rodinProject.exists) {
+			proj = EventBUtils.createEventBProject(pkgName, null)
+		}
+		
+		/* The top level just contains the package name and a topLevelFile, this
+		 * contains the file name and the rest of the emf tree 
+		 * (ClassDecl | Extend) which is then iterated over
+		 */
+		val topLevelFile = topLevel.topLevelFile
+		fileName = topLevelFile.name
+		
+		
 		
 		/* The strategy for importing is to import any imports declared directly before 
 		 * a Class, Datatype, or Extend declaration (if they've not already been imported,
@@ -40,23 +58,31 @@ class BSharpGenerator extends AbstractGenerator {
 		/* A list of all the classes that have already been imported by the current 
 		 * file. This is used to check against when writing the toImport
 		 */
-		var ArrayList<String> prevImports
+		var ArrayList<String> prevImports = new ArrayList
 		
-		for (eObject : topLevel.eContents) {
+		var importing = true
+		var firstImport = true
+		
+		for (eObject : topLevelFile.eContents) {
 			if (eObject instanceof ImportStatement) {
+				importing = true
 				addToToImports(toImport, (eObject as ImportStatement).imports, prevImports)	
-			} else if (eObject instanceof ClassDecl) {
-				generate_ClassDecl((eObject as ClassDecl), toImport, fsa, context)
-				/* Clear out the current imports as we only want to import each thing once.*/
-				prevImports += toImport
-				toImport = new ArrayList
+			} else {
+				if (eObject instanceof ClassDecl) {
+
+					generate_ClassDecl((eObject as ClassDecl), toImport, fsa, context)
+					/* Clear out the current imports as we only want to import each thing once.*/
+					prevImports += toImport
+					toImport = new ArrayList
 				/* I need to add the file that I just created to the toImport list */
-			} else if (eObject instanceof Extend) {
-				generate_Extend((eObject as Extend), toImport, fsa, context)
-				prevImports += toImport
-				toImport = new ArrayList
-				
+				} else if (eObject instanceof Extend) {
+					generate_Extend((eObject as Extend), toImport, fsa, context)
+					prevImports += toImport
+					toImport = new ArrayList
+
 				/* I need to add the file that I just created to the toImport list */
+				}
+
 			}
 		}
 	}
