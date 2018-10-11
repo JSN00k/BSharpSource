@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getArguments <em>Arguments</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getOwnerType <em>Owner Type</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall()
@@ -65,5 +66,31 @@ public interface FunctionCall extends Expression {
 	 * @generated
 	 */
 	void setOwnerType(GenName value);
+
+	/**
+	 * Returns the value of the '<em><b>Class Var Decl</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Class Var Decl</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Class Var Decl</em>' containment reference.
+	 * @see #setClassVarDecl(ClassVarDecl)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_ClassVarDecl()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ClassVarDecl getClassVarDecl();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Class Var Decl</em>' containment reference.
+	 * @see #getClassVarDecl()
+	 * @generated
+	 */
+	void setClassVarDecl(ClassVarDecl value);
 
 } // FunctionCall

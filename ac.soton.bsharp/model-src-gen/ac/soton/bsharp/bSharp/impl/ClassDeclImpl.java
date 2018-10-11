@@ -6,14 +6,8 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
-import ac.soton.bsharp.bSharp.ExpressionVariable;
-import ac.soton.bsharp.bSharp.GenName;
-import ac.soton.bsharp.bSharp.IPolyTypeProvider;
-import ac.soton.bsharp.bSharp.IVariableProvider;
-import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
-import ac.soton.bsharp.bSharp.PolymorphicTypeName;
-import ac.soton.bsharp.bSharp.Type;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
 
 import java.util.Collection;
@@ -300,9 +294,9 @@ public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 		return name;
 	}
 	
-	public Collection<PolymorphicTypeName> getPolyTypeNames() {
+	public Collection<PolyType> getPolyTypeNames() {
 		/* Context is the Polynomial context. */
-		return EcoreUtil2.getAllContentsOfType(getContext(), PolymorphicTypeName.class);
+		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
 	}
 
 } //ClassDeclImpl

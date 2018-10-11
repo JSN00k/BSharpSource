@@ -15,6 +15,11 @@ import ac.soton.bsharp.bSharp.ClassDecl
 import ac.soton.bsharp.bSharp.Extend
 import org.eventb.core.IEventBProject
 import ch.ethz.eventb.utils.EventBUtils
+import ac.soton.bsharp.util.TheoryUtils
+import org.eventb.theory.core.ITheoryRoot
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.core.runtime.NullProgressMonitor
+import org.eclipse.core.runtime.IProgressMonitor
 
 /**
  * Generates code from your model files on save.
@@ -23,8 +28,12 @@ import ch.ethz.eventb.utils.EventBUtils
  */
 class BSharpGenerator extends AbstractGenerator {
 	
+	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+	
+	var String projName
 	var IEventBProject proj
 	var String fileName
+	var ITheoryRoot currentThy 
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		/* When we come into this we're expecting the resource to be at the very top level
@@ -34,11 +43,13 @@ class BSharpGenerator extends AbstractGenerator {
 		 */
 		
 		val topLevel = resource.contents.get(0) as TopLevel
-		val pkgName = topLevel.name
+		projName = topLevel.name + "-gen"
 		
-		proj = EventBUtils.getEventBProject(pkgName)
+		proj = EventBUtils.getEventBProject(projName)
 		if (!proj.rodinProject.exists) {
-			proj = EventBUtils.createEventBProject(pkgName, null)
+			print("start")
+			proj = EventBUtils.createEventBProject(projName, nullMonitor)
+			print("end")
 		}
 		
 		/* The top level just contains the package name and a topLevelFile, this
@@ -48,7 +59,7 @@ class BSharpGenerator extends AbstractGenerator {
 		val topLevelFile = topLevel.topLevelFile
 		fileName = topLevelFile.name
 		
-		
+		currentThy = TheoryUtils.createTheory(proj.rodinProject, fileName, null)
 		
 		/* The strategy for importing is to import any imports declared directly before 
 		 * a Class, Datatype, or Extend declaration (if they've not already been imported,
@@ -62,12 +73,17 @@ class BSharpGenerator extends AbstractGenerator {
 		
 		var importing = true
 		var firstImport = true
+		var ITheoryRoot lastThy = currentThy
 		
 		for (eObject : topLevelFile.eContents) {
 			if (eObject instanceof ImportStatement) {
 				importing = true
 				addToToImports(toImport, (eObject as ImportStatement).imports, prevImports)	
 			} else {
+				if (importing) {
+					
+				}
+				
 				if (eObject instanceof ClassDecl) {
 
 					generate_ClassDecl((eObject as ClassDecl), toImport, fsa, context)
@@ -82,7 +98,6 @@ class BSharpGenerator extends AbstractGenerator {
 
 				/* I need to add the file that I just created to the toImport list */
 				}
-
 			}
 		}
 	}
@@ -104,5 +119,16 @@ class BSharpGenerator extends AbstractGenerator {
 	
 	def generate_Extend(Extend extend, ArrayList<String> imports, IFileSystemAccess2 fsa, IGeneratorContext ctx) {
 		
+	}
+	
+
+	def resolveImports(ArrayList<String> imports, ITheoryRoot currentThy) {
+		/* We're not going to allow importing the an entire project for now
+		 * This is complicated as the Event-B import system doesn't resolve circular 
+		 * imports in any way so to import a project you'd need to work out which
+		 * files in the project do not import  any of the other files from the 
+		 * project and only import them. This problem is reasonably easy to solve
+		 * in itself, however as projects aren't cross referenced it makes it harder.
+		 * For now the user can manually make a file to do this, and only import that. */
 	}
 }

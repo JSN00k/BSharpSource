@@ -598,41 +598,6 @@ ruleClass returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRulePolymorphicTypeName
-entryRulePolymorphicTypeName returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPolymorphicTypeNameRule()); }
-	iv_rulePolymorphicTypeName=rulePolymorphicTypeName
-	{ $current=$iv_rulePolymorphicTypeName.current; }
-	EOF;
-
-// Rule PolymorphicTypeName
-rulePolymorphicTypeName returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			lv_name_0_0=RULE_ID
-			{
-				newLeafNode(lv_name_0_0, grammarAccess.getPolymorphicTypeNameAccess().getNameIDTerminalRuleCall_0());
-			}
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getPolymorphicTypeNameRule());
-				}
-				setWithLastConsumed(
-					$current,
-					"name",
-					lv_name_0_0,
-					"ac.soton.bsharp.BSharp.ID");
-			}
-		)
-	)
-;
-
 // Entry rule entryRulePolyContext
 entryRulePolyContext returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getPolyContextRule()); }
@@ -656,9 +621,9 @@ rulePolyContext returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPolyContextAccess().getPolyTypesPolyContextTypesParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getPolyContextAccess().getPolyTypesPolyTypeParserRuleCall_1_0());
 				}
-				lv_polyTypes_1_0=rulePolyContextTypes
+				lv_polyTypes_1_0=rulePolyType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPolyContextRule());
@@ -667,7 +632,7 @@ rulePolyContext returns [EObject current=null]
 						$current,
 						"polyTypes",
 						lv_polyTypes_1_0,
-						"ac.soton.bsharp.BSharp.PolyContextTypes");
+						"ac.soton.bsharp.BSharp.PolyType");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -679,15 +644,15 @@ rulePolyContext returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRulePolyContextTypes
-entryRulePolyContextTypes returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPolyContextTypesRule()); }
-	iv_rulePolyContextTypes=rulePolyContextTypes
-	{ $current=$iv_rulePolyContextTypes.current; }
+// Entry rule entryRulePolyType
+entryRulePolyType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPolyTypeRule()); }
+	iv_rulePolyType=rulePolyType
+	{ $current=$iv_rulePolyType.current; }
 	EOF;
 
-// Rule PolyContextTypes
-rulePolyContextTypes returns [EObject current=null]
+// Rule PolyType
+rulePolyType returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -697,95 +662,36 @@ rulePolyContextTypes returns [EObject current=null]
 	(
 		(
 			(
+				lv_name_0_0=RULE_ID
 				{
-					newCompositeNode(grammarAccess.getPolyContextTypesAccess().getNamePolymorphicTypeNameParserRuleCall_0_0());
+					newLeafNode(lv_name_0_0, grammarAccess.getPolyTypeAccess().getNameIDTerminalRuleCall_0_0());
 				}
-				lv_name_0_0=rulePolymorphicTypeName
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getPolyContextTypesRule());
+						$current = createModelElement(grammarAccess.getPolyTypeRule());
 					}
-					set(
+					setWithLastConsumed(
 						$current,
 						"name",
 						lv_name_0_0,
-						"ac.soton.bsharp.BSharp.PolymorphicTypeName");
-					afterParserOrEnumRuleCall();
+						"ac.soton.bsharp.BSharp.ID");
 				}
 			)
 		)
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getPolyContextTypesAccess().getConstraintsPolyTypeConstraintsParserRuleCall_1_0());
-				}
-				lv_constraints_1_0=rulePolyTypeConstraints
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getPolyContextTypesRule());
-					}
-					add(
-						$current,
-						"constraints",
-						lv_constraints_1_0,
-						"ac.soton.bsharp.BSharp.PolyTypeConstraints");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)*
-	)
-;
-
-// Entry rule entryRulePolyTypeConstraints
-entryRulePolyTypeConstraints returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPolyTypeConstraintsRule()); }
-	iv_rulePolyTypeConstraints=rulePolyTypeConstraints
-	{ $current=$iv_rulePolyTypeConstraints.current; }
-	EOF;
-
-// Rule PolyTypeConstraints
-rulePolyTypeConstraints returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0=':'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getPolyTypeConstraintsAccess().getColonKeyword_0());
-		}
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPolyTypeConstraintsRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclCrossReference_1_0());
-				}
-				ruleQualifiedName
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			otherlv_2=','
+			otherlv_1=':'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getPolyTypeConstraintsAccess().getCommaKeyword_2_0());
+				newLeafNode(otherlv_1, grammarAccess.getPolyTypeAccess().getColonKeyword_1_0());
 			}
 			(
 				(
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getPolyTypeConstraintsRule());
+							$current = createModelElement(grammarAccess.getPolyTypeRule());
 						}
 					}
 					{
-						newCompositeNode(grammarAccess.getPolyTypeConstraintsAccess().getTypeNameClassDeclCrossReference_2_1_0());
+						newCompositeNode(grammarAccess.getPolyTypeAccess().getSuperTypesClassDeclCrossReference_1_1_0());
 					}
 					ruleQualifiedName
 					{
@@ -793,7 +699,29 @@ rulePolyTypeConstraints returns [EObject current=null]
 					}
 				)
 			)
-		)*
+			(
+				otherlv_3=','
+				{
+					newLeafNode(otherlv_3, grammarAccess.getPolyTypeAccess().getCommaKeyword_1_2_0());
+				}
+				(
+					(
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getPolyTypeRule());
+							}
+						}
+						{
+							newCompositeNode(grammarAccess.getPolyTypeAccess().getSuperTypesClassDeclCrossReference_1_2_1_0());
+						}
+						ruleQualifiedName
+						{
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+		)?
 	)
 ;
 
@@ -2872,48 +2800,35 @@ ruleFunctionCall returns [EObject current=null]
 			    |
 			(
 				(
-					(
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getFunctionCallRule());
-							}
+					{
+						newCompositeNode(grammarAccess.getFunctionCallAccess().getClassVarDeclClassVarDeclParserRuleCall_0_1_0());
+					}
+					lv_classVarDecl_1_0=ruleClassVarDecl
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
 						}
-						otherlv_1=RULE_ID
-						{
-							newLeafNode(otherlv_1, grammarAccess.getFunctionCallAccess().getOwnerTypeGenNameCrossReference_0_1_0_0());
-						}
-					)
-				)
-				otherlv_2='.'
-				{
-					newLeafNode(otherlv_2, grammarAccess.getFunctionCallAccess().getFullStopKeyword_0_1_1());
-				}
-				(
-					(
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getFunctionCallRule());
-							}
-						}
-						otherlv_3=RULE_ID
-						{
-							newLeafNode(otherlv_3, grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_0_1_2_0());
-						}
-					)
+						set(
+							$current,
+							"classVarDecl",
+							lv_classVarDecl_1_0,
+							"ac.soton.bsharp.BSharp.ClassVarDecl");
+						afterParserOrEnumRuleCall();
+					}
 				)
 			)
 		)
 		(
-			otherlv_4='('
+			otherlv_2='('
 			{
-				newLeafNode(otherlv_4, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_0());
+				newLeafNode(otherlv_2, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_0());
 			}
 			(
 				(
 					{
 						newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_1_0());
 					}
-					lv_arguments_5_0=ruleRootExpression
+					lv_arguments_3_0=ruleRootExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
@@ -2921,23 +2836,23 @@ ruleFunctionCall returns [EObject current=null]
 						add(
 							$current,
 							"arguments",
-							lv_arguments_5_0,
+							lv_arguments_3_0,
 							"ac.soton.bsharp.BSharp.RootExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)?
 			(
-				otherlv_6=','
+				otherlv_4=','
 				{
-					newLeafNode(otherlv_6, grammarAccess.getFunctionCallAccess().getCommaKeyword_1_2_0());
+					newLeafNode(otherlv_4, grammarAccess.getFunctionCallAccess().getCommaKeyword_1_2_0());
 				}
 				(
 					(
 						{
 							newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_1_0());
 						}
-						lv_arguments_7_0=ruleRootExpression
+						lv_arguments_5_0=ruleRootExpression
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
@@ -2945,18 +2860,67 @@ ruleFunctionCall returns [EObject current=null]
 							add(
 								$current,
 								"arguments",
-								lv_arguments_7_0,
+								lv_arguments_5_0,
 								"ac.soton.bsharp.BSharp.RootExpression");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
 			)*
-			otherlv_8=')'
+			otherlv_6=')'
 			{
-				newLeafNode(otherlv_8, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_3());
+				newLeafNode(otherlv_6, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_3());
 			}
 		)?
+	)
+;
+
+// Entry rule entryRuleClassVarDecl
+entryRuleClassVarDecl returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClassVarDeclRule()); }
+	iv_ruleClassVarDecl=ruleClassVarDecl
+	{ $current=$iv_ruleClassVarDecl.current; }
+	EOF;
+
+// Rule ClassVarDecl
+ruleClassVarDecl returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getClassVarDeclRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getClassVarDeclAccess().getOwnerTypeGenNameCrossReference_0_0());
+				}
+			)
+		)
+		otherlv_1='.'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getClassVarDeclAccess().getFullStopKeyword_1());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getClassVarDeclRule());
+					}
+				}
+				otherlv_2=RULE_ID
+				{
+					newLeafNode(otherlv_2, grammarAccess.getClassVarDeclAccess().getTypeInstExpressionVariableCrossReference_2_0());
+				}
+			)
+		)
 	)
 ;
 

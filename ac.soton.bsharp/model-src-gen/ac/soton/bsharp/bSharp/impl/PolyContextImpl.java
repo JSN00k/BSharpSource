@@ -5,7 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.PolyContext;
-import ac.soton.bsharp.bSharp.PolyContextTypes;
+import ac.soton.bsharp.bSharp.PolyType;
 
 import java.util.Collection;
 
@@ -43,7 +43,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PolyContextTypes> polyTypes;
+	protected EList<PolyType> polyTypes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,9 +69,9 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PolyContextTypes> getPolyTypes() {
+	public EList<PolyType> getPolyTypes() {
 		if (polyTypes == null) {
-			polyTypes = new EObjectContainmentEList<PolyContextTypes>(PolyContextTypes.class, this, BSharpPackage.POLY_CONTEXT__POLY_TYPES);
+			polyTypes = new EObjectContainmentEList<PolyType>(PolyType.class, this, BSharpPackage.POLY_CONTEXT__POLY_TYPES);
 		}
 		return polyTypes;
 	}
@@ -115,7 +115,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 		switch (featureID) {
 			case BSharpPackage.POLY_CONTEXT__POLY_TYPES:
 				getPolyTypes().clear();
-				getPolyTypes().addAll((Collection<? extends PolyContextTypes>)newValue);
+				getPolyTypes().addAll((Collection<? extends PolyType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

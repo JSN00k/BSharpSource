@@ -4,25 +4,16 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.ClassDecl;
-import ac.soton.bsharp.bSharp.Extend;
-import ac.soton.bsharp.bSharp.ImportStatement;
-import ac.soton.bsharp.bSharp.Instance;
-import ac.soton.bsharp.bSharp.OuterSyntax;
 import ac.soton.bsharp.bSharp.TopLevel;
 
 import ac.soton.bsharp.bSharp.TopLevelFile;
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -184,7 +175,6 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

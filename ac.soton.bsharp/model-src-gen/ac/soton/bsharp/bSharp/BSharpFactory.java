@@ -77,15 +77,6 @@ public interface BSharpFactory extends EFactory {
 	GenName createGenName();
 
 	/**
-	 * Returns a new object of class '<em>Polymorphic Type Name</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Polymorphic Type Name</em>'.
-	 * @generated
-	 */
-	PolymorphicTypeName createPolymorphicTypeName();
-
-	/**
 	 * Returns a new object of class '<em>Poly Context</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,22 +86,13 @@ public interface BSharpFactory extends EFactory {
 	PolyContext createPolyContext();
 
 	/**
-	 * Returns a new object of class '<em>Poly Context Types</em>'.
+	 * Returns a new object of class '<em>Poly Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Poly Context Types</em>'.
+	 * @return a new object of class '<em>Poly Type</em>'.
 	 * @generated
 	 */
-	PolyContextTypes createPolyContextTypes();
-
-	/**
-	 * Returns a new object of class '<em>Poly Type Constraints</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Poly Type Constraints</em>'.
-	 * @generated
-	 */
-	PolyTypeConstraints createPolyTypeConstraints();
+	PolyType createPolyType();
 
 	/**
 	 * Returns a new object of class '<em>Super Type List</em>'.
@@ -284,15 +266,6 @@ public interface BSharpFactory extends EFactory {
 	TypedVariable createTypedVariable();
 
 	/**
-	 * Returns a new object of class '<em>Type Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Declaration</em>'.
-	 * @generated
-	 */
-	TypeDeclaration createTypeDeclaration();
-
-	/**
 	 * Returns a new object of class '<em>Quant Lambda</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,6 +291,15 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	FunctionCall createFunctionCall();
+
+	/**
+	 * Returns a new object of class '<em>Class Var Decl</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Class Var Decl</em>'.
+	 * @generated
+	 */
+	ClassVarDecl createClassVarDecl();
 
 	/**
 	 * Returns a new object of class '<em>Prefix</em>'.

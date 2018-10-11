@@ -8,7 +8,7 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
-import ac.soton.bsharp.bSharp.PolymorphicTypeName;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
 import java.util.Collection;
 
@@ -360,7 +360,7 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	}
 
 	@Override
-	public Collection<PolymorphicTypeName> getPolyTypeNames() {
+	public Collection<PolyType> getPolyTypeNames() {
 		if (extendedClass instanceof BppClass) {
 			return ((BppClass)extendedClass).getPolyTypeNames();
 		} else {

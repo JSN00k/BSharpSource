@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface PolyContext extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Poly Types</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.PolyContextTypes}.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.PolyType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Poly Types</em>' containment reference list isn't clear,
@@ -38,6 +38,6 @@ public interface PolyContext extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<PolyContextTypes> getPolyTypes();
+	EList<PolyType> getPolyTypes();
 
 } // PolyContext

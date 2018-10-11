@@ -6,7 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.PolyContext;
-import ac.soton.bsharp.bSharp.PolymorphicTypeName;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
@@ -397,12 +397,12 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	}
 
 	@Override
-	public Collection<PolymorphicTypeName> getPolyTypeNames() {
+	public Collection<PolyType> getPolyTypeNames() {
 		if (getContext() == null) {
 			return Collections.emptyList();
 		}
 		
-		return EcoreUtil2.getAllContentsOfType(getContext(), PolymorphicTypeName.class);
+		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
 	}
 
 } //QuantLambdaImpl

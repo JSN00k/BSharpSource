@@ -8,10 +8,13 @@ import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.ImportStatement;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
+import ac.soton.bsharp.util.TheoryUtils;
 import ch.ethz.eventb.utils.EventBUtils;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -19,7 +22,9 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eventb.core.IEventBProject;
+import org.eventb.theory.core.ITheoryRoot;
 
 /**
  * Generates code from your model files on save.
@@ -28,34 +33,48 @@ import org.eventb.core.IEventBProject;
  */
 @SuppressWarnings("all")
 public class BSharpGenerator extends AbstractGenerator {
+  protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+  
+  private String projName;
+  
   private IEventBProject proj;
   
   private String fileName;
+  
+  private ITheoryRoot currentThy;
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     try {
       EObject _get = resource.getContents().get(0);
       final TopLevel topLevel = ((TopLevel) _get);
-      final String pkgName = topLevel.getName();
-      this.proj = EventBUtils.getEventBProject(pkgName);
+      String _name = topLevel.getName();
+      String _plus = (_name + "-gen");
+      this.projName = _plus;
+      this.proj = EventBUtils.getEventBProject(this.projName);
       boolean _exists = this.proj.getRodinProject().exists();
       boolean _not = (!_exists);
       if (_not) {
-        this.proj = EventBUtils.createEventBProject(pkgName, null);
+        InputOutput.<String>print("start");
+        this.proj = EventBUtils.createEventBProject(this.projName, this.nullMonitor);
+        InputOutput.<String>print("end");
       }
       final TopLevelFile topLevelFile = topLevel.getTopLevelFile();
       this.fileName = topLevelFile.getName();
+      this.currentThy = TheoryUtils.createTheory(this.proj.getRodinProject(), this.fileName, null);
       ArrayList<String> toImport = new ArrayList<String>();
       ArrayList<String> prevImports = new ArrayList<String>();
       boolean importing = true;
       boolean firstImport = true;
+      ITheoryRoot lastThy = this.currentThy;
       EList<EObject> _eContents = topLevelFile.eContents();
       for (final EObject eObject : _eContents) {
         if ((eObject instanceof ImportStatement)) {
           importing = true;
           this.addToToImports(toImport, ((ImportStatement) eObject).getImports(), prevImports);
         } else {
+          if (importing) {
+          }
           if ((eObject instanceof ClassDecl)) {
             this.generate_ClassDecl(((ClassDecl) eObject), toImport, fsa, context);
             Iterables.<String>addAll(prevImports, toImport);
@@ -93,6 +112,10 @@ public class BSharpGenerator extends AbstractGenerator {
   }
   
   public Object generate_Extend(final Extend extend, final ArrayList<String> imports, final IFileSystemAccess2 fsa, final IGeneratorContext ctx) {
+    return null;
+  }
+  
+  public Object resolveImports(final ArrayList<String> imports, final ITheoryRoot currentThy) {
     return null;
   }
 }

@@ -6,7 +6,9 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TypeConstructor;
+import com.google.common.collect.Iterables;
 import java.util.ArrayList;
+import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Conversions;
@@ -68,6 +70,15 @@ public class BSharpUtil {
         }
       }
     }
+  }
+  
+  public static ArrayList<EObject> expandConstraintTypes(final Collection<ClassDecl> constraints) {
+    ArrayList<EObject> result = new ArrayList<EObject>();
+    Iterables.<EObject>addAll(result, constraints);
+    for (final ClassDecl superClass : constraints) {
+      BSharpUtil.superClassesInternal(((BppClass) superClass), result);
+    }
+    return result;
   }
   
   public static ArrayList<EObject> superClasses(final BppClass c) {

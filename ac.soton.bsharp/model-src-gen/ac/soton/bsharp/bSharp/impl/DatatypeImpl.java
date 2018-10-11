@@ -6,8 +6,6 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
-import ac.soton.bsharp.bSharp.PolymorphicTypeName;
-import ac.soton.bsharp.bSharp.TypedVariable;
 
 import java.util.ArrayList;
 import java.util.Collection;

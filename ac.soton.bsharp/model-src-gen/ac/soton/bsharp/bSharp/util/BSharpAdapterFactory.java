@@ -109,20 +109,12 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createGenNameAdapter();
 			}
 			@Override
-			public Adapter casePolymorphicTypeName(PolymorphicTypeName object) {
-				return createPolymorphicTypeNameAdapter();
-			}
-			@Override
 			public Adapter casePolyContext(PolyContext object) {
 				return createPolyContextAdapter();
 			}
 			@Override
-			public Adapter casePolyContextTypes(PolyContextTypes object) {
-				return createPolyContextTypesAdapter();
-			}
-			@Override
-			public Adapter casePolyTypeConstraints(PolyTypeConstraints object) {
-				return createPolyTypeConstraintsAdapter();
+			public Adapter casePolyType(PolyType object) {
+				return createPolyTypeAdapter();
 			}
 			@Override
 			public Adapter caseSuperTypeList(SuperTypeList object) {
@@ -201,10 +193,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTypedVariableAdapter();
 			}
 			@Override
-			public Adapter caseTypeDeclaration(TypeDeclaration object) {
-				return createTypeDeclarationAdapter();
-			}
-			@Override
 			public Adapter caseQuantLambda(QuantLambda object) {
 				return createQuantLambdaAdapter();
 			}
@@ -215,6 +203,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseFunctionCall(FunctionCall object) {
 				return createFunctionCallAdapter();
+			}
+			@Override
+			public Adapter caseClassVarDecl(ClassVarDecl object) {
+				return createClassVarDeclAdapter();
 			}
 			@Override
 			public Adapter casePrefix(Prefix object) {
@@ -359,20 +351,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.PolymorphicTypeName <em>Polymorphic Type Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.PolymorphicTypeName
-	 * @generated
-	 */
-	public Adapter createPolymorphicTypeNameAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.PolyContext <em>Poly Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -387,30 +365,16 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.PolyContextTypes <em>Poly Context Types</em>}'.
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.PolyType <em>Poly Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.PolyContextTypes
+	 * @see ac.soton.bsharp.bSharp.PolyType
 	 * @generated
 	 */
-	public Adapter createPolyContextTypesAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.PolyTypeConstraints <em>Poly Type Constraints</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.PolyTypeConstraints
-	 * @generated
-	 */
-	public Adapter createPolyTypeConstraintsAdapter() {
+	public Adapter createPolyTypeAdapter() {
 		return null;
 	}
 
@@ -681,20 +645,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TypeDeclaration <em>Type Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.TypeDeclaration
-	 * @generated
-	 */
-	public Adapter createTypeDeclarationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.QuantLambda <em>Quant Lambda</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -733,6 +683,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFunctionCallAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.ClassVarDecl <em>Class Var Decl</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.ClassVarDecl
+	 * @generated
+	 */
+	public Adapter createClassVarDeclAdapter() {
 		return null;
 	}
 

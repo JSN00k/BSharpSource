@@ -71,6 +71,7 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('(' ')')?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     classVarDecl=ClassVarDecl (ambiguity) (rule end)
 	 *     typeInst=[ExpressionVariable|ID] (ambiguity) (rule end)
 	 */
 	protected void emit_FunctionCall___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

@@ -2,13 +2,16 @@ package ac.soton.bsharp.scoping;
 
 import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.FunctionName;
+import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
@@ -64,6 +67,22 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     };
     ArrayList<? extends EObject> typeNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, _function, _function_1);
     return Scopes.scopeFor(typeNames, parent);
+  }
+  
+  public IScope scope_ExpressionVariable(final ClassVarDecl ctx, final EReference reference) {
+    GenName genName = ctx.getOwnerType();
+    if ((genName instanceof PolyType)) {
+      final PolyType polyType = ((PolyType) genName);
+      if (((polyType.getSuperTypes() != null) && (!polyType.getSuperTypes().isEmpty()))) {
+        final ArrayList<EObject> superClasses = BSharpUtil.expandConstraintTypes(polyType.getSuperTypes());
+        IScope result = IScope.NULLSCOPE;
+        for (final EObject superClass : superClasses) {
+          result = this.getVariableScopeIncludingForCtxInclusive(superClass, result);
+        }
+        return result;
+      }
+    }
+    return IScope.NULLSCOPE;
   }
   
   public IScope scope_ExpressionVariable(final EObject context, final EReference reference) {
@@ -125,6 +144,20 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     } else {
       return Scopes.scopeFor(polyProvider.getPolyTypeNames(), parentScope);
     }
+  }
+  
+  public IScope getVariableScopeIncludingForCtxInclusive(final EObject ctx, final IScope scope) {
+    final IScope parentScope = this.getVariableScopeFor(ctx, scope);
+    if ((ctx instanceof IVariableProvider)) {
+      final IVariableProvider varProv = ((IVariableProvider) ctx);
+      final Collection<EObject> variableNames = varProv.getVariablesNames();
+      if ((variableNames == null)) {
+        return parentScope;
+      } else {
+        return Scopes.scopeFor(variableNames, parentScope);
+      }
+    }
+    return parentScope;
   }
   
   public IScope getVariableScopeFor(final EObject context, final IScope parent) {

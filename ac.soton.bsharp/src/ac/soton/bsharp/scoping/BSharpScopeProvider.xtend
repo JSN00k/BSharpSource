@@ -20,6 +20,8 @@ import ac.soton.bsharp.util.BSharpUtil
 import ac.soton.bsharp.bSharp.BppClass
 import ac.soton.bsharp.bSharp.TypedVariable
 import java.util.ArrayList
+import ac.soton.bsharp.bSharp.ClassVarDecl
+import ac.soton.bsharp.bSharp.PolyType
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -57,6 +59,31 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 			[object | object instanceof ClassDecl]
 		)
 		return Scopes.scopeFor(typeNames, parent)
+	}
+	
+	def IScope scope_ExpressionVariable(ClassVarDecl ctx, EReference reference) {
+		/* In this case it is necessary to check the class referenced from GenName, then
+		 * finding it's referencable variables
+		 */
+		 
+		 var genName = ctx.ownerType
+		 if (genName instanceof PolyType) {
+		 	val polyType = genName as PolyType
+		 	if (polyType.superTypes !== null && !polyType.superTypes.empty) {
+		 		/* We now need to iterate over the constraints and find the applicable
+		 		 * member variables and functions.
+		 		 */
+		 		 val superClasses = BSharpUtil.expandConstraintTypes(polyType.superTypes)
+		 		 var result = IScope.NULLSCOPE
+		 		 for (superClass : superClasses) {
+		 		 	result = getVariableScopeIncludingForCtxInclusive(superClass, result)
+		 		 }
+		 		 
+		 		 return result
+		 	}
+		 }
+		 
+		 return IScope.NULLSCOPE
 	}
 	
 	def IScope scope_ExpressionVariable(EObject context, EReference reference) {
@@ -130,6 +157,21 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		} else {
 			return Scopes.scopeFor(polyProvider.polyTypeNames, parentScope)
 		}
+	}
+	
+	def IScope getVariableScopeIncludingForCtxInclusive(EObject ctx, IScope scope) {
+		val parentScope = getVariableScopeFor(ctx, scope)
+		if (ctx instanceof IVariableProvider) {
+			val varProv = ctx as IVariableProvider
+			val variableNames = varProv.variablesNames
+			
+			if (variableNames === null)
+				return parentScope
+			else
+				return Scopes.scopeFor(variableNames, parentScope)
+		}
+		
+		return parentScope
 	}
 	
 	def IScope getVariableScopeFor(EObject context, IScope parent) {

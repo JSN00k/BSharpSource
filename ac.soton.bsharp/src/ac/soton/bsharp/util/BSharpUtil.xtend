@@ -7,6 +7,8 @@ import ac.soton.bsharp.bSharp.ConstructedType
 import ac.soton.bsharp.bSharp.TypeConstructor
 import ac.soton.bsharp.bSharp.Datatype
 import org.eclipse.emf.ecore.EObject
+import java.util.Collection
+import ac.soton.bsharp.bSharp.PolyType
 
 class BSharpUtil {
 	/* Constructed types can be a genuine constructed type (e.g., they are created with a 
@@ -71,6 +73,18 @@ class BSharpUtil {
 			 	}
 			 }
 		}
+	}
+	
+	def static ArrayList<EObject> expandConstraintTypes(Collection<ClassDecl> constraints) {
+		var ArrayList<EObject> result = new ArrayList
+		
+		result += constraints
+		
+		for (superClass : constraints) {
+			superClassesInternal(superClass as BppClass, result)
+		}
+		
+		return result
 	}
 	
 	def static superClasses(BppClass c) {

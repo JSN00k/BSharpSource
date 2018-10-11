@@ -18,5 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface IPolyTypeProvider extends EObject {
-	public Collection<PolymorphicTypeName> getPolyTypeNames();
+	public Collection<PolyType> getPolyTypeNames();
 } // IPolyTypeProvider

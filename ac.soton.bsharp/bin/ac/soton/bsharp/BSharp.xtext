@@ -35,7 +35,7 @@ Type:
 	ClassDecl
 ;
 
-GenName: PolymorphicTypeName | Type;
+GenName: PolyType | Type;
 
 /* -------------------------- Import Statements -------------------- */
 /* I had hoped to use a python style import, however this seems to be fighting 
@@ -56,6 +56,14 @@ ImportStatement:
 		(imports+=QualifiedNameWithWildcard)+
 ;
 
+GlobalImport:
+	'From' project=QualifiedName 'Import' ('*' | (fileNames+=[TopLevelFile])*)
+;
+
+LocalImport:
+	'Import' fileNames+=[TopLevelFile] '.' 
+;
+
 /* ------------------------ Class statements --------------------- */
 
 
@@ -68,18 +76,12 @@ Class returns BppClass:
 
 /*---------------- Polymorphic Context of -------------------------- */
 
-PolymorphicTypeName: name=ID;
-
 PolyContext:
-	'<' (polyTypes+=PolyContextTypes)+ '>'
+	'<' (polyTypes+=PolyType)+ '>'
 ;
 
-PolyContextTypes:
-	name=PolymorphicTypeName (constraints+=PolyTypeConstraints)*
-;
-
-PolyTypeConstraints:
-	':' TypeName+=[ClassDecl|QualifiedName] (',' TypeName+=[ClassDecl|QualifiedName])*
+PolyType:
+	name=ID (':' superTypes+=[ClassDecl|QualifiedName] (',' superTypes+=[ClassDecl|QualifiedName])*)?
 ;
 
 /* ------------------- SuperTypes ---------------------------------- */
@@ -273,7 +275,13 @@ Bracket returns Bracket:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns FunctionCall:
-	(typeInst=[ExpressionVariable] | (ownerType=[GenName] '.' typeInst=[ExpressionVariable])) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+;
+
+/* This is used to get variables from a class I think that it may be only applicable for
+ * concrete and polynomial types, but I'm not entirely sure. */
+ClassVarDecl:
+	(ownerType=[GenName] '.' typeInst=[ExpressionVariable])
 ;
 
 ExpressionVariable:

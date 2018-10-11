@@ -64,10 +64,8 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.BPP_CLASS: return createBppClass();
 			case BSharpPackage.BSHARP_BLOCK: return createBSharpBlock();
 			case BSharpPackage.GEN_NAME: return createGenName();
-			case BSharpPackage.POLYMORPHIC_TYPE_NAME: return createPolymorphicTypeName();
 			case BSharpPackage.POLY_CONTEXT: return createPolyContext();
-			case BSharpPackage.POLY_CONTEXT_TYPES: return createPolyContextTypes();
-			case BSharpPackage.POLY_TYPE_CONSTRAINTS: return createPolyTypeConstraints();
+			case BSharpPackage.POLY_TYPE: return createPolyType();
 			case BSharpPackage.SUPER_TYPE_LIST: return createSuperTypeList();
 			case BSharpPackage.TYPE_CONSTRUCTOR: return createTypeConstructor();
 			case BSharpPackage.CONSTRUCTED_TYPE: return createConstructedType();
@@ -87,10 +85,10 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.TYPED_VARIABLE_LIST: return createTypedVariableList();
 			case BSharpPackage.VARIABLE_TYPING: return createVariableTyping();
 			case BSharpPackage.TYPED_VARIABLE: return createTypedVariable();
-			case BSharpPackage.TYPE_DECLARATION: return createTypeDeclaration();
 			case BSharpPackage.QUANT_LAMBDA: return createQuantLambda();
 			case BSharpPackage.EXPRESSION: return createExpression();
 			case BSharpPackage.FUNCTION_CALL: return createFunctionCall();
+			case BSharpPackage.CLASS_VAR_DECL: return createClassVarDecl();
 			case BSharpPackage.PREFIX: return createPrefix();
 			case BSharpPackage.BRACKET: return createBracket();
 			case BSharpPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
@@ -167,16 +165,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PolymorphicTypeName createPolymorphicTypeName() {
-		PolymorphicTypeNameImpl polymorphicTypeName = new PolymorphicTypeNameImpl();
-		return polymorphicTypeName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public PolyContext createPolyContext() {
 		PolyContextImpl polyContext = new PolyContextImpl();
 		return polyContext;
@@ -187,19 +175,9 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PolyContextTypes createPolyContextTypes() {
-		PolyContextTypesImpl polyContextTypes = new PolyContextTypesImpl();
-		return polyContextTypes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PolyTypeConstraints createPolyTypeConstraints() {
-		PolyTypeConstraintsImpl polyTypeConstraints = new PolyTypeConstraintsImpl();
-		return polyTypeConstraints;
+	public PolyType createPolyType() {
+		PolyTypeImpl polyType = new PolyTypeImpl();
+		return polyType;
 	}
 
 	/**
@@ -397,16 +375,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeDeclaration createTypeDeclaration() {
-		TypeDeclarationImpl typeDeclaration = new TypeDeclarationImpl();
-		return typeDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public QuantLambda createQuantLambda() {
 		QuantLambdaImpl quantLambda = new QuantLambdaImpl();
 		return quantLambda;
@@ -429,6 +397,16 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public FunctionCall createFunctionCall() {
 		FunctionCallImpl functionCall = new FunctionCallImpl();
 		return functionCall;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClassVarDecl createClassVarDecl() {
+		ClassVarDeclImpl classVarDecl = new ClassVarDeclImpl();
+		return classVarDecl;
 	}
 
 	/**

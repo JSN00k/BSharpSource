@@ -143,29 +143,17 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.POLYMORPHIC_TYPE_NAME: {
-				PolymorphicTypeName polymorphicTypeName = (PolymorphicTypeName)theEObject;
-				T result = casePolymorphicTypeName(polymorphicTypeName);
-				if (result == null) result = caseGenName(polymorphicTypeName);
-				if (result == null) result = caseNamedObject(polymorphicTypeName);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.POLY_CONTEXT: {
 				PolyContext polyContext = (PolyContext)theEObject;
 				T result = casePolyContext(polyContext);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.POLY_CONTEXT_TYPES: {
-				PolyContextTypes polyContextTypes = (PolyContextTypes)theEObject;
-				T result = casePolyContextTypes(polyContextTypes);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.POLY_TYPE_CONSTRAINTS: {
-				PolyTypeConstraints polyTypeConstraints = (PolyTypeConstraints)theEObject;
-				T result = casePolyTypeConstraints(polyTypeConstraints);
+			case BSharpPackage.POLY_TYPE: {
+				PolyType polyType = (PolyType)theEObject;
+				T result = casePolyType(polyType);
+				if (result == null) result = caseGenName(polyType);
+				if (result == null) result = caseNamedObject(polyType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -304,12 +292,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.TYPE_DECLARATION: {
-				TypeDeclaration typeDeclaration = (TypeDeclaration)theEObject;
-				T result = caseTypeDeclaration(typeDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.QUANT_LAMBDA: {
 				QuantLambda quantLambda = (QuantLambda)theEObject;
 				T result = caseQuantLambda(quantLambda);
@@ -329,6 +311,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 				FunctionCall functionCall = (FunctionCall)theEObject;
 				T result = caseFunctionCall(functionCall);
 				if (result == null) result = caseExpression(functionCall);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.CLASS_VAR_DECL: {
+				ClassVarDecl classVarDecl = (ClassVarDecl)theEObject;
+				T result = caseClassVarDecl(classVarDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -482,21 +470,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Polymorphic Type Name</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Polymorphic Type Name</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePolymorphicTypeName(PolymorphicTypeName object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Poly Context</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -512,32 +485,17 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Poly Context Types</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Poly Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Poly Context Types</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Poly Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePolyContextTypes(PolyContextTypes object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Poly Type Constraints</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Poly Type Constraints</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePolyTypeConstraints(PolyTypeConstraints object) {
+	public T casePolyType(PolyType object) {
 		return null;
 	}
 
@@ -827,21 +785,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypeDeclaration(TypeDeclaration object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Quant Lambda</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -883,6 +826,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFunctionCall(FunctionCall object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class Var Decl</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class Var Decl</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassVarDecl(ClassVarDecl object) {
 		return null;
 	}
 
