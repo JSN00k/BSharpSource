@@ -93,6 +93,18 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTopLevelFileAdapter();
 			}
 			@Override
+			public Adapter caseGlobalImport(GlobalImport object) {
+				return createGlobalImportAdapter();
+			}
+			@Override
+			public Adapter caseFileImport(FileImport object) {
+				return createFileImportAdapter();
+			}
+			@Override
+			public Adapter caseLocalImport(LocalImport object) {
+				return createLocalImportAdapter();
+			}
+			@Override
 			public Adapter caseClassDecl(ClassDecl object) {
 				return createClassDeclAdapter();
 			}
@@ -231,18 +243,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNamedObject(NamedObject object) {
 				return createNamedObjectAdapter();
-			}
-			@Override
-			public Adapter caseGlobalImport(GlobalImport object) {
-				return createGlobalImportAdapter();
-			}
-			@Override
-			public Adapter caseFileImport(FileImport object) {
-				return createFileImportAdapter();
-			}
-			@Override
-			public Adapter caseLocalImport(LocalImport object) {
-				return createLocalImportAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

@@ -35,7 +35,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTopLevelFileAccess().getAlternatives_1(), "rule__TopLevelFile__Alternatives_1");
 			builder.put(grammarAccess.getClassDeclAccess().getAlternatives(), "rule__ClassDecl__Alternatives");
 			builder.put(grammarAccess.getGenNameAccess().getAlternatives(), "rule__GenName__Alternatives");
-			builder.put(grammarAccess.getFileImportAccess().getAlternatives_2(), "rule__FileImport__Alternatives_2");
+			builder.put(grammarAccess.getFileImportAccess().getAlternatives_1_1(), "rule__FileImport__Alternatives_1_1");
 			builder.put(grammarAccess.getConstructedTypeAccess().getConstructorsAlternatives_1_0_0(), "rule__ConstructedType__ConstructorsAlternatives_1_0_0");
 			builder.put(grammarAccess.getTypeBodyElementsAccess().getAlternatives(), "rule__TypeBodyElements__Alternatives");
 			builder.put(grammarAccess.getQuantifierAccess().getQTypeAlternatives_0_0(), "rule__Quantifier__QTypeAlternatives_0_0");
@@ -53,6 +53,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQualifiedNameWithWildcardAccess().getGroup(), "rule__QualifiedNameWithWildcard__Group__0");
 			builder.put(grammarAccess.getGlobalImportAccess().getGroup(), "rule__GlobalImport__Group__0");
 			builder.put(grammarAccess.getFileImportAccess().getGroup(), "rule__FileImport__Group__0");
+			builder.put(grammarAccess.getFileImportAccess().getGroup_1(), "rule__FileImport__Group_1__0");
 			builder.put(grammarAccess.getLocalImportAccess().getGroup(), "rule__LocalImport__Group__0");
 			builder.put(grammarAccess.getClassAccess().getGroup(), "rule__Class__Group__0");
 			builder.put(grammarAccess.getPolyContextAccess().getGroup(), "rule__PolyContext__Group__0");
@@ -108,7 +109,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGlobalImportAccess().getProjectAssignment_1(), "rule__GlobalImport__ProjectAssignment_1");
 			builder.put(grammarAccess.getGlobalImportAccess().getFileImportsAssignment_3(), "rule__GlobalImport__FileImportsAssignment_3");
 			builder.put(grammarAccess.getFileImportAccess().getFileNameAssignment_0(), "rule__FileImport__FileNameAssignment_0");
-			builder.put(grammarAccess.getFileImportAccess().getTypeAssignment_2_1(), "rule__FileImport__TypeAssignment_2_1");
+			builder.put(grammarAccess.getFileImportAccess().getTypeAssignment_1_1_1(), "rule__FileImport__TypeAssignment_1_1_1");
 			builder.put(grammarAccess.getLocalImportAccess().getFileImportsAssignment_1(), "rule__LocalImport__FileImportsAssignment_1");
 			builder.put(grammarAccess.getClassAccess().getNameAssignment_1(), "rule__Class__NameAssignment_1");
 			builder.put(grammarAccess.getClassAccess().getContextAssignment_2(), "rule__Class__ContextAssignment_2");

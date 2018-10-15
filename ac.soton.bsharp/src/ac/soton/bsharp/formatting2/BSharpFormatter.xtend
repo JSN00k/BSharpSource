@@ -38,5 +38,5 @@ class BSharpFormatter extends AbstractFormatter2 {
 		}
 	}
 	
-	// TODO: implement for GlobalImport, BppClass, PolyContext, SuperTypeList, ConstructedType, TypeConstructor, TypeDeclContext, TypeStructure, Where, Datatype, DatatypeConstructor, Extend, BSharpBlock, TypeBodyElements, FunctionDecl, MatchStatement, MatchCase, TheoremBody, TheoremDecl, TypedVariableList, VariableTyping, QuantLambda, Prefix, Infix, Bracket, FunctionCall, Instance
+	// TODO: implement for GlobalImport, LocalImport, BppClass, PolyContext, SuperTypeList, ConstructedType, TypeConstructor, TypeDeclContext, TypeStructure, Where, Datatype, DatatypeConstructor, Extend, BSharpBlock, TypeBodyElements, FunctionDecl, MatchStatement, MatchCase, TheoremBody, TheoremDecl, TypedVariableList, VariableTyping, QuantLambda, Prefix, Infix, Bracket, FunctionCall, Instance
 }

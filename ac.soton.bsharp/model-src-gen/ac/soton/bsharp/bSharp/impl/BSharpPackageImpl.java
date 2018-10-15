@@ -1510,8 +1510,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFileImport_Type() {
-		return (EReference)fileImportEClass.getEStructuralFeatures().get(1);
+	public EAttribute getFileImport_Type() {
+		return (EAttribute)fileImportEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1579,6 +1579,17 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(topLevelFileEClass, TOP_LEVEL_FILE__INSTANCES);
 		createEReference(topLevelFileEClass, TOP_LEVEL_FILE__GLOBAL_IMPORTS);
 		createEReference(topLevelFileEClass, TOP_LEVEL_FILE__LOCAL_IMPORTS);
+
+		globalImportEClass = createEClass(GLOBAL_IMPORT);
+		createEReference(globalImportEClass, GLOBAL_IMPORT__FILE_IMPORTS);
+		createEAttribute(globalImportEClass, GLOBAL_IMPORT__PROJECT);
+
+		fileImportEClass = createEClass(FILE_IMPORT);
+		createEAttribute(fileImportEClass, FILE_IMPORT__FILE_NAME);
+		createEAttribute(fileImportEClass, FILE_IMPORT__TYPE);
+
+		localImportEClass = createEClass(LOCAL_IMPORT);
+		createEReference(localImportEClass, LOCAL_IMPORT__FILE_IMPORTS);
 
 		classDeclEClass = createEClass(CLASS_DECL);
 		createEReference(classDeclEClass, CLASS_DECL__CONTEXT);
@@ -1714,17 +1725,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		namedObjectEClass = createEClass(NAMED_OBJECT);
 		createEAttribute(namedObjectEClass, NAMED_OBJECT__NAME);
-
-		globalImportEClass = createEClass(GLOBAL_IMPORT);
-		createEReference(globalImportEClass, GLOBAL_IMPORT__FILE_IMPORTS);
-		createEAttribute(globalImportEClass, GLOBAL_IMPORT__PROJECT);
-
-		fileImportEClass = createEClass(FILE_IMPORT);
-		createEAttribute(fileImportEClass, FILE_IMPORT__FILE_NAME);
-		createEReference(fileImportEClass, FILE_IMPORT__TYPE);
-
-		localImportEClass = createEClass(LOCAL_IMPORT);
-		createEReference(localImportEClass, LOCAL_IMPORT__FILE_IMPORTS);
 	}
 
 	/**
@@ -1805,6 +1805,17 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getTopLevelFile_Instances(), this.getInstance(), null, "instances", null, 0, -1, TopLevelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTopLevelFile_GlobalImports(), this.getGlobalImport(), null, "globalImports", null, 0, -1, TopLevelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTopLevelFile_LocalImports(), this.getLocalImport(), null, "localImports", null, 0, -1, TopLevelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(globalImportEClass, GlobalImport.class, "GlobalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGlobalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGlobalImport_Project(), ecorePackage.getEString(), "project", null, 0, 1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(fileImportEClass, FileImport.class, "FileImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFileImport_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1, FileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileImport_Type(), ecorePackage.getEString(), "type", null, 0, 1, FileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(localImportEClass, LocalImport.class, "LocalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLocalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, LocalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classDeclEClass, ClassDecl.class, "ClassDecl", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1940,17 +1951,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		initEClass(namedObjectEClass, NamedObject.class, "NamedObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(globalImportEClass, GlobalImport.class, "GlobalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGlobalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGlobalImport_Project(), ecorePackage.getEString(), "project", null, 0, 1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(fileImportEClass, FileImport.class, "FileImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFileImport_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1, FileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFileImport_Type(), this.getTopLevelInstance(), null, "type", null, 0, 1, FileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(localImportEClass, LocalImport.class, "LocalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLocalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, LocalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

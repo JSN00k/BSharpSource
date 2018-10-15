@@ -55,11 +55,10 @@ GlobalImport:
 	'From' project=QualifiedName 'Import' fileImports+=FileImport+
 ;
 
-/* TopLevelInsance inlcudes ClassDecl and Extend, and allows the user to import 
- * Types and Extends as well as entire files.
- */
+/* Imports other files from the current project. The optional type ID allows the importing
+ * of a specific type from the file. */
 FileImport:
-	fileName=ID '.' ('*' | type=ID)
+	fileName=ID ('.' ('*' | type=ID))?
 ;
 
 LocalImport:

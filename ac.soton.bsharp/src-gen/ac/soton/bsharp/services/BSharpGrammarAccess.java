@@ -292,20 +292,19 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cFileNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cFileNameIDTerminalRuleCall_0_0 = (RuleCall)cFileNameAssignment_0.eContents().get(0);
-		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Keyword cAsteriskKeyword_2_0 = (Keyword)cAlternatives_2.eContents().get(0);
-		private final Assignment cTypeAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final CrossReference cTypeTopLevelInstanceCrossReference_2_1_0 = (CrossReference)cTypeAssignment_2_1.eContents().get(0);
-		private final RuleCall cTypeTopLevelInstanceIDTerminalRuleCall_2_1_0_1 = (RuleCall)cTypeTopLevelInstanceCrossReference_2_1_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Keyword cAsteriskKeyword_1_1_0 = (Keyword)cAlternatives_1_1.eContents().get(0);
+		private final Assignment cTypeAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
+		private final RuleCall cTypeIDTerminalRuleCall_1_1_1_0 = (RuleCall)cTypeAssignment_1_1_1.eContents().get(0);
 		
-		///* TopLevelInsance inlcudes ClassDecl and Extend, and allows the user to import 
-		// * Types and Extends as well as entire files.
-		// */ FileImport:
-		//	fileName=ID '.' ('*' | type=[TopLevelInstance])?;
+		///* Imports other files from the current project. The optional type ID allows the importing
+		// * of a specific type from the file. */ FileImport:
+		//	fileName=ID ('.' ('*' | type=ID))?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//fileName=ID '.' ('*' | type=[TopLevelInstance])?
+		//fileName=ID ('.' ('*' | type=ID))?
 		public Group getGroup() { return cGroup; }
 		
 		//fileName=ID
@@ -314,23 +313,23 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getFileNameIDTerminalRuleCall_0_0() { return cFileNameIDTerminalRuleCall_0_0; }
 		
-		//'.'
-		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
+		//('.' ('*' | type=ID))?
+		public Group getGroup_1() { return cGroup_1; }
 		
-		//('*' | type=[TopLevelInstance])?
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		//'.'
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		
+		//'*' | type=ID
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
 		//'*'
-		public Keyword getAsteriskKeyword_2_0() { return cAsteriskKeyword_2_0; }
+		public Keyword getAsteriskKeyword_1_1_0() { return cAsteriskKeyword_1_1_0; }
 		
-		//type=[TopLevelInstance]
-		public Assignment getTypeAssignment_2_1() { return cTypeAssignment_2_1; }
-		
-		//[TopLevelInstance]
-		public CrossReference getTypeTopLevelInstanceCrossReference_2_1_0() { return cTypeTopLevelInstanceCrossReference_2_1_0; }
+		//type=ID
+		public Assignment getTypeAssignment_1_1_1() { return cTypeAssignment_1_1_1; }
 		
 		//ID
-		public RuleCall getTypeTopLevelInstanceIDTerminalRuleCall_2_1_0_1() { return cTypeTopLevelInstanceIDTerminalRuleCall_2_1_0_1; }
+		public RuleCall getTypeIDTerminalRuleCall_1_1_1_0() { return cTypeIDTerminalRuleCall_1_1_1_0; }
 	}
 	public class LocalImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.LocalImport");
@@ -2156,10 +2155,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getGlobalImportAccess().getRule();
 	}
 	
-	///* TopLevelInsance inlcudes ClassDecl and Extend, and allows the user to import 
-	// * Types and Extends as well as entire files.
-	// */ FileImport:
-	//	fileName=ID '.' ('*' | type=[TopLevelInstance])?;
+	///* Imports other files from the current project. The optional type ID allows the importing
+	// * of a specific type from the file. */ FileImport:
+	//	fileName=ID ('.' ('*' | type=ID))?;
 	public FileImportElements getFileImportAccess() {
 		return pFileImport;
 	}

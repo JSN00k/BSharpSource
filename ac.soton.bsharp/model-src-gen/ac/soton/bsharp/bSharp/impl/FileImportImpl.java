@@ -51,14 +51,24 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	protected String fileName = FILE_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected TopLevelInstance type;
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,15 +115,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TopLevelInstance getType() {
-		if (type != null && type.eIsProxy()) {
-			InternalEObject oldType = (InternalEObject)type;
-			type = (TopLevelInstance)eResolveProxy(oldType);
-			if (type != oldType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.FILE_IMPORT__TYPE, oldType, type));
-			}
-		}
+	public String getType() {
 		return type;
 	}
 
@@ -122,17 +124,8 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TopLevelInstance basicGetType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(TopLevelInstance newType) {
-		TopLevelInstance oldType = type;
+	public void setType(String newType) {
+		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FILE_IMPORT__TYPE, oldType, type));
@@ -149,8 +142,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 			case BSharpPackage.FILE_IMPORT__FILE_NAME:
 				return getFileName();
 			case BSharpPackage.FILE_IMPORT__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,7 +159,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 				setFileName((String)newValue);
 				return;
 			case BSharpPackage.FILE_IMPORT__TYPE:
-				setType((TopLevelInstance)newValue);
+				setType((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -185,7 +177,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 				setFileName(FILE_NAME_EDEFAULT);
 				return;
 			case BSharpPackage.FILE_IMPORT__TYPE:
-				setType((TopLevelInstance)null);
+				setType(TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -202,7 +194,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 			case BSharpPackage.FILE_IMPORT__FILE_NAME:
 				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
 			case BSharpPackage.FILE_IMPORT__TYPE:
-				return type != null;
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -219,6 +211,8 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (fileName: ");
 		result.append(fileName);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

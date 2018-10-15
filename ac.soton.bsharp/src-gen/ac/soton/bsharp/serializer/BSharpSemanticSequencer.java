@@ -351,7 +351,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FileImport returns FileImport
 	 *
 	 * Constraint:
-	 *     (fileName=ID type=[TopLevelInstance|ID]?)
+	 *     (fileName=ID type=ID?)
 	 */
 	protected void sequence_FileImport(ISerializationContext context, FileImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

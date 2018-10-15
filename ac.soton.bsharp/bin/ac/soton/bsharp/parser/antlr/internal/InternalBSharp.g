@@ -497,27 +497,34 @@ ruleFileImport returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1='.'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getFileImportAccess().getFullStopKeyword_1());
-		}
 		(
-			otherlv_2='*'
+			otherlv_1='.'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getFileImportAccess().getAsteriskKeyword_2_0());
+				newLeafNode(otherlv_1, grammarAccess.getFileImportAccess().getFullStopKeyword_1_0());
 			}
-			    |
 			(
+				otherlv_2='*'
+				{
+					newLeafNode(otherlv_2, grammarAccess.getFileImportAccess().getAsteriskKeyword_1_1_0());
+				}
+				    |
 				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFileImportRule());
+					(
+						lv_type_3_0=RULE_ID
+						{
+							newLeafNode(lv_type_3_0, grammarAccess.getFileImportAccess().getTypeIDTerminalRuleCall_1_1_1_0());
 						}
-					}
-					otherlv_3=RULE_ID
-					{
-						newLeafNode(otherlv_3, grammarAccess.getFileImportAccess().getTypeTopLevelInstanceCrossReference_2_1_0());
-					}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getFileImportRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"type",
+								lv_type_3_0,
+								"ac.soton.bsharp.BSharp.ID");
+						}
+					)
 				)
 			)
 		)?

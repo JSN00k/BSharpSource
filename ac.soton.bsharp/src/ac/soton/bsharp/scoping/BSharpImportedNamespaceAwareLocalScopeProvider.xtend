@@ -5,7 +5,6 @@ package ac.soton.bsharp.scoping
 
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider
-import org.eclipse.emf.common.util.EList
 import java.util.List
 import org.eclipse.xtext.scoping.impl.ImportNormalizer
 import com.google.common.collect.Lists
@@ -13,7 +12,6 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import javax.inject.Inject
 import ac.soton.bsharp.bSharp.TopLevel
-import ac.soton.bsharp.bSharp.TopLevelFile
 
 /**
  * This class contains custom scoping description.
@@ -31,19 +29,14 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		 
 		var List<ImportNormalizer> importedNamespaceResolvers = Lists.newArrayList()
 
-		val packageName = context.fullyQualifiedName
-
 		/* Add the package to the fully qualified domain names */
 		if (context instanceof TopLevel) {
 			var topLevel = context as TopLevel
-
-			// fqn is the package of this file
-			if (packageName !== null) {
-				importedNamespaceResolvers += new ImportNormalizer(packageName, true, ignoreCase)
-			}
+			val packageName = topLevel.fullyQualifiedName
 
 			var topLevelFile = topLevel.topLevelFile
 			val localImports = topLevelFile.localImports
+			val globalImports = topLevelFile.globalImports
 
 			if (localImports !== null) {
 				for (localImport : localImports) {
@@ -55,28 +48,33 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 						} else {
 							importString += '*'
 						}
-
+						
+						val resolver = createImportedNamespaceResolver(importString, ignoreCase)
+						
+						if (resolver !== null)
+							importedNamespaceResolvers += resolver
+						
 					}
 				}
 			}
 		
-		val globalImports = topLevelFile.globalImports
-		
-
-//		for (child : eContents) {
-//			val globals = child.eClass().getEStructuralFeature("globalImports")
-//			val locals = child.eClass().getEStructuralFeature("localImports")
-//			val feature = globals
-//			if (feature !== null && String.equals(feature.getEType().getInstanceClass())) {
-//				val list = child.eGet(feature) as EList<String>
-//				for (importString : list) {
-//					val resolver = createImportedNamespaceResolver(importString, ignoreCase)
-//					if (resolver !== null) {
-//						importedNamespaceResolvers.add(resolver)
-//					}
-//				}
-//			}
-//		}
+			if (globalImports !== null) {
+				for (globalImport : globalImports) {
+					val projName = globalImport.project
+					
+					/* I don't currently handle globalproj.* as I'd need to work out
+					 * how to iterate over all the files in the global proj.
+					 */
+					for (file : globalImport.fileImports) {
+						val importString = projName + '.' + file
+						val resolver = createImportedNamespaceResolver(importString, ignoreCase)
+						
+						if (resolver !== null) {
+							importedNamespaceResolvers += resolver
+						}
+					}
+				}
+			}
 		}
 
 		return importedNamespaceResolvers

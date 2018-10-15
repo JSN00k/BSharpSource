@@ -24,6 +24,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="localImports" upperBound="-1"
         eType="#//LocalImport" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalImport">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
+        eType="#//FileImport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="project" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FileImport">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LocalImport">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
+        eType="#//FileImport" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" abstract="true" eSuperTypes="#//GenName #//ExpressionVariable #//IVariableProvider #//IPolyTypeProvider #//Type #//TopLevelInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
         containment="true"/>
@@ -203,18 +216,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GlobalImport">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
-        eType="#//FileImport" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="project" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FileImport">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TopLevelInstance"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LocalImport">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
-        eType="#//FileImport" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

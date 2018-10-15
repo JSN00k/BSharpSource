@@ -105,6 +105,24 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.GLOBAL_IMPORT: {
+				GlobalImport globalImport = (GlobalImport)theEObject;
+				T result = caseGlobalImport(globalImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.FILE_IMPORT: {
+				FileImport fileImport = (FileImport)theEObject;
+				T result = caseFileImport(fileImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.LOCAL_IMPORT: {
+				LocalImport localImport = (LocalImport)theEObject;
+				T result = caseLocalImport(localImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.CLASS_DECL: {
 				ClassDecl classDecl = (ClassDecl)theEObject;
 				T result = caseClassDecl(classDecl);
@@ -360,24 +378,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.NAMED_OBJECT: {
 				NamedObject namedObject = (NamedObject)theEObject;
 				T result = caseNamedObject(namedObject);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.GLOBAL_IMPORT: {
-				GlobalImport globalImport = (GlobalImport)theEObject;
-				T result = caseGlobalImport(globalImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.FILE_IMPORT: {
-				FileImport fileImport = (FileImport)theEObject;
-				T result = caseFileImport(fileImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.LOCAL_IMPORT: {
-				LocalImport localImport = (LocalImport)theEObject;
-				T result = caseLocalImport(localImport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

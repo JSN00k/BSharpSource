@@ -50,29 +50,29 @@ public interface FileImport extends EObject {
 	void setFileName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(TopLevelInstance)
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFileImport_Type()
 	 * @model
 	 * @generated
 	 */
-	TopLevelInstance getType();
+	String getType();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FileImport#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FileImport#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
+	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(TopLevelInstance value);
+	void setType(String value);
 
 } // FileImport
