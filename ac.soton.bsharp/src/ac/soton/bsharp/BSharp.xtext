@@ -19,9 +19,9 @@ THM_NAME: (INT | ID | WS)* ":";
  */
 TopLevelFile:
 	{TopLevelFile}
-	(imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
+	(globalImports+=GlobalImport | localImports += LocalImport | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
 ;
-	
+
 ClassDecl returns ClassDecl:
 	Class | Datatype
 ;
@@ -51,17 +51,19 @@ QualifiedNameWithWildcard:
     QualifiedName '.*'?
 ;
 
-ImportStatement:
-	'Import'
-		(imports+=QualifiedNameWithWildcard)+
+GlobalImport:
+	'From' project=QualifiedName 'Import' fileImports+=FileImport+
 ;
 
-GlobalImport:
-	'From' project=QualifiedName 'Import' ('*' | (fileNames+=[TopLevelFile])*)
+/* TopLevelInsance inlcudes ClassDecl and Extend, and allows the user to import 
+ * Types and Extends as well as entire files.
+ */
+FileImport:
+	fileName=ID '.' ('*' | type=ID)
 ;
 
 LocalImport:
-	'Import' fileNames+=[TopLevelFile] '.' 
+	'Import' fileImports+=FileImport+
 ;
 
 /* ------------------------ Class statements --------------------- */

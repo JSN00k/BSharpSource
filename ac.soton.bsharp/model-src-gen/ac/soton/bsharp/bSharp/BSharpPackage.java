@@ -64,17 +64,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevel()
 	 * @generated
 	 */
-	int TOP_LEVEL = 3;
-
-	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ImportStatementImpl <em>Import Statement</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.ImportStatementImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getImportStatement()
-	 * @generated
-	 */
-	int IMPORT_STATEMENT = 5;
+	int TOP_LEVEL = 4;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl <em>Class Decl</em>}' class.
@@ -509,6 +499,25 @@ public interface BSharpPackage extends EPackage {
 	int TYPE_FEATURE_COUNT = GEN_NAME_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TopLevelInstanceImpl <em>Top Level Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.TopLevelInstanceImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelInstance()
+	 * @generated
+	 */
+	int TOP_LEVEL_INSTANCE = 3;
+
+	/**
+	 * The number of structural features of the '<em>Top Level Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_INSTANCE_FEATURE_COUNT = 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -543,7 +552,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelFile()
 	 * @generated
 	 */
-	int TOP_LEVEL_FILE = 4;
+	int TOP_LEVEL_FILE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -555,22 +564,13 @@ public interface BSharpPackage extends EPackage {
 	int TOP_LEVEL_FILE__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Imports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_FILE__IMPORTS = 1;
-
-	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_FILE__CLASSES = 2;
+	int TOP_LEVEL_FILE__CLASSES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Extends</b></em>' containment reference list.
@@ -579,7 +579,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_FILE__EXTENDS = 3;
+	int TOP_LEVEL_FILE__EXTENDS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Instances</b></em>' containment reference list.
@@ -588,7 +588,25 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_FILE__INSTANCES = 4;
+	int TOP_LEVEL_FILE__INSTANCES = 3;
+
+	/**
+	 * The feature id for the '<em><b>Global Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_FILE__GLOBAL_IMPORTS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Local Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_FILE__LOCAL_IMPORTS = 5;
 
 	/**
 	 * The number of structural features of the '<em>Top Level File</em>' class.
@@ -597,25 +615,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_FILE_FEATURE_COUNT = 5;
-
-	/**
-	 * The feature id for the '<em><b>Imports</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT_STATEMENT__IMPORTS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Import Statement</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT_STATEMENT_FEATURE_COUNT = 1;
+	int TOP_LEVEL_FILE_FEATURE_COUNT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1692,6 +1692,109 @@ public interface BSharpPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.GlobalImportImpl <em>Global Import</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.GlobalImportImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getGlobalImport()
+	 * @generated
+	 */
+	int GLOBAL_IMPORT = 41;
+
+	/**
+	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_IMPORT__FILE_IMPORTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Project</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_IMPORT__PROJECT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Global Import</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_IMPORT_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FileImportImpl <em>File Import</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.FileImportImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFileImport()
+	 * @generated
+	 */
+	int FILE_IMPORT = 42;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMPORT__FILE_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMPORT__TYPE = 1;
+
+	/**
+	 * The number of structural features of the '<em>File Import</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMPORT_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.LocalImportImpl <em>Local Import</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.LocalImportImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getLocalImport()
+	 * @generated
+	 */
+	int LOCAL_IMPORT = 43;
+
+	/**
+	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_IMPORT__FILE_IMPORTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Local Import</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_IMPORT_FEATURE_COUNT = 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.TopLevel <em>Top Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1745,17 +1848,6 @@ public interface BSharpPackage extends EPackage {
 	EAttribute getTopLevelFile_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.TopLevelFile#getImports <em>Imports</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Imports</em>'.
-	 * @see ac.soton.bsharp.bSharp.TopLevelFile#getImports()
-	 * @see #getTopLevelFile()
-	 * @generated
-	 */
-	EReference getTopLevelFile_Imports();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.TopLevelFile#getClasses <em>Classes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1789,25 +1881,26 @@ public interface BSharpPackage extends EPackage {
 	EReference getTopLevelFile_Instances();
 
 	/**
-	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ImportStatement <em>Import Statement</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.TopLevelFile#getGlobalImports <em>Global Imports</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Import Statement</em>'.
-	 * @see ac.soton.bsharp.bSharp.ImportStatement
+	 * @return the meta object for the containment reference list '<em>Global Imports</em>'.
+	 * @see ac.soton.bsharp.bSharp.TopLevelFile#getGlobalImports()
+	 * @see #getTopLevelFile()
 	 * @generated
 	 */
-	EClass getImportStatement();
+	EReference getTopLevelFile_GlobalImports();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link ac.soton.bsharp.bSharp.ImportStatement#getImports <em>Imports</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.TopLevelFile#getLocalImports <em>Local Imports</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Imports</em>'.
-	 * @see ac.soton.bsharp.bSharp.ImportStatement#getImports()
-	 * @see #getImportStatement()
+	 * @return the meta object for the containment reference list '<em>Local Imports</em>'.
+	 * @see ac.soton.bsharp.bSharp.TopLevelFile#getLocalImports()
+	 * @see #getTopLevelFile()
 	 * @generated
 	 */
-	EAttribute getImportStatement_Imports();
+	EReference getTopLevelFile_LocalImports();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ClassDecl <em>Class Decl</em>}'.
@@ -2884,6 +2977,16 @@ public interface BSharpPackage extends EPackage {
 	EClass getType();
 
 	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.TopLevelInstance <em>Top Level Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Top Level Instance</em>'.
+	 * @see ac.soton.bsharp.bSharp.TopLevelInstance
+	 * @generated
+	 */
+	EClass getTopLevelInstance();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.NamedObject <em>Named Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2903,6 +3006,91 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNamedObject_Name();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.GlobalImport <em>Global Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Global Import</em>'.
+	 * @see ac.soton.bsharp.bSharp.GlobalImport
+	 * @generated
+	 */
+	EClass getGlobalImport();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.GlobalImport#getFileImports <em>File Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>File Imports</em>'.
+	 * @see ac.soton.bsharp.bSharp.GlobalImport#getFileImports()
+	 * @see #getGlobalImport()
+	 * @generated
+	 */
+	EReference getGlobalImport_FileImports();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.GlobalImport#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Project</em>'.
+	 * @see ac.soton.bsharp.bSharp.GlobalImport#getProject()
+	 * @see #getGlobalImport()
+	 * @generated
+	 */
+	EAttribute getGlobalImport_Project();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.FileImport <em>File Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>File Import</em>'.
+	 * @see ac.soton.bsharp.bSharp.FileImport
+	 * @generated
+	 */
+	EClass getFileImport();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.FileImport#getFileName <em>File Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>File Name</em>'.
+	 * @see ac.soton.bsharp.bSharp.FileImport#getFileName()
+	 * @see #getFileImport()
+	 * @generated
+	 */
+	EAttribute getFileImport_FileName();
+
+	/**
+	 * Returns the meta object for the reference '{@link ac.soton.bsharp.bSharp.FileImport#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see ac.soton.bsharp.bSharp.FileImport#getType()
+	 * @see #getFileImport()
+	 * @generated
+	 */
+	EReference getFileImport_Type();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.LocalImport <em>Local Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Local Import</em>'.
+	 * @see ac.soton.bsharp.bSharp.LocalImport
+	 * @generated
+	 */
+	EClass getLocalImport();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.LocalImport#getFileImports <em>File Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>File Imports</em>'.
+	 * @see ac.soton.bsharp.bSharp.LocalImport#getFileImports()
+	 * @see #getLocalImport()
+	 * @generated
+	 */
+	EReference getLocalImport_FileImports();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2971,14 +3159,6 @@ public interface BSharpPackage extends EPackage {
 		EAttribute TOP_LEVEL_FILE__NAME = eINSTANCE.getTopLevelFile_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Imports</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TOP_LEVEL_FILE__IMPORTS = eINSTANCE.getTopLevelFile_Imports();
-
-		/**
 		 * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3003,22 +3183,20 @@ public interface BSharpPackage extends EPackage {
 		EReference TOP_LEVEL_FILE__INSTANCES = eINSTANCE.getTopLevelFile_Instances();
 
 		/**
-		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ImportStatementImpl <em>Import Statement</em>}' class.
+		 * The meta object literal for the '<em><b>Global Imports</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ac.soton.bsharp.bSharp.impl.ImportStatementImpl
-		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getImportStatement()
 		 * @generated
 		 */
-		EClass IMPORT_STATEMENT = eINSTANCE.getImportStatement();
+		EReference TOP_LEVEL_FILE__GLOBAL_IMPORTS = eINSTANCE.getTopLevelFile_GlobalImports();
 
 		/**
-		 * The meta object literal for the '<em><b>Imports</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Local Imports</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMPORT_STATEMENT__IMPORTS = eINSTANCE.getImportStatement_Imports();
+		EReference TOP_LEVEL_FILE__LOCAL_IMPORTS = eINSTANCE.getTopLevelFile_LocalImports();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl <em>Class Decl</em>}' class.
@@ -3903,6 +4081,16 @@ public interface BSharpPackage extends EPackage {
 		EClass TYPE = eINSTANCE.getType();
 
 		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.TopLevelInstanceImpl <em>Top Level Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.TopLevelInstanceImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelInstance()
+		 * @generated
+		 */
+		EClass TOP_LEVEL_INSTANCE = eINSTANCE.getTopLevelInstance();
+
+		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.NamedObjectImpl <em>Named Object</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3919,6 +4107,76 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_OBJECT__NAME = eINSTANCE.getNamedObject_Name();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.GlobalImportImpl <em>Global Import</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.GlobalImportImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getGlobalImport()
+		 * @generated
+		 */
+		EClass GLOBAL_IMPORT = eINSTANCE.getGlobalImport();
+
+		/**
+		 * The meta object literal for the '<em><b>File Imports</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GLOBAL_IMPORT__FILE_IMPORTS = eINSTANCE.getGlobalImport_FileImports();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GLOBAL_IMPORT__PROJECT = eINSTANCE.getGlobalImport_Project();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.FileImportImpl <em>File Import</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.FileImportImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFileImport()
+		 * @generated
+		 */
+		EClass FILE_IMPORT = eINSTANCE.getFileImport();
+
+		/**
+		 * The meta object literal for the '<em><b>File Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE_IMPORT__FILE_NAME = eINSTANCE.getFileImport_FileName();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FILE_IMPORT__TYPE = eINSTANCE.getFileImport_Type();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.LocalImportImpl <em>Local Import</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.LocalImportImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getLocalImport()
+		 * @generated
+		 */
+		EClass LOCAL_IMPORT = eINSTANCE.getLocalImport();
+
+		/**
+		 * The meta object literal for the '<em><b>File Imports</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOCAL_IMPORT__FILE_IMPORTS = eINSTANCE.getLocalImport_FileImports();
 
 	}
 

@@ -5,7 +5,8 @@ package ac.soton.bsharp.generator;
 
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
-import ac.soton.bsharp.bSharp.ImportStatement;
+import ac.soton.bsharp.bSharp.GlobalImport;
+import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.util.TheoryUtils;
@@ -69,9 +70,8 @@ public class BSharpGenerator extends AbstractGenerator {
       ITheoryRoot lastThy = this.currentThy;
       EList<EObject> _eContents = topLevelFile.eContents();
       for (final EObject eObject : _eContents) {
-        if ((eObject instanceof ImportStatement)) {
+        if (((eObject instanceof GlobalImport) || (eObject instanceof LocalImport))) {
           importing = true;
-          this.addToToImports(toImport, ((ImportStatement) eObject).getImports(), prevImports);
         } else {
           if (importing) {
           }

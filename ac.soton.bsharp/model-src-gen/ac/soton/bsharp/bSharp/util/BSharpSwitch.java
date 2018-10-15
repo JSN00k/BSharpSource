@@ -87,6 +87,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.TOP_LEVEL_INSTANCE: {
+				TopLevelInstance topLevelInstance = (TopLevelInstance)theEObject;
+				T result = caseTopLevelInstance(topLevelInstance);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.TOP_LEVEL: {
 				TopLevel topLevel = (TopLevel)theEObject;
 				T result = caseTopLevel(topLevel);
@@ -99,12 +105,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.IMPORT_STATEMENT: {
-				ImportStatement importStatement = (ImportStatement)theEObject;
-				T result = caseImportStatement(importStatement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.CLASS_DECL: {
 				ClassDecl classDecl = (ClassDecl)theEObject;
 				T result = caseClassDecl(classDecl);
@@ -112,6 +112,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIVariableProvider(classDecl);
 				if (result == null) result = caseIPolyTypeProvider(classDecl);
 				if (result == null) result = caseType(classDecl);
+				if (result == null) result = caseTopLevelInstance(classDecl);
 				if (result == null) result = caseGenName(classDecl);
 				if (result == null) result = caseNamedObject(classDecl);
 				if (result == null) result = defaultCase(theEObject);
@@ -125,6 +126,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIVariableProvider(bppClass);
 				if (result == null) result = caseIPolyTypeProvider(bppClass);
 				if (result == null) result = caseType(bppClass);
+				if (result == null) result = caseTopLevelInstance(bppClass);
 				if (result == null) result = caseGenName(bppClass);
 				if (result == null) result = caseNamedObject(bppClass);
 				if (result == null) result = defaultCase(theEObject);
@@ -201,6 +203,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIVariableProvider(datatype);
 				if (result == null) result = caseIPolyTypeProvider(datatype);
 				if (result == null) result = caseType(datatype);
+				if (result == null) result = caseTopLevelInstance(datatype);
 				if (result == null) result = caseGenName(datatype);
 				if (result == null) result = caseNamedObject(datatype);
 				if (result == null) result = defaultCase(theEObject);
@@ -360,6 +363,24 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.GLOBAL_IMPORT: {
+				GlobalImport globalImport = (GlobalImport)theEObject;
+				T result = caseGlobalImport(globalImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.FILE_IMPORT: {
+				FileImport fileImport = (FileImport)theEObject;
+				T result = caseFileImport(fileImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.LOCAL_IMPORT: {
+				LocalImport localImport = (LocalImport)theEObject;
+				T result = caseLocalImport(localImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -391,21 +412,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTopLevelFile(TopLevelFile object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Import Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Import Statement</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseImportStatement(ImportStatement object) {
 		return null;
 	}
 
@@ -965,6 +971,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Top Level Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Top Level Instance</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTopLevelInstance(TopLevelInstance object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -976,6 +997,51 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedObject(NamedObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Global Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Global Import</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGlobalImport(GlobalImport object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>File Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>File Import</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFileImport(FileImport object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Local Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Local Import</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLocalImport(LocalImport object) {
 		return null;
 	}
 

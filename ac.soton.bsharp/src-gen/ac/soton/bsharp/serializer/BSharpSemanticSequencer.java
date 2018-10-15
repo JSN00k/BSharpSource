@@ -12,12 +12,14 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
-import ac.soton.bsharp.bSharp.ImportStatement;
+import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.Instance;
+import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyContext;
@@ -88,6 +90,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.EXTEND:
 				sequence_Extend(context, (Extend) semanticObject); 
 				return; 
+			case BSharpPackage.FILE_IMPORT:
+				sequence_FileImport(context, (FileImport) semanticObject); 
+				return; 
 			case BSharpPackage.FUNCTION_CALL:
 				sequence_FunctionCall(context, (FunctionCall) semanticObject); 
 				return; 
@@ -97,14 +102,17 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.FUNCTION_NAME:
 				sequence_FunctionName(context, (FunctionName) semanticObject); 
 				return; 
-			case BSharpPackage.IMPORT_STATEMENT:
-				sequence_ImportStatement(context, (ImportStatement) semanticObject); 
+			case BSharpPackage.GLOBAL_IMPORT:
+				sequence_GlobalImport(context, (GlobalImport) semanticObject); 
 				return; 
 			case BSharpPackage.INFIX:
 				sequence_Infix(context, (Infix) semanticObject); 
 				return; 
 			case BSharpPackage.INSTANCE:
 				sequence_Instance(context, (Instance) semanticObject); 
+				return; 
+			case BSharpPackage.LOCAL_IMPORT:
+				sequence_LocalImport(context, (LocalImport) semanticObject); 
 				return; 
 			case BSharpPackage.MATCH_CASE:
 				sequence_MatchCase(context, (MatchCase) semanticObject); 
@@ -340,6 +348,18 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     FileImport returns FileImport
+	 *
+	 * Constraint:
+	 *     (fileName=ID type=[TopLevelInstance|ID]?)
+	 */
+	protected void sequence_FileImport(ISerializationContext context, FileImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     RootExpression returns FunctionCall
 	 *     Infix returns FunctionCall
 	 *     Infix.Infix_1_0 returns FunctionCall
@@ -395,12 +415,12 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     ImportStatement returns ImportStatement
+	 *     GlobalImport returns GlobalImport
 	 *
 	 * Constraint:
-	 *     imports+=QualifiedNameWithWildcard+
+	 *     (project=QualifiedName fileImports+=FileImport+)
 	 */
-	protected void sequence_ImportStatement(ISerializationContext context, ImportStatement semanticObject) {
+	protected void sequence_GlobalImport(ISerializationContext context, GlobalImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -454,6 +474,18 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     )
 	 */
 	protected void sequence_Lambda_Quantifier(ISerializationContext context, QuantLambda semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LocalImport returns LocalImport
+	 *
+	 * Constraint:
+	 *     fileImports+=FileImport+
+	 */
+	protected void sequence_LocalImport(ISerializationContext context, LocalImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -595,7 +627,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TopLevelFile returns TopLevelFile
 	 *
 	 * Constraint:
-	 *     (imports+=ImportStatement | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
+	 *     (globalImports+=GlobalImport | localImports+=LocalImport | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
 	 */
 	protected void sequence_TopLevelFile(ISerializationContext context, TopLevelFile semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

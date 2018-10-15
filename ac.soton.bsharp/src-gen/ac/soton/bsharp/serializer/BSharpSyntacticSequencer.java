@@ -22,12 +22,14 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected BSharpGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Class_SemicolonKeyword_6_q;
+	protected AbstractElementAlias match_FileImport_AsteriskKeyword_2_0_q;
 	protected AbstractElementAlias match_FunctionCall___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_3__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (BSharpGrammarAccess) access;
 		match_Class_SemicolonKeyword_6_q = new TokenAlias(false, true, grammarAccess.getClassAccess().getSemicolonKeyword_6());
+		match_FileImport_AsteriskKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getFileImportAccess().getAsteriskKeyword_2_0());
 		match_FunctionCall___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_3()));
 	}
 	
@@ -45,6 +47,8 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_Class_SemicolonKeyword_6_q.equals(syntax))
 				emit_Class_SemicolonKeyword_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FileImport_AsteriskKeyword_2_0_q.equals(syntax))
+				emit_FileImport_AsteriskKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FunctionCall___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_3__q.equals(syntax))
 				emit_FunctionCall___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -63,6 +67,17 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     where=Where (ambiguity) block=BSharpBlock
 	 */
 	protected void emit_Class_SemicolonKeyword_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '*'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     fileName=ID '.' (ambiguity) (rule end)
+	 */
+	protected void emit_FileImport_AsteriskKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

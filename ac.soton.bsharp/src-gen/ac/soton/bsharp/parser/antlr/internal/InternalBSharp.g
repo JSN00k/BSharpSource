@@ -197,18 +197,18 @@ ruleTopLevelFile returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getTopLevelFileAccess().getImportsImportStatementParserRuleCall_1_0_0());
+						newCompositeNode(grammarAccess.getTopLevelFileAccess().getGlobalImportsGlobalImportParserRuleCall_1_0_0());
 					}
-					lv_imports_1_0=ruleImportStatement
+					lv_globalImports_1_0=ruleGlobalImport
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
 						}
 						add(
 							$current,
-							"imports",
-							lv_imports_1_0,
-							"ac.soton.bsharp.BSharp.ImportStatement");
+							"globalImports",
+							lv_globalImports_1_0,
+							"ac.soton.bsharp.BSharp.GlobalImport");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -217,9 +217,29 @@ ruleTopLevelFile returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getTopLevelFileAccess().getClassesClassDeclParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getTopLevelFileAccess().getLocalImportsLocalImportParserRuleCall_1_1_0());
 					}
-					lv_classes_2_0=ruleClassDecl
+					lv_localImports_2_0=ruleLocalImport
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
+						}
+						add(
+							$current,
+							"localImports",
+							lv_localImports_2_0,
+							"ac.soton.bsharp.BSharp.LocalImport");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getTopLevelFileAccess().getClassesClassDeclParserRuleCall_1_2_0());
+					}
+					lv_classes_3_0=ruleClassDecl
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
@@ -227,7 +247,7 @@ ruleTopLevelFile returns [EObject current=null]
 						add(
 							$current,
 							"classes",
-							lv_classes_2_0,
+							lv_classes_3_0,
 							"ac.soton.bsharp.BSharp.ClassDecl");
 						afterParserOrEnumRuleCall();
 					}
@@ -237,9 +257,9 @@ ruleTopLevelFile returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getTopLevelFileAccess().getExtendsExtendParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getTopLevelFileAccess().getExtendsExtendParserRuleCall_1_3_0());
 					}
-					lv_extends_3_0=ruleExtend
+					lv_extends_4_0=ruleExtend
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
@@ -247,7 +267,7 @@ ruleTopLevelFile returns [EObject current=null]
 						add(
 							$current,
 							"extends",
-							lv_extends_3_0,
+							lv_extends_4_0,
 							"ac.soton.bsharp.BSharp.Extend");
 						afterParserOrEnumRuleCall();
 					}
@@ -257,9 +277,9 @@ ruleTopLevelFile returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getTopLevelFileAccess().getInstancesInstanceParserRuleCall_1_3_0());
+						newCompositeNode(grammarAccess.getTopLevelFileAccess().getInstancesInstanceParserRuleCall_1_4_0());
 					}
-					lv_instances_4_0=ruleInstance
+					lv_instances_5_0=ruleInstance
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
@@ -267,7 +287,7 @@ ruleTopLevelFile returns [EObject current=null]
 						add(
 							$current,
 							"instances",
-							lv_instances_4_0,
+							lv_instances_5_0,
 							"ac.soton.bsharp.BSharp.Instance");
 						afterParserOrEnumRuleCall();
 					}
@@ -378,15 +398,15 @@ ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 	)
 ;
 
-// Entry rule entryRuleQualifiedNameWithWildcard
-entryRuleQualifiedNameWithWildcard returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getQualifiedNameWithWildcardRule()); }
-	iv_ruleQualifiedNameWithWildcard=ruleQualifiedNameWithWildcard
-	{ $current=$iv_ruleQualifiedNameWithWildcard.current.getText(); }
+// Entry rule entryRuleGlobalImport
+entryRuleGlobalImport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getGlobalImportRule()); }
+	iv_ruleGlobalImport=ruleGlobalImport
+	{ $current=$iv_ruleGlobalImport.current; }
 	EOF;
 
-// Rule QualifiedNameWithWildcard
-ruleQualifiedNameWithWildcard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+// Rule GlobalImport
+ruleGlobalImport returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -394,35 +414,125 @@ ruleQualifiedNameWithWildcard returns [AntlrDatatypeRuleToken current=new AntlrD
 	leaveRule();
 }:
 	(
+		otherlv_0='From'
 		{
-			newCompositeNode(grammarAccess.getQualifiedNameWithWildcardAccess().getQualifiedNameParserRuleCall_0());
-		}
-		this_QualifiedName_0=ruleQualifiedName
-		{
-			$current.merge(this_QualifiedName_0);
-		}
-		{
-			afterParserOrEnumRuleCall();
+			newLeafNode(otherlv_0, grammarAccess.getGlobalImportAccess().getFromKeyword_0());
 		}
 		(
-			kw='.*'
+			(
+				{
+					newCompositeNode(grammarAccess.getGlobalImportAccess().getProjectQualifiedNameParserRuleCall_1_0());
+				}
+				lv_project_1_0=ruleQualifiedName
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getGlobalImportRule());
+					}
+					set(
+						$current,
+						"project",
+						lv_project_1_0,
+						"ac.soton.bsharp.BSharp.QualifiedName");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2='Import'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getGlobalImportAccess().getImportKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getGlobalImportAccess().getFileImportsFileImportParserRuleCall_3_0());
+				}
+				lv_fileImports_3_0=ruleFileImport
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getGlobalImportRule());
+					}
+					add(
+						$current,
+						"fileImports",
+						lv_fileImports_3_0,
+						"ac.soton.bsharp.BSharp.FileImport");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)+
+	)
+;
+
+// Entry rule entryRuleFileImport
+entryRuleFileImport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFileImportRule()); }
+	iv_ruleFileImport=ruleFileImport
+	{ $current=$iv_ruleFileImport.current; }
+	EOF;
+
+// Rule FileImport
+ruleFileImport returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_fileName_0_0=RULE_ID
+				{
+					newLeafNode(lv_fileName_0_0, grammarAccess.getFileImportAccess().getFileNameIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFileImportRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"fileName",
+						lv_fileName_0_0,
+						"ac.soton.bsharp.BSharp.ID");
+				}
+			)
+		)
+		otherlv_1='.'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getFileImportAccess().getFullStopKeyword_1());
+		}
+		(
+			otherlv_2='*'
 			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopAsteriskKeyword_1());
+				newLeafNode(otherlv_2, grammarAccess.getFileImportAccess().getAsteriskKeyword_2_0());
 			}
+			    |
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFileImportRule());
+						}
+					}
+					otherlv_3=RULE_ID
+					{
+						newLeafNode(otherlv_3, grammarAccess.getFileImportAccess().getTypeTopLevelInstanceCrossReference_2_1_0());
+					}
+				)
+			)
 		)?
 	)
 ;
 
-// Entry rule entryRuleImportStatement
-entryRuleImportStatement returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getImportStatementRule()); }
-	iv_ruleImportStatement=ruleImportStatement
-	{ $current=$iv_ruleImportStatement.current; }
+// Entry rule entryRuleLocalImport
+entryRuleLocalImport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLocalImportRule()); }
+	iv_ruleLocalImport=ruleLocalImport
+	{ $current=$iv_ruleLocalImport.current; }
 	EOF;
 
-// Rule ImportStatement
-ruleImportStatement returns [EObject current=null]
+// Rule LocalImport
+ruleLocalImport returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -432,23 +542,23 @@ ruleImportStatement returns [EObject current=null]
 	(
 		otherlv_0='Import'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getImportStatementAccess().getImportKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getLocalImportAccess().getImportKeyword_0());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getImportStatementAccess().getImportsQualifiedNameWithWildcardParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getLocalImportAccess().getFileImportsFileImportParserRuleCall_1_0());
 				}
-				lv_imports_1_0=ruleQualifiedNameWithWildcard
+				lv_fileImports_1_0=ruleFileImport
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getImportStatementRule());
+						$current = createModelElementForParent(grammarAccess.getLocalImportRule());
 					}
 					add(
 						$current,
-						"imports",
-						lv_imports_1_0,
-						"ac.soton.bsharp.BSharp.QualifiedNameWithWildcard");
+						"fileImports",
+						lv_fileImports_1_0,
+						"ac.soton.bsharp.BSharp.FileImport");
 					afterParserOrEnumRuleCall();
 				}
 			)

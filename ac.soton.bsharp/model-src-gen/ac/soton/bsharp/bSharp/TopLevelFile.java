@@ -17,10 +17,11 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevelFile#getName <em>Name</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.TopLevelFile#getImports <em>Imports</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevelFile#getClasses <em>Classes</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevelFile#getExtends <em>Extends</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevelFile#getInstances <em>Instances</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.TopLevelFile#getGlobalImports <em>Global Imports</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.TopLevelFile#getLocalImports <em>Local Imports</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelFile()
@@ -53,22 +54,6 @@ public interface TopLevelFile extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.ImportStatement}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imports</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelFile_Imports()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ImportStatement> getImports();
 
 	/**
 	 * Returns the value of the '<em><b>Classes</b></em>' containment reference list.
@@ -117,5 +102,37 @@ public interface TopLevelFile extends EObject {
 	 * @generated
 	 */
 	EList<Instance> getInstances();
+
+	/**
+	 * Returns the value of the '<em><b>Global Imports</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.GlobalImport}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Global Imports</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Global Imports</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelFile_GlobalImports()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<GlobalImport> getGlobalImports();
+
+	/**
+	 * Returns the value of the '<em><b>Local Imports</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.LocalImport}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Local Imports</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Local Imports</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelFile_LocalImports()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<LocalImport> getLocalImports();
 
 } // TopLevelFile

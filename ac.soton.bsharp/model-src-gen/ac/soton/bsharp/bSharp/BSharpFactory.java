@@ -41,15 +41,6 @@ public interface BSharpFactory extends EFactory {
 	TopLevelFile createTopLevelFile();
 
 	/**
-	 * Returns a new object of class '<em>Import Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Import Statement</em>'.
-	 * @generated
-	 */
-	ImportStatement createImportStatement();
-
-	/**
 	 * Returns a new object of class '<em>Bpp Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -356,6 +347,15 @@ public interface BSharpFactory extends EFactory {
 	Type createType();
 
 	/**
+	 * Returns a new object of class '<em>Top Level Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Top Level Instance</em>'.
+	 * @generated
+	 */
+	TopLevelInstance createTopLevelInstance();
+
+	/**
 	 * Returns a new object of class '<em>Named Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -363,6 +363,33 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	NamedObject createNamedObject();
+
+	/**
+	 * Returns a new object of class '<em>Global Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Global Import</em>'.
+	 * @generated
+	 */
+	GlobalImport createGlobalImport();
+
+	/**
+	 * Returns a new object of class '<em>File Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File Import</em>'.
+	 * @generated
+	 */
+	FileImport createFileImport();
+
+	/**
+	 * Returns a new object of class '<em>Local Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Local Import</em>'.
+	 * @generated
+	 */
+	LocalImport createLocalImport();
 
 	/**
 	 * Returns the package supported by this factory.

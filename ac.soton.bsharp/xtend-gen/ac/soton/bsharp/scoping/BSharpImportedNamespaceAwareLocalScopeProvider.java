@@ -3,13 +3,17 @@
  */
 package ac.soton.bsharp.scoping;
 
+import ac.soton.bsharp.bSharp.FileImport;
+import ac.soton.bsharp.bSharp.GlobalImport;
+import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.bSharp.TopLevelFile;
+import ac.soton.bsharp.bSharp.TopLevelInstance;
 import com.google.common.collect.Lists;
 import java.util.List;
 import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
@@ -32,30 +36,39 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
   @Override
   public List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
     List<ImportNormalizer> importedNamespaceResolvers = Lists.<ImportNormalizer>newArrayList();
-    EList<EObject> eContents = context.eContents();
-    for (final EObject child : eContents) {
-      {
-        final EStructuralFeature feature = child.eClass().getEStructuralFeature("imports");
-        if (((feature != null) && String.class.equals(feature.getEType().getInstanceClass()))) {
-          Object _eGet = child.eGet(feature);
-          final EList<String> list = ((EList<String>) _eGet);
-          for (final String importString : list) {
+    final QualifiedName packageName = this._iQualifiedNameProvider.getFullyQualifiedName(context);
+    if ((context instanceof TopLevel)) {
+      TopLevel topLevel = ((TopLevel) context);
+      if ((packageName != null)) {
+        ImportNormalizer _importNormalizer = new ImportNormalizer(packageName, true, ignoreCase);
+        importedNamespaceResolvers.add(_importNormalizer);
+      }
+      TopLevelFile topLevelFile = topLevel.getTopLevelFile();
+      final EList<LocalImport> localImports = topLevelFile.getLocalImports();
+      if ((localImports != null)) {
+        for (final LocalImport localImport : localImports) {
+          EList<FileImport> _fileImports = localImport.getFileImports();
+          for (final FileImport imports : _fileImports) {
             {
-              final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, ignoreCase);
-              if ((resolver != null)) {
-                importedNamespaceResolvers.add(resolver);
+              String importfileName = imports.getFileName();
+              String _plus = (packageName + ".");
+              String _plus_1 = (_plus + importfileName);
+              String importString = (_plus_1 + ".");
+              TopLevelInstance _type = imports.getType();
+              boolean _tripleNotEquals = (_type != null);
+              if (_tripleNotEquals) {
+                String _importString = importString;
+                TopLevelInstance _type_1 = imports.getType();
+                importString = (_importString + _type_1);
+              } else {
+                String _importString_1 = importString;
+                importString = (_importString_1 + "*");
               }
             }
           }
         }
       }
-    }
-    if ((context instanceof TopLevel)) {
-      final QualifiedName fqn = this._iQualifiedNameProvider.getFullyQualifiedName(context);
-      if ((fqn != null)) {
-        ImportNormalizer _importNormalizer = new ImportNormalizer(fqn, true, ignoreCase);
-        importedNamespaceResolvers.add(_importNormalizer);
-      }
+      final EList<GlobalImport> globalImports = topLevelFile.getGlobalImports();
     }
     return importedNamespaceResolvers;
   }

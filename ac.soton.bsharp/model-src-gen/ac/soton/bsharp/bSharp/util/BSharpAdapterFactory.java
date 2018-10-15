@@ -81,16 +81,16 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTypeAdapter();
 			}
 			@Override
+			public Adapter caseTopLevelInstance(TopLevelInstance object) {
+				return createTopLevelInstanceAdapter();
+			}
+			@Override
 			public Adapter caseTopLevel(TopLevel object) {
 				return createTopLevelAdapter();
 			}
 			@Override
 			public Adapter caseTopLevelFile(TopLevelFile object) {
 				return createTopLevelFileAdapter();
-			}
-			@Override
-			public Adapter caseImportStatement(ImportStatement object) {
-				return createImportStatementAdapter();
 			}
 			@Override
 			public Adapter caseClassDecl(ClassDecl object) {
@@ -233,6 +233,18 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createNamedObjectAdapter();
 			}
 			@Override
+			public Adapter caseGlobalImport(GlobalImport object) {
+				return createGlobalImportAdapter();
+			}
+			@Override
+			public Adapter caseFileImport(FileImport object) {
+				return createFileImportAdapter();
+			}
+			@Override
+			public Adapter caseLocalImport(LocalImport object) {
+				return createLocalImportAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -277,20 +289,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTopLevelFileAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.ImportStatement <em>Import Statement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.ImportStatement
-	 * @generated
-	 */
-	public Adapter createImportStatementAdapter() {
 		return null;
 	}
 
@@ -813,6 +811,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TopLevelInstance <em>Top Level Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.TopLevelInstance
+	 * @generated
+	 */
+	public Adapter createTopLevelInstanceAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.NamedObject <em>Named Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -823,6 +835,48 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.GlobalImport <em>Global Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.GlobalImport
+	 * @generated
+	 */
+	public Adapter createGlobalImportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.FileImport <em>File Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.FileImport
+	 * @generated
+	 */
+	public Adapter createFileImportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.LocalImport <em>Local Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.LocalImport
+	 * @generated
+	 */
+	public Adapter createLocalImportAdapter() {
 		return null;
 	}
 

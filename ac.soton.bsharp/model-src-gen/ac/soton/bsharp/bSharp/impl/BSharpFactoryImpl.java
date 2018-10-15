@@ -58,9 +58,9 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case BSharpPackage.TYPE: return createType();
+			case BSharpPackage.TOP_LEVEL_INSTANCE: return createTopLevelInstance();
 			case BSharpPackage.TOP_LEVEL: return createTopLevel();
 			case BSharpPackage.TOP_LEVEL_FILE: return createTopLevelFile();
-			case BSharpPackage.IMPORT_STATEMENT: return createImportStatement();
 			case BSharpPackage.BPP_CLASS: return createBppClass();
 			case BSharpPackage.BSHARP_BLOCK: return createBSharpBlock();
 			case BSharpPackage.GEN_NAME: return createGenName();
@@ -95,6 +95,9 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.INSTANCE: return createInstance();
 			case BSharpPackage.INFIX: return createInfix();
 			case BSharpPackage.NAMED_OBJECT: return createNamedObject();
+			case BSharpPackage.GLOBAL_IMPORT: return createGlobalImport();
+			case BSharpPackage.FILE_IMPORT: return createFileImport();
+			case BSharpPackage.LOCAL_IMPORT: return createLocalImport();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -118,16 +121,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public TopLevelFile createTopLevelFile() {
 		TopLevelFileImpl topLevelFile = new TopLevelFileImpl();
 		return topLevelFile;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ImportStatement createImportStatement() {
-		ImportStatementImpl importStatement = new ImportStatementImpl();
-		return importStatement;
 	}
 
 	/**
@@ -474,9 +467,49 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TopLevelInstance createTopLevelInstance() {
+		TopLevelInstanceImpl topLevelInstance = new TopLevelInstanceImpl();
+		return topLevelInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NamedObject createNamedObject() {
 		NamedObjectImpl namedObject = new NamedObjectImpl();
 		return namedObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GlobalImport createGlobalImport() {
+		GlobalImportImpl globalImport = new GlobalImportImpl();
+		return globalImport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FileImport createFileImport() {
+		FileImportImpl fileImport = new FileImportImpl();
+		return fileImport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LocalImport createLocalImport() {
+		LocalImportImpl localImport = new LocalImportImpl();
+		return localImport;
 	}
 
 	/**
