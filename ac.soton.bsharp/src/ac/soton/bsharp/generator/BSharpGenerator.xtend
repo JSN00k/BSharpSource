@@ -16,11 +16,15 @@ import org.eventb.core.IEventBProject
 import ch.ethz.eventb.utils.EventBUtils
 import ac.soton.bsharp.util.TheoryUtils
 import org.eventb.theory.core.ITheoryRoot
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.core.runtime.IProgressMonitor
 import ac.soton.bsharp.bSharp.GlobalImport
 import ac.soton.bsharp.bSharp.LocalImport
+import java.util.HashMap
+import org.rodinp.core.IRodinProject
+import ac.soton.bsharp.bSharp.TopLevelFile
+import org.eventb.theory.core.IImportTheoryProject
+import java.util.Map
 
 /**
  * Generates code from your model files on save.
@@ -32,9 +36,17 @@ class BSharpGenerator extends AbstractGenerator {
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 	
 	var String projName
-	var IEventBProject proj
+	var IRodinProject proj
 	var String fileName
-	var ITheoryRoot currentThy 
+	var ITheoryRoot currentThy
+	var ArrayList<ITheoryRoot> theories
+	
+	/* When a type in imported explicitly it is possible that a smaller part
+	 * of the file is imported. This is resolved when the type is referenced
+	 * as this gives access to the EMF that is being referenced so it is possible
+	 * to work out where the files splits.
+	 */
+	var ArrayList<HashMap<String, Boolean>> explicitTypeImports
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		/* When we come into this we're expecting the resource to be at the very top level
@@ -45,13 +57,17 @@ class BSharpGenerator extends AbstractGenerator {
 		
 		val topLevel = resource.contents.get(0) as TopLevel
 		projName = topLevel.name + "-gen"
+		explicitTypeImports = new ArrayList
+		theories = new ArrayList
 		
-		proj = EventBUtils.getEventBProject(projName)
-		if (!proj.rodinProject.exists) {
+		var eventBproj = EventBUtils.getEventBProject(projName)
+		if (!eventBproj.rodinProject.exists) {
 			print("start")
-			proj = EventBUtils.createEventBProject(projName, nullMonitor)
+			eventBproj = EventBUtils.createEventBProject(projName, nullMonitor)
 			print("end")
 		}
+		
+		proj = eventBproj.rodinProject
 		
 		/* The top level just contains the package name and a topLevelFile, this
 		 * contains the file name and the rest of the emf tree 
@@ -60,7 +76,9 @@ class BSharpGenerator extends AbstractGenerator {
 		val topLevelFile = topLevel.topLevelFile
 		fileName = topLevelFile.name
 		
-		currentThy = TheoryUtils.createTheory(proj.rodinProject, fileName, null)
+		generateTheories(topLevelFile)
+		
+		//currentThy = 
 		
 		/* The strategy for importing is to import any imports declared directly before 
 		 * a Class, Datatype, or Extend declaration (if they've not already been imported,
@@ -122,14 +140,66 @@ class BSharpGenerator extends AbstractGenerator {
 		
 	}
 	
-
-	def resolveImports(ArrayList<String> imports, ITheoryRoot currentThy) {
-		/* We're not going to allow importing the an entire project for now
-		 * This is complicated as the Event-B import system doesn't resolve circular 
-		 * imports in any way so to import a project you'd need to work out which
-		 * files in the project do not import  any of the other files from the 
-		 * project and only import them. This problem is reasonably easy to solve
-		 * in itself, however as projects aren't cross referenced it makes it harder.
-		 * For now the user can manually make a file to do this, and only import that. */
+	/* Builds the skeleton for the thy files represented by the BSharp file EMF in top, handles full
+	 * file imports, and populates */
+	def generateTheories(TopLevelFile top) {
+		/* The final thy generated is the one that shares it's name with the BSharp files
+		 * previous generated thys have the same name have an increasing integer appended.
+		 * These are all put into an array for easy access */
+		 val imports = top.topLevelImports
+		 
+		 if (imports === null || imports.length == 0) {
+		 	/* There is only a top level file */
+		 	val thy = TheoryUtils.createTheory(proj, fileName, null)
+		 	theories += thy
+		 	return
+		 }
+		 
+		 var adder = 0
+		 var ITheoryRoot prevTheory
+		 
+		 if (top.getNoImportElements() !== null) {
+		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(0), null)
+		 	theories += thy
+		 	prevTheory = thy
+		 	adder++
+		 }
+		 
+		 val importLen = imports.length
+		 
+		 for (i : 0 ..< importLen - 1) {
+		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(i + adder), null)
+		 	
+		 	if (prevTheory !== null) {
+		 		val importProjBlock = TheoryUtils.createImportTheoryProject(thy, proj, nullMonitor)
+		 		TheoryUtils.createImportTheory(importProjBlock, prevTheory, nullMonitor)
+		 	}
+		 	
+		 	theories += thy
+		 	prevTheory = thy
+		 }
+		 
+		 val thy = TheoryUtils.createTheory(proj, fileName, null)
+		 val importProjBlock = TheoryUtils.createImportTheoryProject(thy, proj, nullMonitor)
+		 if (prevTheory !== null)
+		 	TheoryUtils.createImportTheory(importProjBlock, prevTheory, nullMonitor)
+		 
+		 
+		 theories += thy
+	}
+	
+	def importLocalImports (LocalImport importBlock, Map<String, Boolean> typeImports, 
+		ITheoryRoot thy, IImportTheoryProject localImportProj
+	) {
+		var importProj = localImportProj
+		for (fileImport : importBlock.fileImports) {
+			if (fileImport.type === null) {
+				if (localImportProj === null) {
+					importProj = TheoryUtils.createImportTheoryProject(thy, proj, nullMonitor)
+				}
+				
+				//TheoryUtils.createImportTheory(importProj, )
+			}
+		}
 	}
 }

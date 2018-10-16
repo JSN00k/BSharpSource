@@ -5,6 +5,7 @@ package ac.soton.bsharp.serializer;
 
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.Bracket;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
@@ -31,6 +32,7 @@ import ac.soton.bsharp.bSharp.TheoremBody;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
+import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -68,6 +70,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			switch (semanticObject.eClass().getClassifierID()) {
 			case BSharpPackage.BSHARP_BLOCK:
 				sequence_BSharpBlock(context, (BSharpBlock) semanticObject); 
+				return; 
+			case BSharpPackage.BODY_ELEMENTS:
+				sequence_BodyElements(context, (BodyElements) semanticObject); 
 				return; 
 			case BSharpPackage.BPP_CLASS:
 				sequence_Class(context, (BppClass) semanticObject); 
@@ -158,6 +163,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.TOP_LEVEL_FILE:
 				sequence_TopLevelFile(context, (TopLevelFile) semanticObject); 
 				return; 
+			case BSharpPackage.TOP_LEVEL_IMPORT:
+				sequence_TopLevelImport(context, (TopLevelImport) semanticObject); 
+				return; 
 			case BSharpPackage.TYPE_BODY_ELEMENTS:
 				sequence_TypeBodyElements(context, (TypeBodyElements) semanticObject); 
 				return; 
@@ -195,6 +203,18 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     bodyElements+=TypeBodyElements*
 	 */
 	protected void sequence_BSharpBlock(ISerializationContext context, BSharpBlock semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     BodyElements returns BodyElements
+	 *
+	 * Constraint:
+	 *     (classes+=ClassDecl | extends+=Extend | instances+=Instance)+
+	 */
+	protected void sequence_BodyElements(ISerializationContext context, BodyElements semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -627,9 +647,21 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TopLevelFile returns TopLevelFile
 	 *
 	 * Constraint:
-	 *     (globalImports+=GlobalImport | localImports+=LocalImport | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
+	 *     (noImportElements=BodyElements? topLevelImports+=TopLevelImport*)
 	 */
 	protected void sequence_TopLevelFile(ISerializationContext context, TopLevelFile semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TopLevelImport returns TopLevelImport
+	 *
+	 * Constraint:
+	 *     ((globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements=BodyElements)
+	 */
+	protected void sequence_TopLevelImport(ISerializationContext context, TopLevelImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

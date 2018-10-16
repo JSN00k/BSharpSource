@@ -7,12 +7,15 @@ import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevel;
-import ac.soton.bsharp.bSharp.TopLevelFile;
+import ac.soton.bsharp.bSharp.TopLevelImport;
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
+import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
@@ -35,32 +38,62 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
   @Override
   public List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
     List<ImportNormalizer> importedNamespaceResolvers = Lists.<ImportNormalizer>newArrayList();
-    if ((context instanceof TopLevel)) {
-      TopLevel topLevel = ((TopLevel) context);
+    if ((context instanceof TopLevelImport)) {
+      TopLevelImport topLevelImport = ((TopLevelImport) context);
+      final TopLevel topLevel = EcoreUtil2.<TopLevel>getContainerOfType(topLevelImport, TopLevel.class);
       final QualifiedName packageName = this._iQualifiedNameProvider.getFullyQualifiedName(topLevel);
-      TopLevelFile topLevelFile = topLevel.getTopLevelFile();
-      final EList<LocalImport> localImports = topLevelFile.getLocalImports();
-      final EList<GlobalImport> globalImports = topLevelFile.getGlobalImports();
-      if ((localImports != null)) {
-        for (final LocalImport localImport : localImports) {
-          EList<FileImport> _fileImports = localImport.getFileImports();
-          for (final FileImport imports : _fileImports) {
+      final EList<TopLevelImport> importBlocks = topLevel.getTopLevelFile().getTopLevelImports();
+      final Iterator<TopLevelImport> iterator = importBlocks.iterator();
+      TopLevelImport current = null;
+      do {
+        {
+          current = iterator.next();
+          this.addImportsForTopLevelImport(current, importedNamespaceResolvers, packageName, Boolean.valueOf(ignoreCase));
+        }
+      } while((!Objects.equal(current, context)));
+    }
+    return importedNamespaceResolvers;
+  }
+  
+  public void addImportsForTopLevelImport(final TopLevelImport topLevel, final List<ImportNormalizer> importedNamespaceResolvers, final QualifiedName packageName, final Boolean ignoreCase) {
+    final EList<LocalImport> localImports = topLevel.getLocalImports();
+    final EList<GlobalImport> globalImports = topLevel.getGlobalImports();
+    if ((localImports != null)) {
+      for (final LocalImport localImport : localImports) {
+        EList<FileImport> _fileImports = localImport.getFileImports();
+        for (final FileImport imports : _fileImports) {
+          {
+            String importfileName = imports.getFileName();
+            String _plus = (packageName + ".");
+            String _plus_1 = (_plus + importfileName);
+            String importString = (_plus_1 + ".");
+            String _type = imports.getType();
+            boolean _tripleNotEquals = (_type != null);
+            if (_tripleNotEquals) {
+              String _importString = importString;
+              String _type_1 = imports.getType();
+              importString = (_importString + _type_1);
+            } else {
+              String _importString_1 = importString;
+              importString = (_importString_1 + "*");
+            }
+            final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, (ignoreCase).booleanValue());
+            if ((resolver != null)) {
+              importedNamespaceResolvers.add(resolver);
+            }
+          }
+        }
+      }
+    }
+    if ((globalImports != null)) {
+      for (final GlobalImport globalImport : globalImports) {
+        {
+          final String projName = globalImport.getProject();
+          EList<FileImport> _fileImports_1 = globalImport.getFileImports();
+          for (final FileImport file : _fileImports_1) {
             {
-              String importfileName = imports.getFileName();
-              String _plus = (packageName + ".");
-              String _plus_1 = (_plus + importfileName);
-              String importString = (_plus_1 + ".");
-              String _type = imports.getType();
-              boolean _tripleNotEquals = (_type != null);
-              if (_tripleNotEquals) {
-                String _importString = importString;
-                String _type_1 = imports.getType();
-                importString = (_importString + _type_1);
-              } else {
-                String _importString_1 = importString;
-                importString = (_importString_1 + "*");
-              }
-              final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, ignoreCase);
+              final String importString = ((projName + ".") + file);
+              final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, (ignoreCase).booleanValue());
               if ((resolver != null)) {
                 importedNamespaceResolvers.add(resolver);
               }
@@ -68,25 +101,7 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
           }
         }
       }
-      if ((globalImports != null)) {
-        for (final GlobalImport globalImport : globalImports) {
-          {
-            final String projName = globalImport.getProject();
-            EList<FileImport> _fileImports_1 = globalImport.getFileImports();
-            for (final FileImport file : _fileImports_1) {
-              {
-                final String importString = ((projName + ".") + file);
-                final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, ignoreCase);
-                if ((resolver != null)) {
-                  importedNamespaceResolvers.add(resolver);
-                }
-              }
-            }
-          }
-        }
-      }
     }
-    return importedNamespaceResolvers;
   }
   
   @Override

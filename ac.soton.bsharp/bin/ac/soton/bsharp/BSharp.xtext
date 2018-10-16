@@ -15,11 +15,13 @@ TopLevel:
 THM_NAME: (INT | ID | WS)* ":";
 
 /* TopLevelFile has a hidden name tag which is the file name, this gets the filename into the
- * fully qualified domain names allowing multiple classes per file nicely.
+ * fully qualified domain names allowing multiple classes per file nicely. TopLevelImport allows
+ * the easy splitting of the file based on import locations. It also makes it easy to scope imports
+ * so only imports above the current location are scoped.
  */
 TopLevelFile:
 	{TopLevelFile}
-	(globalImports+=GlobalImport | localImports += LocalImport | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
+	(noImportElements=BodyElements)? topLevelImports+=TopLevelImport*
 ;
 
 ClassDecl returns ClassDecl:
@@ -49,6 +51,14 @@ QualifiedName:
 
 QualifiedNameWithWildcard:
     QualifiedName '.*'?
+;
+
+TopLevelImport:
+	(globalImports+=GlobalImport | localImports += LocalImport)+ bodyElements=BodyElements
+;
+
+BodyElements:
+	(classes+=ClassDecl | extends+=Extend | instances+=Instance)+
 ;
 
 GlobalImport:

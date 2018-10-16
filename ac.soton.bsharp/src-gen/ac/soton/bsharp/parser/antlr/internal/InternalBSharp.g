@@ -195,103 +195,40 @@ ruleTopLevelFile returns [EObject current=null]
 		)
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getTopLevelFileAccess().getGlobalImportsGlobalImportParserRuleCall_1_0_0());
+				{
+					newCompositeNode(grammarAccess.getTopLevelFileAccess().getNoImportElementsBodyElementsParserRuleCall_1_0());
+				}
+				lv_noImportElements_1_0=ruleBodyElements
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
 					}
-					lv_globalImports_1_0=ruleGlobalImport
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
-						}
-						add(
-							$current,
-							"globalImports",
-							lv_globalImports_1_0,
-							"ac.soton.bsharp.BSharp.GlobalImport");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"noImportElements",
+						lv_noImportElements_1_0,
+						"ac.soton.bsharp.BSharp.BodyElements");
+					afterParserOrEnumRuleCall();
+				}
 			)
-			    |
+		)?
+		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getTopLevelFileAccess().getLocalImportsLocalImportParserRuleCall_1_1_0());
+				{
+					newCompositeNode(grammarAccess.getTopLevelFileAccess().getTopLevelImportsTopLevelImportParserRuleCall_2_0());
+				}
+				lv_topLevelImports_2_0=ruleTopLevelImport
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
 					}
-					lv_localImports_2_0=ruleLocalImport
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
-						}
-						add(
-							$current,
-							"localImports",
-							lv_localImports_2_0,
-							"ac.soton.bsharp.BSharp.LocalImport");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			    |
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getTopLevelFileAccess().getClassesClassDeclParserRuleCall_1_2_0());
-					}
-					lv_classes_3_0=ruleClassDecl
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
-						}
-						add(
-							$current,
-							"classes",
-							lv_classes_3_0,
-							"ac.soton.bsharp.BSharp.ClassDecl");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			    |
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getTopLevelFileAccess().getExtendsExtendParserRuleCall_1_3_0());
-					}
-					lv_extends_4_0=ruleExtend
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
-						}
-						add(
-							$current,
-							"extends",
-							lv_extends_4_0,
-							"ac.soton.bsharp.BSharp.Extend");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			    |
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getTopLevelFileAccess().getInstancesInstanceParserRuleCall_1_4_0());
-					}
-					lv_instances_5_0=ruleInstance
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getTopLevelFileRule());
-						}
-						add(
-							$current,
-							"instances",
-							lv_instances_5_0,
-							"ac.soton.bsharp.BSharp.Instance");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					add(
+						$current,
+						"topLevelImports",
+						lv_topLevelImports_2_0,
+						"ac.soton.bsharp.BSharp.TopLevelImport");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)*
 	)
@@ -396,6 +333,163 @@ ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 			}
 		)*
 	)
+;
+
+// Entry rule entryRuleTopLevelImport
+entryRuleTopLevelImport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTopLevelImportRule()); }
+	iv_ruleTopLevelImport=ruleTopLevelImport
+	{ $current=$iv_ruleTopLevelImport.current; }
+	EOF;
+
+// Rule TopLevelImport
+ruleTopLevelImport returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getTopLevelImportAccess().getGlobalImportsGlobalImportParserRuleCall_0_0_0());
+					}
+					lv_globalImports_0_0=ruleGlobalImport
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTopLevelImportRule());
+						}
+						add(
+							$current,
+							"globalImports",
+							lv_globalImports_0_0,
+							"ac.soton.bsharp.BSharp.GlobalImport");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getTopLevelImportAccess().getLocalImportsLocalImportParserRuleCall_0_1_0());
+					}
+					lv_localImports_1_0=ruleLocalImport
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTopLevelImportRule());
+						}
+						add(
+							$current,
+							"localImports",
+							lv_localImports_1_0,
+							"ac.soton.bsharp.BSharp.LocalImport");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)+
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTopLevelImportAccess().getBodyElementsBodyElementsParserRuleCall_1_0());
+				}
+				lv_bodyElements_2_0=ruleBodyElements
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTopLevelImportRule());
+					}
+					set(
+						$current,
+						"bodyElements",
+						lv_bodyElements_2_0,
+						"ac.soton.bsharp.BSharp.BodyElements");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleBodyElements
+entryRuleBodyElements returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBodyElementsRule()); }
+	iv_ruleBodyElements=ruleBodyElements
+	{ $current=$iv_ruleBodyElements.current; }
+	EOF;
+
+// Rule BodyElements
+ruleBodyElements returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBodyElementsAccess().getClassesClassDeclParserRuleCall_0_0());
+				}
+				lv_classes_0_0=ruleClassDecl
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyElementsRule());
+					}
+					add(
+						$current,
+						"classes",
+						lv_classes_0_0,
+						"ac.soton.bsharp.BSharp.ClassDecl");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBodyElementsAccess().getExtendsExtendParserRuleCall_1_0());
+				}
+				lv_extends_1_0=ruleExtend
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyElementsRule());
+					}
+					add(
+						$current,
+						"extends",
+						lv_extends_1_0,
+						"ac.soton.bsharp.BSharp.Extend");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBodyElementsAccess().getInstancesInstanceParserRuleCall_2_0());
+				}
+				lv_instances_2_0=ruleInstance
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBodyElementsRule());
+					}
+					add(
+						$current,
+						"instances",
+						lv_instances_2_0,
+						"ac.soton.bsharp.BSharp.Instance");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)+
 ;
 
 // Entry rule entryRuleGlobalImport

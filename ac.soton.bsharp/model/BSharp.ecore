@@ -13,16 +13,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="TopLevelFile">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
-        eType="#//ClassDecl" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="extends" upperBound="-1"
-        eType="#//Extend" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
-        eType="#//Instance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelImports" upperBound="-1"
+        eType="#//TopLevelImport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="noImportElements" eType="#//BodyElements"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelImport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalImports" upperBound="-1"
         eType="#//GlobalImport" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localImports" upperBound="-1"
         eType="#//LocalImport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" lowerBound="1"
+        eType="#//BodyElements" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalImport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
@@ -36,6 +38,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="LocalImport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
         eType="#//FileImport" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BodyElements">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
+        eType="#//ClassDecl" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extends" upperBound="-1"
+        eType="#//Extend" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
+        eType="#//Instance" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" abstract="true" eSuperTypes="#//GenName #//ExpressionVariable #//IVariableProvider #//IPolyTypeProvider #//Type #//TopLevelInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"

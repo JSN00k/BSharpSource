@@ -93,6 +93,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTopLevelFileAdapter();
 			}
 			@Override
+			public Adapter caseTopLevelImport(TopLevelImport object) {
+				return createTopLevelImportAdapter();
+			}
+			@Override
 			public Adapter caseGlobalImport(GlobalImport object) {
 				return createGlobalImportAdapter();
 			}
@@ -103,6 +107,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLocalImport(LocalImport object) {
 				return createLocalImportAdapter();
+			}
+			@Override
+			public Adapter caseBodyElements(BodyElements object) {
+				return createBodyElementsAdapter();
 			}
 			@Override
 			public Adapter caseClassDecl(ClassDecl object) {
@@ -289,6 +297,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTopLevelFileAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TopLevelImport <em>Top Level Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.TopLevelImport
+	 * @generated
+	 */
+	public Adapter createTopLevelImportAdapter() {
 		return null;
 	}
 
@@ -877,6 +899,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLocalImportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.BodyElements <em>Body Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.BodyElements
+	 * @generated
+	 */
+	public Adapter createBodyElementsAdapter() {
 		return null;
 	}
 

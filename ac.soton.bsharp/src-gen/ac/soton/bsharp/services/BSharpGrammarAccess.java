@@ -92,64 +92,36 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TopLevelFile");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cTopLevelFileAction_0 = (Action)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Assignment cGlobalImportsAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
-		private final RuleCall cGlobalImportsGlobalImportParserRuleCall_1_0_0 = (RuleCall)cGlobalImportsAssignment_1_0.eContents().get(0);
-		private final Assignment cLocalImportsAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final RuleCall cLocalImportsLocalImportParserRuleCall_1_1_0 = (RuleCall)cLocalImportsAssignment_1_1.eContents().get(0);
-		private final Assignment cClassesAssignment_1_2 = (Assignment)cAlternatives_1.eContents().get(2);
-		private final RuleCall cClassesClassDeclParserRuleCall_1_2_0 = (RuleCall)cClassesAssignment_1_2.eContents().get(0);
-		private final Assignment cExtendsAssignment_1_3 = (Assignment)cAlternatives_1.eContents().get(3);
-		private final RuleCall cExtendsExtendParserRuleCall_1_3_0 = (RuleCall)cExtendsAssignment_1_3.eContents().get(0);
-		private final Assignment cInstancesAssignment_1_4 = (Assignment)cAlternatives_1.eContents().get(4);
-		private final RuleCall cInstancesInstanceParserRuleCall_1_4_0 = (RuleCall)cInstancesAssignment_1_4.eContents().get(0);
+		private final Assignment cNoImportElementsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNoImportElementsBodyElementsParserRuleCall_1_0 = (RuleCall)cNoImportElementsAssignment_1.eContents().get(0);
+		private final Assignment cTopLevelImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTopLevelImportsTopLevelImportParserRuleCall_2_0 = (RuleCall)cTopLevelImportsAssignment_2.eContents().get(0);
 		
 		///* TopLevelFile has a hidden name tag which is the file name, this gets the filename into the
-		// * fully qualified domain names allowing multiple classes per file nicely.
+		// * fully qualified domain names allowing multiple classes per file nicely. TopLevelImport allows
+		// * the easy splitting of the file based on import locations. It also makes it easy to scope imports
+		// * so only imports above the current location are scoped.
 		// */ TopLevelFile:
-		//	{TopLevelFile} (globalImports+=GlobalImport | localImports+=LocalImport | classes+=ClassDecl | extends+=Extend |
-		//	instances+=Instance)*;
+		//	{TopLevelFile} noImportElements=BodyElements? topLevelImports+=TopLevelImport*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{TopLevelFile} (globalImports+=GlobalImport | localImports+=LocalImport | classes+=ClassDecl | extends+=Extend |
-		//instances+=Instance)*
+		//{TopLevelFile} noImportElements=BodyElements? topLevelImports+=TopLevelImport*
 		public Group getGroup() { return cGroup; }
 		
 		//{TopLevelFile}
 		public Action getTopLevelFileAction_0() { return cTopLevelFileAction_0; }
 		
-		//(globalImports+=GlobalImport | localImports+=LocalImport | classes+=ClassDecl | extends+=Extend | instances+=Instance)*
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		//noImportElements=BodyElements?
+		public Assignment getNoImportElementsAssignment_1() { return cNoImportElementsAssignment_1; }
 		
-		//globalImports+=GlobalImport
-		public Assignment getGlobalImportsAssignment_1_0() { return cGlobalImportsAssignment_1_0; }
+		//BodyElements
+		public RuleCall getNoImportElementsBodyElementsParserRuleCall_1_0() { return cNoImportElementsBodyElementsParserRuleCall_1_0; }
 		
-		//GlobalImport
-		public RuleCall getGlobalImportsGlobalImportParserRuleCall_1_0_0() { return cGlobalImportsGlobalImportParserRuleCall_1_0_0; }
+		//topLevelImports+=TopLevelImport*
+		public Assignment getTopLevelImportsAssignment_2() { return cTopLevelImportsAssignment_2; }
 		
-		//localImports+=LocalImport
-		public Assignment getLocalImportsAssignment_1_1() { return cLocalImportsAssignment_1_1; }
-		
-		//LocalImport
-		public RuleCall getLocalImportsLocalImportParserRuleCall_1_1_0() { return cLocalImportsLocalImportParserRuleCall_1_1_0; }
-		
-		//classes+=ClassDecl
-		public Assignment getClassesAssignment_1_2() { return cClassesAssignment_1_2; }
-		
-		//ClassDecl
-		public RuleCall getClassesClassDeclParserRuleCall_1_2_0() { return cClassesClassDeclParserRuleCall_1_2_0; }
-		
-		//extends+=Extend
-		public Assignment getExtendsAssignment_1_3() { return cExtendsAssignment_1_3; }
-		
-		//Extend
-		public RuleCall getExtendsExtendParserRuleCall_1_3_0() { return cExtendsExtendParserRuleCall_1_3_0; }
-		
-		//instances+=Instance
-		public Assignment getInstancesAssignment_1_4() { return cInstancesAssignment_1_4; }
-		
-		//Instance
-		public RuleCall getInstancesInstanceParserRuleCall_1_4_0() { return cInstancesInstanceParserRuleCall_1_4_0; }
+		//TopLevelImport
+		public RuleCall getTopLevelImportsTopLevelImportParserRuleCall_2_0() { return cTopLevelImportsTopLevelImportParserRuleCall_2_0; }
 	}
 	public class ClassDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ClassDecl");
@@ -251,6 +223,80 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'.*'?
 		public Keyword getFullStopAsteriskKeyword_1() { return cFullStopAsteriskKeyword_1; }
+	}
+	public class TopLevelImportElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TopLevelImport");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Assignment cGlobalImportsAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
+		private final RuleCall cGlobalImportsGlobalImportParserRuleCall_0_0_0 = (RuleCall)cGlobalImportsAssignment_0_0.eContents().get(0);
+		private final Assignment cLocalImportsAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final RuleCall cLocalImportsLocalImportParserRuleCall_0_1_0 = (RuleCall)cLocalImportsAssignment_0_1.eContents().get(0);
+		private final Assignment cBodyElementsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cBodyElementsBodyElementsParserRuleCall_1_0 = (RuleCall)cBodyElementsAssignment_1.eContents().get(0);
+		
+		//TopLevelImport:
+		//	(globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements=BodyElements;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements=BodyElements
+		public Group getGroup() { return cGroup; }
+		
+		//(globalImports+=GlobalImport | localImports+=LocalImport)+
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		
+		//globalImports+=GlobalImport
+		public Assignment getGlobalImportsAssignment_0_0() { return cGlobalImportsAssignment_0_0; }
+		
+		//GlobalImport
+		public RuleCall getGlobalImportsGlobalImportParserRuleCall_0_0_0() { return cGlobalImportsGlobalImportParserRuleCall_0_0_0; }
+		
+		//localImports+=LocalImport
+		public Assignment getLocalImportsAssignment_0_1() { return cLocalImportsAssignment_0_1; }
+		
+		//LocalImport
+		public RuleCall getLocalImportsLocalImportParserRuleCall_0_1_0() { return cLocalImportsLocalImportParserRuleCall_0_1_0; }
+		
+		//bodyElements=BodyElements
+		public Assignment getBodyElementsAssignment_1() { return cBodyElementsAssignment_1; }
+		
+		//BodyElements
+		public RuleCall getBodyElementsBodyElementsParserRuleCall_1_0() { return cBodyElementsBodyElementsParserRuleCall_1_0; }
+	}
+	public class BodyElementsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.BodyElements");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cClassesAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cClassesClassDeclParserRuleCall_0_0 = (RuleCall)cClassesAssignment_0.eContents().get(0);
+		private final Assignment cExtendsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cExtendsExtendParserRuleCall_1_0 = (RuleCall)cExtendsAssignment_1.eContents().get(0);
+		private final Assignment cInstancesAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cInstancesInstanceParserRuleCall_2_0 = (RuleCall)cInstancesAssignment_2.eContents().get(0);
+		
+		//BodyElements:
+		//	(classes+=ClassDecl | extends+=Extend | instances+=Instance)+;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(classes+=ClassDecl | extends+=Extend | instances+=Instance)+
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//classes+=ClassDecl
+		public Assignment getClassesAssignment_0() { return cClassesAssignment_0; }
+		
+		//ClassDecl
+		public RuleCall getClassesClassDeclParserRuleCall_0_0() { return cClassesClassDeclParserRuleCall_0_0; }
+		
+		//extends+=Extend
+		public Assignment getExtendsAssignment_1() { return cExtendsAssignment_1; }
+		
+		//Extend
+		public RuleCall getExtendsExtendParserRuleCall_1_0() { return cExtendsExtendParserRuleCall_1_0; }
+		
+		//instances+=Instance
+		public Assignment getInstancesAssignment_2() { return cInstancesAssignment_2; }
+		
+		//Instance
+		public RuleCall getInstancesInstanceParserRuleCall_2_0() { return cInstancesInstanceParserRuleCall_2_0; }
 	}
 	public class GlobalImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.GlobalImport");
@@ -1921,6 +1967,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final GenNameElements pGenName;
 	private final QualifiedNameElements pQualifiedName;
 	private final QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
+	private final TopLevelImportElements pTopLevelImport;
+	private final BodyElementsElements pBodyElements;
 	private final GlobalImportElements pGlobalImport;
 	private final FileImportElements pFileImport;
 	private final LocalImportElements pLocalImport;
@@ -1979,6 +2027,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pGenName = new GenNameElements();
 		this.pQualifiedName = new QualifiedNameElements();
 		this.pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements();
+		this.pTopLevelImport = new TopLevelImportElements();
+		this.pBodyElements = new BodyElementsElements();
 		this.pGlobalImport = new GlobalImportElements();
 		this.pFileImport = new FileImportElements();
 		this.pLocalImport = new LocalImportElements();
@@ -2077,10 +2127,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* TopLevelFile has a hidden name tag which is the file name, this gets the filename into the
-	// * fully qualified domain names allowing multiple classes per file nicely.
+	// * fully qualified domain names allowing multiple classes per file nicely. TopLevelImport allows
+	// * the easy splitting of the file based on import locations. It also makes it easy to scope imports
+	// * so only imports above the current location are scoped.
 	// */ TopLevelFile:
-	//	{TopLevelFile} (globalImports+=GlobalImport | localImports+=LocalImport | classes+=ClassDecl | extends+=Extend |
-	//	instances+=Instance)*;
+	//	{TopLevelFile} noImportElements=BodyElements? topLevelImports+=TopLevelImport*;
 	public TopLevelFileElements getTopLevelFileAccess() {
 		return pTopLevelFile;
 	}
@@ -2143,6 +2194,26 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getQualifiedNameWithWildcardRule() {
 		return getQualifiedNameWithWildcardAccess().getRule();
+	}
+	
+	//TopLevelImport:
+	//	(globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements=BodyElements;
+	public TopLevelImportElements getTopLevelImportAccess() {
+		return pTopLevelImport;
+	}
+	
+	public ParserRule getTopLevelImportRule() {
+		return getTopLevelImportAccess().getRule();
+	}
+	
+	//BodyElements:
+	//	(classes+=ClassDecl | extends+=Extend | instances+=Instance)+;
+	public BodyElementsElements getBodyElementsAccess() {
+		return pBodyElements;
+	}
+	
+	public ParserRule getBodyElementsRule() {
+		return getBodyElementsAccess().getRule();
 	}
 	
 	//GlobalImport:

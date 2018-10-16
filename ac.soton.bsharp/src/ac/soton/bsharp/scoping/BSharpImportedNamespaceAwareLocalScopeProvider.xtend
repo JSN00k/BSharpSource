@@ -12,6 +12,8 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import javax.inject.Inject
 import ac.soton.bsharp.bSharp.TopLevel
+import ac.soton.bsharp.bSharp.TopLevelImport
+import org.eclipse.xtext.EcoreUtil2
 
 /**
  * This class contains custom scoping description.
@@ -30,13 +32,31 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		var List<ImportNormalizer> importedNamespaceResolvers = Lists.newArrayList()
 
 		/* Add the package to the fully qualified domain names */
-		if (context instanceof TopLevel) {
-			var topLevel = context as TopLevel
+		if (context instanceof TopLevelImport) {
+			var topLevelImport = context as TopLevelImport
+			val topLevel = EcoreUtil2.getContainerOfType(topLevelImport, TopLevel)
 			val packageName = topLevel.fullyQualifiedName
+			
+			/* Note that we know that the iterator contains at least one element as we only
+			 * enter here it there is a TopLevelImport.
+			 */
+			val importBlocks = topLevel.topLevelFile.topLevelImports
+			val iterator = importBlocks.iterator
+			var TopLevelImport current
+			do {
+				current = iterator.next
+				addImportsForTopLevelImport(current, importedNamespaceResolvers, packageName, ignoreCase)
+			} while (current != context)
+			
+		}
 
-			var topLevelFile = topLevel.topLevelFile
-			val localImports = topLevelFile.localImports
-			val globalImports = topLevelFile.globalImports
+		return importedNamespaceResolvers
+	}
+	
+	def addImportsForTopLevelImport(TopLevelImport topLevel, List<ImportNormalizer> importedNamespaceResolvers,
+		QualifiedName packageName, Boolean ignoreCase) {
+			val localImports = topLevel.localImports
+			val globalImports = topLevel.globalImports
 
 			if (localImports !== null) {
 				for (localImport : localImports) {
@@ -75,9 +95,6 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 					}
 				}
 			}
-		}
-
-		return importedNamespaceResolvers
 	}
 	
 	override getImplicitImports(boolean ignoreCase) {

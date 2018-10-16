@@ -105,6 +105,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.TOP_LEVEL_IMPORT: {
+				TopLevelImport topLevelImport = (TopLevelImport)theEObject;
+				T result = caseTopLevelImport(topLevelImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.GLOBAL_IMPORT: {
 				GlobalImport globalImport = (GlobalImport)theEObject;
 				T result = caseGlobalImport(globalImport);
@@ -120,6 +126,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.LOCAL_IMPORT: {
 				LocalImport localImport = (LocalImport)theEObject;
 				T result = caseLocalImport(localImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.BODY_ELEMENTS: {
+				BodyElements bodyElements = (BodyElements)theEObject;
+				T result = caseBodyElements(bodyElements);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -412,6 +424,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTopLevelFile(TopLevelFile object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Top Level Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Top Level Import</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTopLevelImport(TopLevelImport object) {
 		return null;
 	}
 
@@ -1042,6 +1069,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLocalImport(LocalImport object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Body Elements</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Body Elements</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBodyElements(BodyElements object) {
 		return null;
 	}
 

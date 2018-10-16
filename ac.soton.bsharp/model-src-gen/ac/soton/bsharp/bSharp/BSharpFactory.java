@@ -41,6 +41,15 @@ public interface BSharpFactory extends EFactory {
 	TopLevelFile createTopLevelFile();
 
 	/**
+	 * Returns a new object of class '<em>Top Level Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Top Level Import</em>'.
+	 * @generated
+	 */
+	TopLevelImport createTopLevelImport();
+
+	/**
 	 * Returns a new object of class '<em>Bpp Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -390,6 +399,15 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	LocalImport createLocalImport();
+
+	/**
+	 * Returns a new object of class '<em>Body Elements</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Body Elements</em>'.
+	 * @generated
+	 */
+	BodyElements createBodyElements();
 
 	/**
 	 * Returns the package supported by this factory.

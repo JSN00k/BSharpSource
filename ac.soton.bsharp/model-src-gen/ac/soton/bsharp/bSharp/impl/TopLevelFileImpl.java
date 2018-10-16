@@ -4,12 +4,14 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevelFile;
+import ac.soton.bsharp.bSharp.TopLevelImport;
 import java.util.Collection;
 
 
@@ -37,11 +39,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl#getName <em>Name</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl#getClasses <em>Classes</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl#getExtends <em>Extends</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl#getInstances <em>Instances</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl#getGlobalImports <em>Global Imports</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl#getLocalImports <em>Local Imports</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl#getTopLevelImports <em>Top Level Imports</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl#getNoImportElements <em>No Import Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,54 +68,24 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.
+	 * The cached value of the '{@link #getTopLevelImports() <em>Top Level Imports</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClasses()
+	 * @see #getTopLevelImports()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ClassDecl> classes;
+	protected EList<TopLevelImport> topLevelImports;
 
 	/**
-	 * The cached value of the '{@link #getExtends() <em>Extends</em>}' containment reference list.
+	 * The cached value of the '{@link #getNoImportElements() <em>No Import Elements</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtends()
+	 * @see #getNoImportElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Extend> extends_;
-
-	/**
-	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstances()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Instance> instances;
-
-	/**
-	 * The cached value of the '{@link #getGlobalImports() <em>Global Imports</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGlobalImports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<GlobalImport> globalImports;
-
-	/**
-	 * The cached value of the '{@link #getLocalImports() <em>Local Imports</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLocalImports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LocalImport> localImports;
+	protected BodyElements noImportElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,11 +133,11 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ClassDecl> getClasses() {
-		if (classes == null) {
-			classes = new EObjectContainmentEList<ClassDecl>(ClassDecl.class, this, BSharpPackage.TOP_LEVEL_FILE__CLASSES);
+	public EList<TopLevelImport> getTopLevelImports() {
+		if (topLevelImports == null) {
+			topLevelImports = new EObjectContainmentEList<TopLevelImport>(TopLevelImport.class, this, BSharpPackage.TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS);
 		}
-		return classes;
+		return topLevelImports;
 	}
 
 	/**
@@ -176,11 +145,8 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Extend> getExtends() {
-		if (extends_ == null) {
-			extends_ = new EObjectContainmentEList<Extend>(Extend.class, this, BSharpPackage.TOP_LEVEL_FILE__EXTENDS);
-		}
-		return extends_;
+	public BodyElements getNoImportElements() {
+		return noImportElements;
 	}
 
 	/**
@@ -188,11 +154,14 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Instance> getInstances() {
-		if (instances == null) {
-			instances = new EObjectContainmentEList<Instance>(Instance.class, this, BSharpPackage.TOP_LEVEL_FILE__INSTANCES);
+	public NotificationChain basicSetNoImportElements(BodyElements newNoImportElements, NotificationChain msgs) {
+		BodyElements oldNoImportElements = noImportElements;
+		noImportElements = newNoImportElements;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS, oldNoImportElements, newNoImportElements);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return instances;
+		return msgs;
 	}
 
 	/**
@@ -200,23 +169,18 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GlobalImport> getGlobalImports() {
-		if (globalImports == null) {
-			globalImports = new EObjectContainmentEList<GlobalImport>(GlobalImport.class, this, BSharpPackage.TOP_LEVEL_FILE__GLOBAL_IMPORTS);
+	public void setNoImportElements(BodyElements newNoImportElements) {
+		if (newNoImportElements != noImportElements) {
+			NotificationChain msgs = null;
+			if (noImportElements != null)
+				msgs = ((InternalEObject)noImportElements).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS, null, msgs);
+			if (newNoImportElements != null)
+				msgs = ((InternalEObject)newNoImportElements).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS, null, msgs);
+			msgs = basicSetNoImportElements(newNoImportElements, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return globalImports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<LocalImport> getLocalImports() {
-		if (localImports == null) {
-			localImports = new EObjectContainmentEList<LocalImport>(LocalImport.class, this, BSharpPackage.TOP_LEVEL_FILE__LOCAL_IMPORTS);
-		}
-		return localImports;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS, newNoImportElements, newNoImportElements));
 	}
 
 	/**
@@ -227,16 +191,10 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.TOP_LEVEL_FILE__CLASSES:
-				return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
-			case BSharpPackage.TOP_LEVEL_FILE__EXTENDS:
-				return ((InternalEList<?>)getExtends()).basicRemove(otherEnd, msgs);
-			case BSharpPackage.TOP_LEVEL_FILE__INSTANCES:
-				return ((InternalEList<?>)getInstances()).basicRemove(otherEnd, msgs);
-			case BSharpPackage.TOP_LEVEL_FILE__GLOBAL_IMPORTS:
-				return ((InternalEList<?>)getGlobalImports()).basicRemove(otherEnd, msgs);
-			case BSharpPackage.TOP_LEVEL_FILE__LOCAL_IMPORTS:
-				return ((InternalEList<?>)getLocalImports()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS:
+				return ((InternalEList<?>)getTopLevelImports()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS:
+				return basicSetNoImportElements(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -251,16 +209,10 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 		switch (featureID) {
 			case BSharpPackage.TOP_LEVEL_FILE__NAME:
 				return getName();
-			case BSharpPackage.TOP_LEVEL_FILE__CLASSES:
-				return getClasses();
-			case BSharpPackage.TOP_LEVEL_FILE__EXTENDS:
-				return getExtends();
-			case BSharpPackage.TOP_LEVEL_FILE__INSTANCES:
-				return getInstances();
-			case BSharpPackage.TOP_LEVEL_FILE__GLOBAL_IMPORTS:
-				return getGlobalImports();
-			case BSharpPackage.TOP_LEVEL_FILE__LOCAL_IMPORTS:
-				return getLocalImports();
+			case BSharpPackage.TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS:
+				return getTopLevelImports();
+			case BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS:
+				return getNoImportElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -277,25 +229,12 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 			case BSharpPackage.TOP_LEVEL_FILE__NAME:
 				setName((String)newValue);
 				return;
-			case BSharpPackage.TOP_LEVEL_FILE__CLASSES:
-				getClasses().clear();
-				getClasses().addAll((Collection<? extends ClassDecl>)newValue);
+			case BSharpPackage.TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS:
+				getTopLevelImports().clear();
+				getTopLevelImports().addAll((Collection<? extends TopLevelImport>)newValue);
 				return;
-			case BSharpPackage.TOP_LEVEL_FILE__EXTENDS:
-				getExtends().clear();
-				getExtends().addAll((Collection<? extends Extend>)newValue);
-				return;
-			case BSharpPackage.TOP_LEVEL_FILE__INSTANCES:
-				getInstances().clear();
-				getInstances().addAll((Collection<? extends Instance>)newValue);
-				return;
-			case BSharpPackage.TOP_LEVEL_FILE__GLOBAL_IMPORTS:
-				getGlobalImports().clear();
-				getGlobalImports().addAll((Collection<? extends GlobalImport>)newValue);
-				return;
-			case BSharpPackage.TOP_LEVEL_FILE__LOCAL_IMPORTS:
-				getLocalImports().clear();
-				getLocalImports().addAll((Collection<? extends LocalImport>)newValue);
+			case BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS:
+				setNoImportElements((BodyElements)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -312,20 +251,11 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 			case BSharpPackage.TOP_LEVEL_FILE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BSharpPackage.TOP_LEVEL_FILE__CLASSES:
-				getClasses().clear();
+			case BSharpPackage.TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS:
+				getTopLevelImports().clear();
 				return;
-			case BSharpPackage.TOP_LEVEL_FILE__EXTENDS:
-				getExtends().clear();
-				return;
-			case BSharpPackage.TOP_LEVEL_FILE__INSTANCES:
-				getInstances().clear();
-				return;
-			case BSharpPackage.TOP_LEVEL_FILE__GLOBAL_IMPORTS:
-				getGlobalImports().clear();
-				return;
-			case BSharpPackage.TOP_LEVEL_FILE__LOCAL_IMPORTS:
-				getLocalImports().clear();
+			case BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS:
+				setNoImportElements((BodyElements)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -341,16 +271,10 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 		switch (featureID) {
 			case BSharpPackage.TOP_LEVEL_FILE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BSharpPackage.TOP_LEVEL_FILE__CLASSES:
-				return classes != null && !classes.isEmpty();
-			case BSharpPackage.TOP_LEVEL_FILE__EXTENDS:
-				return extends_ != null && !extends_.isEmpty();
-			case BSharpPackage.TOP_LEVEL_FILE__INSTANCES:
-				return instances != null && !instances.isEmpty();
-			case BSharpPackage.TOP_LEVEL_FILE__GLOBAL_IMPORTS:
-				return globalImports != null && !globalImports.isEmpty();
-			case BSharpPackage.TOP_LEVEL_FILE__LOCAL_IMPORTS:
-				return localImports != null && !localImports.isEmpty();
+			case BSharpPackage.TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS:
+				return topLevelImports != null && !topLevelImports.isEmpty();
+			case BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS:
+				return noImportElements != null;
 		}
 		return super.eIsSet(featureID);
 	}

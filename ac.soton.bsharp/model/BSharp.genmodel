@@ -16,11 +16,13 @@
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TopLevelFile">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//TopLevelFile/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/classes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/extends"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/instances"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/globalImports"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/localImports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/topLevelImports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/noImportElements"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//TopLevelImport">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/globalImports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/localImports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/bodyElements"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//GlobalImport">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//GlobalImport/fileImports"/>
@@ -32,6 +34,11 @@
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//LocalImport">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//LocalImport/fileImports"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//BodyElements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BodyElements/classes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BodyElements/extends"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BodyElements/instances"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ClassDecl">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/context"/>

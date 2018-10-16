@@ -3,13 +3,9 @@
  */
 package ac.soton.bsharp.formatting2;
 
-import ac.soton.bsharp.bSharp.ClassDecl;
-import ac.soton.bsharp.bSharp.Extend;
-import ac.soton.bsharp.bSharp.GlobalImport;
-import ac.soton.bsharp.bSharp.Instance;
-import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
+import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.services.BSharpGrammarAccess;
 import com.google.inject.Inject;
 import java.util.Arrays;
@@ -31,25 +27,9 @@ public class BSharpFormatter extends AbstractFormatter2 {
   }
   
   protected void _format(final TopLevelFile topLevelFile, @Extension final IFormattableDocument document) {
-    EList<GlobalImport> _globalImports = topLevelFile.getGlobalImports();
-    for (final GlobalImport globalImport : _globalImports) {
-      document.<GlobalImport>format(globalImport);
-    }
-    EList<LocalImport> _localImports = topLevelFile.getLocalImports();
-    for (final LocalImport localImport : _localImports) {
-      document.<LocalImport>format(localImport);
-    }
-    EList<ClassDecl> _classes = topLevelFile.getClasses();
-    for (final ClassDecl classDecl : _classes) {
-      document.<ClassDecl>format(classDecl);
-    }
-    EList<Extend> _extends = topLevelFile.getExtends();
-    for (final Extend extend : _extends) {
-      document.<Extend>format(extend);
-    }
-    EList<Instance> _instances = topLevelFile.getInstances();
-    for (final Instance instance : _instances) {
-      document.<Instance>format(instance);
+    EList<TopLevelImport> _topLevelImports = topLevelFile.getTopLevelImports();
+    for (final TopLevelImport topLevelImport : _topLevelImports) {
+      document.<TopLevelImport>format(topLevelImport);
     }
   }
   
