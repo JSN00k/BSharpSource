@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.formatting2;
 
+import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
@@ -27,6 +28,7 @@ public class BSharpFormatter extends AbstractFormatter2 {
   }
   
   protected void _format(final TopLevelFile topLevelFile, @Extension final IFormattableDocument document) {
+    document.<BodyElements>format(topLevelFile.getNoImportElements());
     EList<TopLevelImport> _topLevelImports = topLevelFile.getTopLevelImports();
     for (final TopLevelImport topLevelImport : _topLevelImports) {
       document.<TopLevelImport>format(topLevelImport);

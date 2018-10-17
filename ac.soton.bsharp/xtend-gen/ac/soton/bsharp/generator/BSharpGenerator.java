@@ -12,13 +12,11 @@ import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.util.TheoryUtils;
 import ch.ethz.eventb.utils.EventBUtils;
-import com.google.common.collect.Iterables;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
@@ -27,12 +25,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
-import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eventb.core.IEventBProject;
-import org.eventb.theory.core.IImportTheoryProject;
 import org.eventb.theory.core.ITheoryRoot;
 import org.rodinp.core.IRodinProject;
 
@@ -51,9 +49,11 @@ public class BSharpGenerator extends AbstractGenerator {
   
   private String fileName;
   
-  private ITheoryRoot currentThy;
+  private TheoryImportCache currentThy;
   
-  private ArrayList<ITheoryRoot> theories;
+  private ArrayList<TheoryImportCache> theories;
+  
+  private ArrayList<BodyElements> mainElements;
   
   /**
    * When a type in imported explicitly it is possible that a smaller part
@@ -61,7 +61,7 @@ public class BSharpGenerator extends AbstractGenerator {
    * as this gives access to the EMF that is being referenced so it is possible
    * to work out where the files splits.
    */
-  private ArrayList<HashMap<String, Boolean>> explicitTypeImports;
+  private ArrayList<String> explicitTypeImports;
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
@@ -71,72 +71,34 @@ public class BSharpGenerator extends AbstractGenerator {
       String _name = topLevel.getName();
       String _plus = (_name + "-gen");
       this.projName = _plus;
-      ArrayList<HashMap<String, Boolean>> _arrayList = new ArrayList<HashMap<String, Boolean>>();
+      ArrayList<String> _arrayList = new ArrayList<String>();
       this.explicitTypeImports = _arrayList;
-      ArrayList<ITheoryRoot> _arrayList_1 = new ArrayList<ITheoryRoot>();
+      this.mainElements = CollectionLiterals.<BodyElements>newArrayList();
+      ArrayList<TheoryImportCache> _arrayList_1 = new ArrayList<TheoryImportCache>();
       this.theories = _arrayList_1;
       IEventBProject eventBproj = EventBUtils.getEventBProject(this.projName);
       boolean _exists = eventBproj.getRodinProject().exists();
       boolean _not = (!_exists);
       if (_not) {
-        InputOutput.<String>print("start");
         eventBproj = EventBUtils.createEventBProject(this.projName, this.nullMonitor);
-        InputOutput.<String>print("end");
       }
       this.proj = eventBproj.getRodinProject();
       final TopLevelFile topLevelFile = topLevel.getTopLevelFile();
       this.fileName = topLevelFile.getName();
       this.generateTheories(topLevelFile);
-      ArrayList<String> toImport = new ArrayList<String>();
-      ArrayList<String> prevImports = new ArrayList<String>();
-      boolean importing = true;
-      boolean firstImport = true;
-      ITheoryRoot lastThy = this.currentThy;
-      EList<EObject> _eContents = topLevelFile.eContents();
-      for (final EObject eObject : _eContents) {
-        if (((eObject instanceof GlobalImport) || (eObject instanceof LocalImport))) {
-          importing = true;
-        } else {
-          if (importing) {
-          }
-          if ((eObject instanceof ClassDecl)) {
-            this.generate_ClassDecl(((ClassDecl) eObject), toImport, fsa, context);
-            Iterables.<String>addAll(prevImports, toImport);
-            ArrayList<String> _arrayList_2 = new ArrayList<String>();
-            toImport = _arrayList_2;
-          } else {
-            if ((eObject instanceof Extend)) {
-              this.generate_Extend(((Extend) eObject), toImport, fsa, context);
-              Iterables.<String>addAll(prevImports, toImport);
-              ArrayList<String> _arrayList_3 = new ArrayList<String>();
-              toImport = _arrayList_3;
-            }
-          }
+      int _length = ((Object[])Conversions.unwrapArray(this.mainElements, Object.class)).length;
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _length, true);
+      for (final Integer i : _doubleDotLessThan) {
+        {
+          final TheoryImportCache thyCache = this.theories.get((i).intValue());
+          final BodyElements bodyElements = this.mainElements.get((i).intValue());
+          this.compileBodyElementsForTheoryCache(bodyElements, thyCache);
+          thyCache.saveAndDeploy();
         }
       }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
-  }
-  
-  /**
-   * Importing in the theory plug-in we don't want to import the same file more than once so
-   * we make sure we only import each file once. This doesn't check across files yet.
-   */
-  public void addToToImports(final ArrayList<String> toImport, final Collection<String> newImports, final ArrayList<String> allImports) {
-    for (final String string : newImports) {
-      if (((!allImports.contains(string)) && (!toImport.contains(string)))) {
-        toImport.add(string);
-      }
-    }
-  }
-  
-  public Object generate_ClassDecl(final ClassDecl classDecl, final ArrayList<String> imports, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    return null;
-  }
-  
-  public Object generate_Extend(final Extend extend, final ArrayList<String> imports, final IFileSystemAccess2 fsa, final IGeneratorContext ctx) {
-    return null;
   }
   
   /**
@@ -148,60 +110,121 @@ public class BSharpGenerator extends AbstractGenerator {
       final EList<TopLevelImport> imports = top.getTopLevelImports();
       if (((imports == null) || (((Object[])Conversions.unwrapArray(imports, Object.class)).length == 0))) {
         final ITheoryRoot thy = TheoryUtils.createTheory(this.proj, this.fileName, null);
-        this.theories.add(thy);
+        final TheoryImportCache theoryCache = new TheoryImportCache(thy, this.projName, null);
+        this.theories.add(theoryCache);
+        BodyElements _noImportElements = top.getNoImportElements();
+        boolean _tripleNotEquals = (_noImportElements != null);
+        if (_tripleNotEquals) {
+          BodyElements _noImportElements_1 = top.getNoImportElements();
+          this.mainElements.add(_noImportElements_1);
+        }
         return;
       }
       int adder = 0;
-      ITheoryRoot prevTheory = null;
-      BodyElements _noImportElements = top.getNoImportElements();
-      boolean _tripleNotEquals = (_noImportElements != null);
-      if (_tripleNotEquals) {
+      TheoryImportCache prevTheoryCache = null;
+      BodyElements _noImportElements_2 = top.getNoImportElements();
+      boolean _tripleNotEquals_1 = (_noImportElements_2 != null);
+      if (_tripleNotEquals_1) {
         String _string = Integer.toString(0);
         String _plus = (this.fileName + _string);
         final ITheoryRoot thy_1 = TheoryUtils.createTheory(this.proj, _plus, null);
-        this.theories.add(thy_1);
-        prevTheory = thy_1;
+        final TheoryImportCache theoryCache_1 = new TheoryImportCache(thy_1, this.projName, null);
+        this.theories.add(theoryCache_1);
+        BodyElements _noImportElements_3 = top.getNoImportElements();
+        this.mainElements.add(_noImportElements_3);
+        prevTheoryCache = theoryCache_1;
         adder++;
       }
       final int importLen = ((Object[])Conversions.unwrapArray(imports, Object.class)).length;
       ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, (importLen - 1), true);
       for (final Integer i : _doubleDotLessThan) {
         {
+          final TopLevelImport topLevelImport = imports.get((i).intValue());
           String _string_1 = Integer.toString(((i).intValue() + adder));
           String _plus_1 = (this.fileName + _string_1);
           final ITheoryRoot thy_2 = TheoryUtils.createTheory(this.proj, _plus_1, null);
-          if ((prevTheory != null)) {
-            final IImportTheoryProject importProjBlock = TheoryUtils.createImportTheoryProject(thy_2, this.proj, this.nullMonitor);
-            TheoryUtils.createImportTheory(importProjBlock, prevTheory, this.nullMonitor);
+          final TheoryImportCache theoryCache_2 = new TheoryImportCache(thy_2, this.projName, prevTheoryCache);
+          EList<LocalImport> _localImports = topLevelImport.getLocalImports();
+          boolean _tripleNotEquals_2 = (_localImports != null);
+          if (_tripleNotEquals_2) {
+            this.importLocalImports(topLevelImport.getLocalImports(), theoryCache_2);
           }
-          this.theories.add(thy_2);
-          prevTheory = thy_2;
+          EList<GlobalImport> _globalImports = topLevelImport.getGlobalImports();
+          boolean _tripleNotEquals_3 = (_globalImports != null);
+          if (_tripleNotEquals_3) {
+            this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2);
+          }
+          this.theories.add(theoryCache_2);
+          BodyElements _bodyElements = topLevelImport.getBodyElements();
+          this.mainElements.add(_bodyElements);
+          prevTheoryCache = theoryCache_2;
         }
       }
+      final TopLevelImport topLevelImport = IterableExtensions.<TopLevelImport>last(imports);
       final ITheoryRoot thy_2 = TheoryUtils.createTheory(this.proj, this.fileName, null);
-      final IImportTheoryProject importProjBlock = TheoryUtils.createImportTheoryProject(thy_2, this.proj, this.nullMonitor);
-      TheoryUtils.createImportTheory(importProjBlock, prevTheory, this.nullMonitor);
-      this.theories.add(thy_2);
+      final TheoryImportCache theoryCache_2 = new TheoryImportCache(thy_2, this.projName, prevTheoryCache);
+      EList<LocalImport> _localImports = topLevelImport.getLocalImports();
+      boolean _tripleNotEquals_2 = (_localImports != null);
+      if (_tripleNotEquals_2) {
+        this.importLocalImports(topLevelImport.getLocalImports(), theoryCache_2);
+      }
+      EList<GlobalImport> _globalImports = topLevelImport.getGlobalImports();
+      boolean _tripleNotEquals_3 = (_globalImports != null);
+      if (_tripleNotEquals_3) {
+        this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2);
+      }
+      this.theories.add(theoryCache_2);
+      BodyElements _bodyElements = IterableExtensions.<TopLevelImport>last(imports).getBodyElements();
+      this.mainElements.add(_bodyElements);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public void importLocalImports(final LocalImport importBlock, final Map<String, Boolean> typeImports, final ITheoryRoot thy, final IImportTheoryProject localImportProj) {
-    try {
-      IImportTheoryProject importProj = localImportProj;
-      EList<FileImport> _fileImports = importBlock.getFileImports();
+  public void importLocalImports(final List<LocalImport> importBlock, final TheoryImportCache theoryCache) {
+    for (final LocalImport localImport : importBlock) {
+      EList<FileImport> _fileImports = localImport.getFileImports();
       for (final FileImport fileImport : _fileImports) {
         String _type = fileImport.getType();
         boolean _tripleEquals = (_type == null);
         if (_tripleEquals) {
-          if ((localImportProj == null)) {
-            importProj = TheoryUtils.createImportTheoryProject(thy, this.proj, this.nullMonitor);
+          theoryCache.importLocalTheoryWithName(fileImport.getFileName());
+        } else {
+          String _type_1 = fileImport.getType();
+          this.explicitTypeImports.add(_type_1);
+        }
+      }
+    }
+  }
+  
+  public void importGlobalImports(final List<GlobalImport> importBlock, final TheoryImportCache theoryCache) {
+    for (final GlobalImport globalImport : importBlock) {
+      {
+        final String projectName = globalImport.getProject();
+        EList<FileImport> _fileImports = globalImport.getFileImports();
+        for (final FileImport fileImport : _fileImports) {
+          String _type = fileImport.getType();
+          boolean _tripleEquals = (_type == null);
+          if (_tripleEquals) {
+            theoryCache.importTheoryWithNameFromProjectWithName(fileImport.getFileName(), projectName);
+          } else {
+            String _type_1 = fileImport.getType();
+            this.explicitTypeImports.add(_type_1);
           }
         }
       }
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  public Object compileBodyElementsForTheoryCache(final BodyElements elements, final TheoryImportCache theoryCache) {
+    return null;
+  }
+  
+  public Object generate_ClassDecl(final ClassDecl classDecl, final ArrayList<String> imports, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    return null;
+  }
+  
+  public Object generate_Extend(final Extend extend, final ArrayList<String> imports, final IFileSystemAccess2 fsa, final IGeneratorContext ctx) {
+    return null;
   }
 }

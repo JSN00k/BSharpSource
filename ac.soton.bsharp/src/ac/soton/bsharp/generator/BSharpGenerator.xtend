@@ -3,28 +3,31 @@
  */
 package ac.soton.bsharp.generator
 
+import ac.soton.bsharp.bSharp.ClassDecl
+import ac.soton.bsharp.bSharp.Extend
+import ac.soton.bsharp.bSharp.GlobalImport
+import ac.soton.bsharp.bSharp.LocalImport
+import ac.soton.bsharp.bSharp.TopLevel
+import ac.soton.bsharp.bSharp.TopLevelFile
+import ac.soton.bsharp.util.TheoryUtils
+import ch.ethz.eventb.utils.EventBUtils
+import java.util.ArrayList
+import java.util.Collection
+import java.util.HashMap
+import java.util.Map
+import org.eclipse.core.runtime.IProgressMonitor
+import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import java.util.ArrayList
-import ac.soton.bsharp.bSharp.TopLevel
-import java.util.Collection
-import ac.soton.bsharp.bSharp.ClassDecl
-import ac.soton.bsharp.bSharp.Extend
 import org.eventb.core.IEventBProject
-import ch.ethz.eventb.utils.EventBUtils
-import ac.soton.bsharp.util.TheoryUtils
-import org.eventb.theory.core.ITheoryRoot
-import org.eclipse.core.runtime.NullProgressMonitor
-import org.eclipse.core.runtime.IProgressMonitor
-import ac.soton.bsharp.bSharp.GlobalImport
-import ac.soton.bsharp.bSharp.LocalImport
-import java.util.HashMap
-import org.rodinp.core.IRodinProject
-import ac.soton.bsharp.bSharp.TopLevelFile
 import org.eventb.theory.core.IImportTheoryProject
-import java.util.Map
+import org.eventb.theory.core.ITheoryRoot
+import org.rodinp.core.IRodinProject
+import ac.soton.bsharp.theory.util.TheoryImportCache
+import java.util.List
+import ac.soton.bsharp.bSharp.BodyElements
 
 /**
  * Generates code from your model files on save.
@@ -38,15 +41,17 @@ class BSharpGenerator extends AbstractGenerator {
 	var String projName
 	var IRodinProject proj
 	var String fileName
-	var ITheoryRoot currentThy
-	var ArrayList<ITheoryRoot> theories
+	var TheoryImportCache currentThy
+	
+	var ArrayList<TheoryImportCache> theories
+	var ArrayList<BodyElements> mainElements
 	
 	/* When a type in imported explicitly it is possible that a smaller part
 	 * of the file is imported. This is resolved when the type is referenced
 	 * as this gives access to the EMF that is being referenced so it is possible
 	 * to work out where the files splits.
 	 */
-	var ArrayList<HashMap<String, Boolean>> explicitTypeImports
+	var ArrayList<String> explicitTypeImports
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		/* When we come into this we're expecting the resource to be at the very top level
@@ -58,13 +63,12 @@ class BSharpGenerator extends AbstractGenerator {
 		val topLevel = resource.contents.get(0) as TopLevel
 		projName = topLevel.name + "-gen"
 		explicitTypeImports = new ArrayList
+		mainElements = newArrayList
 		theories = new ArrayList
 		
 		var eventBproj = EventBUtils.getEventBProject(projName)
 		if (!eventBproj.rodinProject.exists) {
-			print("start")
 			eventBproj = EventBUtils.createEventBProject(projName, nullMonitor)
-			print("end")
 		}
 		
 		proj = eventBproj.rodinProject
@@ -76,67 +80,18 @@ class BSharpGenerator extends AbstractGenerator {
 		val topLevelFile = topLevel.topLevelFile
 		fileName = topLevelFile.name
 		
+		/* Generates all of the theories that this file will need and imports
+		 * as many files as possible.
+		 */
 		generateTheories(topLevelFile)
 		
-		//currentThy = 
-		
-		/* The strategy for importing is to import any imports declared directly before 
-		 * a Class, Datatype, or Extend declaration (if they've not already been imported,
-		 * and to import the previous Class/Datatype/Extend generated file. */
-		var ArrayList<String> toImport = new ArrayList
-		
-		/* A list of all the classes that have already been imported by the current 
-		 * file. This is used to check against when writing the toImport
-		 */
-		var ArrayList<String> prevImports = new ArrayList
-		
-		var importing = true
-		var firstImport = true
-		var ITheoryRoot lastThy = currentThy
-		
-		for (eObject : topLevelFile.eContents) {
-			if (eObject instanceof GlobalImport || eObject instanceof LocalImport) {
-				importing = true
-				//addToToImports(toImport, (eObject as GlobalImport)., prevImports)	
-			} else {
-				if (importing) {
-					
-				}
-				
-				if (eObject instanceof ClassDecl) {
-
-					generate_ClassDecl((eObject as ClassDecl), toImport, fsa, context)
-					/* Clear out the current imports as we only want to import each thing once.*/
-					prevImports += toImport
-					toImport = new ArrayList
-				/* I need to add the file that I just created to the toImport list */
-				} else if (eObject instanceof Extend) {
-					generate_Extend((eObject as Extend), toImport, fsa, context)
-					prevImports += toImport
-					toImport = new ArrayList
-
-				/* I need to add the file that I just created to the toImport list */
-				}
-			}
+		for (i : 0..< mainElements.length) {
+			val thyCache = theories.get(i)
+			val bodyElements = mainElements.get(i)
+			compileBodyElementsForTheoryCache(bodyElements, thyCache)
+			
+			thyCache.saveAndDeploy()
 		}
-	}
-	
-	/* Importing in the theory plug-in we don't want to import the same file more than once so
-	 * we make sure we only import each file once. This doesn't check across files yet.
-	 */
-	def addToToImports(ArrayList<String> toImport, Collection<String> newImports, ArrayList<String> allImports) {
-		for (string : newImports) {
-			if (!allImports.contains(string) && !toImport.contains(string))
-				toImport.add(string)
-		}
-	}
-	
-	def generate_ClassDecl(ClassDecl classDecl, ArrayList<String> imports, 
-		IFileSystemAccess2 fsa, IGeneratorContext context) {
-		
-	}
-	
-	def generate_Extend(Extend extend, ArrayList<String> imports, IFileSystemAccess2 fsa, IGeneratorContext ctx) {
 		
 	}
 	
@@ -151,55 +106,100 @@ class BSharpGenerator extends AbstractGenerator {
 		 if (imports === null || imports.length == 0) {
 		 	/* There is only a top level file */
 		 	val thy = TheoryUtils.createTheory(proj, fileName, null)
-		 	theories += thy
+		 	val theoryCache = new TheoryImportCache(thy, projName, null)
+		 	theories += theoryCache
+		 	
+		 	if (top.noImportElements !==null)
+		 		mainElements += top.noImportElements
+		 	
 		 	return
 		 }
 		 
 		 var adder = 0
-		 var ITheoryRoot prevTheory
+		 var TheoryImportCache prevTheoryCache
 		 
 		 if (top.getNoImportElements() !== null) {
 		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(0), null)
-		 	theories += thy
-		 	prevTheory = thy
+		 	val theoryCache = new TheoryImportCache(thy, projName, null)
+		 	theories += theoryCache
+		 	mainElements += top.noImportElements
+		 	prevTheoryCache = theoryCache
 		 	adder++
 		 }
 		 
 		 val importLen = imports.length
 		 
 		 for (i : 0 ..< importLen - 1) {
+		 	val topLevelImport = imports.get(i)
 		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(i + adder), null)
 		 	
-		 	if (prevTheory !== null) {
-		 		val importProjBlock = TheoryUtils.createImportTheoryProject(thy, proj, nullMonitor)
-		 		TheoryUtils.createImportTheory(importProjBlock, prevTheory, nullMonitor)
+		 	/* prevTheoryCache can be null without causing an issue. */
+		 	val theoryCache = new TheoryImportCache(thy, projName, prevTheoryCache)
+		 	if (topLevelImport.localImports !== null) {
+		 		importLocalImports(topLevelImport.localImports, theoryCache)
 		 	}
 		 	
-		 	theories += thy
-		 	prevTheory = thy
+		 	if (topLevelImport.globalImports !== null) {
+		 		importGlobalImports(topLevelImport.globalImports, theoryCache)
+		 	}
+		 	
+		 	theories += theoryCache
+		 	mainElements += topLevelImport.bodyElements
+		 	prevTheoryCache = theoryCache
 		 }
 		 
+		 val topLevelImport = imports.last
 		 val thy = TheoryUtils.createTheory(proj, fileName, null)
-		 val importProjBlock = TheoryUtils.createImportTheoryProject(thy, proj, nullMonitor)
-		 if (prevTheory !== null)
-		 	TheoryUtils.createImportTheory(importProjBlock, prevTheory, nullMonitor)
+		 val theoryCache = new TheoryImportCache(thy, projName, prevTheoryCache)
+		 if (topLevelImport.localImports !== null) {
+		 	importLocalImports(topLevelImport.localImports, theoryCache)
+		 }
+		 	
+		 if (topLevelImport.globalImports !== null) {
+		 	importGlobalImports(topLevelImport.globalImports, theoryCache)
+		 }
 		 
-		 
-		 theories += thy
+		 theories += theoryCache
+		 mainElements += imports.last.bodyElements
 	}
 	
-	def importLocalImports (LocalImport importBlock, Map<String, Boolean> typeImports, 
-		ITheoryRoot thy, IImportTheoryProject localImportProj
-	) {
-		var importProj = localImportProj
-		for (fileImport : importBlock.fileImports) {
-			if (fileImport.type === null) {
-				if (localImportProj === null) {
-					importProj = TheoryUtils.createImportTheoryProject(thy, proj, nullMonitor)
+	
+	def importLocalImports(List<LocalImport> importBlock, TheoryImportCache theoryCache) {
+		for (localImport : importBlock) {
+			for (fileImport : localImport.fileImports) {
+				if (fileImport.type === null) {
+					theoryCache.importLocalTheoryWithName(fileImport.fileName)
+				} else {
+					explicitTypeImports += fileImport.type
 				}
-				
-				//TheoryUtils.createImportTheory(importProj, )
 			}
 		}
+	}
+	
+	def importGlobalImports(List<GlobalImport> importBlock, TheoryImportCache theoryCache) {
+		for (globalImport : importBlock){
+			val projectName = globalImport.project
+			for (fileImport : globalImport.fileImports) {
+				if (fileImport.type === null) {
+					theoryCache.importTheoryWithNameFromProjectWithName(fileImport.fileName, projectName)
+				} else {
+					explicitTypeImports += fileImport.type
+				}
+			}
+		}
+	}
+	
+	def compileBodyElementsForTheoryCache(BodyElements elements, TheoryImportCache theoryCache) {
+		
+	}
+	
+		
+	def generate_ClassDecl(ClassDecl classDecl, ArrayList<String> imports, 
+		IFileSystemAccess2 fsa, IGeneratorContext context) {
+		
+	}
+	
+	def generate_Extend(Extend extend, ArrayList<String> imports, IFileSystemAccess2 fsa, IGeneratorContext ctx) {
+		
 	}
 }
