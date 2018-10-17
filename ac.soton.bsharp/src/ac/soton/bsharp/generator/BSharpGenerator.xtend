@@ -9,7 +9,7 @@ import ac.soton.bsharp.bSharp.GlobalImport
 import ac.soton.bsharp.bSharp.LocalImport
 import ac.soton.bsharp.bSharp.TopLevel
 import ac.soton.bsharp.bSharp.TopLevelFile
-import ac.soton.bsharp.util.TheoryUtils
+import ac.soton.bsharp.theory.util.TheoryUtils
 import ch.ethz.eventb.utils.EventBUtils
 import java.util.ArrayList
 import java.util.Collection
@@ -90,7 +90,7 @@ class BSharpGenerator extends AbstractGenerator {
 			val bodyElements = mainElements.get(i)
 			compileBodyElementsForTheoryCache(bodyElements, thyCache)
 			
-			thyCache.saveAndDeploy()
+			thyCache.save()
 		}
 		
 	}

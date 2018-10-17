@@ -7,7 +7,7 @@ import org.eventb.theory.core.basis.TheoryRoot
 import org.eventb.theory.core.IImportTheoryProject
 import org.rodinp.core.IRodinProject
 import ch.ethz.eventb.utils.EventBUtils
-import ac.soton.bsharp.util.TheoryUtils
+import ac.soton.bsharp.theory.util.TheoryUtils
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.rodinp.core.IRodinElement
@@ -42,11 +42,7 @@ class TheoryImportCache {
 	new(ITheoryRoot thy, String projName, TheoryImportCache prevTheory) {
 		theory = thy
 		localProjName = projName
-		
-		val localBlock = TheoryUtils.createImportTheoryProject(theory, theory.rodinProject, nullMonitor)
 		thyImportBlocks = new HashMap
-		thyImportBlocks.put(projName, localBlock)
-		
 		alreadyImported = new ArrayList
 		
 		if (prevTheory !== null)
@@ -77,6 +73,12 @@ class TheoryImportCache {
 	}
 	
 	def importLocalTheoryWithName(String thyName) {
+		val localProjBlock = thyImportBlocks.get(localProjName)
+		if (localProjBlock === null) {
+			val localBlock = TheoryUtils.createImportTheoryProject(theory, theory.rodinProject, nullMonitor)
+			thyImportBlocks.put(localProjName, localBlock)
+		}
+		
 		importTheoryWithNameFromProjectWithName(thyName, localProjName)
 	}
 	
@@ -117,7 +119,7 @@ class TheoryImportCache {
 		return importBlock
 	}
 	
-	def saveAndDeploy() {
+	def save() {
 		theory.rodinFile.save(nullMonitor, true)
 		
 	}

@@ -1,6 +1,6 @@
 package ac.soton.bsharp.theory.util;
 
-import ac.soton.bsharp.util.TheoryUtils;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 import ch.ethz.eventb.utils.EventBUtils;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
@@ -48,24 +48,18 @@ public class TheoryImportCache {
    * in prevTheory.
    */
   public TheoryImportCache(final ITheoryRoot thy, final String projName, final TheoryImportCache prevTheory) {
-    try {
-      this.theory = thy;
-      this.localProjName = projName;
-      final IImportTheoryProject localBlock = TheoryUtils.createImportTheoryProject(this.theory, this.theory.getRodinProject(), this.nullMonitor);
-      HashMap<String, IImportTheoryProject> _hashMap = new HashMap<String, IImportTheoryProject>();
-      this.thyImportBlocks = _hashMap;
-      this.thyImportBlocks.put(projName, localBlock);
-      ArrayList<String> _arrayList = new ArrayList<String>();
-      this.alreadyImported = _arrayList;
-      if ((prevTheory != null)) {
-        this.importLocalTheoryCache(prevTheory);
-      }
-      String _componentName = thy.getComponentName();
-      String _plus = ((projName + ".") + _componentName);
-      this.alreadyImported.add(_plus);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
+    this.theory = thy;
+    this.localProjName = projName;
+    HashMap<String, IImportTheoryProject> _hashMap = new HashMap<String, IImportTheoryProject>();
+    this.thyImportBlocks = _hashMap;
+    ArrayList<String> _arrayList = new ArrayList<String>();
+    this.alreadyImported = _arrayList;
+    if ((prevTheory != null)) {
+      this.importLocalTheoryCache(prevTheory);
     }
+    String _componentName = thy.getComponentName();
+    String _plus = ((projName + ".") + _componentName);
+    this.alreadyImported.add(_plus);
   }
   
   public void importThyFromProjectWithName(final ITheoryRoot thy, final String projName) {
@@ -95,7 +89,16 @@ public class TheoryImportCache {
   }
   
   public void importLocalTheoryWithName(final String thyName) {
-    this.importTheoryWithNameFromProjectWithName(thyName, this.localProjName);
+    try {
+      final IImportTheoryProject localProjBlock = this.thyImportBlocks.get(this.localProjName);
+      if ((localProjBlock == null)) {
+        final IImportTheoryProject localBlock = TheoryUtils.createImportTheoryProject(this.theory, this.theory.getRodinProject(), this.nullMonitor);
+        this.thyImportBlocks.put(this.localProjName, localBlock);
+      }
+      this.importTheoryWithNameFromProjectWithName(thyName, this.localProjName);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public void importTheoryWithNameFromProjectWithName(final String thyName, final String projName) {
@@ -134,7 +137,7 @@ public class TheoryImportCache {
     }
   }
   
-  public void saveAndDeploy() {
+  public void save() {
     try {
       this.theory.getRodinFile().save(this.nullMonitor, true);
     } catch (Throwable _e) {

@@ -1,4 +1,4 @@
-package ac.soton.bsharp.util;
+package ac.soton.bsharp.theory.util;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;

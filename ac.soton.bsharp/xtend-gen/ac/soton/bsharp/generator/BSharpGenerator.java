@@ -13,7 +13,7 @@ import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
-import ac.soton.bsharp.util.TheoryUtils;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 import ch.ethz.eventb.utils.EventBUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +93,7 @@ public class BSharpGenerator extends AbstractGenerator {
           final TheoryImportCache thyCache = this.theories.get((i).intValue());
           final BodyElements bodyElements = this.mainElements.get((i).intValue());
           this.compileBodyElementsForTheoryCache(bodyElements, thyCache);
-          thyCache.saveAndDeploy();
+          thyCache.save();
         }
       }
     } catch (Throwable _e) {
