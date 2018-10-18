@@ -117,8 +117,8 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createClassDeclAdapter();
 			}
 			@Override
-			public Adapter caseBppClass(BppClass object) {
-				return createBppClassAdapter();
+			public Adapter caseBSClass(BSClass object) {
+				return createBSClassAdapter();
 			}
 			@Override
 			public Adapter caseBSharpBlock(BSharpBlock object) {
@@ -329,16 +329,16 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.BppClass <em>Bpp Class</em>}'.
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.BSClass <em>BS Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.BppClass
+	 * @see ac.soton.bsharp.bSharp.BSClass
 	 * @generated
 	 */
-	public Adapter createBppClassAdapter() {
+	public Adapter createBSClassAdapter() {
 		return null;
 	}
 

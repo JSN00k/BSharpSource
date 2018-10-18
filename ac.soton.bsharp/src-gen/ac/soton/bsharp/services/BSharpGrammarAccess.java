@@ -418,7 +418,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cBlockAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final RuleCall cBlockBSharpBlockParserRuleCall_7_0 = (RuleCall)cBlockAssignment_7.eContents().get(0);
 		
-		///* ------------------------ Class statements --------------------- */ Class BppClass:
+		///* ------------------------ Class statements --------------------- */ Class BSClass:
 		//	'Class' name=ID context=PolyContext? supertypes=SuperTypeList? varList=TypeStructure? where=Where? ';'?
 		//	block=BSharpBlock;
 		@Override public ParserRule getRule() { return rule; }
@@ -559,12 +559,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.SuperTypeList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cColonKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cSuperTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSuperTypeConstructedTypeParserRuleCall_1_0 = (RuleCall)cSuperTypeAssignment_1.eContents().get(0);
+		private final Assignment cSuperTypesAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cSuperTypesConstructedTypeParserRuleCall_1_0 = (RuleCall)cSuperTypesAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cSuperTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cSuperTypeConstructedTypeParserRuleCall_2_1_0 = (RuleCall)cSuperTypeAssignment_2_1.eContents().get(0);
+		private final Assignment cSuperTypesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cSuperTypesConstructedTypeParserRuleCall_2_1_0 = (RuleCall)cSuperTypesAssignment_2_1.eContents().get(0);
 		
 		///* ------------------- SuperTypes ---------------------------------- */ /* Any constriction on the polymorphic context has to be done by declaring the polymorphic context
 		// * on the new type. If necessary the polymorphic context can be used within type constructors. In the simple case 
@@ -572,32 +572,32 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * need to be identical declarations. It is also necessary to allow EventB style type constructors at this
 		// * point. e.g., an associative operator is a subtype of a closed Event-B total function.
 		// */ SuperTypeList:
-		//	':' superType+=ConstructedType (',' superType+=ConstructedType)*;
+		//	':' superTypes+=ConstructedType (',' superTypes+=ConstructedType)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//':' superType+=ConstructedType (',' superType+=ConstructedType)*
+		//':' superTypes+=ConstructedType (',' superTypes+=ConstructedType)*
 		public Group getGroup() { return cGroup; }
 		
 		//':'
 		public Keyword getColonKeyword_0() { return cColonKeyword_0; }
 		
-		//superType+=ConstructedType
-		public Assignment getSuperTypeAssignment_1() { return cSuperTypeAssignment_1; }
+		//superTypes+=ConstructedType
+		public Assignment getSuperTypesAssignment_1() { return cSuperTypesAssignment_1; }
 		
 		//ConstructedType
-		public RuleCall getSuperTypeConstructedTypeParserRuleCall_1_0() { return cSuperTypeConstructedTypeParserRuleCall_1_0; }
+		public RuleCall getSuperTypesConstructedTypeParserRuleCall_1_0() { return cSuperTypesConstructedTypeParserRuleCall_1_0; }
 		
-		//(',' superType+=ConstructedType)*
+		//(',' superTypes+=ConstructedType)*
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//','
 		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
 		
-		//superType+=ConstructedType
-		public Assignment getSuperTypeAssignment_2_1() { return cSuperTypeAssignment_2_1; }
+		//superTypes+=ConstructedType
+		public Assignment getSuperTypesAssignment_2_1() { return cSuperTypesAssignment_2_1; }
 		
 		//ConstructedType
-		public RuleCall getSuperTypeConstructedTypeParserRuleCall_2_1_0() { return cSuperTypeConstructedTypeParserRuleCall_2_1_0; }
+		public RuleCall getSuperTypesConstructedTypeParserRuleCall_2_1_0() { return cSuperTypesConstructedTypeParserRuleCall_2_1_0; }
 	}
 	public class ConstructedTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ConstructedType");
@@ -2247,7 +2247,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getLocalImportAccess().getRule();
 	}
 	
-	///* ------------------------ Class statements --------------------- */ Class BppClass:
+	///* ------------------------ Class statements --------------------- */ Class BSClass:
 	//	'Class' name=ID context=PolyContext? supertypes=SuperTypeList? varList=TypeStructure? where=Where? ';'?
 	//	block=BSharpBlock;
 	public ClassElements getClassAccess() {
@@ -2284,7 +2284,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * need to be identical declarations. It is also necessary to allow EventB style type constructors at this
 	// * point. e.g., an associative operator is a subtype of a closed Event-B total function.
 	// */ SuperTypeList:
-	//	':' superType+=ConstructedType (',' superType+=ConstructedType)*;
+	//	':' superTypes+=ConstructedType (',' superTypes+=ConstructedType)*;
 	public SuperTypeListElements getSuperTypeListAccess() {
 		return pSuperTypeList;
 	}

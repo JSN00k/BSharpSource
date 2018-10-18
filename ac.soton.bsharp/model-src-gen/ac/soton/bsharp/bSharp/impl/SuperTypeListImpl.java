@@ -29,22 +29,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.SuperTypeListImpl#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.SuperTypeListImpl#getSuperTypes <em>Super Types</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements SuperTypeList {
 	/**
-	 * The cached value of the '{@link #getSuperType() <em>Super Type</em>}' containment reference list.
+	 * The cached value of the '{@link #getSuperTypes() <em>Super Types</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSuperType()
+	 * @see #getSuperTypes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstructedType> superType;
-
+	protected EList<ConstructedType> superTypes;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,11 +68,11 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ConstructedType> getSuperType() {
-		if (superType == null) {
-			superType = new EObjectContainmentEList<ConstructedType>(ConstructedType.class, this, BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPE);
+	public EList<ConstructedType> getSuperTypes() {
+		if (superTypes == null) {
+			superTypes = new EObjectContainmentEList<ConstructedType>(ConstructedType.class, this, BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES);
 		}
-		return superType;
+		return superTypes;
 	}
 
 	/**
@@ -84,8 +83,8 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPE:
-				return ((InternalEList<?>)getSuperType()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES:
+				return ((InternalEList<?>)getSuperTypes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -98,8 +97,8 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPE:
-				return getSuperType();
+			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES:
+				return getSuperTypes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,9 +112,9 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPE:
-				getSuperType().clear();
-				getSuperType().addAll((Collection<? extends ConstructedType>)newValue);
+			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES:
+				getSuperTypes().clear();
+				getSuperTypes().addAll((Collection<? extends ConstructedType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -129,8 +128,8 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPE:
-				getSuperType().clear();
+			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES:
+				getSuperTypes().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -144,8 +143,8 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPE:
-				return superType != null && !superType.isEmpty();
+			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES:
+				return superTypes != null && !superTypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

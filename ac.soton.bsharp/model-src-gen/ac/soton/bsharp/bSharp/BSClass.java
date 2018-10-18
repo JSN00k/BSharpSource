@@ -13,16 +13,16 @@ package ac.soton.bsharp.bSharp;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.BppClass#getSupertypes <em>Supertypes</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.BppClass#getVarList <em>Var List</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.BppClass#getWhere <em>Where</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.BSClass#getSupertypes <em>Supertypes</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.BSClass#getVarList <em>Var List</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.BSClass#getWhere <em>Where</em>}</li>
  * </ul>
  *
- * @see ac.soton.bsharp.bSharp.BSharpPackage#getBppClass()
+ * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSClass()
  * @model
  * @generated
  */
-public interface BppClass extends ClassDecl {
+public interface BSClass extends ClassDecl {
 	/**
 	 * Returns the value of the '<em><b>Supertypes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -33,14 +33,14 @@ public interface BppClass extends ClassDecl {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Supertypes</em>' containment reference.
 	 * @see #setSupertypes(SuperTypeList)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBppClass_Supertypes()
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSClass_Supertypes()
 	 * @model containment="true"
 	 * @generated
 	 */
 	SuperTypeList getSupertypes();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.BppClass#getSupertypes <em>Supertypes</em>}' containment reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.BSClass#getSupertypes <em>Supertypes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Supertypes</em>' containment reference.
@@ -59,14 +59,14 @@ public interface BppClass extends ClassDecl {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Var List</em>' containment reference.
 	 * @see #setVarList(TypeStructure)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBppClass_VarList()
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSClass_VarList()
 	 * @model containment="true"
 	 * @generated
 	 */
 	TypeStructure getVarList();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.BppClass#getVarList <em>Var List</em>}' containment reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.BSClass#getVarList <em>Var List</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Var List</em>' containment reference.
@@ -85,14 +85,14 @@ public interface BppClass extends ClassDecl {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Where</em>' containment reference.
 	 * @see #setWhere(Where)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBppClass_Where()
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSClass_Where()
 	 * @model containment="true"
 	 * @generated
 	 */
 	Where getWhere();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.BppClass#getWhere <em>Where</em>}' containment reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.BSClass#getWhere <em>Where</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Where</em>' containment reference.

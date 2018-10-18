@@ -8925,31 +8925,31 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group__1__Impl"
-    // InternalBSharp.g:2785:1: rule__SuperTypeList__Group__1__Impl : ( ( rule__SuperTypeList__SuperTypeAssignment_1 ) ) ;
+    // InternalBSharp.g:2785:1: rule__SuperTypeList__Group__1__Impl : ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) ) ;
     public final void rule__SuperTypeList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2789:1: ( ( ( rule__SuperTypeList__SuperTypeAssignment_1 ) ) )
-            // InternalBSharp.g:2790:1: ( ( rule__SuperTypeList__SuperTypeAssignment_1 ) )
+            // InternalBSharp.g:2789:1: ( ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) ) )
+            // InternalBSharp.g:2790:1: ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) )
             {
-            // InternalBSharp.g:2790:1: ( ( rule__SuperTypeList__SuperTypeAssignment_1 ) )
-            // InternalBSharp.g:2791:2: ( rule__SuperTypeList__SuperTypeAssignment_1 )
+            // InternalBSharp.g:2790:1: ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) )
+            // InternalBSharp.g:2791:2: ( rule__SuperTypeList__SuperTypesAssignment_1 )
             {
-             before(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_1()); 
-            // InternalBSharp.g:2792:2: ( rule__SuperTypeList__SuperTypeAssignment_1 )
-            // InternalBSharp.g:2792:3: rule__SuperTypeList__SuperTypeAssignment_1
+             before(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_1()); 
+            // InternalBSharp.g:2792:2: ( rule__SuperTypeList__SuperTypesAssignment_1 )
+            // InternalBSharp.g:2792:3: rule__SuperTypeList__SuperTypesAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__SuperTypeList__SuperTypeAssignment_1();
+            rule__SuperTypeList__SuperTypesAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_1()); 
+             after(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_1()); 
 
             }
 
@@ -9178,31 +9178,31 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group_2__1__Impl"
-    // InternalBSharp.g:2865:1: rule__SuperTypeList__Group_2__1__Impl : ( ( rule__SuperTypeList__SuperTypeAssignment_2_1 ) ) ;
+    // InternalBSharp.g:2865:1: rule__SuperTypeList__Group_2__1__Impl : ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) ) ;
     public final void rule__SuperTypeList__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2869:1: ( ( ( rule__SuperTypeList__SuperTypeAssignment_2_1 ) ) )
-            // InternalBSharp.g:2870:1: ( ( rule__SuperTypeList__SuperTypeAssignment_2_1 ) )
+            // InternalBSharp.g:2869:1: ( ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) ) )
+            // InternalBSharp.g:2870:1: ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) )
             {
-            // InternalBSharp.g:2870:1: ( ( rule__SuperTypeList__SuperTypeAssignment_2_1 ) )
-            // InternalBSharp.g:2871:2: ( rule__SuperTypeList__SuperTypeAssignment_2_1 )
+            // InternalBSharp.g:2870:1: ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) )
+            // InternalBSharp.g:2871:2: ( rule__SuperTypeList__SuperTypesAssignment_2_1 )
             {
-             before(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_2_1()); 
-            // InternalBSharp.g:2872:2: ( rule__SuperTypeList__SuperTypeAssignment_2_1 )
-            // InternalBSharp.g:2872:3: rule__SuperTypeList__SuperTypeAssignment_2_1
+             before(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_2_1()); 
+            // InternalBSharp.g:2872:2: ( rule__SuperTypeList__SuperTypesAssignment_2_1 )
+            // InternalBSharp.g:2872:3: rule__SuperTypeList__SuperTypesAssignment_2_1
             {
             pushFollow(FOLLOW_2);
-            rule__SuperTypeList__SuperTypeAssignment_2_1();
+            rule__SuperTypeList__SuperTypesAssignment_2_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_2_1()); 
+             after(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_2_1()); 
 
             }
 
@@ -20741,9 +20741,9 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PolyType__SuperTypesAssignment_1_2_1"
 
 
-    // $ANTLR start "rule__SuperTypeList__SuperTypeAssignment_1"
-    // InternalBSharp.g:6680:1: rule__SuperTypeList__SuperTypeAssignment_1 : ( ruleConstructedType ) ;
-    public final void rule__SuperTypeList__SuperTypeAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__SuperTypeList__SuperTypesAssignment_1"
+    // InternalBSharp.g:6680:1: rule__SuperTypeList__SuperTypesAssignment_1 : ( ruleConstructedType ) ;
+    public final void rule__SuperTypeList__SuperTypesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -20754,13 +20754,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6685:2: ( ruleConstructedType )
             // InternalBSharp.g:6686:3: ruleConstructedType
             {
-             before(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_1_0()); 
+             before(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruleConstructedType();
 
             state._fsp--;
 
-             after(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_1_0()); 
+             after(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_1_0()); 
 
             }
 
@@ -20779,12 +20779,12 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__SuperTypeList__SuperTypeAssignment_1"
+    // $ANTLR end "rule__SuperTypeList__SuperTypesAssignment_1"
 
 
-    // $ANTLR start "rule__SuperTypeList__SuperTypeAssignment_2_1"
-    // InternalBSharp.g:6695:1: rule__SuperTypeList__SuperTypeAssignment_2_1 : ( ruleConstructedType ) ;
-    public final void rule__SuperTypeList__SuperTypeAssignment_2_1() throws RecognitionException {
+    // $ANTLR start "rule__SuperTypeList__SuperTypesAssignment_2_1"
+    // InternalBSharp.g:6695:1: rule__SuperTypeList__SuperTypesAssignment_2_1 : ( ruleConstructedType ) ;
+    public final void rule__SuperTypeList__SuperTypesAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -20795,13 +20795,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6700:2: ( ruleConstructedType )
             // InternalBSharp.g:6701:3: ruleConstructedType
             {
-             before(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_2_1_0()); 
+             before(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
             ruleConstructedType();
 
             state._fsp--;
 
-             after(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_2_1_0()); 
+             after(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_2_1_0()); 
 
             }
 
@@ -20820,7 +20820,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__SuperTypeList__SuperTypeAssignment_2_1"
+    // $ANTLR end "rule__SuperTypeList__SuperTypesAssignment_2_1"
 
 
     // $ANTLR start "rule__ConstructedType__TypeAssignment_0"

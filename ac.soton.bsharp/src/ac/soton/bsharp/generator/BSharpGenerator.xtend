@@ -28,6 +28,7 @@ import org.rodinp.core.IRodinProject
 import ac.soton.bsharp.theory.util.TheoryImportCache
 import java.util.List
 import ac.soton.bsharp.bSharp.BodyElements
+import ac.soton.bsharp.bSharp.BSClass
 
 /**
  * Generates code from your model files on save.
@@ -88,7 +89,8 @@ class BSharpGenerator extends AbstractGenerator {
 		for (i : 0..< mainElements.length) {
 			val thyCache = theories.get(i)
 			val bodyElements = mainElements.get(i)
-			compileBodyElementsForTheoryCache(bodyElements, thyCache)
+			val fileCompiler = new FileCompiler(bodyElements, thyCache)
+			fileCompiler.compile
 			
 			thyCache.save()
 		}
@@ -187,19 +189,5 @@ class BSharpGenerator extends AbstractGenerator {
 				}
 			}
 		}
-	}
-	
-	def compileBodyElementsForTheoryCache(BodyElements elements, TheoryImportCache theoryCache) {
-		
-	}
-	
-		
-	def generate_ClassDecl(ClassDecl classDecl, ArrayList<String> imports, 
-		IFileSystemAccess2 fsa, IGeneratorContext context) {
-		
-	}
-	
-	def generate_Extend(Extend extend, ArrayList<String> imports, IFileSystemAccess2 fsa, IGeneratorContext ctx) {
-		
 	}
 }

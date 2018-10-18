@@ -2571,42 +2571,42 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSuperTypeList"
-    // InternalBSharp.g:947:1: ruleSuperTypeList returns [EObject current=null] : (otherlv_0= ':' ( (lv_superType_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superType_3_0= ruleConstructedType ) ) )* ) ;
+    // InternalBSharp.g:947:1: ruleSuperTypeList returns [EObject current=null] : (otherlv_0= ':' ( (lv_superTypes_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superTypes_3_0= ruleConstructedType ) ) )* ) ;
     public final EObject ruleSuperTypeList() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_2=null;
-        EObject lv_superType_1_0 = null;
+        EObject lv_superTypes_1_0 = null;
 
-        EObject lv_superType_3_0 = null;
+        EObject lv_superTypes_3_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalBSharp.g:953:2: ( (otherlv_0= ':' ( (lv_superType_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superType_3_0= ruleConstructedType ) ) )* ) )
-            // InternalBSharp.g:954:2: (otherlv_0= ':' ( (lv_superType_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superType_3_0= ruleConstructedType ) ) )* )
+            // InternalBSharp.g:953:2: ( (otherlv_0= ':' ( (lv_superTypes_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superTypes_3_0= ruleConstructedType ) ) )* ) )
+            // InternalBSharp.g:954:2: (otherlv_0= ':' ( (lv_superTypes_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superTypes_3_0= ruleConstructedType ) ) )* )
             {
-            // InternalBSharp.g:954:2: (otherlv_0= ':' ( (lv_superType_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superType_3_0= ruleConstructedType ) ) )* )
-            // InternalBSharp.g:955:3: otherlv_0= ':' ( (lv_superType_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superType_3_0= ruleConstructedType ) ) )*
+            // InternalBSharp.g:954:2: (otherlv_0= ':' ( (lv_superTypes_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superTypes_3_0= ruleConstructedType ) ) )* )
+            // InternalBSharp.g:955:3: otherlv_0= ':' ( (lv_superTypes_1_0= ruleConstructedType ) ) (otherlv_2= ',' ( (lv_superTypes_3_0= ruleConstructedType ) ) )*
             {
             otherlv_0=(Token)match(input,12,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getSuperTypeListAccess().getColonKeyword_0());
             		
-            // InternalBSharp.g:959:3: ( (lv_superType_1_0= ruleConstructedType ) )
-            // InternalBSharp.g:960:4: (lv_superType_1_0= ruleConstructedType )
+            // InternalBSharp.g:959:3: ( (lv_superTypes_1_0= ruleConstructedType ) )
+            // InternalBSharp.g:960:4: (lv_superTypes_1_0= ruleConstructedType )
             {
-            // InternalBSharp.g:960:4: (lv_superType_1_0= ruleConstructedType )
-            // InternalBSharp.g:961:5: lv_superType_1_0= ruleConstructedType
+            // InternalBSharp.g:960:4: (lv_superTypes_1_0= ruleConstructedType )
+            // InternalBSharp.g:961:5: lv_superTypes_1_0= ruleConstructedType
             {
 
-            					newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_1_0());
+            					newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_1_0());
             				
             pushFollow(FOLLOW_15);
-            lv_superType_1_0=ruleConstructedType();
+            lv_superTypes_1_0=ruleConstructedType();
 
             state._fsp--;
 
@@ -2616,8 +2616,8 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             					}
             					add(
             						current,
-            						"superType",
-            						lv_superType_1_0,
+            						"superTypes",
+            						lv_superTypes_1_0,
             						"ac.soton.bsharp.BSharp.ConstructedType");
             					afterParserOrEnumRuleCall();
             				
@@ -2627,7 +2627,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBSharp.g:978:3: (otherlv_2= ',' ( (lv_superType_3_0= ruleConstructedType ) ) )*
+            // InternalBSharp.g:978:3: (otherlv_2= ',' ( (lv_superTypes_3_0= ruleConstructedType ) ) )*
             loop20:
             do {
                 int alt20=2;
@@ -2640,23 +2640,23 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                 switch (alt20) {
             	case 1 :
-            	    // InternalBSharp.g:979:4: otherlv_2= ',' ( (lv_superType_3_0= ruleConstructedType ) )
+            	    // InternalBSharp.g:979:4: otherlv_2= ',' ( (lv_superTypes_3_0= ruleConstructedType ) )
             	    {
             	    otherlv_2=(Token)match(input,21,FOLLOW_3); 
 
             	    				newLeafNode(otherlv_2, grammarAccess.getSuperTypeListAccess().getCommaKeyword_2_0());
             	    			
-            	    // InternalBSharp.g:983:4: ( (lv_superType_3_0= ruleConstructedType ) )
-            	    // InternalBSharp.g:984:5: (lv_superType_3_0= ruleConstructedType )
+            	    // InternalBSharp.g:983:4: ( (lv_superTypes_3_0= ruleConstructedType ) )
+            	    // InternalBSharp.g:984:5: (lv_superTypes_3_0= ruleConstructedType )
             	    {
-            	    // InternalBSharp.g:984:5: (lv_superType_3_0= ruleConstructedType )
-            	    // InternalBSharp.g:985:6: lv_superType_3_0= ruleConstructedType
+            	    // InternalBSharp.g:984:5: (lv_superTypes_3_0= ruleConstructedType )
+            	    // InternalBSharp.g:985:6: lv_superTypes_3_0= ruleConstructedType
             	    {
 
-            	    						newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_2_1_0());
+            	    						newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_2_1_0());
             	    					
             	    pushFollow(FOLLOW_15);
-            	    lv_superType_3_0=ruleConstructedType();
+            	    lv_superTypes_3_0=ruleConstructedType();
 
             	    state._fsp--;
 
@@ -2666,8 +2666,8 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             	    						}
             	    						add(
             	    							current,
-            	    							"superType",
-            	    							lv_superType_3_0,
+            	    							"superTypes",
+            	    							lv_superTypes_3_0,
             	    							"ac.soton.bsharp.BSharp.ConstructedType");
             	    						afterParserOrEnumRuleCall();
             	    					

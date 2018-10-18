@@ -959,17 +959,17 @@ ruleSuperTypeList returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_1_0());
 				}
-				lv_superType_1_0=ruleConstructedType
+				lv_superTypes_1_0=ruleConstructedType
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSuperTypeListRule());
 					}
 					add(
 						$current,
-						"superType",
-						lv_superType_1_0,
+						"superTypes",
+						lv_superTypes_1_0,
 						"ac.soton.bsharp.BSharp.ConstructedType");
 					afterParserOrEnumRuleCall();
 				}
@@ -983,17 +983,17 @@ ruleSuperTypeList returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_2_1_0());
 					}
-					lv_superType_3_0=ruleConstructedType
+					lv_superTypes_3_0=ruleConstructedType
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSuperTypeListRule());
 						}
 						add(
 							$current,
-							"superType",
-							lv_superType_3_0,
+							"superTypes",
+							lv_superTypes_3_0,
 							"ac.soton.bsharp.BSharp.ConstructedType");
 						afterParserOrEnumRuleCall();
 					}

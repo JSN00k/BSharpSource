@@ -4,14 +4,13 @@
 package ac.soton.bsharp.generator;
 
 import ac.soton.bsharp.bSharp.BodyElements;
-import ac.soton.bsharp.bSharp.ClassDecl;
-import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
+import ac.soton.bsharp.generator.FileCompiler;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 import ch.ethz.eventb.utils.EventBUtils;
@@ -92,7 +91,8 @@ public class BSharpGenerator extends AbstractGenerator {
         {
           final TheoryImportCache thyCache = this.theories.get((i).intValue());
           final BodyElements bodyElements = this.mainElements.get((i).intValue());
-          this.compileBodyElementsForTheoryCache(bodyElements, thyCache);
+          final FileCompiler fileCompiler = new FileCompiler(bodyElements, thyCache);
+          fileCompiler.compile();
           thyCache.save();
         }
       }
@@ -214,17 +214,5 @@ public class BSharpGenerator extends AbstractGenerator {
         }
       }
     }
-  }
-  
-  public Object compileBodyElementsForTheoryCache(final BodyElements elements, final TheoryImportCache theoryCache) {
-    return null;
-  }
-  
-  public Object generate_ClassDecl(final ClassDecl classDecl, final ArrayList<String> imports, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    return null;
-  }
-  
-  public Object generate_Extend(final Extend extend, final ArrayList<String> imports, final IFileSystemAccess2 fsa, final IGeneratorContext ctx) {
-    return null;
   }
 }

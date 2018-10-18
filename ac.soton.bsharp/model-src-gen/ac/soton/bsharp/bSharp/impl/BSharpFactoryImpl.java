@@ -66,7 +66,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.FILE_IMPORT: return createFileImport();
 			case BSharpPackage.LOCAL_IMPORT: return createLocalImport();
 			case BSharpPackage.BODY_ELEMENTS: return createBodyElements();
-			case BSharpPackage.BPP_CLASS: return createBppClass();
+			case BSharpPackage.BS_CLASS: return createBSClass();
 			case BSharpPackage.BSHARP_BLOCK: return createBSharpBlock();
 			case BSharpPackage.GEN_NAME: return createGenName();
 			case BSharpPackage.POLY_CONTEXT: return createPolyContext();
@@ -133,16 +133,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public TopLevelImport createTopLevelImport() {
 		TopLevelImportImpl topLevelImport = new TopLevelImportImpl();
 		return topLevelImport;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BppClass createBppClass() {
-		BppClassImpl bppClass = new BppClassImpl();
-		return bppClass;
 	}
 
 	/**
@@ -532,6 +522,16 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public BodyElements createBodyElements() {
 		BodyElementsImpl bodyElements = new BodyElementsImpl();
 		return bodyElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BSClass createBSClass() {
+		BSClassImpl bsClass = new BSClassImpl();
+		return bsClass;
 	}
 
 	/**

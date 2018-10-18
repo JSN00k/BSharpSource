@@ -3,10 +3,10 @@
  */
 package ac.soton.bsharp.serializer;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BodyElements;
-import ac.soton.bsharp.bSharp.BppClass;
 import ac.soton.bsharp.bSharp.Bracket;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
@@ -68,14 +68,14 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == BSharpPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case BSharpPackage.BS_CLASS:
+				sequence_Class(context, (BSClass) semanticObject); 
+				return; 
 			case BSharpPackage.BSHARP_BLOCK:
 				sequence_BSharpBlock(context, (BSharpBlock) semanticObject); 
 				return; 
 			case BSharpPackage.BODY_ELEMENTS:
 				sequence_BodyElements(context, (BodyElements) semanticObject); 
-				return; 
-			case BSharpPackage.BPP_CLASS:
-				sequence_Class(context, (BppClass) semanticObject); 
 				return; 
 			case BSharpPackage.BRACKET:
 				sequence_Bracket(context, (Bracket) semanticObject); 
@@ -264,11 +264,11 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     ClassDecl returns BppClass
-	 *     Type returns BppClass
-	 *     GenName returns BppClass
-	 *     Class returns BppClass
-	 *     ExpressionVariable returns BppClass
+	 *     ClassDecl returns BSClass
+	 *     Type returns BSClass
+	 *     GenName returns BSClass
+	 *     Class returns BSClass
+	 *     ExpressionVariable returns BSClass
 	 *
 	 * Constraint:
 	 *     (
@@ -280,7 +280,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         block=BSharpBlock
 	 *     )
 	 */
-	protected void sequence_Class(ISerializationContext context, BppClass semanticObject) {
+	protected void sequence_Class(ISerializationContext context, BSClass semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -602,7 +602,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     SuperTypeList returns SuperTypeList
 	 *
 	 * Constraint:
-	 *     (superType+=ConstructedType superType+=ConstructedType*)
+	 *     (superTypes+=ConstructedType superTypes+=ConstructedType*)
 	 */
 	protected void sequence_SuperTypeList(ISerializationContext context, SuperTypeList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -148,17 +148,17 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.BPP_CLASS: {
-				BppClass bppClass = (BppClass)theEObject;
-				T result = caseBppClass(bppClass);
-				if (result == null) result = caseClassDecl(bppClass);
-				if (result == null) result = caseExpressionVariable(bppClass);
-				if (result == null) result = caseIVariableProvider(bppClass);
-				if (result == null) result = caseIPolyTypeProvider(bppClass);
-				if (result == null) result = caseType(bppClass);
-				if (result == null) result = caseTopLevelInstance(bppClass);
-				if (result == null) result = caseGenName(bppClass);
-				if (result == null) result = caseNamedObject(bppClass);
+			case BSharpPackage.BS_CLASS: {
+				BSClass bsClass = (BSClass)theEObject;
+				T result = caseBSClass(bsClass);
+				if (result == null) result = caseClassDecl(bsClass);
+				if (result == null) result = caseExpressionVariable(bsClass);
+				if (result == null) result = caseIVariableProvider(bsClass);
+				if (result == null) result = caseIPolyTypeProvider(bsClass);
+				if (result == null) result = caseType(bsClass);
+				if (result == null) result = caseTopLevelInstance(bsClass);
+				if (result == null) result = caseGenName(bsClass);
+				if (result == null) result = caseNamedObject(bsClass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -458,17 +458,17 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bpp Class</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>BS Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bpp Class</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>BS Class</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBppClass(BppClass object) {
+	public T caseBSClass(BSClass object) {
 		return null;
 	}
 

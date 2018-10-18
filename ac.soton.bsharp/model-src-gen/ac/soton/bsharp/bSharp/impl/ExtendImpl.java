@@ -5,7 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.BppClass;
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.PolyType;
@@ -352,8 +352,8 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 		/* Note datatypes don't create type variables, I think these may be 
 		 * covered when looking for function names instead.
 		 */
-		if (extendedClass instanceof BppClass) {
-			return ((BppClass)extendedClass).getVariablesNames();
+		if (extendedClass instanceof BSClass) {
+			return ((BSClass)extendedClass).getVariablesNames();
 		} else {
 			return null;
 		}
@@ -361,8 +361,8 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 
 	@Override
 	public Collection<PolyType> getPolyTypeNames() {
-		if (extendedClass instanceof BppClass) {
-			return ((BppClass)extendedClass).getPolyTypeNames();
+		if (extendedClass instanceof BSClass) {
+			return ((BSClass)extendedClass).getPolyTypeNames();
 		} else {
 			return null;
 		}

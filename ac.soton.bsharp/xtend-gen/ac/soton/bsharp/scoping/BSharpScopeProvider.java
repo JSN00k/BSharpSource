@@ -1,6 +1,6 @@
 package ac.soton.bsharp.scoping;
 
-import ac.soton.bsharp.bSharp.BppClass;
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.Datatype;
@@ -87,13 +87,13 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   
   public IScope scope_ExpressionVariable(final EObject context, final EReference reference) {
     IScope parent = this.delegateGetScope(context, reference);
-    BppClass bppClass = EcoreUtil2.<BppClass>getContainerOfType(context, BppClass.class);
+    BSClass bppClass = EcoreUtil2.<BSClass>getContainerOfType(context, BSClass.class);
     ArrayList<TypedVariable> variables = new ArrayList<TypedVariable>();
     if ((bppClass != null)) {
       ArrayList<EObject> _superClasses = BSharpUtil.superClasses(bppClass);
       for (final EObject sc : _superClasses) {
-        if ((sc instanceof BppClass)) {
-          final BppClass superClass = ((BppClass) sc);
+        if ((sc instanceof BSClass)) {
+          final BSClass superClass = ((BSClass) sc);
           TypeStructure _varList = superClass.getVarList();
           boolean _tripleNotEquals = (_varList != null);
           if (_tripleNotEquals) {

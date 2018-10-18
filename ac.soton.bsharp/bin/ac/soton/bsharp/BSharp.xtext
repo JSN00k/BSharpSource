@@ -78,7 +78,7 @@ LocalImport:
 /* ------------------------ Class statements --------------------- */
 
 
-Class returns BppClass:
+Class returns BSClass:
 	'Class' name=ID (context=PolyContext)? (supertypes=SuperTypeList)? (varList=TypeStructure)? (where=Where)? (';')? 
 	block=BSharpBlock
 ;
@@ -104,8 +104,10 @@ PolyType:
  * point. e.g., an associative operator is a subtype of a closed Event-B total function.
  */
 SuperTypeList:
-	':' superType+=ConstructedType (',' superType+=ConstructedType)*
+	':' superTypes+=ConstructedType (',' superTypes+=ConstructedType)*
 ;
+
+
 
 /* Along with the normal Event-B type operator, and new B++ types the  */
 ConstructedType:

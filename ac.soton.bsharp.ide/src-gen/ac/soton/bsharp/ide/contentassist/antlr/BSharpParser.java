@@ -126,8 +126,8 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPolyTypeAccess().getNameAssignment_0(), "rule__PolyType__NameAssignment_0");
 			builder.put(grammarAccess.getPolyTypeAccess().getSuperTypesAssignment_1_1(), "rule__PolyType__SuperTypesAssignment_1_1");
 			builder.put(grammarAccess.getPolyTypeAccess().getSuperTypesAssignment_1_2_1(), "rule__PolyType__SuperTypesAssignment_1_2_1");
-			builder.put(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_1(), "rule__SuperTypeList__SuperTypeAssignment_1");
-			builder.put(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_2_1(), "rule__SuperTypeList__SuperTypeAssignment_2_1");
+			builder.put(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_1(), "rule__SuperTypeList__SuperTypesAssignment_1");
+			builder.put(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_2_1(), "rule__SuperTypeList__SuperTypesAssignment_2_1");
 			builder.put(grammarAccess.getConstructedTypeAccess().getTypeAssignment_0(), "rule__ConstructedType__TypeAssignment_0");
 			builder.put(grammarAccess.getConstructedTypeAccess().getConstructorsAssignment_1_0(), "rule__ConstructedType__ConstructorsAssignment_1_0");
 			builder.put(grammarAccess.getConstructedTypeAccess().getTypeAssignment_1_1(), "rule__ConstructedType__TypeAssignment_1_1");

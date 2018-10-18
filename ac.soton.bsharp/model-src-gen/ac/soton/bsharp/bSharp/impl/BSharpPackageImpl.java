@@ -5,11 +5,12 @@ package ac.soton.bsharp.bSharp.impl;
 
 
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BodyElements;
-import ac.soton.bsharp.bSharp.BppClass;
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.Bracket;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
@@ -100,7 +101,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass bppClassEClass = null;
+	private EClass bsClassEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -590,8 +591,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBppClass() {
-		return bppClassEClass;
+	public EClass getBSClass() {
+		return bsClassEClass;
 	}
 
 	/**
@@ -599,8 +600,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBppClass_Supertypes() {
-		return (EReference)bppClassEClass.getEStructuralFeatures().get(0);
+	public EReference getBSClass_Supertypes() {
+		return (EReference)bsClassEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -608,8 +609,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBppClass_VarList() {
-		return (EReference)bppClassEClass.getEStructuralFeatures().get(1);
+	public EReference getBSClass_VarList() {
+		return (EReference)bsClassEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -617,8 +618,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBppClass_Where() {
-		return (EReference)bppClassEClass.getEStructuralFeatures().get(2);
+	public EReference getBSClass_Where() {
+		return (EReference)bsClassEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -698,7 +699,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuperTypeList_SuperType() {
+	public EReference getSuperTypeList_SuperTypes() {
 		return (EReference)superTypeListEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1664,10 +1665,10 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(classDeclEClass, CLASS_DECL__BODY_ELEMENTS);
 		createEReference(classDeclEClass, CLASS_DECL__BLOCK);
 
-		bppClassEClass = createEClass(BPP_CLASS);
-		createEReference(bppClassEClass, BPP_CLASS__SUPERTYPES);
-		createEReference(bppClassEClass, BPP_CLASS__VAR_LIST);
-		createEReference(bppClassEClass, BPP_CLASS__WHERE);
+		bsClassEClass = createEClass(BS_CLASS);
+		createEReference(bsClassEClass, BS_CLASS__SUPERTYPES);
+		createEReference(bsClassEClass, BS_CLASS__VAR_LIST);
+		createEReference(bsClassEClass, BS_CLASS__WHERE);
 
 		bSharpBlockEClass = createEClass(BSHARP_BLOCK);
 		createEReference(bSharpBlockEClass, BSHARP_BLOCK__BODY_ELEMENTS);
@@ -1681,7 +1682,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(polyTypeEClass, POLY_TYPE__SUPER_TYPES);
 
 		superTypeListEClass = createEClass(SUPER_TYPE_LIST);
-		createEReference(superTypeListEClass, SUPER_TYPE_LIST__SUPER_TYPE);
+		createEReference(superTypeListEClass, SUPER_TYPE_LIST__SUPER_TYPES);
 
 		typeConstructorEClass = createEClass(TYPE_CONSTRUCTOR);
 		createEReference(typeConstructorEClass, TYPE_CONSTRUCTOR__TYPE_NAME);
@@ -1830,7 +1831,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		classDeclEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		classDeclEClass.getESuperTypes().add(this.getType());
 		classDeclEClass.getESuperTypes().add(this.getTopLevelInstance());
-		bppClassEClass.getESuperTypes().add(this.getClassDecl());
+		bsClassEClass.getESuperTypes().add(this.getClassDecl());
 		genNameEClass.getESuperTypes().add(this.getNamedObject());
 		polyTypeEClass.getESuperTypes().add(this.getGenName());
 		datatypeEClass.getESuperTypes().add(this.getClassDecl());
@@ -1897,10 +1898,10 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getClassDecl_BodyElements(), this.getTypeBodyElements(), null, "bodyElements", null, 0, -1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassDecl_Block(), this.getBSharpBlock(), null, "block", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(bppClassEClass, BppClass.class, "BppClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBppClass_Supertypes(), this.getSuperTypeList(), null, "supertypes", null, 0, 1, BppClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBppClass_VarList(), this.getTypeStructure(), null, "varList", null, 0, 1, BppClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBppClass_Where(), this.getWhere(), null, "where", null, 0, 1, BppClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bsClassEClass, BSClass.class, "BSClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBSClass_Supertypes(), this.getSuperTypeList(), null, "supertypes", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBSClass_VarList(), this.getTypeStructure(), null, "varList", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBSClass_Where(), this.getWhere(), null, "where", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bSharpBlockEClass, BSharpBlock.class, "BSharpBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBSharpBlock_BodyElements(), this.getTypeBodyElements(), null, "bodyElements", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1914,7 +1915,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getPolyType_SuperTypes(), this.getClassDecl(), null, "superTypes", null, 0, -1, PolyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(superTypeListEClass, SuperTypeList.class, "SuperTypeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSuperTypeList_SuperType(), this.getConstructedType(), null, "superType", null, 0, -1, SuperTypeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSuperTypeList_SuperTypes(), this.getConstructedType(), null, "superTypes", null, 0, -1, SuperTypeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeConstructorEClass, TypeConstructor.class, "TypeConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeConstructor_TypeName(), this.getGenName(), null, "TypeName", null, 0, 1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

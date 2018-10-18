@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.SuperTypeList#getSuperType <em>Super Type</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.SuperTypeList#getSuperTypes <em>Super Types</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getSuperTypeList()
@@ -25,19 +25,19 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SuperTypeList extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Super Type</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Super Types</b></em>' containment reference list.
 	 * The list contents are of type {@link ac.soton.bsharp.bSharp.ConstructedType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Super Type</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Super Types</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Super Type</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getSuperTypeList_SuperType()
+	 * @return the value of the '<em>Super Types</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getSuperTypeList_SuperTypes()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConstructedType> getSuperType();
+	EList<ConstructedType> getSuperTypes();
 
 } // SuperTypeList

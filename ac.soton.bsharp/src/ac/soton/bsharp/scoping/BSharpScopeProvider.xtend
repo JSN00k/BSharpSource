@@ -17,11 +17,11 @@ import ac.soton.bsharp.bSharp.MatchCase
 import ac.soton.bsharp.bSharp.MatchStatement
 import ac.soton.bsharp.bSharp.DatatypeConstructor
 import ac.soton.bsharp.util.BSharpUtil
-import ac.soton.bsharp.bSharp.BppClass
 import ac.soton.bsharp.bSharp.TypedVariable
 import java.util.ArrayList
 import ac.soton.bsharp.bSharp.ClassVarDecl
 import ac.soton.bsharp.bSharp.PolyType
+import ac.soton.bsharp.bSharp.BSClass
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -99,16 +99,16 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 
 		var parent = delegateGetScope(context, reference)
 		
-		var bppClass = EcoreUtil2.getContainerOfType(context, BppClass)
+		var bppClass = EcoreUtil2.getContainerOfType(context, BSClass)
 		 
 		var ArrayList<TypedVariable> variables = new ArrayList
 		 
 		 if (bppClass !== null) {
 		 	for (sc : BSharpUtil.superClasses(bppClass)) {
-		 		if (sc instanceof BppClass) {
-		 			val superClass = sc as BppClass	
-		 			if (superClass.varList !== null)	
-		 				variables += EcoreUtil2.getAllContentsOfType(superClass.varList, TypedVariable)
+		 		if (sc instanceof BSClass) {
+		 			val superClass = sc as BSClass	
+		 			if (superClass.getVarList !== null)	
+		 				variables += EcoreUtil2.getAllContentsOfType(superClass.getVarList, TypedVariable)
 		 		}
 		 	}
 		 	

@@ -77,16 +77,6 @@ public interface BSharpPackage extends EPackage {
 	int CLASS_DECL = 11;
 
 	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BppClassImpl <em>Bpp Class</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.BppClassImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBppClass()
-	 * @generated
-	 */
-	int BPP_CLASS = 12;
-
-	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.NamedObjectImpl <em>Named Object</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -850,13 +840,23 @@ public interface BSharpPackage extends EPackage {
 	int CLASS_DECL_FEATURE_COUNT = GEN_NAME_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BSClassImpl <em>BS Class</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.BSClassImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBSClass()
+	 * @generated
+	 */
+	int BS_CLASS = 12;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BPP_CLASS__NAME = CLASS_DECL__NAME;
+	int BS_CLASS__NAME = CLASS_DECL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -865,7 +865,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPP_CLASS__CONTEXT = CLASS_DECL__CONTEXT;
+	int BS_CLASS__CONTEXT = CLASS_DECL__CONTEXT;
 
 	/**
 	 * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
@@ -874,7 +874,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPP_CLASS__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
+	int BS_CLASS__BODY_ELEMENTS = CLASS_DECL__BODY_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Block</b></em>' containment reference.
@@ -883,7 +883,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPP_CLASS__BLOCK = CLASS_DECL__BLOCK;
+	int BS_CLASS__BLOCK = CLASS_DECL__BLOCK;
 
 	/**
 	 * The feature id for the '<em><b>Supertypes</b></em>' containment reference.
@@ -892,7 +892,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPP_CLASS__SUPERTYPES = CLASS_DECL_FEATURE_COUNT + 0;
+	int BS_CLASS__SUPERTYPES = CLASS_DECL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Var List</b></em>' containment reference.
@@ -901,7 +901,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPP_CLASS__VAR_LIST = CLASS_DECL_FEATURE_COUNT + 1;
+	int BS_CLASS__VAR_LIST = CLASS_DECL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Where</b></em>' containment reference.
@@ -910,16 +910,16 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BPP_CLASS__WHERE = CLASS_DECL_FEATURE_COUNT + 2;
+	int BS_CLASS__WHERE = CLASS_DECL_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Bpp Class</em>' class.
+	 * The number of structural features of the '<em>BS Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BPP_CLASS_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 3;
+	int BS_CLASS_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
@@ -985,13 +985,13 @@ public interface BSharpPackage extends EPackage {
 	int POLY_TYPE_FEATURE_COUNT = GEN_NAME_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Super Type</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPER_TYPE_LIST__SUPER_TYPE = 0;
+	int SUPER_TYPE_LIST__SUPER_TYPES = 0;
 
 	/**
 	 * The number of structural features of the '<em>Super Type List</em>' class.
@@ -2020,47 +2020,47 @@ public interface BSharpPackage extends EPackage {
 	EReference getClassDecl_Block();
 
 	/**
-	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.BppClass <em>Bpp Class</em>}'.
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.BSClass <em>BS Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Bpp Class</em>'.
-	 * @see ac.soton.bsharp.bSharp.BppClass
+	 * @return the meta object for class '<em>BS Class</em>'.
+	 * @see ac.soton.bsharp.bSharp.BSClass
 	 * @generated
 	 */
-	EClass getBppClass();
+	EClass getBSClass();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.BppClass#getSupertypes <em>Supertypes</em>}'.
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.BSClass#getSupertypes <em>Supertypes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Supertypes</em>'.
-	 * @see ac.soton.bsharp.bSharp.BppClass#getSupertypes()
-	 * @see #getBppClass()
+	 * @see ac.soton.bsharp.bSharp.BSClass#getSupertypes()
+	 * @see #getBSClass()
 	 * @generated
 	 */
-	EReference getBppClass_Supertypes();
+	EReference getBSClass_Supertypes();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.BppClass#getVarList <em>Var List</em>}'.
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.BSClass#getVarList <em>Var List</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Var List</em>'.
-	 * @see ac.soton.bsharp.bSharp.BppClass#getVarList()
-	 * @see #getBppClass()
+	 * @see ac.soton.bsharp.bSharp.BSClass#getVarList()
+	 * @see #getBSClass()
 	 * @generated
 	 */
-	EReference getBppClass_VarList();
+	EReference getBSClass_VarList();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.BppClass#getWhere <em>Where</em>}'.
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.BSClass#getWhere <em>Where</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Where</em>'.
-	 * @see ac.soton.bsharp.bSharp.BppClass#getWhere()
-	 * @see #getBppClass()
+	 * @see ac.soton.bsharp.bSharp.BSClass#getWhere()
+	 * @see #getBSClass()
 	 * @generated
 	 */
-	EReference getBppClass_Where();
+	EReference getBSClass_Where();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.BSharpBlock <em>Block</em>}'.
@@ -2146,15 +2146,15 @@ public interface BSharpPackage extends EPackage {
 	EClass getSuperTypeList();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.SuperTypeList#getSuperType <em>Super Type</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.SuperTypeList#getSuperTypes <em>Super Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Super Type</em>'.
-	 * @see ac.soton.bsharp.bSharp.SuperTypeList#getSuperType()
+	 * @return the meta object for the containment reference list '<em>Super Types</em>'.
+	 * @see ac.soton.bsharp.bSharp.SuperTypeList#getSuperTypes()
 	 * @see #getSuperTypeList()
 	 * @generated
 	 */
-	EReference getSuperTypeList_SuperType();
+	EReference getSuperTypeList_SuperTypes();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ConstructedType <em>Constructed Type</em>}'.
@@ -3360,14 +3360,14 @@ public interface BSharpPackage extends EPackage {
 		EReference CLASS_DECL__BLOCK = eINSTANCE.getClassDecl_Block();
 
 		/**
-		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.BppClassImpl <em>Bpp Class</em>}' class.
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.BSClassImpl <em>BS Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ac.soton.bsharp.bSharp.impl.BppClassImpl
-		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBppClass()
+		 * @see ac.soton.bsharp.bSharp.impl.BSClassImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBSClass()
 		 * @generated
 		 */
-		EClass BPP_CLASS = eINSTANCE.getBppClass();
+		EClass BS_CLASS = eINSTANCE.getBSClass();
 
 		/**
 		 * The meta object literal for the '<em><b>Supertypes</b></em>' containment reference feature.
@@ -3375,7 +3375,7 @@ public interface BSharpPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BPP_CLASS__SUPERTYPES = eINSTANCE.getBppClass_Supertypes();
+		EReference BS_CLASS__SUPERTYPES = eINSTANCE.getBSClass_Supertypes();
 
 		/**
 		 * The meta object literal for the '<em><b>Var List</b></em>' containment reference feature.
@@ -3383,7 +3383,7 @@ public interface BSharpPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BPP_CLASS__VAR_LIST = eINSTANCE.getBppClass_VarList();
+		EReference BS_CLASS__VAR_LIST = eINSTANCE.getBSClass_VarList();
 
 		/**
 		 * The meta object literal for the '<em><b>Where</b></em>' containment reference feature.
@@ -3391,7 +3391,7 @@ public interface BSharpPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BPP_CLASS__WHERE = eINSTANCE.getBppClass_Where();
+		EReference BS_CLASS__WHERE = eINSTANCE.getBSClass_Where();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.BSharpBlockImpl <em>Block</em>}' class.
@@ -3468,12 +3468,12 @@ public interface BSharpPackage extends EPackage {
 		EClass SUPER_TYPE_LIST = eINSTANCE.getSuperTypeList();
 
 		/**
-		 * The meta object literal for the '<em><b>Super Type</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Super Types</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPER_TYPE_LIST__SUPER_TYPE = eINSTANCE.getSuperTypeList_SuperType();
+		EReference SUPER_TYPE_LIST__SUPER_TYPES = eINSTANCE.getSuperTypeList_SuperTypes();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ConstructedTypeImpl <em>Constructed Type</em>}' class.

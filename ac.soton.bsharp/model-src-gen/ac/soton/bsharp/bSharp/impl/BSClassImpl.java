@@ -4,7 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.BppClass;
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
@@ -31,12 +31,12 @@ import org.eclipse.xtext.EcoreUtil2;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.BppClassImpl#getSupertypes <em>Supertypes</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.BppClassImpl#getVarList <em>Var List</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.BppClassImpl#getWhere <em>Where</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.BSClassImpl#getSupertypes <em>Supertypes</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.BSClassImpl#getVarList <em>Var List</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.BSClassImpl#getWhere <em>Where</em>}</li>
  * </ul>
  */
-public class BppClassImpl extends ClassDeclImpl implements BppClass {
+public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	/**
 	 * The cached value of the '{@link #getSupertypes() <em>Supertypes</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BppClassImpl() {
+	protected BSClassImpl() {
 		super();
 	}
 
@@ -83,7 +83,7 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BSharpPackage.Literals.BPP_CLASS;
+		return BSharpPackage.Literals.BS_CLASS;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 		SuperTypeList oldSupertypes = supertypes;
 		supertypes = newSupertypes;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BPP_CLASS__SUPERTYPES, oldSupertypes, newSupertypes);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__SUPERTYPES, oldSupertypes, newSupertypes);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -119,14 +119,14 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 		if (newSupertypes != supertypes) {
 			NotificationChain msgs = null;
 			if (supertypes != null)
-				msgs = ((InternalEObject)supertypes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BPP_CLASS__SUPERTYPES, null, msgs);
+				msgs = ((InternalEObject)supertypes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__SUPERTYPES, null, msgs);
 			if (newSupertypes != null)
-				msgs = ((InternalEObject)newSupertypes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BPP_CLASS__SUPERTYPES, null, msgs);
+				msgs = ((InternalEObject)newSupertypes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__SUPERTYPES, null, msgs);
 			msgs = basicSetSupertypes(newSupertypes, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BPP_CLASS__SUPERTYPES, newSupertypes, newSupertypes));
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__SUPERTYPES, newSupertypes, newSupertypes));
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 		TypeStructure oldVarList = varList;
 		varList = newVarList;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BPP_CLASS__VAR_LIST, oldVarList, newVarList);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__VAR_LIST, oldVarList, newVarList);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -162,14 +162,14 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 		if (newVarList != varList) {
 			NotificationChain msgs = null;
 			if (varList != null)
-				msgs = ((InternalEObject)varList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BPP_CLASS__VAR_LIST, null, msgs);
+				msgs = ((InternalEObject)varList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__VAR_LIST, null, msgs);
 			if (newVarList != null)
-				msgs = ((InternalEObject)newVarList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BPP_CLASS__VAR_LIST, null, msgs);
+				msgs = ((InternalEObject)newVarList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__VAR_LIST, null, msgs);
 			msgs = basicSetVarList(newVarList, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BPP_CLASS__VAR_LIST, newVarList, newVarList));
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__VAR_LIST, newVarList, newVarList));
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 		Where oldWhere = where;
 		where = newWhere;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BPP_CLASS__WHERE, oldWhere, newWhere);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__WHERE, oldWhere, newWhere);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -205,14 +205,14 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 		if (newWhere != where) {
 			NotificationChain msgs = null;
 			if (where != null)
-				msgs = ((InternalEObject)where).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BPP_CLASS__WHERE, null, msgs);
+				msgs = ((InternalEObject)where).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__WHERE, null, msgs);
 			if (newWhere != null)
-				msgs = ((InternalEObject)newWhere).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BPP_CLASS__WHERE, null, msgs);
+				msgs = ((InternalEObject)newWhere).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__WHERE, null, msgs);
 			msgs = basicSetWhere(newWhere, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BPP_CLASS__WHERE, newWhere, newWhere));
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__WHERE, newWhere, newWhere));
 	}
 
 	/**
@@ -223,11 +223,11 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.BPP_CLASS__SUPERTYPES:
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
 				return basicSetSupertypes(null, msgs);
-			case BSharpPackage.BPP_CLASS__VAR_LIST:
+			case BSharpPackage.BS_CLASS__VAR_LIST:
 				return basicSetVarList(null, msgs);
-			case BSharpPackage.BPP_CLASS__WHERE:
+			case BSharpPackage.BS_CLASS__WHERE:
 				return basicSetWhere(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -241,11 +241,11 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.BPP_CLASS__SUPERTYPES:
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
 				return getSupertypes();
-			case BSharpPackage.BPP_CLASS__VAR_LIST:
+			case BSharpPackage.BS_CLASS__VAR_LIST:
 				return getVarList();
-			case BSharpPackage.BPP_CLASS__WHERE:
+			case BSharpPackage.BS_CLASS__WHERE:
 				return getWhere();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -259,13 +259,13 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.BPP_CLASS__SUPERTYPES:
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
 				setSupertypes((SuperTypeList)newValue);
 				return;
-			case BSharpPackage.BPP_CLASS__VAR_LIST:
+			case BSharpPackage.BS_CLASS__VAR_LIST:
 				setVarList((TypeStructure)newValue);
 				return;
-			case BSharpPackage.BPP_CLASS__WHERE:
+			case BSharpPackage.BS_CLASS__WHERE:
 				setWhere((Where)newValue);
 				return;
 		}
@@ -280,13 +280,13 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.BPP_CLASS__SUPERTYPES:
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
 				setSupertypes((SuperTypeList)null);
 				return;
-			case BSharpPackage.BPP_CLASS__VAR_LIST:
+			case BSharpPackage.BS_CLASS__VAR_LIST:
 				setVarList((TypeStructure)null);
 				return;
-			case BSharpPackage.BPP_CLASS__WHERE:
+			case BSharpPackage.BS_CLASS__WHERE:
 				setWhere((Where)null);
 				return;
 		}
@@ -301,11 +301,11 @@ public class BppClassImpl extends ClassDeclImpl implements BppClass {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.BPP_CLASS__SUPERTYPES:
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
 				return supertypes != null;
-			case BSharpPackage.BPP_CLASS__VAR_LIST:
+			case BSharpPackage.BS_CLASS__VAR_LIST:
 				return varList != null;
-			case BSharpPackage.BPP_CLASS__WHERE:
+			case BSharpPackage.BS_CLASS__WHERE:
 				return where != null;
 		}
 		return super.eIsSet(featureID);

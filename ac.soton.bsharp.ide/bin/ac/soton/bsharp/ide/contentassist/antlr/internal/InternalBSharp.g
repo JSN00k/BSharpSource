@@ -2788,9 +2788,9 @@ rule__SuperTypeList__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_1()); }
-	(rule__SuperTypeList__SuperTypeAssignment_1)
-	{ after(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_1()); }
+	{ before(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_1()); }
+	(rule__SuperTypeList__SuperTypesAssignment_1)
+	{ after(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_1()); }
 )
 ;
 finally {
@@ -2868,9 +2868,9 @@ rule__SuperTypeList__Group_2__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_2_1()); }
-	(rule__SuperTypeList__SuperTypeAssignment_2_1)
-	{ after(grammarAccess.getSuperTypeListAccess().getSuperTypeAssignment_2_1()); }
+	{ before(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_2_1()); }
+	(rule__SuperTypeList__SuperTypesAssignment_2_1)
+	{ after(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_2_1()); }
 )
 ;
 finally {
@@ -6677,30 +6677,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__SuperTypeList__SuperTypeAssignment_1
+rule__SuperTypeList__SuperTypesAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_1_0()); }
+		{ before(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_1_0()); }
 		ruleConstructedType
-		{ after(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_1_0()); }
+		{ after(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_1_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__SuperTypeList__SuperTypeAssignment_2_1
+rule__SuperTypeList__SuperTypesAssignment_2_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_2_1_0()); }
+		{ before(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_2_1_0()); }
 		ruleConstructedType
-		{ after(grammarAccess.getSuperTypeListAccess().getSuperTypeConstructedTypeParserRuleCall_2_1_0()); }
+		{ after(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_2_1_0()); }
 	)
 ;
 finally {
