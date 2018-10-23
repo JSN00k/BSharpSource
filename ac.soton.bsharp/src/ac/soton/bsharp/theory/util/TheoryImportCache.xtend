@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.rodinp.core.IRodinElement
 import org.eventb.theory.core.DatabaseUtilities
+import org.eventb.theory.core.ITypeParameter
 
 /* A subclass of the TheoryRoot that keeps various additional references in 
  * memory to easy the creation of Thy files without unnecessary additional 
@@ -20,6 +21,8 @@ import org.eventb.theory.core.DatabaseUtilities
 class TheoryImportCache {
 		
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+	/* This is used to suffix Event-B type variables it results in Event-B code like T : T_EvB */
+	protected String EventBTypeSuffix = "_EvB"
 	/* Stores the names of thys that have already been imported as 
 	 * fully qualified names proj.fileName
 	 */
@@ -32,6 +35,12 @@ class TheoryImportCache {
 	
 	public val ITheoryRoot theory
 	val String localProjName
+	
+	/* It is not necessary to create new eventB poly types for every new 
+	 * use of a polytypes. This dictionary keeps references to previously
+	 * created Event-B polytypes by their names.
+	 */
+	var HashMap<String, ITypeParameter> polyTypeMap = new HashMap
 	
 	/* This class is designed to be used in conjunction with the BSharpGenerator
 	 * to cache additional information about the TheoryRoot in memory. prevTheory
@@ -122,5 +131,20 @@ class TheoryImportCache {
 	def save() {
 		theory.rodinFile.save(nullMonitor, true)
 		
+	}
+	
+	/* If an Event-B polytype for that name already exists that polytype is returned
+	 * otherwise a new polytype is created and added to the cache.
+	 */
+	def getEventBTypeParamNameForName(String name) {
+		val typeParamName = name + EventBTypeSuffix
+		val polytype = polyTypeMap.get(name)
+		if (polytype !== null)
+			return typeParamName
+			
+		val typeParam =TheoryUtils.createTypeParameter(theory, typeParamName, null, nullMonitor)
+		polyTypeMap.put(name, typeParam)
+		
+		return typeParamName 
 	}
 }

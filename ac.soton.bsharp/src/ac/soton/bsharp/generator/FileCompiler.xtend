@@ -18,6 +18,14 @@ import org.eventb.theory.core.INewOperatorDefinition
 import org.eventb.core.ast.^extension.IOperatorProperties.FormulaType
 import org.eventb.core.ast.^extension.IOperatorProperties.Notation;
 import ac.soton.bsharp.bSharp.SuperTypeList
+import ac.soton.bsharp.util.BSharpUtil
+import ac.soton.bsharp.bSharp.ConstructedType
+import ac.soton.bsharp.bSharp.TypeConstructor
+import java.util.ArrayList
+import ac.soton.bsharp.bSharp.TypeConstrBracket
+import java.util.LinkedHashMap
+import ac.soton.bsharp.bSharp.TypeStructure
+import org.eclipse.xtext.EcoreUtil2
 
 /* Does the work to compile to a single EventB file from the body elements in 
  * that file
@@ -25,7 +33,6 @@ import ac.soton.bsharp.bSharp.SuperTypeList
 class FileCompiler {
 	
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
-	/* This is used to suffix Event-B type variables it results in Event-B code like T : T_EvB */
 	protected String EventBTypeSuffix = "_EvB"
 	
 	val BodyElements elements
@@ -64,8 +71,14 @@ class FileCompiler {
 		val context = bsClass.getContext()
 		if (context !== null)
 			createPolyTypesFromPolyContext(bsClass.context, opString, op)
-			
 		
+		val supertypes = bsClass.getSupertypes()
+		if (supertypes !== null) {
+			opString = compileSuperTypes(bsClass, opString)
+		}
+		
+		
+		TheoryUtils.createDirectDefinition(op, opString, null, nullMonitor)
 	}
 	
 	def compileDatatype(Datatype datatype) {
@@ -101,9 +114,101 @@ class FileCompiler {
 		}
 	}
 	
-	def compileSuperTypes(SuperTypeList superTypeList) {
+	def compileSuperTypes(BSClass bsClass, String opString) {
+		var resultString = opString
+		val superTypeList = bsClass.supertypes
+		
+		/* TODO handle subclassing of type classes better. Specifically there are 
+		 * infered polytypes which are currently not generated, the current mission is 
+		 * to build something for simpler classes.
+		 */
+		 
+		var LinkedHashMap<String, String> typeStringForName = new LinkedHashMap
+
 		for (constructedType : superTypeList.superTypes) {
+			/* Calling reveres more than once is unlikely to be an issue 
+			 * as attempting to reverse a right handed list with this algorithm 
+			 * won't do anything.
+			 */
+			var reversed = EcoreUtil2.copy(constructedType)
+			reversed = BSharpUtil.reverseLeftHandedConstructedType(reversed)
 			
+			/* If the supertype is actually a constructed type (e.g., built using type constructors)
+			 * then it's name is the name of the BSClass, otherwise its name is the name of the type
+			 * class that creates it.
+			 */
+			 
+			 if (reversed instanceof TypeConstructor) {
+			 	typeStringForName.put((reversed as TypeConstructor).typeName.name, compileConstructedType(reversed)) 
+			 } else {
+			 	typeStringForName.put(bsClass.name, compileConstructedType(reversed))
+			 }
 		}
+		
+		var first = true
+		
+		for (name : typeStringForName.keySet) {
+			if (first)
+				resultString += name
+			else 
+				resultString += '∧' + name
+			
+			first = false
+		}
+		
+		if (bsClass.getVarList() !== null)
+			resultString += compileVarListNames(bsClass.varList)
+		
+		resultString += '|'
+		
+		first = true
+		
+		for (name : typeStringForName.keySet) {
+			if (!first)
+				resultString += '∧'
+			else
+				first = false
+			
+			resultString += name + '∈' + typeStringForName.get(name)
+		}
+		
+		if (bsClass.getVarList() !== null)
+			resultString += compileVarListTyping(bsClass.varList)
+			
+		return resultString
 	}
+	
+	def String compileConstructedType(ConstructedType constrType) {
+		if (constrType instanceof TypeConstructor)
+			return compileTypeConstructor(constrType as TypeConstructor)
+		
+		if (constrType instanceof TypeConstrBracket) {
+			return '(' + compileConstructedType((constrType as TypeConstrBracket).child) + ')'
+		}
+		
+		return compileConstructedType(constrType.left) + constrType.constructor + compileConstructedType(constrType.right)
+	}
+	
+	def compileTypeConstructor(TypeConstructor constr) {
+		/* TODO implement constructing type classes */
+		
+		if (constr.getContext() === null || constr.context.length == 0) {
+			if (constr.typeName.name == 'Pred')
+				return 'BOOL'
+			
+			return constr.typeName.name
+		}
+		
+		return ""
+	}
+	
+	def compileVarListNames(TypeStructure varList) {
+		
+	}
+	
+	def compileVarListTyping(TypeStructure varList) {
+		
+	}
+	
+	
 }

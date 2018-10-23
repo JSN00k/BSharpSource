@@ -6,9 +6,13 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -20,6 +24,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eventb.theory.core.INewOperatorDefinition;
+import org.eventb.theory.core.ITypeParameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -148,6 +154,46 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 				return polyTypes != null && !polyTypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+	
+
+	@Override
+	public Integer eventBPolyVarCount() {
+		Collection<PolyType> polyTypes = getPolyTypes();
+		if (polyTypes == null) {
+			return 1;
+		} else {
+			Integer count = polyTypes.size();
+			if (count == 0)
+				return 1;
+			else 
+				return count;
+		}
+	}
+	
+	private TheoryImportCache thyCache;
+	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+
+	@Override
+	public void setupCompilation(TheoryImportCache theoryCache) {
+		thyCache = theoryCache;
+	}
+
+	@Override
+	public void compileToBSClassOpArgs(INewOperatorDefinition op) {
+		if (polyTypes == null || polyTypes.size() == 0)
+			return;
+		
+		for (PolyType polyType : polyTypes) {
+			String name = polyType.getName();
+			String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(name);
+			
+			try {
+				TheoryUtils.createArgument(op, name, "ℙ(" + eventBTypeParamName + ")", null, nullMonitor);
+			} catch (Exception e) {
+				System.err.println("Unable to create EventB type param named: " + eventBTypeParamName + e.getLocalizedMessage());
+			}
+		}
 	}
 
 } //PolyContextImpl

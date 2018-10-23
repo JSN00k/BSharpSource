@@ -64,15 +64,19 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//SuperTypeList/superTypes"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TypeConstructor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/TypeName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/typeName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/context"/>
     </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//TypeConstrBracket">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstrBracket/child"/>
+    </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ConstructedType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ConstructedType/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//ConstructedType/constructors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//ConstructedType/constructor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ConstructedType/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ConstructedType/right"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TypeDeclContext">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeDeclContext/TypeName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeDeclContext/typeName"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TypeStructure">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeStructure/variables"/>

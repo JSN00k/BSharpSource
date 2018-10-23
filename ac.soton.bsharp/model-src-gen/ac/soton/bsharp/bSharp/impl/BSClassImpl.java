@@ -4,15 +4,20 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.Where;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -22,6 +27,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
+import org.eventb.core.ast.extension.IOperatorProperties.Notation;
+import org.eventb.theory.core.INewOperatorDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -323,4 +331,37 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return result;
 	}
 	
+	private TheoryImportCache thyCache;
+	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+	
+	public void setupCompilation(TheoryImportCache theoryCache) {
+		thyCache = theoryCache;
+	}
+	
+	/* This get's the number of polymorhic types required to construct the type class */
+	public Integer eventBRequiredPolyTypes() {
+		PolyContext context = getContext();
+		if (context != null) {
+			return context.eventBPolyVarCount();
+		}
+		
+		return 1;
+	}
+	
+	/* Compiles the operator used to create an instance of this type class. */
+	public void compileOp() {
+		INewOperatorDefinition op;
+		try {
+			op = TheoryUtils.createOperator(thyCache.theory,
+					getName(), false, false, FormulaType.EXPRESSION, Notation.POSTFIX, null, nullMonitor);
+		} catch (Exception e) {
+			System.err.println(" Unable to crate EventB operator " + e.getLocalizedMessage());
+			return;
+		}
+		
+		if (context != null) {
+			context.setupCompilation(thyCache);
+			context.compileToBSClassOpArgs(op);
+		}
+	}	
 } //BppClassImpl

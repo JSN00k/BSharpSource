@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TypeConstructor extends EObject {
+public interface TypeConstructor extends ConstructedType {
 	/**
 	 * Returns the value of the '<em><b>Type Name</b></em>' reference.
 	 * <!-- begin-user-doc -->

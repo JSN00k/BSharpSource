@@ -107,12 +107,9 @@ SuperTypeList:
 	':' superTypes+=ConstructedType (',' superTypes+=ConstructedType)*
 ;
 
-
-
 /* Along with the normal Event-B type operator, and new B++ types the  */
 ConstructedType:
-	type+=TypeConstructor 
-		(constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
+	(TypeConstructor | TypeConstrBracket) ({ConstructedType.left=current} constructor=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') right=(TypeConstructor | TypeConstrBracket))*
 ;
 
 /* Type constructor has validation rules to check that there is no context when there is a polymorphic name, 
@@ -120,11 +117,15 @@ ConstructedType:
  * Probably need to add the predicate type to this.
  */
 TypeConstructor:
-	TypeName=[GenName|QualifiedName] (context+=TypeDeclContext)?
+	typeName=[GenName|QualifiedName] (context+=TypeDeclContext)?
+;
+
+TypeConstrBracket:
+	'(' child=ConstructedType ')'
 ;
 
 TypeDeclContext:
-	'<' TypeName+=ConstructedType (',' TypeName+=ConstructedType)* '>'
+	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
 ;
 
 /* -------------------- Type Structure ---------------------------------- */

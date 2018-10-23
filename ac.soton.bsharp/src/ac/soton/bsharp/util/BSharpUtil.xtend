@@ -9,35 +9,9 @@ import org.eclipse.emf.ecore.EObject
 import java.util.Collection
 import ac.soton.bsharp.bSharp.PolyType
 import ac.soton.bsharp.bSharp.BSClass
+import ac.soton.bsharp.bSharp.TypeConstrBracket
 
-class BSharpUtil {
-	/* Constructed types can be a genuine constructed type (e.g., they are created with a 
-	 * type constructor), or they can act as a wrapper around a a Type Constructor (which 
-	 * can simply be a type or a type constructor with arguments. This is because the 
-	 * definition of a constructed type is:
-	 * 
-	 * ConstructedType:
-	 *   type+=TypeConstructor 
-	 * 		(constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
-	 * ;
-	 * If there is nothing in the constructors section then there is only a Type Constructor wrapped in a ConstructedType
-	 * flatternConstructedType(ConstructedType t) unpacks the ConstructedType if it is just acting as a wrapper.
-	 * 
-	 */
-	def static flatternConstructedType(ConstructedType t) {
-		if (t.constructors === null || t.constructors.isEmpty) {
-			/* We're definitely only wrapping a Type Constructor */
-			
-			/* This doesn't deal with the idea that the Type may be a constructed type.
-			 * Options are to disallow ad-hoc constructed types or to create a new type instance
-			 * for the constructed type, which remembers its constructors.
-			 */
-			return (t.type.head as TypeConstructor).typeName
-		}
-		
-		return t
-	}
-	
+class BSharpUtil {	
 	/* This function simply finds all of the supertypes. It doesn't do any work to 
 	 * unify them.
 	 */
@@ -53,25 +27,27 @@ class BSharpUtil {
 			 /* If the supertype is a constructed type, or a datatype it must be a unique 
 			  * supertype, this should be checked in the validation stage.
 			  */
-			  val type = flatternConstructedType(superclass)
+			  if (superclass instanceof TypeConstructor) { 
+			  	val type = (superclass as TypeConstructor).typeName
 			  if (type instanceof ConstructedType || type instanceof Datatype) {
-			  	if (superclasses.superTypes.length != 1) {
-			  		/* This is a problem that should be reported to the user somehow */
-			  		return
-			  	}
-			  	
-			  	if (!list.contains(type)) {
-			  		list.add(type)
-			  		return
-			  	}
-			  }
-			  
-			 if (type instanceof BSClass) {
-			 	if (!list.contains(type)) {
-			 		list.add(type as ClassDecl)
-			 		superClassesInternal(type as BSClass, list)
-			 	}
-			 }
+					if (superclasses.superTypes.length != 1) {
+						/* This is a problem that should be reported to the user somehow */
+						return
+					}
+
+					if (!list.contains(type)) {
+						list.add(type)
+						return
+					}
+				}
+
+				if (type instanceof BSClass) {
+					if (!list.contains(type)) {
+						list.add(type as ClassDecl)
+						superClassesInternal(type as BSClass, list)
+					}
+				}
+			}
 		}
 	}
 	
@@ -91,5 +67,24 @@ class BSharpUtil {
 		var ArrayList<EObject> list  = new ArrayList
 		superClassesInternal(c, list)
 		return list
+	}
+	
+	def static ConstructedType reverseLeftHandedConstructedType(ConstructedType ct) {
+		if (ct instanceof TypeConstructor)
+			return ct
+		
+		if (ct.left instanceof TypeConstructor)
+			return ct
+			
+		if (ct instanceof TypeConstrBracket) {
+			ct.child = reverseLeftHandedConstructedType(ct.child)
+		}
+		
+		val left = ct.left
+		val newLeft = left.right
+		left.right = ct
+		ct.left = newLeft
+		
+		return reverseLeftHandedConstructedType(left)
 	}
 }

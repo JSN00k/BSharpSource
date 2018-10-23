@@ -34,6 +34,7 @@ import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
+import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypeStructure;
@@ -169,6 +170,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.TYPE_BODY_ELEMENTS:
 				sequence_TypeBodyElements(context, (TypeBodyElements) semanticObject); 
 				return; 
+			case BSharpPackage.TYPE_CONSTR_BRACKET:
+				sequence_TypeConstrBracket(context, (TypeConstrBracket) semanticObject); 
+				return; 
 			case BSharpPackage.TYPE_CONSTRUCTOR:
 				sequence_TypeConstructor(context, (TypeConstructor) semanticObject); 
 				return; 
@@ -288,25 +292,24 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * Contexts:
 	 *     ConstructedType returns ConstructedType
+	 *     ConstructedType.ConstructedType_1_0 returns ConstructedType
 	 *
 	 * Constraint:
 	 *     (
-	 *         type+=TypeConstructor 
+	 *         left=ConstructedType_ConstructedType_1_0 
 	 *         (
-	 *             (
-	 *                 constructors+='×' | 
-	 *                 constructors+='→' | 
-	 *                 constructors+='' | 
-	 *                 constructors+='' | 
-	 *                 constructors+='↔' | 
-	 *                 constructors+='⤖' | 
-	 *                 constructors+='⇸' | 
-	 *                 constructors+='↣' | 
-	 *                 constructors+='⤀' | 
-	 *                 constructors+='↠'
-	 *             ) 
-	 *             type+=ConstructedType
-	 *         )?
+	 *             constructor='×' | 
+	 *             constructor='→' | 
+	 *             constructor='' | 
+	 *             constructor='' | 
+	 *             constructor='↔' | 
+	 *             constructor='⤖' | 
+	 *             constructor='⇸' | 
+	 *             constructor='↣' | 
+	 *             constructor='⤀' | 
+	 *             constructor='↠'
+	 *         ) 
+	 *         (right=TypeConstructor | right=TypeConstrBracket)
 	 *     )
 	 */
 	protected void sequence_ConstructedType(ISerializationContext context, ConstructedType semanticObject) {
@@ -701,10 +704,32 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     ConstructedType returns TypeConstrBracket
+	 *     ConstructedType.ConstructedType_1_0 returns TypeConstrBracket
+	 *     TypeConstrBracket returns TypeConstrBracket
+	 *
+	 * Constraint:
+	 *     child=ConstructedType
+	 */
+	protected void sequence_TypeConstrBracket(ISerializationContext context, TypeConstrBracket semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TYPE_CONSTR_BRACKET__CHILD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TYPE_CONSTR_BRACKET__CHILD));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypeConstrBracketAccess().getChildConstructedTypeParserRuleCall_1_0(), semanticObject.getChild());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConstructedType returns TypeConstructor
+	 *     ConstructedType.ConstructedType_1_0 returns TypeConstructor
 	 *     TypeConstructor returns TypeConstructor
 	 *
 	 * Constraint:
-	 *     (TypeName=[GenName|QualifiedName] context+=TypeDeclContext?)
+	 *     (typeName=[GenName|QualifiedName] context+=TypeDeclContext?)
 	 */
 	protected void sequence_TypeConstructor(ISerializationContext context, TypeConstructor semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -716,7 +741,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TypeDeclContext returns TypeDeclContext
 	 *
 	 * Constraint:
-	 *     (TypeName+=ConstructedType TypeName+=ConstructedType*)
+	 *     (typeName+=ConstructedType typeName+=ConstructedType*)
 	 */
 	protected void sequence_TypeDeclContext(ISerializationContext context, TypeDeclContext semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

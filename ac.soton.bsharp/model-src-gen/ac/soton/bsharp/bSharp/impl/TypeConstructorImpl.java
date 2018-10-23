@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class TypeConstructorImpl extends MinimalEObjectImpl.Container implements TypeConstructor {
+public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeConstructor {
 	/**
 	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
 	 * <!-- begin-user-doc -->

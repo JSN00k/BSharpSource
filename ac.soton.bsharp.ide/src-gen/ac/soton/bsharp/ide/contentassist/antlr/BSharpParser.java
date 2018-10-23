@@ -37,7 +37,9 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTopLevelImportAccess().getAlternatives_0(), "rule__TopLevelImport__Alternatives_0");
 			builder.put(grammarAccess.getBodyElementsAccess().getAlternatives(), "rule__BodyElements__Alternatives");
 			builder.put(grammarAccess.getFileImportAccess().getAlternatives_1_1(), "rule__FileImport__Alternatives_1_1");
-			builder.put(grammarAccess.getConstructedTypeAccess().getConstructorsAlternatives_1_0_0(), "rule__ConstructedType__ConstructorsAlternatives_1_0_0");
+			builder.put(grammarAccess.getConstructedTypeAccess().getAlternatives_0(), "rule__ConstructedType__Alternatives_0");
+			builder.put(grammarAccess.getConstructedTypeAccess().getConstructorAlternatives_1_1_0(), "rule__ConstructedType__ConstructorAlternatives_1_1_0");
+			builder.put(grammarAccess.getConstructedTypeAccess().getRightAlternatives_1_2_0(), "rule__ConstructedType__RightAlternatives_1_2_0");
 			builder.put(grammarAccess.getTypeBodyElementsAccess().getAlternatives(), "rule__TypeBodyElements__Alternatives");
 			builder.put(grammarAccess.getQuantifierAccess().getQTypeAlternatives_0_0(), "rule__Quantifier__QTypeAlternatives_0_0");
 			builder.put(grammarAccess.getRootExpressionAccess().getAlternatives(), "rule__RootExpression__Alternatives");
@@ -67,6 +69,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConstructedTypeAccess().getGroup(), "rule__ConstructedType__Group__0");
 			builder.put(grammarAccess.getConstructedTypeAccess().getGroup_1(), "rule__ConstructedType__Group_1__0");
 			builder.put(grammarAccess.getTypeConstructorAccess().getGroup(), "rule__TypeConstructor__Group__0");
+			builder.put(grammarAccess.getTypeConstrBracketAccess().getGroup(), "rule__TypeConstrBracket__Group__0");
 			builder.put(grammarAccess.getTypeDeclContextAccess().getGroup(), "rule__TypeDeclContext__Group__0");
 			builder.put(grammarAccess.getTypeDeclContextAccess().getGroup_2(), "rule__TypeDeclContext__Group_2__0");
 			builder.put(grammarAccess.getTypeStructureAccess().getGroup(), "rule__TypeStructure__Group__0");
@@ -128,11 +131,11 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPolyTypeAccess().getSuperTypesAssignment_1_2_1(), "rule__PolyType__SuperTypesAssignment_1_2_1");
 			builder.put(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_1(), "rule__SuperTypeList__SuperTypesAssignment_1");
 			builder.put(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_2_1(), "rule__SuperTypeList__SuperTypesAssignment_2_1");
-			builder.put(grammarAccess.getConstructedTypeAccess().getTypeAssignment_0(), "rule__ConstructedType__TypeAssignment_0");
-			builder.put(grammarAccess.getConstructedTypeAccess().getConstructorsAssignment_1_0(), "rule__ConstructedType__ConstructorsAssignment_1_0");
-			builder.put(grammarAccess.getConstructedTypeAccess().getTypeAssignment_1_1(), "rule__ConstructedType__TypeAssignment_1_1");
+			builder.put(grammarAccess.getConstructedTypeAccess().getConstructorAssignment_1_1(), "rule__ConstructedType__ConstructorAssignment_1_1");
+			builder.put(grammarAccess.getConstructedTypeAccess().getRightAssignment_1_2(), "rule__ConstructedType__RightAssignment_1_2");
 			builder.put(grammarAccess.getTypeConstructorAccess().getTypeNameAssignment_0(), "rule__TypeConstructor__TypeNameAssignment_0");
 			builder.put(grammarAccess.getTypeConstructorAccess().getContextAssignment_1(), "rule__TypeConstructor__ContextAssignment_1");
+			builder.put(grammarAccess.getTypeConstrBracketAccess().getChildAssignment_1(), "rule__TypeConstrBracket__ChildAssignment_1");
 			builder.put(grammarAccess.getTypeDeclContextAccess().getTypeNameAssignment_1(), "rule__TypeDeclContext__TypeNameAssignment_1");
 			builder.put(grammarAccess.getTypeDeclContextAccess().getTypeNameAssignment_2_1(), "rule__TypeDeclContext__TypeNameAssignment_2_1");
 			builder.put(grammarAccess.getTypeStructureAccess().getVariablesAssignment_1(), "rule__TypeStructure__VariablesAssignment_1");

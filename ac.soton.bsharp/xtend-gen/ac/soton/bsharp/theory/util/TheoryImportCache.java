@@ -13,6 +13,7 @@ import org.eventb.core.IEventBProject;
 import org.eventb.theory.core.DatabaseUtilities;
 import org.eventb.theory.core.IImportTheoryProject;
 import org.eventb.theory.core.ITheoryRoot;
+import org.eventb.theory.core.ITypeParameter;
 import org.rodinp.core.IRodinProject;
 
 /**
@@ -23,6 +24,11 @@ import org.rodinp.core.IRodinProject;
 @SuppressWarnings("all")
 public class TheoryImportCache {
   protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+  
+  /**
+   * This is used to suffix Event-B type variables it results in Event-B code like T : T_EvB
+   */
+  protected String EventBTypeSuffix = "_EvB";
   
   /**
    * Stores the names of thys that have already been imported as
@@ -39,6 +45,13 @@ public class TheoryImportCache {
   public final ITheoryRoot theory;
   
   private final String localProjName;
+  
+  /**
+   * It is not necessary to create new eventB poly types for every new
+   * use of a polytypes. This dictionary keeps references to previously
+   * created Event-B polytypes by their names.
+   */
+  private HashMap<String, ITypeParameter> polyTypeMap = new HashMap<String, ITypeParameter>();
   
   /**
    * This class is designed to be used in conjunction with the BSharpGenerator
@@ -140,6 +153,25 @@ public class TheoryImportCache {
   public void save() {
     try {
       this.theory.getRodinFile().save(this.nullMonitor, true);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * If an Event-B polytype for that name already exists that polytype is returned
+   * otherwise a new polytype is created and added to the cache.
+   */
+  public String getEventBTypeParamNameForName(final String name) {
+    try {
+      final String typeParamName = (name + this.EventBTypeSuffix);
+      final ITypeParameter polytype = this.polyTypeMap.get(name);
+      if ((polytype != null)) {
+        return typeParamName;
+      }
+      final ITypeParameter typeParam = TheoryUtils.createTypeParameter(this.theory, typeParamName, null, this.nullMonitor);
+      this.polyTypeMap.put(name, typeParam);
+      return typeParamName;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

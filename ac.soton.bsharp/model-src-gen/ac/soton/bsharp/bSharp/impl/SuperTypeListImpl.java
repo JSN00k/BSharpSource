@@ -3,9 +3,12 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.SuperTypeList;
+import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 import java.util.Collection;
 
@@ -147,6 +150,44 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 				return superTypes != null && !superTypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public void setupCompilation(TheoryImportCache theoryCache) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String compileToSetCompVariableList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String compileToSetCompTyping() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	private BSClass findCommonSupertypes() {
+		/* This is a simple algorithm that may need extending. It looks up the type heirarchy
+		 * for the last common supertype list, then works back down to construct the new type
+		 * from there. If this is insufficient for the users need they will have to construct 
+		 * the type more manually using type variables.
+		 */
+		
+		/* This has notionally been verified to make sure supertypes are not constructed, and have a 
+		 * shared ancestor.
+		 */
+		if (superTypes == null || superTypes.isEmpty())
+			return null;
+		
+		if (superTypes.size() == 1) {
+			return (BSClass)((TypeConstructor)superTypes.get(0)).getTypeName();
+		}
+		
+		
 	}
 
 } //SuperTypeListImpl

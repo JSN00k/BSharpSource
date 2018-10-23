@@ -113,6 +113,15 @@ public interface BSharpFactory extends EFactory {
 	TypeConstructor createTypeConstructor();
 
 	/**
+	 * Returns a new object of class '<em>Type Constr Bracket</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Constr Bracket</em>'.
+	 * @generated
+	 */
+	TypeConstrBracket createTypeConstrBracket();
+
+	/**
 	 * Returns a new object of class '<em>Type Decl Context</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

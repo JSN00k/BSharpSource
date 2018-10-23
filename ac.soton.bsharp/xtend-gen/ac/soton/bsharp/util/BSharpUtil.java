@@ -4,7 +4,9 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.SuperTypeList;
+import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
@@ -12,31 +14,9 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class BSharpUtil {
-  /**
-   * Constructed types can be a genuine constructed type (e.g., they are created with a
-   * type constructor), or they can act as a wrapper around a a Type Constructor (which
-   * can simply be a type or a type constructor with arguments. This is because the
-   * definition of a constructed type is:
-   * 
-   * ConstructedType:
-   *   type+=TypeConstructor
-   * 		(constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
-   * ;
-   * If there is nothing in the constructors section then there is only a Type Constructor wrapped in a ConstructedType
-   * flatternConstructedType(ConstructedType t) unpacks the ConstructedType if it is just acting as a wrapper.
-   */
-  public static EObject flatternConstructedType(final ConstructedType t) {
-    if (((t.getConstructors() == null) || t.getConstructors().isEmpty())) {
-      EObject _head = IterableExtensions.<EObject>head(t.getType());
-      return ((TypeConstructor) _head).getTypeName();
-    }
-    return t;
-  }
-  
   /**
    * This function simply finds all of the supertypes. It doesn't do any work to
    * unify them.
@@ -45,8 +25,8 @@ public class BSharpUtil {
     final SuperTypeList superclasses = c.getSupertypes();
     EList<ConstructedType> _superTypes = superclasses.getSuperTypes();
     for (final ConstructedType superclass : _superTypes) {
-      {
-        final EObject type = BSharpUtil.flatternConstructedType(superclass);
+      if ((superclass instanceof TypeConstructor)) {
+        final GenName type = ((TypeConstructor) superclass).getTypeName();
         if (((type instanceof ConstructedType) || (type instanceof Datatype))) {
           int _length = ((Object[])Conversions.unwrapArray(superclasses.getSuperTypes(), Object.class)).length;
           boolean _notEquals = (_length != 1);
@@ -85,5 +65,23 @@ public class BSharpUtil {
     ArrayList<EObject> list = new ArrayList<EObject>();
     BSharpUtil.superClassesInternal(c, list);
     return list;
+  }
+  
+  public static ConstructedType reverseLeftHandedConstructedType(final ConstructedType ct) {
+    if ((ct instanceof TypeConstructor)) {
+      return ct;
+    }
+    ConstructedType _left = ct.getLeft();
+    if ((_left instanceof TypeConstructor)) {
+      return ct;
+    }
+    if ((ct instanceof TypeConstrBracket)) {
+      ((TypeConstrBracket)ct).setChild(BSharpUtil.reverseLeftHandedConstructedType(((TypeConstrBracket)ct).getChild()));
+    }
+    final ConstructedType left = ct.getLeft();
+    final ConstructedType newLeft = left.getRight();
+    left.setRight(ct);
+    ct.setLeft(newLeft);
+    return BSharpUtil.reverseLeftHandedConstructedType(left);
   }
 }

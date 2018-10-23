@@ -80,19 +80,24 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="superTypes" upperBound="-1"
         eType="#//ConstructedType" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeConstructor">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="TypeName" eType="#//GenName"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeConstructor" eSuperTypes="#//ConstructedType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="#//GenName"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" upperBound="-1"
         eType="#//TypeDeclContext" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstructedType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+  <eClassifiers xsi:type="ecore:EClass" name="TypeConstrBracket" eSuperTypes="#//ConstructedType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" lowerBound="1" eType="#//ConstructedType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constructors" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstructedType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constructor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ConstructedType"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ConstructedType"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDeclContext">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="TypeName" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" upperBound="-1"
         eType="#//ConstructedType" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeStructure">

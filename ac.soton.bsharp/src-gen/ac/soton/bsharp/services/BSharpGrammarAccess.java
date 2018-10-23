@@ -602,82 +602,100 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	public class ConstructedTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ConstructedType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeTypeConstructorParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final RuleCall cTypeConstructorParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cTypeConstrBracketParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cConstructorsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final Alternatives cConstructorsAlternatives_1_0_0 = (Alternatives)cConstructorsAssignment_1_0.eContents().get(0);
-		private final Keyword cConstructorsMultiplicationSignKeyword_1_0_0_0 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(0);
-		private final Keyword cConstructorsRightwardsArrowKeyword_1_0_0_1 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(1);
-		private final Keyword cConstructorsPrivateUseAreaE102Keyword_1_0_0_2 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(2);
-		private final Keyword cConstructorsPrivateUseAreaE100Keyword_1_0_0_3 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(3);
-		private final Keyword cConstructorsLeftRightArrowKeyword_1_0_0_4 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(4);
-		private final Keyword cConstructorsRightwardsTwoHeadedArrowWithTailKeyword_1_0_0_5 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(5);
-		private final Keyword cConstructorsRightwardsArrowWithVerticalStrokeKeyword_1_0_0_6 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(6);
-		private final Keyword cConstructorsRightwardsArrowWithTailKeyword_1_0_0_7 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(7);
-		private final Keyword cConstructorsRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_0_8 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(8);
-		private final Keyword cConstructorsRightwardsTwoHeadedArrowKeyword_1_0_0_9 = (Keyword)cConstructorsAlternatives_1_0_0.eContents().get(9);
-		private final Assignment cTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cTypeConstructedTypeParserRuleCall_1_1_0 = (RuleCall)cTypeAssignment_1_1.eContents().get(0);
+		private final Action cConstructedTypeLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cConstructorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final Alternatives cConstructorAlternatives_1_1_0 = (Alternatives)cConstructorAssignment_1_1.eContents().get(0);
+		private final Keyword cConstructorMultiplicationSignKeyword_1_1_0_0 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(0);
+		private final Keyword cConstructorRightwardsArrowKeyword_1_1_0_1 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(1);
+		private final Keyword cConstructorPrivateUseAreaE102Keyword_1_1_0_2 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(2);
+		private final Keyword cConstructorPrivateUseAreaE100Keyword_1_1_0_3 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(3);
+		private final Keyword cConstructorLeftRightArrowKeyword_1_1_0_4 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(4);
+		private final Keyword cConstructorRightwardsTwoHeadedArrowWithTailKeyword_1_1_0_5 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(5);
+		private final Keyword cConstructorRightwardsArrowWithVerticalStrokeKeyword_1_1_0_6 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(6);
+		private final Keyword cConstructorRightwardsArrowWithTailKeyword_1_1_0_7 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(7);
+		private final Keyword cConstructorRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_1_0_8 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(8);
+		private final Keyword cConstructorRightwardsTwoHeadedArrowKeyword_1_1_0_9 = (Keyword)cConstructorAlternatives_1_1_0.eContents().get(9);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cRightAlternatives_1_2_0 = (Alternatives)cRightAssignment_1_2.eContents().get(0);
+		private final RuleCall cRightTypeConstructorParserRuleCall_1_2_0_0 = (RuleCall)cRightAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cRightTypeConstrBracketParserRuleCall_1_2_0_1 = (RuleCall)cRightAlternatives_1_2_0.eContents().get(1);
 		
 		///* Along with the normal Event-B type operator, and new B++ types the  */ ConstructedType:
-		//	type+=TypeConstructor (constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
-		//	type+=ConstructedType)?;
+		//	(TypeConstructor | TypeConstrBracket) ({ConstructedType.left=current} constructor=('×' | '→' | '' | '' | '↔' | '⤖' |
+		//	'⇸' | '↣' | '⤀' | '↠') right=(TypeConstructor | TypeConstrBracket))*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type+=TypeConstructor (constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
+		//(TypeConstructor | TypeConstrBracket) ({ConstructedType.left=current} constructor=('×' | '→' | '' | '' | '↔' | '⤖' |
+		//'⇸' | '↣' | '⤀' | '↠') right=(TypeConstructor | TypeConstrBracket))*
 		public Group getGroup() { return cGroup; }
 		
-		//type+=TypeConstructor
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//TypeConstructor | TypeConstrBracket
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
 		//TypeConstructor
-		public RuleCall getTypeTypeConstructorParserRuleCall_0_0() { return cTypeTypeConstructorParserRuleCall_0_0; }
+		public RuleCall getTypeConstructorParserRuleCall_0_0() { return cTypeConstructorParserRuleCall_0_0; }
 		
-		//(constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') type+=ConstructedType)?
+		//TypeConstrBracket
+		public RuleCall getTypeConstrBracketParserRuleCall_0_1() { return cTypeConstrBracketParserRuleCall_0_1; }
+		
+		//({ConstructedType.left=current} constructor=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
+		//right=(TypeConstructor | TypeConstrBracket))*
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
-		public Assignment getConstructorsAssignment_1_0() { return cConstructorsAssignment_1_0; }
+		//{ConstructedType.left=current}
+		public Action getConstructedTypeLeftAction_1_0() { return cConstructedTypeLeftAction_1_0; }
+		
+		//constructor=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
+		public Assignment getConstructorAssignment_1_1() { return cConstructorAssignment_1_1; }
 		
 		//('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
-		public Alternatives getConstructorsAlternatives_1_0_0() { return cConstructorsAlternatives_1_0_0; }
+		public Alternatives getConstructorAlternatives_1_1_0() { return cConstructorAlternatives_1_1_0; }
 		
 		//'×'
-		public Keyword getConstructorsMultiplicationSignKeyword_1_0_0_0() { return cConstructorsMultiplicationSignKeyword_1_0_0_0; }
+		public Keyword getConstructorMultiplicationSignKeyword_1_1_0_0() { return cConstructorMultiplicationSignKeyword_1_1_0_0; }
 		
 		//'→'
-		public Keyword getConstructorsRightwardsArrowKeyword_1_0_0_1() { return cConstructorsRightwardsArrowKeyword_1_0_0_1; }
+		public Keyword getConstructorRightwardsArrowKeyword_1_1_0_1() { return cConstructorRightwardsArrowKeyword_1_1_0_1; }
 		
 		//''
-		public Keyword getConstructorsPrivateUseAreaE102Keyword_1_0_0_2() { return cConstructorsPrivateUseAreaE102Keyword_1_0_0_2; }
+		public Keyword getConstructorPrivateUseAreaE102Keyword_1_1_0_2() { return cConstructorPrivateUseAreaE102Keyword_1_1_0_2; }
 		
 		//''
-		public Keyword getConstructorsPrivateUseAreaE100Keyword_1_0_0_3() { return cConstructorsPrivateUseAreaE100Keyword_1_0_0_3; }
+		public Keyword getConstructorPrivateUseAreaE100Keyword_1_1_0_3() { return cConstructorPrivateUseAreaE100Keyword_1_1_0_3; }
 		
 		//'↔'
-		public Keyword getConstructorsLeftRightArrowKeyword_1_0_0_4() { return cConstructorsLeftRightArrowKeyword_1_0_0_4; }
+		public Keyword getConstructorLeftRightArrowKeyword_1_1_0_4() { return cConstructorLeftRightArrowKeyword_1_1_0_4; }
 		
 		//'⤖'
-		public Keyword getConstructorsRightwardsTwoHeadedArrowWithTailKeyword_1_0_0_5() { return cConstructorsRightwardsTwoHeadedArrowWithTailKeyword_1_0_0_5; }
+		public Keyword getConstructorRightwardsTwoHeadedArrowWithTailKeyword_1_1_0_5() { return cConstructorRightwardsTwoHeadedArrowWithTailKeyword_1_1_0_5; }
 		
 		//'⇸'
-		public Keyword getConstructorsRightwardsArrowWithVerticalStrokeKeyword_1_0_0_6() { return cConstructorsRightwardsArrowWithVerticalStrokeKeyword_1_0_0_6; }
+		public Keyword getConstructorRightwardsArrowWithVerticalStrokeKeyword_1_1_0_6() { return cConstructorRightwardsArrowWithVerticalStrokeKeyword_1_1_0_6; }
 		
 		//'↣'
-		public Keyword getConstructorsRightwardsArrowWithTailKeyword_1_0_0_7() { return cConstructorsRightwardsArrowWithTailKeyword_1_0_0_7; }
+		public Keyword getConstructorRightwardsArrowWithTailKeyword_1_1_0_7() { return cConstructorRightwardsArrowWithTailKeyword_1_1_0_7; }
 		
 		//'⤀'
-		public Keyword getConstructorsRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_0_8() { return cConstructorsRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_0_0_8; }
+		public Keyword getConstructorRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_1_0_8() { return cConstructorRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_1_1_0_8; }
 		
 		//'↠'
-		public Keyword getConstructorsRightwardsTwoHeadedArrowKeyword_1_0_0_9() { return cConstructorsRightwardsTwoHeadedArrowKeyword_1_0_0_9; }
+		public Keyword getConstructorRightwardsTwoHeadedArrowKeyword_1_1_0_9() { return cConstructorRightwardsTwoHeadedArrowKeyword_1_1_0_9; }
 		
-		//type+=ConstructedType
-		public Assignment getTypeAssignment_1_1() { return cTypeAssignment_1_1; }
+		//right=(TypeConstructor | TypeConstrBracket)
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
 		
-		//ConstructedType
-		public RuleCall getTypeConstructedTypeParserRuleCall_1_1_0() { return cTypeConstructedTypeParserRuleCall_1_1_0; }
+		//(TypeConstructor | TypeConstrBracket)
+		public Alternatives getRightAlternatives_1_2_0() { return cRightAlternatives_1_2_0; }
+		
+		//TypeConstructor
+		public RuleCall getRightTypeConstructorParserRuleCall_1_2_0_0() { return cRightTypeConstructorParserRuleCall_1_2_0_0; }
+		
+		//TypeConstrBracket
+		public RuleCall getRightTypeConstrBracketParserRuleCall_1_2_0_1() { return cRightTypeConstrBracketParserRuleCall_1_2_0_1; }
 	}
 	public class TypeConstructorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeConstructor");
@@ -692,13 +710,13 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
 		// * Probably need to add the predicate type to this.
 		// */ TypeConstructor:
-		//	TypeName=[GenName|QualifiedName] context+=TypeDeclContext?;
+		//	typeName=[GenName|QualifiedName] context+=TypeDeclContext?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//TypeName=[GenName|QualifiedName] context+=TypeDeclContext?
+		//typeName=[GenName|QualifiedName] context+=TypeDeclContext?
 		public Group getGroup() { return cGroup; }
 		
-		//TypeName=[GenName|QualifiedName]
+		//typeName=[GenName|QualifiedName]
 		public Assignment getTypeNameAssignment_0() { return cTypeNameAssignment_0; }
 		
 		//[GenName|QualifiedName]
@@ -713,6 +731,33 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeDeclContext
 		public RuleCall getContextTypeDeclContextParserRuleCall_1_0() { return cContextTypeDeclContextParserRuleCall_1_0; }
 	}
+	public class TypeConstrBracketElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeConstrBracket");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cChildAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cChildConstructedTypeParserRuleCall_1_0 = (RuleCall)cChildAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//TypeConstrBracket:
+		//	'(' child=ConstructedType ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'(' child=ConstructedType ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+		
+		//child=ConstructedType
+		public Assignment getChildAssignment_1() { return cChildAssignment_1; }
+		
+		//ConstructedType
+		public RuleCall getChildConstructedTypeParserRuleCall_1_0() { return cChildConstructedTypeParserRuleCall_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+	}
 	public class TypeDeclContextElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeDeclContext");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -726,28 +771,28 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//TypeDeclContext:
-		//	'<' TypeName+=ConstructedType (',' TypeName+=ConstructedType)* '>';
+		//	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'<' TypeName+=ConstructedType (',' TypeName+=ConstructedType)* '>'
+		//'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
 		public Group getGroup() { return cGroup; }
 		
 		//'<'
 		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
 		
-		//TypeName+=ConstructedType
+		//typeName+=ConstructedType
 		public Assignment getTypeNameAssignment_1() { return cTypeNameAssignment_1; }
 		
 		//ConstructedType
 		public RuleCall getTypeNameConstructedTypeParserRuleCall_1_0() { return cTypeNameConstructedTypeParserRuleCall_1_0; }
 		
-		//(',' TypeName+=ConstructedType)*
+		//(',' typeName+=ConstructedType)*
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//','
 		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
 		
-		//TypeName+=ConstructedType
+		//typeName+=ConstructedType
 		public Assignment getTypeNameAssignment_2_1() { return cTypeNameAssignment_2_1; }
 		
 		//ConstructedType
@@ -1978,6 +2023,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final SuperTypeListElements pSuperTypeList;
 	private final ConstructedTypeElements pConstructedType;
 	private final TypeConstructorElements pTypeConstructor;
+	private final TypeConstrBracketElements pTypeConstrBracket;
 	private final TypeDeclContextElements pTypeDeclContext;
 	private final TypeStructureElements pTypeStructure;
 	private final WhereElements pWhere;
@@ -2038,6 +2084,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSuperTypeList = new SuperTypeListElements();
 		this.pConstructedType = new ConstructedTypeElements();
 		this.pTypeConstructor = new TypeConstructorElements();
+		this.pTypeConstrBracket = new TypeConstrBracketElements();
 		this.pTypeDeclContext = new TypeDeclContextElements();
 		this.pTypeStructure = new TypeStructureElements();
 		this.pWhere = new WhereElements();
@@ -2294,8 +2341,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* Along with the normal Event-B type operator, and new B++ types the  */ ConstructedType:
-	//	type+=TypeConstructor (constructors+=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠')
-	//	type+=ConstructedType)?;
+	//	(TypeConstructor | TypeConstrBracket) ({ConstructedType.left=current} constructor=('×' | '→' | '' | '' | '↔' | '⤖' |
+	//	'⇸' | '↣' | '⤀' | '↠') right=(TypeConstructor | TypeConstrBracket))*;
 	public ConstructedTypeElements getConstructedTypeAccess() {
 		return pConstructedType;
 	}
@@ -2308,7 +2355,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
 	// * Probably need to add the predicate type to this.
 	// */ TypeConstructor:
-	//	TypeName=[GenName|QualifiedName] context+=TypeDeclContext?;
+	//	typeName=[GenName|QualifiedName] context+=TypeDeclContext?;
 	public TypeConstructorElements getTypeConstructorAccess() {
 		return pTypeConstructor;
 	}
@@ -2317,8 +2364,18 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeConstructorAccess().getRule();
 	}
 	
+	//TypeConstrBracket:
+	//	'(' child=ConstructedType ')';
+	public TypeConstrBracketElements getTypeConstrBracketAccess() {
+		return pTypeConstrBracket;
+	}
+	
+	public ParserRule getTypeConstrBracketRule() {
+		return getTypeConstrBracketAccess().getRule();
+	}
+	
 	//TypeDeclContext:
-	//	'<' TypeName+=ConstructedType (',' TypeName+=ConstructedType)* '>';
+	//	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>';
 	public TypeDeclContextElements getTypeDeclContextAccess() {
 		return pTypeDeclContext;
 	}

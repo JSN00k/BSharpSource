@@ -14,6 +14,7 @@ import org.eventb.theory.core.IConstructorArgument;
 import org.eventb.theory.core.IDatatypeConstructor;
 import org.eventb.theory.core.IDatatypeDefinition;
 import org.eventb.theory.core.IDeployedTheoryRoot;
+import org.eventb.theory.core.IDirectOperatorDefinition;
 import org.eventb.theory.core.IImportTheory;
 import org.eventb.theory.core.IImportTheoryProject;
 import org.eventb.theory.core.IMetavariable;
@@ -435,6 +436,18 @@ public class TheoryUtils {
 		argument.setExpressionString(expression, subMonitor.newChild(40));
 		
 		return argument;
+	}
+	
+	public static IDirectOperatorDefinition createDirectDefinition(
+			INewOperatorDefinition op, String definition,
+			IInternalElement nextSibling, IProgressMonitor monitor) throws RodinDBException {
+		SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+		
+		IDirectOperatorDefinition directDef = op.createChild(
+				IDirectOperatorDefinition.ELEMENT_TYPE, nextSibling, subMonitor.newChild(50));
+		
+		directDef.setFormula(definition, subMonitor.newChild(50));
+		return directDef;
 	}
 
 	/**

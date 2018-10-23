@@ -47,6 +47,7 @@ import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.Type;
 import ac.soton.bsharp.bSharp.TypeBodyElements;
+import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypeStructure;
@@ -151,6 +152,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass typeConstructorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typeConstrBracketEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -717,8 +725,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstructedType_Type() {
-		return (EReference)constructedTypeEClass.getEStructuralFeatures().get(0);
+	public EAttribute getConstructedType_Constructor() {
+		return (EAttribute)constructedTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -726,8 +734,17 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConstructedType_Constructors() {
-		return (EAttribute)constructedTypeEClass.getEStructuralFeatures().get(1);
+	public EReference getConstructedType_Left() {
+		return (EReference)constructedTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConstructedType_Right() {
+		return (EReference)constructedTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -755,6 +772,24 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 */
 	public EReference getTypeConstructor_Context() {
 		return (EReference)typeConstructorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTypeConstrBracket() {
+		return typeConstrBracketEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTypeConstrBracket_Child() {
+		return (EReference)typeConstrBracketEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1688,9 +1723,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(typeConstructorEClass, TYPE_CONSTRUCTOR__TYPE_NAME);
 		createEReference(typeConstructorEClass, TYPE_CONSTRUCTOR__CONTEXT);
 
+		typeConstrBracketEClass = createEClass(TYPE_CONSTR_BRACKET);
+		createEReference(typeConstrBracketEClass, TYPE_CONSTR_BRACKET__CHILD);
+
 		constructedTypeEClass = createEClass(CONSTRUCTED_TYPE);
-		createEReference(constructedTypeEClass, CONSTRUCTED_TYPE__TYPE);
-		createEAttribute(constructedTypeEClass, CONSTRUCTED_TYPE__CONSTRUCTORS);
+		createEAttribute(constructedTypeEClass, CONSTRUCTED_TYPE__CONSTRUCTOR);
+		createEReference(constructedTypeEClass, CONSTRUCTED_TYPE__LEFT);
+		createEReference(constructedTypeEClass, CONSTRUCTED_TYPE__RIGHT);
 
 		typeDeclContextEClass = createEClass(TYPE_DECL_CONTEXT);
 		createEReference(typeDeclContextEClass, TYPE_DECL_CONTEXT__TYPE_NAME);
@@ -1834,6 +1873,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		bsClassEClass.getESuperTypes().add(this.getClassDecl());
 		genNameEClass.getESuperTypes().add(this.getNamedObject());
 		polyTypeEClass.getESuperTypes().add(this.getGenName());
+		typeConstructorEClass.getESuperTypes().add(this.getConstructedType());
+		typeConstrBracketEClass.getESuperTypes().add(this.getConstructedType());
 		datatypeEClass.getESuperTypes().add(this.getClassDecl());
 		datatypeConstructorEClass.getESuperTypes().add(this.getIVariableProvider());
 		datatypeConstructorEClass.getESuperTypes().add(this.getTypedVariable());
@@ -1918,15 +1959,19 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getSuperTypeList_SuperTypes(), this.getConstructedType(), null, "superTypes", null, 0, -1, SuperTypeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeConstructorEClass, TypeConstructor.class, "TypeConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeConstructor_TypeName(), this.getGenName(), null, "TypeName", null, 0, 1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypeConstructor_TypeName(), this.getGenName(), null, "typeName", null, 0, 1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTypeConstructor_Context(), this.getTypeDeclContext(), null, "context", null, 0, -1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(typeConstrBracketEClass, TypeConstrBracket.class, "TypeConstrBracket", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypeConstrBracket_Child(), this.getConstructedType(), null, "child", null, 1, 1, TypeConstrBracket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(constructedTypeEClass, ConstructedType.class, "ConstructedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConstructedType_Type(), ecorePackage.getEObject(), null, "type", null, 0, -1, ConstructedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConstructedType_Constructors(), ecorePackage.getEString(), "constructors", null, 0, -1, ConstructedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstructedType_Constructor(), ecorePackage.getEString(), "constructor", null, 0, 1, ConstructedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstructedType_Left(), this.getConstructedType(), null, "left", null, 0, 1, ConstructedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstructedType_Right(), this.getConstructedType(), null, "right", null, 0, 1, ConstructedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeDeclContextEClass, TypeDeclContext.class, "TypeDeclContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeDeclContext_TypeName(), this.getConstructedType(), null, "TypeName", null, 0, -1, TypeDeclContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypeDeclContext_TypeName(), this.getConstructedType(), null, "typeName", null, 0, -1, TypeDeclContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeStructureEClass, TypeStructure.class, "TypeStructure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeStructure_Variables(), this.getTypedVariableList(), null, "variables", null, 0, 1, TypeStructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

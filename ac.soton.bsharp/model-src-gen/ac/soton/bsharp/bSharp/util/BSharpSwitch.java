@@ -198,6 +198,14 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.TYPE_CONSTRUCTOR: {
 				TypeConstructor typeConstructor = (TypeConstructor)theEObject;
 				T result = caseTypeConstructor(typeConstructor);
+				if (result == null) result = caseConstructedType(typeConstructor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TYPE_CONSTR_BRACKET: {
+				TypeConstrBracket typeConstrBracket = (TypeConstrBracket)theEObject;
+				T result = caseTypeConstrBracket(typeConstrBracket);
+				if (result == null) result = caseConstructedType(typeConstrBracket);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -574,6 +582,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypeConstructor(TypeConstructor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Constr Bracket</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Constr Bracket</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypeConstrBracket(TypeConstrBracket object) {
 		return null;
 	}
 

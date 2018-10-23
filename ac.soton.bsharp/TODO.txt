@@ -9,3 +9,17 @@
 5)  Follow the instructions from the book into how to make the Main lib available from outside of eclipse.
 	(This may not be necessary if we think that we're never going to use it outside of eclipse).
 	
+-------------- IMPLEMENT ME!!--------------
+These TODOs are requirements that have been put off due to time constraints, They need Implementing
+1)  In FileCompiler compileTypeConstructor(TypeConstructor constr) currently only handles simple types
+	it needs to be able to handle constructed types, this can be done after I implement generating 
+	type constructors.
+	
+-------------- Validation -----------------
+Due to time constraints insufficient work has been done on validation, allowing invalid statements
+to get through to the compilation stage, this potentially allows impossible statements to be compiled.
+Fortunately these will probably give errors in Event-B, but it would be nice to catch them earlier.
+
+ 1) When there are multiple supertypes they should all have a shared common ancestor, and should not
+ 	have additional variables added to them. This needs to be checked in the verification stage which 
+ 	it currently isn't

@@ -145,6 +145,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTypeConstructorAdapter();
 			}
 			@Override
+			public Adapter caseTypeConstrBracket(TypeConstrBracket object) {
+				return createTypeConstrBracketAdapter();
+			}
+			@Override
 			public Adapter caseConstructedType(ConstructedType object) {
 				return createConstructedTypeAdapter();
 			}
@@ -437,6 +441,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypeConstructorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TypeConstrBracket <em>Type Constr Bracket</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.TypeConstrBracket
+	 * @generated
+	 */
+	public Adapter createTypeConstrBracketAdapter() {
 		return null;
 	}
 
