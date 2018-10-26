@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,5 +101,8 @@ public interface BSClass extends ClassDecl {
 	 * @generated
 	 */
 	void setWhere(Where value);
-
+	
+	Integer eventBRequiredPolyTypes();
+	
+	String constructWithEventBPolytypes(ArrayList<String> eventBPolytypes);
 } // BppClass

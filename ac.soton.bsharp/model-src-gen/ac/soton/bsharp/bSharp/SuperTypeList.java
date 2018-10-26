@@ -40,19 +40,7 @@ public interface SuperTypeList extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConstructedType> getSuperTypes();
-
-	public void setupCompilation(TheoryImportCache theoryCache);
+	EList<ConstructedType> getSuperTypes();	
 	
-	/* EventB set comprehension has the form { a |-> b |-> c | a \in type /\ b\in type ...
-	 * when compiling supertypes if the supertypes are disjoint then they each need a variable,
-	 * Then these variables need to be typed separately. Finally for supertypes that share an 
-	 * ancestor it is necessary to find that common ancestor, and rebuild the rest of the type
-	 * from there. This is a matter of adding the extra type definition variables from the 
-	 * superclasses.
-	 */
-	public String compileToSetCompVariableList();
-	public String compileToSetCompTyping();
-	
-	
+	ConstructedType getFirst();
 } // SuperTypeList

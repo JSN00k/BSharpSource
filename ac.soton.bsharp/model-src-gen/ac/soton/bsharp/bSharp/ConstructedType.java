@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -103,5 +105,10 @@ public interface ConstructedType extends EObject {
 	 * @generated
 	 */
 	void setRight(ConstructedType value);
+	
+	/* Returns the number of polymorphic types used within the constructed type. */
+	int inferredTypeCount();
+	
+	String buildEventBType(ArrayList<String> inferredTypes);
 
 } // ConstructedType

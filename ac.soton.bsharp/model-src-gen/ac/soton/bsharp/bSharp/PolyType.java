@@ -5,7 +5,9 @@ package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eventb.theory.core.INewOperatorDefinition;
+
+import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,5 +41,8 @@ public interface PolyType extends GenName {
 	 * @generated
 	 */
 	EList<ClassDecl> getSuperTypes();
+	
+	void setupCompilation(TheoryImportCache theoryCache);
+	void compileToBSClassOpArgs(INewOperatorDefinition op);
 
 } // PolyContextTypes

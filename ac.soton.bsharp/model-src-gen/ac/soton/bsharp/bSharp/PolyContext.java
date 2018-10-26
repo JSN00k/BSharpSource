@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -46,6 +48,11 @@ public interface PolyContext extends EObject {
 	Integer eventBPolyVarCount();
 	
 	void setupCompilation(TheoryImportCache theoryCache);
+	
+	/* Returns the number of types declared in the polyContext. */
+	int polyTypesCount();
 	void compileToBSClassOpArgs(INewOperatorDefinition op);
+
+	String constructCallArgsForBSClassWithTypes(ArrayList<String> eventBPolytypes);
 
 } // PolyContext

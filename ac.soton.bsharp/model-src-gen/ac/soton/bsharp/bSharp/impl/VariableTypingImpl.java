@@ -9,6 +9,8 @@ import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.VariableTyping;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -217,6 +219,19 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 				return type != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public Map<TypedVariable, ConstructedType> getVariablesAndTypes() {
+		TreeMap<TypedVariable, ConstructedType> result = new TreeMap<TypedVariable, ConstructedType>();
+		if (typeVar == null || typeVar.isEmpty())
+			return result;
+		
+		for (TypedVariable var : typeVar) {
+			result.put(var, type);
+		}
+		
+		return result;
 	}
 
 } //VariableTypingImpl

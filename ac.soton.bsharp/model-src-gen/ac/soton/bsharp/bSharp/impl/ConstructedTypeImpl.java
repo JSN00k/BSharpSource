@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -315,6 +316,26 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 		result.append(constructor);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public int inferredTypeCount() {
+		/* We only have inferred types when the super type is a type class. This is 
+		 * handled by the TypeConstructor subclass.
+		 */
+		return 0;
+	}
+
+	@Override
+	public String buildEventBType(ArrayList<String> inferredTypes) {
+		/* This terminates when a leaf is reached, i.e., a member of TypeConstructor
+		 * which is handled by the subclass implementation.
+		 */
+		
+		String result = left.buildEventBType(inferredTypes);
+		result += " " + constructor + " " + right.buildEventBType(inferredTypes);
+		// TODO Auto-generated method stub
+		return result;
 	}
 
 } //ConstructedTypeImpl

@@ -3,12 +3,15 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -178,22 +181,117 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	public void setupCompilation(TheoryImportCache theoryCache) {
 		thyCache = theoryCache;
 	}
-
+	
+	@Override
+	public int polyTypesCount() {
+		if (polyTypes == null)
+			return 0;
+		
+		return polyTypes.size();
+	}
+	
 	@Override
 	public void compileToBSClassOpArgs(INewOperatorDefinition op) {
 		if (polyTypes == null || polyTypes.size() == 0)
 			return;
 		
-		for (PolyType polyType : polyTypes) {
+		for (PolyType polyType : polyTypes) {			
 			String name = polyType.getName();
-			String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(name);
 			
-			try {
-				TheoryUtils.createArgument(op, name, "ℙ(" + eventBTypeParamName + ")", null, nullMonitor);
-			} catch (Exception e) {
-				System.err.println("Unable to create EventB type param named: " + eventBTypeParamName + e.getLocalizedMessage());
+			/* I'm not entirely sure how to handle the case where I have a type class
+			 * which has a non-base type as it's constucted type. e.g., maybe I'd like a
+			 * statement like this:
+			 * Class Homo<S : Monoid, T : Monoid> : S x T (f : Homomorphism) {
+			 * }
+			 * 
+			 * The problem this causes is then how to compile:
+			 * 
+			 * Class new<H:Homo>...
+			 * 
+			 * current plan is to ask Homo how many type arguments it needs and generate these.
+			 * along with an argument of type Homo : Homo<t_1, t_2>. I'm going to implement this
+			 * now, however I doubt I'll get far enough throught constructing libraries to test
+			 * it fully. This is handled by saking the polytype to compile itself.
+			 */
+			Collection<ClassDecl> superTypes = polyType.getSuperTypes();
+			if (superTypes != null ) {
+				Boolean first = true;
+				ArrayList<String> eventBTypesForPolytypes = new ArrayList<String>();
+				for (ClassDecl supertype : superTypes) {
+					BSClass superT = (BSClass)supertype;
+					if (first) {
+						Integer argsRequired = superT.eventBRequiredPolyTypes();
+						for (Integer i = 1; i <= argsRequired; ++i) {
+							String typeString = name + i.toString();
+							eventBTypesForPolytypes.add(typeString);
+							String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(typeString);
+							try {
+								TheoryUtils.createArgument(op, typeString, "ℙ(" + eventBTypeParamName + ")", null, nullMonitor);
+							} catch (Exception e) {
+								System.err.println("Unable to create EventB type param named: " + eventBTypeParamName
+										+ e.getLocalizedMessage());
+							}
+						}
+					}
+					
+					first = false;
+					
+					/* TODO: This requires more thought and research. What if the supertypes have different
+					 * base types, should this be allowed.
+					 */
+					String argType = superT.constructWithEventBPolytypes(eventBTypesForPolytypes);
+					
+					try {
+						TheoryUtils.createArgument(op, name, "ℙ(" + argType + ")", null, nullMonitor);
+					} catch (Exception e) {
+						System.err.println("Unable to create EventB type param named: " + name
+								+ e.getLocalizedMessage());
+					}
+				}
+			} else {
+				String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(name);
+				try {
+					TheoryUtils.createArgument(op, name, "ℙ(" + eventBTypeParamName + ")", null, nullMonitor);
+				} catch (Exception e) {
+					System.err.println("Unable to create EventB type param named: " + eventBTypeParamName
+							+ e.getLocalizedMessage());
+				}
 			}
+			
+			
+
 		}
 	}
+
+	@Override
+	public String constructCallArgsForBSClassWithTypes(ArrayList<String> eventBPolytypes) {
+		if (polyTypes == null || polyTypes.size() == 0)
+			return eventBPolytypes.get(0);
+		
+		String resultString = ""; 
+		
+		for (PolyType polyType : polyTypes) {
+			Collection<ClassDecl> superTypes = polyType.getSuperTypes();
+			if (superTypes == null || superTypes.isEmpty()) {
+				continue;
+			}
+			
+			Boolean first = true;
+			for (ClassDecl supertype : superTypes) {
+				if (!first) {
+					resultString += ", ";
+				}
+				
+				first = false;
+				
+				BSClass superT = (BSClass)supertype;
+				resultString += superT.constructWithEventBPolytypes(eventBPolytypes);
+			}
+		}
+		
+		return resultString;
+	}
+
+
 
 } //PolyContextImpl

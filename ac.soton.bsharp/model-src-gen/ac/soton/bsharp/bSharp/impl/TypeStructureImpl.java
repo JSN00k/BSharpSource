@@ -4,8 +4,12 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.TypeStructure;
+import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -172,6 +176,21 @@ public class TypeStructureImpl extends MinimalEObjectImpl.Container implements T
 				return variables != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public String stringForArgsToSetCompVarList() {
+		if (variables == null)
+			return "";
+		
+		Map<TypedVariable, ConstructedType> typedVariables = variables.getVariablesAndTypes();
+		
+		String result = "";
+		for (TypedVariable var : typedVariables.keySet()) {
+			result += "↦ " + var.getName();
+		}
+		
+		return result;
 	}
 
 } //TypeStructureImpl

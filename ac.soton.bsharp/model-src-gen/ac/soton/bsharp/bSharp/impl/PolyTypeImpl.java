@@ -3,17 +3,23 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eventb.theory.core.INewOperatorDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -129,5 +135,42 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		}
 		return super.eIsSet(featureID);
 	}
+
+	private TheoryImportCache thyCache;
+	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+	
+	@Override
+	public void setupCompilation(TheoryImportCache theoryCache) {
+		thyCache = theoryCache;
+	}
+
+	@Override
+	public void compileToBSClassOpArgs(INewOperatorDefinition op) {
+		if (superTypes == null || superTypes.isEmpty()) {
+			String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(name);
+			
+			try {
+				TheoryUtils.createArgument(op, name, "ℙ(" + eventBTypeParamName + ")", null, nullMonitor);
+			} catch (Exception e) {
+				System.err.println("Unable to create EventB type param named: " + eventBTypeParamName + e.getLocalizedMessage());
+			}
+			
+			return;
+		}
+		
+		for (ClassDecl supertype : superTypes) {
+			/* I think that the supertypes should only be able to be type classes. */
+			if (!(supertype instanceof BSClass)) {
+				System.err.println("Need to either make it so polymorphic types can have non BSClasses as supertypes"
+						+ "or change the BSharp file so we can only have BSClasses here.");
+			}
+			
+			BSClass bsSuper = (BSClass)supertype;
+			
+				
+		}
+	}
+	
+	
 
 } //PolyTypeImpl

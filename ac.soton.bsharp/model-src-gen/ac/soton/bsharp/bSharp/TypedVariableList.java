@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -40,4 +42,10 @@ public interface TypedVariableList extends EObject {
 	 */
 	EList<VariableTyping> getVariablesOfType();
 
+	
+	/* Returns the type variables such that each variable is mapped to its type,
+	 * In a TypedVariableList each of the VariableTyping can contain multiple variables
+	 * each with the same type, this unwraps the variable typings.
+	 */
+	Map<TypedVariable, ConstructedType> getVariablesAndTypes();
 } // TypedVariableList

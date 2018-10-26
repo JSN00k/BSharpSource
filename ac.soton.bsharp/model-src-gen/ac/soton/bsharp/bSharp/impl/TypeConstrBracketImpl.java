@@ -7,6 +7,8 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -171,6 +173,11 @@ public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeCo
 				return child != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	@Override
+	public String buildEventBType(ArrayList<String> inferredTypes) {
+		return child.buildEventBType(inferredTypes);
 	}
 
 } //TypeConstrBracketImpl

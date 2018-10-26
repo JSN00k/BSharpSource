@@ -213,6 +213,8 @@ VariableTyping:
 	((typeVar+=TypedVariable) (',' typeVar+=TypedVariable)* ':' type=ConstructedType)
 ;
 
+/* I think this is here for reference purposes, e.g., otherwise it's quite difficult
+ * to cross reference individual type names. */
 TypedVariable:
 	name=ID
 ;

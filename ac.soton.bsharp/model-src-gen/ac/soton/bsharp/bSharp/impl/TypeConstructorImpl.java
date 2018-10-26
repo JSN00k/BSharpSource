@@ -3,11 +3,13 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -211,6 +213,32 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 				return context != null && !context.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	@Override
+	public int inferredTypeCount() {
+		if (context != null && !context.isEmpty())
+			return 0;
+		
+		if (typeName instanceof BSClass) {
+			return ((BSClass)typeName).polyTypeCount();
+		} else {
+			return 0;
+		}
+	}
+	
+	@Override
+	public String buildEventBType(ArrayList<String> inferredTypes) {
+		if (typeName instanceof BSClass) {
+			ArrayList<String> typeString = inferredTypes;
+			if (context != null) {
+				
+			}
+			
+		} else {
+			System.out.print("This is unimplemented, I'm not sure I can ever get here with valid code though");
+			return "";
+		}
 	}
 
 } //TypeConstructorImpl

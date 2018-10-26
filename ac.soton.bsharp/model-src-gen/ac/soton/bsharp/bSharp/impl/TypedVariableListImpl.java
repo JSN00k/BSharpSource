@@ -4,10 +4,14 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -149,5 +153,21 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 		}
 		return super.eIsSet(featureID);
 	}
+
+	@Override
+	public Map<TypedVariable, ConstructedType> getVariablesAndTypes() {
+		TreeMap<TypedVariable, ConstructedType> result = new TreeMap<TypedVariable, ConstructedType>();
+		
+		if (variablesOfType == null)
+			return result;
+		
+		for (VariableTyping varsOfTypes : variablesOfType) {
+			result.putAll(varsOfTypes.getVariablesAndTypes());
+		}
+		
+		return result;
+	}
+	
+	
 
 } //TypedVariableListImpl

@@ -47,5 +47,8 @@ public interface TypeStructure extends EObject {
 	 * @generated
 	 */
 	void setVariables(TypedVariableList value);
+	
+	/* Makes a string of variables mapped together used to define the type class */ 
+	String stringForArgsToSetCompVarList();
 
 } // TypeStructure
