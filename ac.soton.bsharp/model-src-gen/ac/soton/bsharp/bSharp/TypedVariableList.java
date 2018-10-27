@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
@@ -47,5 +48,5 @@ public interface TypedVariableList extends EObject {
 	 * In a TypedVariableList each of the VariableTyping can contain multiple variables
 	 * each with the same type, this unwraps the variable typings.
 	 */
-	Map<TypedVariable, ConstructedType> getVariablesAndTypes();
+	Map<String, ArrayList<? extends EObject>> getVariablesAndTypes();
 } // TypedVariableList

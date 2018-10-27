@@ -338,6 +338,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 	private ArrayList<String> inferredTypes = null;
 	
+	@Override
 	public void setupCompilation(TheoryImportCache theoryCache) {
 		thyCache = theoryCache;
 	}
@@ -360,11 +361,12 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 	
 	/* Compiles the operator used to create an instance of this type class. */
+	@Override
 	public void compileOp() throws Exception {
 		INewOperatorDefinition op;
 		try {
 			op = TheoryUtils.createOperator(thyCache.theory,
-					getName(), false, false, FormulaType.EXPRESSION, Notation.POSTFIX, null, nullMonitor);
+					getName(), false, false, FormulaType.EXPRESSION, Notation.PREFIX, null, nullMonitor);
 		} catch (Exception e) {
 			System.err.println(" Unable to crate EventB operator " + e.getLocalizedMessage());
 			return;
@@ -404,7 +406,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				int inferredTypeCount = constType.inferredTypeCount();
 				if (inferredTypeCount != 0) {
 					/* We shouldn't be inferring types if there are declared types. */
-					if (context.polyTypesCount() != 0)
+					if (context != null && context.polyTypesCount() != 0)
 						throw new Exception("Classes which infer types should not also have polyTypes," +
 								"this should be checked for during validation");
 					

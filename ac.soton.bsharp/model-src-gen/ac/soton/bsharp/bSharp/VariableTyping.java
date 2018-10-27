@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
@@ -70,5 +71,5 @@ public interface VariableTyping extends EObject {
 	void setType(ConstructedType value);
 	
 	/* Returns variables individually mapped to the type. */
-	Map<TypedVariable, ConstructedType> getVariablesAndTypes();
+	Map<String, ArrayList<? extends EObject>> getVariablesAndTypes();
 } // VariableTyping

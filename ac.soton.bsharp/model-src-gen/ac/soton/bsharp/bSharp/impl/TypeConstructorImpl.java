@@ -216,12 +216,12 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 	}
 	
 	@Override
-	public int inferredTypeCount() {
+	public Integer inferredTypeCount() {
 		if (context != null && !context.isEmpty())
 			return 0;
 		
 		if (typeName instanceof BSClass) {
-			return ((BSClass)typeName).polyTypeCount();
+			return ((BSClass)typeName).eventBRequiredPolyTypes();
 		} else {
 			return 0;
 		}
@@ -232,7 +232,10 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 		if (typeName instanceof BSClass) {
 			ArrayList<String> typeString = inferredTypes;
 			if (context != null) {
-				
+				System.out.print("Unimplemented");
+				return "";
+			} else {
+				return ((BSClass)typeName).constructWithEventBPolytypes(typeString);
 			}
 			
 		} else {

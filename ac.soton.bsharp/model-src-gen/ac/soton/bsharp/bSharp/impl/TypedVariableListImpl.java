@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
@@ -18,6 +19,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -155,15 +157,22 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	@Override
-	public Map<TypedVariable, ConstructedType> getVariablesAndTypes() {
-		TreeMap<TypedVariable, ConstructedType> result = new TreeMap<TypedVariable, ConstructedType>();
+	public Map<String, ArrayList<? extends EObject>> getVariablesAndTypes() {
+		TreeMap<String, ArrayList<? extends EObject>> result = new TreeMap<String, ArrayList<? extends EObject>>();
+		ArrayList<TypedVariable> variables = new ArrayList<TypedVariable>();
+		ArrayList<ConstructedType> constructors = new ArrayList<ConstructedType>();
 		
 		if (variablesOfType == null)
 			return result;
 		
 		for (VariableTyping varsOfTypes : variablesOfType) {
-			result.putAll(varsOfTypes.getVariablesAndTypes());
+			Map<String, ArrayList<? extends EObject>> typedVars = varsOfTypes.getVariablesAndTypes();
+			variables.addAll((ArrayList<TypedVariable>) typedVars.get("vars"));
+			constructors.addAll((ArrayList<ConstructedType>) typedVars.get("constructors"));
 		}
+		
+		result.put("vars", variables);
+		result.put("constructors", constructors);
 		
 		return result;
 	}

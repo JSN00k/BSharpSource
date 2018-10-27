@@ -319,7 +319,7 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	@Override
-	public int inferredTypeCount() {
+	public Integer inferredTypeCount() {
 		/* We only have inferred types when the super type is a type class. This is 
 		 * handled by the TypeConstructor subclass.
 		 */

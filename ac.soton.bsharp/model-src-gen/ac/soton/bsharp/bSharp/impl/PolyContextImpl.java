@@ -214,7 +214,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 			 * it fully. This is handled by saking the polytype to compile itself.
 			 */
 			Collection<ClassDecl> superTypes = polyType.getSuperTypes();
-			if (superTypes != null ) {
+			if (superTypes != null && !superTypes.isEmpty()) {
 				Boolean first = true;
 				ArrayList<String> eventBTypesForPolytypes = new ArrayList<String>();
 				for (ClassDecl supertype : superTypes) {

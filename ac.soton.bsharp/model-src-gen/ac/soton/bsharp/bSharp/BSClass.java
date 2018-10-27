@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 /**
  * <!-- begin-user-doc -->
@@ -105,4 +106,9 @@ public interface BSClass extends ClassDecl {
 	Integer eventBRequiredPolyTypes();
 	
 	String constructWithEventBPolytypes(ArrayList<String> eventBPolytypes);
+
+	 void setupCompilation(TheoryImportCache cache);
+
+	 void compileOp() throws Exception;
+
 } // BppClass

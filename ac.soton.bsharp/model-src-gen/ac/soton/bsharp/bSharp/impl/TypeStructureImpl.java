@@ -9,12 +9,14 @@ import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -183,10 +185,11 @@ public class TypeStructureImpl extends MinimalEObjectImpl.Container implements T
 		if (variables == null)
 			return "";
 		
-		Map<TypedVariable, ConstructedType> typedVariables = variables.getVariablesAndTypes();
+		Map<String, ArrayList<? extends EObject>> typedVariables = variables.getVariablesAndTypes();
+		ArrayList<TypedVariable> variables = (ArrayList<TypedVariable>)typedVariables.get("vars");
 		
 		String result = "";
-		for (TypedVariable var : typedVariables.keySet()) {
+		for (TypedVariable var : variables) {
 			result += "↦ " + var.getName();
 		}
 		
