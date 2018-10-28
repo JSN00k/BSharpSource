@@ -5,7 +5,9 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 
@@ -229,17 +231,32 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 	
 	@Override
 	public String buildEventBType(ArrayList<String> inferredTypes) {
-		if (typeName instanceof BSClass) {
+		if (typeName instanceof ClassDecl) {
 			ArrayList<String> typeString = inferredTypes;
 			if (context != null) {
 				System.out.print("Unimplemented");
 				return "";
 			} else {
+				String tName = typeName.getName().toString();
+				if (tName.equals("Pred")) {
+					/* When we're in a function that points to a Pred it would be better 
+					 * to deal with this using the set notation, this requires handling this 
+					 * at a higher point, Interestingly the left handed graph automatically generated
+					 * would make detecting this easy (e.g., this could be checked before reversing the 
+					 * graph. 
+					 */
+					return "BOOL";
+				}
+				
+				System.out.print("Unimplemented in TypeConstructorImpl need to handle Datatypes.\n");
 				return ((BSClass)typeName).constructWithEventBPolytypes(typeString);
 			}
 			
+		} else if (typeName instanceof PolyType){
+			System.out.print("This currently doesn't handle types with super types that aren't simple.");
+			return ((PolyType)typeName).getName();
 		} else {
-			System.out.print("This is unimplemented, I'm not sure I can ever get here with valid code though");
+			System.out.print("Unimplemeneted in TypeConstrutorImpl unexpected case.");
 			return "";
 		}
 	}
