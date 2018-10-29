@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe2.runtime.IFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,7 +49,16 @@ public interface TypeStructure extends EObject {
 	 */
 	void setVariables(TypedVariableList value);
 	
+	/* If a type class has the var list (a : AssocOp<T>, b : T) the var list will compile to the
+	 * following:
+	 * { ... |-> a |-> b ... | ... /\ a ∈ AssocOp(T) /\ b ∈ T ... }
+	 * The first of the methods below creates the a |-> b section of the compilation
+	 * The second method creates a ∈ AssocOp(T) /\ b ∈ T part of the EventB type.
+	 */
+	
 	/* Makes a string of variables mapped together used to define the type class */ 
 	String stringForArgsToSetCompVarList();
+	
+	String typedArgsForTypeClass(); 
 
 } // TypeStructure

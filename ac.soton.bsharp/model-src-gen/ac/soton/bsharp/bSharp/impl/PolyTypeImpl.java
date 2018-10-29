@@ -6,7 +6,11 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.TypeConstrBracket;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
@@ -144,6 +148,11 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		thyCache = theoryCache;
 	}
 
+	
+	/*TODO: The two methods below need to be completed as I get to examples where these things are needed.
+	 * It is currently too complex to try to compile it all at once without real examples to work from.
+	 */
+	
 	@Override
 	public void compileToBSClassOpArgs(INewOperatorDefinition op) {
 		if (superTypes == null || superTypes.isEmpty()) {
@@ -166,9 +175,57 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 			}
 			
 			BSClass bsSuper = (BSClass)supertype;
-			
+			/* TODO: Work out what I was doing here and finish the implementation. */
 				
 		}
+	}
+
+	/* The polyConstext becomes the list of arguments to build a generic type based on specific 
+	 * type instances. e.g., given a monoid declared Monoid<T> : Setoid<T> the set of all monoids
+	 * on the naturals can be created with Monoid<pNat>. This is made considerably more complicated
+	 * with a type class such as Homo<S : Setoid, T : Setoid>... Now the EventB when Homo<pNat, pNat>
+	 * is called needs to be Homo(pNat, Setoid<pNat>, pNat, Setoid<pNat>). This complexity again comes
+	 * down to allowing Type Classes to have non-trivial classes at their base. Something that I'm not 
+	 * sure whether or not to allow.
+	 */
+	@Override
+	public String expandToEventBTypeWithConstrType(ConstructedType constrType) {
+		/* TODO: With a constructed type add a proof obligation to demonstrate the constructed
+		 * type is of the required type.
+		 */
+		
+		ConstructedType workingType = constrType;
+		while (workingType instanceof TypeConstrBracket) {
+			workingType = ((TypeConstrBracket)workingType).getChild();
+		}
+		
+		if (superTypes == nullMonitor || superTypes.isEmpty()) {
+			if (!(workingType instanceof TypeConstructor)) {
+				return ((ConstructedType)workingType).buildEventBType(null);
+			} else {
+				/* Base type goes all the way back to the simplest type that the 
+				 * type class was based on. */
+				return ((TypeConstructor)workingType).getTypeName().getName();
+			}
+		}
+		
+		/* we need something with a matching type to that of the supertype of the polytype. 
+		 * Yet another point where validation is needed.
+		 */
+		
+		
+		String classString = null;
+		ClassDecl supertype1 = superTypes.get(0);
+		
+		if ((workingType instanceof TypeConstructor)) {
+			GenName constrTypeClass = ((TypeConstructor) workingType).getTypeName();
+			
+			if (constrTypeClass instanceof PolyType) {
+				
+			}
+		}
+		
+		return null;
 	}
 	
 	

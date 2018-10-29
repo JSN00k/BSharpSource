@@ -2,3 +2,5 @@
 /.BSharpGenerator.xtendbin
 /BSharpGenerator.java
 /.FileCompiler.java._trace
+/.FileCompiler.xtendbin
+/FileCompiler.java

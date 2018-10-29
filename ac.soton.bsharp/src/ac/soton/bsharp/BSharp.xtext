@@ -117,13 +117,17 @@ ConstructedType:
  * Probably need to add the predicate type to this.
  */
 TypeConstructor:
-	typeName=[GenName|QualifiedName] (context+=TypeDeclContext)?
+	typeName=[GenName|QualifiedName] (context=TypeDeclContext)?
 ;
 
 TypeConstrBracket:
 	'(' child=ConstructedType ')'
 ;
 
+/* This is used in two different situations, and may well compile the same for both so don't delete
+ * unless the compilation of the two places is different (even then it is more pleasant to not have
+ * two identical syntax declarations in this file).
+ */
 TypeDeclContext:
 	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
 ;

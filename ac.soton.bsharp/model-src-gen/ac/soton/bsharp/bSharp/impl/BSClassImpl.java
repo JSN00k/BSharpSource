@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.Where;
@@ -33,6 +34,8 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
+
+import com.ibm.icu.util.BytesTrie.Result;
 
 /**
  * <!-- begin-user-doc -->
@@ -363,6 +366,10 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	/* Compiles the operator used to create an instance of this type class. */
 	@Override
 	public void compileOp() throws Exception {
+		/*TODO: document this method working through a couple of event B examples to show 
+		 * how and where they are compiled. Maybe Monoid and TransitiveOp.
+		 */
+		
 		INewOperatorDefinition op;
 		try {
 			op = TheoryUtils.createOperator(thyCache.theory,
@@ -434,6 +441,15 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			}
 		}
 		
+		if (varList != null) {
+			//TODO: Finish writing the code for this when I get to an example that uses it.
+			//opString += varList.typedArgsForTypeClass();
+		}
+		
+		if (where != null) {
+			String whereString = where.compileToEventBPredStatements();
+		}
+		
 		TheoryUtils.createDirectDefinition(op, opString, null, nullMonitor);
 	}
 
@@ -446,6 +462,23 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		
 		result += context.constructCallArgsForBSClassWithTypes(eventBPolytypes) + ")";
+		return result;
+	}
+
+	@Override
+	public String constructWithTypeContext(TypeDeclContext ctx) {
+		if (context == null)
+			return "()";
+		
+		String result = name + "(";
+		try {
+			result += context.compileBSClassConstructorWithTypeContext(ctx);
+		} catch (Exception e) {
+			System.err.print(e.getLocalizedMessage());
+		}
+		
+		result += ")";
+		
 		return result;
 	}	
 } //BppClassImpl

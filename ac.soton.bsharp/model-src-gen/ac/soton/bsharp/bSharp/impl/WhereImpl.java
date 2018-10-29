@@ -187,4 +187,10 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public String compileToEventBPredStatements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } //WhereImpl

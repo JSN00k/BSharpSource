@@ -54,14 +54,14 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 	protected GenName typeName;
 
 	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference list.
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContext()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TypeDeclContext> context;
+	protected TypeDeclContext context;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,11 +125,42 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypeDeclContext> getContext() {
-		if (context == null) {
-			context = new EObjectContainmentEList<TypeDeclContext>(TypeDeclContext.class, this, BSharpPackage.TYPE_CONSTRUCTOR__CONTEXT);
-		}
+	public TypeDeclContext getContext() {
 		return context;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContext(TypeDeclContext newContext, NotificationChain msgs) {
+		TypeDeclContext oldContext = context;
+		context = newContext;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.TYPE_CONSTRUCTOR__CONTEXT, oldContext, newContext);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContext(TypeDeclContext newContext) {
+		if (newContext != context) {
+			NotificationChain msgs = null;
+			if (context != null)
+				msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.TYPE_CONSTRUCTOR__CONTEXT, null, msgs);
+			if (newContext != null)
+				msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.TYPE_CONSTRUCTOR__CONTEXT, null, msgs);
+			msgs = basicSetContext(newContext, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.TYPE_CONSTRUCTOR__CONTEXT, newContext, newContext));
 	}
 
 	/**
@@ -141,7 +172,7 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BSharpPackage.TYPE_CONSTRUCTOR__CONTEXT:
-				return ((InternalEList<?>)getContext()).basicRemove(otherEnd, msgs);
+				return basicSetContext(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -176,8 +207,7 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 				setTypeName((GenName)newValue);
 				return;
 			case BSharpPackage.TYPE_CONSTRUCTOR__CONTEXT:
-				getContext().clear();
-				getContext().addAll((Collection<? extends TypeDeclContext>)newValue);
+				setContext((TypeDeclContext)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,7 +225,7 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 				setTypeName((GenName)null);
 				return;
 			case BSharpPackage.TYPE_CONSTRUCTOR__CONTEXT:
-				getContext().clear();
+				setContext((TypeDeclContext)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,14 +242,14 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 			case BSharpPackage.TYPE_CONSTRUCTOR__TYPE_NAME:
 				return typeName != null;
 			case BSharpPackage.TYPE_CONSTRUCTOR__CONTEXT:
-				return context != null && !context.isEmpty();
+				return context != null;
 		}
 		return super.eIsSet(featureID);
 	}
 	
 	@Override
 	public Integer inferredTypeCount() {
-		if (context != null && !context.isEmpty())
+		if (context != null)
 			return 0;
 		
 		if (typeName instanceof BSClass) {
@@ -234,11 +264,10 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 		if (typeName instanceof ClassDecl) {
 			ArrayList<String> typeString = inferredTypes;
 			if (context != null) {
-				System.out.print("Unimplemented");
-				return "";
+				return ((ClassDecl)typeName).constructWithTypeContext(context);
 			} else {
 				String tName = typeName.getName().toString();
-				if (tName.equals("Pred")) {
+				if (tName.equals("Bool")) {
 					/* When we're in a function that points to a Pred it would be better 
 					 * to deal with this using the set notation, this requires handling this 
 					 * at a higher point, Interestingly the left handed graph automatically generated

@@ -3317,7 +3317,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     					if (current==null) {
                     						current = createModelElementForParent(grammarAccess.getTypeConstructorRule());
                     					}
-                    					add(
+                    					set(
                     						current,
                     						"context",
                     						lv_context_1_0,

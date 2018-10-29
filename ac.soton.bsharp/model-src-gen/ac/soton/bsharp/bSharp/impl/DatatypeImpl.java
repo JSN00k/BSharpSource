@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -161,6 +162,14 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public String constructWithTypeContext(TypeDeclContext ctx) {
+		// TODO Implement me
+		System.out.print("In DatatypeImpl You haven't implemented constructing types using "
+				+ "explicit contexts.");
+		return null;
 	}
 
 } //DatatypeImpl

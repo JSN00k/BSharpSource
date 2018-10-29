@@ -729,7 +729,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TypeConstructor returns TypeConstructor
 	 *
 	 * Constraint:
-	 *     (typeName=[GenName|QualifiedName] context+=TypeDeclContext?)
+	 *     (typeName=[GenName|QualifiedName] context=TypeDeclContext?)
 	 */
 	protected void sequence_TypeConstructor(ISerializationContext context, TypeConstructor semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

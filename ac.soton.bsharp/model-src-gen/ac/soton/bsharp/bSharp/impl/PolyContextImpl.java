@@ -6,8 +6,11 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
@@ -290,6 +293,35 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 		}
 		
 		return resultString;
+	}
+
+	@Override
+	public String compileBSClassConstructorWithTypeContext(TypeDeclContext ctx) throws Exception {
+		EList<ConstructedType> constrTypes = ctx.getTypeName();
+		if (polyTypes == null || polyTypes.size() == 0) {
+			if (polyTypes.size() != constrTypes.size()) {
+				//TODO: Validate against this happening.
+				System.err.println("Size of context does not match required types of type constructor.");
+				throw new Exception("Size of context does not match required types of type constructor.");
+			}
+			
+			Boolean first = true;
+			String result = "";
+			for (int i = 0; i < polyTypes.size(); ++i) {
+				if (!first) {
+					result += ", ";
+				}
+				first = false;
+				
+				PolyType polyType = polyTypes.get(i);
+				ConstructedType constrType = constrTypes.get(i);
+				result += polyType.expandToEventBTypeWithConstrType(constrType);
+			}
+			
+			return result;
+		}
+		
+		return "";
 	}
 
 

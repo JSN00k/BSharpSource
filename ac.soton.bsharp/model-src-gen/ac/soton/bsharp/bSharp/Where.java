@@ -57,4 +57,6 @@ public interface Where extends EObject {
 	 */
 	EList<Expression> getExpressions();
 
+	String compileToEventBPredStatements();
+
 } // Where

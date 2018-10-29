@@ -52,19 +52,29 @@ public interface TypeConstructor extends ConstructedType {
 	void setTypeName(GenName value);
 
 	/**
-	 * Returns the value of the '<em><b>Context</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TypeDeclContext}.
+	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Context</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context</em>' containment reference list.
+	 * @return the value of the '<em>Context</em>' containment reference.
+	 * @see #setContext(TypeDeclContext)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTypeConstructor_Context()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<TypeDeclContext> getContext();
+	TypeDeclContext getContext();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.TypeConstructor#getContext <em>Context</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Context</em>' containment reference.
+	 * @see #getContext()
+	 * @generated
+	 */
+	void setContext(TypeDeclContext value);
 
 } // TypeConstructor

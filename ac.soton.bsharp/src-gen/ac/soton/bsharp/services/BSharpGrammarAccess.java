@@ -710,10 +710,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
 		// * Probably need to add the predicate type to this.
 		// */ TypeConstructor:
-		//	typeName=[GenName|QualifiedName] context+=TypeDeclContext?;
+		//	typeName=[GenName|QualifiedName] context=TypeDeclContext?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//typeName=[GenName|QualifiedName] context+=TypeDeclContext?
+		//typeName=[GenName|QualifiedName] context=TypeDeclContext?
 		public Group getGroup() { return cGroup; }
 		
 		//typeName=[GenName|QualifiedName]
@@ -725,7 +725,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getTypeNameGenNameQualifiedNameParserRuleCall_0_0_1() { return cTypeNameGenNameQualifiedNameParserRuleCall_0_0_1; }
 		
-		//context+=TypeDeclContext?
+		//context=TypeDeclContext?
 		public Assignment getContextAssignment_1() { return cContextAssignment_1; }
 		
 		//TypeDeclContext
@@ -770,7 +770,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeNameConstructedTypeParserRuleCall_2_1_0 = (RuleCall)cTypeNameAssignment_2_1.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//TypeDeclContext:
+		///* This is used in two different situations, and may well compile the same for both so don't delete
+		// * unless the compilation of the two places is different (even then it is more pleasant to not have
+		// * two identical syntax declarations in this file).
+		// */ TypeDeclContext:
 		//	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1450,7 +1453,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
-		//TypedVariable:
+		///* I think this is here for reference purposes, e.g., otherwise it's quite difficult
+		// * to cross reference individual type names. */ TypedVariable:
 		//	name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2355,7 +2359,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * and type checking on the polymorphic context. There is also  scope rule to check the usage of polymorphic types.
 	// * Probably need to add the predicate type to this.
 	// */ TypeConstructor:
-	//	typeName=[GenName|QualifiedName] context+=TypeDeclContext?;
+	//	typeName=[GenName|QualifiedName] context=TypeDeclContext?;
 	public TypeConstructorElements getTypeConstructorAccess() {
 		return pTypeConstructor;
 	}
@@ -2374,7 +2378,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeConstrBracketAccess().getRule();
 	}
 	
-	//TypeDeclContext:
+	///* This is used in two different situations, and may well compile the same for both so don't delete
+	// * unless the compilation of the two places is different (even then it is more pleasant to not have
+	// * two identical syntax declarations in this file).
+	// */ TypeDeclContext:
 	//	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>';
 	public TypeDeclContextElements getTypeDeclContextAccess() {
 		return pTypeDeclContext;
@@ -2543,7 +2550,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getVariableTypingAccess().getRule();
 	}
 	
-	//TypedVariable:
+	///* I think this is here for reference purposes, e.g., otherwise it's quite difficult
+	// * to cross reference individual type names. */ TypedVariable:
 	//	name=ID;
 	public TypedVariableElements getTypedVariableAccess() {
 		return pTypedVariable;

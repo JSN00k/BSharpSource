@@ -45,4 +45,6 @@ public interface PolyType extends GenName {
 	void setupCompilation(TheoryImportCache theoryCache);
 	void compileToBSClassOpArgs(INewOperatorDefinition op);
 
+	String expandToEventBTypeWithConstrType(ConstructedType constrType);
+
 } // PolyContextTypes

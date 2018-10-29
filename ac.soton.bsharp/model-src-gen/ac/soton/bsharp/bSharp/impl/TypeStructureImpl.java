@@ -196,4 +196,36 @@ public class TypeStructureImpl extends MinimalEObjectImpl.Container implements T
 		return result;
 	}
 
+	@Override
+	public String typedArgsForTypeClass() {
+		if (variables == null)
+			return "";
+	
+		Map<String, ArrayList<? extends EObject>> typedVariables = variables.getVariablesAndTypes();
+		
+		ArrayList<TypedVariable> variables = (ArrayList<TypedVariable>)typedVariables.get("vars");
+		ArrayList<ConstructedType> constructors = (ArrayList<ConstructedType>)typedVariables.get("constructors");
+		
+		String result = "";
+		Boolean first = true;
+		for (int i = 0; i < variables.size(); ++i) {
+			if (!first) {
+				result += "∧";
+			}
+			
+			TypedVariable var = variables.get(i);
+			ConstructedType constr = constructors.get(i);
+			
+			result += var.getName();
+			result += " ∈ ";
+			/* These constructed types have to have a context which contains the type information
+			 * for constructing the types, in the case of supertyes the type classes have inferred 
+			 * contexts that need to be passed into the buildEventBType method.
+			 */
+			result += constr.buildEventBType(null);
+		}
+		
+		return result;
+	}
+
 } //TypeStructureImpl

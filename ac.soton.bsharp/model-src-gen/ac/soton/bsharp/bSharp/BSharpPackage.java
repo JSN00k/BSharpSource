@@ -1075,7 +1075,7 @@ public interface BSharpPackage extends EPackage {
 	int TYPE_CONSTRUCTOR__TYPE_NAME = CONSTRUCTED_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2312,10 +2312,10 @@ public interface BSharpPackage extends EPackage {
 	EReference getTypeConstructor_TypeName();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.TypeConstructor#getContext <em>Context</em>}'.
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.TypeConstructor#getContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Context</em>'.
+	 * @return the meta object for the containment reference '<em>Context</em>'.
 	 * @see ac.soton.bsharp.bSharp.TypeConstructor#getContext()
 	 * @see #getTypeConstructor()
 	 * @generated
@@ -3651,7 +3651,7 @@ public interface BSharpPackage extends EPackage {
 		EReference TYPE_CONSTRUCTOR__TYPE_NAME = eINSTANCE.getTypeConstructor_TypeName();
 
 		/**
-		 * The meta object literal for the '<em><b>Context</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
