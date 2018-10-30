@@ -814,7 +814,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Where returns Where
 	 *
 	 * Constraint:
-	 *     (expessions+=Quantifier expressions+=RootExpression*)
+	 *     (expressions+=RootExpression expressions+=RootExpression*)
 	 */
 	protected void sequence_Where(ISerializationContext context, Where semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

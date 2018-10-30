@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getArguments <em>Arguments</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getOwnerType <em>Owner Type</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getContext <em>Context</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall()
@@ -92,5 +93,31 @@ public interface FunctionCall extends Expression {
 	 * @generated
 	 */
 	void setClassVarDecl(ClassVarDecl value);
+
+	/**
+	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Context</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Context</em>' containment reference.
+	 * @see #setContext(TypeDeclContext)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_Context()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TypeDeclContext getContext();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getContext <em>Context</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Context</em>' containment reference.
+	 * @see #getContext()
+	 * @generated
+	 */
+	void setContext(TypeDeclContext value);
 
 } // FunctionCall

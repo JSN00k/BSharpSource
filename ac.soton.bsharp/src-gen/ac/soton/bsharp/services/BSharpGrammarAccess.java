@@ -835,8 +835,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Where");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cWhereKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cExpessionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cExpessionsQuantifierParserRuleCall_1_0 = (RuleCall)cExpessionsAssignment_1.eContents().get(0);
+		private final Assignment cExpressionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExpressionsRootExpressionParserRuleCall_1_0 = (RuleCall)cExpressionsAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cSemicolonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cExpressionsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -846,20 +846,20 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * predicate. Expression has not yet been written, but is far too general to be included in the where
 		// * statement.
 		// */ Where:
-		//	'where' expessions+=Quantifier (';' expressions+=RootExpression)*;
+		//	'where' expressions+=RootExpression (';' expressions+=RootExpression)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'where' expessions+=Quantifier (';' expressions+=RootExpression)*
+		//'where' expressions+=RootExpression (';' expressions+=RootExpression)*
 		public Group getGroup() { return cGroup; }
 		
 		//'where'
 		public Keyword getWhereKeyword_0() { return cWhereKeyword_0; }
 		
-		//expessions+=Quantifier
-		public Assignment getExpessionsAssignment_1() { return cExpessionsAssignment_1; }
+		//expressions+=RootExpression
+		public Assignment getExpressionsAssignment_1() { return cExpressionsAssignment_1; }
 		
-		//Quantifier
-		public RuleCall getExpessionsQuantifierParserRuleCall_1_0() { return cExpessionsQuantifierParserRuleCall_1_0; }
+		//RootExpression
+		public RuleCall getExpressionsRootExpressionParserRuleCall_1_0() { return cExpressionsRootExpressionParserRuleCall_1_0; }
 		
 		//(';' expressions+=RootExpression)*
 		public Group getGroup_2() { return cGroup_2; }
@@ -2405,7 +2405,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * predicate. Expression has not yet been written, but is far too general to be included in the where
 	// * statement.
 	// */ Where:
-	//	'where' expessions+=Quantifier (';' expressions+=RootExpression)*;
+	//	'where' expressions+=RootExpression (';' expressions+=RootExpression)*;
 	public WhereElements getWhereAccess() {
 		return pWhere;
 	}

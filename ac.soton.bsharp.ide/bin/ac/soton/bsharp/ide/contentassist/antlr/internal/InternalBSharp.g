@@ -3503,9 +3503,9 @@ rule__Where__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getWhereAccess().getExpessionsAssignment_1()); }
-	(rule__Where__ExpessionsAssignment_1)
-	{ after(grammarAccess.getWhereAccess().getExpessionsAssignment_1()); }
+	{ before(grammarAccess.getWhereAccess().getExpressionsAssignment_1()); }
+	(rule__Where__ExpressionsAssignment_1)
+	{ after(grammarAccess.getWhereAccess().getExpressionsAssignment_1()); }
 )
 ;
 finally {
@@ -7006,15 +7006,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Where__ExpessionsAssignment_1
+rule__Where__ExpressionsAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getWhereAccess().getExpessionsQuantifierParserRuleCall_1_0()); }
-		ruleQuantifier
-		{ after(grammarAccess.getWhereAccess().getExpessionsQuantifierParserRuleCall_1_0()); }
+		{ before(grammarAccess.getWhereAccess().getExpressionsRootExpressionParserRuleCall_1_0()); }
+		ruleRootExpression
+		{ after(grammarAccess.getWhereAccess().getExpressionsRootExpressionParserRuleCall_1_0()); }
 	)
 ;
 finally {

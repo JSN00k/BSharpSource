@@ -1760,13 +1760,22 @@ public interface BSharpPackage extends EPackage {
 	int FUNCTION_CALL__CLASS_VAR_DECL = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__CONTEXT = EXPRESSION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Function Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owner Type</b></em>' reference.
@@ -2950,6 +2959,17 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFunctionCall_ClassVarDecl();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.FunctionCall#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Context</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionCall#getContext()
+	 * @see #getFunctionCall()
+	 * @generated
+	 */
+	EReference getFunctionCall_Context();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ClassVarDecl <em>Class Var Decl</em>}'.
@@ -4169,6 +4189,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTION_CALL__CLASS_VAR_DECL = eINSTANCE.getFunctionCall_ClassVarDecl();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_CALL__CONTEXT = eINSTANCE.getFunctionCall_Context();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ClassVarDeclImpl <em>Class Var Decl</em>}' class.

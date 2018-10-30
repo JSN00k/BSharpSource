@@ -1310,6 +1310,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFunctionCall_Context() {
+		return (EReference)functionCallEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getClassVarDecl() {
 		return classVarDeclEClass;
 	}
@@ -1806,6 +1815,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(functionCallEClass, FUNCTION_CALL__ARGUMENTS);
 		createEReference(functionCallEClass, FUNCTION_CALL__OWNER_TYPE);
 		createEReference(functionCallEClass, FUNCTION_CALL__CLASS_VAR_DECL);
+		createEReference(functionCallEClass, FUNCTION_CALL__CONTEXT);
 
 		classVarDeclEClass = createEClass(CLASS_VAR_DECL);
 		createEReference(classVarDeclEClass, CLASS_VAR_DECL__OWNER_TYPE);
@@ -2045,6 +2055,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getFunctionCall_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_OwnerType(), this.getGenName(), null, "ownerType", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_ClassVarDecl(), this.getClassVarDecl(), null, "classVarDecl", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCall_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classVarDeclEClass, ClassVarDecl.class, "ClassVarDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassVarDecl_OwnerType(), this.getGenName(), null, "ownerType", null, 0, 1, ClassVarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

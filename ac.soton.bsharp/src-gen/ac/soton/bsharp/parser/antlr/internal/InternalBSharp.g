@@ -1442,18 +1442,18 @@ ruleWhere returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getWhereAccess().getExpessionsQuantifierParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getWhereAccess().getExpressionsRootExpressionParserRuleCall_1_0());
 				}
-				lv_expessions_1_0=ruleQuantifier
+				lv_expressions_1_0=ruleRootExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getWhereRule());
 					}
 					add(
 						$current,
-						"expessions",
-						lv_expessions_1_0,
-						"ac.soton.bsharp.BSharp.Quantifier");
+						"expressions",
+						lv_expressions_1_0,
+						"ac.soton.bsharp.BSharp.RootExpression");
 					afterParserOrEnumRuleCall();
 				}
 			)

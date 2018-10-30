@@ -145,7 +145,7 @@ TypeStructure:
  * statement.
  */
 Where:
-	'where' expessions+=Quantifier (';' expressions+=RootExpression)*
+	'where' expressions+=RootExpression (';' expressions+=RootExpression)*
 ;
 
 /* ---------------------- Datatype declarations -------------------------- */
@@ -295,7 +295,7 @@ Bracket returns Bracket:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns FunctionCall:
-	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
 ;
 
 /* This is used to get variables from a class I think that it may be only applicable for

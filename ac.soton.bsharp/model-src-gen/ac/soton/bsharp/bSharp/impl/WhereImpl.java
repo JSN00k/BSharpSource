@@ -189,8 +189,22 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 
 	@Override
 	public String compileToEventBPredStatements() {
-		// TODO Auto-generated method stub
-		return null;
+		if (expressions == null || expressions.isEmpty()) {
+			return "";
+		}
+		
+		Boolean first = true;
+		String result = "";
+		for (Expression expr : expressions) {
+			if (!first) {
+				result += "∧";
+			}
+			
+			first = false;
+			
+			/* These expressions have to compile to predicates. */
+			result += expr.compileAsPredicate();
+		}
 	}
 
 } //WhereImpl

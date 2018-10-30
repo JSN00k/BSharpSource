@@ -9,7 +9,9 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionCall;
 
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import java.util.Collection;
+import java.util.jar.Attributes.Name;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -34,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getArguments <em>Arguments</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getOwnerType <em>Owner Type</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getClassVarDecl <em>Class Var Decl</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getContext <em>Context</em>}</li>
  * </ul>
  *
  * @generated
@@ -68,6 +71,16 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * @ordered
 	 */
 	protected ClassVarDecl classVarDecl;
+
+	/**
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContext()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypeDeclContext context;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -186,6 +199,49 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TypeDeclContext getContext() {
+		return context;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContext(TypeDeclContext newContext, NotificationChain msgs) {
+		TypeDeclContext oldContext = context;
+		context = newContext;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__CONTEXT, oldContext, newContext);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContext(TypeDeclContext newContext) {
+		if (newContext != context) {
+			NotificationChain msgs = null;
+			if (context != null)
+				msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__CONTEXT, null, msgs);
+			if (newContext != null)
+				msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__CONTEXT, null, msgs);
+			msgs = basicSetContext(newContext, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__CONTEXT, newContext, newContext));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -193,6 +249,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
 				return basicSetClassVarDecl(null, msgs);
+			case BSharpPackage.FUNCTION_CALL__CONTEXT:
+				return basicSetContext(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -212,6 +270,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return basicGetOwnerType();
 			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
 				return getClassVarDecl();
+			case BSharpPackage.FUNCTION_CALL__CONTEXT:
+				return getContext();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -235,6 +295,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
 				setClassVarDecl((ClassVarDecl)newValue);
 				return;
+			case BSharpPackage.FUNCTION_CALL__CONTEXT:
+				setContext((TypeDeclContext)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -256,6 +319,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
 				setClassVarDecl((ClassVarDecl)null);
 				return;
+			case BSharpPackage.FUNCTION_CALL__CONTEXT:
+				setContext((TypeDeclContext)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -274,6 +340,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return ownerType != null;
 			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
 				return classVarDecl != null;
+			case BSharpPackage.FUNCTION_CALL__CONTEXT:
+				return context != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -297,6 +365,12 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		result += indent + "]";
 		
 		return result;
+	}
+
+	@Override
+	public String compileAsPredicate() {
+		String result = name
+		return null;
 	}
 
 } //FunctionCallImpl

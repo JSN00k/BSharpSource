@@ -199,6 +199,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerType" eType="#//GenName"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classVarDecl" eType="#//ClassVarDecl"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassVarDecl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerType" eType="#//GenName"/>

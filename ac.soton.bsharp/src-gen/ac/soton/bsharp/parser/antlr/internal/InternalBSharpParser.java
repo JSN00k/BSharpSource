@@ -3805,13 +3805,13 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleWhere"
-    // InternalBSharp.g:1430:1: ruleWhere returns [EObject current=null] : (otherlv_0= 'where' ( (lv_expessions_1_0= ruleQuantifier ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )* ) ;
+    // InternalBSharp.g:1430:1: ruleWhere returns [EObject current=null] : (otherlv_0= 'where' ( (lv_expressions_1_0= ruleRootExpression ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )* ) ;
     public final EObject ruleWhere() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_2=null;
-        EObject lv_expessions_1_0 = null;
+        EObject lv_expressions_1_0 = null;
 
         EObject lv_expressions_3_0 = null;
 
@@ -3820,27 +3820,27 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBSharp.g:1436:2: ( (otherlv_0= 'where' ( (lv_expessions_1_0= ruleQuantifier ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )* ) )
-            // InternalBSharp.g:1437:2: (otherlv_0= 'where' ( (lv_expessions_1_0= ruleQuantifier ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )* )
+            // InternalBSharp.g:1436:2: ( (otherlv_0= 'where' ( (lv_expressions_1_0= ruleRootExpression ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )* ) )
+            // InternalBSharp.g:1437:2: (otherlv_0= 'where' ( (lv_expressions_1_0= ruleRootExpression ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )* )
             {
-            // InternalBSharp.g:1437:2: (otherlv_0= 'where' ( (lv_expessions_1_0= ruleQuantifier ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )* )
-            // InternalBSharp.g:1438:3: otherlv_0= 'where' ( (lv_expessions_1_0= ruleQuantifier ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )*
+            // InternalBSharp.g:1437:2: (otherlv_0= 'where' ( (lv_expressions_1_0= ruleRootExpression ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )* )
+            // InternalBSharp.g:1438:3: otherlv_0= 'where' ( (lv_expressions_1_0= ruleRootExpression ) ) (otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) ) )*
             {
             otherlv_0=(Token)match(input,34,FOLLOW_21); 
 
             			newLeafNode(otherlv_0, grammarAccess.getWhereAccess().getWhereKeyword_0());
             		
-            // InternalBSharp.g:1442:3: ( (lv_expessions_1_0= ruleQuantifier ) )
-            // InternalBSharp.g:1443:4: (lv_expessions_1_0= ruleQuantifier )
+            // InternalBSharp.g:1442:3: ( (lv_expressions_1_0= ruleRootExpression ) )
+            // InternalBSharp.g:1443:4: (lv_expressions_1_0= ruleRootExpression )
             {
-            // InternalBSharp.g:1443:4: (lv_expessions_1_0= ruleQuantifier )
-            // InternalBSharp.g:1444:5: lv_expessions_1_0= ruleQuantifier
+            // InternalBSharp.g:1443:4: (lv_expressions_1_0= ruleRootExpression )
+            // InternalBSharp.g:1444:5: lv_expressions_1_0= ruleRootExpression
             {
 
-            					newCompositeNode(grammarAccess.getWhereAccess().getExpessionsQuantifierParserRuleCall_1_0());
+            					newCompositeNode(grammarAccess.getWhereAccess().getExpressionsRootExpressionParserRuleCall_1_0());
             				
             pushFollow(FOLLOW_22);
-            lv_expessions_1_0=ruleQuantifier();
+            lv_expressions_1_0=ruleRootExpression();
 
             state._fsp--;
 
@@ -3850,9 +3850,9 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             					}
             					add(
             						current,
-            						"expessions",
-            						lv_expessions_1_0,
-            						"ac.soton.bsharp.BSharp.Quantifier");
+            						"expressions",
+            						lv_expressions_1_0,
+            						"ac.soton.bsharp.BSharp.RootExpression");
             					afterParserOrEnumRuleCall();
             				
 
@@ -3882,7 +3882,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // InternalBSharp.g:1462:4: otherlv_2= ';' ( (lv_expressions_3_0= ruleRootExpression ) )
             	    {
-            	    otherlv_2=(Token)match(input,18,FOLLOW_23); 
+            	    otherlv_2=(Token)match(input,18,FOLLOW_21); 
 
             	    				newLeafNode(otherlv_2, grammarAccess.getWhereAccess().getSemicolonKeyword_2_0());
             	    			
@@ -4019,7 +4019,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             // InternalBSharp.g:1510:4: (lv_name_1_0= RULE_ID )
             // InternalBSharp.g:1511:5: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_24); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_23); 
 
             					newLeafNode(lv_name_1_0, grammarAccess.getDatatypeAccess().getNameIDTerminalRuleCall_1_0());
             				
@@ -4056,7 +4056,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                     					newCompositeNode(grammarAccess.getDatatypeAccess().getContextPolyContextParserRuleCall_2_0());
                     				
-                    pushFollow(FOLLOW_25);
+                    pushFollow(FOLLOW_24);
                     lv_context_2_0=rulePolyContext();
 
                     state._fsp--;
@@ -4110,7 +4110,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             	    						newCompositeNode(grammarAccess.getDatatypeAccess().getConstructorsDatatypeConstructorParserRuleCall_3_1_0());
             	    					
-            	    pushFollow(FOLLOW_26);
+            	    pushFollow(FOLLOW_25);
             	    lv_constructors_4_0=ruleDatatypeConstructor();
 
             	    state._fsp--;
@@ -4261,7 +4261,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             // InternalBSharp.g:1610:4: (lv_name_0_0= RULE_ID )
             // InternalBSharp.g:1611:5: lv_name_0_0= RULE_ID
             {
-            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_27); 
+            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_26); 
 
             					newLeafNode(lv_name_0_0, grammarAccess.getDatatypeConstructorAccess().getNameIDTerminalRuleCall_0_0());
             				
@@ -4435,7 +4435,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getExtendAccess().getExtendedClassClassDeclCrossReference_1_0());
             				
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_27);
             ruleQualifiedName();
 
             state._fsp--;
@@ -4603,7 +4603,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,38,FOLLOW_29); 
+            otherlv_1=(Token)match(input,38,FOLLOW_28); 
 
             			newLeafNode(otherlv_1, grammarAccess.getBSharpBlockAccess().getLeftCurlyBracketKeyword_1());
             		
@@ -4628,7 +4628,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             	    					newCompositeNode(grammarAccess.getBSharpBlockAccess().getBodyElementsTypeBodyElementsParserRuleCall_2_0());
             	    				
-            	    pushFollow(FOLLOW_29);
+            	    pushFollow(FOLLOW_28);
             	    lv_bodyElements_2_0=ruleTypeBodyElements();
 
             	    state._fsp--;
@@ -4924,7 +4924,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getFunctionDeclAccess().getNameFunctionNameParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_29);
             lv_name_0_0=ruleFunctionName();
 
             state._fsp--;
@@ -4963,7 +4963,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                     					newCompositeNode(grammarAccess.getFunctionDeclAccess().getContextPolyContextParserRuleCall_1_0());
                     				
-                    pushFollow(FOLLOW_28);
+                    pushFollow(FOLLOW_27);
                     lv_context_1_0=rulePolyContext();
 
                     state._fsp--;
@@ -4988,7 +4988,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,32,FOLLOW_31); 
+            otherlv_2=(Token)match(input,32,FOLLOW_30); 
 
             			newLeafNode(otherlv_2, grammarAccess.getFunctionDeclAccess().getLeftParenthesisKeyword_2());
             		
@@ -5034,7 +5034,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,33,FOLLOW_32); 
+            otherlv_4=(Token)match(input,33,FOLLOW_31); 
 
             			newLeafNode(otherlv_4, grammarAccess.getFunctionDeclAccess().getRightParenthesisKeyword_4());
             		
@@ -5051,7 +5051,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getFunctionDeclAccess().getReturnTypeTypeConstructorParserRuleCall_6_0());
             				
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_32);
             lv_returnType_6_0=ruleTypeConstructor();
 
             state._fsp--;
@@ -5087,7 +5087,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     // InternalBSharp.g:1959:4: (lv_infix_7_0= 'INFIX' )
                     // InternalBSharp.g:1960:5: lv_infix_7_0= 'INFIX'
                     {
-                    lv_infix_7_0=(Token)match(input,40,FOLLOW_34); 
+                    lv_infix_7_0=(Token)match(input,40,FOLLOW_33); 
 
                     					newLeafNode(lv_infix_7_0, grammarAccess.getFunctionDeclAccess().getInfixINFIXKeyword_7_0());
                     				
@@ -5120,7 +5120,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     // InternalBSharp.g:1973:4: (lv_precedence_8_0= RULE_INT )
                     // InternalBSharp.g:1974:5: lv_precedence_8_0= RULE_INT
                     {
-                    lv_precedence_8_0=(Token)match(input,RULE_INT,FOLLOW_23); 
+                    lv_precedence_8_0=(Token)match(input,RULE_INT,FOLLOW_21); 
 
                     					newLeafNode(lv_precedence_8_0, grammarAccess.getFunctionDeclAccess().getPrecedenceINTTerminalRuleCall_8_0());
                     				
@@ -5366,7 +5366,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             						current = createModelElement(grammarAccess.getMatchStatementRule());
             					}
             				
-            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_35); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_34); 
 
             					newLeafNode(otherlv_1, grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0());
             				
@@ -5376,7 +5376,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,38,FOLLOW_25); 
+            otherlv_2=(Token)match(input,38,FOLLOW_24); 
 
             			newLeafNode(otherlv_2, grammarAccess.getMatchStatementAccess().getLeftCurlyBracketKeyword_2());
             		
@@ -5389,7 +5389,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getMatchStatementAccess().getInductCaseMatchCaseParserRuleCall_3_0());
             				
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_35);
             lv_inductCase_3_0=ruleMatchCase();
 
             state._fsp--;
@@ -5432,7 +5432,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             	    					newCompositeNode(grammarAccess.getMatchStatementAccess().getInductCaseMatchCaseParserRuleCall_4_0());
             	    				
-            	    pushFollow(FOLLOW_36);
+            	    pushFollow(FOLLOW_35);
             	    lv_inductCase_4_0=ruleMatchCase();
 
             	    state._fsp--;
@@ -5565,7 +5565,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             						current = createModelElement(grammarAccess.getMatchCaseRule());
             					}
             				
-            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_37); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_36); 
 
             					newLeafNode(otherlv_1, grammarAccess.getMatchCaseAccess().getDeconNameTypedVariableCrossReference_1_0());
             				
@@ -5599,7 +5599,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                     						newCompositeNode(grammarAccess.getMatchCaseAccess().getVariablesTypedVariableParserRuleCall_2_1_0());
                     					
-                    pushFollow(FOLLOW_38);
+                    pushFollow(FOLLOW_37);
                     lv_variables_3_0=ruleTypedVariable();
 
                     state._fsp--;
@@ -5649,7 +5649,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                     	    							newCompositeNode(grammarAccess.getMatchCaseAccess().getVariablesTypedVariableParserRuleCall_2_2_1_0());
                     	    						
-                    	    pushFollow(FOLLOW_38);
+                    	    pushFollow(FOLLOW_37);
                     	    lv_variables_5_0=ruleTypedVariable();
 
                     	    state._fsp--;
@@ -5680,7 +5680,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
-                    otherlv_6=(Token)match(input,33,FOLLOW_32); 
+                    otherlv_6=(Token)match(input,33,FOLLOW_31); 
 
                     				newLeafNode(otherlv_6, grammarAccess.getMatchCaseAccess().getRightParenthesisKeyword_2_3());
                     			
@@ -5690,7 +5690,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,12,FOLLOW_23); 
+            otherlv_7=(Token)match(input,12,FOLLOW_21); 
 
             			newLeafNode(otherlv_7, grammarAccess.getMatchCaseAccess().getColonKeyword_3());
             		
@@ -5804,7 +5804,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             // InternalBSharp.g:2257:2: (otherlv_0= 'Theorems' otherlv_1= '{' ( (lv_theoremDecl_2_0= ruleTheoremDecl ) )+ otherlv_3= '}' )
             // InternalBSharp.g:2258:3: otherlv_0= 'Theorems' otherlv_1= '{' ( (lv_theoremDecl_2_0= ruleTheoremDecl ) )+ otherlv_3= '}'
             {
-            otherlv_0=(Token)match(input,42,FOLLOW_35); 
+            otherlv_0=(Token)match(input,42,FOLLOW_34); 
 
             			newLeafNode(otherlv_0, grammarAccess.getTheoremBodyAccess().getTheoremsKeyword_0());
             		
@@ -5834,7 +5834,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             	    					newCompositeNode(grammarAccess.getTheoremBodyAccess().getTheoremDeclTheoremDeclParserRuleCall_2_0());
             	    				
-            	    pushFollow(FOLLOW_39);
+            	    pushFollow(FOLLOW_38);
             	    lv_theoremDecl_2_0=ruleTheoremDecl();
 
             	    state._fsp--;
@@ -5958,7 +5958,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getTheoremDeclAccess().getNameTHM_NAMEParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_21);
             lv_name_0_0=ruleTHM_NAME();
 
             state._fsp--;
@@ -5989,7 +5989,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getTheoremDeclAccess().getExprRootExpressionParserRuleCall_1_0());
             				
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_39);
             lv_expr_1_0=ruleRootExpression();
 
             state._fsp--;
@@ -6275,7 +6275,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getVariableTypingAccess().getTypeVarTypedVariableParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_40);
             lv_typeVar_0_0=ruleTypedVariable();
 
             state._fsp--;
@@ -6325,7 +6325,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             	    						newCompositeNode(grammarAccess.getVariableTypingAccess().getTypeVarTypedVariableParserRuleCall_1_1_0());
             	    					
-            	    pushFollow(FOLLOW_41);
+            	    pushFollow(FOLLOW_40);
             	    lv_typeVar_2_0=ruleTypedVariable();
 
             	    state._fsp--;
@@ -6574,7 +6574,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             // InternalBSharp.g:2554:4: (lv_qType_0_0= '\\u03BB' )
             // InternalBSharp.g:2555:5: lv_qType_0_0= '\\u03BB'
             {
-            lv_qType_0_0=(Token)match(input,43,FOLLOW_42); 
+            lv_qType_0_0=(Token)match(input,43,FOLLOW_41); 
 
             					newLeafNode(lv_qType_0_0, grammarAccess.getLambdaAccess().getQTypeGreekSmallLetterLamdaKeyword_0_0());
             				
@@ -6641,7 +6641,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getLambdaAccess().getVarListTypedVariableListParserRuleCall_2_0());
             				
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_24);
             lv_varList_2_0=ruleTypedVariableList();
 
             state._fsp--;
@@ -6663,7 +6663,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,36,FOLLOW_23); 
+            otherlv_3=(Token)match(input,36,FOLLOW_21); 
 
             			newLeafNode(otherlv_3, grammarAccess.getLambdaAccess().getVerticalLineKeyword_3());
             		
@@ -6807,7 +6807,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // InternalBSharp.g:2650:6: lv_qType_0_1= '\\u2200'
                     {
-                    lv_qType_0_1=(Token)match(input,44,FOLLOW_42); 
+                    lv_qType_0_1=(Token)match(input,44,FOLLOW_41); 
 
                     						newLeafNode(lv_qType_0_1, grammarAccess.getQuantifierAccess().getQTypeForAllKeyword_0_0_0());
                     					
@@ -6823,7 +6823,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // InternalBSharp.g:2661:6: lv_qType_0_2= '\\u2203'
                     {
-                    lv_qType_0_2=(Token)match(input,45,FOLLOW_42); 
+                    lv_qType_0_2=(Token)match(input,45,FOLLOW_41); 
 
                     						newLeafNode(lv_qType_0_2, grammarAccess.getQuantifierAccess().getQTypeThereExistsKeyword_0_0_1());
                     					
@@ -6896,7 +6896,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getQuantifierAccess().getVarListTypedVariableListParserRuleCall_2_0());
             				
-            pushFollow(FOLLOW_43);
+            pushFollow(FOLLOW_42);
             lv_varList_2_0=ruleTypedVariableList();
 
             state._fsp--;
@@ -6918,7 +6918,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,46,FOLLOW_23); 
+            otherlv_3=(Token)match(input,46,FOLLOW_21); 
 
             			newLeafNode(otherlv_3, grammarAccess.getQuantifierAccess().getMiddleDotKeyword_3());
             		
@@ -7225,7 +7225,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getPrefixAccess().getNamePrefixBuiltInParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_44);
+            pushFollow(FOLLOW_43);
             lv_name_0_0=rulePrefixBuiltIn();
 
             state._fsp--;
@@ -7436,7 +7436,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             			newCompositeNode(grammarAccess.getInfixAccess().getElementParserRuleCall_0());
             		
-            pushFollow(FOLLOW_45);
+            pushFollow(FOLLOW_44);
             this_Element_0=ruleElement();
 
             state._fsp--;
@@ -7529,7 +7529,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             	            								current = createModelElement(grammarAccess.getInfixRule());
             	            							}
             	            						
-            	            otherlv_2=(Token)match(input,RULE_ID,FOLLOW_44); 
+            	            otherlv_2=(Token)match(input,RULE_ID,FOLLOW_43); 
 
             	            							newLeafNode(otherlv_2, grammarAccess.getInfixAccess().getFuncNameFunctionNameCrossReference_1_1_0_0());
             	            						
@@ -7554,7 +7554,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             	            							newCompositeNode(grammarAccess.getInfixAccess().getOpNameInbuiltInfixParserRuleCall_1_1_1_0());
             	            						
-            	            pushFollow(FOLLOW_44);
+            	            pushFollow(FOLLOW_43);
             	            lv_opName_3_0=ruleInbuiltInfix();
 
             	            state._fsp--;
@@ -7591,7 +7591,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             	    						newCompositeNode(grammarAccess.getInfixAccess().getRightElementParserRuleCall_1_2_0());
             	    					
-            	    pushFollow(FOLLOW_45);
+            	    pushFollow(FOLLOW_44);
             	    lv_right_4_0=ruleElement();
 
             	    state._fsp--;
@@ -7857,7 +7857,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             // InternalBSharp.g:3021:2: (otherlv_0= '(' ( (lv_child_1_0= ruleRootExpression ) ) otherlv_2= ')' )
             // InternalBSharp.g:3022:3: otherlv_0= '(' ( (lv_child_1_0= ruleRootExpression ) ) otherlv_2= ')'
             {
-            otherlv_0=(Token)match(input,32,FOLLOW_23); 
+            otherlv_0=(Token)match(input,32,FOLLOW_21); 
 
             			newLeafNode(otherlv_0, grammarAccess.getBracketAccess().getLeftParenthesisKeyword_0());
             		
@@ -8021,7 +8021,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     							current = createModelElement(grammarAccess.getFunctionCallRule());
                     						}
                     					
-                    otherlv_0=(Token)match(input,RULE_ID,FOLLOW_27); 
+                    otherlv_0=(Token)match(input,RULE_ID,FOLLOW_26); 
 
                     						newLeafNode(otherlv_0, grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_0_0_0());
                     					
@@ -8046,7 +8046,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                     						newCompositeNode(grammarAccess.getFunctionCallAccess().getClassVarDeclClassVarDeclParserRuleCall_0_1_0());
                     					
-                    pushFollow(FOLLOW_27);
+                    pushFollow(FOLLOW_26);
                     lv_classVarDecl_1_0=ruleClassVarDecl();
 
                     state._fsp--;
@@ -8085,7 +8085,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // InternalBSharp.g:3104:4: otherlv_2= '(' ( (lv_arguments_3_0= ruleRootExpression ) )? (otherlv_4= ',' ( (lv_arguments_5_0= ruleRootExpression ) ) )* otherlv_6= ')'
                     {
-                    otherlv_2=(Token)match(input,32,FOLLOW_46); 
+                    otherlv_2=(Token)match(input,32,FOLLOW_45); 
 
                     				newLeafNode(otherlv_2, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_0());
                     			
@@ -8106,7 +8106,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                             						newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_1_0());
                             					
-                            pushFollow(FOLLOW_38);
+                            pushFollow(FOLLOW_37);
                             lv_arguments_3_0=ruleRootExpression();
 
                             state._fsp--;
@@ -8146,7 +8146,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     	case 1 :
                     	    // InternalBSharp.g:3128:5: otherlv_4= ',' ( (lv_arguments_5_0= ruleRootExpression ) )
                     	    {
-                    	    otherlv_4=(Token)match(input,21,FOLLOW_23); 
+                    	    otherlv_4=(Token)match(input,21,FOLLOW_21); 
 
                     	    					newLeafNode(otherlv_4, grammarAccess.getFunctionCallAccess().getCommaKeyword_1_2_0());
                     	    				
@@ -8159,7 +8159,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                     	    							newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_1_0());
                     	    						
-                    	    pushFollow(FOLLOW_38);
+                    	    pushFollow(FOLLOW_37);
                     	    lv_arguments_5_0=ruleRootExpression();
 
                     	    state._fsp--;
@@ -8288,7 +8288,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             						current = createModelElement(grammarAccess.getClassVarDeclRule());
             					}
             				
-            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_47); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_46); 
 
             					newLeafNode(otherlv_0, grammarAccess.getClassVarDeclAccess().getOwnerTypeGenNameCrossReference_0_0());
             				
@@ -8604,7 +8604,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getInstanceAccess().getClassNameClassDeclCrossReference_1_0());
             				
-            pushFollow(FOLLOW_48);
+            pushFollow(FOLLOW_47);
             ruleQualifiedName();
 
             state._fsp--;
@@ -8627,7 +8627,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getInstanceAccess().getContextTypeDeclContextParserRuleCall_2_0());
             				
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_27);
             lv_context_2_0=ruleTypeDeclContext();
 
             state._fsp--;
@@ -8649,7 +8649,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,32,FOLLOW_46); 
+            otherlv_3=(Token)match(input,32,FOLLOW_45); 
 
             			newLeafNode(otherlv_3, grammarAccess.getInstanceAccess().getLeftParenthesisKeyword_3());
             		
@@ -8670,7 +8670,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
                     					newCompositeNode(grammarAccess.getInstanceAccess().getArgumentsRootExpressionParserRuleCall_4_0());
                     				
-                    pushFollow(FOLLOW_38);
+                    pushFollow(FOLLOW_37);
                     lv_arguments_4_0=ruleRootExpression();
 
                     state._fsp--;
@@ -8710,7 +8710,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // InternalBSharp.g:3342:4: otherlv_5= ',' ( (lv_arguments_6_0= ruleRootExpression ) )
             	    {
-            	    otherlv_5=(Token)match(input,21,FOLLOW_23); 
+            	    otherlv_5=(Token)match(input,21,FOLLOW_21); 
 
             	    				newLeafNode(otherlv_5, grammarAccess.getInstanceAccess().getCommaKeyword_5_0());
             	    			
@@ -8723,7 +8723,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             	    						newCompositeNode(grammarAccess.getInstanceAccess().getArgumentsRootExpressionParserRuleCall_5_1_0());
             	    					
-            	    pushFollow(FOLLOW_38);
+            	    pushFollow(FOLLOW_37);
             	    lv_arguments_6_0=ruleRootExpression();
 
             	    state._fsp--;
@@ -8804,33 +8804,32 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000080002L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000200000000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000300000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000300000000000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000BA0100000020L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000BA0100000020L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000001000080000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x00000055000C1000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000048000000020L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000100080000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000200000020L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000BB0100000030L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000BA0100000030L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000009000000000L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000100001000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000200200000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000008000001070L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000000201000L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000000080020L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000800100000020L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x003F000000000022L});
-    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000BA0300200020L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000001000080000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x00000055000C1000L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000048000000020L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000100080000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000200000020L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000BB0100000030L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000BA0100000030L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000009000000000L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000100001000L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000200200000L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000008000001070L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000000201000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000000080020L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000800100000020L});
+    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x003F000000000022L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000BA0300200020L});
+    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000000000080000L});
 
 }

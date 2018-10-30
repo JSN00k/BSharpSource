@@ -11120,31 +11120,31 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group__1__Impl"
-    // InternalBSharp.g:3500:1: rule__Where__Group__1__Impl : ( ( rule__Where__ExpessionsAssignment_1 ) ) ;
+    // InternalBSharp.g:3500:1: rule__Where__Group__1__Impl : ( ( rule__Where__ExpressionsAssignment_1 ) ) ;
     public final void rule__Where__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3504:1: ( ( ( rule__Where__ExpessionsAssignment_1 ) ) )
-            // InternalBSharp.g:3505:1: ( ( rule__Where__ExpessionsAssignment_1 ) )
+            // InternalBSharp.g:3504:1: ( ( ( rule__Where__ExpressionsAssignment_1 ) ) )
+            // InternalBSharp.g:3505:1: ( ( rule__Where__ExpressionsAssignment_1 ) )
             {
-            // InternalBSharp.g:3505:1: ( ( rule__Where__ExpessionsAssignment_1 ) )
-            // InternalBSharp.g:3506:2: ( rule__Where__ExpessionsAssignment_1 )
+            // InternalBSharp.g:3505:1: ( ( rule__Where__ExpressionsAssignment_1 ) )
+            // InternalBSharp.g:3506:2: ( rule__Where__ExpressionsAssignment_1 )
             {
-             before(grammarAccess.getWhereAccess().getExpessionsAssignment_1()); 
-            // InternalBSharp.g:3507:2: ( rule__Where__ExpessionsAssignment_1 )
-            // InternalBSharp.g:3507:3: rule__Where__ExpessionsAssignment_1
+             before(grammarAccess.getWhereAccess().getExpressionsAssignment_1()); 
+            // InternalBSharp.g:3507:2: ( rule__Where__ExpressionsAssignment_1 )
+            // InternalBSharp.g:3507:3: rule__Where__ExpressionsAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Where__ExpessionsAssignment_1();
+            rule__Where__ExpressionsAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getWhereAccess().getExpessionsAssignment_1()); 
+             after(grammarAccess.getWhereAccess().getExpressionsAssignment_1()); 
 
             }
 
@@ -11280,7 +11280,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:3546:1: ( rule__Where__Group_2__0__Impl rule__Where__Group_2__1 )
             // InternalBSharp.g:3547:2: rule__Where__Group_2__0__Impl rule__Where__Group_2__1
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_25);
             rule__Where__Group_2__0__Impl();
 
             state._fsp--;
@@ -11510,7 +11510,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:3627:1: ( rule__Datatype__Group__1__Impl rule__Datatype__Group__2 )
             // InternalBSharp.g:3628:2: rule__Datatype__Group__1__Impl rule__Datatype__Group__2
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_28);
             rule__Datatype__Group__1__Impl();
 
             state._fsp--;
@@ -11595,7 +11595,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:3654:1: ( rule__Datatype__Group__2__Impl rule__Datatype__Group__3 )
             // InternalBSharp.g:3655:2: rule__Datatype__Group__2__Impl rule__Datatype__Group__3
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_28);
             rule__Datatype__Group__2__Impl();
 
             state._fsp--;
@@ -11739,7 +11739,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:3697:3: ( rule__Datatype__Group_3__0 )
             // InternalBSharp.g:3697:4: rule__Datatype__Group_3__0
             {
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_29);
             rule__Datatype__Group_3__0();
 
             state._fsp--;
@@ -11770,7 +11770,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalBSharp.g:3702:4: rule__Datatype__Group_3__0
             	    {
-            	    pushFollow(FOLLOW_30);
+            	    pushFollow(FOLLOW_29);
             	    rule__Datatype__Group_3__0();
 
             	    state._fsp--;
@@ -12054,7 +12054,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:3796:1: ( rule__DatatypeConstructor__Group__0__Impl rule__DatatypeConstructor__Group__1 )
             // InternalBSharp.g:3797:2: rule__DatatypeConstructor__Group__0__Impl rule__DatatypeConstructor__Group__1
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_30);
             rule__DatatypeConstructor__Group__0__Impl();
 
             state._fsp--;
@@ -12535,7 +12535,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:3958:1: ( rule__Extend__Group__1__Impl rule__Extend__Group__2 )
             // InternalBSharp.g:3959:2: rule__Extend__Group__1__Impl rule__Extend__Group__2
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_30);
             rule__Extend__Group__1__Impl();
 
             state._fsp--;
@@ -13010,7 +13010,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4120:1: ( rule__BSharpBlock__Group__1__Impl rule__BSharpBlock__Group__2 )
             // InternalBSharp.g:4121:2: rule__BSharpBlock__Group__1__Impl rule__BSharpBlock__Group__2
             {
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_31);
             rule__BSharpBlock__Group__1__Impl();
 
             state._fsp--;
@@ -13085,7 +13085,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4147:1: ( rule__BSharpBlock__Group__2__Impl rule__BSharpBlock__Group__3 )
             // InternalBSharp.g:4148:2: rule__BSharpBlock__Group__2__Impl rule__BSharpBlock__Group__3
             {
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_31);
             rule__BSharpBlock__Group__2__Impl();
 
             state._fsp--;
@@ -13142,7 +13142,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalBSharp.g:4162:3: rule__BSharpBlock__BodyElementsAssignment_2
             	    {
-            	    pushFollow(FOLLOW_33);
+            	    pushFollow(FOLLOW_32);
             	    rule__BSharpBlock__BodyElementsAssignment_2();
 
             	    state._fsp--;
@@ -13258,7 +13258,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4201:1: ( rule__FunctionDecl__Group__0__Impl rule__FunctionDecl__Group__1 )
             // InternalBSharp.g:4202:2: rule__FunctionDecl__Group__0__Impl rule__FunctionDecl__Group__1
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_33);
             rule__FunctionDecl__Group__0__Impl();
 
             state._fsp--;
@@ -13343,7 +13343,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4228:1: ( rule__FunctionDecl__Group__1__Impl rule__FunctionDecl__Group__2 )
             // InternalBSharp.g:4229:2: rule__FunctionDecl__Group__1__Impl rule__FunctionDecl__Group__2
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_33);
             rule__FunctionDecl__Group__1__Impl();
 
             state._fsp--;
@@ -13439,7 +13439,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4255:1: ( rule__FunctionDecl__Group__2__Impl rule__FunctionDecl__Group__3 )
             // InternalBSharp.g:4256:2: rule__FunctionDecl__Group__2__Impl rule__FunctionDecl__Group__3
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_34);
             rule__FunctionDecl__Group__2__Impl();
 
             state._fsp--;
@@ -13514,7 +13514,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4282:1: ( rule__FunctionDecl__Group__3__Impl rule__FunctionDecl__Group__4 )
             // InternalBSharp.g:4283:2: rule__FunctionDecl__Group__3__Impl rule__FunctionDecl__Group__4
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_34);
             rule__FunctionDecl__Group__3__Impl();
 
             state._fsp--;
@@ -13760,7 +13760,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4363:1: ( rule__FunctionDecl__Group__6__Impl rule__FunctionDecl__Group__7 )
             // InternalBSharp.g:4364:2: rule__FunctionDecl__Group__6__Impl rule__FunctionDecl__Group__7
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_35);
             rule__FunctionDecl__Group__6__Impl();
 
             state._fsp--;
@@ -13845,7 +13845,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4390:1: ( rule__FunctionDecl__Group__7__Impl rule__FunctionDecl__Group__8 )
             // InternalBSharp.g:4391:2: rule__FunctionDecl__Group__7__Impl rule__FunctionDecl__Group__8
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_35);
             rule__FunctionDecl__Group__7__Impl();
 
             state._fsp--;
@@ -13941,7 +13941,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4417:1: ( rule__FunctionDecl__Group__8__Impl rule__FunctionDecl__Group__9 )
             // InternalBSharp.g:4418:2: rule__FunctionDecl__Group__8__Impl rule__FunctionDecl__Group__9
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_35);
             rule__FunctionDecl__Group__8__Impl();
 
             state._fsp--;
@@ -14192,7 +14192,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4498:1: ( rule__MatchStatement__Group__1__Impl rule__MatchStatement__Group__2 )
             // InternalBSharp.g:4499:2: rule__MatchStatement__Group__1__Impl rule__MatchStatement__Group__2
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_36);
             rule__MatchStatement__Group__1__Impl();
 
             state._fsp--;
@@ -14277,7 +14277,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4525:1: ( rule__MatchStatement__Group__2__Impl rule__MatchStatement__Group__3 )
             // InternalBSharp.g:4526:2: rule__MatchStatement__Group__2__Impl rule__MatchStatement__Group__3
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_37);
             rule__MatchStatement__Group__2__Impl();
 
             state._fsp--;
@@ -14352,7 +14352,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4552:1: ( rule__MatchStatement__Group__3__Impl rule__MatchStatement__Group__4 )
             // InternalBSharp.g:4553:2: rule__MatchStatement__Group__3__Impl rule__MatchStatement__Group__4
             {
-            pushFollow(FOLLOW_39);
+            pushFollow(FOLLOW_38);
             rule__MatchStatement__Group__3__Impl();
 
             state._fsp--;
@@ -14437,7 +14437,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4579:1: ( rule__MatchStatement__Group__4__Impl rule__MatchStatement__Group__5 )
             // InternalBSharp.g:4580:2: rule__MatchStatement__Group__4__Impl rule__MatchStatement__Group__5
             {
-            pushFollow(FOLLOW_39);
+            pushFollow(FOLLOW_38);
             rule__MatchStatement__Group__4__Impl();
 
             state._fsp--;
@@ -14494,7 +14494,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalBSharp.g:4594:3: rule__MatchStatement__InductCaseAssignment_4
             	    {
-            	    pushFollow(FOLLOW_40);
+            	    pushFollow(FOLLOW_39);
             	    rule__MatchStatement__InductCaseAssignment_4();
 
             	    state._fsp--;
@@ -14685,7 +14685,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4660:1: ( rule__MatchCase__Group__1__Impl rule__MatchCase__Group__2 )
             // InternalBSharp.g:4661:2: rule__MatchCase__Group__1__Impl rule__MatchCase__Group__2
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_40);
             rule__MatchCase__Group__1__Impl();
 
             state._fsp--;
@@ -14770,7 +14770,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4687:1: ( rule__MatchCase__Group__2__Impl rule__MatchCase__Group__3 )
             // InternalBSharp.g:4688:2: rule__MatchCase__Group__2__Impl rule__MatchCase__Group__3
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_40);
             rule__MatchCase__Group__2__Impl();
 
             state._fsp--;
@@ -14866,7 +14866,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4714:1: ( rule__MatchCase__Group__3__Impl rule__MatchCase__Group__4 )
             // InternalBSharp.g:4715:2: rule__MatchCase__Group__3__Impl rule__MatchCase__Group__4
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_25);
             rule__MatchCase__Group__3__Impl();
 
             state._fsp--;
@@ -15096,7 +15096,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4795:1: ( rule__MatchCase__Group_2__1__Impl rule__MatchCase__Group_2__2 )
             // InternalBSharp.g:4796:2: rule__MatchCase__Group_2__1__Impl rule__MatchCase__Group_2__2
             {
-            pushFollow(FOLLOW_42);
+            pushFollow(FOLLOW_41);
             rule__MatchCase__Group_2__1__Impl();
 
             state._fsp--;
@@ -15181,7 +15181,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4822:1: ( rule__MatchCase__Group_2__2__Impl rule__MatchCase__Group_2__3 )
             // InternalBSharp.g:4823:2: rule__MatchCase__Group_2__2__Impl rule__MatchCase__Group_2__3
             {
-            pushFollow(FOLLOW_42);
+            pushFollow(FOLLOW_41);
             rule__MatchCase__Group_2__2__Impl();
 
             state._fsp--;
@@ -15509,7 +15509,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4930:1: ( rule__TheoremBody__Group__0__Impl rule__TheoremBody__Group__1 )
             // InternalBSharp.g:4931:2: rule__TheoremBody__Group__0__Impl rule__TheoremBody__Group__1
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_36);
             rule__TheoremBody__Group__0__Impl();
 
             state._fsp--;
@@ -15584,7 +15584,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4957:1: ( rule__TheoremBody__Group__1__Impl rule__TheoremBody__Group__2 )
             // InternalBSharp.g:4958:2: rule__TheoremBody__Group__1__Impl rule__TheoremBody__Group__2
             {
-            pushFollow(FOLLOW_43);
+            pushFollow(FOLLOW_42);
             rule__TheoremBody__Group__1__Impl();
 
             state._fsp--;
@@ -15659,7 +15659,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:4984:1: ( rule__TheoremBody__Group__2__Impl rule__TheoremBody__Group__3 )
             // InternalBSharp.g:4985:2: rule__TheoremBody__Group__2__Impl rule__TheoremBody__Group__3
             {
-            pushFollow(FOLLOW_44);
+            pushFollow(FOLLOW_43);
             rule__TheoremBody__Group__2__Impl();
 
             state._fsp--;
@@ -15857,7 +15857,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5045:1: ( rule__TheoremDecl__Group__0__Impl rule__TheoremDecl__Group__1 )
             // InternalBSharp.g:5046:2: rule__TheoremDecl__Group__0__Impl rule__TheoremDecl__Group__1
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_25);
             rule__TheoremDecl__Group__0__Impl();
 
             state._fsp--;
@@ -16435,7 +16435,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5234:1: ( rule__VariableTyping__Group__0__Impl rule__VariableTyping__Group__1 )
             // InternalBSharp.g:5235:2: rule__VariableTyping__Group__0__Impl rule__VariableTyping__Group__1
             {
-            pushFollow(FOLLOW_45);
+            pushFollow(FOLLOW_44);
             rule__VariableTyping__Group__0__Impl();
 
             state._fsp--;
@@ -16520,7 +16520,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5261:1: ( rule__VariableTyping__Group__1__Impl rule__VariableTyping__Group__2 )
             // InternalBSharp.g:5262:2: rule__VariableTyping__Group__1__Impl rule__VariableTyping__Group__2
             {
-            pushFollow(FOLLOW_45);
+            pushFollow(FOLLOW_44);
             rule__VariableTyping__Group__1__Impl();
 
             state._fsp--;
@@ -16933,7 +16933,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5396:1: ( rule__Lambda__Group__0__Impl rule__Lambda__Group__1 )
             // InternalBSharp.g:5397:2: rule__Lambda__Group__0__Impl rule__Lambda__Group__1
             {
-            pushFollow(FOLLOW_46);
+            pushFollow(FOLLOW_45);
             rule__Lambda__Group__0__Impl();
 
             state._fsp--;
@@ -17018,7 +17018,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5423:1: ( rule__Lambda__Group__1__Impl rule__Lambda__Group__2 )
             // InternalBSharp.g:5424:2: rule__Lambda__Group__1__Impl rule__Lambda__Group__2
             {
-            pushFollow(FOLLOW_46);
+            pushFollow(FOLLOW_45);
             rule__Lambda__Group__1__Impl();
 
             state._fsp--;
@@ -17114,7 +17114,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5450:1: ( rule__Lambda__Group__2__Impl rule__Lambda__Group__3 )
             // InternalBSharp.g:5451:2: rule__Lambda__Group__2__Impl rule__Lambda__Group__3
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_37);
             rule__Lambda__Group__2__Impl();
 
             state._fsp--;
@@ -17199,7 +17199,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5477:1: ( rule__Lambda__Group__3__Impl rule__Lambda__Group__4 )
             // InternalBSharp.g:5478:2: rule__Lambda__Group__3__Impl rule__Lambda__Group__4
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_25);
             rule__Lambda__Group__3__Impl();
 
             state._fsp--;
@@ -17354,7 +17354,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5531:1: ( rule__Quantifier__Group__0__Impl rule__Quantifier__Group__1 )
             // InternalBSharp.g:5532:2: rule__Quantifier__Group__0__Impl rule__Quantifier__Group__1
             {
-            pushFollow(FOLLOW_46);
+            pushFollow(FOLLOW_45);
             rule__Quantifier__Group__0__Impl();
 
             state._fsp--;
@@ -17439,7 +17439,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5558:1: ( rule__Quantifier__Group__1__Impl rule__Quantifier__Group__2 )
             // InternalBSharp.g:5559:2: rule__Quantifier__Group__1__Impl rule__Quantifier__Group__2
             {
-            pushFollow(FOLLOW_46);
+            pushFollow(FOLLOW_45);
             rule__Quantifier__Group__1__Impl();
 
             state._fsp--;
@@ -17535,7 +17535,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5585:1: ( rule__Quantifier__Group__2__Impl rule__Quantifier__Group__3 )
             // InternalBSharp.g:5586:2: rule__Quantifier__Group__2__Impl rule__Quantifier__Group__3
             {
-            pushFollow(FOLLOW_47);
+            pushFollow(FOLLOW_46);
             rule__Quantifier__Group__2__Impl();
 
             state._fsp--;
@@ -17620,7 +17620,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5612:1: ( rule__Quantifier__Group__3__Impl rule__Quantifier__Group__4 )
             // InternalBSharp.g:5613:2: rule__Quantifier__Group__3__Impl rule__Quantifier__Group__4
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_25);
             rule__Quantifier__Group__3__Impl();
 
             state._fsp--;
@@ -17775,7 +17775,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5666:1: ( rule__Prefix__Group__0__Impl rule__Prefix__Group__1 )
             // InternalBSharp.g:5667:2: rule__Prefix__Group__0__Impl rule__Prefix__Group__1
             {
-            pushFollow(FOLLOW_48);
+            pushFollow(FOLLOW_47);
             rule__Prefix__Group__0__Impl();
 
             state._fsp--;
@@ -17940,7 +17940,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5720:1: ( rule__Infix__Group__0__Impl rule__Infix__Group__1 )
             // InternalBSharp.g:5721:2: rule__Infix__Group__0__Impl rule__Infix__Group__1
             {
-            pushFollow(FOLLOW_49);
+            pushFollow(FOLLOW_48);
             rule__Infix__Group__0__Impl();
 
             state._fsp--;
@@ -18098,7 +18098,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalBSharp.g:5761:3: rule__Infix__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_50);
+            	    pushFollow(FOLLOW_49);
             	    rule__Infix__Group_1__0();
 
             	    state._fsp--;
@@ -18144,7 +18144,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5774:1: ( rule__Infix__Group_1__0__Impl rule__Infix__Group_1__1 )
             // InternalBSharp.g:5775:2: rule__Infix__Group_1__0__Impl rule__Infix__Group_1__1
             {
-            pushFollow(FOLLOW_49);
+            pushFollow(FOLLOW_48);
             rule__Infix__Group_1__0__Impl();
 
             state._fsp--;
@@ -18219,7 +18219,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5801:1: ( rule__Infix__Group_1__1__Impl rule__Infix__Group_1__2 )
             // InternalBSharp.g:5802:2: rule__Infix__Group_1__1__Impl rule__Infix__Group_1__2
             {
-            pushFollow(FOLLOW_48);
+            pushFollow(FOLLOW_47);
             rule__Infix__Group_1__1__Impl();
 
             state._fsp--;
@@ -18384,7 +18384,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5855:1: ( rule__Bracket__Group__0__Impl rule__Bracket__Group__1 )
             // InternalBSharp.g:5856:2: rule__Bracket__Group__0__Impl rule__Bracket__Group__1
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_25);
             rule__Bracket__Group__0__Impl();
 
             state._fsp--;
@@ -18614,7 +18614,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5936:1: ( rule__FunctionCall__Group__0__Impl rule__FunctionCall__Group__1 )
             // InternalBSharp.g:5937:2: rule__FunctionCall__Group__0__Impl rule__FunctionCall__Group__1
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_30);
             rule__FunctionCall__Group__0__Impl();
 
             state._fsp--;
@@ -18790,7 +18790,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:5990:1: ( rule__FunctionCall__Group_1__0__Impl rule__FunctionCall__Group_1__1 )
             // InternalBSharp.g:5991:2: rule__FunctionCall__Group_1__0__Impl rule__FunctionCall__Group_1__1
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_50);
             rule__FunctionCall__Group_1__0__Impl();
 
             state._fsp--;
@@ -18865,7 +18865,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6017:1: ( rule__FunctionCall__Group_1__1__Impl rule__FunctionCall__Group_1__2 )
             // InternalBSharp.g:6018:2: rule__FunctionCall__Group_1__1__Impl rule__FunctionCall__Group_1__2
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_50);
             rule__FunctionCall__Group_1__1__Impl();
 
             state._fsp--;
@@ -18961,7 +18961,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6044:1: ( rule__FunctionCall__Group_1__2__Impl rule__FunctionCall__Group_1__3 )
             // InternalBSharp.g:6045:2: rule__FunctionCall__Group_1__2__Impl rule__FunctionCall__Group_1__3
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_50);
             rule__FunctionCall__Group_1__2__Impl();
 
             state._fsp--;
@@ -19134,7 +19134,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6098:1: ( rule__FunctionCall__Group_1_2__0__Impl rule__FunctionCall__Group_1_2__1 )
             // InternalBSharp.g:6099:2: rule__FunctionCall__Group_1_2__0__Impl rule__FunctionCall__Group_1_2__1
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_25);
             rule__FunctionCall__Group_1_2__0__Impl();
 
             state._fsp--;
@@ -19689,7 +19689,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6287:1: ( rule__Instance__Group__2__Impl rule__Instance__Group__3 )
             // InternalBSharp.g:6288:2: rule__Instance__Group__2__Impl rule__Instance__Group__3
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_30);
             rule__Instance__Group__2__Impl();
 
             state._fsp--;
@@ -19774,7 +19774,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6314:1: ( rule__Instance__Group__3__Impl rule__Instance__Group__4 )
             // InternalBSharp.g:6315:2: rule__Instance__Group__3__Impl rule__Instance__Group__4
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_50);
             rule__Instance__Group__3__Impl();
 
             state._fsp--;
@@ -19849,7 +19849,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6341:1: ( rule__Instance__Group__4__Impl rule__Instance__Group__5 )
             // InternalBSharp.g:6342:2: rule__Instance__Group__4__Impl rule__Instance__Group__5
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_50);
             rule__Instance__Group__4__Impl();
 
             state._fsp--;
@@ -19945,7 +19945,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6368:1: ( rule__Instance__Group__5__Impl rule__Instance__Group__6 )
             // InternalBSharp.g:6369:2: rule__Instance__Group__5__Impl rule__Instance__Group__6
             {
-            pushFollow(FOLLOW_51);
+            pushFollow(FOLLOW_50);
             rule__Instance__Group__5__Impl();
 
             state._fsp--;
@@ -20118,7 +20118,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6422:1: ( rule__Instance__Group_5__0__Impl rule__Instance__Group_5__1 )
             // InternalBSharp.g:6423:2: rule__Instance__Group_5__0__Impl rule__Instance__Group_5__1
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_25);
             rule__Instance__Group_5__0__Impl();
 
             state._fsp--;
@@ -21718,26 +21718,26 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TypeStructure__VariablesAssignment_1"
 
 
-    // $ANTLR start "rule__Where__ExpessionsAssignment_1"
-    // InternalBSharp.g:7009:1: rule__Where__ExpessionsAssignment_1 : ( ruleQuantifier ) ;
-    public final void rule__Where__ExpessionsAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Where__ExpressionsAssignment_1"
+    // InternalBSharp.g:7009:1: rule__Where__ExpressionsAssignment_1 : ( ruleRootExpression ) ;
+    public final void rule__Where__ExpressionsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7013:1: ( ( ruleQuantifier ) )
-            // InternalBSharp.g:7014:2: ( ruleQuantifier )
+            // InternalBSharp.g:7013:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:7014:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:7014:2: ( ruleQuantifier )
-            // InternalBSharp.g:7015:3: ruleQuantifier
+            // InternalBSharp.g:7014:2: ( ruleRootExpression )
+            // InternalBSharp.g:7015:3: ruleRootExpression
             {
-             before(grammarAccess.getWhereAccess().getExpessionsQuantifierParserRuleCall_1_0()); 
+             before(grammarAccess.getWhereAccess().getExpressionsRootExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
-            ruleQuantifier();
+            ruleRootExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getWhereAccess().getExpessionsQuantifierParserRuleCall_1_0()); 
+             after(grammarAccess.getWhereAccess().getExpressionsRootExpressionParserRuleCall_1_0()); 
 
             }
 
@@ -21756,7 +21756,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Where__ExpessionsAssignment_1"
+    // $ANTLR end "rule__Where__ExpressionsAssignment_1"
 
 
     // $ANTLR start "rule__Where__ExpressionsAssignment_2_1"
@@ -24318,32 +24318,31 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000040000000000L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000018000000000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000001800000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0042020001800820L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0042020001800820L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000204000000000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000204000000002L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0005000000000020L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0004000000000022L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000024000000000L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000040000000020L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0062020001800830L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0001200000000000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000200000000002L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000020100000000L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000050000000000L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000000000070L});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000010100000000L});
-    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000004000000020L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000020000000820L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x000000007E000020L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x000000007E000022L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0042070001800820L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000204000000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000204000000002L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0005000000000020L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0004000000000022L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000024000000000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000040000000020L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0062020001800830L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0001200000000000L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000020100000000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000050000000000L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000000000070L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000010100000000L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000004000000020L});
+    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000020000000820L});
+    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x000000007E000020L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x000000007E000022L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0042070001800820L});
 
 }
