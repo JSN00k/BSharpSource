@@ -375,9 +375,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		
 		return result;
 	}
-
+	
 	@Override
-	public String compileAsPredicate() throws Exception {
+	public String compileToEventBString(Boolean asPredicate) throws Exception {
 		/* FunctionCall  is an expression variable followed by a type context 
 		 * and the arguments, the type context and arguments are optional, without these
 		 * it's just a variable declaration. If there are type contexts and arguments then
