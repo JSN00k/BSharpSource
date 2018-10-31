@@ -5,8 +5,11 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
+import ac.soton.bsharp.bSharp.IPolyTypeProvider;
+import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeConstructor;
@@ -35,18 +38,38 @@ import org.eclipse.xtext.EcoreUtil2;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getVarList <em>Var List</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getInfix <em>Infix</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getExpr <em>Expr</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements FunctionDecl {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -126,16 +149,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * @ordered
 	 */
 	protected Expression expr;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected FunctionName name;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -375,7 +388,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionName getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -384,33 +397,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetName(FunctionName newName, NotificationChain msgs) {
-		FunctionName oldName = name;
+	public void setName(String newName) {
+		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__NAME, oldName, newName);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(FunctionName newName) {
-		if (newName != name) {
-			NotificationChain msgs = null;
-			if (name != null)
-				msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__NAME, null, msgs);
-			if (newName != null)
-				msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__NAME, null, msgs);
-			msgs = basicSetName(newName, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__NAME, newName, newName));
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__NAME, oldName, name));
 	}
 
 	/**
@@ -429,8 +420,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return basicSetReturnType(null, msgs);
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				return basicSetExpr(null, msgs);
-			case BSharpPackage.FUNCTION_DECL__NAME:
-				return basicSetName(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -443,6 +432,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case BSharpPackage.FUNCTION_DECL__NAME:
+				return getName();
 			case BSharpPackage.FUNCTION_DECL__CONTEXT:
 				return getContext();
 			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
@@ -455,8 +446,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return getPrecedence();
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				return getExpr();
-			case BSharpPackage.FUNCTION_DECL__NAME:
-				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -469,6 +458,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case BSharpPackage.FUNCTION_DECL__NAME:
+				setName((String)newValue);
+				return;
 			case BSharpPackage.FUNCTION_DECL__CONTEXT:
 				setContext((PolyContext)newValue);
 				return;
@@ -487,9 +479,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				setExpr((Expression)newValue);
 				return;
-			case BSharpPackage.FUNCTION_DECL__NAME:
-				setName((FunctionName)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -502,6 +491,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.FUNCTION_DECL__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case BSharpPackage.FUNCTION_DECL__CONTEXT:
 				setContext((PolyContext)null);
 				return;
@@ -520,9 +512,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				setExpr((Expression)null);
 				return;
-			case BSharpPackage.FUNCTION_DECL__NAME:
-				setName((FunctionName)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -535,6 +524,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.FUNCTION_DECL__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.FUNCTION_DECL__CONTEXT:
 				return context != null;
 			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
@@ -547,10 +538,60 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return precedence != PRECEDENCE_EDEFAULT;
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				return expr != null;
-			case BSharpPackage.FUNCTION_DECL__NAME:
-				return name != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == IPolyTypeProvider.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedObject.class) {
+			switch (derivedFeatureID) {
+				case BSharpPackage.FUNCTION_DECL__NAME: return BSharpPackage.NAMED_OBJECT__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == ExpressionVariable.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == IPolyTypeProvider.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedObject.class) {
+			switch (baseFeatureID) {
+				case BSharpPackage.NAMED_OBJECT__NAME: return BSharpPackage.FUNCTION_DECL__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == ExpressionVariable.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -563,7 +604,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (infix: ");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", infix: ");
 		result.append(infix);
 		result.append(", precedence: ");
 		result.append(precedence);

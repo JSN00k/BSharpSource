@@ -194,15 +194,6 @@ public interface BSharpFactory extends EFactory {
 	FunctionDecl createFunctionDecl();
 
 	/**
-	 * Returns a new object of class '<em>Function Name</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Function Name</em>'.
-	 * @generated
-	 */
-	FunctionName createFunctionName();
-
-	/**
 	 * Returns a new object of class '<em>Match Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

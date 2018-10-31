@@ -3,16 +3,23 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
-
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.TypedVariable;
+
 import java.util.Collection;
 import java.util.jar.Attributes.Name;
 
+import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -24,6 +31,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import com.google.common.base.Functions;
 
 /**
  * <!-- begin-user-doc -->
@@ -368,9 +377,92 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	}
 
 	@Override
-	public String compileAsPredicate() {
-		String result = name
-		return null;
+	public String compileAsPredicate() throws Exception {
+		/* FunctionCall  is an expression variable followed by a type context 
+		 * and the arguments, the type context and arguments are optional, without these
+		 * it's just a variable declaration. If there are type contexts and arguments then
+		 * these need to be validated to check the types. The type context requires the 
+		 * context of the original declaration to be compiled properly. The arguments can be
+		 * compiled entirely on their own.
+		 */
+		ExpressionVariable var;
+		
+		if (typeInst != null) {
+			var = typeInst;
+		} else {
+			/* The classVarDecl allows scoping of member variables from other types, as the scoping has
+			 * been done this method only needs the ExpressionVariable (it already contains the necessary
+			 * information about where it was declared).
+			 */
+			var = classVarDecl.getTypeInst();
+		}
+		
+		if (context != null) {
+			if (typeInst instanceof TypedVariable) {
+				/* This is an impossible situation and should be validated against. */
+				throw new Exception("In FunctionCallImpl a type that is unable to have a context"
+						+ "has one. Write validation so this can't happen at this stage.");
+			}
+		
+			if (typeInst instanceof BSClass) {
+				String result = ((BSClass) typeInst).constructWithTypeContext(context);
+				if (arguments != null) {
+					result += '(' + compileArgumentsWithSeparator(" ↦") + ") = BOOL";
+				}
+				
+				return result;
+			}
+			
+			if (typeInst instanceof FunctionDecl) {
+				/* Made a decision that functions with polymorphic contexts have an EventB operator
+				 * which takes the polymorphic context as the argument and returns a lambda which can
+				 * then be evaluated.
+				 */
+				String result = ((FunctionDecl) typeInst).callWithTypeContext(context);
+				
+				if (arguments != null) {
+					result += '(' + compileArgumentsWithSeparator(" ↦") + ") = BOOL";
+				}
+				
+				
+			}
+			
+			System.err.print("FunctionCallImpl hasn't handled datatypes when calling types with "
+					+ "polymorphic contexts");
+			
+			return "";
+		}
+		
+		/* There is no context, start by doing the simple thing, and I'll add features later
+		 * e.g., inferred contexts from type classes.  
+		 */
+		if (arguments != null) {
+			if (typeInst instanceof FunctionDecl) {
+				/* This means that there should be an operator to directly evaluate the function */
+				String result = ((NamedObject)typeInst).getName() + "_Pred" + "(" + compileArgumentsWithSeparator(",") + ")";
+				return result;
+			}
+			
+			this is a purposeful error ISafeRunnable need to remove resuts after this as they won't produce Preds.
+			
+			if (typeInst instanceof TypedVariable || typeInst instanceof BSClass) {
+				String result = ((NamedObject)typeInst).getName();
+				result += "(" + compileArgumentsWithSeparator(" ↦") + ")";
+				return result;
+			}
+		}
+		
+		/* No context, or arguments. I'm not entirely sure what it would mean to have a class in this situation
+		 * so I should validate against it.*/
+		if (typeInst instanceof ClassDecl || typeInst instanceof TypedVariable) {
+			return ((NamedObject)typeInst).getName();
+		} else {
+			return ((FunctionDecl)typeInst).getName() + "_P";
+		}
+	}
+	
+	String compileArgumentsWithSeparator(String sep) {
+		
 	}
 
 } //FunctionCallImpl

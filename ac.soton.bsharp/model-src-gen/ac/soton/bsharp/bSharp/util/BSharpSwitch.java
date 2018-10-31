@@ -276,14 +276,8 @@ public class BSharpSwitch<T> extends Switch<T> {
 				T result = caseFunctionDecl(functionDecl);
 				if (result == null) result = caseIVariableProvider(functionDecl);
 				if (result == null) result = caseIPolyTypeProvider(functionDecl);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.FUNCTION_NAME: {
-				FunctionName functionName = (FunctionName)theEObject;
-				T result = caseFunctionName(functionName);
-				if (result == null) result = caseExpressionVariable(functionName);
-				if (result == null) result = caseNamedObject(functionName);
+				if (result == null) result = caseExpressionVariable(functionDecl);
+				if (result == null) result = caseNamedObject(functionDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -717,21 +711,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFunctionDecl(FunctionDecl object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Function Name</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Function Name</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFunctionName(FunctionName object) {
 		return null;
 	}
 

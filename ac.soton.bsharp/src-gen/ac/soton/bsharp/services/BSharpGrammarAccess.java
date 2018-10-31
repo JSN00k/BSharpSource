@@ -1081,7 +1081,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FunctionDecl");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameFunctionNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Assignment cContextAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cContextPolyContextParserRuleCall_1_0 = (RuleCall)cContextAssignment_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
@@ -1099,19 +1099,19 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprRootExpressionParserRuleCall_9_0 = (RuleCall)cExprAssignment_9.eContents().get(0);
 		
 		///*------------------------- Functions --------------------------------- */ FunctionDecl:
-		//	name=FunctionName context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=TypeConstructor
-		//	infix='INFIX'? precedence=INT? expr=RootExpression;
+		//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=TypeConstructor infix='INFIX'?
+		//	precedence=INT? expr=RootExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=FunctionName context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=TypeConstructor infix='INFIX'?
+		//name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=TypeConstructor infix='INFIX'?
 		//precedence=INT? expr=RootExpression
 		public Group getGroup() { return cGroup; }
 		
-		//name=FunctionName
+		//name=ID
 		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 		
-		//FunctionName
-		public RuleCall getNameFunctionNameParserRuleCall_0_0() { return cNameFunctionNameParserRuleCall_0_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 		
 		//context=PolyContext?
 		public Assignment getContextAssignment_1() { return cContextAssignment_1; }
@@ -1157,21 +1157,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//RootExpression
 		public RuleCall getExprRootExpressionParserRuleCall_9_0() { return cExprRootExpressionParserRuleCall_9_0; }
-	}
-	public class FunctionNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FunctionName");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
-		
-		//FunctionName:
-		//	name=ID;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID
-		public Assignment getNameAssignment() { return cNameAssignment; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
 	}
 	public class MatchStatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.MatchStatement");
@@ -1641,8 +1626,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cInfixLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
 		private final Assignment cFuncNameAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
-		private final CrossReference cFuncNameFunctionNameCrossReference_1_1_0_0 = (CrossReference)cFuncNameAssignment_1_1_0.eContents().get(0);
-		private final RuleCall cFuncNameFunctionNameIDTerminalRuleCall_1_1_0_0_1 = (RuleCall)cFuncNameFunctionNameCrossReference_1_1_0_0.eContents().get(1);
+		private final CrossReference cFuncNameFunctionDeclCrossReference_1_1_0_0 = (CrossReference)cFuncNameAssignment_1_1_0.eContents().get(0);
+		private final RuleCall cFuncNameFunctionDeclIDTerminalRuleCall_1_1_0_0_1 = (RuleCall)cFuncNameFunctionDeclCrossReference_1_1_0_0.eContents().get(1);
 		private final Assignment cOpNameAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
 		private final RuleCall cOpNameInbuiltInfixParserRuleCall_1_1_1_0 = (RuleCall)cOpNameAssignment_1_1_1.eContents().get(0);
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
@@ -1661,32 +1646,32 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * 
 		// * TODO: Programmatically check that the function is an infix function.
 		// */ Infix Expression:
-		//	Element ({Infix.left=current} (funcName=[FunctionName] | opName=InbuiltInfix) right=Element)*;
+		//	Element ({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Element ({Infix.left=current} (funcName=[FunctionName] | opName=InbuiltInfix) right=Element)*
+		//Element ({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*
 		public Group getGroup() { return cGroup; }
 		
 		//Element
 		public RuleCall getElementParserRuleCall_0() { return cElementParserRuleCall_0; }
 		
-		//({Infix.left=current} (funcName=[FunctionName] | opName=InbuiltInfix) right=Element)*
+		//({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{Infix.left=current}
 		public Action getInfixLeftAction_1_0() { return cInfixLeftAction_1_0; }
 		
-		//funcName=[FunctionName] | opName=InbuiltInfix
+		//funcName=[FunctionDecl] | opName=InbuiltInfix
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
-		//funcName=[FunctionName]
+		//funcName=[FunctionDecl]
 		public Assignment getFuncNameAssignment_1_1_0() { return cFuncNameAssignment_1_1_0; }
 		
-		//[FunctionName]
-		public CrossReference getFuncNameFunctionNameCrossReference_1_1_0_0() { return cFuncNameFunctionNameCrossReference_1_1_0_0; }
+		//[FunctionDecl]
+		public CrossReference getFuncNameFunctionDeclCrossReference_1_1_0_0() { return cFuncNameFunctionDeclCrossReference_1_1_0_0; }
 		
 		//ID
-		public RuleCall getFuncNameFunctionNameIDTerminalRuleCall_1_1_0_0_1() { return cFuncNameFunctionNameIDTerminalRuleCall_1_1_0_0_1; }
+		public RuleCall getFuncNameFunctionDeclIDTerminalRuleCall_1_1_0_0_1() { return cFuncNameFunctionDeclIDTerminalRuleCall_1_1_0_0_1; }
 		
 		//opName=InbuiltInfix
 		public Assignment getOpNameAssignment_1_1_1() { return cOpNameAssignment_1_1_1; }
@@ -1763,14 +1748,16 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cClassVarDeclAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
 		private final RuleCall cClassVarDeclClassVarDeclParserRuleCall_0_1_0 = (RuleCall)cClassVarDeclAssignment_0_1.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cArgumentsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_1_0 = (RuleCall)cArgumentsAssignment_1_1.eContents().get(0);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
-		private final Assignment cArgumentsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_2_1_0 = (RuleCall)cArgumentsAssignment_1_2_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		private final Assignment cContextAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cContextTypeDeclContextParserRuleCall_1_0_0 = (RuleCall)cContextAssignment_1_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cArgumentsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_2_0 = (RuleCall)cArgumentsAssignment_1_2.eContents().get(0);
+		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
+		private final Keyword cCommaKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
+		private final Assignment cArgumentsAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
+		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_3_1_0 = (RuleCall)cArgumentsAssignment_1_3_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
 		
 		///* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
 		// * scenarios: 
@@ -1785,12 +1772,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * 
 		// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
 		// */ FunctionCall:
-		//	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) ('(' arguments+=RootExpression? (','
-		//	arguments+=RootExpression)* ')')?;
+		//	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' arguments+=RootExpression?
+		//	(',' arguments+=RootExpression)* ')')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) ('(' arguments+=RootExpression? (','
-		//arguments+=RootExpression)* ')')?
+		//(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' arguments+=RootExpression?
+		//(',' arguments+=RootExpression)* ')')?
 		public Group getGroup() { return cGroup; }
 		
 		//typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl
@@ -1811,32 +1798,38 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassVarDecl
 		public RuleCall getClassVarDeclClassVarDeclParserRuleCall_0_1_0() { return cClassVarDeclClassVarDeclParserRuleCall_0_1_0; }
 		
-		//('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
+		//(context=TypeDeclContext? '(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//context=TypeDeclContext?
+		public Assignment getContextAssignment_1_0() { return cContextAssignment_1_0; }
+		
+		//TypeDeclContext
+		public RuleCall getContextTypeDeclContextParserRuleCall_1_0_0() { return cContextTypeDeclContextParserRuleCall_1_0_0; }
+		
 		//'('
-		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+		public Keyword getLeftParenthesisKeyword_1_1() { return cLeftParenthesisKeyword_1_1; }
 		
 		//arguments+=RootExpression?
-		public Assignment getArgumentsAssignment_1_1() { return cArgumentsAssignment_1_1; }
+		public Assignment getArgumentsAssignment_1_2() { return cArgumentsAssignment_1_2; }
 		
 		//RootExpression
-		public RuleCall getArgumentsRootExpressionParserRuleCall_1_1_0() { return cArgumentsRootExpressionParserRuleCall_1_1_0; }
+		public RuleCall getArgumentsRootExpressionParserRuleCall_1_2_0() { return cArgumentsRootExpressionParserRuleCall_1_2_0; }
 		
 		//(',' arguments+=RootExpression)*
-		public Group getGroup_1_2() { return cGroup_1_2; }
+		public Group getGroup_1_3() { return cGroup_1_3; }
 		
 		//','
-		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
+		public Keyword getCommaKeyword_1_3_0() { return cCommaKeyword_1_3_0; }
 		
 		//arguments+=RootExpression
-		public Assignment getArgumentsAssignment_1_2_1() { return cArgumentsAssignment_1_2_1; }
+		public Assignment getArgumentsAssignment_1_3_1() { return cArgumentsAssignment_1_3_1; }
 		
 		//RootExpression
-		public RuleCall getArgumentsRootExpressionParserRuleCall_1_2_1_0() { return cArgumentsRootExpressionParserRuleCall_1_2_1_0; }
+		public RuleCall getArgumentsRootExpressionParserRuleCall_1_3_1_0() { return cArgumentsRootExpressionParserRuleCall_1_3_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
+		public Keyword getRightParenthesisKeyword_1_4() { return cRightParenthesisKeyword_1_4; }
 	}
 	public class ClassVarDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ClassVarDecl");
@@ -1881,19 +1874,19 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	public class ExpressionVariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ExpressionVariable");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cFunctionNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFunctionDeclParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTypedVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cClassDeclParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//ExpressionVariable:
-		//	FunctionName | TypedVariable | ClassDecl;
+		//	FunctionDecl | TypedVariable | ClassDecl;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FunctionName | TypedVariable | ClassDecl
+		//FunctionDecl | TypedVariable | ClassDecl
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//FunctionName
-		public RuleCall getFunctionNameParserRuleCall_0() { return cFunctionNameParserRuleCall_0; }
+		//FunctionDecl
+		public RuleCall getFunctionDeclParserRuleCall_0() { return cFunctionDeclParserRuleCall_0; }
 		
 		//TypedVariable
 		public RuleCall getTypedVariableParserRuleCall_1() { return cTypedVariableParserRuleCall_1; }
@@ -2037,7 +2030,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final BSharpBlockElements pBSharpBlock;
 	private final TypeBodyElementsElements pTypeBodyElements;
 	private final FunctionDeclElements pFunctionDecl;
-	private final FunctionNameElements pFunctionName;
 	private final MatchStatementElements pMatchStatement;
 	private final MatchCaseElements pMatchCase;
 	private final TheoremBodyElements pTheoremBody;
@@ -2098,7 +2090,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBSharpBlock = new BSharpBlockElements();
 		this.pTypeBodyElements = new TypeBodyElementsElements();
 		this.pFunctionDecl = new FunctionDeclElements();
-		this.pFunctionName = new FunctionNameElements();
 		this.pMatchStatement = new MatchStatementElements();
 		this.pMatchCase = new MatchCaseElements();
 		this.pTheoremBody = new TheoremBodyElements();
@@ -2466,24 +2457,14 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///*------------------------- Functions --------------------------------- */ FunctionDecl:
-	//	name=FunctionName context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=TypeConstructor
-	//	infix='INFIX'? precedence=INT? expr=RootExpression;
+	//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=TypeConstructor infix='INFIX'?
+	//	precedence=INT? expr=RootExpression;
 	public FunctionDeclElements getFunctionDeclAccess() {
 		return pFunctionDecl;
 	}
 	
 	public ParserRule getFunctionDeclRule() {
 		return getFunctionDeclAccess().getRule();
-	}
-	
-	//FunctionName:
-	//	name=ID;
-	public FunctionNameElements getFunctionNameAccess() {
-		return pFunctionName;
-	}
-	
-	public ParserRule getFunctionNameRule() {
-		return getFunctionNameAccess().getRule();
 	}
 	
 	//MatchStatement:
@@ -2626,7 +2607,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * 
 	// * TODO: Programmatically check that the function is an infix function.
 	// */ Infix Expression:
-	//	Element ({Infix.left=current} (funcName=[FunctionName] | opName=InbuiltInfix) right=Element)*;
+	//	Element ({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*;
 	public InfixElements getInfixAccess() {
 		return pInfix;
 	}
@@ -2671,8 +2652,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * 
 	// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
 	// */ FunctionCall:
-	//	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) ('(' arguments+=RootExpression? (','
-	//	arguments+=RootExpression)* ')')?;
+	//	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' arguments+=RootExpression?
+	//	(',' arguments+=RootExpression)* ')')?;
 	public FunctionCallElements getFunctionCallAccess() {
 		return pFunctionCall;
 	}
@@ -2693,7 +2674,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ExpressionVariable:
-	//	FunctionName | TypedVariable | ClassDecl;
+	//	FunctionDecl | TypedVariable | ClassDecl;
 	public ExpressionVariableElements getExpressionVariableAccess() {
 		return pExpressionVariable;
 	}

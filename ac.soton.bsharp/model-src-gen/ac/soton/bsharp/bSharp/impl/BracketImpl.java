@@ -188,7 +188,7 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 	}
 
 	@Override
-	public String compileAsPredicate() {
+	public String compileAsPredicate() throws Exception {
 		/* I shouldn't ever get here, as brackets are removed, when the tree is reordered.
 		 * However as I may change my mind on this I have written a quick implementation 
 		 * anyway.

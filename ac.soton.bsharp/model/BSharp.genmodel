@@ -108,9 +108,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FunctionDecl/infix"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FunctionDecl/precedence"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/expr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/name"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//FunctionName"/>
     <genClasses ecoreClass="BSharp.ecore#//MatchStatement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//MatchStatement/match"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//MatchStatement/inductCase"/>

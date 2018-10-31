@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.Infix;
 
@@ -51,7 +52,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * @generated
 	 * @ordered
 	 */
-	protected FunctionName funcName;
+	protected FunctionDecl funcName;
 
 	/**
 	 * The default value of the '{@link #getOpName() <em>Op Name</em>}' attribute.
@@ -150,10 +151,10 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionName getFuncName() {
+	public FunctionDecl getFuncName() {
 		if (funcName != null && funcName.eIsProxy()) {
 			InternalEObject oldFuncName = (InternalEObject)funcName;
-			funcName = (FunctionName)eResolveProxy(oldFuncName);
+			funcName = (FunctionDecl)eResolveProxy(oldFuncName);
 			if (funcName != oldFuncName) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.INFIX__FUNC_NAME, oldFuncName, funcName));
@@ -167,7 +168,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionName basicGetFuncName() {
+	public FunctionDecl basicGetFuncName() {
 		return funcName;
 	}
 
@@ -176,8 +177,8 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFuncName(FunctionName newFuncName) {
-		FunctionName oldFuncName = funcName;
+	public void setFuncName(FunctionDecl newFuncName) {
+		FunctionDecl oldFuncName = funcName;
 		funcName = newFuncName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INFIX__FUNC_NAME, oldFuncName, funcName));
@@ -296,7 +297,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 				setLeft((Expression)newValue);
 				return;
 			case BSharpPackage.INFIX__FUNC_NAME:
-				setFuncName((FunctionName)newValue);
+				setFuncName((FunctionDecl)newValue);
 				return;
 			case BSharpPackage.INFIX__OP_NAME:
 				setOpName((String)newValue);
@@ -320,7 +321,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 				setLeft((Expression)null);
 				return;
 			case BSharpPackage.INFIX__FUNC_NAME:
-				setFuncName((FunctionName)null);
+				setFuncName((FunctionDecl)null);
 				return;
 			case BSharpPackage.INFIX__OP_NAME:
 				setOpName(OP_NAME_EDEFAULT);

@@ -205,6 +205,8 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 			/* These expressions have to compile to predicates. */
 			result += expr.compileAsPredicate();
 		}
+		
+		return result;
 	}
 
 } //WhereImpl

@@ -296,7 +296,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	}
 
 	@Override
-	public String compileBSClassConstructorWithTypeContext(TypeDeclContext ctx) throws Exception {
+	public String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception {
 		EList<ConstructedType> constrTypes = ctx.getTypeName();
 		if (polyTypes == null || polyTypes.size() == 0) {
 			if (polyTypes.size() != constrTypes.size()) {

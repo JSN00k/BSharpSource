@@ -24,33 +24,7 @@ package ac.soton.bsharp.bSharp;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl()
  * @model
  */
-public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' containment reference.
-	 * @see #setName(FunctionName)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl_Name()
-	 * @model containment="true"
-	 * @generated
-	 */
-	FunctionName getName();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionDecl#getName <em>Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' containment reference.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(FunctionName value);
-
+public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, ExpressionVariable {
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -206,5 +180,7 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider {
 	 * @generated
 	 */
 	void setExpr(Expression value);
+
+	String callWithTypeContext(TypeDeclContext context);
 
 } // FunctionDecl

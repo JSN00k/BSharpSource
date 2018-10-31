@@ -5,7 +5,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
-import ac.soton.bsharp.bSharp.FunctionName;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
@@ -110,7 +110,7 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
       return Boolean.valueOf(Objects.equal(object, currentClass));
     };
     final Function1<EObject, Boolean> _function_1 = (EObject object) -> {
-      return Boolean.valueOf((object instanceof FunctionName));
+      return Boolean.valueOf((object instanceof FunctionDecl));
     };
     ArrayList<? extends EObject> functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, _function, _function_1);
     IScope scope = this.getVariableScopeFor(context, parent);

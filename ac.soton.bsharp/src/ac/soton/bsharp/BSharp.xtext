@@ -180,11 +180,7 @@ TypeBodyElements:
 /*------------------------- Functions --------------------------------- */
 
 FunctionDecl:
-	name=FunctionName (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=TypeConstructor (infix='INFIX')? precedence=INT? expr=RootExpression
-;
-
-FunctionName:
-	name=ID
+	name=ID (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=TypeConstructor (infix='INFIX')? precedence=INT? expr=RootExpression
 ;
 
 MatchStatement:
@@ -265,7 +261,7 @@ PrefixBuiltIn:
  * TODO: Programmatically check that the function is an infix function.
  */
 Infix returns Expression:
-	Element ({Infix.left=current} (funcName=[FunctionName] | opName=InbuiltInfix) right=Element)*
+	Element ({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*
 ;
 
 /* currently it will not build because the quantifier is causing recursion I think. 
@@ -305,7 +301,7 @@ ClassVarDecl:
 ;
 
 ExpressionVariable:
-	 FunctionName | TypedVariable | ClassDecl
+	 FunctionDecl | TypedVariable | ClassDecl
 ;
 
 InbuiltInfix:

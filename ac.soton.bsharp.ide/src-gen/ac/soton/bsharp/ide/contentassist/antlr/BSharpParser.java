@@ -100,7 +100,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBracketAccess().getGroup(), "rule__Bracket__Group__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1(), "rule__FunctionCall__Group_1__0");
-			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1_2(), "rule__FunctionCall__Group_1_2__0");
+			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1_3(), "rule__FunctionCall__Group_1_3__0");
 			builder.put(grammarAccess.getClassVarDeclAccess().getGroup(), "rule__ClassVarDecl__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup(), "rule__Instance__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup_5(), "rule__Instance__Group_5__0");
@@ -160,7 +160,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionDeclAccess().getInfixAssignment_7(), "rule__FunctionDecl__InfixAssignment_7");
 			builder.put(grammarAccess.getFunctionDeclAccess().getPrecedenceAssignment_8(), "rule__FunctionDecl__PrecedenceAssignment_8");
 			builder.put(grammarAccess.getFunctionDeclAccess().getExprAssignment_9(), "rule__FunctionDecl__ExprAssignment_9");
-			builder.put(grammarAccess.getFunctionNameAccess().getNameAssignment(), "rule__FunctionName__NameAssignment");
 			builder.put(grammarAccess.getMatchStatementAccess().getMatchAssignment_1(), "rule__MatchStatement__MatchAssignment_1");
 			builder.put(grammarAccess.getMatchStatementAccess().getInductCaseAssignment_3(), "rule__MatchStatement__InductCaseAssignment_3");
 			builder.put(grammarAccess.getMatchStatementAccess().getInductCaseAssignment_4(), "rule__MatchStatement__InductCaseAssignment_4");
@@ -193,8 +192,9 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBracketAccess().getChildAssignment_1(), "rule__Bracket__ChildAssignment_1");
 			builder.put(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_0_0(), "rule__FunctionCall__TypeInstAssignment_0_0");
 			builder.put(grammarAccess.getFunctionCallAccess().getClassVarDeclAssignment_0_1(), "rule__FunctionCall__ClassVarDeclAssignment_0_1");
-			builder.put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_1(), "rule__FunctionCall__ArgumentsAssignment_1_1");
-			builder.put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_2_1(), "rule__FunctionCall__ArgumentsAssignment_1_2_1");
+			builder.put(grammarAccess.getFunctionCallAccess().getContextAssignment_1_0(), "rule__FunctionCall__ContextAssignment_1_0");
+			builder.put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_2(), "rule__FunctionCall__ArgumentsAssignment_1_2");
+			builder.put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_3_1(), "rule__FunctionCall__ArgumentsAssignment_1_3_1");
 			builder.put(grammarAccess.getClassVarDeclAccess().getOwnerTypeAssignment_0(), "rule__ClassVarDecl__OwnerTypeAssignment_0");
 			builder.put(grammarAccess.getClassVarDeclAccess().getTypeInstAssignment_2(), "rule__ClassVarDecl__TypeInstAssignment_2");
 			builder.put(grammarAccess.getInstanceAccess().getClassNameAssignment_1(), "rule__Instance__ClassNameAssignment_1");

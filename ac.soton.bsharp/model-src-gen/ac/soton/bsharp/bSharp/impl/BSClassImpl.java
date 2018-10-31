@@ -472,7 +472,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		String result = name + "(";
 		try {
-			result += context.compileBSClassConstructorWithTypeContext(ctx);
+			result += context.compileCallWithTypeContext(ctx);
 		} catch (Exception e) {
 			System.err.print(e.getLocalizedMessage());
 		}

@@ -83,7 +83,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.EXTEND: return createExtend();
 			case BSharpPackage.TYPE_BODY_ELEMENTS: return createTypeBodyElements();
 			case BSharpPackage.FUNCTION_DECL: return createFunctionDecl();
-			case BSharpPackage.FUNCTION_NAME: return createFunctionName();
 			case BSharpPackage.MATCH_STATEMENT: return createMatchStatement();
 			case BSharpPackage.MATCH_CASE: return createMatchCase();
 			case BSharpPackage.THEOREM_BODY: return createTheoremBody();
@@ -294,16 +293,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public FunctionDecl createFunctionDecl() {
 		FunctionDeclImpl functionDecl = new FunctionDeclImpl();
 		return functionDecl;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FunctionName createFunctionName() {
-		FunctionNameImpl functionName = new FunctionNameImpl();
-		return functionName;
 	}
 
 	/**

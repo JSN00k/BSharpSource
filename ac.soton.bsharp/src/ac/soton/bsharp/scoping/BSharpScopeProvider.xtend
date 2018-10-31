@@ -11,7 +11,6 @@ import ac.soton.bsharp.util.EcoreUtilJ
 import org.eclipse.xtext.scoping.Scopes
 import ac.soton.bsharp.bSharp.IPolyTypeProvider
 import ac.soton.bsharp.bSharp.TopLevel
-import ac.soton.bsharp.bSharp.FunctionName
 import ac.soton.bsharp.bSharp.IVariableProvider
 import ac.soton.bsharp.bSharp.MatchCase
 import ac.soton.bsharp.bSharp.MatchStatement
@@ -22,6 +21,7 @@ import java.util.ArrayList
 import ac.soton.bsharp.bSharp.ClassVarDecl
 import ac.soton.bsharp.bSharp.PolyType
 import ac.soton.bsharp.bSharp.BSClass
+import ac.soton.bsharp.bSharp.FunctionDecl
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -120,7 +120,7 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		
 		/* FunctionName can be any function within the current body, or any body above. */
 		var functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, 
-			[object | object == currentClass], [object | object instanceof FunctionName])
+			[object | object == currentClass], [object | object instanceof FunctionDecl])
 		
 		var scope = getVariableScopeFor(context, parent)
 		scope = Scopes.scopeFor(functionNames, scope)

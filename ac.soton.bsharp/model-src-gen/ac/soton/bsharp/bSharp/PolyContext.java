@@ -55,6 +55,10 @@ public interface PolyContext extends EObject {
 
 	String constructCallArgsForBSClassWithTypes(ArrayList<String> eventBPolytypes);
 
-	String compileBSClassConstructorWithTypeContext(TypeDeclContext ctx) throws Exception;
+	/* Something with a context has been called with the context arguments, it is necessary to 
+	 * resolve types properly, searching for the correct supertypes to fill the context in EventB
+	 * This method does that.
+	 */
+	String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception;
 
 } // PolyContext

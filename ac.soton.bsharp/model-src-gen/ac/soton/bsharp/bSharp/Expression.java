@@ -54,6 +54,6 @@ public interface Expression extends EObject {
 	 */
 	String constructLatexExpressionTree(String indent);
 
-	String compileAsPredicate();
+	String compileAsPredicate() throws Exception;
 
 } // Expression

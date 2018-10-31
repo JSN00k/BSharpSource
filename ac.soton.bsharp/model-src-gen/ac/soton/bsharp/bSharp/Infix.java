@@ -59,12 +59,12 @@ public interface Infix extends Expression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Func Name</em>' reference.
-	 * @see #setFuncName(FunctionName)
+	 * @see #setFuncName(FunctionDecl)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInfix_FuncName()
 	 * @model
 	 * @generated
 	 */
-	FunctionName getFuncName();
+	FunctionDecl getFuncName();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Infix#getFuncName <em>Func Name</em>}' reference.
@@ -74,7 +74,7 @@ public interface Infix extends Expression {
 	 * @see #getFuncName()
 	 * @generated
 	 */
-	void setFuncName(FunctionName value);
+	void setFuncName(FunctionDecl value);
 
 	/**
 	 * Returns the value of the '<em><b>Op Name</b></em>' attribute.

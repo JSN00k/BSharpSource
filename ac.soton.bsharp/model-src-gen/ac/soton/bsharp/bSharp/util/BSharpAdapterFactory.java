@@ -185,10 +185,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createFunctionDeclAdapter();
 			}
 			@Override
-			public Adapter caseFunctionName(FunctionName object) {
-				return createFunctionNameAdapter();
-			}
-			@Override
 			public Adapter caseMatchStatement(MatchStatement object) {
 				return createMatchStatementAdapter();
 			}
@@ -567,20 +563,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFunctionDeclAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.FunctionName <em>Function Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.FunctionName
-	 * @generated
-	 */
-	public Adapter createFunctionNameAdapter() {
 		return null;
 	}
 
