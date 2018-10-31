@@ -407,7 +407,10 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			if (typeInst instanceof BSClass) {
 				String result = ((BSClass) typeInst).constructWithTypeContext(context);
 				if (arguments != null) {
-					result += '(' + compileArgumentsWithSeparator(" ↦") + ") = BOOL";
+					result += '(' + compileArgumentsWithSeparator(" ↦") + ")";
+					if (asPredicate) {
+						result += "= BOOL";
+					}
 				}
 				
 				return result;
@@ -421,7 +424,10 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				String result = ((FunctionDecl) typeInst).callWithTypeContext(context);
 				
 				if (arguments != null) {
-					result += '(' + compileArgumentsWithSeparator(" ↦") + ") = BOOL";
+					result += '(' + compileArgumentsWithSeparator(" ↦") + ")";
+					if (asPredicate) {
+						result += "= BOOL";
+					}
 				}
 				
 				
@@ -439,21 +445,33 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		if (arguments != null) {
 			if (typeInst instanceof FunctionDecl) {
 				/* This means that there should be an operator to directly evaluate the function */
-				String result = ((NamedObject)typeInst).getName() + "_Pred" + "(" + compileArgumentsWithSeparator(",") + ")";
+				String result = ((NamedObject)typeInst).getName();
+				if (asPredicate) {
+					result += "_Pred";
+				}
+				
+				result += "(" + compileArgumentsWithSeparator(",") + ")";
+				
 				return result;
 			}
-			
-			this is a purposeful error ISafeRunnable need to remove resuts after this as they won't produce Preds.
 			
 			if (typeInst instanceof TypedVariable || typeInst instanceof BSClass) {
 				String result = ((NamedObject)typeInst).getName();
 				result += "(" + compileArgumentsWithSeparator(" ↦") + ")";
+				
+				if (asPredicate) {
+					result += " = BOOL";
+				}
+				
 				return result;
 			}
 		}
 		
-		/* No context, or arguments. I'm not entirely sure what it would mean to have a class in this situation
-		 * so I should validate against it.*/
+		if (asPredicate) {
+			throw new Exception("In FunctionCallImpl tried to compile an expression as a Pred "
+					+ "which couldn't be compiled to a predicate.");
+		}
+		
 		if (typeInst instanceof ClassDecl || typeInst instanceof TypedVariable) {
 			return ((NamedObject)typeInst).getName();
 		} else {
@@ -461,8 +479,18 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		}
 	}
 	
-	String compileArgumentsWithSeparator(String sep) {
+	String compileArgumentsWithSeparator(String sep) throws Exception {
+		Boolean first = true;
+		String result = "";
+		for (Expression expr : arguments) {
+			if (!first) {
+				result += sep + " ";
+			}
+			
+			result += expr.compileToEventBString(false);
+		}
 		
+		return result;
 	}
 
 } //FunctionCallImpl

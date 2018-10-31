@@ -188,12 +188,16 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 	}
 
 	@Override
-	public String compileAsPredicate() throws Exception {
+	public String compileToEventBString(Boolean asPredicate) throws Exception {
 		/* I shouldn't ever get here, as brackets are removed, when the tree is reordered.
 		 * However as I may change my mind on this I have written a quick implementation 
 		 * anyway.
 		 */
-		return "(" + child.compileAsPredicate() + ")";
+		if (asPredicate) {
+			return child.compileToEventBString(asPredicate);
+		} else {
+			return "(" + child.compileToEventBString(asPredicate) + ")";
+		}
 	}
 
 } //BracketImpl
