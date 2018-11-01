@@ -67,6 +67,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case BSharpPackage.IEVENT_BPREFIX_PROVIDER: {
+				IEventBPrefixProvider iEventBPrefixProvider = (IEventBPrefixProvider)theEObject;
+				T result = caseIEventBPrefixProvider(iEventBPrefixProvider);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.IVARIABLE_PROVIDER: {
 				IVariableProvider iVariableProvider = (IVariableProvider)theEObject;
 				T result = caseIVariableProvider(iVariableProvider);
@@ -143,6 +149,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIPolyTypeProvider(classDecl);
 				if (result == null) result = caseType(classDecl);
 				if (result == null) result = caseTopLevelInstance(classDecl);
+				if (result == null) result = caseIEventBPrefixProvider(classDecl);
 				if (result == null) result = caseGenName(classDecl);
 				if (result == null) result = caseNamedObject(classDecl);
 				if (result == null) result = defaultCase(theEObject);
@@ -157,6 +164,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIPolyTypeProvider(bsClass);
 				if (result == null) result = caseType(bsClass);
 				if (result == null) result = caseTopLevelInstance(bsClass);
+				if (result == null) result = caseIEventBPrefixProvider(bsClass);
 				if (result == null) result = caseGenName(bsClass);
 				if (result == null) result = caseNamedObject(bsClass);
 				if (result == null) result = defaultCase(theEObject);
@@ -242,6 +250,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIPolyTypeProvider(datatype);
 				if (result == null) result = caseType(datatype);
 				if (result == null) result = caseTopLevelInstance(datatype);
+				if (result == null) result = caseIEventBPrefixProvider(datatype);
 				if (result == null) result = caseGenName(datatype);
 				if (result == null) result = caseNamedObject(datatype);
 				if (result == null) result = defaultCase(theEObject);
@@ -262,6 +271,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				T result = caseExtend(extend);
 				if (result == null) result = caseIVariableProvider(extend);
 				if (result == null) result = caseIPolyTypeProvider(extend);
+				if (result == null) result = caseIEventBPrefixProvider(extend);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -397,6 +407,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IEvent BPrefix Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IEvent BPrefix Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIEventBPrefixProvider(IEventBPrefixProvider object) {
+		return null;
 	}
 
 	/**

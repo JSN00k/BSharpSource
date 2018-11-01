@@ -6,7 +6,6 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionDecl;
-import ac.soton.bsharp.bSharp.FunctionName;
 import ac.soton.bsharp.bSharp.Infix;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -388,6 +387,34 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		result += indent + "]";
 		
 		return result;
+	}
+
+	@Override
+	public String compileToEventBString(Boolean asPredicate) throws Exception {
+		if (opName != null || !opName.isEmpty()) {
+			String result = left.compileToEventBString(true) + opName + right.compileToEventBString(true);
+			
+			if (!asPredicate)
+				return result;
+			else
+				return "bool(" + result + ")";
+		}
+		
+		/* This may need to be changed substantially to allow other elements to be infix. Current I believe
+		 * that there's always an EventB operator */
+		
+		String fName;
+		if (asPredicate) {
+			fName = funcName.eventBPredName();
+		} else {
+			fName = funcName.eventBExprName();
+		}
+		
+		if (funcName.hasEventBInfix()) {
+			return left.compileToEventBString(false) + fName + right.compileToEventBString(false);
+		} else {
+			return fName + "(" + left.compileToEventBString(false) + ", " + right.compileToEventBString(false) + ")";
+		}
 	}
 
 } //InfixImpl

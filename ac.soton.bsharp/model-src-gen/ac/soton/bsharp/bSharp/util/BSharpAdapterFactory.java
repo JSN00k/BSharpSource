@@ -69,6 +69,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	protected BSharpSwitch<Adapter> modelSwitch =
 		new BSharpSwitch<Adapter>() {
 			@Override
+			public Adapter caseIEventBPrefixProvider(IEventBPrefixProvider object) {
+				return createIEventBPrefixProviderAdapter();
+			}
+			@Override
 			public Adapter caseIVariableProvider(IVariableProvider object) {
 				return createIVariableProviderAdapter();
 			}
@@ -271,6 +275,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IEventBPrefixProvider <em>IEvent BPrefix Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.IEventBPrefixProvider
+	 * @generated
+	 */
+	public Adapter createIEventBPrefixProviderAdapter() {
+		return null;
+	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TopLevel <em>Top Level</em>}'.

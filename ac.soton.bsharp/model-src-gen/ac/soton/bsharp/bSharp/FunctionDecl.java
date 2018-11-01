@@ -183,4 +183,10 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, Expr
 
 	String callWithTypeContext(TypeDeclContext context);
 
+	String eventBPredName()  throws Exception;
+
+	boolean hasEventBInfix() throws Exception;
+
+	String eventBExprName();
+
 } // FunctionDecl

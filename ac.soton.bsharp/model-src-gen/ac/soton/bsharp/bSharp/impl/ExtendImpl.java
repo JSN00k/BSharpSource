@@ -367,6 +367,11 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 			return null;
 		}
 	}
+
+	@Override
+	public String eventBPrefix() {
+		return extendedClass.eventBPrefix();
+	}
 	
 	
 

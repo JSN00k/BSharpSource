@@ -24,6 +24,7 @@ import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.GlobalImport;
+import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.Infix;
@@ -67,6 +68,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iEventBPrefixProviderEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -448,6 +456,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BSharpPackage.eNS_URI, theBSharpPackage);
 		return theBSharpPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIEventBPrefixProvider() {
+		return iEventBPrefixProviderEClass;
 	}
 
 	/**
@@ -1639,6 +1656,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		isCreated = true;
 
 		// Create classes and their features
+		iEventBPrefixProviderEClass = createEClass(IEVENT_BPREFIX_PROVIDER);
+
 		iVariableProviderEClass = createEClass(IVARIABLE_PROVIDER);
 
 		iPolyTypeProviderEClass = createEClass(IPOLY_TYPE_PROVIDER);
@@ -1850,6 +1869,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		classDeclEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		classDeclEClass.getESuperTypes().add(this.getType());
 		classDeclEClass.getESuperTypes().add(this.getTopLevelInstance());
+		classDeclEClass.getESuperTypes().add(this.getIEventBPrefixProvider());
 		bsClassEClass.getESuperTypes().add(this.getClassDecl());
 		genNameEClass.getESuperTypes().add(this.getNamedObject());
 		polyTypeEClass.getESuperTypes().add(this.getGenName());
@@ -1860,6 +1880,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		datatypeConstructorEClass.getESuperTypes().add(this.getTypedVariable());
 		extendEClass.getESuperTypes().add(this.getIVariableProvider());
 		extendEClass.getESuperTypes().add(this.getIPolyTypeProvider());
+		extendEClass.getESuperTypes().add(this.getIEventBPrefixProvider());
 		functionDeclEClass.getESuperTypes().add(this.getIVariableProvider());
 		functionDeclEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		functionDeclEClass.getESuperTypes().add(this.getExpressionVariable());
@@ -1876,6 +1897,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		infixEClass.getESuperTypes().add(this.getExpression());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(iEventBPrefixProviderEClass, IEventBPrefixProvider.class, "IEventBPrefixProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(iVariableProviderEClass, IVariableProvider.class, "IVariableProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iPolyTypeProviderEClass, IPolyTypeProvider.class, "IPolyTypeProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

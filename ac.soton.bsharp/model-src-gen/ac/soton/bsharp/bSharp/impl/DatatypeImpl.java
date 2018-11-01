@@ -171,5 +171,11 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 				+ "explicit contexts.");
 		return null;
 	}
+	
+	@Override
+	public String eventBPrefix() {
+		// TODO Change this when user defined prefixes are added.
+		return name;
+	}
 
 } //DatatypeImpl

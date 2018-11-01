@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl()
  * @model
  */
-public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvider, IPolyTypeProvider, Type, TopLevelInstance {
+public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvider, IPolyTypeProvider, Type, TopLevelInstance, IEventBPrefixProvider {
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

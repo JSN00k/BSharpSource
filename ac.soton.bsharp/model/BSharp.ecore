@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bSharp" nsURI="http://www.soton.ac/bsharp/BSharp" nsPrefix="bSharp">
+  <eClassifiers xsi:type="ecore:EClass" name="IEventBPrefixProvider" abstract="true"
+      interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IVariableProvider" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IPolyTypeProvider" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//GenName"/>
@@ -47,7 +49,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
         eType="#//Instance" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" abstract="true" eSuperTypes="#//GenName #//ExpressionVariable #//IVariableProvider #//IPolyTypeProvider #//Type #//TopLevelInstance">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" abstract="true" eSuperTypes="#//GenName #//ExpressionVariable #//IVariableProvider #//IPolyTypeProvider #//Type #//TopLevelInstance #//IEventBPrefixProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" upperBound="-1"
@@ -118,7 +120,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="decons" eType="#//TypedVariableList"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Extend" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider">
+  <eClassifiers xsi:type="ecore:EClass" name="Extend" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//IEventBPrefixProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedClass" eType="#//ClassDecl"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>

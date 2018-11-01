@@ -58,7 +58,7 @@ TopLevelImport:
 ;
 
 BodyElements:
-	(classes+=ClassDecl | extends+=Extend | instances+=Instance)+
+	(classes+=ClassDecl | extends+=Extend)+
 ;
 
 GlobalImport:
@@ -304,6 +304,9 @@ ExpressionVariable:
 	 FunctionDecl | TypedVariable | ClassDecl
 ;
 
+/* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 
+ * therefore assumes this is the case. If a new inbuilt operator is included that isn't a predicate
+ * operator the code in InfixImpl needs to be changed to check for this. */
 InbuiltInfix:
 	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
 ;

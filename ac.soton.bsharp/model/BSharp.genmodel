@@ -6,6 +6,7 @@
     copyrightFields="false" runtimeVersion="2.13">
   <genPackages prefix="BSharp" basePackage="ac.soton.bsharp" disposableProviderFactory="true"
       fileExtensions="bs" ecorePackage="BSharp.ecore#/">
+    <genClasses image="false" ecoreClass="BSharp.ecore#//IEventBPrefixProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVariableProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IPolyTypeProvider"/>
     <genClasses ecoreClass="BSharp.ecore#//Type"/>

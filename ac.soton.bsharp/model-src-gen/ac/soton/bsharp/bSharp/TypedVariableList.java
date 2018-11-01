@@ -49,4 +49,7 @@ public interface TypedVariableList extends EObject {
 	 * each with the same type, this unwraps the variable typings.
 	 */
 	Map<String, ArrayList<? extends EObject>> getVariablesAndTypes();
+
+
+	int varCount();
 } // TypedVariableList

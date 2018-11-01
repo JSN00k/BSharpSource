@@ -480,5 +480,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		result += ")";
 		
 		return result;
+	}
+
+	@Override
+	public String eventBPrefix() {
+		// TODO Change this when user defined prefixes are added.
+		return name;
 	}	
 } //BppClassImpl

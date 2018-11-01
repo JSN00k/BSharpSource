@@ -4,15 +4,17 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionDecl;
-import ac.soton.bsharp.bSharp.FunctionName;
+import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 
@@ -624,6 +626,48 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public Collection<PolyType> getPolyTypeNames() {
 		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
+	}
+
+	@Override
+	public String descriptiveName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String eventBPredName() throws Exception {
+		if (context != null || !(returnType instanceof TypeConstructor) || !((TypeConstructor)returnType).getTypeName().getName().equals("Bool")) {
+			throw new Exception("In FunctionDeclImpl tried to get a EventB predicate function for non-boolean function type");
+		}
+		
+		return eventBExprName() + "_Pred";
+	}
+
+	@Override
+	public boolean hasEventBInfix() throws Exception {
+		if (!infix.isEmpty()) {
+			if (varList.varCount() != 2) {
+				//TODO: validation.
+				throw new Exception("In FunctionDeclImpl when compiling got infix operator with more than 2 variables. This"
+						+ " should be validated against.");
+			}
+			
+			return context == null;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public String eventBExprName() {
+		/* Add a new type EventBPrefixProvider type. */
+		EcoreUtil2.getContainerOfType(this, IEventBPrefixProvider.class);
+	}
+
+	@Override
+	public String callWithTypeContext(TypeDeclContext context) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

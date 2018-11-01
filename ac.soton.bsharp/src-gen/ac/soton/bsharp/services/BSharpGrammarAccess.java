@@ -1904,7 +1904,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLogicalAndKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		private final Keyword cLogicalOrKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		
-		//InbuiltInfix:
+		///* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 
+		// * therefore assumes this is the case. If a new inbuilt operator is included that isn't a predicate
+		// * operator the code in InfixImpl needs to be changed to check for this. */ InbuiltInfix:
 		//	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2683,7 +2685,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionVariableAccess().getRule();
 	}
 	
-	//InbuiltInfix:
+	///* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 
+	// * therefore assumes this is the case. If a new inbuilt operator is included that isn't a predicate
+	// * operator the code in InfixImpl needs to be changed to check for this. */ InbuiltInfix:
 	//	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨';
 	public InbuiltInfixElements getInbuiltInfixAccess() {
 		return pInbuiltInfix;
