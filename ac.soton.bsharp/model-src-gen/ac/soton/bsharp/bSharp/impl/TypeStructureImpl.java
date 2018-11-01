@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -185,12 +186,10 @@ public class TypeStructureImpl extends MinimalEObjectImpl.Container implements T
 		if (variables == null)
 			return "";
 		
-		Map<String, ArrayList<? extends EObject>> typedVariables = variables.getVariablesAndTypes();
-		ArrayList<TypedVariable> variables = (ArrayList<TypedVariable>)typedVariables.get("vars");
-		
+		ArrayList<Tuple2<TypedVariable, ConstructedType>> typedVariables = variables.getVariablesAndTypes();
 		String result = "";
-		for (TypedVariable var : variables) {
-			result += "↦ " + var.getName();
+		for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVariables) {
+			result += "↦ " + typedVar.x.getName();
 		}
 		
 		return result;
@@ -201,28 +200,22 @@ public class TypeStructureImpl extends MinimalEObjectImpl.Container implements T
 		if (variables == null)
 			return "";
 	
-		Map<String, ArrayList<? extends EObject>> typedVariables = variables.getVariablesAndTypes();
-		
-		ArrayList<TypedVariable> variables = (ArrayList<TypedVariable>)typedVariables.get("vars");
-		ArrayList<ConstructedType> constructors = (ArrayList<ConstructedType>)typedVariables.get("constructors");
+		ArrayList<Tuple2<TypedVariable, ConstructedType>> typedVariables = variables.getVariablesAndTypes();
 		
 		String result = "";
 		Boolean first = true;
-		for (int i = 0; i < variables.size(); ++i) {
+		for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVariables) {
 			if (!first) {
 				result += "∧";
 			}
 			
-			TypedVariable var = variables.get(i);
-			ConstructedType constr = constructors.get(i);
-			
-			result += var.getName();
+			result += typedVar.x.getName();
 			result += " ∈ ";
 			/* These constructed types have to have a context which contains the type information
 			 * for constructing the types, in the case of supertyes the type classes have inferred 
 			 * contexts that need to be passed into the buildEventBType method.
 			 */
-			result += constr.buildEventBType(null);
+			result += typedVar.y.buildEventBType(null);
 		}
 		
 		return result;

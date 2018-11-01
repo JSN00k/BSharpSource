@@ -11,6 +11,7 @@ import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
@@ -191,6 +192,11 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 			return 0;
 		
 		return polyTypes.size();
+	}
+	
+	@Override
+	public ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext() {
+		return null;
 	}
 	
 	@Override

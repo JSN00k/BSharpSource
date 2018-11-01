@@ -17,9 +17,7 @@ import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 
 import java.util.Collection;
-import java.util.jar.Attributes.Name;
 
-import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -31,8 +29,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import com.google.common.base.Functions;
 
 /**
  * <!-- begin-user-doc -->

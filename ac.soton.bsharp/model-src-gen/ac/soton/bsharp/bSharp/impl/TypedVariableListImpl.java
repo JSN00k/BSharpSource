@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -157,22 +158,25 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	@Override
-	public Map<String, ArrayList<? extends EObject>> getVariablesAndTypes() {
-		TreeMap<String, ArrayList<? extends EObject>> result = new TreeMap<String, ArrayList<? extends EObject>>();
-		ArrayList<TypedVariable> variables = new ArrayList<TypedVariable>();
-		ArrayList<ConstructedType> constructors = new ArrayList<ConstructedType>();
+	public ArrayList<Tuple2<TypedVariable, ConstructedType>> getVariablesAndTypes() {
+		ArrayList<Tuple2<TypedVariable, ConstructedType>> result = new ArrayList<Tuple2<TypedVariable, ConstructedType>>();
 		
 		if (variablesOfType == null)
 			return result;
 		
 		for (VariableTyping varsOfTypes : variablesOfType) {
-			Map<String, ArrayList<? extends EObject>> typedVars = varsOfTypes.getVariablesAndTypes();
-			variables.addAll((ArrayList<TypedVariable>) typedVars.get("vars"));
-			constructors.addAll((ArrayList<ConstructedType>) typedVars.get("constructors"));
+			result.addAll(varsOfTypes.getVariablesAndTypes());
 		}
 		
-		result.put("vars", variables);
-		result.put("constructors", constructors);
+		return result;
+	}
+
+	@Override
+	public int varCount() {
+		int result = 0;
+		for (VariableTyping varsOfType : variablesOfType) {
+			result += varsOfType.varCount();
+		}
 		
 		return result;
 	}

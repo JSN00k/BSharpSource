@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eventb.theory.core.INewOperatorDefinition;
 
+import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 /**
@@ -60,5 +61,7 @@ public interface PolyContext extends EObject {
 	 * This method does that.
 	 */
 	String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception;
+
+	ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext();
 
 } // PolyContext

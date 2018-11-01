@@ -224,4 +224,23 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 		return result;
 	}
 
+	@Override
+	public String compileToEventBString(Boolean asPredicate) throws Exception {
+		/* Match statements could be handled either my generating a new recursive function
+		 * (This is the only thing to do if the match statement is the opt level statement),
+		 * This would involve either passing all variables to the new function or working 
+		 * out which variables need to be passed.
+		 * 
+		 * They could also be handled using a series of COND statements, this has the advantage
+		 * of working Even on non-recursively defined types, however the nested COND have the potential
+		 * to get large. 
+		 * 
+		 * In general I think I should take the functional approach where possible.
+		 */
+		
+		//TODO: Implement me!
+		
+		throw new Exception("In MatchStatementImpl compileToEventBString is unimplemented");
+	}
+
 } //MatchStatementImpl

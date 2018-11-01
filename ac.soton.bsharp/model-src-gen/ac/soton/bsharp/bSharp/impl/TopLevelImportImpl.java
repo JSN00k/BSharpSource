@@ -5,10 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BodyElements;
-import ac.soton.bsharp.bSharp.ClassDecl;
-import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.GlobalImport;
-import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevelImport;
 

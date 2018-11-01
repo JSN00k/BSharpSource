@@ -250,4 +250,21 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 		return result;
 	}
 
+	@Override
+	public String compileToEventBString(Boolean asPredicate) throws Exception {
+		if (name.equals("¬")) {
+			/* Work out whether or not the brackets are needed. */
+			String result =  "¬(" + elem.compileToEventBString(true) + ")";
+			
+			if (asPredicate) {
+				return "bool(" + result + ")";
+			} else {
+				return result;
+			}
+		}
+		
+		throw new Exception("In PrefixImpl compileToEventBString(Boolean asPredicate) is not implemented"
+				+ " for redicate" + name + "\n");
+	}
+
 } //PrefixImpl

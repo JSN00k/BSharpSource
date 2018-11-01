@@ -4,7 +4,6 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionDecl;
@@ -631,7 +630,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public String descriptiveName() {
 		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override
@@ -661,14 +660,15 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public String eventBExprName() {
 		/* Add a new type EventBPrefixProvider type. */
-		EcoreUtil2.getContainerOfType(this, IEventBPrefixProvider.class);
+		IEventBPrefixProvider provider = EcoreUtil2.getContainerOfType(this, IEventBPrefixProvider.class);
+		return provider.eventBPrefix() + name;
 	}
 
 	@Override
 	public String callWithTypeContext(TypeDeclContext context) {
-		// TODO Auto-generated method stub
+		// TODO Implement me
+		System.err.print("In FunctionDeclImpl callWithTypeContext(TypeDeclContext context) is unimplemented\n");
 		return null;
 	}
-
 
 } //FunctionDeclImpl

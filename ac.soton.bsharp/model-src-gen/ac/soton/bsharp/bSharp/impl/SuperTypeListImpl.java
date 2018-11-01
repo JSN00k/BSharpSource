@@ -3,12 +3,9 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
-import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.SuperTypeList;
-import ac.soton.bsharp.bSharp.TypeConstructor;
-import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 import java.util.Collection;
 

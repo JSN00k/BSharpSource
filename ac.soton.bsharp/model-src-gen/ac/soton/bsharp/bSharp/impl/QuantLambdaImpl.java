@@ -405,4 +405,18 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
 	}
 
+	@Override
+	public String compileToEventBString(Boolean asPredicate) throws Exception {
+		/* Polymorphic contexts make this a little more complex. There are two possibilities
+		 * either the polymorphic context can become direct arguments to an EventB Quantifier/Lambda
+		 * or an additional operator could be generated which given the polymorphic context
+		 * generates a lambda which can then be evaluated.
+		 * 
+		 * In the case of QuantLambdas the approach is to compile the polycontext directly 
+		 * to eventB equivalents.
+		 */
+		
+		String result = qType;
+	}
+
 } //QuantLambdaImpl

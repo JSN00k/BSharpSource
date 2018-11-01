@@ -10,6 +10,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import ac.soton.bsharp.bSharp.util.Tuple2;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Typed Variable List</b></em>'.
@@ -48,7 +50,7 @@ public interface TypedVariableList extends EObject {
 	 * In a TypedVariableList each of the VariableTyping can contain multiple variables
 	 * each with the same type, this unwraps the variable typings.
 	 */
-	Map<String, ArrayList<? extends EObject>> getVariablesAndTypes();
+	ArrayList<Tuple2<TypedVariable, ConstructedType>> getVariablesAndTypes();
 
 
 	int varCount();

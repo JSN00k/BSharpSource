@@ -10,6 +10,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import ac.soton.bsharp.bSharp.util.Tuple2;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Variable Typing</b></em>'.
@@ -71,5 +73,7 @@ public interface VariableTyping extends EObject {
 	void setType(ConstructedType value);
 	
 	/* Returns variables individually mapped to the type. */
-	Map<String, ArrayList<? extends EObject>> getVariablesAndTypes();
+	ArrayList<Tuple2<TypedVariable, ConstructedType>> getVariablesAndTypes();
+
+	int varCount();
 } // VariableTyping
