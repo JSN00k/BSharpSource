@@ -9,6 +9,7 @@
     <genClasses image="false" ecoreClass="BSharp.ecore#//IEventBPrefixProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVariableProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IPolyTypeProvider"/>
+    <genClasses image="false" ecoreClass="BSharp.ecore#//ITheoryImportCacheProvider"/>
     <genClasses ecoreClass="BSharp.ecore#//Type"/>
     <genClasses ecoreClass="BSharp.ecore#//TopLevelInstance"/>
     <genClasses ecoreClass="BSharp.ecore#//TopLevel">

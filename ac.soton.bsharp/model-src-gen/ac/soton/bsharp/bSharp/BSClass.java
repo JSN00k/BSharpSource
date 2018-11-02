@@ -104,8 +104,6 @@ public interface BSClass extends ClassDecl {
 	void setWhere(Where value);
 	
 	Integer eventBRequiredPolyTypes();
-	
-	String constructWithEventBPolytypes(ArrayList<String> eventBPolytypes);
 
 	 void setupCompilation(TheoryImportCache cache);
 

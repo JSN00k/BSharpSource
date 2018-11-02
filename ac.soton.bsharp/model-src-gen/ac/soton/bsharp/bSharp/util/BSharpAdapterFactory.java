@@ -81,6 +81,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createIPolyTypeProviderAdapter();
 			}
 			@Override
+			public Adapter caseITheoryImportCacheProvider(ITheoryImportCacheProvider object) {
+				return createITheoryImportCacheProviderAdapter();
+			}
+			@Override
 			public Adapter caseType(Type object) {
 				return createTypeAdapter();
 			}
@@ -833,6 +837,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIPolyTypeProviderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.ITheoryImportCacheProvider <em>ITheory Import Cache Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.ITheoryImportCacheProvider
+	 * @generated
+	 */
+	public Adapter createITheoryImportCacheProviderAdapter() {
 		return null;
 	}
 

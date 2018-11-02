@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevelImport;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 import java.util.Collection;
 
@@ -40,7 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class TopLevelImportImpl extends MinimalEObjectImpl.Container implements TopLevelImport {
+public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implements TopLevelImport {
 	/**
 	 * The cached value of the '{@link #getGlobalImports() <em>Global Imports</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -254,6 +255,18 @@ public class TopLevelImportImpl extends MinimalEObjectImpl.Container implements 
 				return bodyElements != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	protected TheoryImportCache thyCache;
+
+	@Override
+	public TheoryImportCache getTheoryImportCache() {
+		return thyCache;
+	}
+
+	@Override
+	public void setTheoryImportCache(TheoryImportCache thyCache) {
+		this.thyCache = thyCache;
 	}
 
 } //TopLevelImportImpl

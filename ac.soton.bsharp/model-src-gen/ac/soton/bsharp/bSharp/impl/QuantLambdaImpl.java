@@ -4,12 +4,14 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -417,6 +419,78 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		 */
 		
 		String result = qType;
+		
+		ArrayList<Tuple2<String, String>> polytypedVars = null;
+		if (context != null) {
+			polytypedVars = context.namesAndTypesForPolyContext();
+			
+			Boolean first = true;
+			for (Tuple2<String, String> typedVar : polytypedVars) {
+				if (!first) {
+					result += " ↦ ";
+				}
+				first = false;
+				
+				result += typedVar.x;
+			}
+		}
+		
+		ArrayList<Tuple2<TypedVariable, ConstructedType>> typedVariables = null;
+		if (varList != null) {
+			typedVariables = varList.getVariablesAndTypes();
+			Boolean first = polytypedVars != null && !polytypedVars.isEmpty();
+			
+			for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVariables) {
+				if (!first) {
+					result += " ↦ ";
+				}
+				
+				first = false;
+				
+				result += typedVar.x.getName();
+			}
+		}
+		
+		result += "·";
+		
+		if (polytypedVars != null) {
+			Boolean first = true;
+			
+			for (Tuple2<String, String> typedVar : polytypedVars) {
+				if (!first) {
+					result += " ∧ ";
+				}
+				first = false;
+				
+				result += typedVar.x + " ∈ " + typedVar.y;
+			}
+		}
+		
+		if (varList != null ) {
+			Boolean first = polytypedVars != null && !polytypedVars.isEmpty();
+			
+			for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVariables) {
+				if (!first) {
+					result += " ∧ ";
+				}
+				
+				result += typedVar.x.getName() + " ∈ " + typedVar.y.buildEventBType();
+			}
+		}
+		
+		if (qType.equals("λ")) {
+			result += " ∣ ";
+		} else {
+			result += " ∧ ";
+		}
+		
+		result += expr.compileToEventBString(true);
+		
+		if (asPredicate) {
+			return result;
+		} else {
+			return "bool(" + result + ")";
+		}
 	}
 
 } //QuantLambdaImpl

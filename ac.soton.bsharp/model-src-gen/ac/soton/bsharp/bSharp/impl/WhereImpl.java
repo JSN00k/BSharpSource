@@ -203,7 +203,12 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 			first = false;
 			
 			/* These expressions have to compile to predicates. */
-			result += expr.compileAsPredicate();
+			try {
+				result += expr.compileToEventBString(true);
+			} catch (Exception e) {
+				System.err.print("Failed to compile expression as boolean with error: " + e.getLocalizedMessage());
+			}
+			
 		}
 		
 		return result;

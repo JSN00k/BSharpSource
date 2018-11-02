@@ -196,109 +196,77 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	
 	@Override
 	public ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext() {
-		return null;
+		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
+		
+		/* Multiple supertypes in a polymorphic context are going to work with the following rules.
+		 * 1. Each of the super types must have the same base type, with no additional variables added.
+		 * 2. The base type will have the polymorphic types that it requires added as arguments to the Type/function/lambda
+		 * 3. The final type will be constructed as the intersection of the previous types. 
+		 */
+		
+		if (polyTypes == null || polyTypes.isEmpty()) {
+			return result;
+		}
+		
+		for (PolyType polytype : polyTypes) {
+			String name = polytype.getName();
+			
+			Collection<ClassDecl> supertypes = polytype.getSuperTypes();
+			if (supertypes == null || supertypes.isEmpty()) {
+				String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(name);
+				result.add(new Tuple2<String, String>(name, "ℙ(" + eventBTypeParamName + ")"));
+				continue;
+			}
+			
+			String supertypeEventBType = "";
+			Boolean first = true;
+			
+			ArrayList<String> eventBPolytypeNames = new ArrayList<String>();
+			for (ClassDecl supertype : supertypes) {
+				BSClass superT = (BSClass)supertype;
+				
+				if (first) {
+					/* Create the polymoprhic types required to build the supertypes. */
+					Integer argsRequired = superT.eventBRequiredPolyTypes();
+					for (Integer i = 1; i <= argsRequired; ++i) {
+						String typeNameString = name + i.toString();
+						String typeTypeString = "ℙ("  +thyCache.getEventBTypeParamNameForName(typeNameString) + ")";
+						result.add(new Tuple2<String, String>(typeNameString, typeTypeString));
+						eventBPolytypeNames.add(typeTypeString);
+					}
+					first = false;
+				} else {
+					supertypeEventBType += "∩";
+				}
+				
+				String superConstr = superT.getName() + "(";
+				for (String polyname : eventBPolytypeNames) {
+					superConstr += polyname;
+				}
+				
+				superConstr += ")";
+				
+				supertypeEventBType += superConstr;
+			}
+			
+			result.add(new Tuple2<String, String>(name, supertypeEventBType));
+		}
+		
+		return result;
 	}
 	
 	@Override
 	public void compileToBSClassOpArgs(INewOperatorDefinition op) {
-		if (polyTypes == null || polyTypes.size() == 0)
-			return;
+		ArrayList<Tuple2<String, String>> typedArgs = namesAndTypesForPolyContext();
 		
-		for (PolyType polyType : polyTypes) {			
-			String name = polyType.getName();
-			
-			/* I'm not entirely sure how to handle the case where I have a type class
-			 * which has a non-base type as it's constucted type. e.g., maybe I'd like a
-			 * statement like this:
-			 * Class Homo<S : Monoid, T : Monoid> : S x T (f : Homomorphism) {
-			 * }
-			 * 
-			 * The problem this causes is then how to compile:
-			 * 
-			 * Class new<H:Homo>...
-			 * 
-			 * current plan is to ask Homo how many type arguments it needs and generate these.
-			 * along with an argument of type Homo : Homo<t_1, t_2>. I'm going to implement this
-			 * now, however I doubt I'll get far enough throught constructing libraries to test
-			 * it fully. This is handled by saking the polytype to compile itself.
-			 */
-			Collection<ClassDecl> superTypes = polyType.getSuperTypes();
-			if (superTypes != null && !superTypes.isEmpty()) {
-				Boolean first = true;
-				ArrayList<String> eventBTypesForPolytypes = new ArrayList<String>();
-				for (ClassDecl supertype : superTypes) {
-					BSClass superT = (BSClass)supertype;
-					if (first) {
-						Integer argsRequired = superT.eventBRequiredPolyTypes();
-						for (Integer i = 1; i <= argsRequired; ++i) {
-							String typeString = name + i.toString();
-							eventBTypesForPolytypes.add(typeString);
-							String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(typeString);
-							try {
-								TheoryUtils.createArgument(op, typeString, "ℙ(" + eventBTypeParamName + ")", null, nullMonitor);
-							} catch (Exception e) {
-								System.err.println("Unable to create EventB type param named: " + eventBTypeParamName
-										+ e.getLocalizedMessage());
-							}
-						}
-					}
-					
-					first = false;
-					
-					/* TODO: This requires more thought and research. What if the supertypes have different
-					 * base types, should this be allowed.
-					 */
-					String argType = superT.constructWithEventBPolytypes(eventBTypesForPolytypes);
-					
-					try {
-						TheoryUtils.createArgument(op, name, "ℙ(" + argType + ")", null, nullMonitor);
-					} catch (Exception e) {
-						System.err.println("Unable to create EventB type param named: " + name
-								+ e.getLocalizedMessage());
-					}
-				}
-			} else {
-				String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(name);
-				try {
-					TheoryUtils.createArgument(op, name, "ℙ(" + eventBTypeParamName + ")", null, nullMonitor);
-				} catch (Exception e) {
-					System.err.println("Unable to create EventB type param named: " + eventBTypeParamName
-							+ e.getLocalizedMessage());
-				}
-			}
-			
-			
-
-		}
-	}
-
-	@Override
-	public String constructCallArgsForBSClassWithTypes(ArrayList<String> eventBPolytypes) {
-		if (polyTypes == null || polyTypes.size() == 0)
-			return eventBPolytypes.get(0);
-		
-		String resultString = ""; 
-		
-		for (PolyType polyType : polyTypes) {
-			Collection<ClassDecl> superTypes = polyType.getSuperTypes();
-			if (superTypes == null || superTypes.isEmpty()) {
-				continue;
-			}
-			
-			Boolean first = true;
-			for (ClassDecl supertype : superTypes) {
-				if (!first) {
-					resultString += ", ";
-				}
-				
-				first = false;
-				
-				BSClass superT = (BSClass)supertype;
-				resultString += superT.constructWithEventBPolytypes(eventBPolytypes);
+		for (Tuple2<String, String> typedArg : typedArgs) {
+			try {
+				TheoryUtils.createArgument(op, typedArg.x, typedArg.y, null, nullMonitor);
+			} catch (Exception e) {
+				System.err.println("Unable to create EventB type param named: " + typedArg.x
+						+ e.getLocalizedMessage());
 			}
 		}
-		
-		return resultString;
 	}
 
 	@Override

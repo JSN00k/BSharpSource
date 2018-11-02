@@ -454,18 +454,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	@Override
-	public String constructWithEventBPolytypes(ArrayList<String> eventBPolytypes) {
-		String result = name +  "(";
-		if (context == null) {
-			result += eventBPolytypes.get(0) + ")";
-			return result;
-		}
-		
-		result += context.constructCallArgsForBSClassWithTypes(eventBPolytypes) + ")";
-		return result;
-	}
-
-	@Override
 	public String constructWithTypeContext(TypeDeclContext ctx) {
 		if (context == null)
 			return "()";

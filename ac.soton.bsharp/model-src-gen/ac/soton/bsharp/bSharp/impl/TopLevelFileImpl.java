@@ -7,6 +7,8 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
+
 import java.util.Collection;
 
 
@@ -40,7 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements TopLevelFile {
+public class TopLevelFileImpl extends ITheoryImportCacheProviderImpl implements TopLevelFile {
 	
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -288,6 +290,18 @@ public class TopLevelFileImpl extends MinimalEObjectImpl.Container implements To
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+	
+	protected TheoryImportCache thyCache;
+
+	@Override
+	public TheoryImportCache getTheoryImportCache() {
+		return thyCache;
+	}
+
+	@Override
+	public void setTheoryImportCache(TheoryImportCache thyCache) {
+		this.thyCache = thyCache;
 	}
 
 } //TopLevelFileImpl

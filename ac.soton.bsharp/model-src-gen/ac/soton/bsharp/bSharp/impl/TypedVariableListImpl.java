@@ -157,8 +157,7 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 		return super.eIsSet(featureID);
 	}
 
-	@Override
-	public ArrayList<Tuple2<TypedVariable, ConstructedType>> getVariablesAndTypes() {
+	public ArrayList<Tuple2<TypedVariable, ConstructedType>> getVariablesAndTypesInternal() {
 		ArrayList<Tuple2<TypedVariable, ConstructedType>> result = new ArrayList<Tuple2<TypedVariable, ConstructedType>>();
 		
 		if (variablesOfType == null)
@@ -166,6 +165,21 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 		
 		for (VariableTyping varsOfTypes : variablesOfType) {
 			result.addAll(varsOfTypes.getVariablesAndTypes());
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public ArrayList<Tuple2<String, String>> getCompiledVariablesAndTypes() {
+		ArrayList<Tuple2<TypedVariable, ConstructedType>> typedVars = getVariablesAndTypesInternal();
+		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
+		
+		if (typedVars == null || typedVars.isEmpty())
+			return result;
+		
+		for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVars) {
+			result.add(new Tuple2<String, String>(typedVar.x.getName(), typedVar.y.buildEventBType()));
 		}
 		
 		return result;

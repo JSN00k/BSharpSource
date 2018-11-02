@@ -50,7 +50,7 @@ public interface TypedVariableList extends EObject {
 	 * In a TypedVariableList each of the VariableTyping can contain multiple variables
 	 * each with the same type, this unwraps the variable typings.
 	 */
-	ArrayList<Tuple2<TypedVariable, ConstructedType>> getVariablesAndTypes();
+	ArrayList<Tuple2<String, String>> getCompiledVariablesAndTypes();
 
 
 	int varCount();

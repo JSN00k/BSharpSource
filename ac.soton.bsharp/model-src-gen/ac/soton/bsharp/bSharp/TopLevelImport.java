@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TopLevelImport extends EObject {
+public interface TopLevelImport extends ITheoryImportCacheProvider {
 	/**
 	 * Returns the value of the '<em><b>Global Imports</b></em>' containment reference list.
 	 * The list contents are of type {@link ac.soton.bsharp.bSharp.GlobalImport}.

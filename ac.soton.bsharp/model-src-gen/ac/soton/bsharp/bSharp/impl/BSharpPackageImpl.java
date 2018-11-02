@@ -26,6 +26,7 @@ import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
+import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.Instance;
@@ -347,6 +348,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass iPolyTypeProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iTheoryImportCacheProviderEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1489,6 +1497,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getITheoryImportCacheProvider() {
+		return iTheoryImportCacheProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getType() {
 		return typeEClass;
 	}
@@ -1661,6 +1678,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		iVariableProviderEClass = createEClass(IVARIABLE_PROVIDER);
 
 		iPolyTypeProviderEClass = createEClass(IPOLY_TYPE_PROVIDER);
+
+		iTheoryImportCacheProviderEClass = createEClass(ITHEORY_IMPORT_CACHE_PROVIDER);
 
 		typeEClass = createEClass(TYPE);
 
@@ -1863,6 +1882,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		// Add supertypes to classes
 		typeEClass.getESuperTypes().add(this.getGenName());
+		topLevelFileEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
+		topLevelImportEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
 		classDeclEClass.getESuperTypes().add(this.getGenName());
 		classDeclEClass.getESuperTypes().add(this.getExpressionVariable());
 		classDeclEClass.getESuperTypes().add(this.getIVariableProvider());
@@ -1902,6 +1923,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(iVariableProviderEClass, IVariableProvider.class, "IVariableProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iPolyTypeProviderEClass, IPolyTypeProvider.class, "IPolyTypeProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(iTheoryImportCacheProviderEClass, ITheoryImportCacheProvider.class, "ITheoryImportCacheProvider", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -109,6 +109,6 @@ public interface ConstructedType extends EObject {
 	/* Returns the number of polymorphic types used within the constructed type. */
 	Integer inferredTypeCount();
 	
-	String buildEventBType(ArrayList<String> inferredTypes);
+	String buildEventBType();
 
 } // ConstructedType

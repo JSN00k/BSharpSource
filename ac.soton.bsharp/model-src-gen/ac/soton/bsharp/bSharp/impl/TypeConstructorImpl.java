@@ -253,9 +253,8 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 	}
 	
 	@Override
-	public String buildEventBType(ArrayList<String> inferredTypes) {
+	public String buildEventBType() {
 		if (typeName instanceof ClassDecl) {
-			ArrayList<String> typeString = inferredTypes;
 			if (context != null) {
 				return ((ClassDecl)typeName).constructWithTypeContext(context);
 			} else {
@@ -271,7 +270,7 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 				}
 				
 				System.out.print("Unimplemented in TypeConstructorImpl need to handle Datatypes.\n");
-				return ((BSClass)typeName).constructWithEventBPolytypes(typeString);
+				return "";
 			}
 			
 		} else if (typeName instanceof PolyType){
