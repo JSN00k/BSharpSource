@@ -11,6 +11,7 @@ import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
@@ -140,21 +141,16 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		return super.eIsSet(featureID);
 	}
 
-	private TheoryImportCache thyCache;
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
-	
-	@Override
-	public void setupCompilation(TheoryImportCache theoryCache) {
-		thyCache = theoryCache;
-	}
 
-	
 	/*TODO: The two methods below need to be completed as I get to examples where these things are needed.
 	 * It is currently too complex to try to compile it all at once without real examples to work from.
 	 */
 	
 	@Override
 	public void compileToBSClassOpArgs(INewOperatorDefinition op) {
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		
 		if (superTypes == null || superTypes.isEmpty()) {
 			String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(name);
 			
@@ -201,7 +197,7 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		
 		if (superTypes == nullMonitor || superTypes.isEmpty()) {
 			if (!(workingType instanceof TypeConstructor)) {
-				return ((ConstructedType)workingType).buildEventBType(null);
+				return ((ConstructedType)workingType).buildEventBType();
 			} else {
 				/* Base type goes all the way back to the simplest type that the 
 				 * type class was based on. */

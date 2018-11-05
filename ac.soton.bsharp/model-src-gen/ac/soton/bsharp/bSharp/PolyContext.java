@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eventb.theory.core.INewOperatorDefinition;
-
 import ac.soton.bsharp.bSharp.util.Tuple2;
-import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,11 +45,8 @@ public interface PolyContext extends EObject {
 	
 	Integer eventBPolyVarCount();
 	
-	void setupCompilation(TheoryImportCache theoryCache);
-	
 	/* Returns the number of types declared in the polyContext. */
 	int polyTypesCount();
-	void compileToBSClassOpArgs(INewOperatorDefinition op);
 
 	/* Something with a context has been called with the context arguments, it is necessary to 
 	 * resolve types properly, searching for the correct supertypes to fill the context in EventB

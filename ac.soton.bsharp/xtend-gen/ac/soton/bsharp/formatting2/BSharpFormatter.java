@@ -35,28 +35,28 @@ public class BSharpFormatter extends AbstractFormatter2 {
     }
   }
   
-  public void format(final Object topLevel, final IFormattableDocument document) {
-    if (topLevel instanceof XtextResource) {
-      _format((XtextResource)topLevel, document);
+  public void format(final Object topLevelFile, final IFormattableDocument document) {
+    if (topLevelFile instanceof XtextResource) {
+      _format((XtextResource)topLevelFile, document);
       return;
-    } else if (topLevel instanceof TopLevel) {
-      _format((TopLevel)topLevel, document);
+    } else if (topLevelFile instanceof TopLevelFile) {
+      _format((TopLevelFile)topLevelFile, document);
       return;
-    } else if (topLevel instanceof TopLevelFile) {
-      _format((TopLevelFile)topLevel, document);
+    } else if (topLevelFile instanceof TopLevel) {
+      _format((TopLevel)topLevelFile, document);
       return;
-    } else if (topLevel instanceof EObject) {
-      _format((EObject)topLevel, document);
+    } else if (topLevelFile instanceof EObject) {
+      _format((EObject)topLevelFile, document);
       return;
-    } else if (topLevel == null) {
+    } else if (topLevelFile == null) {
       _format((Void)null, document);
       return;
-    } else if (topLevel != null) {
-      _format(topLevel, document);
+    } else if (topLevelFile != null) {
+      _format(topLevelFile, document);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(topLevel, document).toString());
+        Arrays.<Object>asList(topLevelFile, document).toString());
     }
   }
 }

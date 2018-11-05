@@ -102,11 +102,10 @@ public interface BSClass extends ClassDecl {
 	 * @generated
 	 */
 	void setWhere(Where value);
-	
+
 	Integer eventBRequiredPolyTypes();
-
-	 void setupCompilation(TheoryImportCache cache);
-
 	 void compileOp() throws Exception;
+	 
+	 String constructionInstName();
 
 } // BppClass

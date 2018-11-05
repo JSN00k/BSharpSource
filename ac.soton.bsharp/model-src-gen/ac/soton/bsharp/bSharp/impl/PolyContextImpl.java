@@ -11,6 +11,7 @@ import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -177,14 +178,8 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 				return count;
 		}
 	}
-	
-	private TheoryImportCache thyCache;
-	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 
-	@Override
-	public void setupCompilation(TheoryImportCache theoryCache) {
-		thyCache = theoryCache;
-	}
+	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 	
 	@Override
 	public int polyTypesCount() {
@@ -197,6 +192,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	@Override
 	public ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext() {
 		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		
 		/* Multiple supertypes in a polymorphic context are going to work with the following rules.
 		 * 1. Each of the super types must have the same base type, with no additional variables added.
@@ -254,25 +250,11 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 		
 		return result;
 	}
-	
-	@Override
-	public void compileToBSClassOpArgs(INewOperatorDefinition op) {
-		ArrayList<Tuple2<String, String>> typedArgs = namesAndTypesForPolyContext();
-		
-		for (Tuple2<String, String> typedArg : typedArgs) {
-			try {
-				TheoryUtils.createArgument(op, typedArg.x, typedArg.y, null, nullMonitor);
-			} catch (Exception e) {
-				System.err.println("Unable to create EventB type param named: " + typedArg.x
-						+ e.getLocalizedMessage());
-			}
-		}
-	}
 
 	@Override
 	public String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception {
 		EList<ConstructedType> constrTypes = ctx.getTypeName();
-		if (polyTypes == null || polyTypes.size() == 0) {
+		if (polyTypes != null && polyTypes.size() != 0) {
 			if (polyTypes.size() != constrTypes.size()) {
 				//TODO: Validate against this happening.
 				System.err.println("Size of context does not match required types of type constructor.");

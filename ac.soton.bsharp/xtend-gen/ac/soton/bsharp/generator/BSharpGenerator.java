@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.generator.FileCompiler;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -48,10 +49,6 @@ public class BSharpGenerator extends AbstractGenerator {
   
   private String fileName;
   
-  private TheoryImportCache currentThy;
-  
-  private ArrayList<TheoryImportCache> theories;
-  
   private ArrayList<BodyElements> mainElements;
   
   /**
@@ -73,8 +70,6 @@ public class BSharpGenerator extends AbstractGenerator {
       ArrayList<String> _arrayList = new ArrayList<String>();
       this.explicitTypeImports = _arrayList;
       this.mainElements = CollectionLiterals.<BodyElements>newArrayList();
-      ArrayList<TheoryImportCache> _arrayList_1 = new ArrayList<TheoryImportCache>();
-      this.theories = _arrayList_1;
       IEventBProject eventBproj = EventBUtils.getEventBProject(this.projName);
       boolean _exists = eventBproj.getRodinProject().exists();
       boolean _not = (!_exists);
@@ -85,15 +80,11 @@ public class BSharpGenerator extends AbstractGenerator {
       final TopLevelFile topLevelFile = topLevel.getTopLevelFile();
       this.fileName = topLevelFile.getName();
       this.generateTheories(topLevelFile);
-      int _length = ((Object[])Conversions.unwrapArray(this.mainElements, Object.class)).length;
-      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _length, true);
-      for (final Integer i : _doubleDotLessThan) {
+      for (final BodyElements bodyElements : this.mainElements) {
         {
-          final TheoryImportCache thyCache = this.theories.get((i).intValue());
-          final BodyElements bodyElements = this.mainElements.get((i).intValue());
-          final FileCompiler fileCompiler = new FileCompiler(bodyElements, thyCache);
+          final FileCompiler fileCompiler = new FileCompiler(bodyElements);
           fileCompiler.compile();
-          thyCache.save();
+          CompilationUtil.getTheoryCacheForElement(bodyElements).save();
         }
       }
     } catch (Throwable _e) {
@@ -111,7 +102,7 @@ public class BSharpGenerator extends AbstractGenerator {
       if (((imports == null) || (((Object[])Conversions.unwrapArray(imports, Object.class)).length == 0))) {
         final ITheoryRoot thy = TheoryUtils.createTheory(this.proj, this.fileName, null);
         final TheoryImportCache theoryCache = new TheoryImportCache(thy, this.projName, null);
-        this.theories.add(theoryCache);
+        top.setTheoryImportCache(theoryCache);
         BodyElements _noImportElements = top.getNoImportElements();
         boolean _tripleNotEquals = (_noImportElements != null);
         if (_tripleNotEquals) {
@@ -129,9 +120,10 @@ public class BSharpGenerator extends AbstractGenerator {
         String _plus = (this.fileName + _string);
         final ITheoryRoot thy_1 = TheoryUtils.createTheory(this.proj, _plus, null);
         final TheoryImportCache theoryCache_1 = new TheoryImportCache(thy_1, this.projName, null);
-        this.theories.add(theoryCache_1);
+        top.setTheoryImportCache(theoryCache_1);
         BodyElements _noImportElements_3 = top.getNoImportElements();
         this.mainElements.add(_noImportElements_3);
+        top.setTheoryImportCache(theoryCache_1);
         prevTheoryCache = theoryCache_1;
         adder++;
       }
@@ -154,7 +146,7 @@ public class BSharpGenerator extends AbstractGenerator {
           if (_tripleNotEquals_3) {
             this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2);
           }
-          this.theories.add(theoryCache_2);
+          topLevelImport.setTheoryImportCache(theoryCache_2);
           BodyElements _bodyElements = topLevelImport.getBodyElements();
           this.mainElements.add(_bodyElements);
           prevTheoryCache = theoryCache_2;
@@ -173,7 +165,7 @@ public class BSharpGenerator extends AbstractGenerator {
       if (_tripleNotEquals_3) {
         this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2);
       }
-      this.theories.add(theoryCache_2);
+      topLevelImport.setTheoryImportCache(theoryCache_2);
       BodyElements _bodyElements = IterableExtensions.<TopLevelImport>last(imports).getBodyElements();
       this.mainElements.add(_bodyElements);
     } catch (Throwable _e) {

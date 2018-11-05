@@ -11,6 +11,7 @@ import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.ArrayList;
@@ -420,63 +421,33 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		String result = qType;
 		
-		ArrayList<Tuple2<String, String>> polytypedVars = null;
+		
+		ArrayList<Tuple2<String, String>> typedVariables = null;
 		if (context != null) {
-			polytypedVars = context.namesAndTypesForPolyContext();
-			
-			Boolean first = true;
-			for (Tuple2<String, String> typedVar : polytypedVars) {
-				if (!first) {
-					result += " ↦ ";
-				}
-				first = false;
-				
-				result += typedVar.x;
+			typedVariables = context.namesAndTypesForPolyContext();
+		}
+		
+		if (varList != null) {
+			ArrayList<Tuple2<String, String>> vars = varList.getCompiledVariablesAndTypes();
+			if (typedVariables == null) {
+				typedVariables = vars;
+			} else if (vars != null) {
+				typedVariables.addAll(vars);
 			}
 		}
 		
-		ArrayList<Tuple2<TypedVariable, ConstructedType>> typedVariables = null;
-		if (varList != null) {
-			typedVariables = varList.getVariablesAndTypes();
-			Boolean first = polytypedVars != null && !polytypedVars.isEmpty();
-			
-			for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVariables) {
-				if (!first) {
-					result += " ↦ ";
-				}
-				
-				first = false;
-				
-				result += typedVar.x.getName();
-			}
+		if (typedVariables == null || typedVariables.isEmpty()) {
+			throw new Exception("QuantLambdaImpl tried to compile without any arguments.");
 		}
+		
+		String sep = qType.equals("λ") ? " ↦ " : ", ";
+		
+		result += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVariables,
+				sep, true);
 		
 		result += "·";
 		
-		if (polytypedVars != null) {
-			Boolean first = true;
-			
-			for (Tuple2<String, String> typedVar : polytypedVars) {
-				if (!first) {
-					result += " ∧ ";
-				}
-				first = false;
-				
-				result += typedVar.x + " ∈ " + typedVar.y;
-			}
-		}
-		
-		if (varList != null ) {
-			Boolean first = polytypedVars != null && !polytypedVars.isEmpty();
-			
-			for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVariables) {
-				if (!first) {
-					result += " ∧ ";
-				}
-				
-				result += typedVar.x.getName() + " ∈ " + typedVar.y.buildEventBType();
-			}
-		}
+		result += CompilationUtil.compileTypedVaribalesToTypedList(typedVariables, true);
 		
 		if (qType.equals("λ")) {
 			result += " ∣ ";
@@ -491,6 +462,11 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		} else {
 			return "bool(" + result + ")";
 		}
+	}
+
+	@Override
+	public Integer eventBPrecedence(Boolean whenPredicate) {
+		return 2;
 	}
 
 } //QuantLambdaImpl

@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -450,13 +451,22 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				
 				return result;
 			}
-			
+
 			if (typeInst instanceof TypedVariable || typeInst instanceof BSClass) {
-				String result = ((NamedObject)typeInst).getName();
-				result += "(" + compileArgumentsWithSeparator(" ↦") + ")";
+				BSClass containingClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
+				
+				String result = null;
+				if (containingClass != null && containingClass == typeInst) {
+					/* Due to a name change this requires special casing. */
+					result = containingClass.constructionInstName();
+				} else {
+					result = ((NamedObject)typeInst).getName();
+				}
+				
+				result += "(" + compileArgumentsWithSeparator(" ↦ ") + ")";
 				
 				if (asPredicate) {
-					result += " = BOOL";
+					result += " = TRUE";
 				}
 				
 				return result;
@@ -480,13 +490,30 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		String result = "";
 		for (Expression expr : arguments) {
 			if (!first) {
-				result += sep + " ";
+				result += sep;
 			}
+			first = false;
 			
 			result += expr.compileToEventBString(false);
 		}
 		
 		return result;
+	}
+
+	@Override
+	public Integer eventBPrecedence(Boolean whenPredicate) {
+		if (!whenPredicate)
+			return 2;
+		
+		/* If we're expected to return a predicate then there are situations where 
+		 * appending '= TRUE' is necessary. This changes the precedence to 0 as 
+		 * we're really compiling an EventB equality operator.
+		 */
+		if (typeInst instanceof FunctionDecl) {
+			return 2;
+		} else {
+			return 0;
+		}
 	}
 
 } //FunctionCallImpl

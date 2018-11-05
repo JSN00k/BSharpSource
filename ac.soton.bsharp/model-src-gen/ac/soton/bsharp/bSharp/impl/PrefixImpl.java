@@ -267,4 +267,9 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 				+ " for redicate" + name + "\n");
 	}
 
+	@Override
+	public Integer eventBPrecedence(Boolean whenPredicate) {
+		return 2;
+	}
+
 } //PrefixImpl

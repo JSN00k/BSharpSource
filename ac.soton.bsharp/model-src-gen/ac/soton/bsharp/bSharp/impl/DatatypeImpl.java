@@ -178,4 +178,9 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 		return name;
 	}
 
+	@Override
+	public String constructorName() {
+		return name;
+	}
+
 } //DatatypeImpl

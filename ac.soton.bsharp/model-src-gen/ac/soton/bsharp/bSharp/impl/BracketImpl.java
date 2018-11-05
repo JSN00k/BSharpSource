@@ -200,4 +200,9 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 		}
 	}
 
+	@Override
+	public Integer eventBPrecedence(Boolean whenPredicate) {
+		return 2;
+	}
+
 } //BracketImpl

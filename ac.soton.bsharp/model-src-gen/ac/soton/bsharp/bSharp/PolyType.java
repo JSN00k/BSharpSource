@@ -42,7 +42,6 @@ public interface PolyType extends GenName {
 	 */
 	EList<ClassDecl> getSuperTypes();
 	
-	void setupCompilation(TheoryImportCache theoryCache);
 	void compileToBSClassOpArgs(INewOperatorDefinition op);
 
 	String expandToEventBTypeWithConstrType(ConstructedType constrType);

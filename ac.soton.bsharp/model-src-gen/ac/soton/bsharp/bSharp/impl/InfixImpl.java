@@ -392,9 +392,20 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
 		if (opName != null || !opName.isEmpty()) {
-			String result = left.compileToEventBString(true) + opName + right.compileToEventBString(true);
+			String leftStr = left.compileToEventBString(true);
+			String rightStr = right.compileToEventBString(true);
+			if (left.eventBPrecedence(true) <= eventBPrecedence(true)) {
+				leftStr = "(" + leftStr + ")";
+			}
 			
-			if (!asPredicate)
+			if (right.eventBPrecedence(true) <= eventBPrecedence(true)) {
+				rightStr = "(" + rightStr + ")";
+			}
+			
+			
+			String result = leftStr + opName + rightStr;
+			
+			if (asPredicate)
 				return result;
 			else
 				return "bool(" + result + ")";
@@ -411,9 +422,29 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		}
 		
 		if (funcName.hasEventBInfix()) {
-			return left.compileToEventBString(false) + fName + right.compileToEventBString(false);
+			String leftStr = left.compileToEventBString(false);
+			String rightStr = right.compileToEventBString(false);
+			
+			if (left.eventBPrecedence(false) <= eventBPrecedence(false)) {
+				leftStr = "(" + leftStr + ")";
+			}
+			
+			if (right.eventBPrecedence(false) <= eventBPrecedence(false)) {
+				rightStr = "(" + rightStr + ")";
+			}
+			
+			return leftStr + fName + rightStr;
 		} else {
 			return fName + "(" + left.compileToEventBString(false) + ", " + right.compileToEventBString(false) + ")";
+		}
+	}
+
+	@Override
+	public Integer eventBPrecedence(Boolean whenPredicate) {
+		if (opName != null && !opName.isEmpty()) {
+			return 0;
+		} else {
+			return 1;
 		}
 	}
 

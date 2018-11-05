@@ -14,6 +14,8 @@ import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.Where;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
@@ -30,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.xtend.lib.macro.declaration.CompilationUnit;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
@@ -337,14 +340,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return result;
 	}
 	
-	private TheoryImportCache thyCache;
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
-	private ArrayList<String> inferredTypes = null;
 	
-	@Override
-	public void setupCompilation(TheoryImportCache theoryCache) {
-		thyCache = theoryCache;
-	}
+
 	
 	/* This get's the number of polymorhic types required to construct the type class */
 	public Integer eventBRequiredPolyTypes() {
@@ -369,6 +367,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		/*TODO: document this method working through a couple of event B examples to show 
 		 * how and where they are compiled. Maybe Monoid and TransitiveOp.
 		 */
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		
 		INewOperatorDefinition op;
 		try {
@@ -382,33 +381,44 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		/* This creates the type variables for the EventB operator and creates arguments on
 		 * the EventB operator so these type variables can then be used.
 		 */
+		ArrayList<Tuple2<String, String>> polyTypedVars = null;
 		if (context != null) {
-			context.setupCompilation(thyCache);
-			context.compileToBSClassOpArgs(op);
+			polyTypedVars = context.namesAndTypesForPolyContext();
+			try {
+				CompilationUtil.compileTypedVariablesToOperatorArgs(polyTypedVars, op);
+			} catch (Exception e) {
+				System.err.println("In BSClassImpl compileOp() couldn't compile the poly context with error: " + e.getLocalizedMessage());
+			}
 		}
 		
-		String instName = name + "Inst";
+		String instName = constructionInstName();
 		
 		String opString = "{ " + instName;
 		
+		ArrayList<Tuple2<String, String>> typedVars = null;
 		if (varList != null) {
-			opString += varList.stringForArgsToSetCompVarList();
+			typedVars = varList.getEventBVariablesAndTypes();
+			opString += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVars, " ↦ ", false);
 		}
 		
-		opString += "| ";
+		opString += " | ";
 		
 		EList<ConstructedType> supertypeList = null;
 		if (supertypes != null) {
 			supertypeList = supertypes.getSuperTypes();
 		}
 		
+		ArrayList<Tuple2<String, String>> inferredTypes = null;
 		if (supertypeList != null && !supertypeList.isEmpty()) {
 			Boolean first = true;
 			for (ConstructedType constType : supertypeList) {
 				if (!first) {
-					opString += "∧";
-				}				
-				first = false;
+					opString += " ∩ ";
+				} else {
+					opString += instName + " ∈ ";
+					first = false;
+				}
+				
 				
 				int inferredTypeCount = constType.inferredTypeCount();
 				if (inferredTypeCount != 0) {
@@ -417,40 +427,59 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 						throw new Exception("Classes which infer types should not also have polyTypes," +
 								"this should be checked for during validation");
 					
-					if (inferredTypes == null)
-						inferredTypes = new ArrayList<String>();
-					
-					/* This adds extra inferred types to the inferredTypes array. if there aren't enough
-					 * inferred types it adds extra, I'm not sure this is a possible situation, as I think
-					 * we should validate against it.
-					 */
-					for (int i = inferredTypes.size(); i < inferredTypeCount; ++i) {
-						// As there aren't any types in the polytype variable I can name these whatever
-						// I like
-						String inferredTypeName = "Ty" + String.valueOf(i);
-						String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(inferredTypeName);
+					if (inferredTypes == null) {
+						inferredTypes = new ArrayList<Tuple2<String, String>>();
 
-						TheoryUtils.createArgument(op, inferredTypeName, "ℙ(" + eventBTypeParamName + ")", null,
-								nullMonitor);
-						
-						inferredTypes.add(inferredTypeName);
+						/*
+						 * This adds extra inferred types to the inferredTypes array. if there aren't
+						 * enough inferred types it adds extra, I'm not sure this is a possible
+						 * situation, as I think we should validate against it.
+						 */
+						for (int i = inferredTypes.size(); i < inferredTypeCount; ++i) {
+							// As there aren't any types in the polytype variable I can name these whatever
+							// I like
+							String inferredTypeName = "Ty" + String.valueOf(i);
+							String eventBTypeParamName = "ℙ(" + thyCache.getEventBTypeParamNameForName(inferredTypeName) + ")";
+
+							TheoryUtils.createArgument(op, inferredTypeName, eventBTypeParamName, null,
+									nullMonitor);
+
+							inferredTypes.add(new Tuple2<String, String>(inferredTypeName, eventBTypeParamName));
+						}
 					}
+					
+					/* If there are inferred types there should be no constructed types, and the 
+					 * constructors for the inferred types should all require the same polymorphic
+					 * arguments.
+					 */
+					TypeConstructor supertype = (TypeConstructor)constType;
+					opString += ((ClassDecl)supertype).constructorName();
+					opString += "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(inferredTypes, ", ", true) + ")";
+				} else {
+					opString += constType.buildEventBType();
 				}
-				
-				opString += instName + " ∈ " + constType.buildEventBType(inferredTypes);
 			}
 		}
 		
-		if (varList != null) {
-			//TODO: Finish writing the code for this when I get to an example that uses it.
-			//opString += varList.typedArgsForTypeClass();
+		if (typedVars != null) {
+			opString += CompilationUtil.compileTypedVaribalesToTypedList(typedVars, false);
 		}
 		
 		if (where != null) {
 			String whereString = where.compileToEventBPredStatements();
+			if (whereString != null && !whereString.isEmpty()) {
+				opString += " ∧ (" + whereString + ")";
+			}
 		}
 		
+		
+		opString += "}";
 		TheoryUtils.createDirectDefinition(op, opString, null, nullMonitor);
+	}
+	
+	@Override
+	public String constructionInstName() {
+		return name + "Inst";
 	}
 
 	@Override
@@ -473,6 +502,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	@Override
 	public String eventBPrefix() {
 		// TODO Change this when user defined prefixes are added.
+		return name;
+	}
+
+	@Override
+	public String constructorName() {
 		return name;
 	}	
 } //BppClassImpl

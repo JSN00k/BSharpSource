@@ -33,6 +33,7 @@ Export-Package: ac.soton.bsharp,
  ac.soton.bsharp.services,
  ac.soton.bsharp.validation,
  ac.soton.bsharp.main
-Import-Package: org.apache.log4j
+Import-Package: ac.soton.bsharp.bSharp,
+ org.apache.log4j
 
 

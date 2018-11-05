@@ -243,4 +243,9 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 		throw new Exception("In MatchStatementImpl compileToEventBString is unimplemented");
 	}
 
+	@Override
+	public Integer eventBPrecedence(Boolean whenPredicate) {
+		return 2;
+	}
+
 } //MatchStatementImpl

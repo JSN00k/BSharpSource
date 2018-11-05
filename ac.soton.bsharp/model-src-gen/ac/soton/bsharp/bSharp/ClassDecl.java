@@ -93,4 +93,6 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 
 	String constructWithTypeContext(TypeDeclContext context);
 
+	String constructorName();
+
 } // ClassDecl

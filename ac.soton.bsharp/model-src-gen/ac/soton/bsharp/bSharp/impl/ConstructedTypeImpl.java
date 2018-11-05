@@ -327,13 +327,13 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	}
 
 	@Override
-	public String buildEventBType(ArrayList<String> inferredTypes) {
+	public String buildEventBType() {
 		/* This terminates when a leaf is reached, i.e., a member of TypeConstructor
 		 * which is handled by the subclass implementation.
 		 */
 		
-		String result = left.buildEventBType(inferredTypes);
-		result += " " + constructor + " " + right.buildEventBType(inferredTypes);
+		String result = left.buildEventBType();
+		result += " " + constructor + " " + right.buildEventBType();
 		// TODO Auto-generated method stub
 		return result;
 	}

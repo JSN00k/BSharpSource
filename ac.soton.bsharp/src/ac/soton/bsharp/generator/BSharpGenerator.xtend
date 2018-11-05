@@ -3,8 +3,6 @@
  */
 package ac.soton.bsharp.generator
 
-import ac.soton.bsharp.bSharp.ClassDecl
-import ac.soton.bsharp.bSharp.Extend
 import ac.soton.bsharp.bSharp.GlobalImport
 import ac.soton.bsharp.bSharp.LocalImport
 import ac.soton.bsharp.bSharp.TopLevel
@@ -12,23 +10,17 @@ import ac.soton.bsharp.bSharp.TopLevelFile
 import ac.soton.bsharp.theory.util.TheoryUtils
 import ch.ethz.eventb.utils.EventBUtils
 import java.util.ArrayList
-import java.util.Collection
-import java.util.HashMap
-import java.util.Map
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import org.eventb.core.IEventBProject
-import org.eventb.theory.core.IImportTheoryProject
-import org.eventb.theory.core.ITheoryRoot
 import org.rodinp.core.IRodinProject
 import ac.soton.bsharp.theory.util.TheoryImportCache
 import java.util.List
 import ac.soton.bsharp.bSharp.BodyElements
-import ac.soton.bsharp.bSharp.BSClass
+import ac.soton.bsharp.bSharp.util.CompilationUtil
 
 /**
  * Generates code from your model files on save.
@@ -42,9 +34,7 @@ class BSharpGenerator extends AbstractGenerator {
 	var String projName
 	var IRodinProject proj
 	var String fileName
-	var TheoryImportCache currentThy
 	
-	var ArrayList<TheoryImportCache> theories
 	var ArrayList<BodyElements> mainElements
 	
 	/* When a type in imported explicitly it is possible that a smaller part
@@ -65,7 +55,6 @@ class BSharpGenerator extends AbstractGenerator {
 		projName = topLevel.name + "-gen"
 		explicitTypeImports = new ArrayList
 		mainElements = newArrayList
-		theories = new ArrayList
 		
 		var eventBproj = EventBUtils.getEventBProject(projName)
 		if (!eventBproj.rodinProject.exists) {
@@ -86,13 +75,10 @@ class BSharpGenerator extends AbstractGenerator {
 		 */
 		generateTheories(topLevelFile)
 		
-		for (i : 0..< mainElements.length) {
-			val thyCache = theories.get(i)
-			val bodyElements = mainElements.get(i)
-			val fileCompiler = new FileCompiler(bodyElements, thyCache)
+		for (bodyElements : mainElements) {
+			val fileCompiler = new FileCompiler(bodyElements)
 			fileCompiler.compile
-			
-			thyCache.save()
+			CompilationUtil.getTheoryCacheForElement(bodyElements).save();
 		}
 		
 	}
@@ -109,10 +95,11 @@ class BSharpGenerator extends AbstractGenerator {
 		 	/* There is only a top level file */
 		 	val thy = TheoryUtils.createTheory(proj, fileName, null)
 		 	val theoryCache = new TheoryImportCache(thy, projName, null)
-		 	theories += theoryCache
+		 	top.theoryImportCache = theoryCache
 		 	
-		 	if (top.noImportElements !==null)
+		 	if (top.noImportElements !== null) {
 		 		mainElements += top.noImportElements
+		 	}
 		 	
 		 	return
 		 }
@@ -123,8 +110,9 @@ class BSharpGenerator extends AbstractGenerator {
 		 if (top.getNoImportElements() !== null) {
 		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(0), null)
 		 	val theoryCache = new TheoryImportCache(thy, projName, null)
-		 	theories += theoryCache
+		 	top.theoryImportCache = theoryCache
 		 	mainElements += top.noImportElements
+		 	top.theoryImportCache = theoryCache
 		 	prevTheoryCache = theoryCache
 		 	adder++
 		 }
@@ -145,7 +133,7 @@ class BSharpGenerator extends AbstractGenerator {
 		 		importGlobalImports(topLevelImport.globalImports, theoryCache)
 		 	}
 		 	
-		 	theories += theoryCache
+		 	topLevelImport.theoryImportCache = theoryCache
 		 	mainElements += topLevelImport.bodyElements
 		 	prevTheoryCache = theoryCache
 		 }
@@ -161,7 +149,7 @@ class BSharpGenerator extends AbstractGenerator {
 		 	importGlobalImports(topLevelImport.globalImports, theoryCache)
 		 }
 		 
-		 theories += theoryCache
+		 topLevelImport.theoryImportCache = theoryCache
 		 mainElements += imports.last.bodyElements
 	}
 	

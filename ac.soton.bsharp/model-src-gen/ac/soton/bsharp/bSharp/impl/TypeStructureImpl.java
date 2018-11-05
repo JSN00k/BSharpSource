@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.ArrayList;
@@ -180,19 +181,20 @@ public class TypeStructureImpl extends MinimalEObjectImpl.Container implements T
 		}
 		return super.eIsSet(featureID);
 	}
+	
+	@Override
+	public ArrayList<Tuple2<String, String>> getEventBVariablesAndTypes() {
+		return variables.getCompiledVariablesAndTypes();
+	}
 
 	@Override
 	public String stringForArgsToSetCompVarList() {
 		if (variables == null)
 			return "";
 		
-		ArrayList<Tuple2<TypedVariable, ConstructedType>> typedVariables = variables.getVariablesAndTypes();
-		String result = "";
-		for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVariables) {
-			result += "↦ " + typedVar.x.getName();
-		}
-		
-		return result;
+		ArrayList<Tuple2<String, String>> typedVariables = variables.getCompiledVariablesAndTypes();
+		return CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVariables, " ↦ ",
+				true);
 	}
 
 	@Override
@@ -200,25 +202,9 @@ public class TypeStructureImpl extends MinimalEObjectImpl.Container implements T
 		if (variables == null)
 			return "";
 	
-		ArrayList<Tuple2<TypedVariable, ConstructedType>> typedVariables = variables.getVariablesAndTypes();
+		ArrayList<Tuple2<String, String>> typedVariables = variables.getCompiledVariablesAndTypes();
 		
-		String result = "";
-		Boolean first = true;
-		for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVariables) {
-			if (!first) {
-				result += "∧";
-			}
-			
-			result += typedVar.x.getName();
-			result += " ∈ ";
-			/* These constructed types have to have a context which contains the type information
-			 * for constructing the types, in the case of supertyes the type classes have inferred 
-			 * contexts that need to be passed into the buildEventBType method.
-			 */
-			result += typedVar.y.buildEventBType(null);
-		}
-		
-		return result;
+		return CompilationUtil.compileTypedVaribalesToTypedList(typedVariables, true);
 	}
 
 } //TypeStructureImpl

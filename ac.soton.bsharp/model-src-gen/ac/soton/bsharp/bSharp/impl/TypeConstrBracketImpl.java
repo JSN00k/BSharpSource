@@ -176,8 +176,8 @@ public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeCo
 	}
 	
 	@Override
-	public String buildEventBType(ArrayList<String> inferredTypes) {
-		return child.buildEventBType(inferredTypes);
+	public String buildEventBType() {
+		return child.buildEventBType();
 	}
 
 } //TypeConstrBracketImpl

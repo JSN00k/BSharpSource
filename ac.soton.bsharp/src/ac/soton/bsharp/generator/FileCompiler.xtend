@@ -36,18 +36,14 @@ class FileCompiler {
 	protected String EventBTypeSuffix = "_EvB"
 	
 	val BodyElements elements
-	val TheoryImportCache theoryCache
-	val ITheoryRoot thy
 	
 	/* Maps the name of a Type parameter to the type paramenter,
 	 * allowing the reuse of type parameters.
 	 */
 	var HashMap<String, ITypeParameter> polyTypeMap = new HashMap
 	
-	new(BodyElements elem, TheoryImportCache cache) {
+	new(BodyElements elem) {
 		elements = elem
-		theoryCache = cache
-		thy = cache.theory
 	}
 	
 	def compile() {
@@ -55,7 +51,6 @@ class FileCompiler {
 		for (element : elements.eContents) {
 			if (element instanceof BSClass) {
 				val bsClass = element as BSClass
-				bsClass.setupCompilation(theoryCache)
 				bsClass.compileOp()
 			} else if (element instanceof Datatype) {
 				//compileDatatype(element as Datatype)

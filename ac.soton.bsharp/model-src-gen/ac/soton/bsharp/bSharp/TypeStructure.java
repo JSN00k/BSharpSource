@@ -3,8 +3,12 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe2.runtime.IFactory;
+
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,6 +63,8 @@ public interface TypeStructure extends EObject {
 	/* Makes a string of variables mapped together used to define the type class */ 
 	String stringForArgsToSetCompVarList();
 	
-	String typedArgsForTypeClass(); 
+	String typedArgsForTypeClass();
+
+	ArrayList<Tuple2<String, String>> getEventBVariablesAndTypes(); 
 
 } // TypeStructure
