@@ -361,8 +361,13 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return 1;
 	}
 	
-	/* Compiles the operator used to create an instance of this type class. */
 	@Override
+	public void compile() throws Exception {
+		compileOp();
+		compileGetterOperators();
+	}
+	
+	/* Compiles the operator used to create an instance of this type class. */
 	public void compileOp() throws Exception {
 		/*TODO: document this method working through a couple of event B examples to show 
 		 * how and where they are compiled. Maybe Monoid and TransitiveOp.
@@ -372,7 +377,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		INewOperatorDefinition op;
 		try {
 			op = TheoryUtils.createOperator(thyCache.theory,
-					getName(), false, false, FormulaType.EXPRESSION, Notation.PREFIX, null, nullMonitor);
+					eventBolymorphicTypeConstructorName(), false, false, FormulaType.EXPRESSION, Notation.PREFIX, null, nullMonitor);
 		} catch (Exception e) {
 			System.err.println(" Unable to crate EventB operator " + e.getLocalizedMessage());
 			return;
@@ -453,7 +458,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					 * arguments.
 					 */
 					TypeConstructor supertype = (TypeConstructor)constType;
-					opString += ((ClassDecl)supertype).constructorName();
+					opString += ((ClassDecl)supertype).eventBolymorphicTypeConstructorName();
 					opString += "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(inferredTypes, ", ", true) + ")";
 				} else {
 					opString += constType.buildEventBType();
@@ -477,9 +482,210 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		TheoryUtils.createDirectDefinition(op, opString, null, nullMonitor);
 	}
 	
+	
+	@Override
+	public ArrayList<String>  getterOperatorSuffixes() {
+		/* Get the complete list of operator suffixes from the super type, then append the operator 
+		 * suffixes from this type.
+		 */
+		
+		ArrayList<String> result = new ArrayList<String>();
+		if (supertypes != null) {
+			Collection<ConstructedType> sTypes = supertypes.getSuperTypes();
+			if (sTypes != null && !sTypes.isEmpty()) {
+				ConstructedType sup = sTypes.iterator().next();
+				
+				if (sup.isAbstractTypeClass()) {
+					result.addAll(sup.getTypeClass().getterOperatorSuffixes());
+				}
+			}
+		}
+		
+		if (varList != null) {
+			ArrayList<Tuple2<String, String>> typedVars = varList.getEventBVariablesAndTypes();
+			
+			for (Tuple2<String, String> typedVar : typedVars) {
+				result.add("_" + typedVar.x);
+			}
+		}
+		
+		return result;
+	}
+	
+	/* The typed list of arguments required to construct an entirely generic instance of
+	 * this type. Does not include the construction of the type itself.
+	 */
+	@Override
+	public ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass () throws Exception {
+		if (context != null) {
+			return context.namesAndTypesForPolyContext();
+		}
+		
+		if (supertypes == null) {
+			throw new Exception("Type class declared without any sort of supertype");
+		}
+		
+		Collection<ConstructedType> sTypes = supertypes.getSuperTypes();
+		if (sTypes == null || sTypes.isEmpty()) {
+			throw new Exception("Type class declared without any sort of supertype");
+		}
+		
+		ConstructedType sup = sTypes.iterator().next();
+		
+		if (!sup.isAbstractTypeClass())
+			throw new Exception("Type class declared without any sort of supertype");
+		
+		BSClass superClass = sup.getTypeClass();
+		ArrayList<Tuple2<String, String>> result = superClass.polyArgumentsToConstructGenericTypeClass();
+		
+		return result;
+	}
+	
+	INewOperatorDefinition constructOpForGetterWithName(String n) {
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		INewOperatorDefinition op;
+		
+		try {
+			op = TheoryUtils.createOperator(thyCache.theory,
+					n, false, false, FormulaType.EXPRESSION, Notation.PREFIX, null, nullMonitor);
+		} catch (Exception e) {
+			System.err.println("Unable to crate EventB operator " + e.getLocalizedMessage());
+			return null;
+		}
+		
+		ArrayList<Tuple2<String, String>> polyArgs = null;
+		
+		try {
+			polyArgs = polyArgumentsToConstructGenericTypeClass();
+		} catch (Exception e) {
+			//TODO: Validation against this.
+			System.err.println("Illegal type declaration, this should be validataed against.");
+		}
+		
+		for (Tuple2<String, String> typedVar : polyArgs) {
+			try {
+				TheoryUtils.createArgument(op, typedVar.x, typedVar.y, null,
+						nullMonitor);
+			} catch (Exception e) {
+				System.err.println("Unable to create argument for operator op: " + n + " arg: " + typedVar.x + ":" + typedVar.y);
+			}
+		}
+		
+		/* Finally it is necessary to create an operator to represent the type itself. To do this we use the
+		 * type constructor already created. */
+		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(polyArgs, ", ", true) + ")";
+		try {
+			TheoryUtils.createArgument(op, name, eventBolymorphicTypeConstructorName() + argsForConstructor,
+					null, nullMonitor);
+		} catch (Exception e) {
+			System.err.println("Unable to create argument for operator op: " + n + " arg: " + name + ":" 
+					+ eventBolymorphicTypeConstructorName() + argsForConstructor);
+		}
+		
+		return op;
+	}
+	
+	public void compileGetterOperators() {
+		/* I think that I'm going to use Event-B operators to pass getters onto subtypes. 
+		 * This makes coding simpler. The supertype is always at prj1. of the type. */
+		if (supertypes != null) {
+			Collection<ConstructedType> sTypes = supertypes.getSuperTypes();
+			
+			if (sTypes != null && !sTypes.isEmpty()) {
+				ConstructedType sup = sTypes.iterator().next();
+				
+				if (sup.isAbstractTypeClass()) {
+					BSClass sType = sup.getTypeClass();
+					ArrayList<String> suffixes = sType.getterOperatorSuffixes();
+					
+					for (String suffix : suffixes) {
+						INewOperatorDefinition op = constructOpForGetterWithName(name + suffix);
+						try {
+							TheoryUtils.createDirectDefinition(op, sType.getName() + suffix + "(prj1(" + name + "))", 
+									null, nullMonitor);
+						} catch (Exception e) {
+							System.err.println("Unable to create direct definition for getter op with erorr: " + e.getLocalizedMessage());
+						}
+						
+					}
+				}
+			}
+		}
+		
+		if (varList != null) {
+			ArrayList<Tuple2<String, String>> varListVariables = varList.getEventBVariablesAndTypes();
+			Integer prj2sRequired = 1;
+			Integer lastNdx = varListVariables.size() - 1;
+			for (Tuple2<String, String> typedVar : varListVariables) {
+				INewOperatorDefinition op = constructOpForGetterWithName(name + "_" + typedVar.x);
+				
+				String directDefString = "";
+				Integer neededCloseBrackets = prj2sRequired;
+				for (int i = 0; i < prj2sRequired; ++i) {
+					directDefString += "prj2(";
+				}
+				
+				if (varListVariables.indexOf(typedVar) !=  lastNdx) {
+					directDefString += "prj1(";
+					++neededCloseBrackets;
+				}
+				
+				directDefString += name;
+				
+				for (int i = 0; i < neededCloseBrackets; ++i) {
+					directDefString += ")";
+				}
+				
+				try {
+					TheoryUtils.createDirectDefinition(op, directDefString, 
+							null, nullMonitor);
+				} catch (Exception e) {
+					System.err.println("Unable to create direct definition for getter op with erorr: " + e.getLocalizedMessage());
+				}
+			}
+		}
+	}
+	
+	@Override
+	public Boolean isTypeClass() {
+		if (varList != null) {
+			if (varList.getEventBVariablesAndTypes().size() != 0) {
+				return true;
+			}
+		}
+		
+		if (supertypes != null) {
+			Collection<ConstructedType> sTypes = supertypes.getSuperTypes();
+			
+			if (sTypes != null && !sTypes.isEmpty()) {
+				ConstructedType sup = sTypes.iterator().next();
+				return sup.isAbstractTypeClass();
+			}
+		}
+		
+		return false;
+	}
+	
 	@Override
 	public String constructionInstName() {
 		return name + "Inst";
+	}
+	
+	/* The name for the EventB operator used to construct entirely polymorphic instances of the type. */
+	@Override
+	public String eventBolymorphicTypeConstructorName() {
+		return name + "_T";
+	}
+	
+	/* This takes components to construct the type, e.g. to construct a monoid it'd be Monoid_C(T : T, set : Setoid)
+	 * this is what is used if a type is constructed with a given context. */
+	@Override
+	public String eventBTypeConstructorFromTypes() {
+		if (isTypeClass()) {
+			return name + "_C";
+		}
+		
+		return eventBolymorphicTypeConstructorName();
 	}
 
 	@Override
@@ -487,7 +693,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		if (context == null)
 			return "()";
 		
-		String result = name + "(";
+		String result = eventBTypeConstructorFromTypes() + "(";
 		try {
 			result += context.compileCallWithTypeContext(ctx);
 		} catch (Exception e) {
@@ -504,9 +710,5 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		// TODO Change this when user defined prefixes are added.
 		return name;
 	}
-
-	@Override
-	public String constructorName() {
-		return name;
-	}	
+	
 } //BppClassImpl

@@ -4,6 +4,8 @@
 package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
+
+import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 /**
@@ -104,8 +106,17 @@ public interface BSClass extends ClassDecl {
 	void setWhere(Where value);
 
 	Integer eventBRequiredPolyTypes();
-	 void compileOp() throws Exception;
 	 
 	 String constructionInstName();
+
+	ArrayList<String> getterOperatorSuffixes();
+
+	ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass() throws Exception;
+
+	String eventBolymorphicTypeConstructorName();
+
+	Boolean isTypeClass();
+
+	String eventBTypeConstructorFromTypes();
 
 } // BppClass

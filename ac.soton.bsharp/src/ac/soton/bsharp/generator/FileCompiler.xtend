@@ -51,7 +51,7 @@ class FileCompiler {
 		for (element : elements.eContents) {
 			if (element instanceof BSClass) {
 				val bsClass = element as BSClass
-				bsClass.compileOp()
+				bsClass.compile()
 			} else if (element instanceof Datatype) {
 				//compileDatatype(element as Datatype)
 			} else {

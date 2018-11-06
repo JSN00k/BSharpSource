@@ -39,7 +39,7 @@ public class FileCompiler {
       for (final EObject element : _eContents) {
         if ((element instanceof BSClass)) {
           final BSClass bsClass = ((BSClass) element);
-          bsClass.compileOp();
+          bsClass.compile();
         } else {
           if ((element instanceof Datatype)) {
           } else {

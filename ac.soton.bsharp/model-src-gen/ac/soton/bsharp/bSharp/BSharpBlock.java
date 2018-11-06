@@ -39,5 +39,7 @@ public interface BSharpBlock extends EObject {
 	 * @generated
 	 */
 	EList<TypeBodyElements> getBodyElements();
+	
+	void compile();
 
 } // BSharpBlock

@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 
@@ -336,6 +337,16 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 		result += " " + constructor + " " + right.buildEventBType();
 		// TODO Auto-generated method stub
 		return result;
+	}
+
+	@Override
+	public boolean isAbstractTypeClass() {
+		return false;
+	}
+
+	@Override
+	public BSClass getTypeClass() {
+		return null;
 	}
 
 } //ConstructedTypeImpl

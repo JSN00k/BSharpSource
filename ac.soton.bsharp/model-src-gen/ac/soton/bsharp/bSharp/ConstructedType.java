@@ -111,4 +111,10 @@ public interface ConstructedType extends EObject {
 	
 	String buildEventBType();
 
+	/* If the Constructed type wraps a type class without a polymorphic context, this returns true. */
+	boolean isAbstractTypeClass();
+
+	/* This method will return null if the Constructed type is not wrapping a type class. */
+	BSClass getTypeClass();
+
 } // ConstructedType

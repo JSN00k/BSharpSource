@@ -179,8 +179,19 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public String constructorName() {
+	public String eventBolymorphicTypeConstructorName() {
 		return name;
+	}
+
+	@Override
+	public void compile() throws Exception {
+		System.err.println("Compiling a Datatype is unimplemented. Implement Me! (DatatypeImpl)");
+	}
+
+	@Override
+	public String eventBTypeConstructorFromTypes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //DatatypeImpl

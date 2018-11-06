@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -280,6 +281,24 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 			System.out.print("Unimplemeneted in TypeConstrutorImpl unexpected case.");
 			return "";
 		}
+	}
+	
+	@Override
+	public boolean isAbstractTypeClass() {
+		if (!(typeName instanceof BSClass))
+			return false;
+		
+		PolyContext context = ((BSClass)typeName).getContext();
+		return context == null || context.polyTypesCount() == 0;
+	}
+
+	@Override
+	public BSClass getTypeClass() {
+		if (typeName instanceof BSClass) {
+			return (BSClass)typeName;
+		}
+		
+		return null;
 	}
 
 } //TypeConstructorImpl
