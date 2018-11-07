@@ -170,11 +170,7 @@ Extend:
 
 BSharpBlock:
 	{BSharpBlock}
-	'{' bodyElements+=TypeBodyElements* '}'
-;
-
-TypeBodyElements:
-	 (functions+=FunctionDecl) | (theorems+=TheoremBody)
+	'{' ((functions+=FunctionDecl) | (theorems+=TheoremBody))* '}'
 ;
 
 /*------------------------- Functions --------------------------------- */

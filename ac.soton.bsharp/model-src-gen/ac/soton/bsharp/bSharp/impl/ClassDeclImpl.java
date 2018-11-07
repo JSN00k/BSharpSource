@@ -8,22 +8,18 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
-import ac.soton.bsharp.bSharp.TypeBodyElements;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.EcoreUtil2;
 
 /**
@@ -35,7 +31,6 @@ import org.eclipse.xtext.EcoreUtil2;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getContext <em>Context</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getBodyElements <em>Body Elements</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getBlock <em>Block</em>}</li>
  * </ul>
  *
@@ -51,16 +46,6 @@ public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 	 * @ordered
 	 */
 	protected PolyContext context;
-
-	/**
-	 * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBodyElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypeBodyElements> bodyElements;
 
 	/**
 	 * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
@@ -139,18 +124,6 @@ public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypeBodyElements> getBodyElements() {
-		if (bodyElements == null) {
-			bodyElements = new EObjectContainmentEList<TypeBodyElements>(TypeBodyElements.class, this, BSharpPackage.CLASS_DECL__BODY_ELEMENTS);
-		}
-		return bodyElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BSharpBlock getBlock() {
 		return block;
 	}
@@ -199,8 +172,6 @@ public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 		switch (featureID) {
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return basicSetContext(null, msgs);
-			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
-				return ((InternalEList<?>)getBodyElements()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.CLASS_DECL__BLOCK:
 				return basicSetBlock(null, msgs);
 		}
@@ -217,8 +188,6 @@ public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 		switch (featureID) {
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return getContext();
-			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
-				return getBodyElements();
 			case BSharpPackage.CLASS_DECL__BLOCK:
 				return getBlock();
 		}
@@ -236,10 +205,6 @@ public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 		switch (featureID) {
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				setContext((PolyContext)newValue);
-				return;
-			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
-				getBodyElements().clear();
-				getBodyElements().addAll((Collection<? extends TypeBodyElements>)newValue);
 				return;
 			case BSharpPackage.CLASS_DECL__BLOCK:
 				setBlock((BSharpBlock)newValue);
@@ -259,9 +224,6 @@ public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				setContext((PolyContext)null);
 				return;
-			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
-				getBodyElements().clear();
-				return;
 			case BSharpPackage.CLASS_DECL__BLOCK:
 				setBlock((BSharpBlock)null);
 				return;
@@ -279,8 +241,6 @@ public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 		switch (featureID) {
 			case BSharpPackage.CLASS_DECL__CONTEXT:
 				return context != null;
-			case BSharpPackage.CLASS_DECL__BODY_ELEMENTS:
-				return bodyElements != null && !bodyElements.isEmpty();
 			case BSharpPackage.CLASS_DECL__BLOCK:
 				return block != null;
 		}

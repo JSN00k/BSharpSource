@@ -671,4 +671,16 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		return null;
 	}
 
+	@Override
+	public void compile() {
+		/* There are functions with polymorphic contexts, functions with inferred polymorphic contexts,
+		 * (They use types from the class that they are declared in), and functions which only work on 
+		 * the passed variables. Functions that have polymorphic contexts inferred or otherwise will 
+		 * work by having an eventB operator that takes the polymorphic context as the argument, and 
+		 * generates a lambda which is then called with the function arguments.
+		 */
+		
+		this is nonsense, come and implement me!
+	}
+
 } //FunctionDeclImpl

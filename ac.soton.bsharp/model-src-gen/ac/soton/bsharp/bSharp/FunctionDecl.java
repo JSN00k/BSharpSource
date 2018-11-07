@@ -189,4 +189,6 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, Expr
 
 	String eventBExprName();
 
+	void compile();
+
 } // FunctionDecl

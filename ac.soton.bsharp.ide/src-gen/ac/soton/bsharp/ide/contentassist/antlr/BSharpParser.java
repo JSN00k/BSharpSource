@@ -40,7 +40,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConstructedTypeAccess().getAlternatives_0(), "rule__ConstructedType__Alternatives_0");
 			builder.put(grammarAccess.getConstructedTypeAccess().getConstructorAlternatives_1_1_0(), "rule__ConstructedType__ConstructorAlternatives_1_1_0");
 			builder.put(grammarAccess.getConstructedTypeAccess().getRightAlternatives_1_2_0(), "rule__ConstructedType__RightAlternatives_1_2_0");
-			builder.put(grammarAccess.getTypeBodyElementsAccess().getAlternatives(), "rule__TypeBodyElements__Alternatives");
+			builder.put(grammarAccess.getBSharpBlockAccess().getAlternatives_2(), "rule__BSharpBlock__Alternatives_2");
 			builder.put(grammarAccess.getQuantifierAccess().getQTypeAlternatives_0_0(), "rule__Quantifier__QTypeAlternatives_0_0");
 			builder.put(grammarAccess.getRootExpressionAccess().getAlternatives(), "rule__RootExpression__Alternatives");
 			builder.put(grammarAccess.getInfixAccess().getAlternatives_1_1(), "rule__Infix__Alternatives_1_1");
@@ -113,7 +113,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTopLevelImportAccess().getBodyElementsAssignment_1(), "rule__TopLevelImport__BodyElementsAssignment_1");
 			builder.put(grammarAccess.getBodyElementsAccess().getClassesAssignment_0(), "rule__BodyElements__ClassesAssignment_0");
 			builder.put(grammarAccess.getBodyElementsAccess().getExtendsAssignment_1(), "rule__BodyElements__ExtendsAssignment_1");
-			builder.put(grammarAccess.getBodyElementsAccess().getInstancesAssignment_2(), "rule__BodyElements__InstancesAssignment_2");
 			builder.put(grammarAccess.getGlobalImportAccess().getProjectAssignment_1(), "rule__GlobalImport__ProjectAssignment_1");
 			builder.put(grammarAccess.getGlobalImportAccess().getFileImportsAssignment_3(), "rule__GlobalImport__FileImportsAssignment_3");
 			builder.put(grammarAccess.getFileImportAccess().getFileNameAssignment_0(), "rule__FileImport__FileNameAssignment_0");
@@ -150,9 +149,8 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExtendAccess().getExtendedClassAssignment_1(), "rule__Extend__ExtendedClassAssignment_1");
 			builder.put(grammarAccess.getExtendAccess().getNameAssignment_3(), "rule__Extend__NameAssignment_3");
 			builder.put(grammarAccess.getExtendAccess().getBlockAssignment_5(), "rule__Extend__BlockAssignment_5");
-			builder.put(grammarAccess.getBSharpBlockAccess().getBodyElementsAssignment_2(), "rule__BSharpBlock__BodyElementsAssignment_2");
-			builder.put(grammarAccess.getTypeBodyElementsAccess().getFunctionsAssignment_0(), "rule__TypeBodyElements__FunctionsAssignment_0");
-			builder.put(grammarAccess.getTypeBodyElementsAccess().getTheoremsAssignment_1(), "rule__TypeBodyElements__TheoremsAssignment_1");
+			builder.put(grammarAccess.getBSharpBlockAccess().getFunctionsAssignment_2_0(), "rule__BSharpBlock__FunctionsAssignment_2_0");
+			builder.put(grammarAccess.getBSharpBlockAccess().getTheoremsAssignment_2_1(), "rule__BSharpBlock__TheoremsAssignment_2_1");
 			builder.put(grammarAccess.getFunctionDeclAccess().getNameAssignment_0(), "rule__FunctionDecl__NameAssignment_0");
 			builder.put(grammarAccess.getFunctionDeclAccess().getContextAssignment_1(), "rule__FunctionDecl__ContextAssignment_1");
 			builder.put(grammarAccess.getFunctionDeclAccess().getVarListAssignment_3(), "rule__FunctionDecl__VarListAssignment_3");

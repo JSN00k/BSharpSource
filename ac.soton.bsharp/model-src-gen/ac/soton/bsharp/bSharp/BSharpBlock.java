@@ -16,7 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.BSharpBlock#getBodyElements <em>Body Elements</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.BSharpBlock#getFunctions <em>Functions</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.BSharpBlock#getTheorems <em>Theorems</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSharpBlock()
@@ -25,21 +26,37 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface BSharpBlock extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Body Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TypeBodyElements}.
+	 * Returns the value of the '<em><b>Functions</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.FunctionDecl}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Body Elements</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Functions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Body Elements</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSharpBlock_BodyElements()
+	 * @return the value of the '<em>Functions</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSharpBlock_Functions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<TypeBodyElements> getBodyElements();
-	
+	EList<FunctionDecl> getFunctions();
+
+	/**
+	 * Returns the value of the '<em><b>Theorems</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TheoremBody}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Theorems</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Theorems</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSharpBlock_Theorems()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<TheoremBody> getTheorems();
+
 	void compile();
 
 } // BSharpBlock

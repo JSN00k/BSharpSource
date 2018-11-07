@@ -270,14 +270,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassesClassDeclParserRuleCall_0_0 = (RuleCall)cClassesAssignment_0.eContents().get(0);
 		private final Assignment cExtendsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cExtendsExtendParserRuleCall_1_0 = (RuleCall)cExtendsAssignment_1.eContents().get(0);
-		private final Assignment cInstancesAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cInstancesInstanceParserRuleCall_2_0 = (RuleCall)cInstancesAssignment_2.eContents().get(0);
 		
 		//BodyElements:
-		//	(classes+=ClassDecl | extends+=Extend | instances+=Instance)+;
+		//	(classes+=ClassDecl | extends+=Extend)+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(classes+=ClassDecl | extends+=Extend | instances+=Instance)+
+		//(classes+=ClassDecl | extends+=Extend)+
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//classes+=ClassDecl
@@ -291,12 +289,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Extend
 		public RuleCall getExtendsExtendParserRuleCall_1_0() { return cExtendsExtendParserRuleCall_1_0; }
-		
-		//instances+=Instance
-		public Assignment getInstancesAssignment_2() { return cInstancesAssignment_2; }
-		
-		//Instance
-		public RuleCall getInstancesInstanceParserRuleCall_2_0() { return cInstancesInstanceParserRuleCall_2_0; }
 	}
 	public class GlobalImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.GlobalImport");
@@ -1023,16 +1015,19 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cBSharpBlockAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cBodyElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBodyElementsTypeBodyElementsParserRuleCall_2_0 = (RuleCall)cBodyElementsAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cFunctionsAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cFunctionsFunctionDeclParserRuleCall_2_0_0 = (RuleCall)cFunctionsAssignment_2_0.eContents().get(0);
+		private final Assignment cTheoremsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cTheoremsTheoremBodyParserRuleCall_2_1_0 = (RuleCall)cTheoremsAssignment_2_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		///* ------------------------ TypeBodyElements ------------------------------- */ BSharpBlock:
 		//	{BSharpBlock}
-		//	'{' bodyElements+=TypeBodyElements* '}';
+		//	'{' (functions+=FunctionDecl | theorems+=TheoremBody)* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{BSharpBlock} '{' bodyElements+=TypeBodyElements* '}'
+		//{BSharpBlock} '{' (functions+=FunctionDecl | theorems+=TheoremBody)* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//{BSharpBlock}
@@ -1041,41 +1036,23 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//bodyElements+=TypeBodyElements*
-		public Assignment getBodyElementsAssignment_2() { return cBodyElementsAssignment_2; }
+		//(functions+=FunctionDecl | theorems+=TheoremBody)*
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//TypeBodyElements
-		public RuleCall getBodyElementsTypeBodyElementsParserRuleCall_2_0() { return cBodyElementsTypeBodyElementsParserRuleCall_2_0; }
+		//functions+=FunctionDecl
+		public Assignment getFunctionsAssignment_2_0() { return cFunctionsAssignment_2_0; }
+		
+		//FunctionDecl
+		public RuleCall getFunctionsFunctionDeclParserRuleCall_2_0_0() { return cFunctionsFunctionDeclParserRuleCall_2_0_0; }
+		
+		//theorems+=TheoremBody
+		public Assignment getTheoremsAssignment_2_1() { return cTheoremsAssignment_2_1; }
+		
+		//TheoremBody
+		public RuleCall getTheoremsTheoremBodyParserRuleCall_2_1_0() { return cTheoremsTheoremBodyParserRuleCall_2_1_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
-	}
-	public class TypeBodyElementsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TypeBodyElements");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cFunctionsAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cFunctionsFunctionDeclParserRuleCall_0_0 = (RuleCall)cFunctionsAssignment_0.eContents().get(0);
-		private final Assignment cTheoremsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cTheoremsTheoremBodyParserRuleCall_1_0 = (RuleCall)cTheoremsAssignment_1.eContents().get(0);
-		
-		//TypeBodyElements:
-		//	functions+=FunctionDecl | theorems+=TheoremBody;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//functions+=FunctionDecl | theorems+=TheoremBody
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//functions+=FunctionDecl
-		public Assignment getFunctionsAssignment_0() { return cFunctionsAssignment_0; }
-		
-		//FunctionDecl
-		public RuleCall getFunctionsFunctionDeclParserRuleCall_0_0() { return cFunctionsFunctionDeclParserRuleCall_0_0; }
-		
-		//theorems+=TheoremBody
-		public Assignment getTheoremsAssignment_1() { return cTheoremsAssignment_1; }
-		
-		//TheoremBody
-		public RuleCall getTheoremsTheoremBodyParserRuleCall_1_0() { return cTheoremsTheoremBodyParserRuleCall_1_0; }
 	}
 	public class FunctionDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FunctionDecl");
@@ -2030,7 +2007,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final DatatypeConstructorElements pDatatypeConstructor;
 	private final ExtendElements pExtend;
 	private final BSharpBlockElements pBSharpBlock;
-	private final TypeBodyElementsElements pTypeBodyElements;
 	private final FunctionDeclElements pFunctionDecl;
 	private final MatchStatementElements pMatchStatement;
 	private final MatchCaseElements pMatchCase;
@@ -2090,7 +2066,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDatatypeConstructor = new DatatypeConstructorElements();
 		this.pExtend = new ExtendElements();
 		this.pBSharpBlock = new BSharpBlockElements();
-		this.pTypeBodyElements = new TypeBodyElementsElements();
 		this.pFunctionDecl = new FunctionDeclElements();
 		this.pMatchStatement = new MatchStatementElements();
 		this.pMatchCase = new MatchCaseElements();
@@ -2251,7 +2226,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BodyElements:
-	//	(classes+=ClassDecl | extends+=Extend | instances+=Instance)+;
+	//	(classes+=ClassDecl | extends+=Extend)+;
 	public BodyElementsElements getBodyElementsAccess() {
 		return pBodyElements;
 	}
@@ -2439,23 +2414,13 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	///* ------------------------ TypeBodyElements ------------------------------- */ BSharpBlock:
 	//	{BSharpBlock}
-	//	'{' bodyElements+=TypeBodyElements* '}';
+	//	'{' (functions+=FunctionDecl | theorems+=TheoremBody)* '}';
 	public BSharpBlockElements getBSharpBlockAccess() {
 		return pBSharpBlock;
 	}
 	
 	public ParserRule getBSharpBlockRule() {
 		return getBSharpBlockAccess().getRule();
-	}
-	
-	//TypeBodyElements:
-	//	functions+=FunctionDecl | theorems+=TheoremBody;
-	public TypeBodyElementsElements getTypeBodyElementsAccess() {
-		return pTypeBodyElements;
-	}
-	
-	public ParserRule getTypeBodyElementsRule() {
-		return getTypeBodyElementsAccess().getRule();
 	}
 	
 	///*------------------------- Functions --------------------------------- */ FunctionDecl:

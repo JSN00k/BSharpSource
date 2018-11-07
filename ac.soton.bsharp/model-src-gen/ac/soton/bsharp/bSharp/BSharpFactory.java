@@ -176,15 +176,6 @@ public interface BSharpFactory extends EFactory {
 	Extend createExtend();
 
 	/**
-	 * Returns a new object of class '<em>Type Body Elements</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Body Elements</em>'.
-	 * @generated
-	 */
-	TypeBodyElements createTypeBodyElements();
-
-	/**
 	 * Returns a new object of class '<em>Function Decl</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -46,7 +46,6 @@ import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.Type;
-import ac.soton.bsharp.bSharp.TypeBodyElements;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -208,13 +207,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass extendEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeBodyElementsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -597,17 +589,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassDecl_BodyElements() {
-		return (EReference)classDeclEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getClassDecl_Block() {
-		return (EReference)classDeclEClass.getEStructuralFeatures().get(2);
+		return (EReference)classDeclEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -660,8 +643,17 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBSharpBlock_BodyElements() {
+	public EReference getBSharpBlock_Functions() {
 		return (EReference)bSharpBlockEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBSharpBlock_Theorems() {
+		return (EReference)bSharpBlockEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -939,44 +931,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtend_BodyElements() {
-		return (EReference)extendEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getExtend_Block() {
-		return (EReference)extendEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTypeBodyElements() {
-		return typeBodyElementsEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeBodyElements_Functions() {
-		return (EReference)typeBodyElementsEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTypeBodyElements_Theorems() {
-		return (EReference)typeBodyElementsEClass.getEStructuralFeatures().get(1);
+		return (EReference)extendEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1717,7 +1673,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		classDeclEClass = createEClass(CLASS_DECL);
 		createEReference(classDeclEClass, CLASS_DECL__CONTEXT);
-		createEReference(classDeclEClass, CLASS_DECL__BODY_ELEMENTS);
 		createEReference(classDeclEClass, CLASS_DECL__BLOCK);
 
 		bsClassEClass = createEClass(BS_CLASS);
@@ -1726,7 +1681,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(bsClassEClass, BS_CLASS__WHERE);
 
 		bSharpBlockEClass = createEClass(BSHARP_BLOCK);
-		createEReference(bSharpBlockEClass, BSHARP_BLOCK__BODY_ELEMENTS);
+		createEReference(bSharpBlockEClass, BSHARP_BLOCK__FUNCTIONS);
+		createEReference(bSharpBlockEClass, BSHARP_BLOCK__THEOREMS);
 
 		genNameEClass = createEClass(GEN_NAME);
 
@@ -1770,12 +1726,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		extendEClass = createEClass(EXTEND);
 		createEReference(extendEClass, EXTEND__EXTENDED_CLASS);
 		createEAttribute(extendEClass, EXTEND__NAME);
-		createEReference(extendEClass, EXTEND__BODY_ELEMENTS);
 		createEReference(extendEClass, EXTEND__BLOCK);
-
-		typeBodyElementsEClass = createEClass(TYPE_BODY_ELEMENTS);
-		createEReference(typeBodyElementsEClass, TYPE_BODY_ELEMENTS__FUNCTIONS);
-		createEReference(typeBodyElementsEClass, TYPE_BODY_ELEMENTS__THEOREMS);
 
 		functionDeclEClass = createEClass(FUNCTION_DECL);
 		createEReference(functionDeclEClass, FUNCTION_DECL__CONTEXT);
@@ -1962,7 +1913,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		initEClass(classDeclEClass, ClassDecl.class, "ClassDecl", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassDecl_BodyElements(), this.getTypeBodyElements(), null, "bodyElements", null, 0, -1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassDecl_Block(), this.getBSharpBlock(), null, "block", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bsClassEClass, BSClass.class, "BSClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1971,7 +1921,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getBSClass_Where(), this.getWhere(), null, "where", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bSharpBlockEClass, BSharpBlock.class, "BSharpBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBSharpBlock_BodyElements(), this.getTypeBodyElements(), null, "bodyElements", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBSharpBlock_Functions(), this.getFunctionDecl(), null, "functions", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBSharpBlock_Theorems(), this.getTheoremBody(), null, "theorems", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(genNameEClass, GenName.class, "GenName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2015,12 +1966,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(extendEClass, Extend.class, "Extend", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExtend_ExtendedClass(), this.getClassDecl(), null, "extendedClass", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getExtend_Name(), ecorePackage.getEString(), "name", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtend_BodyElements(), this.getTypeBodyElements(), null, "bodyElements", null, 0, -1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtend_Block(), this.getBSharpBlock(), null, "block", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typeBodyElementsEClass, TypeBodyElements.class, "TypeBodyElements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeBodyElements_Functions(), this.getFunctionDecl(), null, "functions", null, 0, -1, TypeBodyElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeBodyElements_Theorems(), this.getTheoremBody(), null, "theorems", null, 0, -1, TypeBodyElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionDeclEClass, FunctionDecl.class, "FunctionDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -9,23 +9,16 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.PolyType;
-import ac.soton.bsharp.bSharp.TypeBodyElements;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,16 +63,6 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBodyElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TypeBodyElements> bodyElements;
 
 	/**
 	 * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
@@ -174,18 +157,6 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TypeBodyElements> getBodyElements() {
-		if (bodyElements == null) {
-			bodyElements = new EObjectContainmentEList<TypeBodyElements>(TypeBodyElements.class, this, BSharpPackage.EXTEND__BODY_ELEMENTS);
-		}
-		return bodyElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BSharpBlock getBlock() {
 		return block;
 	}
@@ -232,8 +203,6 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.EXTEND__BODY_ELEMENTS:
-				return ((InternalEList<?>)getBodyElements()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.EXTEND__BLOCK:
 				return basicSetBlock(null, msgs);
 		}
@@ -253,8 +222,6 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 				return basicGetExtendedClass();
 			case BSharpPackage.EXTEND__NAME:
 				return getName();
-			case BSharpPackage.EXTEND__BODY_ELEMENTS:
-				return getBodyElements();
 			case BSharpPackage.EXTEND__BLOCK:
 				return getBlock();
 		}
@@ -275,10 +242,6 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 				return;
 			case BSharpPackage.EXTEND__NAME:
 				setName((String)newValue);
-				return;
-			case BSharpPackage.EXTEND__BODY_ELEMENTS:
-				getBodyElements().clear();
-				getBodyElements().addAll((Collection<? extends TypeBodyElements>)newValue);
 				return;
 			case BSharpPackage.EXTEND__BLOCK:
 				setBlock((BSharpBlock)newValue);
@@ -301,9 +264,6 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 			case BSharpPackage.EXTEND__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BSharpPackage.EXTEND__BODY_ELEMENTS:
-				getBodyElements().clear();
-				return;
 			case BSharpPackage.EXTEND__BLOCK:
 				setBlock((BSharpBlock)null);
 				return;
@@ -323,8 +283,6 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 				return extendedClass != null;
 			case BSharpPackage.EXTEND__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BSharpPackage.EXTEND__BODY_ELEMENTS:
-				return bodyElements != null && !bodyElements.isEmpty();
 			case BSharpPackage.EXTEND__BLOCK:
 				return block != null;
 		}

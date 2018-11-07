@@ -81,7 +81,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.DATATYPE: return createDatatype();
 			case BSharpPackage.DATATYPE_CONSTRUCTOR: return createDatatypeConstructor();
 			case BSharpPackage.EXTEND: return createExtend();
-			case BSharpPackage.TYPE_BODY_ELEMENTS: return createTypeBodyElements();
 			case BSharpPackage.FUNCTION_DECL: return createFunctionDecl();
 			case BSharpPackage.MATCH_STATEMENT: return createMatchStatement();
 			case BSharpPackage.MATCH_CASE: return createMatchCase();
@@ -273,16 +272,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public Extend createExtend() {
 		ExtendImpl extend = new ExtendImpl();
 		return extend;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeBodyElements createTypeBodyElements() {
-		TypeBodyElementsImpl typeBodyElements = new TypeBodyElementsImpl();
-		return typeBodyElements;
 	}
 
 	/**

@@ -53,8 +53,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" abstract="true" eSuperTypes="#//GenName #//ExpressionVariable #//IVariableProvider #//IPolyTypeProvider #//Type #//TopLevelInstance #//IEventBPrefixProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" upperBound="-1"
-        eType="#//TypeBodyElements" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
         containment="true"/>
   </eClassifiers>
@@ -67,8 +65,10 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSharpBlock">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" upperBound="-1"
-        eType="#//TypeBodyElements" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
+        eType="#//FunctionDecl" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="theorems" upperBound="-1"
+        eType="#//TheoremBody" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenName" eSuperTypes="#//NamedObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="PolyContext">
@@ -125,16 +125,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedClass" eType="#//ClassDecl"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" upperBound="-1"
-        eType="#//TypeBodyElements" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeBodyElements">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
-        eType="#//FunctionDecl" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="theorems" upperBound="-1"
-        eType="#//TheoremBody" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionDecl" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//ExpressionVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"

@@ -50,22 +50,6 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	void setContext(PolyContext value);
 
 	/**
-	 * Returns the value of the '<em><b>Body Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TypeBodyElements}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Body Elements</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Body Elements</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl_BodyElements()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<TypeBodyElements> getBodyElements();
-
-	/**
 	 * Returns the value of the '<em><b>Block</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>

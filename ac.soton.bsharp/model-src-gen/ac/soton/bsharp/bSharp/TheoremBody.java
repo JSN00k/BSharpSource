@@ -40,4 +40,6 @@ public interface TheoremBody extends EObject {
 	 */
 	EList<TheoremDecl> getTheoremDecl();
 
+	void compile();
+
 } // TheoremBody
