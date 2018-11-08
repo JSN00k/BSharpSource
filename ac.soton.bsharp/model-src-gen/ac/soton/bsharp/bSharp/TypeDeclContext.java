@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface TypeDeclContext extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Type Name</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.ConstructedType}.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TypeBuilder}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type Name</em>' containment reference list isn't clear,
@@ -38,6 +38,6 @@ public interface TypeDeclContext extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConstructedType> getTypeName();
+	EList<TypeBuilder> getTypeName();
 
 } // TypeDeclContext

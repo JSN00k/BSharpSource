@@ -59,7 +59,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="BSClass" eSuperTypes="#//ClassDecl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertypes" eType="#//SuperTypeList"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypeStructure"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypedVariableList"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Where"
         containment="true"/>
@@ -81,31 +81,27 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SuperTypeList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="superTypes" upperBound="-1"
-        eType="#//ConstructedType" containment="true"/>
+        eType="#//TypeBuilder" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeConstructor" eSuperTypes="#//ConstructedType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeConstructor" eSuperTypes="#//TypeBuilder">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="#//GenName"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeConstrBracket" eSuperTypes="#//ConstructedType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="child" lowerBound="1" eType="#//ConstructedType"
+  <eClassifiers xsi:type="ecore:EClass" name="TypeConstrBracket" eSuperTypes="#//TypeBuilder">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" lowerBound="1" eType="#//TypeBuilder"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstructedType">
+  <eClassifiers xsi:type="ecore:EClass" name="ConstructedType" eSuperTypes="#//TypeBuilder">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constructor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ConstructedType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//TypeBuilder"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ConstructedType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//TypeBuilder"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDeclContext">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" upperBound="-1"
-        eType="#//ConstructedType" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeStructure">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" eType="#//TypedVariableList"
-        containment="true"/>
+        eType="#//TypeBuilder" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Where">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expessions" upperBound="-1"
@@ -169,7 +165,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="VariableTyping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeVar" upperBound="-1"
         eType="#//TypedVariable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ConstructedType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeBuilder"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedVariable" eSuperTypes="#//ExpressionVariable"/>
@@ -226,4 +222,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="NamedObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeBuilder" abstract="true"/>
 </ecore:EPackage>

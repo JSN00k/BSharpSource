@@ -28,7 +28,7 @@ import ac.soton.bsharp.theory.util.TheoryImportCache;
 public interface SuperTypeList extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Super Types</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.ConstructedType}.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TypeBuilder}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Super Types</em>' containment reference list isn't clear,
@@ -40,7 +40,7 @@ public interface SuperTypeList extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConstructedType> getSuperTypes();	
+	EList<TypeBuilder> getSuperTypes();	
 	
 	ConstructedType getFirst();
 } // SuperTypeList

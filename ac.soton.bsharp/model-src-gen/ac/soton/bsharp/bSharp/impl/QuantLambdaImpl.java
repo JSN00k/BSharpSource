@@ -469,4 +469,21 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		return 2;
 	}
 
+	@Override
+	public Boolean hasInferredContext() {
+		return expr.hasInferredContext();
+	}
+
+	@Override
+	public Expression reorderExpresionTree() {
+		if (reordered) {
+			return this;
+		}
+		
+		reordered = true;
+		
+		expr = expr.reorderExpresionTree();
+		return this;
+	}
+
 } //QuantLambdaImpl

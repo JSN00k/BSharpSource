@@ -131,15 +131,6 @@ public interface BSharpFactory extends EFactory {
 	TypeDeclContext createTypeDeclContext();
 
 	/**
-	 * Returns a new object of class '<em>Type Structure</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type Structure</em>'.
-	 * @generated
-	 */
-	TypeStructure createTypeStructure();
-
-	/**
 	 * Returns a new object of class '<em>Where</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

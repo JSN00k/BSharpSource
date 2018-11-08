@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -41,7 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements ConstructedType {
+public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedType {
 	/**
 	 * The default value of the '{@link #getConstructor() <em>Constructor</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,7 +71,7 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected ConstructedType left;
+	protected TypeBuilder left;
 
 	/**
 	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
@@ -80,7 +81,7 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected ConstructedType right;
+	protected TypeBuilder right;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,7 +128,7 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstructedType getLeft() {
+	public TypeBuilder getLeft() {
 		return left;
 	}
 
@@ -136,8 +137,8 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLeft(ConstructedType newLeft, NotificationChain msgs) {
-		ConstructedType oldLeft = left;
+	public NotificationChain basicSetLeft(TypeBuilder newLeft, NotificationChain msgs) {
+		TypeBuilder oldLeft = left;
 		left = newLeft;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.CONSTRUCTED_TYPE__LEFT, oldLeft, newLeft);
@@ -151,7 +152,7 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft(ConstructedType newLeft) {
+	public void setLeft(TypeBuilder newLeft) {
 		if (newLeft != left) {
 			NotificationChain msgs = null;
 			if (left != null)
@@ -170,7 +171,7 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstructedType getRight() {
+	public TypeBuilder getRight() {
 		return right;
 	}
 
@@ -179,8 +180,8 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRight(ConstructedType newRight, NotificationChain msgs) {
-		ConstructedType oldRight = right;
+	public NotificationChain basicSetRight(TypeBuilder newRight, NotificationChain msgs) {
+		TypeBuilder oldRight = right;
 		right = newRight;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.CONSTRUCTED_TYPE__RIGHT, oldRight, newRight);
@@ -194,7 +195,7 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRight(ConstructedType newRight) {
+	public void setRight(TypeBuilder newRight) {
 		if (newRight != right) {
 			NotificationChain msgs = null;
 			if (right != null)
@@ -255,10 +256,10 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 				setConstructor((String)newValue);
 				return;
 			case BSharpPackage.CONSTRUCTED_TYPE__LEFT:
-				setLeft((ConstructedType)newValue);
+				setLeft((TypeBuilder)newValue);
 				return;
 			case BSharpPackage.CONSTRUCTED_TYPE__RIGHT:
-				setRight((ConstructedType)newValue);
+				setRight((TypeBuilder)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -276,10 +277,10 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 				setConstructor(CONSTRUCTOR_EDEFAULT);
 				return;
 			case BSharpPackage.CONSTRUCTED_TYPE__LEFT:
-				setLeft((ConstructedType)null);
+				setLeft((TypeBuilder)null);
 				return;
 			case BSharpPackage.CONSTRUCTED_TYPE__RIGHT:
-				setRight((ConstructedType)null);
+				setRight((TypeBuilder)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -337,16 +338,6 @@ public class ConstructedTypeImpl extends MinimalEObjectImpl.Container implements
 		result += " " + constructor + " " + right.buildEventBType();
 		// TODO Auto-generated method stub
 		return result;
-	}
-
-	@Override
-	public boolean isAbstractTypeClass() {
-		return false;
-	}
-
-	@Override
-	public BSClass getTypeClass() {
-		return null;
 	}
 
 } //ConstructedTypeImpl

@@ -205,4 +205,14 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 		return 2;
 	}
 
+	@Override
+	public Boolean hasInferredContext() {
+		return child.hasInferredContext();
+	}
+
+	@Override
+	public Expression reorderExpresionTree() {
+		return child.reorderExpresionTree();
+	}
+
 } //BracketImpl

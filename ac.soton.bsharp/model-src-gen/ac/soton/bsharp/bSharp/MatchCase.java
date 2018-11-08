@@ -94,4 +94,6 @@ public interface MatchCase extends IVariableProvider {
 	 */
 	void setExpr(Expression value);
 
+	boolean hasInferredContext();
+
 } // MatchCase

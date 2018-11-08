@@ -17,10 +17,13 @@ import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -515,5 +518,43 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			return 0;
 		}
 	}
+
+	@Override
+	public Boolean hasInferredContext() {
+		if (typeInst instanceof TypedVariable && typeInst.eContainer() instanceof ClassDecl) {
+			return true;
+		}
+		
+		if (arguments != null ) {
+			for (Expression argument : arguments ) {
+				if (argument.hasInferredContext())
+					return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public Expression reorderExpresionTree() {
+		if (reordered) {
+			return this;
+		}
+		
+		EObjectContainmentEList<Expression> newArgs = new EObjectContainmentEList<Expression>(Expression.class, this, BSharpPackage.FUNCTION_CALL__ARGUMENTS);
+		
+		for (Expression arg : arguments) {
+			newArgs.add(arg.reorderExpresionTree());
+		}
+		
+		arguments = newArgs;
+		reordered = true;
+		
+		return this;
+	}
+
+
+	
+	
 
 } //FunctionCallImpl

@@ -4,9 +4,14 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.VariableTyping;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,5 +39,18 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 	protected EClass eStaticClass() {
 		return BSharpPackage.Literals.TYPED_VARIABLE;
 	}
+	
+	@Override
+	public TypeBuilder getType() {
+		return ((VariableTyping)eContainer()).getType();
+	}
+	
+	@Override
+	public Boolean isPredicateVariable() {
+		ConstructedType type = ((VariableTyping)eContainer()).getType();
+		
+		return (type instanceof TypeConstructor) && ((TypeConstructor)type).getTypeName().getName().equals("Bool");
+	}
+
 
 } //TypedVariableImpl

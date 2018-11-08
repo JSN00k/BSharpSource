@@ -153,5 +153,18 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 		}
 		return super.eIsSet(featureID);
 	}
+	
+	protected boolean reordered = false;
+	
+	@Override
+	public Boolean isReordered() {
+		// TODO Auto-generated method stub
+		return reordered;
+	}
+	
+	@Override
+	public Integer precedence() {
+		return 500;
+	}
 
 } //ExpressionImpl

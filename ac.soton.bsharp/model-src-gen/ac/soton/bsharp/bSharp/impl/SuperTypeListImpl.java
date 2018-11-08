@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -43,7 +44,7 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstructedType> superTypes;
+	protected EList<TypeBuilder> superTypes;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,9 +69,9 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ConstructedType> getSuperTypes() {
+	public EList<TypeBuilder> getSuperTypes() {
 		if (superTypes == null) {
-			superTypes = new EObjectContainmentEList<ConstructedType>(ConstructedType.class, this, BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES);
+			superTypes = new EObjectContainmentEList<TypeBuilder>(TypeBuilder.class, this, BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES);
 		}
 		return superTypes;
 	}
@@ -114,7 +115,7 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 		switch (featureID) {
 			case BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES:
 				getSuperTypes().clear();
-				getSuperTypes().addAll((Collection<? extends ConstructedType>)newValue);
+				getSuperTypes().addAll((Collection<? extends TypeBuilder>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

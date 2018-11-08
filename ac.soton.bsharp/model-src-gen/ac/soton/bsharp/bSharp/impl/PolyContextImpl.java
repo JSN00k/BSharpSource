@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
@@ -253,7 +254,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 
 	@Override
 	public String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception {
-		EList<ConstructedType> constrTypes = ctx.getTypeName();
+		EList<TypeBuilder> constrTypes = ctx.getTypeName();
 		if (polyTypes != null && polyTypes.size() != 0) {
 			if (polyTypes.size() != constrTypes.size()) {
 				//TODO: Validate against this happening.
@@ -270,7 +271,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 				first = false;
 				
 				PolyType polyType = polyTypes.get(i);
-				ConstructedType constrType = constrTypes.get(i);
+				TypeBuilder constrType = constrTypes.get(i);
 				result += polyType.expandToEventBTypeWithConstrType(constrType);
 			}
 			

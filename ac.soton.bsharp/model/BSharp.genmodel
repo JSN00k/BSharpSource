@@ -80,9 +80,6 @@
     <genClasses ecoreClass="BSharp.ecore#//TypeDeclContext">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeDeclContext/typeName"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//TypeStructure">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeStructure/variables"/>
-    </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//Where">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Where/expessions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Where/expressions"/>
@@ -171,5 +168,6 @@
     <genClasses ecoreClass="BSharp.ecore#//NamedObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//NamedObject/name"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="BSharp.ecore#//TypeBuilder"/>
   </genPackages>
 </genmodel:GenModel>

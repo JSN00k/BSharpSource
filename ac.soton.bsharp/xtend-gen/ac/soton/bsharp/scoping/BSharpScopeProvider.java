@@ -13,8 +13,8 @@ import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TopLevel;
-import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.util.BSharpUtil;
 import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
@@ -94,7 +94,7 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
       for (final EObject sc : _superClasses) {
         if ((sc instanceof BSClass)) {
           final BSClass superClass = ((BSClass) sc);
-          TypeStructure _varList = superClass.getVarList();
+          TypedVariableList _varList = superClass.getVarList();
           boolean _tripleNotEquals = (_varList != null);
           if (_tripleNotEquals) {
             List<TypedVariable> _allContentsOfType = EcoreUtil2.<TypedVariable>getAllContentsOfType(superClass.getVarList(), TypedVariable.class);

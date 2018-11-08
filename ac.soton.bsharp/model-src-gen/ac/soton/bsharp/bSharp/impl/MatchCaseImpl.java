@@ -294,4 +294,9 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 		return result;
 	}
 
+	@Override
+	public boolean hasInferredContext() {
+		return expr.hasInferredContext();
+	}
+
 } //MatchCaseImpl

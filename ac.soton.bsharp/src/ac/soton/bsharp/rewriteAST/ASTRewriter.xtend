@@ -35,7 +35,7 @@ class ASTRewriter {
 	 }
 	 
 	 def static Integer getInfixPrecedence(Infix tree){
-	 			var precedence = 500
+	 	var precedence = 500
 		if (tree.opName !== null) {
 			precedence = inbuiltPrecedence.get(tree.opName)
 		} else {
@@ -75,11 +75,11 @@ class ASTRewriter {
 		}
 		
 		if (tree.left instanceof Infix) {
-		var leftInfix = tree.left as Infix
-		val myPrec = getInfixPrecedence(tree)
-		val leftPrec = getInfixPrecedence(leftInfix)
+			var leftInfix = tree.left as Infix
+			val myPrec = getInfixPrecedence(tree)
+			val leftPrec = getInfixPrecedence(leftInfix)
 		
-		if (myPrec > leftPrec) {
+			if (myPrec > leftPrec) {
 				tree.left = leftInfix.right
 				leftInfix.right = tree
 				return leftInfix

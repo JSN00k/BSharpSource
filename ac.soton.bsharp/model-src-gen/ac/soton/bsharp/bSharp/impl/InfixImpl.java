@@ -8,6 +8,9 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.Infix;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -438,6 +441,18 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 			return fName + "(" + left.compileToEventBString(false) + ", " + right.compileToEventBString(false) + ")";
 		}
 	}
+	
+	protected final Map<String, Integer> inbuiltPrecedence = createMap();
+	static HashMap<String, Integer> createMap() {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("⇔", 50);
+	 	map.put("⇒", 50);
+	 	map.put("=", 50);
+	 	map.put("≠", 50);
+	 	map.put("∧", 50);
+	 	map.put("∨", 50);
+	 	return map;
+	}
 
 	@Override
 	public Integer eventBPrecedence(Boolean whenPredicate) {
@@ -446,6 +461,41 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		} else {
 			return 1;
 		}
+	}
+
+	@Override
+	public Boolean hasInferredContext() {
+		return (left.hasInferredContext() || right.hasInferredContext());
+	}
+	
+	@Override
+	public Integer precedence() {
+		if (opName != null) {
+			return inbuiltPrecedence.get(opName);
+		}
+		
+		return ((FunctionDecl)funcName.eContainer()).getPrecedence();
+	}
+
+	@Override
+	public Expression reorderExpresionTree() {
+		if (reordered)
+			return this;
+		
+		reordered = true;
+		
+		left = left.reorderExpresionTree();
+		right = right.reorderExpresionTree();
+		
+		if (left instanceof InfixImpl && precedence() > left.precedence()) {
+			InfixImpl holdLeft = (InfixImpl)left;
+			left = holdLeft.right;
+			holdLeft.right = this;
+
+			return holdLeft;
+		}
+		
+		return this;
 	}
 
 } //InfixImpl

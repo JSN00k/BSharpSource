@@ -79,7 +79,7 @@ LocalImport:
 
 
 Class returns BSClass:
-	'Class' name=ID (context=PolyContext)? (supertypes=SuperTypeList)? (varList=TypeStructure)? (where=Where)? (';')? 
+	'Class' name=ID (context=PolyContext)? (supertypes=SuperTypeList)? ('(' varList=TypedVariableList ')')? (where=Where)? (';')? 
 	block=BSharpBlock
 ;
 
@@ -107,9 +107,21 @@ SuperTypeList:
 	':' superTypes+=ConstructedType (',' superTypes+=ConstructedType)*
 ;
 
+TypeBuilder:
+	ConstructedType | TypeConstructor
+;
+
+BuiltinTypeInfixOp:
+	'×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠'
+;
+
 /* Along with the normal Event-B type operator, and new B++ types the  */
-ConstructedType:
-	(TypeConstructor | TypeConstrBracket) ({ConstructedType.left=current} constructor=('×' | '→' | '' | '' | '↔' | '⤖' | '⇸' | '↣' | '⤀' | '↠') right=(TypeConstructor | TypeConstrBracket))*
+ConstructedType returns TypeBuilder:
+	BuilderElem ({ConstructedType.left=current} constructor=BuiltinTypeInfixOp right=BuilderElem)*
+;
+
+BuilderElem returns TypeBuilder:
+	TypeConstructor | TypeConstrBracket
 ;
 
 /* Type constructor has validation rules to check that there is no context when there is a polymorphic name, 
@@ -130,12 +142,6 @@ TypeConstrBracket:
  */
 TypeDeclContext:
 	'<' typeName+=ConstructedType (',' typeName+=ConstructedType)* '>'
-;
-
-/* -------------------- Type Structure ---------------------------------- */
-
-TypeStructure:
-	'(' variables=TypedVariableList ')'
 ;
 
 /* -------------------- Where Statement -------------------------------- */

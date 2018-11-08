@@ -4,7 +4,7 @@
 package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -54,4 +54,10 @@ public interface TypedVariableList extends EObject {
 
 
 	int varCount();
+
+	/* Gets the list of TypedVariable's from the TypedVariableList. Not that TypedVariable does not
+	 * in fact have type information immediately associated with it (to find this you'd need to look
+	 * in its container, and should probably be renamed.
+	 */
+	ArrayList<TypedVariable> getTypedVariableNames();
 } // TypedVariableList

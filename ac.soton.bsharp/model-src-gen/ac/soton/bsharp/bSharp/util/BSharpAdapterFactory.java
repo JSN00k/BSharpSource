@@ -165,10 +165,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTypeDeclContextAdapter();
 			}
 			@Override
-			public Adapter caseTypeStructure(TypeStructure object) {
-				return createTypeStructureAdapter();
-			}
-			@Override
 			public Adapter caseWhere(Where object) {
 				return createWhereAdapter();
 			}
@@ -255,6 +251,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNamedObject(NamedObject object) {
 				return createNamedObjectAdapter();
+			}
+			@Override
+			public Adapter caseTypeBuilder(TypeBuilder object) {
+				return createTypeBuilderAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -483,20 +483,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypeDeclContextAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TypeStructure <em>Type Structure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.TypeStructure
-	 * @generated
-	 */
-	public Adapter createTypeStructureAdapter() {
 		return null;
 	}
 
@@ -875,6 +861,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TypeBuilder <em>Type Builder</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.TypeBuilder
+	 * @generated
+	 */
+	public Adapter createTypeBuilderAdapter() {
 		return null;
 	}
 

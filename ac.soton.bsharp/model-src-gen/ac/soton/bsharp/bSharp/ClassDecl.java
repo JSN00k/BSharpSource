@@ -3,7 +3,11 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.EList;
+
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,5 +84,11 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	void compile() throws Exception;
 
 	String eventBTypeConstructorFromTypes();
+
+	/* Methods within ClassDecl's can use functions declared as part of the type. To allow
+	 * this in EventB a polymorphic instance of the type class is passed as an argument to
+	 * the EventB operator. 
+	 */
+	ArrayList<Tuple2<String, String>> typedConstructionArgs();
 
 } // ClassDecl

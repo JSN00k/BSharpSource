@@ -214,32 +214,27 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.TYPE_CONSTRUCTOR: {
 				TypeConstructor typeConstructor = (TypeConstructor)theEObject;
 				T result = caseTypeConstructor(typeConstructor);
-				if (result == null) result = caseConstructedType(typeConstructor);
+				if (result == null) result = caseTypeBuilder(typeConstructor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BSharpPackage.TYPE_CONSTR_BRACKET: {
 				TypeConstrBracket typeConstrBracket = (TypeConstrBracket)theEObject;
 				T result = caseTypeConstrBracket(typeConstrBracket);
-				if (result == null) result = caseConstructedType(typeConstrBracket);
+				if (result == null) result = caseTypeBuilder(typeConstrBracket);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BSharpPackage.CONSTRUCTED_TYPE: {
 				ConstructedType constructedType = (ConstructedType)theEObject;
 				T result = caseConstructedType(constructedType);
+				if (result == null) result = caseTypeBuilder(constructedType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BSharpPackage.TYPE_DECL_CONTEXT: {
 				TypeDeclContext typeDeclContext = (TypeDeclContext)theEObject;
 				T result = caseTypeDeclContext(typeDeclContext);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TYPE_STRUCTURE: {
-				TypeStructure typeStructure = (TypeStructure)theEObject;
-				T result = caseTypeStructure(typeStructure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -404,6 +399,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.NAMED_OBJECT: {
 				NamedObject namedObject = (NamedObject)theEObject;
 				T result = caseNamedObject(namedObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TYPE_BUILDER: {
+				TypeBuilder typeBuilder = (TypeBuilder)theEObject;
+				T result = caseTypeBuilder(typeBuilder);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -633,21 +634,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypeDeclContext(TypeDeclContext object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Structure</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Structure</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTypeStructure(TypeStructure object) {
 		return null;
 	}
 
@@ -1053,6 +1039,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedObject(NamedObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Builder</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Builder</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypeBuilder(TypeBuilder object) {
 		return null;
 	}
 

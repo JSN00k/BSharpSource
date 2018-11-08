@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 
 import java.util.Collection;
@@ -43,7 +44,7 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ConstructedType> typeName;
+	protected EList<TypeBuilder> typeName;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,9 +70,9 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ConstructedType> getTypeName() {
+	public EList<TypeBuilder> getTypeName() {
 		if (typeName == null) {
-			typeName = new EObjectContainmentEList<ConstructedType>(ConstructedType.class, this, BSharpPackage.TYPE_DECL_CONTEXT__TYPE_NAME);
+			typeName = new EObjectContainmentEList<TypeBuilder>(TypeBuilder.class, this, BSharpPackage.TYPE_DECL_CONTEXT__TYPE_NAME);
 		}
 		return typeName;
 	}
@@ -115,7 +116,7 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case BSharpPackage.TYPE_DECL_CONTEXT__TYPE_NAME:
 				getTypeName().clear();
-				getTypeName().addAll((Collection<? extends ConstructedType>)newValue);
+				getTypeName().addAll((Collection<? extends TypeBuilder>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

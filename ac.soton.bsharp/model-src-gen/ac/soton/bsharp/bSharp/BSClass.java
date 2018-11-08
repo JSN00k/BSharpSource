@@ -62,12 +62,12 @@ public interface BSClass extends ClassDecl {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Var List</em>' containment reference.
-	 * @see #setVarList(TypeStructure)
+	 * @see #setVarList(TypedVariableList)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSClass_VarList()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeStructure getVarList();
+	TypedVariableList getVarList();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.BSClass#getVarList <em>Var List</em>}' containment reference.
@@ -77,7 +77,7 @@ public interface BSClass extends ClassDecl {
 	 * @see #getVarList()
 	 * @generated
 	 */
-	void setVarList(TypeStructure value);
+	void setVarList(TypedVariableList value);
 
 	/**
 	 * Returns the value of the '<em><b>Where</b></em>' containment reference.

@@ -20,7 +20,7 @@ package ac.soton.bsharp.bSharp;
  * @model
  * @generated
  */
-public interface TypeConstrBracket extends ConstructedType {
+public interface TypeConstrBracket extends TypeBuilder {
 	/**
 	 * Returns the value of the '<em><b>Child</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -30,12 +30,12 @@ public interface TypeConstrBracket extends ConstructedType {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Child</em>' containment reference.
-	 * @see #setChild(ConstructedType)
+	 * @see #setChild(TypeBuilder)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTypeConstrBracket_Child()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ConstructedType getChild();
+	TypeBuilder getChild();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.TypeConstrBracket#getChild <em>Child</em>}' containment reference.
@@ -45,6 +45,6 @@ public interface TypeConstrBracket extends ConstructedType {
 	 * @see #getChild()
 	 * @generated
 	 */
-	void setChild(ConstructedType value);
+	void setChild(TypeBuilder value);
 
 } // TypeConstrBracket

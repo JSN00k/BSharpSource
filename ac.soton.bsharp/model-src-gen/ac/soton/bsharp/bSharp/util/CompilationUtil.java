@@ -6,6 +6,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
+import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
 
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
@@ -72,5 +74,24 @@ public class CompilationUtil {
 		for (Tuple2<String, String> typedArg : typedVars) {
 			TheoryUtils.createArgument(op, typedArg.x, typedArg.y, null, nullMonitor);
 		}
+	}
+	
+	public static INewOperatorDefinition createOpWithArgumentsAsPred(TheoryImportCache thyCache,
+			String name, ArrayList<Tuple2<String, String>> args, Boolean asPred) throws Exception {
+		INewOperatorDefinition op = TheoryUtils.createOperator(thyCache.theory, name, false, false, 
+				asPred ? FormulaType.PREDICATE : FormulaType.EXPRESSION, Notation.PREFIX, null, nullMonitor);
+		
+		compileTypedVariablesToOperatorArgs(args, op);
+		return op;
+	}
+	
+	public static INewOperatorDefinition createOpWithArguments(TheoryImportCache thyCache,
+			String name, ArrayList<Tuple2<String, String>> args) throws Exception {
+		return createOpWithArgumentsAsPred(thyCache, name, args, false);
+	}
+	
+	public static INewOperatorDefinition createPredOpWithArguments(TheoryImportCache thyCache,
+			String name, ArrayList<Tuple2<String, String>> args) throws Exception {
+		return createOpWithArgumentsAsPred(thyCache, name, args, true);
 	}
 }

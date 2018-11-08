@@ -55,12 +55,12 @@ public interface VariableTyping extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(ConstructedType)
+	 * @see #setType(TypeBuilder)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getVariableTyping_Type()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ConstructedType getType();
+	TypeBuilder getType();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.VariableTyping#getType <em>Type</em>}' containment reference.
@@ -70,10 +70,10 @@ public interface VariableTyping extends EObject {
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(ConstructedType value);
-	
+	void setType(TypeBuilder value);
+
 	/* Returns variables individually mapped to the type. */
-	ArrayList<Tuple2<TypedVariable, ConstructedType>> getVariablesAndTypes();
+	ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesAndTypes();
 
 	int varCount();
 } // VariableTyping

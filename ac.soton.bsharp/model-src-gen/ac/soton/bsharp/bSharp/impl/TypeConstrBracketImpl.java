@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeConstrBracket {
+public class TypeConstrBracketImpl extends TypeBuilderImpl implements TypeConstrBracket {
 	/**
 	 * The cached value of the '{@link #getChild() <em>Child</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -39,7 +40,7 @@ public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeCo
 	 * @generated
 	 * @ordered
 	 */
-	protected ConstructedType child;
+	protected TypeBuilder child;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,7 +66,7 @@ public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstructedType getChild() {
+	public TypeBuilder getChild() {
 		return child;
 	}
 
@@ -74,8 +75,8 @@ public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetChild(ConstructedType newChild, NotificationChain msgs) {
-		ConstructedType oldChild = child;
+	public NotificationChain basicSetChild(TypeBuilder newChild, NotificationChain msgs) {
+		TypeBuilder oldChild = child;
 		child = newChild;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.TYPE_CONSTR_BRACKET__CHILD, oldChild, newChild);
@@ -89,7 +90,7 @@ public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setChild(ConstructedType newChild) {
+	public void setChild(TypeBuilder newChild) {
 		if (newChild != child) {
 			NotificationChain msgs = null;
 			if (child != null)
@@ -140,7 +141,7 @@ public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeCo
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BSharpPackage.TYPE_CONSTR_BRACKET__CHILD:
-				setChild((ConstructedType)newValue);
+				setChild((TypeBuilder)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -155,7 +156,7 @@ public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeCo
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BSharpPackage.TYPE_CONSTR_BRACKET__CHILD:
-				setChild((ConstructedType)null);
+				setChild((TypeBuilder)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -178,6 +179,11 @@ public class TypeConstrBracketImpl extends ConstructedTypeImpl implements TypeCo
 	@Override
 	public String buildEventBType() {
 		return child.buildEventBType();
+	}
+	
+	@Override
+	public boolean isBoolType() {
+		return child.isBoolType();
 	}
 
 } //TypeConstrBracketImpl

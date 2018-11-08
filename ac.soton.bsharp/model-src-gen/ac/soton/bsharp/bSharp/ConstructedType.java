@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ConstructedType extends EObject {
+public interface ConstructedType extends TypeBuilder {
 	/**
 	 * Returns the value of the '<em><b>Constructor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,12 +63,12 @@ public interface ConstructedType extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left</em>' containment reference.
-	 * @see #setLeft(ConstructedType)
+	 * @see #setLeft(TypeBuilder)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getConstructedType_Left()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ConstructedType getLeft();
+	TypeBuilder getLeft();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ConstructedType#getLeft <em>Left</em>}' containment reference.
@@ -78,7 +78,7 @@ public interface ConstructedType extends EObject {
 	 * @see #getLeft()
 	 * @generated
 	 */
-	void setLeft(ConstructedType value);
+	void setLeft(TypeBuilder value);
 
 	/**
 	 * Returns the value of the '<em><b>Right</b></em>' containment reference.
@@ -89,12 +89,12 @@ public interface ConstructedType extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right</em>' containment reference.
-	 * @see #setRight(ConstructedType)
+	 * @see #setRight(TypeBuilder)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getConstructedType_Right()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ConstructedType getRight();
+	TypeBuilder getRight();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ConstructedType#getRight <em>Right</em>}' containment reference.
@@ -104,17 +104,5 @@ public interface ConstructedType extends EObject {
 	 * @see #getRight()
 	 * @generated
 	 */
-	void setRight(ConstructedType value);
-	
-	/* Returns the number of polymorphic types used within the constructed type. */
-	Integer inferredTypeCount();
-	
-	String buildEventBType();
-
-	/* If the Constructed type wraps a type class without a polymorphic context, this returns true. */
-	boolean isAbstractTypeClass();
-
-	/* This method will return null if the Constructed type is not wrapping a type class. */
-	BSClass getTypeClass();
-
+	void setRight(TypeBuilder value);
 } // ConstructedType

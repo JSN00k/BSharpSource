@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.TypedVariable;
@@ -246,6 +247,32 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	@Override
 	public Integer eventBPrecedence(Boolean whenPredicate) {
 		return 2;
+	}
+
+	@Override
+	public Boolean hasInferredContext() {
+		for (MatchCase mCase : inductCase) {
+			if (mCase.hasInferredContext())
+				return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public Expression reorderExpresionTree() {
+		if (reordered)
+			return this;
+		
+		reordered = true;
+		for (MatchCase mCase : inductCase) {
+			Expression matchExpr = mCase.getExpr();
+			if (matchExpr != null) {
+				mCase.setExpr(matchExpr.reorderExpresionTree());
+			}
+		}
+		
+		return this;
 	}
 
 } //MatchStatementImpl

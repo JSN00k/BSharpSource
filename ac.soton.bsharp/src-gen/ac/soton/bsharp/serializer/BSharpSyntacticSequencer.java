@@ -63,7 +63,7 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     context=PolyContext (ambiguity) block=BSharpBlock
 	 *     name=ID (ambiguity) block=BSharpBlock
 	 *     supertypes=SuperTypeList (ambiguity) block=BSharpBlock
-	 *     varList=TypeStructure (ambiguity) block=BSharpBlock
+	 *     varList=TypedVariableList ')' (ambiguity) block=BSharpBlock
 	 *     where=Where (ambiguity) block=BSharpBlock
 	 */
 	protected void emit_Class_SemicolonKeyword_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

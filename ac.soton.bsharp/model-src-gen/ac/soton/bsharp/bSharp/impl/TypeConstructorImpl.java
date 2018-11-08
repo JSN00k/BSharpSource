@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeConstructor {
+public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstructor {
 	/**
 	 * The cached value of the '{@link #getTypeName() <em>Type Name</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -299,6 +299,11 @@ public class TypeConstructorImpl extends ConstructedTypeImpl implements TypeCons
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public boolean isBoolType() {
+		return typeName.getName().equals("Bool");
 	}
 
 } //TypeConstructorImpl

@@ -194,6 +194,22 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 		
 		return result;
 	}
+
+	@Override
+	public ArrayList<TypedVariable> getTypedVariableNames() {
+		ArrayList<TypedVariable> result = new ArrayList<TypedVariable>();
+		if (variablesOfType == null) {
+			return result;
+		}
+		
+		for (VariableTyping varsOfType : variablesOfType) {
+			Collection<TypedVariable> vars = varsOfType.getTypeVar();
+			if (vars != null)
+				result.addAll(vars);
+		}
+		
+		return result;
+	}
 	
 	
 

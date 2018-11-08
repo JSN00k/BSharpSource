@@ -76,7 +76,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.TYPE_CONSTR_BRACKET: return createTypeConstrBracket();
 			case BSharpPackage.CONSTRUCTED_TYPE: return createConstructedType();
 			case BSharpPackage.TYPE_DECL_CONTEXT: return createTypeDeclContext();
-			case BSharpPackage.TYPE_STRUCTURE: return createTypeStructure();
 			case BSharpPackage.WHERE: return createWhere();
 			case BSharpPackage.DATATYPE: return createDatatype();
 			case BSharpPackage.DATATYPE_CONSTRUCTOR: return createDatatypeConstructor();
@@ -222,16 +221,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public TypeDeclContext createTypeDeclContext() {
 		TypeDeclContextImpl typeDeclContext = new TypeDeclContextImpl();
 		return typeDeclContext;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeStructure createTypeStructure() {
-		TypeStructureImpl typeStructure = new TypeStructureImpl();
-		return typeStructure;
 	}
 
 	/**

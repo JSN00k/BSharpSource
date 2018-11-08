@@ -6,13 +6,13 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
-import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.SuperTypeList;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
-import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.Where;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
@@ -32,13 +32,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.xtend.lib.macro.declaration.CompilationUnit;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
 
-import com.ibm.icu.util.BytesTrie.Result;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +70,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeStructure varList;
+	protected TypedVariableList varList;
 
 	/**
 	 * The cached value of the '{@link #getWhere() <em>Where</em>}' containment reference.
@@ -151,7 +149,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeStructure getVarList() {
+	public TypedVariableList getVarList() {
 		return varList;
 	}
 
@@ -160,8 +158,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVarList(TypeStructure newVarList, NotificationChain msgs) {
-		TypeStructure oldVarList = varList;
+	public NotificationChain basicSetVarList(TypedVariableList newVarList, NotificationChain msgs) {
+		TypedVariableList oldVarList = varList;
 		varList = newVarList;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__VAR_LIST, oldVarList, newVarList);
@@ -175,7 +173,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVarList(TypeStructure newVarList) {
+	public void setVarList(TypedVariableList newVarList) {
 		if (newVarList != varList) {
 			NotificationChain msgs = null;
 			if (varList != null)
@@ -280,7 +278,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				setSupertypes((SuperTypeList)newValue);
 				return;
 			case BSharpPackage.BS_CLASS__VAR_LIST:
-				setVarList((TypeStructure)newValue);
+				setVarList((TypedVariableList)newValue);
 				return;
 			case BSharpPackage.BS_CLASS__WHERE:
 				setWhere((Where)newValue);
@@ -301,7 +299,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				setSupertypes((SuperTypeList)null);
 				return;
 			case BSharpPackage.BS_CLASS__VAR_LIST:
-				setVarList((TypeStructure)null);
+				setVarList((TypedVariableList)null);
 				return;
 			case BSharpPackage.BS_CLASS__WHERE:
 				setWhere((Where)null);
@@ -402,13 +400,13 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		ArrayList<Tuple2<String, String>> typedVars = null;
 		if (varList != null) {
-			typedVars = varList.getEventBVariablesAndTypes();
+			typedVars = varList.getCompiledVariablesAndTypes();
 			opString += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVars, " ↦ ", false);
 		}
 		
 		opString += " | ";
 		
-		EList<ConstructedType> supertypeList = null;
+		EList<TypeBuilder> supertypeList = null;
 		if (supertypes != null) {
 			supertypeList = supertypes.getSuperTypes();
 		}
@@ -416,7 +414,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		ArrayList<Tuple2<String, String>> inferredTypes = null;
 		if (supertypeList != null && !supertypeList.isEmpty()) {
 			Boolean first = true;
-			for (ConstructedType constType : supertypeList) {
+			for (TypeBuilder constType : supertypeList) {
 				if (!first) {
 					opString += " ∩ ";
 				} else {
@@ -491,9 +489,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		ArrayList<String> result = new ArrayList<String>();
 		if (supertypes != null) {
-			Collection<ConstructedType> sTypes = supertypes.getSuperTypes();
+			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
 			if (sTypes != null && !sTypes.isEmpty()) {
-				ConstructedType sup = sTypes.iterator().next();
+				TypeBuilder sup = sTypes.iterator().next();
 				
 				if (sup.isAbstractTypeClass()) {
 					result.addAll(sup.getTypeClass().getterOperatorSuffixes());
@@ -502,7 +500,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		
 		if (varList != null) {
-			ArrayList<Tuple2<String, String>> typedVars = varList.getEventBVariablesAndTypes();
+			ArrayList<Tuple2<String, String>> typedVars = varList.getCompiledVariablesAndTypes();
 			
 			for (Tuple2<String, String> typedVar : typedVars) {
 				result.add("_" + typedVar.x);
@@ -525,18 +523,36 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			throw new Exception("Type class declared without any sort of supertype");
 		}
 		
-		Collection<ConstructedType> sTypes = supertypes.getSuperTypes();
+		Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
 		if (sTypes == null || sTypes.isEmpty()) {
 			throw new Exception("Type class declared without any sort of supertype");
 		}
 		
-		ConstructedType sup = sTypes.iterator().next();
+		TypeBuilder sup = sTypes.iterator().next();
 		
 		if (!sup.isAbstractTypeClass())
 			throw new Exception("Type class declared without any sort of supertype");
 		
 		BSClass superClass = sup.getTypeClass();
 		ArrayList<Tuple2<String, String>> result = superClass.polyArgumentsToConstructGenericTypeClass();
+		
+		return result;
+	}
+	
+	@Override
+	public ArrayList<Tuple2<String, String>> typedConstructionArgs() {
+		ArrayList<Tuple2<String, String>> result;
+		
+		try {
+			result = polyArgumentsToConstructGenericTypeClass();
+		} catch (Exception e) {
+			//TODO: Validation against this.
+			System.err.println("Illegal type declaration, this should be validataed against.");
+			return null;
+		}
+		
+		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(result, ", ", true);
+		result.add(new Tuple2<String, String>(name, eventBolymorphicTypeConstructorName() + argsForConstructor));
 		
 		return result;
 	}
@@ -553,14 +569,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return null;
 		}
 		
-		ArrayList<Tuple2<String, String>> polyArgs = null;
-		
-		try {
-			polyArgs = polyArgumentsToConstructGenericTypeClass();
-		} catch (Exception e) {
-			//TODO: Validation against this.
-			System.err.println("Illegal type declaration, this should be validataed against.");
-		}
+		ArrayList<Tuple2<String, String>> polyArgs = typedConstructionArgs();
 		
 		for (Tuple2<String, String> typedVar : polyArgs) {
 			try {
@@ -571,17 +580,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			}
 		}
 		
-		/* Finally it is necessary to create an operator to represent the type itself. To do this we use the
-		 * type constructor already created. */
-		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(polyArgs, ", ", true) + ")";
-		try {
-			TheoryUtils.createArgument(op, name, eventBolymorphicTypeConstructorName() + argsForConstructor,
-					null, nullMonitor);
-		} catch (Exception e) {
-			System.err.println("Unable to create argument for operator op: " + n + " arg: " + name + ":" 
-					+ eventBolymorphicTypeConstructorName() + argsForConstructor);
-		}
-		
 		return op;
 	}
 	
@@ -589,10 +587,10 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		/* I think that I'm going to use Event-B operators to pass getters onto subtypes. 
 		 * This makes coding simpler. The supertype is always at prj1. of the type. */
 		if (supertypes != null) {
-			Collection<ConstructedType> sTypes = supertypes.getSuperTypes();
+			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
 			
 			if (sTypes != null && !sTypes.isEmpty()) {
-				ConstructedType sup = sTypes.iterator().next();
+				TypeBuilder sup = sTypes.iterator().next();
 				
 				if (sup.isAbstractTypeClass()) {
 					BSClass sType = sup.getTypeClass();
@@ -613,7 +611,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		
 		if (varList != null) {
-			ArrayList<Tuple2<String, String>> varListVariables = varList.getEventBVariablesAndTypes();
+			ArrayList<Tuple2<String, String>> varListVariables = varList.getCompiledVariablesAndTypes();
 			Integer prj2sRequired = 1;
 			Integer lastNdx = varListVariables.size() - 1;
 			for (Tuple2<String, String> typedVar : varListVariables) {
@@ -649,16 +647,16 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	@Override
 	public Boolean isTypeClass() {
 		if (varList != null) {
-			if (varList.getEventBVariablesAndTypes().size() != 0) {
+			if (varList.getCompiledVariablesAndTypes().size() != 0) {
 				return true;
 			}
 		}
 		
 		if (supertypes != null) {
-			Collection<ConstructedType> sTypes = supertypes.getSuperTypes();
+			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
 			
 			if (sTypes != null && !sTypes.isEmpty()) {
-				ConstructedType sup = sTypes.iterator().next();
+				TypeBuilder sup = sTypes.iterator().next();
 				return sup.isAbstractTypeClass();
 			}
 		}

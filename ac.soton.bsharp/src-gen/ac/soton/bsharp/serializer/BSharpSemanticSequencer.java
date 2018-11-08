@@ -35,7 +35,6 @@ import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
-import ac.soton.bsharp.bSharp.TypeStructure;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
@@ -171,9 +170,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.TYPE_DECL_CONTEXT:
 				sequence_TypeDeclContext(context, (TypeDeclContext) semanticObject); 
 				return; 
-			case BSharpPackage.TYPE_STRUCTURE:
-				sequence_TypeStructure(context, (TypeStructure) semanticObject); 
-				return; 
 			case BSharpPackage.TYPED_VARIABLE:
 				sequence_TypedVariable(context, (TypedVariable) semanticObject); 
 				return; 
@@ -271,7 +267,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         name=ID 
 	 *         context=PolyContext? 
 	 *         supertypes=SuperTypeList? 
-	 *         varList=TypeStructure? 
+	 *         varList=TypedVariableList? 
 	 *         where=Where? 
 	 *         block=BSharpBlock
 	 *     )
@@ -283,29 +279,27 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     TypeBuilder returns ConstructedType
 	 *     ConstructedType returns ConstructedType
 	 *     ConstructedType.ConstructedType_1_0 returns ConstructedType
 	 *
 	 * Constraint:
-	 *     (
-	 *         left=ConstructedType_ConstructedType_1_0 
-	 *         (
-	 *             constructor='×' | 
-	 *             constructor='→' | 
-	 *             constructor='' | 
-	 *             constructor='' | 
-	 *             constructor='↔' | 
-	 *             constructor='⤖' | 
-	 *             constructor='⇸' | 
-	 *             constructor='↣' | 
-	 *             constructor='⤀' | 
-	 *             constructor='↠'
-	 *         ) 
-	 *         (right=TypeConstructor | right=TypeConstrBracket)
-	 *     )
+	 *     (left=ConstructedType_ConstructedType_1_0 constructor=BuiltinTypeInfixOp right=BuilderElem)
 	 */
 	protected void sequence_ConstructedType(ISerializationContext context, ConstructedType semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.CONSTRUCTED_TYPE__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.CONSTRUCTED_TYPE__LEFT));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.CONSTRUCTED_TYPE__CONSTRUCTOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.CONSTRUCTED_TYPE__CONSTRUCTOR));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.CONSTRUCTED_TYPE__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.CONSTRUCTED_TYPE__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getConstructedTypeAccess().getConstructedTypeLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getConstructedTypeAccess().getConstructorBuiltinTypeInfixOpParserRuleCall_1_1_0(), semanticObject.getConstructor());
+		feeder.accept(grammarAccess.getConstructedTypeAccess().getRightBuilderElemParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	
@@ -666,8 +660,10 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     TypeBuilder returns TypeConstrBracket
 	 *     ConstructedType returns TypeConstrBracket
 	 *     ConstructedType.ConstructedType_1_0 returns TypeConstrBracket
+	 *     BuilderElem returns TypeConstrBracket
 	 *     TypeConstrBracket returns TypeConstrBracket
 	 *
 	 * Constraint:
@@ -686,8 +682,10 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     TypeBuilder returns TypeConstructor
 	 *     ConstructedType returns TypeConstructor
 	 *     ConstructedType.ConstructedType_1_0 returns TypeConstructor
+	 *     BuilderElem returns TypeConstructor
 	 *     TypeConstructor returns TypeConstructor
 	 *
 	 * Constraint:
@@ -707,24 +705,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_TypeDeclContext(ISerializationContext context, TypeDeclContext semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TypeStructure returns TypeStructure
-	 *
-	 * Constraint:
-	 *     variables=TypedVariableList
-	 */
-	protected void sequence_TypeStructure(ISerializationContext context, TypeStructure semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TYPE_STRUCTURE__VARIABLES) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TYPE_STRUCTURE__VARIABLES));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTypeStructureAccess().getVariablesTypedVariableListParserRuleCall_1_0(), semanticObject.getVariables());
-		feeder.finish();
 	}
 	
 	

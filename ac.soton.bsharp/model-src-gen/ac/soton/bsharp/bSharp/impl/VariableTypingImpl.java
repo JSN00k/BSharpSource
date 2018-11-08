@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.VariableTyping;
 import ac.soton.bsharp.bSharp.util.Tuple2;
@@ -62,7 +63,7 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected ConstructedType type;
+	protected TypeBuilder type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,7 +101,7 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstructedType getType() {
+	public TypeBuilder getType() {
 		return type;
 	}
 
@@ -109,8 +110,8 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetType(ConstructedType newType, NotificationChain msgs) {
-		ConstructedType oldType = type;
+	public NotificationChain basicSetType(TypeBuilder newType, NotificationChain msgs) {
+		TypeBuilder oldType = type;
 		type = newType;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.VARIABLE_TYPING__TYPE, oldType, newType);
@@ -124,7 +125,7 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(ConstructedType newType) {
+	public void setType(TypeBuilder newType) {
 		if (newType != type) {
 			NotificationChain msgs = null;
 			if (type != null)
@@ -184,7 +185,7 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 				getTypeVar().addAll((Collection<? extends TypedVariable>)newValue);
 				return;
 			case BSharpPackage.VARIABLE_TYPING__TYPE:
-				setType((ConstructedType)newValue);
+				setType((TypeBuilder)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -202,7 +203,7 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 				getTypeVar().clear();
 				return;
 			case BSharpPackage.VARIABLE_TYPING__TYPE:
-				setType((ConstructedType)null);
+				setType((TypeBuilder)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -225,15 +226,15 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 	}
 
 	@Override
-	public ArrayList<Tuple2<TypedVariable, ConstructedType>> getVariablesAndTypes() {
+	public ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesAndTypes() {
 		
-		ArrayList<Tuple2<TypedVariable, ConstructedType>> result = new ArrayList<Tuple2<TypedVariable, ConstructedType>>();
+		ArrayList<Tuple2<TypedVariable, TypeBuilder>> result = new ArrayList<Tuple2<TypedVariable, TypeBuilder>>();
 		
 		if (typeVar == null || typeVar.isEmpty())
 			return result;
 		
 		for (TypedVariable var : typeVar) {
-			result.add(new Tuple2<TypedVariable, ConstructedType>(var, type));
+			result.add(new Tuple2<TypedVariable, TypeBuilder>(var, type));
 		}
 		
 		return result;

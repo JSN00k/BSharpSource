@@ -3,26 +3,37 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.util.BSharpUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -30,6 +41,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.util.PolymorphicDispatcher.WarningErrorHandler;
+import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
+import org.eventb.core.ast.extension.IOperatorProperties.Notation;
+import org.eventb.theory.core.INewOperatorDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -615,6 +630,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		return result.toString();
 	}
 	
+	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+	
 	@Override
 	public Collection<EObject> getVariablesNames() {
 		ArrayList<EObject> result = new ArrayList<EObject>();
@@ -679,8 +696,122 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * work by having an eventB operator that takes the polymorphic context as the argument, and 
 		 * generates a lambda which is then called with the function arguments.
 		 */
+		ArrayList<Tuple2<String, String>> polyContext = null;
 		
-		this is nonsense, come and implement me!
+		if (expr.hasInferredContext()) {
+			ClassDecl containerClass = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+			polyContext = containerClass.typedConstructionArgs();
+		}
+		
+		if (context != null) {
+			ArrayList<Tuple2<String, String>> contextPolyContext = context.namesAndTypesForPolyContext();
+			
+			if (polyContext == null ) {
+				polyContext = contextPolyContext;
+			} else {
+				polyContext.addAll(contextPolyContext);
+			}
+		}
+		
+		if (polyContext != null ) {
+			compileWithPolyContext(polyContext);
+		} else {
+			compileWithoutPolyContext();
+		}
+	}
+	
+	void compileWithPolyContext(ArrayList<Tuple2<String, String>> pContext) {
+		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
+		lambda.setQType("λ");
+		lambda.setVarList(varList);
+		lambda.setExpr(expr);
+		
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		INewOperatorDefinition op;
+		try {
+			op = CompilationUtil.createOpWithArguments(thyCache, name, pContext);
+		} catch (Exception e) {
+			System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
+			return;
+		}
+		
+		try {
+			TheoryUtils.createDirectDefinition(op, lambda.compileToEventBString(false), null, nullMonitor);
+		} catch (Exception e) {
+			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
+		}
+		
+		return;
+	}
+	
+	String passableName() {
+		return name + "_P";
+	}
+	
+	void compileWithoutPolyContext() {
+		ArrayList<Tuple2<String, String>> args = varList.getCompiledVariablesAndTypes();
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		INewOperatorDefinition op;
+		
+		
+		
+		try {
+			op = CompilationUtil.createOpWithArguments(thyCache, name, args);
+		} catch (Exception e) {
+			System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
+			return;
+		}
+		
+		try {
+			TheoryUtils.createDirectDefinition(op, expr.compileToEventBString(false), null, nullMonitor);
+		} catch (Exception e) {
+			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
+		}
+		
+		if (returnType.isBoolType()) {
+			/* Create a predicate version of the function. */
+			try {
+				op = CompilationUtil.createPredOpWithArguments(thyCache, name, args);
+			} catch (Exception e) {
+				System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
+				return;
+			}
+		}
+		
+		/* Build the passable form of the function. */
+		try {
+			op = TheoryUtils.createOperator(thyCache.theory, passableName(), false, false, FormulaType.EXPRESSION,
+					Notation.PREFIX, null, nullMonitor);
+		} catch (Exception e) {
+			System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
+			return;
+		}
+		
+		/* There's already code to compile a lambda to EventB therefore it's easier to generate
+		 * a BSharp lambda and compile it, then it is to re-write code to generate a EventB lambda.
+		 */
+		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
+		lambda.setQType("λ");
+		lambda.setVarList(varList);
+		FunctionCall func = BSharpFactory.eINSTANCE.createFunctionCall();
+		func.setTypeInst(this);
+		EList<Expression> callArgs = func.getArguments();
+		
+		ArrayList<TypedVariable> variables = varList.getTypedVariableNames();
+		ArrayList<FunctionCall> wrappedVariables = new ArrayList<FunctionCall>();
+		for (TypedVariable var : variables) {
+			FunctionCall wrappedVar = BSharpFactory.eINSTANCE.createFunctionCall();
+			wrappedVar.setTypeInst(var);
+		}
+		
+		callArgs.addAll(wrappedVariables);
+		lambda.setExpr(func);
+		
+		try {
+			TheoryUtils.createDirectDefinition(op, lambda.compileToEventBString(false), null, nullMonitor);
+		} catch (Exception e) {
+			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
+		}		
 	}
 
 } //FunctionDeclImpl

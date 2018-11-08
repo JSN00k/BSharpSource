@@ -60,5 +60,18 @@ public interface Expression extends EObject {
 	 * have a precedence of 1. Everything else has a precedence of 2 (Everything else is a prefix function).
 	 */
 	Integer eventBPrecedence(Boolean whenPredicate);
+	
+	/* If this is declared within a type class then variables from the varlist can be used within
+	 * exressions (in theorems, and functions). Within functions and theorems this is achieved by 
+	 * adding extra arguments in some way to the function/theorem to represent the type class. This
+	 * method iterates through the expression and looks for references to the varlist types.
+	 */
+	Boolean hasInferredContext();
+	
+	Boolean isReordered();
+	/* Reorders the expression tree if is hasn't already been reordered. */
+	Expression reorderExpresionTree();
+	
+	Integer precedence();
 
 } // Expression

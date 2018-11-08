@@ -7,9 +7,10 @@ import ac.soton.bsharp.bSharp.TypeConstructor
 import ac.soton.bsharp.bSharp.Datatype
 import org.eclipse.emf.ecore.EObject
 import java.util.Collection
-import ac.soton.bsharp.bSharp.PolyType
 import ac.soton.bsharp.bSharp.BSClass
 import ac.soton.bsharp.bSharp.TypeConstrBracket
+import ac.soton.bsharp.bSharp.TypeBuilder
+import java.lang.reflect.Constructor
 
 class BSharpUtil {	
 	/* This function simply finds all of the supertypes. It doesn't do any work to 
@@ -69,21 +70,29 @@ class BSharpUtil {
 		return list
 	}
 	
-	def static ConstructedType reverseLeftHandedConstructedType(ConstructedType ct) {
+	def static TypeBuilder reverseLeftHandedConstructedType(TypeBuilder ct) {
 		if (ct instanceof TypeConstructor)
-			return ct
-		
-		if (ct.left instanceof TypeConstructor)
 			return ct
 			
 		if (ct instanceof TypeConstrBracket) {
-			ct.child = reverseLeftHandedConstructedType(ct.child)
+			ct.child = reverseLeftHandedConstructedType((ct as TypeConstrBracket).child)
+			return ct;
 		}
 		
-		val left = ct.left
+		val constructor = (ct as ConstructedType)
+		
+		if (constructor.left instanceof TypeConstructor)
+			return ct
+			
+		if (constructor.left instanceof TypeConstrBracket) {
+			constructor.left = reverseLeftHandedConstructedType(constructor.left);
+			return constructor
+		}
+		
+		val left = constructor.left as ConstructedType
 		val newLeft = left.right
 		left.right = ct
-		ct.left = newLeft
+		constructor.left = newLeft
 		
 		return reverseLeftHandedConstructedType(left)
 	}

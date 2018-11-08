@@ -272,4 +272,20 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 		return 2;
 	}
 
+	@Override
+	public Boolean hasInferredContext() {
+		return elem.hasInferredContext();
+	}
+
+	@Override
+	public Expression reorderExpresionTree() {
+		if (reordered)
+			return this;
+		
+		reordered = true;
+		elem = elem.reorderExpresionTree();
+		
+		return null;
+	}
+
 } //PrefixImpl
