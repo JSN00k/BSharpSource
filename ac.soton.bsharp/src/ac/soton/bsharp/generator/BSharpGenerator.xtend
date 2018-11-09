@@ -21,6 +21,7 @@ import ac.soton.bsharp.theory.util.TheoryImportCache
 import java.util.List
 import ac.soton.bsharp.bSharp.BodyElements
 import ac.soton.bsharp.bSharp.util.CompilationUtil
+import org.eclipse.emf.ecore.EObject
 
 /**
  * Generates code from your model files on save.
@@ -36,13 +37,6 @@ class BSharpGenerator extends AbstractGenerator {
 	var String fileName
 	
 	var ArrayList<BodyElements> mainElements
-	
-	/* When a type in imported explicitly it is possible that a smaller part
-	 * of the file is imported. This is resolved when the type is referenced
-	 * as this gives access to the EMF that is being referenced so it is possible
-	 * to work out where the files splits.
-	 */
-	var ArrayList<String> explicitTypeImports
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		/* When we come into this we're expecting the resource to be at the very top level
@@ -53,7 +47,6 @@ class BSharpGenerator extends AbstractGenerator {
 		
 		val topLevel = resource.contents.get(0) as TopLevel
 		projName = topLevel.name + "-gen"
-		explicitTypeImports = new ArrayList
 		mainElements = newArrayList
 		
 		var eventBproj = EventBUtils.getEventBProject(projName)
@@ -126,11 +119,11 @@ class BSharpGenerator extends AbstractGenerator {
 		 	/* prevTheoryCache can be null without causing an issue. */
 		 	val theoryCache = new TheoryImportCache(thy, projName, prevTheoryCache)
 		 	if (topLevelImport.localImports !== null) {
-		 		importLocalImports(topLevelImport.localImports, theoryCache)
+		 		importLocalImports(topLevelImport.localImports, theoryCache, topLevelImport)
 		 	}
 		 	
 		 	if (topLevelImport.globalImports !== null) {
-		 		importGlobalImports(topLevelImport.globalImports, theoryCache)
+		 		importGlobalImports(topLevelImport.globalImports, theoryCache, topLevelImport)
 		 	}
 		 	
 		 	topLevelImport.theoryImportCache = theoryCache
@@ -142,11 +135,11 @@ class BSharpGenerator extends AbstractGenerator {
 		 val thy = TheoryUtils.createTheory(proj, fileName, null)
 		 val theoryCache = new TheoryImportCache(thy, projName, prevTheoryCache)
 		 if (topLevelImport.localImports !== null) {
-		 	importLocalImports(topLevelImport.localImports, theoryCache)
+		 	importLocalImports(topLevelImport.localImports, theoryCache, topLevelImport)
 		 }
 		 	
 		 if (topLevelImport.globalImports !== null) {
-		 	importGlobalImports(topLevelImport.globalImports, theoryCache)
+		 	importGlobalImports(topLevelImport.globalImports, theoryCache, topLevelImport)
 		 }
 		 
 		 topLevelImport.theoryImportCache = theoryCache
@@ -154,26 +147,26 @@ class BSharpGenerator extends AbstractGenerator {
 	}
 	
 	
-	def importLocalImports(List<LocalImport> importBlock, TheoryImportCache theoryCache) {
+	def importLocalImports(List<LocalImport> importBlock, TheoryImportCache theoryCache, EObject tree) {
 		for (localImport : importBlock) {
 			for (fileImport : localImport.fileImports) {
 				if (fileImport.type === null) {
 					theoryCache.importLocalTheoryWithName(fileImport.fileName)
 				} else {
-					explicitTypeImports += fileImport.type
+					theoryCache.importTheoryForTypeNameInTree(fileImport.type, tree)
 				}
 			}
 		}
 	}
 	
-	def importGlobalImports(List<GlobalImport> importBlock, TheoryImportCache theoryCache) {
+	def importGlobalImports(List<GlobalImport> importBlock, TheoryImportCache theoryCache, EObject tree) {
 		for (globalImport : importBlock){
 			val projectName = globalImport.project
 			for (fileImport : globalImport.fileImports) {
 				if (fileImport.type === null) {
 					theoryCache.importTheoryWithNameFromProjectWithName(fileImport.fileName, projectName)
 				} else {
-					explicitTypeImports += fileImport.type
+					theoryCache.importTheoryForTypeNameInTree(fileImport.type, tree)
 				}
 			}
 		}

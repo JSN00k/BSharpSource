@@ -42,5 +42,5 @@ public interface SuperTypeList extends EObject {
 	 */
 	EList<TypeBuilder> getSuperTypes();	
 	
-	ConstructedType getFirst();
+	TypeBuilder getFirst();
 } // SuperTypeList

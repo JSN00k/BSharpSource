@@ -4,7 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
@@ -12,15 +12,12 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
-import java.util.TreeMap;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -157,8 +154,8 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 		return super.eIsSet(featureID);
 	}
 
-	public ArrayList<Tuple2<TypedVariable, ConstructedType>> getVariablesAndTypesInternal() {
-		ArrayList<Tuple2<TypedVariable, ConstructedType>> result = new ArrayList<Tuple2<TypedVariable, ConstructedType>>();
+	public ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesAndTypesInternal() {
+		ArrayList<Tuple2<TypedVariable, TypeBuilder>> result = new ArrayList<Tuple2<TypedVariable, TypeBuilder>>();
 		
 		if (variablesOfType == null)
 			return result;
@@ -172,13 +169,13 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 	
 	@Override
 	public ArrayList<Tuple2<String, String>> getCompiledVariablesAndTypes() {
-		ArrayList<Tuple2<TypedVariable, ConstructedType>> typedVars = getVariablesAndTypesInternal();
+		ArrayList<Tuple2<TypedVariable, TypeBuilder>> typedVars = getVariablesAndTypesInternal();
 		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
 		
 		if (typedVars == null || typedVars.isEmpty())
 			return result;
 		
-		for (Tuple2<TypedVariable, ConstructedType> typedVar : typedVars) {
+		for (Tuple2<TypedVariable, TypeBuilder> typedVar : typedVars) {
 			result.add(new Tuple2<String, String>(typedVar.x.getName(), typedVar.y.buildEventBType()));
 		}
 		

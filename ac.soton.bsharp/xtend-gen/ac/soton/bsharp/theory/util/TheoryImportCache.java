@@ -1,14 +1,26 @@
 package ac.soton.bsharp.theory.util;
 
+import ac.soton.bsharp.bSharp.BodyElements;
+import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.bSharp.TopLevelFile;
+import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.util.EcoreUtilJ;
 import ch.ethz.eventb.utils.EventBUtils;
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eventb.core.IEventBProject;
 import org.eventb.theory.core.DatabaseUtilities;
 import org.eventb.theory.core.IImportTheoryProject;
@@ -129,6 +141,61 @@ public class TheoryImportCache {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  /**
+   * Finds an instance of the type to be imported and imports the theory of that type
+   */
+  public void importTheoryForTypeNameInTree(final String typeName, final EObject tree) {
+    final Function1<EObject, Boolean> _function = (EObject eObj) -> {
+      EList<EObject> _eCrossReferences = eObj.eCrossReferences();
+      for (final EObject crossRef : _eCrossReferences) {
+        if (((crossRef instanceof ClassDecl) && Objects.equal(((ClassDecl) crossRef).getName(), typeName))) {
+          return Boolean.valueOf(true);
+        }
+      }
+      return Boolean.valueOf(false);
+    };
+    final EObject container = EcoreUtilJ.getObjectMatchingLambda(tree, _function);
+    final Function1<EObject, Boolean> _function_1 = (EObject obj) -> {
+      return Boolean.valueOf(((obj instanceof ClassDecl) && Objects.equal(((ClassDecl) obj).getName(), typeName)));
+    };
+    final EObject classDecl = IterableExtensions.<EObject>findFirst(container.eCrossReferences(), _function_1);
+    final TopLevel topLevel = EcoreUtil2.<TopLevel>getContainerOfType(classDecl, TopLevel.class);
+    String _name = topLevel.getName();
+    final String projName = (_name + "-gen");
+    String fileName = null;
+    final TopLevelFile topLevelFile = topLevel.getTopLevelFile();
+    final String bSharpFileName = topLevelFile.getName();
+    final EList<TopLevelImport> imports = topLevelFile.getTopLevelImports();
+    if (((imports == null) || imports.isEmpty())) {
+      fileName = bSharpFileName;
+    } else {
+      int fileNdx = 1;
+      BodyElements _noImportElements = topLevelFile.getNoImportElements();
+      boolean _tripleNotEquals = (_noImportElements != null);
+      if (_tripleNotEquals) {
+        fileNdx = 2;
+      }
+      final TopLevelImport topLevelImport = EcoreUtil2.<TopLevelImport>getContainerOfType(classDecl, TopLevelImport.class);
+      if ((topLevelImport == null)) {
+        String _string = Integer.valueOf(1).toString();
+        String _plus = (bSharpFileName + _string);
+        fileName = _plus;
+      } else {
+        TopLevelImport _last = IterableExtensions.<TopLevelImport>last(imports);
+        boolean _tripleEquals = (_last == topLevelImport);
+        if (_tripleEquals) {
+          fileName = bSharpFileName;
+        } else {
+          int _indexOf = imports.indexOf(topLevelImport);
+          String _string_1 = Integer.valueOf((_indexOf + fileNdx)).toString();
+          String _plus_1 = (bSharpFileName + _string_1);
+          fileName = _plus_1;
+        }
+      }
+    }
+    this.importTheoryWithNameFromProjectWithName(fileName, projName);
   }
   
   public IImportTheoryProject getImportBlockForProj(final String projName, final IRodinProject rodProj) {

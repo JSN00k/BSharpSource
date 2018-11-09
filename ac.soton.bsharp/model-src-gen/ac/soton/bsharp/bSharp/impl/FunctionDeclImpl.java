@@ -12,6 +12,7 @@ import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
+import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
@@ -576,6 +577,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				default: return -1;
 			}
 		}
+		if (baseClass == IVarType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == ExpressionVariable.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -599,6 +605,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		if (baseClass == NamedObject.class) {
 			switch (baseFeatureID) {
 				case BSharpPackage.NAMED_OBJECT__NAME: return BSharpPackage.FUNCTION_DECL__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == IVarType.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}
@@ -721,6 +732,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	void compileWithPolyContext(ArrayList<Tuple2<String, String>> pContext) {
+		expr = expr.reorderExpresionTree();
+		
 		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
 		lambda.setQType("λ");
 		lambda.setVarList(varList);
@@ -749,11 +762,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	void compileWithoutPolyContext() {
+		expr = expr.reorderExpresionTree();
+		
 		ArrayList<Tuple2<String, String>> args = varList.getCompiledVariablesAndTypes();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		INewOperatorDefinition op;
-		
-		
 		
 		try {
 			op = CompilationUtil.createOpWithArguments(thyCache, name, args);
@@ -775,6 +788,12 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			} catch (Exception e) {
 				System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
 				return;
+			}
+			
+			try {
+				TheoryUtils.createDirectDefinition(op, expr.compileToEventBString(true), null, nullMonitor);
+			} catch (Exception e) {
+				System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
 			}
 		}
 		

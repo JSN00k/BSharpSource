@@ -348,7 +348,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return context.eventBPolyVarCount();
 		} else if (supertypes != null) {
 			/* The polyContext is inferred from the supertype. */
-			ConstructedType superclass = supertypes.getFirst();
+			TypeBuilder superclass = supertypes.getFirst();
 			if (superclass == null)
 				return 1;
 			
@@ -375,7 +375,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		INewOperatorDefinition op;
 		try {
 			op = TheoryUtils.createOperator(thyCache.theory,
-					eventBolymorphicTypeConstructorName(), false, false, FormulaType.EXPRESSION, Notation.PREFIX, null, nullMonitor);
+					eventBPolymorphicTypeConstructorName(), false, false, FormulaType.EXPRESSION, Notation.PREFIX, null, nullMonitor);
 		} catch (Exception e) {
 			System.err.println(" Unable to crate EventB operator " + e.getLocalizedMessage());
 			return;
@@ -455,8 +455,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					 * constructors for the inferred types should all require the same polymorphic
 					 * arguments.
 					 */
-					TypeConstructor supertype = (TypeConstructor)constType;
-					opString += ((ClassDecl)supertype).eventBolymorphicTypeConstructorName();
+					TypeBuilder supertype = (TypeBuilder)constType;
+					opString += ((ClassDecl)supertype).eventBPolymorphicTypeConstructorName();
 					opString += "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(inferredTypes, ", ", true) + ")";
 				} else {
 					opString += constType.buildEventBType();
@@ -551,8 +551,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return null;
 		}
 		
-		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(result, ", ", true);
-		result.add(new Tuple2<String, String>(name, eventBolymorphicTypeConstructorName() + argsForConstructor));
+		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(result, ", ", true) + ")";
+		result.add(new Tuple2<String, String>(name, eventBPolymorphicTypeConstructorName() + argsForConstructor));
 		
 		return result;
 	}
@@ -671,7 +671,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	
 	/* The name for the EventB operator used to construct entirely polymorphic instances of the type. */
 	@Override
-	public String eventBolymorphicTypeConstructorName() {
+	public String eventBPolymorphicTypeConstructorName() {
 		return name + "_T";
 	}
 	
@@ -683,7 +683,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return name + "_C";
 		}
 		
-		return eventBolymorphicTypeConstructorName();
+		return eventBPolymorphicTypeConstructorName();
 	}
 
 	@Override

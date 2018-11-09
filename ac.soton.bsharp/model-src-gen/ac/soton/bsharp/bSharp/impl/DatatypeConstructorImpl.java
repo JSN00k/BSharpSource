@@ -6,7 +6,9 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.NamedObject;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 
@@ -246,6 +248,11 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 				default: return -1;
 			}
 		}
+		if (baseClass == IVarType.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == ExpressionVariable.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -269,6 +276,11 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 		if (baseClass == NamedObject.class) {
 			switch (baseFeatureID) {
 				case BSharpPackage.NAMED_OBJECT__NAME: return BSharpPackage.DATATYPE_CONSTRUCTOR__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == IVarType.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}
@@ -311,6 +323,18 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	public String descriptiveName() {
 		// TODO Auto-generated method stub
 		return name;
+	}
+
+	@Override
+	public Boolean isPredicateVariable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TypeBuilder getType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //DatatypeConstructorImpl

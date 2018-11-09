@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ClassVarDecl extends EObject {
+public interface ClassVarDecl extends IVarType {
 	/**
 	 * Returns the value of the '<em><b>Owner Type</b></em>' reference.
 	 * <!-- begin-user-doc -->

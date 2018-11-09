@@ -151,7 +151,7 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	}
 
 	@Override
-	public ConstructedType getFirst() {
+	public TypeBuilder getFirst() {
 		if (superTypes != null && !superTypes.isEmpty())
 			return superTypes.get(0);
 		

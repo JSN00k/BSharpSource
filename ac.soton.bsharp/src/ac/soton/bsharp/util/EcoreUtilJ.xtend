@@ -93,4 +93,21 @@ class EcoreUtilJ extends EcoreUtil2 {
 		
 		eContainerMatchingLambda(parent, criteria)
 	}
+	
+	static def EObject getObjectMatchingLambda(EObject context, Function1<EObject, Boolean> criteria) {
+		if (criteria.apply(context))
+			return context;
+			
+		if (context.eContents === null)
+			return null;
+			
+		for (child : context.eContents) {
+			val res = getObjectMatchingLambda(child, criteria)
+			if (res !== null)
+				return res;
+				
+		}
+		
+		return null;
+	}
 }

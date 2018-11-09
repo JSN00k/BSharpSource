@@ -236,7 +236,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 					supertypeEventBType += "∩";
 				}
 				
-				String superConstr = superT.getName() + "(";
+				String superConstr = superT.eventBPolymorphicTypeConstructorName() + "(";
 				for (String polyname : eventBPolytypeNames) {
 					superConstr += polyname;
 				}

@@ -3,8 +3,8 @@
  */
 package ac.soton.bsharp.validation;
 
+import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.Infix;
-import ac.soton.bsharp.rewriteAST.ASTRewriter;
 import ac.soton.bsharp.validation.AbstractBSharpValidator;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
@@ -23,7 +23,8 @@ public class BSharpValidator extends AbstractBSharpValidator {
   @Check
   public void checkExpressionTree(final Infix expression) {
     Infix copy = EcoreUtil2.<Infix>copy(expression);
-    copy = ASTRewriter.reorderInfixTree(copy);
+    Expression _reorderExpresionTree = copy.reorderExpresionTree();
+    copy = ((Infix) _reorderExpresionTree);
     Infix copy2 = EcoreUtil2.<Infix>copy(expression);
   }
 }

@@ -51,14 +51,6 @@ public class BSharpGenerator extends AbstractGenerator {
   
   private ArrayList<BodyElements> mainElements;
   
-  /**
-   * When a type in imported explicitly it is possible that a smaller part
-   * of the file is imported. This is resolved when the type is referenced
-   * as this gives access to the EMF that is being referenced so it is possible
-   * to work out where the files splits.
-   */
-  private ArrayList<String> explicitTypeImports;
-  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     try {
@@ -67,8 +59,6 @@ public class BSharpGenerator extends AbstractGenerator {
       String _name = topLevel.getName();
       String _plus = (_name + "-gen");
       this.projName = _plus;
-      ArrayList<String> _arrayList = new ArrayList<String>();
-      this.explicitTypeImports = _arrayList;
       this.mainElements = CollectionLiterals.<BodyElements>newArrayList();
       IEventBProject eventBproj = EventBUtils.getEventBProject(this.projName);
       boolean _exists = eventBproj.getRodinProject().exists();
@@ -139,12 +129,12 @@ public class BSharpGenerator extends AbstractGenerator {
           EList<LocalImport> _localImports = topLevelImport.getLocalImports();
           boolean _tripleNotEquals_2 = (_localImports != null);
           if (_tripleNotEquals_2) {
-            this.importLocalImports(topLevelImport.getLocalImports(), theoryCache_2);
+            this.importLocalImports(topLevelImport.getLocalImports(), theoryCache_2, topLevelImport);
           }
           EList<GlobalImport> _globalImports = topLevelImport.getGlobalImports();
           boolean _tripleNotEquals_3 = (_globalImports != null);
           if (_tripleNotEquals_3) {
-            this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2);
+            this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2, topLevelImport);
           }
           topLevelImport.setTheoryImportCache(theoryCache_2);
           BodyElements _bodyElements = topLevelImport.getBodyElements();
@@ -158,12 +148,12 @@ public class BSharpGenerator extends AbstractGenerator {
       EList<LocalImport> _localImports = topLevelImport.getLocalImports();
       boolean _tripleNotEquals_2 = (_localImports != null);
       if (_tripleNotEquals_2) {
-        this.importLocalImports(topLevelImport.getLocalImports(), theoryCache_2);
+        this.importLocalImports(topLevelImport.getLocalImports(), theoryCache_2, topLevelImport);
       }
       EList<GlobalImport> _globalImports = topLevelImport.getGlobalImports();
       boolean _tripleNotEquals_3 = (_globalImports != null);
       if (_tripleNotEquals_3) {
-        this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2);
+        this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2, topLevelImport);
       }
       topLevelImport.setTheoryImportCache(theoryCache_2);
       BodyElements _bodyElements = IterableExtensions.<TopLevelImport>last(imports).getBodyElements();
@@ -173,7 +163,7 @@ public class BSharpGenerator extends AbstractGenerator {
     }
   }
   
-  public void importLocalImports(final List<LocalImport> importBlock, final TheoryImportCache theoryCache) {
+  public void importLocalImports(final List<LocalImport> importBlock, final TheoryImportCache theoryCache, final EObject tree) {
     for (final LocalImport localImport : importBlock) {
       EList<FileImport> _fileImports = localImport.getFileImports();
       for (final FileImport fileImport : _fileImports) {
@@ -182,14 +172,13 @@ public class BSharpGenerator extends AbstractGenerator {
         if (_tripleEquals) {
           theoryCache.importLocalTheoryWithName(fileImport.getFileName());
         } else {
-          String _type_1 = fileImport.getType();
-          this.explicitTypeImports.add(_type_1);
+          theoryCache.importTheoryForTypeNameInTree(fileImport.getType(), tree);
         }
       }
     }
   }
   
-  public void importGlobalImports(final List<GlobalImport> importBlock, final TheoryImportCache theoryCache) {
+  public void importGlobalImports(final List<GlobalImport> importBlock, final TheoryImportCache theoryCache, final EObject tree) {
     for (final GlobalImport globalImport : importBlock) {
       {
         final String projectName = globalImport.getProject();
@@ -200,8 +189,7 @@ public class BSharpGenerator extends AbstractGenerator {
           if (_tripleEquals) {
             theoryCache.importTheoryWithNameFromProjectWithName(fileImport.getFileName(), projectName);
           } else {
-            String _type_1 = fileImport.getType();
-            this.explicitTypeImports.add(_type_1);
+            theoryCache.importTheoryForTypeNameInTree(fileImport.getType(), tree);
           }
         }
       }

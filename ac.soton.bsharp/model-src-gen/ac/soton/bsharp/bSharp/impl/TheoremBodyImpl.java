@@ -150,4 +150,9 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public void compile() {
+		
+	}
+
 } //TheoremBodyImpl

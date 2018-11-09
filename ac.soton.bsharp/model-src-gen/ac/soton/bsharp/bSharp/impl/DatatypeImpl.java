@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -179,7 +180,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public String eventBolymorphicTypeConstructorName() {
+	public String eventBPolymorphicTypeConstructorName() {
 		return name;
 	}
 
@@ -190,6 +191,12 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	@Override
 	public String eventBTypeConstructorFromTypes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Tuple2<String, String>> typedConstructionArgs() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -91,6 +91,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.IVAR_TYPE: {
+				IVarType iVarType = (IVarType)theEObject;
+				T result = caseIVarType(iVarType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.TYPE: {
 				Type type = (Type)theEObject;
 				T result = caseType(type);
@@ -160,6 +166,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIEventBPrefixProvider(classDecl);
 				if (result == null) result = caseGenName(classDecl);
 				if (result == null) result = caseNamedObject(classDecl);
+				if (result == null) result = caseIVarType(classDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -175,6 +182,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIEventBPrefixProvider(bsClass);
 				if (result == null) result = caseGenName(bsClass);
 				if (result == null) result = caseNamedObject(bsClass);
+				if (result == null) result = caseIVarType(bsClass);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -256,6 +264,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIEventBPrefixProvider(datatype);
 				if (result == null) result = caseGenName(datatype);
 				if (result == null) result = caseNamedObject(datatype);
+				if (result == null) result = caseIVarType(datatype);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -266,6 +275,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTypedVariable(datatypeConstructor);
 				if (result == null) result = caseExpressionVariable(datatypeConstructor);
 				if (result == null) result = caseNamedObject(datatypeConstructor);
+				if (result == null) result = caseIVarType(datatypeConstructor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -285,6 +295,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIPolyTypeProvider(functionDecl);
 				if (result == null) result = caseExpressionVariable(functionDecl);
 				if (result == null) result = caseNamedObject(functionDecl);
+				if (result == null) result = caseIVarType(functionDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -331,6 +342,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				T result = caseTypedVariable(typedVariable);
 				if (result == null) result = caseExpressionVariable(typedVariable);
 				if (result == null) result = caseNamedObject(typedVariable);
+				if (result == null) result = caseIVarType(typedVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -359,6 +371,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.CLASS_VAR_DECL: {
 				ClassVarDecl classVarDecl = (ClassVarDecl)theEObject;
 				T result = caseClassVarDecl(classVarDecl);
+				if (result == null) result = caseIVarType(classVarDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -380,6 +393,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				ExpressionVariable expressionVariable = (ExpressionVariable)theEObject;
 				T result = caseExpressionVariable(expressionVariable);
 				if (result == null) result = caseNamedObject(expressionVariable);
+				if (result == null) result = caseIVarType(expressionVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -994,6 +1008,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseITheoryImportCacheProvider(ITheoryImportCacheProvider object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IVar Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IVar Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIVarType(IVarType object) {
 		return null;
 	}
 

@@ -27,6 +27,7 @@ import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
+import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.Instance;
@@ -340,6 +341,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass iTheoryImportCacheProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iVarTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -832,17 +840,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getWhere_Expessions() {
-		return (EReference)whereEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getWhere_Expressions() {
-		return (EReference)whereEClass.getEStructuralFeatures().get(1);
+		return (EReference)whereEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1444,6 +1443,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getIVarType() {
+		return iVarTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getType() {
 		return typeEClass;
 	}
@@ -1628,6 +1636,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		iTheoryImportCacheProviderEClass = createEClass(ITHEORY_IMPORT_CACHE_PROVIDER);
 
+		iVarTypeEClass = createEClass(IVAR_TYPE);
+
 		typeEClass = createEClass(TYPE);
 
 		topLevelInstanceEClass = createEClass(TOP_LEVEL_INSTANCE);
@@ -1702,7 +1712,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(typeDeclContextEClass, TYPE_DECL_CONTEXT__TYPE_NAME);
 
 		whereEClass = createEClass(WHERE);
-		createEReference(whereEClass, WHERE__EXPESSIONS);
 		createEReference(whereEClass, WHERE__EXPRESSIONS);
 
 		datatypeEClass = createEClass(DATATYPE);
@@ -1854,9 +1863,11 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		quantLambdaEClass.getESuperTypes().add(this.getIVariableProvider());
 		quantLambdaEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		functionCallEClass.getESuperTypes().add(this.getExpression());
+		classVarDeclEClass.getESuperTypes().add(this.getIVarType());
 		prefixEClass.getESuperTypes().add(this.getExpression());
 		bracketEClass.getESuperTypes().add(this.getExpression());
 		expressionVariableEClass.getESuperTypes().add(this.getNamedObject());
+		expressionVariableEClass.getESuperTypes().add(this.getIVarType());
 		infixEClass.getESuperTypes().add(this.getExpression());
 
 		// Initialize classes and features; add operations and parameters
@@ -1867,6 +1878,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(iPolyTypeProviderEClass, IPolyTypeProvider.class, "IPolyTypeProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iTheoryImportCacheProviderEClass, ITheoryImportCacheProvider.class, "ITheoryImportCacheProvider", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(iVarTypeEClass, IVarType.class, "IVarType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1942,7 +1955,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getTypeDeclContext_TypeName(), this.getTypeBuilder(), null, "typeName", null, 0, -1, TypeDeclContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(whereEClass, Where.class, "Where", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWhere_Expessions(), this.getQuantLambda(), null, "expessions", null, 0, -1, Where.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWhere_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, Where.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(datatypeEClass, Datatype.class, "Datatype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

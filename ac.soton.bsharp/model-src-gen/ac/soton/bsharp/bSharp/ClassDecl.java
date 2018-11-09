@@ -80,7 +80,7 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	void setBlock(BSharpBlock value);
 
 	String constructWithTypeContext(TypeDeclContext context);
-	public String eventBolymorphicTypeConstructorName();
+	public String eventBPolymorphicTypeConstructorName();
 	void compile() throws Exception;
 
 	String eventBTypeConstructorFromTypes();

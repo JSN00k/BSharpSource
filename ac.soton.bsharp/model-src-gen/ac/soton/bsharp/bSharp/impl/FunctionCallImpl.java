@@ -540,16 +540,15 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		if (reordered) {
 			return this;
 		}
-		
-		EObjectContainmentEList<Expression> newArgs = new EObjectContainmentEList<Expression>(Expression.class, this, BSharpPackage.FUNCTION_CALL__ARGUMENTS);
-		
-		for (Expression arg : arguments) {
-			newArgs.add(arg.reorderExpresionTree());
-		}
-		
-		arguments = newArgs;
 		reordered = true;
 		
+		if (arguments == null || arguments.isEmpty())
+			return this;
+		
+		for (int i =0; i < arguments.size(); ++i) {
+			arguments.set(i, arguments.get(i).reorderExpresionTree());
+		}
+
 		return this;
 	}
 

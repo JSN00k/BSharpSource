@@ -113,4 +113,26 @@ public class EcoreUtilJ extends EcoreUtil2 {
     }
     return _xblockexpression;
   }
+  
+  public static EObject getObjectMatchingLambda(final EObject context, final Function1<EObject, Boolean> criteria) {
+    Boolean _apply = criteria.apply(context);
+    if ((_apply).booleanValue()) {
+      return context;
+    }
+    EList<EObject> _eContents = context.eContents();
+    boolean _tripleEquals = (_eContents == null);
+    if (_tripleEquals) {
+      return null;
+    }
+    EList<EObject> _eContents_1 = context.eContents();
+    for (final EObject child : _eContents_1) {
+      {
+        final EObject res = EcoreUtilJ.getObjectMatchingLambda(child, criteria);
+        if ((res != null)) {
+          return res;
+        }
+      }
+    }
+    return null;
+  }
 }

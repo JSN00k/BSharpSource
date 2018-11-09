@@ -17,6 +17,6 @@ package ac.soton.bsharp.bSharp;
 public interface TypedVariable extends ExpressionVariable {
 
 	Boolean isPredicateVariable();
-	ConstructedType getType();
+	TypeBuilder getType();
 
 } // TypedVariable

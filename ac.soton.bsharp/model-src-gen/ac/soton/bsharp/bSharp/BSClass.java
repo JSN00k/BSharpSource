@@ -113,7 +113,7 @@ public interface BSClass extends ClassDecl {
 
 	ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass() throws Exception;
 
-	String eventBolymorphicTypeConstructorName();
+	String eventBPolymorphicTypeConstructorName();
 
 	Boolean isTypeClass();
 

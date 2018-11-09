@@ -47,7 +47,7 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 	
 	@Override
 	public Boolean isPredicateVariable() {
-		ConstructedType type = ((VariableTyping)eContainer()).getType();
+		TypeBuilder type = ((VariableTyping)eContainer()).getType();
 		
 		return (type instanceof TypeConstructor) && ((TypeConstructor)type).getTypeName().getName().equals("Bool");
 	}

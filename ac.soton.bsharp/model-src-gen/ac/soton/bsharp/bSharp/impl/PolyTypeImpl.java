@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
@@ -185,12 +186,12 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 	 * sure whether or not to allow.
 	 */
 	@Override
-	public String expandToEventBTypeWithConstrType(ConstructedType constrType) {
+	public String expandToEventBTypeWithConstrType(TypeBuilder constrType) {
 		/* TODO: With a constructed type add a proof obligation to demonstrate the constructed
 		 * type is of the required type.
 		 */
 		
-		ConstructedType workingType = constrType;
+		TypeBuilder workingType = constrType;
 		while (workingType instanceof TypeConstrBracket) {
 			workingType = ((TypeConstrBracket)workingType).getChild();
 		}

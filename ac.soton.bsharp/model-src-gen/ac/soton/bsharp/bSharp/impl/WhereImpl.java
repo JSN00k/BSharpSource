@@ -30,23 +30,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.WhereImpl#getExpessions <em>Expessions</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.WhereImpl#getExpressions <em>Expressions</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
-	/**
-	 * The cached value of the '{@link #getExpessions() <em>Expessions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExpessions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<QuantLambda> expessions;
-
 	/**
 	 * The cached value of the '{@link #getExpressions() <em>Expressions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -81,18 +70,6 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<QuantLambda> getExpessions() {
-		if (expessions == null) {
-			expessions = new EObjectContainmentEList<QuantLambda>(QuantLambda.class, this, BSharpPackage.WHERE__EXPESSIONS);
-		}
-		return expessions;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Expression> getExpressions() {
 		if (expressions == null) {
 			expressions = new EObjectContainmentEList<Expression>(Expression.class, this, BSharpPackage.WHERE__EXPRESSIONS);
@@ -108,8 +85,6 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.WHERE__EXPESSIONS:
-				return ((InternalEList<?>)getExpessions()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.WHERE__EXPRESSIONS:
 				return ((InternalEList<?>)getExpressions()).basicRemove(otherEnd, msgs);
 		}
@@ -124,8 +99,6 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.WHERE__EXPESSIONS:
-				return getExpessions();
 			case BSharpPackage.WHERE__EXPRESSIONS:
 				return getExpressions();
 		}
@@ -141,10 +114,6 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.WHERE__EXPESSIONS:
-				getExpessions().clear();
-				getExpessions().addAll((Collection<? extends QuantLambda>)newValue);
-				return;
 			case BSharpPackage.WHERE__EXPRESSIONS:
 				getExpressions().clear();
 				getExpressions().addAll((Collection<? extends Expression>)newValue);
@@ -161,9 +130,6 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.WHERE__EXPESSIONS:
-				getExpessions().clear();
-				return;
 			case BSharpPackage.WHERE__EXPRESSIONS:
 				getExpressions().clear();
 				return;
@@ -179,16 +145,33 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.WHERE__EXPESSIONS:
-				return expessions != null && !expessions.isEmpty();
 			case BSharpPackage.WHERE__EXPRESSIONS:
 				return expressions != null && !expressions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
+	
+	protected Boolean isOrdered = false;
+	
+	public void reorderExpressions() {
+		if (isOrdered)
+			return;
+		
+		isOrdered = true;
+		
+		if (expressions == null || expressions.isEmpty())
+			return;
+		
+		for (int i = 0; i < expressions.size(); ++i) {
+			Expression expr = expressions.get(i);
+			expressions.set(i, expr.reorderExpresionTree());
+		}
+	}
 
 	@Override
 	public String compileToEventBPredStatements() {
+		reorderExpressions();
+		
 		if (expressions == null || expressions.isEmpty()) {
 			return "";
 		}

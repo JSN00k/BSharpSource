@@ -15,6 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ExpressionVariable extends NamedObject {
+public interface ExpressionVariable extends NamedObject, IVarType {
 	String descriptiveName();
 } // ExpressionVariable

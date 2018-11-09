@@ -4,7 +4,6 @@
 package ac.soton.bsharp.validation
 
 import ac.soton.bsharp.bSharp.Infix
-import ac.soton.bsharp.rewriteAST.ASTRewriter
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.validation.Check
 
@@ -33,7 +32,7 @@ class BSharpValidator extends AbstractBSharpValidator {
 	@Check
 	def checkExpressionTree(Infix expression) {
 		var copy = EcoreUtil2.copy(expression)
-		copy = ASTRewriter.reorderInfixTree(copy)
+		copy = copy.reorderExpresionTree() as Infix
 		
 		var copy2 = EcoreUtil2.copy(expression)
 		//print("\n\n")

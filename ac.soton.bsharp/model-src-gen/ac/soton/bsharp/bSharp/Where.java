@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.Where#getExpessions <em>Expessions</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Where#getExpressions <em>Expressions</em>}</li>
  * </ul>
  *
@@ -25,22 +24,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Where extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Expessions</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.QuantLambda}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Expessions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expessions</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getWhere_Expessions()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<QuantLambda> getExpessions();
-
 	/**
 	 * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.
 	 * The list contents are of type {@link ac.soton.bsharp.bSharp.Expression}.

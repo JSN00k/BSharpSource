@@ -6,6 +6,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="IVariableProvider" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IPolyTypeProvider" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ITheoryImportCacheProvider" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IVarType" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//GenName"/>
   <eClassifiers xsi:type="ecore:EClass" name="TopLevelInstance"/>
   <eClassifiers xsi:type="ecore:EClass" name="TopLevel">
@@ -104,8 +105,6 @@
         eType="#//TypeBuilder" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Where">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expessions" upperBound="-1"
-        eType="#//QuantLambda" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
@@ -190,7 +189,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassVarDecl">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassVarDecl" eSuperTypes="#//IVarType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerType" eType="#//GenName"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeInst" eType="#//ExpressionVariable"/>
   </eClassifiers>
@@ -203,7 +202,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//NamedObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//NamedObject #//IVarType"/>
   <eClassifiers xsi:type="ecore:EClass" name="Instance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="className" eType="#//ClassDecl"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
