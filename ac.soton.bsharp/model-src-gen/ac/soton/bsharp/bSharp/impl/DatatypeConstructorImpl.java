@@ -5,10 +5,13 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
+import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 
@@ -17,7 +20,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -333,6 +336,12 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 
 	@Override
 	public TypeBuilder getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
 		// TODO Auto-generated method stub
 		return null;
 	}

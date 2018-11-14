@@ -4,8 +4,15 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
+import java.util.ArrayList;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -39,6 +46,30 @@ public class ExpressionVariableImpl extends NamedObjectImpl implements Expressio
 	public String descriptiveName() {
 		// TODO Auto-generated method stub
 		return name;
+	}
+
+	@Override
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred)  throws Exception {
+		TypeDeclContext ctx = fc.getContext();
+		
+		if (ctx != null) {
+			/* I don't believe that there is any way that a type variable can have a context. */
+			throw new Exception("Validate against this, a type variable shouldn't be able to have" +
+			" a poly context applied to it.");
+		}
+		
+		EList<Expression> exprs = fc.getArguments();
+		String result = name;
+		
+		if (exprs != null && !exprs.isEmpty()) {
+			result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
+		}
+		
+		if (asPred) {
+			result += " = TRUE";
+		}
+		
+		return result;
 	}
 
 } //ExpressionVariableImpl

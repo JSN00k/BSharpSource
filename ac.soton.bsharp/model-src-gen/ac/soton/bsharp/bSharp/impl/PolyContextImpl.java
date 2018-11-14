@@ -6,16 +6,12 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
-import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
-import ac.soton.bsharp.bSharp.TypeBuilder;
-import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
-import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,8 +29,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eventb.theory.core.INewOperatorDefinition;
-import org.eventb.theory.core.ITypeParameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -218,7 +212,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 			String supertypeEventBType = "";
 			Boolean first = true;
 			
-			ArrayList<String> eventBPolytypeNames = new ArrayList<String>();
+			ArrayList<String> polytypeNames = new ArrayList<String>();
 			for (ClassDecl supertype : supertypes) {
 				BSClass superT = (BSClass)supertype;
 				
@@ -229,7 +223,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 						String typeNameString = name + i.toString();
 						String typeTypeString = "ℙ("  +thyCache.getEventBTypeParamNameForName(typeNameString) + ")";
 						result.add(new Tuple2<String, String>(typeNameString, typeTypeString));
-						eventBPolytypeNames.add(typeTypeString);
+						polytypeNames.add(typeNameString);
 					}
 					first = false;
 				} else {
@@ -237,7 +231,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 				}
 				
 				String superConstr = superT.eventBPolymorphicTypeConstructorName() + "(";
-				for (String polyname : eventBPolytypeNames) {
+				for (String polyname : polytypeNames) {
 					superConstr += polyname;
 				}
 				
@@ -254,33 +248,19 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 
 	@Override
 	public String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception {
-		EList<TypeBuilder> constrTypes = ctx.getTypeName();
-		if (polyTypes != null && polyTypes.size() != 0) {
-			if (polyTypes.size() != constrTypes.size()) {
-				//TODO: Validate against this happening.
-				System.err.println("Size of context does not match required types of type constructor.");
-				throw new Exception("Size of context does not match required types of type constructor.");
-			}
-			
-			Boolean first = true;
-			String result = "";
-			for (int i = 0; i < polyTypes.size(); ++i) {
-				if (!first) {
-					result += ", ";
-				}
-				first = false;
-				
-				PolyType polyType = polyTypes.get(i);
-				TypeBuilder constrType = constrTypes.get(i);
-				result += polyType.expandToEventBTypeWithConstrType(constrType);
-			}
-			
-			return result;
+		if (polyTypes == null || polyTypes.isEmpty()) {
+			return "()";
 		}
 		
-		return "";
+		String result = "(";
+		
+		for (int i = 0; i < polyTypes.size(); ++i) {
+			PolyType pType = polyTypes.get(0);
+			result += pType.deconstructTypeToArguments(ctx.getTypeName().get(i));
+		}
+		
+		result += ")";
+		
+		return result;
 	}
-
-
-
 } //PolyContextImpl

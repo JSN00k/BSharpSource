@@ -335,9 +335,37 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 		 */
 		
 		String result = left.buildEventBType();
-		result += " " + constructor + " " + right.buildEventBType();
+		
+		String rightString = null;
+		if (right instanceof ConstructedType) {
+			rightString = "(" + right.buildEventBType() + ")";
+		} else {
+			rightString = right.buildEventBType();
+		}
+		
+		result += " " + constructor + " " + rightString;
 		// TODO Auto-generated method stub
 		return result;
+	}
+
+	@Override
+	public TypeBuilder reorderTypeTree() {
+		if (isOrdered)
+			return this;
+		
+		isOrdered = true;
+		
+		/* In effect all this does is remove brackets, leaving the bracketed tree where it is
+		 * the left weighted tree that is produced by the parsing is already correct. */
+		 left = left.reorderTypeTree();
+		 right = right.reorderTypeTree();
+		
+		return this;
+	}
+
+	@Override
+	public Boolean isBaseType() {
+		return true;
 	}
 
 } //ConstructedTypeImpl

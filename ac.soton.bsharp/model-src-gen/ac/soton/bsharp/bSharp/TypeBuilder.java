@@ -27,5 +27,9 @@ public interface TypeBuilder extends EObject {
 	/* This method will return null if the Constructed type is not wrapping a type class. */
 	BSClass getTypeClass();
 	boolean isBoolType();
+
+	TypeBuilder reorderTypeTree();
+	
+	Boolean isBaseType();
 	
 } // TypeBuilder

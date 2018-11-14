@@ -833,4 +833,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		}		
 	}
 
+	@Override
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } //FunctionDeclImpl

@@ -59,4 +59,6 @@ public abstract class TypeBuilderImpl extends MinimalEObjectImpl.Container imple
 		return false;
 	}
 	
+	protected boolean isOrdered;
+	
 } //TypeBuilderImpl

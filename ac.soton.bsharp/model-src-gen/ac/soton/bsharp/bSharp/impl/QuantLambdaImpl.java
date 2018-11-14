@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.QuantLambda;
@@ -452,10 +453,19 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		if (qType.equals("λ")) {
 			result += " ∣ ";
 		} else {
-			result += " ∧ ";
+			result += " ⇒ ";
+		}
+		
+		/* TODO: Consult EventB precedence to reduce number of brackets */
+		if (expr instanceof Infix) {
+			result += "(";
 		}
 		
 		result += expr.compileToEventBString(true);
+		
+		if (expr instanceof Infix) {
+			result += ")";
+		}
 		
 		if (asPredicate) {
 			return result;

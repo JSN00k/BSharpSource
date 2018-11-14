@@ -6,6 +6,13 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.PolyContext;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -344,6 +351,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	
 	/* This get's the number of polymorhic types required to construct the type class */
 	public Integer eventBRequiredPolyTypes() {
+		generateInferredContext();
 		if (context != null) {
 			return context.eventBPolyVarCount();
 		} else if (supertypes != null) {
@@ -370,6 +378,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		/*TODO: document this method working through a couple of event B examples to show 
 		 * how and where they are compiled. Maybe Monoid and TransitiveOp.
 		 */
+		generateInferredContext();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		
 		INewOperatorDefinition op;
@@ -515,6 +524,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 */
 	@Override
 	public ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass () throws Exception {
+		generateInferredContext();
 		if (context != null) {
 			return context.namesAndTypesForPolyContext();
 		}
@@ -688,25 +698,169 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	@Override
 	public String constructWithTypeContext(TypeDeclContext ctx) {
+		generateInferredContext();
 		if (context == null)
 			return "()";
 		
-		String result = eventBTypeConstructorFromTypes() + "(";
+		String result = eventBTypeConstructorFromTypes();
 		try {
 			result += context.compileCallWithTypeContext(ctx);
 		} catch (Exception e) {
 			System.err.print(e.getLocalizedMessage());
 		}
 		
-		result += ")";
-		
 		return result;
+	}
+	
+	@Override
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
+		generateInferredContext();
+		TypeDeclContext ctx = fc.getContext();
+		EList<Expression> arguments = fc.getArguments();
+		
+		
+		if (ctx == null && arguments == null) {
+			if (asPred) {
+				throw new Exception("This should be validated against, a type class appears wihtout context or argument, "
+						+ "and is required to be a predicate.");
+			} else {
+				/* I'm not sure that this should be possible either. It would require the unification of types and instances (I think). */
+				return name;
+			}
+		}
+		
+		if (ctx == null && arguments != null) {
+			/* We need to know about the type this was referenced from. */
+			BSClass containingClass = EcoreUtil2.getContainerOfType(fc, BSClass.class);
+
+			String result = null;
+			if (containingClass != null && containingClass == this) {
+				/* Due to a name change this requires special casing. */
+				result = containingClass.constructionInstName();
+			} else {
+				result = name;
+			}
+
+			result += "(" + CompilationUtil.compileExpressionListWithSeperator(arguments, " ↦ ") + ")";
+
+			if (asPred) {
+				result += " = TRUE";
+			}
+
+			return result;
+
+		}
+
+		if (context != null) {
+			/* If there is a context then it is necessary to build the types within the context correctly. 
+			 * Fortunately there is a method on the context to do this. */
+			//context.compileCallWithTypeContext(ctx);
+		}
+		
+		return null;
 	}
 
 	@Override
 	public String eventBPrefix() {
-		// TODO Change this when user defined prefixes are added.
-		return name;
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/* If there is an inferred Context for this type class because it has super types which are 
+	 * type classes, this method will create the inferred context if it hasn't already been created.
+	 */
+	public void generateInferredContext() {
+		if (context != null)
+			return;
+		
+		if (supertypes == null)
+			return;
+		
+		EList<TypeBuilder> sTypes = supertypes.getSuperTypes();
+		if (sTypes == null || sTypes.isEmpty())
+			return;
+		
+		TypeBuilder first = sTypes.get(0);
+		BSClass s = first.getTypeClass();
+		context = EcoreUtil2.copy(s.getContext());
+	}
+	
+	@Override
+	public PolyContext getContext() {
+		generateInferredContext();
+		return context;
+	}
+
+	@Override
+	public Integer prjsRequiredForSupertype(BSClass sType) {
+		/* Look up the supertypes until one of the supertypes has the same 
+		 * base type as sType
+		 */
+		return null;
+	}
+	
+	@Override
+	public Integer prjsRequiredForBaseType() {
+		if (supertypes != null) {
+			TypeBuilder super1 = supertypes.getFirst();
+			super1.reorderTypeTree();
+			
+			if (super1.isBaseType()) {
+				if (varList != null && varList.varCount() != 0)
+					return 1;
+				else 
+					return 0;
+			}
+			
+			Integer res = ((BSClass)((TypeConstructor)super1).getTypeName()).prjsRequiredForBaseType(); 
+			
+			if (varList != null && varList.varCount() != 0) {
+				return res + 1;
+			}
+			
+			return res;
+		}
+		
+		return 0;
+	}
+	
+	/* The base type is the type before any additional variables have been added. Importantly 
+	 * this base type will reference all of the possible polymorphic types that are available.
+	 * By examining the base types the relevant prj calls can be generated to deconstruct instances
+	 * to fill in the EventB polymorphic context.
+	 */
+	@Override
+	public TypeBuilder baseType() {
+		if (supertypes != null) {
+			TypeBuilder super1 = supertypes.getFirst();
+			super1.reorderTypeTree();
+			
+			if (super1.isBoolType())
+				return super1;
+			
+			return ((BSClass)((TypeConstructor)super1).getTypeName()).baseType();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public String deconstructEventBTypeToArguments(String deconstructionType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String applyMemberOrFuncGetter(ExpressionVariable typeInst, PolyType ownerType, FunctionCall fc,
+			Boolean asPred) {
+		TypedVariableList varList = EcoreUtil2.getContainerOfType(typeInst, TypedVariableList.class);
+
+	}
+
+	@Override
+	public String appyMemberOrFunc(ExpressionVariable typeInst, FunctionCall fc, Boolean asPred) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 } //BppClassImpl

@@ -119,4 +119,18 @@ public interface BSClass extends ClassDecl {
 
 	String eventBTypeConstructorFromTypes();
 
+	/* In EventB subtypes are represented by mapping the current type with the current types
+	 * with the types for the additional variables, for functions that require the supertype
+	 * it is necessary to add the correct number of prj1s onto the type to find the correct 
+	 * supertype.
+	 */
+	Integer prjsRequiredForSupertype(BSClass sType);
+	
+	/* The base type is the type before any aditional variables have been added to the type. */
+	TypeBuilder baseType();
+
+	String deconstructEventBTypeToArguments(String deconstructionType);
+
+	Integer prjsRequiredForBaseType();
+
 } // BppClass

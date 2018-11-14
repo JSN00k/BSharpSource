@@ -6,9 +6,11 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 
@@ -304,6 +306,16 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	@Override
 	public boolean isBoolType() {
 		return typeName.getName().equals("Bool");
+	}
+
+	@Override
+	public TypeBuilder reorderTypeTree() {
+		return this;
+	}
+
+	@Override
+	public Boolean isBaseType() {
+		return typeName instanceof PolyType || typeName instanceof Datatype;
 	}
 
 } //TypeConstructorImpl

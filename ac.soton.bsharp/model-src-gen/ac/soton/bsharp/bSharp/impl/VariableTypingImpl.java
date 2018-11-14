@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.TypeBuilder;

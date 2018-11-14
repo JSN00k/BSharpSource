@@ -6,6 +6,8 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
+import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
@@ -197,6 +199,12 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	@Override
 	public ArrayList<Tuple2<String, String>> typedConstructionArgs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
 		// TODO Auto-generated method stub
 		return null;
 	}

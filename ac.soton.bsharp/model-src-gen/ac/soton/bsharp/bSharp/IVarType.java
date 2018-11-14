@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -18,6 +19,8 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface IVarType extends EObject {
-	String compileToStringWithContextAndArguments(TypeDeclContext context, ArrayList<Expression> arguments);
+	/* This interface is for classes that can appear in expressinos as veraibles or functions. */
+	
+	String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception;
 	
 } // IVarType

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
 
+import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -93,5 +95,21 @@ public class CompilationUtil {
 	public static INewOperatorDefinition createPredOpWithArguments(TheoryImportCache thyCache,
 			String name, ArrayList<Tuple2<String, String>> args) throws Exception {
 		return createOpWithArgumentsAsPred(thyCache, name, args, true);
+	}
+	
+	public static String compileExpressionListWithSeperator(EList<Expression> exprs, String sep) throws Exception {
+		Boolean first = true;
+		String result = "";
+		
+		for (Expression expr : exprs) {
+			if (!first) {
+				result += sep;
+			}
+			
+			first = false;
+			result += expr.compileToEventBString(false);
+		}
+		
+		return result;
 	}
 }

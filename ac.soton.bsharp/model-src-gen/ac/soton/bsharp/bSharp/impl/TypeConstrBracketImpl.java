@@ -186,4 +186,17 @@ public class TypeConstrBracketImpl extends TypeBuilderImpl implements TypeConstr
 		return child.isBoolType();
 	}
 
+	@Override
+	public TypeBuilder reorderTypeTree() {
+		// TODO Auto-generated method stub
+		return child.reorderTypeTree();
+	}
+
+	@Override
+	public Boolean isBaseType() {
+		return child.isBaseType();
+	}
+	
+	
+
 } //TypeConstrBracketImpl

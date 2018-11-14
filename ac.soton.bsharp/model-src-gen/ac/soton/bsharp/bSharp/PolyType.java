@@ -46,4 +46,9 @@ public interface PolyType extends GenName {
 
 	String expandToEventBTypeWithConstrType(TypeBuilder constrType);
 
+	/* A type in BSharp may require several EventB types when constructed with a polymorphic context
+	 * This method uses the prj functions to deconstruct the correct types to fill in the arguments.
+	 */
+	String deconstructTypeToArguments(TypeBuilder typeBuilder);
+
 } // PolyContextTypes

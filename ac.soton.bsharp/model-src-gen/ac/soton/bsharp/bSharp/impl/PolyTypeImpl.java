@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -223,6 +224,64 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		}
 		
 		return null;
+	}
+	
+	String deconstructionType(TypeBuilder callType) {
+		callType.reorderTypeTree();
+		
+		if (callType instanceof ConstructedType) {
+			return callType.buildEventBType();
+		}
+		
+		if (superTypes == null || superTypes.isEmpty())
+			return callType.buildEventBType();
+		
+		BSClass sType = (BSClass)superTypes.get(0); 
+		
+		/* All brackets have been removed so the only thing left is a TypeConstructor */
+		TypeConstructor tConstr = (TypeConstructor)callType;
+		
+		GenName generic = tConstr.getTypeName();
+		
+		if (generic instanceof BSClass) {
+			String result = "";
+			Integer prjsRequired = ((BSClass)generic).prjsRequiredForSupertype(sType);
+			
+			for (int i = 0; i < prjsRequired; ++i) {
+				result += "prj1(";
+			}
+			
+			result += callType.buildEventBType();
+			for (int i = 0; i < prjsRequired; ++i)
+				result += ")";
+			
+			return result;
+		}
+		
+		if (generic instanceof Datatype) {
+			return callType.buildEventBType() + "_" + sType.getName();
+		}
+		
+		return null;
+	}
+
+	/* A BSharp type in a polynomial context is represented by several EventB types, given an
+	 * EventB type the necessary other arguments can be constructed by deconstructing the 
+	 * total EventB type. This is what this method does.
+	 */
+	@Override
+	public String deconstructTypeToArguments(TypeBuilder callType) {
+		/* All the supertypes require the same type structure. so we can get the
+		 * first supertype and go from there. If there are no supertypes then
+		 * just return the call type compiled as is.
+		 */
+		if (superTypes == null || superTypes.isEmpty()) {
+			return callType.buildEventBType();
+		}
+		
+		
+		BSClass sType = (BSClass)superTypes.get(0);
+		return sType.deconstructEventBTypeToArguments(deconstructionType(callType));
 	}
 	
 	

@@ -55,5 +55,4 @@ public interface PolyContext extends EObject {
 	String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception;
 
 	ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext();
-
 } // PolyContext
