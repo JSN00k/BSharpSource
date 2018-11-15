@@ -3,10 +3,13 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eventb.theory.core.INewOperatorDefinition;
 
+import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 /**
@@ -41,14 +44,19 @@ public interface PolyType extends GenName {
 	 * @generated
 	 */
 	EList<ClassDecl> getSuperTypes();
-	
-	void compileToBSClassOpArgs(INewOperatorDefinition op);
-
-	String expandToEventBTypeWithConstrType(TypeBuilder constrType);
 
 	/* A type in BSharp may require several EventB types when constructed with a polymorphic context
 	 * This method uses the prj functions to deconstruct the correct types to fill in the arguments.
 	 */
 	String deconstructTypeToArguments(TypeBuilder typeBuilder);
+
+	String baseTypeString();
+
+	/* This not be called if the polytype is a reference, as it won't have access to a theoryCache and will 
+	 * crash.
+	 */
+	ArrayList<Tuple2<String, String>> eBNamesAndTypes();
+
+	ArrayList<String> typeNames();
 
 } // PolyContextTypes

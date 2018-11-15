@@ -593,6 +593,10 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return op;
 	}
 	
+	String getterForOpName(String opName) {
+		return name + "_" + opName;
+	}
+	
 	public void compileGetterOperators() {
 		/* I think that I'm going to use Event-B operators to pass getters onto subtypes. 
 		 * This makes coding simpler. The supertype is always at prj1. of the type. */
@@ -625,7 +629,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			Integer prj2sRequired = 1;
 			Integer lastNdx = varListVariables.size() - 1;
 			for (Tuple2<String, String> typedVar : varListVariables) {
-				INewOperatorDefinition op = constructOpForGetterWithName(name + "_" + typedVar.x);
+				INewOperatorDefinition op = constructOpForGetterWithName(getterForOpName(typedVar.x));
 				
 				String directDefString = "";
 				Integer neededCloseBrackets = prj2sRequired;
@@ -793,8 +797,10 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	@Override
 	public Integer prjsRequiredForSupertype(BSClass sType) {
-		/* Look up the supertypes until one of the supertypes has the same 
-		 * base type as sType
+		/* To do this I want to do type analysis, this involves expanding 
+		 * all of the Type classes, to build a type tree. This is done for
+		 * both this type and sType. The type trees can then be compared 
+		 * to calculate the number of prjs required.
 		 */
 		return null;
 	}
@@ -835,7 +841,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			TypeBuilder super1 = supertypes.getFirst();
 			super1.reorderTypeTree();
 			
-			if (super1.isBoolType())
+			if (super1.isBaseType())
 				return super1;
 			
 			return ((BSClass)((TypeConstructor)super1).getTypeName()).baseType();
@@ -850,11 +856,74 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return null;
 	}
 
+	/* Given a polytype T : Setoid this deals with a call like T.equ(a, b) 
+	 * ownerType would be T, typeInst would be equ, function call contains a polytype and 
+	 */
 	@Override
 	public String applyMemberOrFuncGetter(ExpressionVariable typeInst, PolyType ownerType, FunctionCall fc,
 			Boolean asPred) {
+		/* It's possible that the type of owner type is a subtype of the required type. In this case
+		 * it is necessary to calculate the number of prj1s to apply to the current type to get the 
+		 * correct supertype.
+		 */
+		TypeDeclContext ctx = fc.getContext();
+		EList<Expression> args =  fc.getArguments();
+		
 		TypedVariableList varList = EcoreUtil2.getContainerOfType(typeInst, TypedVariableList.class);
-
+		
+		if (varList != null && varList.eContainer() instanceof BSClass) {
+			String getterFunc = getterForOpName(typeInst.getName());
+			String result = getterFunc + "(";
+			ArrayList<String> polyTypes = ownerType.typeNames();
+			
+			boolean first = true;
+			for (String tName : polyTypes) {
+				if (!first) {
+					result += ", ";
+				}
+				first = false;
+				
+				result += tName;
+			}
+			
+			result += ")";
+			
+			if (args != null) {
+				try {
+					result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
+				} catch (Exception e) {
+					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
+				}
+				
+			}
+			
+			if (asPred) {
+				result += "= TRUE";
+			}
+			
+			return result;
+		}
+		
+		return null;
+	}
+	
+	/* If we have an expression such as T : Setoid in a polymophic in eventB this becomes 
+	 * T1 : POW(T_EvB), T : Setoid_T(T1), this method will return T1. If the Setoid was a 
+	 * subset of T ** T then it would return T1 ** T1.
+	 */
+	@Override 
+	public String baseTypeStringForPolymorphicType(PolyType p) {
+		String baseName = p.getName();
+		Integer neededPolys = eventBRequiredPolyTypes();
+		ArrayList<String> requiredEBTypes = new ArrayList<String>();
+		
+		for (Integer i = 1; i <= neededPolys; ++i) {
+			requiredEBTypes.add(baseName + i.toString());
+		}
+		
+		
+		TypeBuilder baseType = baseType();
+		return baseType.constructWithTypes(requiredEBTypes);
 	}
 
 	@Override

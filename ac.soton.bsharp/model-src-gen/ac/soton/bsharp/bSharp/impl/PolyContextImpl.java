@@ -185,9 +185,22 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	}
 	
 	@Override
+	public ArrayList<String> namesForPolyContextTypes() {
+		ArrayList<String> result = new ArrayList<String>();
+		
+		if (polyTypes == null || polyTypes.isEmpty())
+			return result;
+		
+		for (PolyType polyType : polyTypes) {
+			result.addAll(polyType.typeNames());
+		}
+		
+		return result;
+	}
+	
+	@Override
 	public ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext() {
 		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		
 		/* Multiple supertypes in a polymorphic context are going to work with the following rules.
 		 * 1. Each of the super types must have the same base type, with no additional variables added.
@@ -200,47 +213,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 		}
 		
 		for (PolyType polytype : polyTypes) {
-			String name = polytype.getName();
-			
-			Collection<ClassDecl> supertypes = polytype.getSuperTypes();
-			if (supertypes == null || supertypes.isEmpty()) {
-				String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(name);
-				result.add(new Tuple2<String, String>(name, "ℙ(" + eventBTypeParamName + ")"));
-				continue;
-			}
-			
-			String supertypeEventBType = "";
-			Boolean first = true;
-			
-			ArrayList<String> polytypeNames = new ArrayList<String>();
-			for (ClassDecl supertype : supertypes) {
-				BSClass superT = (BSClass)supertype;
-				
-				if (first) {
-					/* Create the polymoprhic types required to build the supertypes. */
-					Integer argsRequired = superT.eventBRequiredPolyTypes();
-					for (Integer i = 1; i <= argsRequired; ++i) {
-						String typeNameString = name + i.toString();
-						String typeTypeString = "ℙ("  +thyCache.getEventBTypeParamNameForName(typeNameString) + ")";
-						result.add(new Tuple2<String, String>(typeNameString, typeTypeString));
-						polytypeNames.add(typeNameString);
-					}
-					first = false;
-				} else {
-					supertypeEventBType += "∩";
-				}
-				
-				String superConstr = superT.eventBPolymorphicTypeConstructorName() + "(";
-				for (String polyname : polytypeNames) {
-					superConstr += polyname;
-				}
-				
-				superConstr += ")";
-				
-				supertypeEventBType += superConstr;
-			}
-			
-			result.add(new Tuple2<String, String>(name, supertypeEventBType));
+			result.addAll(polytype.eBNamesAndTypes());
 		}
 		
 		return result;

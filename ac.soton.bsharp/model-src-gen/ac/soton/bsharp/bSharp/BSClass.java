@@ -133,4 +133,6 @@ public interface BSClass extends ClassDecl {
 
 	Integer prjsRequiredForBaseType();
 
+	String baseTypeStringForPolymorphicType(PolyType p);
+
 } // BppClass

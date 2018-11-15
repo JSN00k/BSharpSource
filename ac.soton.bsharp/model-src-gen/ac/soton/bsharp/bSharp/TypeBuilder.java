@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -31,5 +33,16 @@ public interface TypeBuilder extends EObject {
 	TypeBuilder reorderTypeTree();
 	
 	Boolean isBaseType();
+
+	/* A primative type is an type within a Type Construtor instance. This finds the combination 
+	 * of prjs required to deconstruct to that type, and applies the prjs to the baseTypeOfPoly,
+	 * these are then returned as a comma separated list. For instance:
+	 * 
+	 *  getPrimativeTypesListByDeconstruction(T X S) would return "prj1(T X S), prj2(T X S)" to 
+	 *  allow access to T and S
+	 */
+	String getPrimativeTypesListByDeconstruction(String baseTypeOfPoly);
+
+	String constructWithTypes(ArrayList<String> requiredEBTypes);
 	
 } // TypeBuilder

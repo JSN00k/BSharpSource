@@ -15,10 +15,12 @@ import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -277,8 +279,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 			}
 			
 		} else if (typeName instanceof PolyType){
-			System.out.print("This currently doesn't handle types with super types that aren't simple.");
-			return ((PolyType)typeName).getName();
+			return ((PolyType)typeName).baseTypeString();
 		} else {
 			System.out.print("Unimplemeneted in TypeConstrutorImpl unexpected case.");
 			return "";
@@ -316,6 +317,29 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	@Override
 	public Boolean isBaseType() {
 		return typeName instanceof PolyType || typeName instanceof Datatype;
+	}
+	
+	@Override
+	void getPrimativeTypePathsByDeconstructionInternal( 
+			ArrayList<Integer> currentPath, LinkedHashMap<String, ArrayList<Integer>> paths) {
+		String myString = toString();
+		if (paths.containsKey(myString))
+			return;
+		
+		paths.put(myString, new ArrayList<Integer>(currentPath));
+		return;
+	}
+	
+	@Override
+	String constructWithTypesInternal(ArrayList<String> requiredEBTypes, HashMap<String, String> typeNameMap) {
+		String name = typeName.getName();
+		if (typeNameMap.containsKey(name))
+			return typeNameMap.get(name);
+		
+		/* Work out which name we're up to. */
+		String typeName = requiredEBTypes.get(typeNameMap.size());
+		typeNameMap.put(name, typeName);
+		return typeName;
 	}
 
 } //TypeConstructorImpl

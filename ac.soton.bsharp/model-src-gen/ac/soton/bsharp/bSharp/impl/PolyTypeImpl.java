@@ -14,9 +14,11 @@ import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -144,87 +146,6 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 	}
 
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
-
-	/*TODO: The two methods below need to be completed as I get to examples where these things are needed.
-	 * It is currently too complex to try to compile it all at once without real examples to work from.
-	 */
-	
-	@Override
-	public void compileToBSClassOpArgs(INewOperatorDefinition op) {
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-		
-		if (superTypes == null || superTypes.isEmpty()) {
-			String eventBTypeParamName = thyCache.getEventBTypeParamNameForName(name);
-			
-			try {
-				TheoryUtils.createArgument(op, name, "ℙ(" + eventBTypeParamName + ")", null, nullMonitor);
-			} catch (Exception e) {
-				System.err.println("Unable to create EventB type param named: " + eventBTypeParamName + e.getLocalizedMessage());
-			}
-			
-			return;
-		}
-		
-		for (ClassDecl supertype : superTypes) {
-			/* I think that the supertypes should only be able to be type classes. */
-			if (!(supertype instanceof BSClass)) {
-				System.err.println("Need to either make it so polymorphic types can have non BSClasses as supertypes"
-						+ "or change the BSharp file so we can only have BSClasses here.");
-			}
-			
-			BSClass bsSuper = (BSClass)supertype;
-			/* TODO: Work out what I was doing here and finish the implementation. */
-				
-		}
-	}
-
-	/* The polyConstext becomes the list of arguments to build a generic type based on specific 
-	 * type instances. e.g., given a monoid declared Monoid<T> : Setoid<T> the set of all monoids
-	 * on the naturals can be created with Monoid<pNat>. This is made considerably more complicated
-	 * with a type class such as Homo<S : Setoid, T : Setoid>... Now the EventB when Homo<pNat, pNat>
-	 * is called needs to be Homo(pNat, Setoid<pNat>, pNat, Setoid<pNat>). This complexity again comes
-	 * down to allowing Type Classes to have non-trivial classes at their base. Something that I'm not 
-	 * sure whether or not to allow.
-	 */
-	@Override
-	public String expandToEventBTypeWithConstrType(TypeBuilder constrType) {
-		/* TODO: With a constructed type add a proof obligation to demonstrate the constructed
-		 * type is of the required type.
-		 */
-		
-		TypeBuilder workingType = constrType;
-		while (workingType instanceof TypeConstrBracket) {
-			workingType = ((TypeConstrBracket)workingType).getChild();
-		}
-		
-		if (superTypes == nullMonitor || superTypes.isEmpty()) {
-			if (!(workingType instanceof TypeConstructor)) {
-				return ((ConstructedType)workingType).buildEventBType();
-			} else {
-				/* Base type goes all the way back to the simplest type that the 
-				 * type class was based on. */
-				return ((TypeConstructor)workingType).getTypeName().getName();
-			}
-		}
-		
-		/* we need something with a matching type to that of the supertype of the polytype. 
-		 * Yet another point where validation is needed.
-		 */
-		
-		
-		String classString = null;
-		ClassDecl supertype1 = superTypes.get(0);
-		
-		if ((workingType instanceof TypeConstructor)) {
-			GenName constrTypeClass = ((TypeConstructor) workingType).getTypeName();
-			
-			if (constrTypeClass instanceof PolyType) {
-				
-			}
-		}
-		
-		return null;
-	}
 	
 	String deconstructionType(TypeBuilder callType) {
 		callType.reorderTypeTree();
@@ -284,6 +205,98 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		return sType.deconstructEventBTypeToArguments(deconstructionType(callType));
 	}
 	
+	@Override
+	public String baseTypeString() {
+		if (superTypes != null && !superTypes.isEmpty()) {
+			BSClass sup = (BSClass)superTypes.get(0);
+			return sup.baseTypeStringForPolymorphicType(this);
+		}
+		
+		return name;
+	}
 	
+	@Override
+	public ArrayList<String> typeNames() {
+		ArrayList<String> result = new ArrayList<String>();
+		
+		if (superTypes == null || superTypes.isEmpty()) {
+			result.add(name);
+			return result;
+		}
+		
+		BSClass superT = (BSClass)superTypes.iterator().next();
+		Integer argsRequied = superT.eventBRequiredPolyTypes();
+		
+		for (Integer i = 1; i <= argsRequied; ++i) {
+			result.add(name + i.toString());
+		}
+		
+		result.add(name);
+		
+		return result;
+	}
+	
+	@Override
+	public ArrayList<Tuple2<String, String>> eBNamesAndTypes() {
+		
+		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		ArrayList<String> varNames = new ArrayList<String>();
+		
+		if (superTypes == null || superTypes.isEmpty()) {
+			String type = "ℙ(" + thyCache.getEventBTypeParamNameForName(name) + ")";
+			result.add(new Tuple2<String, String>(name, type));
+			return result;
+		}
+		
+		
+		Boolean first = true;
+		String constructedType = "";
+		/* This will only work if the supertypes have a very similar structure due to the Event-B mapping.
+		 * This requires more thought. The final result could be the union or inner product of the types.
+		 * I can't think of a situation where multiple supertypes would be neccessary, so maybe it would be
+		 * better to only allow one.
+		 */
+		for (ClassDecl supertype : superTypes) {
+			BSClass superT = (BSClass)supertype;
+			
+			if (first) {
+				/* Supertypes are currently constrained to all have similar structures. A better decision 
+				 * needs to be made about this.
+				 */
+				Integer argsRequired = superT.eventBRequiredPolyTypes();
+				for (Integer i = 1; i <= argsRequired; ++i) {
+					String varName = name + i.toString();
+					String typeName = "ℙ("  +thyCache.getEventBTypeParamNameForName(varName) + ")";
+					result.add(new Tuple2<String, String>(varName, typeName));
+					
+					varNames.add(varName);
+				}
+				
+				first = false;
+			} else {
+				constructedType += "∩";
+			}
+			
+			String superConstr = superT.eventBPolymorphicTypeConstructorName() + "(";
+			Boolean first2 = true;
+			for (String polyname : varNames) {
+				if (!first2) 
+					superConstr += ", ";
+				
+				first2 = false;
+					
+				superConstr += polyname;
+			}
+			
+			superConstr += ")";
+			
+			constructedType += superConstr;
+		}
+		
+		result.add(new Tuple2<String, String>(name, constructedType));
+		
+		return result;
+	}
 
 } //PolyTypeImpl

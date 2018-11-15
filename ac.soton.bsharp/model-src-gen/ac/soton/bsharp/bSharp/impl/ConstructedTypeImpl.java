@@ -10,6 +10,8 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -366,6 +368,23 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 	@Override
 	public Boolean isBaseType() {
 		return true;
+	}
+	
+	@Override
+	void getPrimativeTypePathsByDeconstructionInternal( 
+			ArrayList<Integer> currentPath, LinkedHashMap<String, ArrayList<Integer>> paths) {
+		currentPath.add(1);
+		((TypeBuilderImpl)left).getPrimativeTypePathsByDeconstructionInternal(currentPath, paths);
+		
+		currentPath.set(currentPath.size() - 1, 2);
+		((TypeBuilderImpl)right).getPrimativeTypePathsByDeconstructionInternal(currentPath, paths);
+	}
+	
+	String constructWithTypesInternal(ArrayList<String> requiredEBTypes, HashMap<String, String> typeNameMap) {
+		String l = ((TypeBuilderImpl)left).constructWithTypesInternal(requiredEBTypes, typeNameMap);
+		String r = ((TypeBuilderImpl)right).constructWithTypesInternal(requiredEBTypes, typeNameMap);
+		
+		return l + " " + constructor + " " + r;
 	}
 
 } //ConstructedTypeImpl

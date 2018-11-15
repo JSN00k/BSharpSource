@@ -93,7 +93,7 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 
 	/* Given a polytype T : Setoid this deals with a call like T.equ(a, b) 
 	 * ownerType would be T, typeInst would be equ, function call contains a polytype and 
-	 * */
+	 */
 	String applyMemberOrFuncGetter(ExpressionVariable typeInst, PolyType ownerType, FunctionCall fc, Boolean asPred);
 
 	/* Given an expression such as pNat.times this will expand to the call pNat_times in EventB */

@@ -3,9 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
-import java.util.ArrayList;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
