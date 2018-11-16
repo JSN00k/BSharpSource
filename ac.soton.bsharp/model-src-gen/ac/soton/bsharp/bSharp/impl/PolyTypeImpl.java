@@ -237,10 +237,13 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 	}
 	
 	@Override
-	public ArrayList<Tuple2<String, String>> eBNamesAndTypes() {
-		
+	public ArrayList<Tuple2<String, String>> eBNamesAndTypes(TheoryImportCache theoryCache) {
+		TheoryImportCache thyCache = theoryCache;
 		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		if (thyCache == null) {
+			/* This will crash if the current type is a reference. */
+			thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		}
 		ArrayList<String> varNames = new ArrayList<String>();
 		
 		if (superTypes == null || superTypes.isEmpty()) {

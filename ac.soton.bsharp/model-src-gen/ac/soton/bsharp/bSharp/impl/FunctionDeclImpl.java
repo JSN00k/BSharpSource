@@ -715,7 +715,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		}
 		
 		if (context != null) {
-			ArrayList<Tuple2<String, String>> contextPolyContext = context.namesAndTypesForPolyContext();
+			TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+			ArrayList<Tuple2<String, String>> contextPolyContext = context.namesAndTypesForPolyContext(thyCache);
 			
 			if (polyContext == null ) {
 				polyContext = contextPolyContext;

@@ -346,4 +346,9 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 		return null;
 	}
 
+	@Override
+	public Boolean isTypeClassVariable() {
+		return false;
+	}
+
 } //DatatypeConstructorImpl

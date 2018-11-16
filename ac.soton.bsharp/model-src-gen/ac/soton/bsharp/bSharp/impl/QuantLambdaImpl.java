@@ -425,7 +425,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		ArrayList<Tuple2<String, String>> typedVariables = null;
 		if (context != null) {
-			typedVariables = context.namesAndTypesForPolyContext();
+			typedVariables = context.namesAndTypesForPolyContext(null);
 		}
 		
 		if (varList != null) {
@@ -442,7 +442,6 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 		
 		String sep = qType.equals("λ") ? " ↦ " : ", ";
-		
 		result += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVariables,
 				sep, true);
 		

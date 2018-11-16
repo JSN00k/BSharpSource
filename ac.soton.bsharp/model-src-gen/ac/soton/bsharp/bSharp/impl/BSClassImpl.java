@@ -395,7 +395,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		 */
 		ArrayList<Tuple2<String, String>> polyTypedVars = null;
 		if (context != null) {
-			polyTypedVars = context.namesAndTypesForPolyContext();
+			polyTypedVars = context.namesAndTypesForPolyContext(thyCache);
 			try {
 				CompilationUtil.compileTypedVariablesToOperatorArgs(polyTypedVars, op);
 			} catch (Exception e) {
@@ -433,40 +433,14 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				
 				
 				int inferredTypeCount = constType.inferredTypeCount();
-				if (inferredTypeCount != 0) {
-					/* We shouldn't be inferring types if there are declared types. */
-					if (context != null && context.polyTypesCount() != 0)
-						throw new Exception("Classes which infer types should not also have polyTypes," +
-								"this should be checked for during validation");
-					
-					if (inferredTypes == null) {
-						inferredTypes = new ArrayList<Tuple2<String, String>>();
-
-						/*
-						 * This adds extra inferred types to the inferredTypes array. if there aren't
-						 * enough inferred types it adds extra, I'm not sure this is a possible
-						 * situation, as I think we should validate against it.
-						 */
-						for (int i = inferredTypes.size(); i < inferredTypeCount; ++i) {
-							// As there aren't any types in the polytype variable I can name these whatever
-							// I like
-							String inferredTypeName = "Ty" + String.valueOf(i);
-							String eventBTypeParamName = "ℙ(" + thyCache.getEventBTypeParamNameForName(inferredTypeName) + ")";
-
-							TheoryUtils.createArgument(op, inferredTypeName, eventBTypeParamName, null,
-									nullMonitor);
-
-							inferredTypes.add(new Tuple2<String, String>(inferredTypeName, eventBTypeParamName));
-						}
-					}
-					
+				if (inferredTypeCount != 0) {					
 					/* If there are inferred types there should be no constructed types, and the 
 					 * constructors for the inferred types should all require the same polymorphic
 					 * arguments.
 					 */
 					TypeBuilder supertype = (TypeBuilder)constType;
-					opString += ((ClassDecl)supertype).eventBPolymorphicTypeConstructorName();
-					opString += "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(inferredTypes, ", ", true) + ")";
+					opString += ((BSClass)supertype.getTypeClass()).eventBPolymorphicTypeConstructorName();
+					opString += "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(polyTypedVars, ", ", true) + ")";
 				} else {
 					opString += constType.buildEventBType();
 				}
@@ -525,8 +499,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	@Override
 	public ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass () throws Exception {
 		generateInferredContext();
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		if (context != null) {
-			return context.namesAndTypesForPolyContext();
+			return context.namesAndTypesForPolyContext(thyCache);
 		}
 		
 		if (supertypes == null) {
@@ -593,7 +568,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return op;
 	}
 	
-	String getterForOpName(String opName) {
+	@Override
+	public String getterForOpName(String opName) {
 		return name + "_" + opName;
 	}
 	
@@ -907,6 +883,31 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return null;
 	}
 	
+	@Override
+	public String expandSupertypeMemberReferencedInWhere(TypedVariable var) {
+		TypeBuilder superT = supertypes.getFirst();
+		BSClass bsSuper = superT.getTypeClass();
+		
+		String result  = bsSuper.getterForOpName(var.getName()) + "(";
+		ArrayList<String> types = context.namesForPolyContextTypes();
+		
+		boolean first = true;
+		for (String type : types) {
+			if (!first) {
+				result += ", ";
+			}
+			first = false;
+			
+			result += type;
+		}
+		
+		if (!first)
+			result += ", ";
+		
+		result += constructionInstName() + ")";
+		return result;
+	}
+	
 	/* If we have an expression such as T : Setoid in a polymophic in eventB this becomes 
 	 * T1 : POW(T_EvB), T : Setoid_T(T1), this method will return T1. If the Setoid was a 
 	 * subset of T ** T then it would return T1 ** T1.
@@ -924,6 +925,16 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		TypeBuilder baseType = baseType();
 		return baseType.constructWithTypes(requiredEBTypes);
+	}
+	
+	/* In type class declarations such as the Monoid declaration you can do a : Monoid.
+	 * This will return the name of the type used to construct the monoid. */
+	@Override 
+	public String baseTypeFromBSContext() {
+		generateInferredContext();
+		ArrayList<String> polyTypedVars = context.namesForPolyContextTypes();
+		TypeBuilder baseType = baseType();
+		return baseType.constructWithTypes(polyTypedVars);
 	}
 
 	@Override

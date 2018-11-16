@@ -7,9 +7,11 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -25,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -263,6 +266,30 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 			if (context != null) {
 				return ((ClassDecl)typeName).constructWithTypeContext(context);
 			} else {
+				if (typeName instanceof BSClass) {
+					/* In type class declarations it is possible for a variable to be a : Monoid
+					 * a monoid is a type with additional features (e.g. an identity) a : Monoid
+					 * means that a is in the Monoid type. If we are in the monoid constructutor 
+					 * the polymorphic type used to construct the monoid can be used directly. If we are 
+					 * in a function or a theorem then the context of the function/theorm needs to 
+					 * be be considered.
+					 */
+					
+					FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
+					TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
+					BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
+					if (func != null) {
+						//TODO: Implement me!
+					} else if (theorem != null) {
+						//TODO: Implement me
+					} else if (bsClass != null) {
+						/* As we're not in a function or theorem, we can check if we're in a type class
+						 * without us bing further into the tree.
+						 */
+						return bsClass.baseTypeFromBSContext();
+					}
+				}
+				
 				String tName = typeName.getName().toString();
 				if (tName.equals("Bool")) {
 					/* When we're in a function that points to a Pred it would be better 

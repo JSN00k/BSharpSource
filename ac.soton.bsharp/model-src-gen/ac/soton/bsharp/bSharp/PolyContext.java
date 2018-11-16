@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +55,12 @@ public interface PolyContext extends EObject {
 	 */
 	String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception;
 
-	ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext();
+	/* thyCache can potentially be null, however, if the polymorphic types are references this may cause
+	 * a crash.
+	 */
+	ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext(TheoryImportCache thyCache);
 
 	ArrayList<String> namesForPolyContextTypes();
+
+	
 } // PolyContext

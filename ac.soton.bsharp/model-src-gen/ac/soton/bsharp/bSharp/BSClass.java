@@ -135,4 +135,16 @@ public interface BSClass extends ClassDecl {
 
 	String baseTypeStringForPolymorphicType(PolyType p);
 
+	String baseTypeFromBSContext();
+
+	String getterForOpName(String opName);
+
+	/* Within a type class the super types instance variables can be accessed.
+	 * This creates a function to deconstruct the supertype to get instant variable.
+	 * for instance declaring a Monoid, we have Monoid : Setoid, and the equ variable
+	 * can be referenced. when equ is referenced within a where statement this expands
+	 * to Setoid_equ(...) to get the instance variable.
+	 */
+	String expandSupertypeMemberReferencedInWhere(TypedVariable var);
+
 } // BppClass

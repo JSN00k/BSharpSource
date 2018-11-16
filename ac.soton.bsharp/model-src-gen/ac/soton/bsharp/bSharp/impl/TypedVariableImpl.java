@@ -3,13 +3,22 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.FunctionDecl;
+import ac.soton.bsharp.bSharp.SuperTypeList;
+import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.xtext.EcoreUtil2;
 
@@ -52,5 +61,61 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 		return (type instanceof TypeConstructor) && ((TypeConstructor)type).getTypeName().getName().equals("Bool");
 	}
 
+	@Override
+	public Boolean isTypeClassVariable() {
+		TypedVariableList varList = EcoreUtil2.getContainerOfType(this, TypedVariableList.class);
+		
+		if (varList == null)
+			return false;
+		
+		return varList.eContainer() instanceof BSClass;
+	}
+	
+	@Override 
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred)  throws Exception {
+		if (!isTypeClassVariable())
+			return super.compileToStringWithContextAndArguments(fc, asPred);
+		
+		/* A variable from the type class has been referenced. In a function/theorem this means that the function
+		 * needs to infer a context which includes the type class. In the case of where statements a representation
+		 * of the type class will already exist, it just needs to be referenced correctly.
+		 */
+		FunctionDecl func = EcoreUtil2.getContainerOfType(fc, FunctionDecl.class);
+		TheoremDecl theorem = EcoreUtil2.getContainerOfType(fc, TheoremDecl.class);
+		BSClass bsClass = EcoreUtil2.getContainerOfType(fc, BSClass.class);
+		
+		if (func != null) {
+			// TODO: implement me!
+		} else if (theorem != null) {
+			// TODO: implement me!
+		} else if (bsClass != null) {
+			if (EcoreUtil2.isAncestor(bsClass, this)) {
+				// We only need to do something special if the TypedVar is from a supertype.
+				return super.compileToStringWithContextAndArguments(fc, asPred);
+			}
+			
+			String result = bsClass.expandSupertypeMemberReferencedInWhere(this);
+			EList<Expression> args =  fc.getArguments();
+			
+			if (args != null) {
+				try {
+					result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
+				} catch (Exception e) {
+					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
+				}
+				
+			}
+			
+			if (asPred) {
+				result += "= TRUE";
+			}
+			
+			return result;
+			
+		}
+		
+		// I think that I've covered all of the basis and can't get here.
+		return null;
+	}
 
 } //TypedVariableImpl

@@ -199,7 +199,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	}
 	
 	@Override
-	public ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext() {
+	public ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext(TheoryImportCache thyCache) {
 		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
 		
 		/* Multiple supertypes in a polymorphic context are going to work with the following rules.
@@ -213,7 +213,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 		}
 		
 		for (PolyType polytype : polyTypes) {
-			result.addAll(polytype.eBNamesAndTypes());
+			result.addAll(polytype.eBNamesAndTypes(thyCache));
 		}
 		
 		return result;

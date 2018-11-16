@@ -52,11 +52,11 @@ public interface PolyType extends GenName {
 
 	String baseTypeString();
 
-	/* This not be called if the polytype is a reference, as it won't have access to a theoryCache and will 
-	 * crash.
-	 */
-	ArrayList<Tuple2<String, String>> eBNamesAndTypes();
-
 	ArrayList<String> typeNames();
+
+	/* thyCache can be null provided the types are in the same file as is currently being compiled.
+	 * 
+	 */
+	ArrayList<Tuple2<String, String>> eBNamesAndTypes(TheoryImportCache thyCache);
 
 } // PolyContextTypes
