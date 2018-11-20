@@ -220,16 +220,16 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	}
 
 	@Override
-	public String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception {
+	public String compileCallWithTypeContext(TypeDeclContext ctx, ClassDecl containerType) throws Exception {
 		if (polyTypes == null || polyTypes.isEmpty()) {
 			return "()";
 		}
-		
+
 		String result = "(";
 		for (int i = 0; i < polyTypes.size(); ++i) {
 			PolyType pType = polyTypes.get(0);
 			
-			result += pType.deconstructTypeToArguments(ctx.getTypeName().get(i));
+			result += pType.deconstructTypeToArguments(ctx.getTypeName().get(i), containerType);
 		}
 		
 		result += ")";

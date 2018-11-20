@@ -266,7 +266,6 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 				FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
 				TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
 				BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
-				
 				if (func != null) {
 					// TODO: Implement me
 				} else if (theorem != null) {

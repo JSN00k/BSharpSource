@@ -53,7 +53,7 @@ public interface PolyContext extends EObject {
 	 * resolve types properly, searching for the correct supertypes to fill the context in EventB
 	 * This method does that.
 	 */
-	String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception;
+	String compileCallWithTypeContext(TypeDeclContext ctx, ClassDecl containerType) throws Exception;
 
 	/* thyCache can potentially be null, however, if the polymorphic types are references this may cause
 	 * a crash.

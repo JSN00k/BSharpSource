@@ -706,7 +706,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		
 		try {
-			result += context.compileCallWithTypeContext(ctx);
+			result += context.compileCallWithTypeContext(ctx, containerType);
 		} catch (Exception e) {
 			System.err.print(e.getLocalizedMessage());
 		}
@@ -914,7 +914,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		if (result == null || result.isEmpty()) {
 			result = deconType;
 		} else {
-			result += ", " + deconType;
+			result += ", " + deconstructionType;
 		}
 		
 		return result;

@@ -147,7 +147,7 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 	
-	String deconstructionType(TypeBuilder callType) {
+	String deconstructionType(TypeBuilder callType, ClassDecl containerType) {
 		callType.reorderTypeTree();
 		
 		if (callType instanceof ConstructedType) {
@@ -165,6 +165,14 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		GenName generic = tConstr.getTypeName();
 		if (generic instanceof BSClass) {
 			Integer prjsRequired = ((BSClass)generic).prjsRequiredForSupertype(sType);
+			if (generic == containerType) {
+				/* When within a type class declaration the type class can be refered to as a type
+				 * without any constructors rather than having a this/self structure. I believe that
+				 * we can only get to this point within the type class declaration, so
+				 * we need to use the supertype inst. */
+				return CompilationUtil.wrapNameInPrjs(((BSClass)generic).constructionInstName(), prjsRequired - 1);
+			}
+			
 			return CompilationUtil.wrapNameInPrjs(callType.buildEventBType(), prjsRequired);
 		}
 		
@@ -180,7 +188,7 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 	 * total EventB type. This is what this method does.
 	 */
 	@Override
-	public String deconstructTypeToArguments(TypeBuilder callType) {
+	public String deconstructTypeToArguments(TypeBuilder callType, ClassDecl containerType) {
 		/* All the supertypes require the same type structure. so we can get the
 		 * first supertype and go from there. If there are no supertypes then
 		 * just return the call type compiled as is.
@@ -190,7 +198,7 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		}
 		
 		BSClass sType = (BSClass)superTypes.get(0);
-		return sType.deconstructEventBTypeToArguments(deconstructionType(callType));
+		return sType.deconstructEventBTypeToArguments(deconstructionType(callType, containerType));
 	}
 	
 	@Override
