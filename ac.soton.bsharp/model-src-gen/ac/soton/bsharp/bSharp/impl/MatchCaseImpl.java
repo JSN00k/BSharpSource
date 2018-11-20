@@ -4,7 +4,9 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.TypedVariable;
 
@@ -25,6 +27,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -297,6 +300,15 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	@Override
 	public boolean hasInferredContext() {
 		return expr.hasInferredContext();
+	}
+
+	@Override
+	public String inferredPolyTypeArgsForType(ClassDecl t) {
+		/* This type doesn't have inferred polycontexts, we need to find the
+		 * next type up to get the context variables.
+		 */
+		IVariableProvider provider = EcoreUtil2.getContainerOfType(this, IVariableProvider.class);
+		return provider.inferredPolyTypeArgsForType(t);
 	}
 
 } //MatchCaseImpl

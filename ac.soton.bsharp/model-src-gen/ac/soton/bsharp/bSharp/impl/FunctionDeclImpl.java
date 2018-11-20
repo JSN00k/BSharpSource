@@ -840,4 +840,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		return null;
 	}
 
+	@Override
+	public String inferredPolyTypeArgsForType(ClassDecl t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 } //FunctionDeclImpl

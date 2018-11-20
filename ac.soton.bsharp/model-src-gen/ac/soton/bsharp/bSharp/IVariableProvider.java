@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
@@ -25,4 +26,13 @@ public interface IVariableProvider extends EObject {
 	 * variable names.
 	 */
 	public Collection<EObject> getVariablesNames();
+	
+	/* If there is a call like AssocOp<Monoid> anywhere within the Monoid type class
+	 * this call will get the arguments to the AssocOp_T operator. Note that this will
+	 * be different depending on context, e.g., the variables may be named differently
+	 * when included in a function than they are within the where statment of the type 
+	 * class. In the example above AssocOps declaration is AssocOp(T : Setoid), and
+	 * Setoid is passed into this method as it is the type that needs to be passed.
+	 */
+	String inferredPolyTypeArgsForType(ClassDecl t);
 } // IVariableProvider

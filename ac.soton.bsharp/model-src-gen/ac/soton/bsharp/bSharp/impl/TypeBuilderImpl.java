@@ -93,7 +93,10 @@ public abstract class TypeBuilderImpl extends MinimalEObjectImpl.Container imple
 			ArrayList<Integer> path = entry.getValue();
 			
 			for (Integer i : path) {
-				result += "prj" + i.toString() + "(";
+				if (i == 1)
+					result += "dom(";
+				else
+					result += "ran(";
 			}
 			
 			result += baseTypeOfPoly;

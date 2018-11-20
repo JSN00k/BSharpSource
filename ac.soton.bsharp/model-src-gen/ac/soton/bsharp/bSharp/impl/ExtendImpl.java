@@ -331,6 +331,11 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	public String eventBPrefix() {
 		return extendedClass.eventBPrefix();
 	}
+
+	@Override
+	public String inferredPolyTypeArgsForType(ClassDecl t) {
+		return extendedClass.inferredPolyTypeArgsForType(t);
+	}
 	
 	
 

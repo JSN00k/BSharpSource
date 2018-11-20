@@ -14,6 +14,7 @@ import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
@@ -26,6 +27,7 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
+import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -373,6 +375,21 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		compileGetterOperators();
 	}
 	
+	public boolean isNewTypeClass() {
+		if (supertypes == null)
+			return false;
+		
+		EList<TypeBuilder> supers = supertypes.getSuperTypes();
+		if (supers.size() != 1)
+			return false;
+		
+		TypeBuilder sup = supers.get(0);
+		if (sup.isAbstractTypeClass())
+			return false;
+		
+		return varList != null && varList.varCount() != 0;
+	}
+	
 	/* Compiles the operator used to create an instance of this type class. */
 	public void compileOp() throws Exception {
 		/*TODO: document this method working through a couple of event B examples to show 
@@ -406,7 +423,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		String instName = constructionInstName();
 		
 		String opString = "{ " + instName;
-		
 		ArrayList<Tuple2<String, String>> typedVars = null;
 		if (varList != null) {
 			typedVars = varList.getCompiledVariablesAndTypes();
@@ -427,7 +443,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				if (!first) {
 					opString += " ∩ ";
 				} else {
-					opString += instName + " ∈ ";
+					if (isNewTypeClass()) {
+						opString += instName + " = ";
+					} else {
+						opString += instName + " ∈ ";
+					}
 					first = false;
 				}
 				
@@ -677,12 +697,14 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	@Override
-	public String constructWithTypeContext(TypeDeclContext ctx) {
+	public String constructWithTypeContext(TypeDeclContext ctx, ClassDecl containerType) {
 		generateInferredContext();
 		if (context == null)
 			return "()";
 		
 		String result = eventBTypeConstructorFromTypes();
+		
+		
 		try {
 			result += context.compileCallWithTypeContext(ctx);
 		} catch (Exception e) {
@@ -770,6 +792,43 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		generateInferredContext();
 		return context;
 	}
+	
+	/* Reduces the type to the BSharp type without any Type classes within it. */
+	@Override
+	public TypeBuilder identType() {
+		TypeBuilder result = null;
+		TypeBuilder superType = supertypes.getFirst();
+		if (superType.isAbstractTypeClass()) {
+			result = superType.getTypeClass().identType();
+		} else {
+			result = superType;
+		}
+		
+		if (varList == null)
+			return result;
+		
+		ArrayList<Tuple2<TypedVariable, TypeBuilder>> typedVars = varList.getVariablesWithBSharpTypes();
+		TypeBuilder res = null;
+		for (Tuple2<TypedVariable, TypeBuilder> typeVar : typedVars) {
+			if (res == null)
+				res = typeVar.y;
+			else {
+				ConstructedType newRes = BSharpFactory.eINSTANCE.createConstructedType();
+				newRes.setLeft(res);
+				newRes.setRight(typeVar.y);
+				res = newRes;
+			}
+		}
+		
+		if (res == null)
+			return result;
+		
+		ConstructedType newRes = BSharpFactory.eINSTANCE.createConstructedType();
+		newRes.setLeft(result);
+		newRes.setRight(res);
+		
+		return newRes;
+	}
 
 	@Override
 	public Integer prjsRequiredForSupertype(BSClass sType) {
@@ -778,6 +837,23 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		 * both this type and sType. The type trees can then be compared 
 		 * to calculate the number of prjs required.
 		 */
+		if (sType == this)
+			return 0;
+		
+		if (supertypes == null)
+			return null;
+		
+		EList<TypeBuilder> sTypes = supertypes.getSuperTypes();
+		
+		for (TypeBuilder supT : sTypes) {
+			if (supT.isAbstractTypeClass()) {
+				BSClass s = supT.getTypeClass();
+				Integer prjs = s.prjsRequiredForSupertype(sType);
+				if (prjs != null)
+					return prjs + 1;
+			}
+		}
+		
 		return null;
 	}
 	
@@ -828,8 +904,20 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	@Override
 	public String deconstructEventBTypeToArguments(String deconstructionType) {
-		// TODO Auto-generated method stub
-		return null;
+		Integer prjsRequired = prjsRequiredForBaseType();
+		
+		String deconType = CompilationUtil.wrapNameInPrjs(deconstructionType, prjsRequired);
+		
+		TypeBuilder baseType = baseType();
+		String result = baseType.getPrimativeTypesListByDeconstruction(deconType);
+		
+		if (result == null || result.isEmpty()) {
+			result = deconType;
+		} else {
+			result += ", " + deconType;
+		}
+		
+		return result;
 	}
 
 	/* Given a polytype T : Setoid this deals with a call like T.equ(a, b) 
@@ -939,8 +1027,39 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	@Override
 	public String appyMemberOrFunc(ExpressionVariable typeInst, FunctionCall fc, Boolean asPred) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public String inferredPolyTypeArgsForType(ClassDecl t) {
+		
+		ArrayList<String> constrTypeVars = context.namesForPolyContextTypes();
+		
+		String result = "";
+		boolean first = true;
+		for (int i = 0; i < constrTypeVars.size(); ++i) {
+			if (!first)
+				result += ", ";
+			
+			first = false;
+			
+			result += constrTypeVars;
+		}
+		
+		int prjsRequired;
+		
+		if (t instanceof Datatype)
+			prjsRequired = prjsRequiredForBaseType() - 1;
+		else 
+			prjsRequired = prjsRequiredForSupertype((BSClass)t) - 1;
+		
+		String instName = constructionInstName();
+		CompilationUtil.wrapNameInPrjs(instName, prjsRequired);
+		
+		if (!first) {
+			result += ", ";
+		}
+		
+		return result += instName;
+	}
 } //BppClassImpl

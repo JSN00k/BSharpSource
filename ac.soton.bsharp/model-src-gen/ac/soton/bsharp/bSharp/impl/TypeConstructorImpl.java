@@ -9,12 +9,12 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
-import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.TypedVariableList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +22,6 @@ import java.util.LinkedHashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -264,7 +263,19 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	public String buildEventBType() {
 		if (typeName instanceof ClassDecl) {
 			if (context != null) {
-				return ((ClassDecl)typeName).constructWithTypeContext(context);
+				FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
+				TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
+				BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
+				
+				if (func != null) {
+					// TODO: Implement me
+				} else if (theorem != null) {
+					// TODO: Implement me.
+				} else if (bsClass != null) {
+					return ((ClassDecl)typeName).constructWithTypeContext(context, bsClass);
+				}
+				
+				return "";
 			} else {
 				if (typeName instanceof BSClass) {
 					/* In type class declarations it is possible for a variable to be a : Monoid
@@ -318,8 +329,8 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 		if (!(typeName instanceof BSClass))
 			return false;
 		
-		PolyContext context = ((BSClass)typeName).getContext();
-		return context == null || context.polyTypesCount() == 0;
+		TypedVariableList varList = ((BSClass)typeName).getVarList();
+		return varList != null && varList.varCount() != 0 && (context == null || context.getTypeName().size() == 0);
 	}
 
 	@Override

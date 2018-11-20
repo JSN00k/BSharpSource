@@ -163,20 +163,9 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		TypeConstructor tConstr = (TypeConstructor)callType;
 		
 		GenName generic = tConstr.getTypeName();
-		
 		if (generic instanceof BSClass) {
-			String result = "";
 			Integer prjsRequired = ((BSClass)generic).prjsRequiredForSupertype(sType);
-			
-			for (int i = 0; i < prjsRequired; ++i) {
-				result += "prj1(";
-			}
-			
-			result += callType.buildEventBType();
-			for (int i = 0; i < prjsRequired; ++i)
-				result += ")";
-			
-			return result;
+			return CompilationUtil.wrapNameInPrjs(callType.buildEventBType(), prjsRequired);
 		}
 		
 		if (generic instanceof Datatype) {
@@ -199,7 +188,6 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		if (superTypes == null || superTypes.isEmpty()) {
 			return callType.buildEventBType();
 		}
-		
 		
 		BSClass sType = (BSClass)superTypes.get(0);
 		return sType.deconstructEventBTypeToArguments(deconstructionType(callType));

@@ -112,4 +112,20 @@ public class CompilationUtil {
 		
 		return result;
 	}
+	
+	public static String wrapNameInPrjs(String n, int ps) {
+		String result = "";
+		
+		for (int i = 0; i < ps; ++i) {
+			result += "prj1(";
+		}
+		
+		result += n;
+		
+		for (int i = 0; i < ps; ++i) {
+			result += ")";
+		}
+		
+		return result;
+	}
 }

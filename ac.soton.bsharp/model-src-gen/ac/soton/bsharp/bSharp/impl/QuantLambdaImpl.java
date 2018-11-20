@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.Infix;
@@ -493,6 +494,12 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		expr = expr.reorderExpresionTree();
 		return this;
+	}
+
+	@Override
+	public String inferredPolyTypeArgsForType(ClassDecl t) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //QuantLambdaImpl

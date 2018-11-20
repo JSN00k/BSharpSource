@@ -226,9 +226,9 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 		}
 		
 		String result = "(";
-		
 		for (int i = 0; i < polyTypes.size(); ++i) {
 			PolyType pType = polyTypes.get(0);
+			
 			result += pType.deconstructTypeToArguments(ctx.getTypeName().get(i));
 		}
 		

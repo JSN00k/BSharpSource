@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
@@ -168,14 +169,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 		
 		return result;
 	}
-
-	@Override
-	public String constructWithTypeContext(TypeDeclContext ctx) {
-		// TODO Implement me
-		System.out.print("In DatatypeImpl You haven't implemented constructing types using "
-				+ "explicit contexts.");
-		return null;
-	}
 	
 	@Override
 	public String eventBPrefix() {
@@ -195,8 +188,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	@Override
 	public String eventBTypeConstructorFromTypes() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override
@@ -220,6 +212,18 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	@Override
 	public String appyMemberOrFunc(ExpressionVariable typeInst, FunctionCall fc, Boolean asPred) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String constructWithTypeContext(TypeDeclContext context, ClassDecl containingClass) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String inferredPolyTypeArgsForType(ClassDecl t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

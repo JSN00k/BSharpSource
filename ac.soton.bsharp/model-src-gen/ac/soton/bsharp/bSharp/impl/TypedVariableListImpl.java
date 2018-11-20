@@ -207,6 +207,22 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 		
 		return result;
 	}
+
+	@Override
+	public ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesWithBSharpTypes() {
+		ArrayList<Tuple2<TypedVariable, TypeBuilder>> result = new ArrayList<Tuple2<TypedVariable,TypeBuilder>>();
+		if (variablesOfType == null)
+			return result;
+		
+		for (VariableTyping varsOfType : variablesOfType) {
+			Collection<Tuple2<TypedVariable, TypeBuilder>> typedVars = varsOfType.getVariablesAndTypes();
+			if (typedVars != null)
+				result.addAll(typedVars);
+			
+		}
+		
+		return result;
+	}
 	
 	
 

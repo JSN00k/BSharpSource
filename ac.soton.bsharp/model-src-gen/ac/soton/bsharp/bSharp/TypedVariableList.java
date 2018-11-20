@@ -60,4 +60,6 @@ public interface TypedVariableList extends EObject {
 	 * in its container, and should probably be renamed.
 	 */
 	ArrayList<TypedVariable> getTypedVariableNames();
+	
+	ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesWithBSharpTypes();
 } // TypedVariableList

@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
@@ -324,14 +325,12 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 
 	@Override
 	public String descriptiveName() {
-		// TODO Auto-generated method stub
 		return name;
 	}
 
 	@Override
 	public Boolean isPredicateVariable() {
-		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
@@ -349,6 +348,12 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public Boolean isTypeClassVariable() {
 		return false;
+	}
+
+	@Override
+	public String inferredPolyTypeArgsForType(ClassDecl t) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //DatatypeConstructorImpl

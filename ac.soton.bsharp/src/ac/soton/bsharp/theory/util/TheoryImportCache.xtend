@@ -182,7 +182,6 @@ class TheoryImportCache {
 	
 	def save() {
 		theory.rodinFile.save(nullMonitor, true)
-		
 	}
 	
 	/* If an Event-B polytype for that name already exists that polytype is returned

@@ -147,4 +147,7 @@ public interface BSClass extends ClassDecl {
 	 */
 	String expandSupertypeMemberReferencedInWhere(TypedVariable var);
 
+	/* The Bsharp type expanded so that it doesn't inculde type class declarations within the typing. */
+	TypeBuilder identType();
+
 } // BppClass
