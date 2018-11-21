@@ -420,52 +420,25 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			}
 		}
 		
-		String instName = constructionInstName();
+		String superName = superName();
 		
-		String opString = "{ " + instName;
+		String opString = "{ " + superName;
 		ArrayList<Tuple2<String, String>> typedVars = null;
 		if (varList != null) {
 			typedVars = varList.getCompiledVariablesAndTypes();
-			opString += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVars, " ↦ ", false);
+			opString += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVars, " ↦ ", 
+					false, typedVars.size() > 1);
 		}
 		
 		opString += " | ";
 		
-		EList<TypeBuilder> supertypeList = null;
-		if (supertypes != null) {
-			supertypeList = supertypes.getSuperTypes();
+		if (isNewTypeClass()) {
+			opString += superName + " = ";
+		} else {
+			opString += superName + " ∈ ";
 		}
 		
-		ArrayList<Tuple2<String, String>> inferredTypes = null;
-		if (supertypeList != null && !supertypeList.isEmpty()) {
-			Boolean first = true;
-			for (TypeBuilder constType : supertypeList) {
-				if (!first) {
-					opString += " ∩ ";
-				} else {
-					if (isNewTypeClass()) {
-						opString += instName + " = ";
-					} else {
-						opString += instName + " ∈ ";
-					}
-					first = false;
-				}
-				
-				
-				int inferredTypeCount = constType.inferredTypeCount();
-				if (inferredTypeCount != 0) {					
-					/* If there are inferred types there should be no constructed types, and the 
-					 * constructors for the inferred types should all require the same polymorphic
-					 * arguments.
-					 */
-					TypeBuilder supertype = (TypeBuilder)constType;
-					opString += ((BSClass)supertype.getTypeClass()).eventBPolymorphicTypeConstructorName();
-					opString += "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(polyTypedVars, ", ", true) + ")";
-				} else {
-					opString += constType.buildEventBType();
-				}
-			}
-		}
+		opString += supertypes.supertypeType(polyTypedVars);
 		
 		if (typedVars != null) {
 			opString += CompilationUtil.compileTypedVaribalesToTypedList(typedVars, false);
@@ -675,8 +648,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 	
 	@Override
-	public String constructionInstName() {
-		return name + "Inst";
+	public String superName() {
+		return "super";
 	}
 	
 	/* The name for the EventB operator used to construct entirely polymorphic instances of the type. */
@@ -738,7 +711,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			String result = null;
 			if (containingClass != null && containingClass == this) {
 				/* Due to a name change this requires special casing. */
-				result = containingClass.constructionInstName();
+				result = containingClass.superName();
 			} else {
 				result = name;
 			}
@@ -992,7 +965,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		if (!first)
 			result += ", ";
 		
-		result += constructionInstName() + ")";
+		result += superName() + ")";
 		return result;
 	}
 	
@@ -1053,7 +1026,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		else 
 			prjsRequired = prjsRequiredForSupertype((BSClass)t) - 1;
 		
-		String instName = constructionInstName();
+		String instName = superName();
 		CompilationUtil.wrapNameInPrjs(instName, prjsRequired);
 		
 		if (!first) {

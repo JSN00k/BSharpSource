@@ -3,11 +3,13 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,4 +45,7 @@ public interface SuperTypeList extends EObject {
 	EList<TypeBuilder> getSuperTypes();	
 	
 	TypeBuilder getFirst();
+
+	/* Creates an EventB type string respresenting the type of the supertype. */
+	String supertypeType(ArrayList<Tuple2<String, String>> bsOpPolyTypes);
 } // SuperTypeList

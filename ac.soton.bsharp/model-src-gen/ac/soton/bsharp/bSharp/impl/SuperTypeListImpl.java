@@ -8,7 +8,12 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.Tuple2;
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -156,5 +161,37 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 			return superTypes.get(0);
 		
 		return null;
+	}
+	
+	@Override
+	public String supertypeType(ArrayList<Tuple2<String, String>> bsOpPolyTypes) {
+		if (superTypes == null || superTypes.isEmpty()) {
+			try {
+				throw new Exception("Type class doesn't have a supertype. This should be validated against");
+			} catch (Exception e) {
+				System.err.println("A type is created without any supertypes.");
+				return null;
+			}
+		}
+		
+		String result = "";
+		Boolean first = true;
+		
+		for (TypeBuilder st : superTypes) {
+			if (!first) {
+				result += " ∩ ";
+			}
+			first = false;
+			
+			Boolean hasInferredTypes = st.inferredTypeCount() != 0;
+			if (hasInferredTypes) {
+				result += st.getTypeClass().eventBPolymorphicTypeConstructorName();
+				result += "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(bsOpPolyTypes, ", ", true) + ")";
+			} else {
+				result += st.buildEventBType();
+			}
+		}
+		
+		return result;
 	}
 } //SuperTypeListImpl

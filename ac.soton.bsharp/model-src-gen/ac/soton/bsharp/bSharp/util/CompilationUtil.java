@@ -20,13 +20,25 @@ public class CompilationUtil {
 	
 	protected static IProgressMonitor nullMonitor = new NullProgressMonitor();
 	
+	public static String compileTypedVariablesToNameListWithSeparator(ArrayList<Tuple2<String, String>> typedVars, 
+			String separator, Boolean isFirst) {
+		return compileTypedVariablesToNameListWithSeparator(typedVars, separator, isFirst, false);
+	}
+	
 	/* Compiles just the names (the first member of the tuple), with the provided separator.
 	 * isFirst is a boolean that  */
 	public static String compileTypedVariablesToNameListWithSeparator(ArrayList<Tuple2<String, String>> typedVars, 
-			String separator, Boolean isFirst) {
+			String separator, Boolean isFirst, Boolean bracketAddedVars) {
 		String sep = separator;
 		if (typedVars == null) {
 			return "";
+		}
+		
+		Boolean addedOpenBrace = false;
+		String result = "";
+		if (isFirst && bracketAddedVars) {
+			result += "(";
+			addedOpenBrace = true;
 		}
 		
 		if (sep == null) {
@@ -34,15 +46,23 @@ public class CompilationUtil {
 		}
 		
 		Boolean first = isFirst;
-		String result = "";
+		
 		for (Tuple2<String, String> typedVar : typedVars) {
 			if (!first) {
 				result += sep;
 			}
 			first  = false;
 			
+			if (bracketAddedVars && !addedOpenBrace) {
+				result += "(";
+				addedOpenBrace = true;
+			}
+			
 			result += typedVar.x;
 		}
+		
+		if (bracketAddedVars)
+			result += ")";
 		
 		return result;
 	}

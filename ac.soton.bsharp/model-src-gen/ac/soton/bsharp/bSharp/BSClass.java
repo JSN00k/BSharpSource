@@ -107,7 +107,7 @@ public interface BSClass extends ClassDecl {
 
 	Integer eventBRequiredPolyTypes();
 	 
-	 String constructionInstName();
+	 String superName();
 
 	ArrayList<String> getterOperatorSuffixes();
 
