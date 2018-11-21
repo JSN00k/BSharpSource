@@ -20,6 +20,22 @@ public class CompilationUtil {
 	
 	protected static IProgressMonitor nullMonitor = new NullProgressMonitor();
 	
+	public static String compileVariablesNamesToArgumentsWithSeparator(ArrayList<String> vars, String sep, Boolean isFirst) {
+		Boolean first = isFirst;
+		String res = "";
+		for (String var : vars) {
+			if (!first) {
+				res += sep;
+			}
+			
+			first = false;
+			
+			res += var;
+		}
+		
+		return res;
+	}
+	
 	public static String compileTypedVariablesToNameListWithSeparator(ArrayList<Tuple2<String, String>> typedVars, 
 			String separator, Boolean isFirst) {
 		return compileTypedVariablesToNameListWithSeparator(typedVars, separator, isFirst, false);
@@ -133,7 +149,7 @@ public class CompilationUtil {
 		return result;
 	}
 	
-	public static String wrapNameInPrjs(String n, int ps) {
+	public static String wrapNameInPrj1s(String n, int ps) {
 		String result = "";
 		
 		for (int i = 0; i < ps; ++i) {

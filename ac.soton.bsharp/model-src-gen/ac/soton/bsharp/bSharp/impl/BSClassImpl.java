@@ -27,6 +27,7 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,6 +43,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.xtext.generator.parser.antlr.FirstSetComputer;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
@@ -569,6 +571,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	public void compileGetterOperators() {
 		/* I think that I'm going to use Event-B operators to pass getters onto subtypes. 
 		 * This makes coding simpler. The supertype is always at prj1. of the type. */
+		ArrayList<String> polyVars = context.namesForPolyContextTypes();
+		polyVars.add("prj1(" + name + ")");
+		String polyTypeArgs = "(" +  CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(polyVars, ", ", true) + ")";
 		if (supertypes != null) {
 			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
 			
@@ -582,7 +587,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					for (String suffix : suffixes) {
 						INewOperatorDefinition op = constructOpForGetterWithName(name + suffix);
 						try {
-							TheoryUtils.createDirectDefinition(op, sType.getName() + suffix + "(prj1(" + name + "))", 
+							TheoryUtils.createDirectDefinition(op, sType.getName() + suffix + polyTypeArgs, 
 									null, nullMonitor);
 						} catch (Exception e) {
 							System.err.println("Unable to create direct definition for getter op with erorr: " + e.getLocalizedMessage());
@@ -595,27 +600,22 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		if (varList != null) {
 			ArrayList<Tuple2<String, String>> varListVariables = varList.getCompiledVariablesAndTypes();
-			Integer prj2sRequired = 1;
-			Integer lastNdx = varListVariables.size() - 1;
+			Integer varsCount = varListVariables.size();
+			Integer prj1sRequired = varsCount - 1;
+			Boolean isFirst = true;
 			for (Tuple2<String, String> typedVar : varListVariables) {
 				INewOperatorDefinition op = constructOpForGetterWithName(getterForOpName(typedVar.x));
 				
-				String directDefString = "";
-				Integer neededCloseBrackets = prj2sRequired;
-				for (int i = 0; i < prj2sRequired; ++i) {
-					directDefString += "prj2(";
+				String directDefString = "prj2(" + name + ")";
+				
+				directDefString = CompilationUtil.wrapNameInPrj1s(directDefString, prj1sRequired);
+				prj1sRequired--;
+				
+				if (!isFirst) {
+					directDefString = "prj2(" + directDefString + ")";
 				}
 				
-				if (varListVariables.indexOf(typedVar) !=  lastNdx) {
-					directDefString += "prj1(";
-					++neededCloseBrackets;
-				}
-				
-				directDefString += name;
-				
-				for (int i = 0; i < neededCloseBrackets; ++i) {
-					directDefString += ")";
-				}
+				isFirst = false;
 				
 				try {
 					TheoryUtils.createDirectDefinition(op, directDefString, 
@@ -879,7 +879,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	public String deconstructEventBTypeToArguments(String deconstructionType) {
 		Integer prjsRequired = prjsRequiredForBaseType();
 		
-		String deconType = CompilationUtil.wrapNameInPrjs(deconstructionType, prjsRequired);
+		String deconType = CompilationUtil.wrapNameInPrj1s(deconstructionType, prjsRequired);
 		
 		TypeBuilder baseType = baseType();
 		String result = baseType.getPrimativeTypesListByDeconstruction(deconType);
@@ -1027,7 +1027,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			prjsRequired = prjsRequiredForSupertype((BSClass)t) - 1;
 		
 		String instName = superName();
-		CompilationUtil.wrapNameInPrjs(instName, prjsRequired);
+		CompilationUtil.wrapNameInPrj1s(instName, prjsRequired);
 		
 		if (!first) {
 			result += ", ";

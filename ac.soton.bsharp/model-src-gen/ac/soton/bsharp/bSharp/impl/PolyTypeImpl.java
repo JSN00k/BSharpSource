@@ -170,10 +170,10 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 				 * without any constructors rather than having a this/self structure. I believe that
 				 * we can only get to this point within the type class declaration, so
 				 * we need to use the supertype inst. */
-				return CompilationUtil.wrapNameInPrjs(((BSClass)generic).superName(), prjsRequired - 1);
+				return CompilationUtil.wrapNameInPrj1s(((BSClass)generic).superName(), prjsRequired - 1);
 			}
 			
-			return CompilationUtil.wrapNameInPrjs(callType.buildEventBType(), prjsRequired);
+			return CompilationUtil.wrapNameInPrj1s(callType.buildEventBType(), prjsRequired);
 		}
 		
 		if (generic instanceof Datatype) {
