@@ -10,8 +10,10 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -243,6 +246,30 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 		}
 		
 		return null;
+	}
+
+	@Override
+	public boolean referencesContainingType() {
+		/* Either the owner type can the containing type class (This is unlikely as 
+		 * variables can be referenced, and the type is implicit). Or, the GenNam can
+		 * be a polymorphic type declared in the TypeClass Constructor. 
+		 */
+		
+		ClassDecl container = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+		if (ownerType == container) {
+			return true;
+		}
+		
+		if (ownerType instanceof PolyType) {
+			PolyType pType = (PolyType)ownerType;
+			IPolyTypeProvider prov = EcoreUtil2.getContainerOfType(pType, IPolyTypeProvider.class);
+			
+			if (prov == ownerType) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 } //ClassVarDeclImpl

@@ -153,6 +153,9 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
 	@Override
 	public void compile() {
 		
+		for (TheoremDecl theorem : theoremDecl) {
+			theorem.compile();
+		}
 	}
 
 } //TheoremBodyImpl

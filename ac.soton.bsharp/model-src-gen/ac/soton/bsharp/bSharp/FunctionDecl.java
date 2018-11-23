@@ -191,4 +191,6 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, Expr
 
 	void compile();
 
+	boolean isMethod();
+
 } // FunctionDecl

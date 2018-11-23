@@ -75,4 +75,5 @@ public interface TheoremDecl extends EObject {
 	 */
 	void setExpr(Expression value);
 
+	void compile();
 } // TheoremDecl

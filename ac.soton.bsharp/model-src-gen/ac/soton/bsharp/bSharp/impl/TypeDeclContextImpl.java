@@ -151,4 +151,15 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public boolean referencesContainingType() {
+		for (TypeBuilder t : typeName) {
+			t.reorderTypeTree();
+			if (t.referencesContainingType())
+				return true;
+		}
+		
+		return false;
+	}
+
 } //TypeDeclContextImpl

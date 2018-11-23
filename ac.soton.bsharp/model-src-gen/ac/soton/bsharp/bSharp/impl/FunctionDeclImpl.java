@@ -846,4 +846,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		return null;
 	}
 
+	@Override
+	public boolean isMethod() {
+		expr = expr.reorderExpresionTree();
+		return expr.referencesContainingType();
+	}
+
 } //FunctionDeclImpl

@@ -215,4 +215,9 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 		return child.reorderExpresionTree();
 	}
 
+	@Override
+	public boolean referencesContainingType() {
+		return child.referencesContainingType();
+	}
+
 } //BracketImpl

@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -424,5 +426,49 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		}
 
 		return this;
+	}
+
+	@Override
+	public boolean referencesContainingType() {
+		if (classVarDecl != null) {
+			if (classVarDecl.referencesContainingType())
+				return true;
+			
+		}
+			
+		if (typeInst instanceof FunctionDecl) {
+			/* A Method is a function that implicitly uses type variables from its containing
+			 * type. Within the containing type methods can also be used without explicit
+			 * reference to the containing type. This is therefore an implicit reference to the
+			 * containing type.
+			 */
+			if (((FunctionDecl) typeInst).isMethod())
+				return true;
+		}
+		
+		if (typeInst instanceof TypedVariable) {
+			ClassDecl container = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+			IVariableProvider varProv = EcoreUtil2.getContainerOfType(typeInst, IVariableProvider.class);
+			
+			if (varProv == container)
+				return true;
+		}
+		
+		if (typeInst instanceof ClassDecl) {
+			ClassDecl container = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+			if (typeInst == container)
+				return true;
+		}
+
+		if (context.referencesContainingType()) {
+			return true;
+		}
+		
+		for (Expression expr : arguments) {
+			if (expr.referencesContainingType())
+				return true;
+		}
+		
+		return false;
 	}
 } //FunctionCallImpl

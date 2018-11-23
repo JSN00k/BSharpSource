@@ -196,6 +196,11 @@ public class TypeConstrBracketImpl extends TypeBuilderImpl implements TypeConstr
 	public Boolean isBaseType() {
 		return child.isBaseType();
 	}
+
+	@Override
+	public boolean referencesContainingType() {
+		return child.referencesContainingType();
+	}
 	
 	
 

@@ -75,4 +75,6 @@ public interface ClassVarDecl extends IVarType {
 	 */
 	void setTypeInst(ExpressionVariable value);
 
+	boolean referencesContainingType();
+
 } // ClassVarDecl

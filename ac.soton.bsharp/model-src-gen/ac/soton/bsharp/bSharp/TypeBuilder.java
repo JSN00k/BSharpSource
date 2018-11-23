@@ -44,5 +44,7 @@ public interface TypeBuilder extends EObject {
 	String getPrimativeTypesListByDeconstruction(String baseTypeOfPoly);
 
 	String constructWithTypes(ArrayList<String> requiredEBTypes);
+
+	boolean referencesContainingType();
 	
 } // TypeBuilder

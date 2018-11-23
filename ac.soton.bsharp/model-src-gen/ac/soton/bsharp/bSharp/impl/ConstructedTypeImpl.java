@@ -387,4 +387,9 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 		return l + " " + constructor + " " + r;
 	}
 
+	@Override
+	public boolean referencesContainingType() {
+		return left.referencesContainingType() || right.referencesContainingType();
+	}
+
 } //ConstructedTypeImpl

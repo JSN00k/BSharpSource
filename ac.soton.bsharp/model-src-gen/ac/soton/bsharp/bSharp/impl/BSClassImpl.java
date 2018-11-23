@@ -10,12 +10,14 @@ import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.SuperTypeList;
+import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -375,6 +377,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	public void compile() throws Exception {
 		compileOp();
 		compileGetterOperators();
+		block.compile();
 	}
 	
 	public boolean isNewTypeClass() {
@@ -519,6 +522,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return result;
 	}
 	
+	/* returns all the typed arguments needed to construct a fully polymorphic version of this
+	 * typeclass, including the argument for the type class itself. 
+	 */
 	@Override
 	public ArrayList<Tuple2<String, String>> typedConstructionArgs() {
 		ArrayList<Tuple2<String, String>> result;
@@ -705,15 +711,25 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		
 		if (ctx == null && arguments != null) {
-			/* We need to know about the type this was referenced from. */
-			BSClass containingClass = EcoreUtil2.getContainerOfType(fc, BSClass.class);
-
+			/* If the expression is in a Theorem of a method then the name of the instance
+			 * will be the name of the type class. If we're within a where statement the 
+			 * name of the instance is "super"
+			 */
 			String result = null;
-			if (containingClass != null && containingClass == this) {
-				/* Due to a name change this requires special casing. */
-				result = containingClass.superName();
-			} else {
+			
+			if (EcoreUtil2.getContainerOfType(fc, TheoremDecl.class) != null
+					|| EcoreUtil2.getContainerOfType(fc, FunctionDecl.class) != null)
 				result = name;
+			else {
+				/* We need to know about the type this was referenced from. */
+				BSClass containingClass = EcoreUtil2.getContainerOfType(fc, BSClass.class);
+
+				if (containingClass != null && containingClass == this) {
+					/* Due to a name change this requires special casing. */
+					result = containingClass.superName();
+				} else {
+					result = name;
+				}
 			}
 
 			result += "(" + CompilationUtil.compileExpressionListWithSeperator(arguments, " ↦ ") + ")";

@@ -275,4 +275,14 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 		return this;
 	}
 
+	@Override
+	public boolean referencesContainingType() {
+		for (MatchCase c : inductCase) {
+			if (c.getExpr().referencesContainingType())
+				return true;
+		}
+		
+		return false;
+	}
+
 } //MatchStatementImpl

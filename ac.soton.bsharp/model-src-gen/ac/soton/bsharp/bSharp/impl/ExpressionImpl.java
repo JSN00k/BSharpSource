@@ -166,5 +166,11 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 	public Integer precedence() {
 		return 500;
 	}
+	
+	@Override
+	public String compileToEventBString(boolean asPredicate, boolean asTopLevel) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 } //ExpressionImpl

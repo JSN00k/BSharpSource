@@ -257,9 +257,9 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 			String result =  "¬(" + elem.compileToEventBString(true) + ")";
 			
 			if (asPredicate) {
-				return "bool(" + result + ")";
-			} else {
 				return result;
+			} else {
+				return "bool(" + result + ")";
 			}
 		}
 		
@@ -285,7 +285,12 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 		reordered = true;
 		elem = elem.reorderExpresionTree();
 		
-		return null;
+		return this;
+	}
+
+	@Override
+	public boolean referencesContainingType() {
+		return elem.referencesContainingType();
 	}
 
 } //PrefixImpl

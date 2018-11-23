@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
@@ -409,9 +410,13 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
 	}
-
+	
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
+		return compileToEventBString(asPredicate, null);
+	}
+
+	String compileToEventBString(Boolean asPredicate, ArrayList<Tuple2<String, String>> inferredContextArgs) throws Exception {
 		/* Polymorphic contexts make this a little more complex. There are two possibilities
 		 * either the polymorphic context can become direct arguments to an EventB Quantifier/Lambda
 		 * or an additional operator could be generated which given the polymorphic context
@@ -420,13 +425,15 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		 * In the case of QuantLambdas the approach is to compile the polycontext directly 
 		 * to eventB equivalents.
 		 */
-		
 		String result = qType;
 		
-		
-		ArrayList<Tuple2<String, String>> typedVariables = null;
+		ArrayList<Tuple2<String, String>> typedVariables = inferredContextArgs;
 		if (context != null) {
-			typedVariables = context.namesAndTypesForPolyContext(null);
+			if (typedVariables != null) {
+				typedVariables.addAll(context.namesAndTypesForPolyContext(null));
+			} else {
+				typedVariables = context.namesAndTypesForPolyContext(null);
+			}
 		}
 		
 		if (varList != null) {
@@ -473,6 +480,25 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 			return "bool(" + result + ")";
 		}
 	}
+	
+	@Override
+	public String compileToEventBString(boolean asPredicate, boolean asTopLevel) throws Exception {
+		if (!asTopLevel) {
+			return compileToEventBString(asPredicate);
+		}
+		
+		/* In this case the exprepression is an expr in a theorem. It's possible that this expression
+		 * references the type class in which the theorem is defined. In this case the referenced type 
+		 * needs to be added to the arguments of the expression.
+		 */
+		if (!expr.referencesContainingType()) {
+			return compileToEventBString(asPredicate);
+		}
+		
+		ClassDecl containingType = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+		ArrayList<Tuple2<String, String>> additionalArgs = ((BSClass)containingType).typedConstructionArgs();
+		return compileToEventBString(asPredicate, additionalArgs);
+	}
 
 	@Override
 	public Integer eventBPrecedence(Boolean whenPredicate) {
@@ -500,6 +526,11 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	public String inferredPolyTypeArgsForType(ClassDecl t) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean referencesContainingType() {
+		return expr.referencesContainingType();
 	}
 
 } //QuantLambdaImpl

@@ -395,13 +395,18 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
 		if (opName != null || !opName.isEmpty()) {
-			String leftStr = left.compileToEventBString(true);
-			String rightStr = right.compileToEventBString(true);
-			if (left.eventBPrecedence(true) <= eventBPrecedence(true)) {
+			boolean opTakesPreds = true;
+			
+			if (opName.equals("="))
+				opTakesPreds = false;
+			
+			String leftStr = left.compileToEventBString(opTakesPreds);
+			String rightStr = right.compileToEventBString(opTakesPreds);
+			if (left.eventBPrecedence(true) <= eventBPrecedence(opTakesPreds)) {
 				leftStr = "(" + leftStr + ")";
 			}
 			
-			if (right.eventBPrecedence(true) <= eventBPrecedence(true)) {
+			if (right.eventBPrecedence(true) <= eventBPrecedence(opTakesPreds)) {
 				rightStr = "(" + rightStr + ")";
 			}
 			
@@ -447,7 +452,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("⇔", 50);
 	 	map.put("⇒", 50);
-	 	map.put("=", 50);
+	 	map.put("=", 60);
 	 	map.put("≠", 50);
 	 	map.put("∧", 50);
 	 	map.put("∨", 50);
@@ -496,6 +501,11 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		}
 		
 		return this;
+	}
+
+	@Override
+	public boolean referencesContainingType() {
+		return left.referencesContainingType() || right.referencesContainingType(); 
 	}
 
 } //InfixImpl

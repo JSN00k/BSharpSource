@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -377,6 +378,24 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 		String typeName = requiredEBTypes.get(typeNameMap.size());
 		typeNameMap.put(name, typeName);
 		return typeName;
+	}
+
+	@Override
+	public boolean referencesContainingType() {
+		ClassDecl container = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+		
+		if (typeName instanceof ClassDecl) {
+			if (typeName == container && context == null)
+				return true;
+		}
+		
+		if (typeName instanceof PolyType) {
+			IPolyTypeProvider polyProv = EcoreUtil2.getContainerOfType(this, IPolyTypeProvider.class);
+			if (polyProv == container)
+				return true;
+		}
+		
+		return false;
 	}
 
 } //TypeConstructorImpl

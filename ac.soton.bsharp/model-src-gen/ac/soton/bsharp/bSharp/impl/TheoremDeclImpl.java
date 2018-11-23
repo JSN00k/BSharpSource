@@ -6,7 +6,12 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.TheoremDecl;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -240,6 +245,27 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+	
+	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+
+	@Override
+	public void compile() {
+		expr = expr.reorderExpresionTree();
+		String ebPred = null;
+		try {
+			ebPred = expr.compileToEventBString(true, true);
+		} catch (Exception e) {
+			System.err.println("Unable to compile expression with error: " + e.getLocalizedMessage());
+			return;
+		}
+		
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		try {
+			TheoryUtils.createTheorem(thyCache.theory, name, ebPred, nullMonitor);
+		} catch (Exception e) {
+			System.err.println("Unable to create EventB theorem with error: " + e.getLocalizedMessage());
+		}
 	}
 
 } //TheoremDeclImpl
