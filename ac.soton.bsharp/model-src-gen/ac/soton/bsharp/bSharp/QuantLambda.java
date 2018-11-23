@@ -126,4 +126,8 @@ public interface QuantLambda extends Expression, IVariableProvider, IPolyTypePro
 	 */
 	void setExpr(Expression value);
 
+	String baseTypeForBSClass(BSClass typeName);
+
+	String getNameExpressionForVariable(TypedVariable typedVariable);
+
 } // QuantLambda

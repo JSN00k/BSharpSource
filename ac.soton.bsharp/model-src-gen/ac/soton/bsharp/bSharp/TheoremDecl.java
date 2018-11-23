@@ -5,6 +5,8 @@ package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.ecore.EObject;
 
+import ac.soton.bsharp.bSharp.impl.TypedVariableImpl;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Theorem Decl</b></em>'.
@@ -76,4 +78,8 @@ public interface TheoremDecl extends EObject {
 	void setExpr(Expression value);
 
 	void compile();
+
+	String baseTypeForBSClass(BSClass typeName);
+
+	String getNameExpressionForVariable(TypedVariable typedVariableImpl);
 } // TheoremDecl

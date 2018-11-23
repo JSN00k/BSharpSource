@@ -87,7 +87,27 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 		if (func != null) {
 			// TODO: implement me!
 		} else if (theorem != null) {
-			// TODO: implement me!
+			/* Ask the theorem for the appropiate variable name, then compile the arguments. 
+			 * The theorem needs to be asked as if there is an implicit reference to the 
+			 * containing type class the theorem assigns the name to this implicit reference. */
+			String result = theorem.getNameExpressionForVariable(this);
+			
+			/*TODO: potentially need to do something about a polycontext here. */
+			
+			EList<Expression> args = fc.getArguments();
+			if (args != null) {
+				try {
+					result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
+				} catch (Exception e) {
+					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
+				}
+			}
+			
+			if (asPred) {
+				result += "= TRUE";
+			}
+			
+			return result;
 		} else if (bsClass != null) {
 			if (EcoreUtil2.isAncestor(bsClass, this)) {
 				// We only need to do something special if the TypedVar is from a supertype.

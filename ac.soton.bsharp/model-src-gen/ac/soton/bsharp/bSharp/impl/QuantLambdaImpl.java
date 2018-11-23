@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
@@ -459,8 +460,10 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		if (qType.equals("λ")) {
 			result += " ∣ ";
-		} else {
+		} else if (qType.equals("∀")){
 			result += " ⇒ ";
+		} else {
+			result += " ∧ ";
 		}
 		
 		/* TODO: Consult EventB precedence to reduce number of brackets */
@@ -481,8 +484,14 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 	}
 	
+	/* Stores the names of the args for the inferred type, including the name of the inferred type (as the 
+	 * last argument, the base type arg will be the penultimate argument.
+	 */
+	protected ArrayList<String> inferredTypeConstrutorNames;
+	
 	@Override
 	public String compileToEventBString(boolean asPredicate, boolean asTopLevel) throws Exception {
+		inferredTypeConstrutorNames = new ArrayList<String>();
 		if (!asTopLevel) {
 			return compileToEventBString(asPredicate);
 		}
@@ -497,6 +506,11 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		ClassDecl containingType = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
 		ArrayList<Tuple2<String, String>> additionalArgs = ((BSClass)containingType).typedConstructionArgs();
+		
+		for (Tuple2<String, String> arg : additionalArgs) {
+			inferredTypeConstrutorNames.add(arg.x);
+		}
+		
 		return compileToEventBString(asPredicate, additionalArgs);
 	}
 
@@ -531,6 +545,41 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	@Override
 	public boolean referencesContainingType() {
 		return expr.referencesContainingType();
+	}
+
+	@Override
+	public String baseTypeForBSClass(BSClass typeName) {
+		/* The only time that I think this needs to be used is when the containing class 
+		 * is referenced within the expression. Currently I use the same variable names
+		 * that are used when creating the type class.
+		 */
+		return typeName.baseTypeFromBSContext();
+	}
+
+	@Override
+	public String getNameExpressionForVariable(TypedVariable typedVariable) {
+		/* The variable may reference a instance variable of the current type class, in this case we need 
+		 * to deconstruct the current type class. This requires knowing what the inferred type class is
+		 * called. This is generated here. */
+		IVariableProvider provider = EcoreUtil2.getContainerOfType(typedVariable, IVariableProvider.class);
+		if (!(provider instanceof ClassDecl)) {
+			return typedVariable.getName();
+		}
+		
+		BSClass prov = (BSClass)provider;
+		String result = prov.getterForOpName(typedVariable.getName()) + "(";
+		boolean first = true;
+		for (String argName : inferredTypeConstrutorNames) {
+			if (!first)
+				result += ", ";
+			
+			first = false;
+			result += argName;
+		}
+		
+		result += ")";
+		
+		return result;
 	}
 
 } //QuantLambdaImpl

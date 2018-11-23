@@ -460,7 +460,7 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return true;
 		}
 
-		if (context.referencesContainingType()) {
+		if (context != null && context.referencesContainingType()) {
 			return true;
 		}
 		

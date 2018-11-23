@@ -3,9 +3,12 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TheoremDecl;
+import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -266,6 +269,16 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 		} catch (Exception e) {
 			System.err.println("Unable to create EventB theorem with error: " + e.getLocalizedMessage());
 		}
+	}
+	
+	@Override
+	public String baseTypeForBSClass(BSClass typeName) {
+		return ((QuantLambda)expr).baseTypeForBSClass(typeName);
+	}
+
+	@Override
+	public String getNameExpressionForVariable(TypedVariable typedVariable) {
+		return ((QuantLambda)expr).getNameExpressionForVariable(typedVariable);
 	}
 
 } //TheoremDeclImpl

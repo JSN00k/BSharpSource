@@ -90,8 +90,6 @@ public class TopLevelFileImpl extends ITheoryImportCacheProviderImpl implements 
 	 */
 	protected TopLevelFileImpl() {
 		super();
-		System.out.print("I'm here");
-		
 	}
 
 	/**

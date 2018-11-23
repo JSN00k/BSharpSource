@@ -291,8 +291,10 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 					BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
 					if (func != null) {
 						//TODO: Implement me!
+						return "";
 					} else if (theorem != null) {
-						//TODO: Implement me
+						
+						return theorem.baseTypeForBSClass((BSClass)typeName);
 					} else if (bsClass != null) {
 						/* As we're not in a function or theorem, we can check if we're in a type class
 						 * without us bing further into the tree.
@@ -300,7 +302,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 						return bsClass.baseTypeFromBSContext();
 					}
 				}
-				
+
 				String tName = typeName.getName().toString();
 				if (tName.equals("Bool")) {
 					/* When we're in a function that points to a Pred it would be better 

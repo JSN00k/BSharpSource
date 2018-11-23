@@ -395,10 +395,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
 		if (opName != null || !opName.isEmpty()) {
-			boolean opTakesPreds = true;
-			
-			if (opName.equals("="))
-				opTakesPreds = false;
+			boolean opTakesPreds = !opName.equals("=") && !opName.equals("≠");
 			
 			String leftStr = left.compileToEventBString(opTakesPreds);
 			String rightStr = right.compileToEventBString(opTakesPreds);
@@ -453,7 +450,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		map.put("⇔", 50);
 	 	map.put("⇒", 50);
 	 	map.put("=", 60);
-	 	map.put("≠", 50);
+	 	map.put("≠", 60);
 	 	map.put("∧", 50);
 	 	map.put("∨", 50);
 	 	return map;
