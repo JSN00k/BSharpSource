@@ -414,10 +414,12 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
-		return compileToEventBString(asPredicate, null);
+		return compileToEventBString(asPredicate, null, null);
 	}
 
-	String compileToEventBString(Boolean asPredicate, ArrayList<Tuple2<String, String>> inferredContextArgs) throws Exception {
+	String compileToEventBString(Boolean asPredicate,
+			ArrayList<String> additionalArgs,
+			ArrayList<Tuple2<String, String>> additionalTyping) throws Exception {
 		/* Polymorphic contexts make this a little more complex. There are two possibilities
 		 * either the polymorphic context can become direct arguments to an EventB Quantifier/Lambda
 		 * or an additional operator could be generated which given the polymorphic context
@@ -427,14 +429,9 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		 * to eventB equivalents.
 		 */
 		String result = qType;
-		
-		ArrayList<Tuple2<String, String>> typedVariables = inferredContextArgs;
+		ArrayList<Tuple2<String, String>> typedVariables = null;
 		if (context != null) {
-			if (typedVariables != null) {
-				typedVariables.addAll(context.namesAndTypesForPolyContext(null));
-			} else {
-				typedVariables = context.namesAndTypesForPolyContext(null);
-			}
+			typedVariables = context.namesAndTypesForPolyContext(null);
 		}
 		
 		if (varList != null) {
@@ -451,12 +448,24 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 		
 		String sep = qType.equals("λ") ? " ↦ " : ", ";
+		boolean isFirst = true;
+		if (additionalArgs != null && !additionalArgs.isEmpty()) {
+			result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(additionalArgs, sep, true);
+			isFirst = false;
+		}
+		
 		result += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVariables,
-				sep, true);
+				sep, isFirst);
 		
 		result += "·";
 		
-		result += CompilationUtil.compileTypedVaribalesToTypedList(typedVariables, true);
+		isFirst = true;
+		if (additionalTyping != null) {
+			result += CompilationUtil.compileTypedVaribalesToTypedList(additionalTyping, true);
+			isFirst = false;
+		}
+		
+		result += CompilationUtil.compileTypedVaribalesToTypedList(typedVariables, isFirst);
 		
 		if (qType.equals("λ")) {
 			result += " ∣ ";
@@ -484,14 +493,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 	}
 	
-	/* Stores the names of the args for the inferred type, including the name of the inferred type (as the 
-	 * last argument, the base type arg will be the penultimate argument.
-	 */
-	protected ArrayList<String> inferredTypeConstrutorNames;
-	
 	@Override
 	public String compileToEventBString(boolean asPredicate, boolean asTopLevel) throws Exception {
-		inferredTypeConstrutorNames = new ArrayList<String>();
 		if (!asTopLevel) {
 			return compileToEventBString(asPredicate);
 		}
@@ -505,13 +508,10 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 		
 		ClassDecl containingType = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
-		ArrayList<Tuple2<String, String>> additionalArgs = ((BSClass)containingType).typedConstructionArgs();
+		ArrayList<String> additionalArgs = new ArrayList<String>();
+		ArrayList<Tuple2<String, String>> additionalTyping = ((BSClass)containingType).argsAndTypingForDeconstructedType(additionalArgs);
 		
-		for (Tuple2<String, String> arg : additionalArgs) {
-			inferredTypeConstrutorNames.add(arg.x);
-		}
-		
-		return compileToEventBString(asPredicate, additionalArgs);
+		return compileToEventBString(asPredicate, additionalArgs, additionalTyping);
 	}
 
 	@Override
@@ -561,25 +561,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		/* The variable may reference a instance variable of the current type class, in this case we need 
 		 * to deconstruct the current type class. This requires knowing what the inferred type class is
 		 * called. This is generated here. */
-		IVariableProvider provider = EcoreUtil2.getContainerOfType(typedVariable, IVariableProvider.class);
-		if (!(provider instanceof ClassDecl)) {
-			return typedVariable.getName();
-		}
-		
-		BSClass prov = (BSClass)provider;
-		String result = prov.getterForOpName(typedVariable.getName()) + "(";
-		boolean first = true;
-		for (String argName : inferredTypeConstrutorNames) {
-			if (!first)
-				result += ", ";
-			
-			first = false;
-			result += argName;
-		}
-		
-		result += ")";
-		
-		return result;
+		return typedVariable.getName();
 	}
 
 } //QuantLambdaImpl

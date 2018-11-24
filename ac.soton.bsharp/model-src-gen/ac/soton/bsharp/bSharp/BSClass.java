@@ -150,4 +150,9 @@ public interface BSClass extends ClassDecl {
 	/* The Bsharp type expanded so that it doesn't inculde type class declarations within the typing. */
 	TypeBuilder identType();
 
+	/* Due to the polymoprhic arguments having to be typed separately, unlike the type variables
+	 * it is necessary to return the aruments and the types separately.
+	 */
+	ArrayList<Tuple2<String, String>> argsAndTypingForDeconstructedType(ArrayList<String> args);
+
 } // BppClass

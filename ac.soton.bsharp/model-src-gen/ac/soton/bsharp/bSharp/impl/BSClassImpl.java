@@ -522,6 +522,49 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return result;
 	}
 	
+	/* Gets the names of all of the typed variables, and returns a string with
+	 * them appended to each other correctly.
+	 */
+	public String typedVariableList(ArrayList<String> vars) {
+		BSClass superT = supertypes.getFirst().getTypeClass();
+		String result = null;
+		boolean isTop = false;
+		if (superT != null) {
+			result = ((BSClassImpl)superT).typedVariableList(vars);
+		} else {
+			isTop = true;
+			result = "";
+		}
+		
+		if (varList == null)
+			return null;
+		
+		ArrayList<TypedVariable> typedVars = varList.getTypedVariableNames();
+		if (typedVars.size() != 0) {
+			boolean isFirst = true;
+			for (TypedVariable tv : typedVars) {
+				if (isFirst) {
+					if (!isTop) {
+						result += " ↦ (";
+					}
+				} else {
+					result += " ↦ ";
+				}
+				
+				isFirst = false; 
+				
+				result += tv.getName();
+				vars.add(tv.getName());
+			}
+			
+			if (!isTop) {
+				result += ")";
+			}
+		}
+		
+		return result;
+	}
+	
 	/* returns all the typed arguments needed to construct a fully polymorphic version of this
 	 * typeclass, including the argument for the type class itself. 
 	 */
@@ -541,6 +584,44 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		result.add(new Tuple2<String, String>(name, eventBPolymorphicTypeConstructorName() + argsForConstructor));
 		
 		return result;
+	}
+	
+	/* Due to the polymoprhic arguments having to be typed separately, unlike the type variables
+	 * it is necessary to return the aruments and the types separately.
+	 */
+	@Override
+	public ArrayList<Tuple2<String, String>> argsAndTypingForDeconstructedType(ArrayList<String> args) {
+		ArrayList<Tuple2<String, String>> typedArgs = typedConstructionArgs();
+		Tuple2<String, String> bsClassType = typedArgs.get(typedArgs.size() - 1);
+		typedArgs.remove(typedArgs.size() - 1);
+		
+		for (Tuple2<String, String> poly : typedArgs) {
+			args.add(poly.x);
+		}
+		
+		String finalConstruct = "";
+		if (typedArgs.size() != 0) {
+			finalConstruct = typedArgs.get(typedArgs.size() - 1).x;
+		}
+		
+		/* In the case that this isn't a type class there won't be any typed variables. In this case
+		 * It is required to have a variable to represent the class in question. 
+		 */
+		String tvRes = typedVariableList(args);
+		if (tvRes == null) {
+			ArrayList<Tuple2<String, String>> res = typedConstructionArgs();
+			args.add(res.get(res.size() - 1).x);
+			return res;
+		}
+		
+		if (!finalConstruct.isEmpty() && !tvRes.isEmpty()) {
+			finalConstruct += " ↦ " + tvRes;
+		} else {
+			finalConstruct += tvRes;
+		}
+		
+		typedArgs.add(new Tuple2<String, String>(finalConstruct, bsClassType.y));
+		return typedArgs;
 	}
 	
 	INewOperatorDefinition constructOpForGetterWithName(String n) {
