@@ -93,9 +93,8 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 			String result = theorem.getNameExpressionForVariable(this);
 			
 			/*TODO: potentially need to do something about a polycontext here. */
-			
 			EList<Expression> args = fc.getArguments();
-			if (args != null) {
+			if (args != null && !args.isEmpty()) {
 				try {
 					result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
 				} catch (Exception e) {

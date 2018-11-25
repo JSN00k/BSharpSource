@@ -3,7 +3,9 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eventb.theory.core.IDatatypeDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,5 +49,7 @@ public interface DatatypeConstructor extends IVariableProvider, TypedVariable {
 	 * @generated
 	 */
 	void setDecons(TypedVariableList value);
+
+	void compileInto(IDatatypeDefinition datatype, IProgressMonitor monitor);
 
 } // DatatypeConstructor

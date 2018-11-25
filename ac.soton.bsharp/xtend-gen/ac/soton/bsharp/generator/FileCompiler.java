@@ -40,6 +40,8 @@ public class FileCompiler {
                 bsClass.compile();
               } else {
                 if ((element instanceof Datatype)) {
+                  final Datatype datatype = ((Datatype) element);
+                  datatype.compile();
                 } else {
                 }
               }

@@ -15,10 +15,13 @@ import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -28,6 +31,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eventb.theory.core.IDatatypeConstructor;
+import org.eventb.theory.core.IDatatypeDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -354,6 +359,29 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	public String inferredPolyTypeArgsForType(ClassDecl t) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void compileInto(IDatatypeDefinition datatype, IProgressMonitor monitor) {
+		IDatatypeConstructor constr = null;
+		try {
+			constr = TheoryUtils.createConstructor(datatype, name, null, monitor);
+		} catch (Exception e) {
+			System.err.println("Unable to create datatype constructor with error: " + e.getLocalizedMessage());
+			return;
+		}
+		
+		if (decons != null) {
+			ArrayList<Tuple2<String, String>> typedVars = decons.getCompiledVariablesAndTypes();
+			for (Tuple2<String, String> var : typedVars) {
+				try {
+					TheoryUtils.createDestructor(constr, var.x, var.y, null, monitor);
+				} catch (Exception e) {
+					System.err.println("Unable to create datatype destructor with error: " + e.getLocalizedMessage());
+				}
+				
+			}
+		}
 	}
 
 } //DatatypeConstructorImpl

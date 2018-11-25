@@ -12,11 +12,16 @@ import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -27,6 +32,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eventb.theory.core.IDatatypeDefinition;
+import org.eventb.theory.core.ITheoryRoot;
 
 /**
  * <!-- begin-user-doc -->
@@ -155,9 +162,9 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 		}
 		return super.eIsSet(featureID);
 	}
+	
+	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 
-	
-	
 	public Collection<EObject> getVariablesNames() {
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		
@@ -183,7 +190,29 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	@Override
 	public void compile() throws Exception {
-		System.err.println("Compiling a Datatype is unimplemented. Implement Me! (DatatypeImpl)");
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		ITheoryRoot thyRoot = thyCache.theory;
+		
+		IDatatypeDefinition datatype = TheoryUtils.createDataType(thyRoot, eventBPolymorphicTypeConstructorName(),
+				null, nullMonitor);
+		
+		/* Subtyping has to be done when a BSharp type is used to create a Datatype. The initial datatype
+		 * simply has a type for each of the types in the polymorphic context.
+		 */
+		
+		if (context != null) {
+			Collection<PolyType> pTypes =  context.getPolyTypes();
+			for (PolyType pType : pTypes) {
+				String evBName = thyCache.getEventBTypeParamNameForName(pType.getName());
+				TheoryUtils.createTypeArgument(datatype, evBName, null, nullMonitor);
+			}
+		}
+		
+		for (DatatypeConstructor constr : constructors) {
+			constr.compileInto(datatype, nullMonitor);
+		}
+		
+		block.compile();
 	}
 
 	@Override

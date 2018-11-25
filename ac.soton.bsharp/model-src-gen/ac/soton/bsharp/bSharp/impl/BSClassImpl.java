@@ -353,8 +353,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 	
-
-	
 	/* This get's the number of polymorhic types required to construct the type class */
 	public Integer eventBRequiredPolyTypes() {
 		generateInferredContext();

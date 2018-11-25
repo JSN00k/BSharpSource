@@ -476,13 +476,14 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 		
 		/* TODO: Consult EventB precedence to reduce number of brackets */
-		if (expr instanceof Infix) {
+		boolean resultRequiresParens = expr instanceof Infix || (qType.equals("∀") && expr instanceof QuantLambda && ((QuantLambda)expr).getQType().equals("∀"));
+		if (resultRequiresParens) {
 			result += "(";
 		}
 		
 		result += expr.compileToEventBString(true);
 		
-		if (expr instanceof Infix) {
+		if (resultRequiresParens) {
 			result += ")";
 		}
 		
@@ -516,6 +517,10 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 
 	@Override
 	public Integer eventBPrecedence(Boolean whenPredicate) {
+		if (qType.contentEquals("∀")) {
+			
+			return 0;
+		}
 		return 2;
 	}
 

@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.Infix;
+import ac.soton.bsharp.bSharp.QuantLambda;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -31,7 +31,8 @@ class FileCompiler {
 						val bsClass = element as BSClass
 						bsClass.compile()
 					} else if (element instanceof Datatype) {
-						// compileDatatype(element as Datatype)
+						val datatype = element as Datatype
+						datatype.compile();
 					} else {
 						// compileExtend(element as Extend)
 					}
