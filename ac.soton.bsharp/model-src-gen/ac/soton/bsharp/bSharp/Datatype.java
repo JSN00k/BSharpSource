@@ -37,4 +37,6 @@ public interface Datatype extends ClassDecl {
 	 */
 	EList<DatatypeConstructor> getConstructors();
 
+	String typeStringWithContext(TypeDeclContext ctx);
+
 } // Datatype

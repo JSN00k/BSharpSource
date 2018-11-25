@@ -3,9 +3,11 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eventb.theory.core.IRecursiveOperatorDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,12 +37,12 @@ public interface MatchCase extends IVariableProvider {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Decon Name</em>' reference.
-	 * @see #setDeconName(TypedVariable)
+	 * @see #setDeconName(DatatypeConstructor)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getMatchCase_DeconName()
 	 * @model
 	 * @generated
 	 */
-	TypedVariable getDeconName();
+	DatatypeConstructor getDeconName();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.MatchCase#getDeconName <em>Decon Name</em>}' reference.
@@ -50,7 +52,7 @@ public interface MatchCase extends IVariableProvider {
 	 * @see #getDeconName()
 	 * @generated
 	 */
-	void setDeconName(TypedVariable value);
+	void setDeconName(DatatypeConstructor value);
 
 	/**
 	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
@@ -95,5 +97,7 @@ public interface MatchCase extends IVariableProvider {
 	void setExpr(Expression value);
 
 	boolean hasInferredContext();
+
+	void compileToRecCase(IRecursiveOperatorDefinition opDef, IProgressMonitor monitor) throws Exception;
 
 } // MatchCase

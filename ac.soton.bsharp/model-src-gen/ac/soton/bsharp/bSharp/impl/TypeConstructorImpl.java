@@ -314,8 +314,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 					return "BOOL";
 				}
 				
-				System.out.print("Unimplemented in TypeConstructorImpl need to handle Datatypes.\n");
-				return "";
+				return ((Datatype)typeName).typeStringWithContext(context);
 			}
 			
 		} else if (typeName instanceof PolyType){

@@ -1155,8 +1155,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMatchKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cMatchAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cMatchDatatypeConstructorCrossReference_1_0 = (CrossReference)cMatchAssignment_1.eContents().get(0);
-		private final RuleCall cMatchDatatypeConstructorIDTerminalRuleCall_1_0_1 = (RuleCall)cMatchDatatypeConstructorCrossReference_1_0.eContents().get(1);
+		private final CrossReference cMatchTypedVariableCrossReference_1_0 = (CrossReference)cMatchAssignment_1.eContents().get(0);
+		private final RuleCall cMatchTypedVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cMatchTypedVariableCrossReference_1_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cInductCaseAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cInductCaseMatchCaseParserRuleCall_3_0 = (RuleCall)cInductCaseAssignment_3.eContents().get(0);
@@ -1165,24 +1165,24 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//MatchStatement:
-		//	'match' match=[DatatypeConstructor] '{'
+		//	'match' match=[TypedVariable] '{'
 		//	inductCase+=MatchCase inductCase+=MatchCase* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'match' match=[DatatypeConstructor] '{' inductCase+=MatchCase inductCase+=MatchCase* '}'
+		//'match' match=[TypedVariable] '{' inductCase+=MatchCase inductCase+=MatchCase* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'match'
 		public Keyword getMatchKeyword_0() { return cMatchKeyword_0; }
 		
-		//match=[DatatypeConstructor]
+		//match=[TypedVariable]
 		public Assignment getMatchAssignment_1() { return cMatchAssignment_1; }
 		
-		//[DatatypeConstructor]
-		public CrossReference getMatchDatatypeConstructorCrossReference_1_0() { return cMatchDatatypeConstructorCrossReference_1_0; }
+		//[TypedVariable]
+		public CrossReference getMatchTypedVariableCrossReference_1_0() { return cMatchTypedVariableCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getMatchDatatypeConstructorIDTerminalRuleCall_1_0_1() { return cMatchDatatypeConstructorIDTerminalRuleCall_1_0_1; }
+		public RuleCall getMatchTypedVariableIDTerminalRuleCall_1_0_1() { return cMatchTypedVariableIDTerminalRuleCall_1_0_1; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -1207,8 +1207,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cVerticalLineKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cDeconNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cDeconNameTypedVariableCrossReference_1_0 = (CrossReference)cDeconNameAssignment_1.eContents().get(0);
-		private final RuleCall cDeconNameTypedVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cDeconNameTypedVariableCrossReference_1_0.eContents().get(1);
+		private final CrossReference cDeconNameDatatypeConstructorCrossReference_1_0 = (CrossReference)cDeconNameAssignment_1.eContents().get(0);
+		private final RuleCall cDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1 = (RuleCall)cDeconNameDatatypeConstructorCrossReference_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cLeftParenthesisKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cVariablesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -1223,25 +1223,25 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprRootExpressionParserRuleCall_4_0 = (RuleCall)cExprAssignment_4.eContents().get(0);
 		
 		//MatchCase:
-		//	'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
+		//	'|' deconName=[DatatypeConstructor] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
 		//	expr=RootExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
+		//'|' deconName=[DatatypeConstructor] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
 		//expr=RootExpression
 		public Group getGroup() { return cGroup; }
 		
 		//'|'
 		public Keyword getVerticalLineKeyword_0() { return cVerticalLineKeyword_0; }
 		
-		//deconName=[TypedVariable]
+		//deconName=[DatatypeConstructor]
 		public Assignment getDeconNameAssignment_1() { return cDeconNameAssignment_1; }
 		
-		//[TypedVariable]
-		public CrossReference getDeconNameTypedVariableCrossReference_1_0() { return cDeconNameTypedVariableCrossReference_1_0; }
+		//[DatatypeConstructor]
+		public CrossReference getDeconNameDatatypeConstructorCrossReference_1_0() { return cDeconNameDatatypeConstructorCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getDeconNameTypedVariableIDTerminalRuleCall_1_0_1() { return cDeconNameTypedVariableIDTerminalRuleCall_1_0_1; }
+		public RuleCall getDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1() { return cDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1; }
 		
 		//('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')?
 		public Group getGroup_2() { return cGroup_2; }
@@ -2473,7 +2473,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MatchStatement:
-	//	'match' match=[DatatypeConstructor] '{'
+	//	'match' match=[TypedVariable] '{'
 	//	inductCase+=MatchCase inductCase+=MatchCase* '}';
 	public MatchStatementElements getMatchStatementAccess() {
 		return pMatchStatement;
@@ -2484,7 +2484,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MatchCase:
-	//	'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
+	//	'|' deconName=[DatatypeConstructor] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':'
 	//	expr=RootExpression;
 	public MatchCaseElements getMatchCaseAccess() {
 		return pMatchCase;

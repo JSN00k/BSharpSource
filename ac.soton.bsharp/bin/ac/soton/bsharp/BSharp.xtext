@@ -186,12 +186,12 @@ FunctionDecl:
 ;
 
 MatchStatement:
-	'match' match=[DatatypeConstructor] '{'
+	'match' match=[TypedVariable] '{'
 	inductCase+=MatchCase (inductCase+=MatchCase)* '}'
 ;
 
 MatchCase:
-	'|' deconName=[TypedVariable] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':' expr=RootExpression
+	'|' deconName=[DatatypeConstructor] ('(' variables+=TypedVariable (',' variables+=TypedVariable)* ')')? ':' expr=RootExpression
 ;
 
 /* ----------------------------- Theorems -------------------------*/

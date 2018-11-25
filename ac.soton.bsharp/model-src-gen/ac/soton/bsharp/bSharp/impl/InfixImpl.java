@@ -477,7 +477,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 			return inbuiltPrecedence.get(opName);
 		}
 		
-		return ((FunctionDecl)funcName.eContainer()).getPrecedence();
+		return funcName.getPrecedence();
 	}
 
 	@Override

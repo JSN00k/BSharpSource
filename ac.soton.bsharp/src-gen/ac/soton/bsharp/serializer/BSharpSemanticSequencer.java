@@ -486,7 +486,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     MatchCase returns MatchCase
 	 *
 	 * Constraint:
-	 *     (deconName=[TypedVariable|ID] (variables+=TypedVariable variables+=TypedVariable*)? expr=RootExpression)
+	 *     (deconName=[DatatypeConstructor|ID] (variables+=TypedVariable variables+=TypedVariable*)? expr=RootExpression)
 	 */
 	protected void sequence_MatchCase(ISerializationContext context, MatchCase semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -499,7 +499,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     RootExpression returns MatchStatement
 	 *
 	 * Constraint:
-	 *     (match=[DatatypeConstructor|ID] inductCase+=MatchCase inductCase+=MatchCase*)
+	 *     (match=[TypedVariable|ID] inductCase+=MatchCase inductCase+=MatchCase*)
 	 */
 	protected void sequence_MatchStatement(ISerializationContext context, MatchStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -13,6 +13,7 @@ import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVarType;
+import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
@@ -46,6 +47,7 @@ import org.eclipse.xtext.util.PolymorphicDispatcher.WarningErrorHandler;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
+import org.eventb.theory.core.IRecursiveOperatorDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -762,6 +764,24 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		return name + "_P";
 	}
 	
+	void compileMatchNoPoly(INewOperatorDefinition op) {
+		MatchStatement ms = (MatchStatement)expr;
+		
+		try {
+			ms.compileToRecursiveDefs(op, nullMonitor);
+		}catch (Exception e) {
+			System.err.println("Unable to compile match instance with error: " + e.getLocalizedMessage());
+		}
+	}
+	
+	void compileDirectDefNoPoly(INewOperatorDefinition op) {
+		try {
+			TheoryUtils.createDirectDefinition(op, expr.compileToEventBString(false), null, nullMonitor);
+		} catch (Exception e) {
+			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
+		}
+	}
+	
 	void compileWithoutPolyContext() {
 		expr = expr.reorderExpresionTree();
 		
@@ -776,10 +796,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			return;
 		}
 		
-		try {
-			TheoryUtils.createDirectDefinition(op, expr.compileToEventBString(false), null, nullMonitor);
-		} catch (Exception e) {
-			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
+		if (expr instanceof MatchStatement) {
+			compileMatchNoPoly(op);
+		} else {
+			compileDirectDefNoPoly(op);
 		}
 		
 		if (returnType.isBoolType()) {
@@ -812,7 +832,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 */
 		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
 		lambda.setQType("λ");
-		lambda.setVarList(varList);
+		lambda.setVarList(EcoreUtil2.copy(varList));
 		FunctionCall func = BSharpFactory.eINSTANCE.createFunctionCall();
 		func.setTypeInst(this);
 		EList<Expression> callArgs = func.getArguments();

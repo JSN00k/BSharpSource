@@ -141,7 +141,7 @@
         eType="#//MatchCase" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MatchCase" eSuperTypes="#//IVariableProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deconName" eType="#//TypedVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deconName" eType="#//DatatypeConstructor"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
         eType="#//TypedVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"

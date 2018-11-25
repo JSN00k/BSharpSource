@@ -8,9 +8,13 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -23,6 +27,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eventb.theory.core.INewOperatorDefinition;
+import org.eventb.theory.core.IRecursiveOperatorDefinition;
+import org.eventb.theory.core.ITheoryRoot;
 
 /**
  * <!-- begin-user-doc -->
@@ -283,6 +290,16 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 		}
 		
 		return false;
+	}
+	
+	@Override
+	public void compileToRecursiveDefs(INewOperatorDefinition op, IProgressMonitor monitor) throws Exception {
+		IRecursiveOperatorDefinition opDef = TheoryUtils.createRecursiveDefinition(op,
+				match.getName(), null, monitor);
+		
+		for (MatchCase c : inductCase) {
+			c.compileToRecCase(opDef, monitor);
+		}
 	}
 
 } //MatchStatementImpl

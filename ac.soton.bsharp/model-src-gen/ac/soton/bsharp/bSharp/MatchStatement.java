@@ -3,7 +3,9 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eventb.theory.core.INewOperatorDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,5 +66,7 @@ public interface MatchStatement extends Expression {
 	 * @generated
 	 */
 	EList<MatchCase> getInductCase();
+
+	void compileToRecursiveDefs(INewOperatorDefinition op, IProgressMonitor monitor) throws Exception;
 
 } // MatchStatement

@@ -21526,17 +21526,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:6999:2: ( ( RULE_ID ) )
             // InternalBSharp.g:7000:3: ( RULE_ID )
             {
-             before(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0()); 
+             before(grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0()); 
             // InternalBSharp.g:7001:3: ( RULE_ID )
             // InternalBSharp.g:7002:4: RULE_ID
             {
-             before(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorIDTerminalRuleCall_1_0_1()); 
+             before(grammarAccess.getMatchStatementAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorIDTerminalRuleCall_1_0_1()); 
+             after(grammarAccess.getMatchStatementAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); 
 
             }
 
-             after(grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0()); 
+             after(grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0()); 
 
             }
 
@@ -21653,17 +21653,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:7048:2: ( ( RULE_ID ) )
             // InternalBSharp.g:7049:3: ( RULE_ID )
             {
-             before(grammarAccess.getMatchCaseAccess().getDeconNameTypedVariableCrossReference_1_0()); 
+             before(grammarAccess.getMatchCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0()); 
             // InternalBSharp.g:7050:3: ( RULE_ID )
             // InternalBSharp.g:7051:4: RULE_ID
             {
-             before(grammarAccess.getMatchCaseAccess().getDeconNameTypedVariableIDTerminalRuleCall_1_0_1()); 
+             before(grammarAccess.getMatchCaseAccess().getDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getMatchCaseAccess().getDeconNameTypedVariableIDTerminalRuleCall_1_0_1()); 
+             after(grammarAccess.getMatchCaseAccess().getDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1()); 
 
             }
 
-             after(grammarAccess.getMatchCaseAccess().getDeconNameTypedVariableCrossReference_1_0()); 
+             after(grammarAccess.getMatchCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0()); 
 
             }
 

@@ -257,4 +257,32 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 		return null;
 	}
 
+	@Override
+	public String typeStringWithContext(TypeDeclContext ctx) {
+		if (context == null || context.eventBPolyVarCount() == 0) {
+			return name;
+		}
+		
+		/* If there is a poly context and the types are BSharp subtypes
+		 * rather than total types (such as datatypes) a new Event-B op
+		 * needs to be constructed to represent that type. This needs to be done.
+		 */
+		
+		//TODO: read comment above and implement.
+		String result = name + "(";
+		boolean first = true;
+		
+		Collection<PolyType> pTypes = context.getPolyTypes();
+		for (PolyType pType : pTypes) {
+			if (!first)
+				result += ", ";
+				
+			result += pType.baseTypeString();
+		}
+		
+		result += ")";
+		
+		return result;
+	}
+
 } //DatatypeImpl

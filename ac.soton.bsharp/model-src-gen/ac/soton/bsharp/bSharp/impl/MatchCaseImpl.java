@@ -5,14 +5,17 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -28,6 +31,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eventb.theory.core.IRecursiveOperatorDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +57,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedVariable deconName;
+	protected DatatypeConstructor deconName;
 
 	/**
 	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
@@ -99,10 +103,10 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedVariable getDeconName() {
+	public DatatypeConstructor getDeconName() {
 		if (deconName != null && deconName.eIsProxy()) {
 			InternalEObject oldDeconName = (InternalEObject)deconName;
-			deconName = (TypedVariable)eResolveProxy(oldDeconName);
+			deconName = (DatatypeConstructor)eResolveProxy(oldDeconName);
 			if (deconName != oldDeconName) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.MATCH_CASE__DECON_NAME, oldDeconName, deconName));
@@ -116,7 +120,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedVariable basicGetDeconName() {
+	public DatatypeConstructor basicGetDeconName() {
 		return deconName;
 	}
 
@@ -125,8 +129,8 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeconName(TypedVariable newDeconName) {
-		TypedVariable oldDeconName = deconName;
+	public void setDeconName(DatatypeConstructor newDeconName) {
+		DatatypeConstructor oldDeconName = deconName;
 		deconName = newDeconName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.MATCH_CASE__DECON_NAME, oldDeconName, deconName));
@@ -232,7 +236,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BSharpPackage.MATCH_CASE__DECON_NAME:
-				setDeconName((TypedVariable)newValue);
+				setDeconName((DatatypeConstructor)newValue);
 				return;
 			case BSharpPackage.MATCH_CASE__VARIABLES:
 				getVariables().clear();
@@ -254,7 +258,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BSharpPackage.MATCH_CASE__DECON_NAME:
-				setDeconName((TypedVariable)null);
+				setDeconName((DatatypeConstructor)null);
 				return;
 			case BSharpPackage.MATCH_CASE__VARIABLES:
 				getVariables().clear();
@@ -309,6 +313,37 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 		 */
 		IVariableProvider provider = EcoreUtil2.getContainerOfType(this, IVariableProvider.class);
 		return provider.inferredPolyTypeArgsForType(t);
+	}
+	
+	String matchString() {
+		String result = deconName.getName();
+		
+		if (variables == null || variables.isEmpty())
+			return result;
+		
+		result += "(";
+		
+		boolean isFirst = true;
+		for (TypedVariable var : variables) {
+			if (!isFirst) {
+				result += ", ";
+			}
+			
+			isFirst = false;
+			
+			result += var.getName();
+		}
+		
+		result += ")";
+		
+		return result;
+	}
+
+	@Override
+	public void compileToRecCase(IRecursiveOperatorDefinition opDef, IProgressMonitor monitor) throws Exception {
+		TheoryUtils.createRecursiveCase(opDef, matchString(),
+				expr.compileToEventBString(false), null, monitor);
+		
 	}
 
 } //MatchCaseImpl

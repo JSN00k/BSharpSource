@@ -5057,7 +5057,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             				
             otherlv_1=(Token)match(input,RULE_ID,FOLLOW_34); 
 
-            					newLeafNode(otherlv_1, grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0());
+            					newLeafNode(otherlv_1, grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0());
             				
 
             }
@@ -5256,7 +5256,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             				
             otherlv_1=(Token)match(input,RULE_ID,FOLLOW_36); 
 
-            					newLeafNode(otherlv_1, grammarAccess.getMatchCaseAccess().getDeconNameTypedVariableCrossReference_1_0());
+            					newLeafNode(otherlv_1, grammarAccess.getMatchCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0());
             				
 
             }

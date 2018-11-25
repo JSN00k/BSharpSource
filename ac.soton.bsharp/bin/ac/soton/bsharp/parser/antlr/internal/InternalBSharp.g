@@ -1934,7 +1934,7 @@ ruleMatchStatement returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getMatchStatementAccess().getMatchDatatypeConstructorCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0());
 				}
 			)
 		)
@@ -2016,7 +2016,7 @@ ruleMatchCase returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getMatchCaseAccess().getDeconNameTypedVariableCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getMatchCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0());
 				}
 			)
 		)
