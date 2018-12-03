@@ -18,6 +18,7 @@ import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.Infix;
+import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.MatchCase;
@@ -35,6 +36,7 @@ import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.TypePowerSet;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
@@ -108,6 +110,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.INFIX:
 				sequence_Infix(context, (Infix) semanticObject); 
 				return; 
+			case BSharpPackage.INST_NAME:
+				sequence_InstName(context, (InstName) semanticObject); 
+				return; 
 			case BSharpPackage.INSTANCE:
 				sequence_Instance(context, (Instance) semanticObject); 
 				return; 
@@ -169,6 +174,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case BSharpPackage.TYPE_DECL_CONTEXT:
 				sequence_TypeDeclContext(context, (TypeDeclContext) semanticObject); 
+				return; 
+			case BSharpPackage.TYPE_POWER_SET:
+				sequence_TypePowerSet(context, (TypePowerSet) semanticObject); 
 				return; 
 			case BSharpPackage.TYPED_VARIABLE:
 				sequence_TypedVariable(context, (TypedVariable) semanticObject); 
@@ -260,12 +268,12 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Type returns BSClass
 	 *     GenName returns BSClass
 	 *     Class returns BSClass
-	 *     ExpressionVariable returns BSClass
 	 *
 	 * Constraint:
 	 *     (
 	 *         name=ID 
 	 *         context=PolyContext? 
+	 *         instName=InstName 
 	 *         supertypes=SuperTypeList? 
 	 *         varList=TypedVariableList? 
 	 *         where=Where? 
@@ -321,7 +329,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Type returns Datatype
 	 *     GenName returns Datatype
 	 *     Datatype returns Datatype
-	 *     ExpressionVariable returns Datatype
 	 *
 	 * Constraint:
 	 *     (name=ID context=PolyContext? constructors+=DatatypeConstructor+ block=BSharpBlock)
@@ -427,6 +434,25 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_Infix(ISerializationContext context, Infix semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     InstName returns InstName
+	 *     ExpressionVariable returns InstName
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_InstName(ISerializationContext context, InstName semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getInstNameAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -705,6 +731,28 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_TypeDeclContext(ISerializationContext context, TypeDeclContext semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TypeBuilder returns TypePowerSet
+	 *     ConstructedType returns TypePowerSet
+	 *     ConstructedType.ConstructedType_1_0 returns TypePowerSet
+	 *     BuilderElem returns TypePowerSet
+	 *     TypePowerSet returns TypePowerSet
+	 *
+	 * Constraint:
+	 *     child=ConstructedType
+	 */
+	protected void sequence_TypePowerSet(ISerializationContext context, TypePowerSet semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TYPE_POWER_SET__CHILD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TYPE_POWER_SET__CHILD));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypePowerSetAccess().getChildConstructedTypeParserRuleCall_2_0(), semanticObject.getChild());
+		feeder.finish();
 	}
 	
 	

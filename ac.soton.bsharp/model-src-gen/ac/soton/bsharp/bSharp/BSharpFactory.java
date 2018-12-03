@@ -347,6 +347,15 @@ public interface BSharpFactory extends EFactory {
 	NamedObject createNamedObject();
 
 	/**
+	 * Returns a new object of class '<em>Type Power Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Power Set</em>'.
+	 * @generated
+	 */
+	TypePowerSet createTypePowerSet();
+
+	/**
 	 * Returns a new object of class '<em>Global Import</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -390,6 +399,15 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	BSClass createBSClass();
+
+	/**
+	 * Returns a new object of class '<em>Inst Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inst Name</em>'.
+	 * @generated
+	 */
+	InstName createInstName();
 
 	/**
 	 * Returns the package supported by this factory.

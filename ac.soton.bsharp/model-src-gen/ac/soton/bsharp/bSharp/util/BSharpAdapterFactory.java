@@ -133,6 +133,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createBSClassAdapter();
 			}
 			@Override
+			public Adapter caseInstName(InstName object) {
+				return createInstNameAdapter();
+			}
+			@Override
 			public Adapter caseBSharpBlock(BSharpBlock object) {
 				return createBSharpBlockAdapter();
 			}
@@ -261,6 +265,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTypeBuilderAdapter();
 			}
 			@Override
+			public Adapter caseTypePowerSet(TypePowerSet object) {
+				return createTypePowerSetAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -361,6 +369,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBSClassAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.InstName <em>Inst Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.InstName
+	 * @generated
+	 */
+	public Adapter createInstNameAdapter() {
 		return null;
 	}
 
@@ -893,6 +915,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTypeBuilderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.TypePowerSet <em>Type Power Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.TypePowerSet
+	 * @generated
+	 */
+	public Adapter createTypePowerSetAdapter() {
 		return null;
 	}
 

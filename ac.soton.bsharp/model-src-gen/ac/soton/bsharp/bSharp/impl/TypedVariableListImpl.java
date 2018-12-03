@@ -223,6 +223,11 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 		
 		return result;
 	}
+
+	@Override
+	public boolean isEmpty() {
+		return variablesOfType == null || variablesOfType.isEmpty();
+	}
 	
 	
 

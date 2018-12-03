@@ -338,5 +338,8 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	}
 	
 	
-
+	@Override
+	public void compile() {
+		block.compile();
+	}
 } //ExtendImpl

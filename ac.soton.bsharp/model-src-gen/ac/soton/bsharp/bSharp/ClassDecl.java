@@ -79,11 +79,9 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	 */
 	void setBlock(BSharpBlock value);
 
+	String eventBPolymorphicTypeConstructorName();
 	String constructWithTypeContext(TypeDeclContext context, ClassDecl containingClass);
-	public String eventBPolymorphicTypeConstructorName();
 	void compile() throws Exception;
-
-	String eventBTypeConstructorFromTypes();
 
 	/* Methods within ClassDecl's can use functions declared as part of the type. To allow
 	 * this in EventB a polymorphic instance of the type class is passed as an argument to

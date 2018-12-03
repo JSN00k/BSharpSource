@@ -138,9 +138,9 @@ class TheoryImportCache {
 		if (imports === null || imports.isEmpty) {
 			fileName = bSharpFileName
 		} else {
-			var fileNdx = 1;
+			var fileNdx = 0;
 			if (topLevelFile.getNoImportElements() !== null) {
-				fileNdx = 2;
+				fileNdx = 1;
 			}
 			
 			val topLevelImport = EcoreUtil2.getContainerOfType(classDecl, TopLevelImport)
@@ -148,7 +148,7 @@ class TheoryImportCache {
 				/* If there's no TopLevelImport above the classDecl the classDecl must have 
 				 * been declared in the noImportElements section.
 				 */
-				fileName = bSharpFileName + 1.toString
+				fileName = bSharpFileName + 0.toString
 			} else {
 				if (imports.last === topLevelImport) {
 					fileName = bSharpFileName

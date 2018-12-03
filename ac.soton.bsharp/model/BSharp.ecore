@@ -64,7 +64,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Where"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instName" eType="#//InstName"
+        containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstName" eSuperTypes="#//ExpressionVariable #//GenName"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSharpBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
         eType="#//FunctionDecl" containment="true"/>
@@ -222,4 +225,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeBuilder" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypePowerSet" eSuperTypes="#//TypeBuilder">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//TypeBuilder"
+        containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

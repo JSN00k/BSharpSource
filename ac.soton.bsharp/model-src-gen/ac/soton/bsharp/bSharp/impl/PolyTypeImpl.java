@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
@@ -163,14 +164,26 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		TypeConstructor tConstr = (TypeConstructor)callType;
 		
 		GenName generic = tConstr.getTypeName();
-		if (generic instanceof BSClass) {
-			Integer prjsRequired = ((BSClass)generic).prjsRequiredForSupertype(sType);
-			if (generic == containerType) {
+		if (generic instanceof PolyType) {
+			PolyType otherPoly = (PolyType)generic;
+			EList<ClassDecl> otherSups = otherPoly.getSuperTypes();
+			if (otherSups == null || otherSups.isEmpty()) {
+				return otherPoly.getName();
+			}
+			
+			BSClass otherSType = (BSClass)otherSups.get(0);
+			int prjsRequired = otherSType.prjsRequiredForSupertype(sType);
+			return CompilationUtil.wrapNameInPrj1s(otherPoly.getName(), prjsRequired);
+		}
+		
+		if (generic instanceof InstName) {
+			Integer prjsRequired = ((BSClass)generic.eContainer()).prjsRequiredForSupertype(sType);
+			if (generic.eContainer() == containerType) {
 				/* When within a type class declaration the type class can be refered to as a type
 				 * without any constructors rather than having a this/self structure. I believe that
 				 * we can only get to this point within the type class declaration, so
 				 * we need to use the supertype inst. */
-				return CompilationUtil.wrapNameInPrj1s(((BSClass)generic).superName(), prjsRequired - 1);
+				return CompilationUtil.wrapNameInPrj1s(((InstName)generic).getName(), prjsRequired - 1);
 			}
 			
 			return CompilationUtil.wrapNameInPrj1s(callType.buildEventBType(), prjsRequired);
@@ -196,7 +209,7 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		if (superTypes == null || superTypes.isEmpty()) {
 			return callType.buildEventBType();
 		}
-		
+
 		BSClass sType = (BSClass)superTypes.get(0);
 		return sType.deconstructEventBTypeToArguments(deconstructionType(callType, containerType));
 	}

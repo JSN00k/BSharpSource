@@ -37,7 +37,7 @@ Type:
 	ClassDecl
 ;
 
-GenName: PolyType | Type;
+GenName: PolyType | Type | InstName;
 
 /* -------------------------- Import Statements -------------------- */
 /* I had hoped to use a python style import, however this seems to be fighting 
@@ -79,11 +79,13 @@ LocalImport:
 
 
 Class returns BSClass:
-	'Class' name=ID (context=PolyContext)? (supertypes=SuperTypeList)? ('(' varList=TypedVariableList ')')? (where=Where)? (';')? 
+	'Class' name=ID (context=PolyContext)? ('[' instName=InstName ']') (supertypes=SuperTypeList)? ('(' varList=TypedVariableList ')')? (where=Where)? (';')? 
 	block=BSharpBlock
 ;
 
-
+InstName:
+	name=ID
+;
 
 /*---------------- Polymorphic Context of -------------------------- */
 
@@ -108,7 +110,7 @@ SuperTypeList:
 ;
 
 TypeBuilder:
-	ConstructedType | TypeConstructor
+	ConstructedType | TypeConstructor | TypePowerSet | TypeConstrBracket
 ;
 
 BuiltinTypeInfixOp:
@@ -121,7 +123,7 @@ ConstructedType returns TypeBuilder:
 ;
 
 BuilderElem returns TypeBuilder:
-	TypeConstructor | TypeConstrBracket
+	TypeConstructor | TypeConstrBracket | TypePowerSet
 ;
 
 /* Type constructor has validation rules to check that there is no context when there is a polymorphic name, 
@@ -130,6 +132,10 @@ BuilderElem returns TypeBuilder:
  */
 TypeConstructor:
 	typeName=[GenName|QualifiedName] (context=TypeDeclContext)?
+;
+
+TypePowerSet:
+	'ℙ' '(' child=ConstructedType ')'
 ;
 
 TypeConstrBracket:
@@ -303,7 +309,7 @@ ClassVarDecl:
 ;
 
 ExpressionVariable:
-	 FunctionDecl | TypedVariable | ClassDecl
+	 FunctionDecl | TypedVariable | InstName
 ;
 
 /* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 

@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.CoreException
 import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.rodinp.core.RodinCore
+import ac.soton.bsharp.bSharp.Extend
 
 /* Does the work to compile to a single EventB file from the body elements in 
  * that file
@@ -34,7 +35,8 @@ class FileCompiler {
 						val datatype = element as Datatype
 						datatype.compile();
 					} else {
-						// compileExtend(element as Extend)
+						val extend = element as Extend
+						extend.compile();
 					}
 				}
 				theoryCache.save();

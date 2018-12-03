@@ -11,7 +11,7 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
-import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.BSClass;
@@ -21,6 +21,7 @@ import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.TypePowerSet;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.Where;
@@ -29,8 +30,6 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -45,7 +44,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.xtext.generator.parser.antlr.FirstSetComputer;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
@@ -94,6 +92,16 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * @ordered
 	 */
 	protected Where where;
+
+	/**
+	 * The cached value of the '{@link #getInstName() <em>Inst Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstName()
+	 * @generated
+	 * @ordered
+	 */
+	protected InstName instName;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -248,6 +256,49 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public InstName getInstName() {
+		return instName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInstName(InstName newInstName, NotificationChain msgs) {
+		InstName oldInstName = instName;
+		instName = newInstName;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__INST_NAME, oldInstName, newInstName);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInstName(InstName newInstName) {
+		if (newInstName != instName) {
+			NotificationChain msgs = null;
+			if (instName != null)
+				msgs = ((InternalEObject)instName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__INST_NAME, null, msgs);
+			if (newInstName != null)
+				msgs = ((InternalEObject)newInstName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__INST_NAME, null, msgs);
+			msgs = basicSetInstName(newInstName, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__INST_NAME, newInstName, newInstName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -257,6 +308,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				return basicSetVarList(null, msgs);
 			case BSharpPackage.BS_CLASS__WHERE:
 				return basicSetWhere(null, msgs);
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				return basicSetInstName(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -275,6 +328,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				return getVarList();
 			case BSharpPackage.BS_CLASS__WHERE:
 				return getWhere();
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				return getInstName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -295,6 +350,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				return;
 			case BSharpPackage.BS_CLASS__WHERE:
 				setWhere((Where)newValue);
+				return;
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				setInstName((InstName)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -317,6 +375,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			case BSharpPackage.BS_CLASS__WHERE:
 				setWhere((Where)null);
 				return;
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				setInstName((InstName)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -335,6 +396,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				return varList != null;
 			case BSharpPackage.BS_CLASS__WHERE:
 				return where != null;
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				return instName != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -342,7 +405,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	public Collection<EObject> getVariablesNames() {		
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		
-		result.add(this);
+		if (instName != null)
+			result.add(instName);
+		
 		if (varList == null) {
 			return result;
 		}
@@ -398,6 +463,12 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		/*TODO: document this method working through a couple of event B examples to show 
 		 * how and where they are compiled. Maybe Monoid and TransitiveOp.
 		 */
+		
+		/* Due to a bug in the EventB language the instance name here is modified with a '1' The
+		 * TypeEnvironmentBuilder needs fixing to resolve this issue.
+		 */
+		String iName = instanceName();
+		
 		generateInferredContext();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		
@@ -423,23 +494,19 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			}
 		}
 		
-		String superName = superName();
-		
-		String opString = "{ " + superName;
+		String opString = "{ " + iName;
 		ArrayList<Tuple2<String, String>> typedVars = null;
 		if (varList != null) {
 			typedVars = varList.getCompiledVariablesAndTypes();
 			opString += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVars, " ↦ ", 
 					false, typedVars.size() > 1);
 		}
-		
+
 		opString += " | ";
-		
-		if (isNewTypeClass()) {
-			opString += superName + " = ";
-		} else {
-			opString += superName + " ∈ ";
-		}
+		if (supertypes.isPowerSet())
+			opString += iName + "=";
+		else 
+			opString += iName + " ∈ ";
 		
 		opString += supertypes.supertypeType(polyTypedVars);
 		
@@ -579,7 +646,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		
 		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(result, ", ", true) + ")";
-		result.add(new Tuple2<String, String>(name, eventBPolymorphicTypeConstructorName() + argsForConstructor));
+		result.add(new Tuple2<String, String>(instanceName(), eventBPolymorphicTypeConstructorName() + argsForConstructor));
 		
 		return result;
 	}
@@ -654,12 +721,15 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 	
 	public void compileGetterOperators() {
-		/* I think that I'm going to use Event-B operators to pass getters onto subtypes. 
-		 * This makes coding simpler. The supertype is always at prj1. of the type. */
-		ArrayList<String> polyVars = context.namesForPolyContextTypes();
-		polyVars.add("prj1(" + name + ")");
-		String polyTypeArgs = "(" +  CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(polyVars, ", ", true) + ")";
+		String iName = instanceName();
+		
+		
 		if (supertypes != null) {
+			/* I think that I'm going to use Event-B operators to pass getters onto subtypes. 
+			 * This makes coding simpler. The supertype is always at prj1. of the type. */
+			ArrayList<String> polyVars = context.namesForPolyContextTypes();
+			polyVars.add("prj1(" + instanceName() + ")");
+			String polyTypeArgs = "(" +  CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(polyVars, ", ", true) + ")";
 			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
 			
 			if (sTypes != null && !sTypes.isEmpty()) {
@@ -691,7 +761,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			for (Tuple2<String, String> typedVar : varListVariables) {
 				INewOperatorDefinition op = constructOpForGetterWithName(getterForOpName(typedVar.x));
 				
-				String directDefString = "prj2(" + name + ")";
+				String directDefString = "prj2(" + iName + ")";
 				
 				directDefString = CompilationUtil.wrapNameInPrj1s(directDefString, prj1sRequired);
 				prj1sRequired--;
@@ -733,25 +803,14 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 	
 	@Override
-	public String superName() {
-		return "super";
+	public String instanceName() {
+		return instName.getName();
 	}
 	
 	/* The name for the EventB operator used to construct entirely polymorphic instances of the type. */
 	@Override
 	public String eventBPolymorphicTypeConstructorName() {
 		return name + "_T";
-	}
-	
-	/* This takes components to construct the type, e.g. to construct a monoid it'd be Monoid_C(T : T, set : Setoid)
-	 * this is what is used if a type is constructed with a given context. */
-	@Override
-	public String eventBTypeConstructorFromTypes() {
-		if (isTypeClass()) {
-			return name + "_C";
-		}
-		
-		return eventBPolymorphicTypeConstructorName();
 	}
 
 	@Override
@@ -760,9 +819,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		if (context == null)
 			return "()";
 		
-		String result = eventBTypeConstructorFromTypes();
-		
-		
+		String result = eventBPolymorphicTypeConstructorName();
+
 		try {
 			result += context.compileCallWithTypeContext(ctx, containerType);
 		} catch (Exception e) {
@@ -805,7 +863,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 				if (containingClass != null && containingClass == this) {
 					/* Due to a name change this requires special casing. */
-					result = containingClass.superName();
+					result = containingClass.instanceName();
 				} else {
 					result = name;
 				}
@@ -930,7 +988,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		if (supertypes != null) {
 			TypeBuilder super1 = supertypes.getFirst();
 			super1.reorderTypeTree();
-			
+
 			if (super1.isBaseType()) {
 				if (varList != null && varList.varCount() != 0)
 					return 1;
@@ -961,6 +1019,14 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			TypeBuilder super1 = supertypes.getFirst();
 			super1.reorderTypeTree();
 			
+			/* It's likely that we'll need to unwrap a power set here. As the base type of a type
+			 * class needs to be a power set of a type.
+			 */
+			
+			if (super1 instanceof TypePowerSet) {
+				super1 = ((TypePowerSet)super1).getChild();
+			}
+
 			if (super1.isBaseType())
 				return super1;
 			
@@ -1060,7 +1126,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		if (!first)
 			result += ", ";
 		
-		result += superName() + ")";
+		result += instanceName() + ")";
 		return result;
 	}
 	
@@ -1121,7 +1187,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		else 
 			prjsRequired = prjsRequiredForSupertype((BSClass)t) - 1;
 		
-		String instName = superName();
+		String instName = instanceName();
 		CompilationUtil.wrapNameInPrj1s(instName, prjsRequired);
 		
 		if (!first) {
@@ -1130,4 +1196,5 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		return result += instName;
 	}
+	
 } //BppClassImpl

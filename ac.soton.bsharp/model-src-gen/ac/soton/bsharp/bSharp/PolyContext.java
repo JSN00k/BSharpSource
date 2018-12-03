@@ -61,6 +61,8 @@ public interface PolyContext extends EObject {
 	ArrayList<Tuple2<String, String>> namesAndTypesForPolyContext(TheoryImportCache thyCache);
 
 	ArrayList<String> namesForPolyContextTypes();
+	
+	boolean isEmpty();
 
 	
 } // PolyContext

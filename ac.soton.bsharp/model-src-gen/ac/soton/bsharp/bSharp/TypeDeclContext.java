@@ -41,5 +41,7 @@ public interface TypeDeclContext extends EObject {
 	EList<TypeBuilder> getTypeName();
 
 	boolean referencesContainingType();
+	
+	boolean isEmpty();
 
 } // TypeDeclContext

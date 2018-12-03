@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypePowerSet;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
@@ -164,6 +165,15 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	}
 	
 	@Override
+	public boolean isPowerSet() {
+		if (superTypes == null || superTypes.size() != 1)
+			return false;
+		
+		TypeBuilder st = superTypes.get(0);
+		return st instanceof TypePowerSet;
+	}
+	
+	@Override
 	public String supertypeType(ArrayList<Tuple2<String, String>> bsOpPolyTypes) {
 		if (superTypes == null || superTypes.isEmpty()) {
 			try {
@@ -188,7 +198,11 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 				result += st.getTypeClass().eventBPolymorphicTypeConstructorName();
 				result += "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(bsOpPolyTypes, ", ", true) + ")";
 			} else {
-				result += st.buildEventBType();
+				if (isPowerSet())
+					result += ((TypePowerSet)st).getChild().buildEventBType();
+				else 
+					result += st.buildEventBType();
+				
 			}
 		}
 		

@@ -390,7 +390,17 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 
 	@Override
 	public String constructLatexExpressionTree(String indent) {
-		String result = "[.$" + qType + "$\n";
+		String qString = null;
+		
+		if (qType.equals("∀")) {
+			qString = "\\forall";
+		} else if (qType.contentEquals("∃")) {
+			qString = "\\exists";
+		} else {
+			qString = "\\lambda";
+		}
+		
+		String result = "[.$" + qString + "$\n";
 		result += expr.constructLatexExpressionTree("  " + indent) + "\n";
 		result += indent + "]";
 		return result;
@@ -448,6 +458,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 		
 		String sep = qType.equals("λ") ? " ↦ " : ", ";
+		
 		boolean isFirst = true;
 		if (additionalArgs != null && !additionalArgs.isEmpty()) {
 			result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(additionalArgs, sep, true);
@@ -481,16 +492,23 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 			result += "(";
 		}
 		
-		result += expr.compileToEventBString(true);
+		boolean quantLambdaAsPred = !qType.equals("λ");
+		result += expr.compileToEventBString(quantLambdaAsPred);
 		
 		if (resultRequiresParens) {
 			result += ")";
 		}
 		
 		if (asPredicate) {
-			return result;
+			if(quantLambdaAsPred)
+				return result;
+			else 
+				return result += "= TRUE";
 		} else {
-			return "bool(" + result + ")";
+			if (quantLambdaAsPred)
+				return "bool(" + result + ")";
+			else 
+				return result;
 		}
 	}
 	

@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.PolymorphicDispatcher.WarningErrorHandler;
+import org.eventb.core.ast.extension.IOperatorProperties;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
@@ -654,7 +655,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public Collection<PolyType> getPolyTypeNames() {
-		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
+		if (context == null) {
+			return new ArrayList<PolyType>();
+		} else {
+			return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
+		}
 	}
 
 	@Override
@@ -691,7 +696,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	public String eventBExprName() {
 		/* Add a new type EventBPrefixProvider type. */
 		IEventBPrefixProvider provider = EcoreUtil2.getContainerOfType(this, IEventBPrefixProvider.class);
-		return provider.eventBPrefix() + name;
+		return provider.eventBPrefix() + "_" + name;
 	}
 
 	@Override
@@ -745,7 +750,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		INewOperatorDefinition op;
 		try {
-			op = CompilationUtil.createOpWithArguments(thyCache, name, pContext);
+			op = CompilationUtil.createOpWithArguments(thyCache, name, pContext, Notation.PREFIX);
 		} catch (Exception e) {
 			System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
 			return;
@@ -761,7 +766,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	String passableName() {
-		return name + "_P";
+		return eventBExprName() + "_P";
 	}
 	
 	void compileMatchNoPoly(INewOperatorDefinition op) {
@@ -784,13 +789,19 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	
 	void compileWithoutPolyContext() {
 		expr = expr.reorderExpresionTree();
+		String opName = eventBExprName();
 		
 		ArrayList<Tuple2<String, String>> args = varList.getCompiledVariablesAndTypes();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		INewOperatorDefinition op;
 		
+		IOperatorProperties.Notation notation = Notation.PREFIX;
+		if (infix != null && !infix.isEmpty()) {
+			notation = Notation.INFIX;
+		}
+		
 		try {
-			op = CompilationUtil.createOpWithArguments(thyCache, name, args);
+			op = CompilationUtil.createOpWithArguments(thyCache, opName, args, notation);
 		} catch (Exception e) {
 			System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
 			return;
@@ -805,7 +816,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		if (returnType.isBoolType()) {
 			/* Create a predicate version of the function. */
 			try {
-				op = CompilationUtil.createPredOpWithArguments(thyCache, name, args);
+				op = CompilationUtil.createPredOpWithArguments(thyCache, opName, args, notation);
 			} catch (Exception e) {
 				System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
 				return;
@@ -838,13 +849,12 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		EList<Expression> callArgs = func.getArguments();
 		
 		ArrayList<TypedVariable> variables = varList.getTypedVariableNames();
-		ArrayList<FunctionCall> wrappedVariables = new ArrayList<FunctionCall>();
 		for (TypedVariable var : variables) {
 			FunctionCall wrappedVar = BSharpFactory.eINSTANCE.createFunctionCall();
 			wrappedVar.setTypeInst(var);
+			callArgs.add(wrappedVar);
 		}
 		
-		callArgs.addAll(wrappedVariables);
 		lambda.setExpr(func);
 		
 		try {
@@ -855,9 +865,77 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	@Override
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
-		// TODO Auto-generated method stub
-		return null;
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
+		if (context != null && !context.isEmpty()) {
+			return compileFunctionCallWithContext(fc, asPred);
+		} else {
+			return comipileFunctionCallNoContext(fc, asPred);
+		}
+
+	}
+	
+	String compileFunctionCallWithContext(FunctionCall fc, boolean asPred) throws Exception {
+		TypeDeclContext ctx = fc.getContext();
+		if ((ctx == null || ctx.isEmpty())) {
+			/* Having a context called with the wrong number of arguments should be validated
+			 * against.
+			 */
+			throw new Exception("Function with context called with wrong number of arguments");
+		}
+		
+		String result = eventBExprName() + "(";
+		
+		/* TODO: it is unclear to me why I would need the container type in this context, see if the code
+		 * can be re-written to avoid this.
+		 */
+		ClassDecl container = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+		result += context.compileCallWithTypeContext(ctx, container);
+		result += ")";
+		
+		EList<Expression> exprs = fc.getArguments();
+		
+		if (exprs != null && !exprs.isEmpty()) {
+			result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
+		}
+		
+		if (asPred) {
+			result += "= TRUE";
+		}
+		
+		return result;
+	}
+	
+	String comipileFunctionCallNoContext(FunctionCall fc, boolean asPred) throws Exception {
+		EList<Expression> exprs = fc.getArguments();
+		
+		if (exprs == null || exprs.isEmpty()) {
+			if (varList == null || varList.isEmpty()) {
+				return eventBExprName();
+			} else {
+				return passableName();
+			}
+		}
+
+		if (asPred && !returnType.isBoolType()) {
+			/* TODO: Validate. */
+			throw new Exception("Tried to call non-predicate as a predicate");
+		}
+		
+		String result = null;
+		if (asPred) {
+			result = eventBPredName();
+		} else {
+			result = eventBExprName();
+		}
+		
+		if (infix != null && infix.equals("INFIX")) {
+			/* TODO: validate there are only two arguments. */
+			return exprs.get(0).compileToEventBString(false) + " " + result + " " + exprs.get(1).compileToEventBString(false);
+		}
+		
+		result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, ", ") + ")";
+		
+		return result;
 	}
 
 	@Override

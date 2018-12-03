@@ -384,7 +384,21 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 
 	@Override
 	public String constructLatexExpressionTree(String indent) {
-		String result = indent + "[.$" + getInfixName() + "$\n";
+		String infixString = getInfixName();
+		
+		if (infixString.equals("⇔")) {
+			infixString = "\\Leftrightarrow";
+		} else if (infixString.equals("⇒")) {
+			infixString = "\\implies";
+		} else if (infixString.equals("≠")) {
+			infixString = "\\neq";
+		} else if (infixString.equals("∧")) {
+			infixString = "\\land";
+		} else if (infixString.equals("∨")) {
+			infixString = "\\lor";
+		}
+		
+		String result = indent + "[.$" + infixString + "$\n";
 		
 		result += left.constructLatexExpressionTree("  " + indent) + "\n";
 		result += right.constructLatexExpressionTree("  " + indent) + "\n" ;
@@ -395,7 +409,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
-		if (opName != null || !opName.isEmpty()) {
+		if (opName != null && !opName.isEmpty()) {
 			boolean opTakesPreds = !opName.equals("=") && !opName.equals("≠");
 			
 			String leftStr = left.compileToEventBString(opTakesPreds);
@@ -439,7 +453,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 				rightStr = "(" + rightStr + ")";
 			}
 			
-			return leftStr + fName + rightStr;
+			return leftStr + " " + fName + " " + rightStr;
 		} else {
 			return fName + "(" + left.compileToEventBString(false) + ", " + right.compileToEventBString(false) + ")";
 		}
@@ -450,10 +464,10 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("⇔", 50);
 	 	map.put("⇒", 50);
-	 	map.put("=", 60);
-	 	map.put("≠", 60);
-	 	map.put("∧", 50);
-	 	map.put("∨", 50);
+	 	map.put("=", 70);
+	 	map.put("≠", 70);
+	 	map.put("∧", 60);
+	 	map.put("∨", 60);
 	 	return map;
 	}
 

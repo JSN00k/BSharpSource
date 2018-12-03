@@ -3,6 +3,7 @@ package ac.soton.bsharp.generator;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import org.eclipse.core.resources.IWorkspaceRunnable;
@@ -43,6 +44,8 @@ public class FileCompiler {
                   final Datatype datatype = ((Datatype) element);
                   datatype.compile();
                 } else {
+                  final Extend extend = ((Extend) element);
+                  extend.compile();
                 }
               }
             }

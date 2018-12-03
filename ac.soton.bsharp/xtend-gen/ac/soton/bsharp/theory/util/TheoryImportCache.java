@@ -171,15 +171,15 @@ public class TheoryImportCache {
     if (((imports == null) || imports.isEmpty())) {
       fileName = bSharpFileName;
     } else {
-      int fileNdx = 1;
+      int fileNdx = 0;
       BodyElements _noImportElements = topLevelFile.getNoImportElements();
       boolean _tripleNotEquals = (_noImportElements != null);
       if (_tripleNotEquals) {
-        fileNdx = 2;
+        fileNdx = 1;
       }
       final TopLevelImport topLevelImport = EcoreUtil2.<TopLevelImport>getContainerOfType(classDecl, TopLevelImport.class);
       if ((topLevelImport == null)) {
-        String _string = Integer.valueOf(1).toString();
+        String _string = Integer.valueOf(0).toString();
         String _plus = (bSharpFileName + _string);
         fileName = _plus;
       } else {

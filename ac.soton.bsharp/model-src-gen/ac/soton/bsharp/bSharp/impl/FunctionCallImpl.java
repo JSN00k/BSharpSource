@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
@@ -11,6 +12,7 @@ import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IVariableProvider;
+import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 
@@ -397,8 +399,10 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 
 	@Override
 	public Boolean hasInferredContext() {
-		if (typeInst instanceof TypedVariable && typeInst.eContainer() instanceof ClassDecl) {
-			return true;
+		if (typeInst instanceof TypedVariable) {
+			IVariableProvider varProv = EcoreUtil2.getContainerOfType(typeInst, IVariableProvider.class);
+			if (varProv instanceof BSClass)
+				return true;
 		}
 		
 		if (arguments != null ) {
@@ -430,6 +434,10 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 
 	@Override
 	public boolean referencesContainingType() {
+		if (typeInst instanceof InstName) {
+			return true;
+		}
+		
 		if (classVarDecl != null) {
 			if (classVarDecl.referencesContainingType())
 				return true;
@@ -450,15 +458,13 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			ClassDecl container = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
 			IVariableProvider varProv = EcoreUtil2.getContainerOfType(typeInst, IVariableProvider.class);
 			
-			if (varProv == container)
+			if (varProv instanceof BSClass) {
+				/* If we're using a variable from a class we have to be wihtin that class. */
 				return true;
+			}
 		}
 		
-		if (typeInst instanceof ClassDecl) {
-			ClassDecl container = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
-			if (typeInst == container)
-				return true;
-		}
+
 
 		if (context != null && context.referencesContainingType()) {
 			return true;

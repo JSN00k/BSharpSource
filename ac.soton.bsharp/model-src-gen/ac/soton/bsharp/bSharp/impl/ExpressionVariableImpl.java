@@ -8,13 +8,11 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
-import ac.soton.bsharp.bSharp.Where;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
-
-import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,6 +58,7 @@ public class ExpressionVariableImpl extends NamedObjectImpl implements Expressio
 		}
 		
 		EList<Expression> exprs = fc.getArguments();
+		
 		String result = name;
 		
 		if (exprs != null && !exprs.isEmpty()) {

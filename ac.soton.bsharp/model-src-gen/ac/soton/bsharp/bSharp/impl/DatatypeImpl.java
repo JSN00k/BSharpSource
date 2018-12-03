@@ -216,11 +216,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public String eventBTypeConstructorFromTypes() {
-		return name;
-	}
-
-	@Override
 	public ArrayList<Tuple2<String, String>> typedConstructionArgs() {
 		// TODO Auto-generated method stub
 		return null;

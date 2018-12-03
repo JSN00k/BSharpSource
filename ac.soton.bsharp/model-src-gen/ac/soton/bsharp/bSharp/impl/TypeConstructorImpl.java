@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
+import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -262,61 +263,63 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	
 	@Override
 	public String buildEventBType() {
+		if (typeName instanceof InstName) {
+			FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
+			TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
+			BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
+			if (func != null) {
+				// TODO: Implement me
+			} else if (theorem != null) {
+				return theorem.baseTypeForBSClass((BSClass)typeName.eContainer());
+			} else if (bsClass != null) {
+				return bsClass.baseTypeFromBSContext();
+			}
+			
+			return "";
+		}
+		
 		if (typeName instanceof ClassDecl) {
 			if (context != null) {
+				/*
+				 * In type class declarations it is possible for a variable to be a : Monoid a
+				 * monoid is a type with additional features (e.g. an identity) a : Monoid means
+				 * that a is in the Monoid type. If we are in the monoid constructutor the
+				 * polymorphic type used to construct the monoid can be used directly. If we are
+				 * in a function or a theorem then the context of the function/theorm needs to
+				 * be be considered.
+				 */
+
 				FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
 				TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
 				BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
 				if (func != null) {
-					// TODO: Implement me
+					// TODO: Implement me!
+					return "";
 				} else if (theorem != null) {
-					// TODO: Implement me.
+					// TODO: Implement me!
 				} else if (bsClass != null) {
+					/*
+					 * As we're not in a function or theorem, we can check if we're in a type class
+					 * without us bing further into the tree.
+					 */
 					return ((ClassDecl)typeName).constructWithTypeContext(context, bsClass);
 				}
 				
 				return "";
-			} else {
-				if (typeName instanceof BSClass) {
-					/* In type class declarations it is possible for a variable to be a : Monoid
-					 * a monoid is a type with additional features (e.g. an identity) a : Monoid
-					 * means that a is in the Monoid type. If we are in the monoid constructutor 
-					 * the polymorphic type used to construct the monoid can be used directly. If we are 
-					 * in a function or a theorem then the context of the function/theorm needs to 
-					 * be be considered.
-					 */
-					
-					FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
-					TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
-					BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
-					if (func != null) {
-						//TODO: Implement me!
-						return "";
-					} else if (theorem != null) {
-						
-						return theorem.baseTypeForBSClass((BSClass)typeName);
-					} else if (bsClass != null) {
-						/* As we're not in a function or theorem, we can check if we're in a type class
-						 * without us bing further into the tree.
-						 */
-						return bsClass.baseTypeFromBSContext();
-					}
-				}
-
-				String tName = typeName.getName().toString();
-				if (tName.equals("Bool")) {
-					/* When we're in a function that points to a Pred it would be better 
-					 * to deal with this using the set notation, this requires handling this 
-					 * at a higher point, Interestingly the left handed graph automatically generated
-					 * would make detecting this easy (e.g., this could be checked before reversing the 
-					 * graph. 
-					 */
-					return "BOOL";
-				}
-				
-				return ((Datatype)typeName).typeStringWithContext(context);
 			}
-			
+
+			String tName = typeName.getName().toString();
+			if (tName.equals("Bool")) {
+				/*
+				 * When we're in a function that points to a Pred it would be better to deal
+				 * with this using the set notation, this requires handling this at a higher
+				 * point, Interestingly the left handed graph automatically generated would make
+				 * detecting this easy (e.g., this could be checked before reversing the graph.
+				 */
+				return "BOOL";
+			}
+
+			return ((Datatype) typeName).typeStringWithContext(context);
 		} else if (typeName instanceof PolyType){
 			return ((PolyType)typeName).baseTypeString();
 		} else {
@@ -336,7 +339,8 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 
 	@Override
 	public BSClass getTypeClass() {
-		if (typeName instanceof BSClass) {
+		GenName tn = getTypeName();
+		if (tn instanceof BSClass) {
 			return (BSClass)typeName;
 		}
 		
@@ -355,7 +359,11 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 
 	@Override
 	public Boolean isBaseType() {
-		return typeName instanceof PolyType || typeName instanceof Datatype;
+		/* typeName is a reference if the variable is use directly then the reference isn't
+		 * resolved, and this may return false when it is in fact true.
+		 */
+		GenName tn = getTypeName();
+		return tn instanceof PolyType || tn instanceof Datatype;
 	}
 	
 	@Override
@@ -375,10 +383,16 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 		if (typeNameMap.containsKey(name))
 			return typeNameMap.get(name);
 		
+		String tn = null;
 		/* Work out which name we're up to. */
-		String typeName = requiredEBTypes.get(typeNameMap.size());
-		typeNameMap.put(name, typeName);
-		return typeName;
+		if (typeName instanceof PolyType) {
+			tn = requiredEBTypes.get(typeNameMap.size());
+			typeNameMap.put(name, tn);
+		} else {
+			tn = typeName.getName();
+		}
+		
+		return tn;
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -256,7 +257,11 @@ public abstract class ClassDeclImpl extends GenNameImpl implements ClassDecl {
 	
 	public Collection<PolyType> getPolyTypeNames() {
 		/* Context is the Polynomial context. */
-		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
+		if (context != null) {
+			return EcoreUtil2.getAllContentsOfType(context, PolyType.class);
+		} else {
+;			return new ArrayList<PolyType>();
+		}
 	}
 
 } //ClassDeclImpl

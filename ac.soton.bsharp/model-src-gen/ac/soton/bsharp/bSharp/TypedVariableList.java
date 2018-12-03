@@ -62,4 +62,7 @@ public interface TypedVariableList extends EObject {
 	ArrayList<TypedVariable> getTypedVariableNames();
 	
 	ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesWithBSharpTypes();
+
+
+	boolean isEmpty();
 } // TypedVariableList

@@ -7,6 +7,8 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eventb.core.ast.extension.IOperator;
+import org.eventb.core.ast.extension.IOperatorProperties;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
@@ -115,22 +117,22 @@ public class CompilationUtil {
 	}
 	
 	public static INewOperatorDefinition createOpWithArgumentsAsPred(TheoryImportCache thyCache,
-			String name, ArrayList<Tuple2<String, String>> args, Boolean asPred) throws Exception {
+			String name, ArrayList<Tuple2<String, String>> args, Notation notation, Boolean asPred) throws Exception {
 		INewOperatorDefinition op = TheoryUtils.createOperator(thyCache.theory, name, false, false, 
-				asPred ? FormulaType.PREDICATE : FormulaType.EXPRESSION, Notation.PREFIX, null, nullMonitor);
+				asPred ? FormulaType.PREDICATE : FormulaType.EXPRESSION, notation, null, nullMonitor);
 		
 		compileTypedVariablesToOperatorArgs(args, op);
 		return op;
 	}
 	
 	public static INewOperatorDefinition createOpWithArguments(TheoryImportCache thyCache,
-			String name, ArrayList<Tuple2<String, String>> args) throws Exception {
-		return createOpWithArgumentsAsPred(thyCache, name, args, false);
+			String name, ArrayList<Tuple2<String, String>> args, IOperatorProperties.Notation notation) throws Exception {
+		return createOpWithArgumentsAsPred(thyCache, name, args, notation, false);
 	}
 	
 	public static INewOperatorDefinition createPredOpWithArguments(TheoryImportCache thyCache,
-			String name, ArrayList<Tuple2<String, String>> args) throws Exception {
-		return createOpWithArgumentsAsPred(thyCache, name, args, true);
+			String name, ArrayList<Tuple2<String, String>> args, IOperatorProperties.Notation notation) throws Exception {
+		return createOpWithArgumentsAsPred(thyCache, name, args, notation, true);
 	}
 	
 	public static String compileExpressionListWithSeperator(EList<Expression> exprs, String sep) throws Exception {

@@ -48,4 +48,6 @@ public interface SuperTypeList extends EObject {
 
 	/* Creates an EventB type string respresenting the type of the supertype. */
 	String supertypeType(ArrayList<Tuple2<String, String>> bsOpPolyTypes);
+
+	boolean isPowerSet();
 } // SuperTypeList

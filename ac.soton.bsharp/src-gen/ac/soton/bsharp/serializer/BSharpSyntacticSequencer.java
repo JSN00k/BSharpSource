@@ -21,14 +21,14 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected BSharpGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Class_SemicolonKeyword_6_q;
+	protected AbstractElementAlias match_Class_SemicolonKeyword_7_q;
 	protected AbstractElementAlias match_FileImport___FullStopKeyword_1_0_AsteriskKeyword_1_1_0__q;
 	protected AbstractElementAlias match_FunctionCall___LeftParenthesisKeyword_1_1_RightParenthesisKeyword_1_4__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (BSharpGrammarAccess) access;
-		match_Class_SemicolonKeyword_6_q = new TokenAlias(false, true, grammarAccess.getClassAccess().getSemicolonKeyword_6());
+		match_Class_SemicolonKeyword_7_q = new TokenAlias(false, true, grammarAccess.getClassAccess().getSemicolonKeyword_7());
 		match_FileImport___FullStopKeyword_1_0_AsteriskKeyword_1_1_0__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getFileImportAccess().getFullStopKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFileImportAccess().getAsteriskKeyword_1_1_0()));
 		match_FunctionCall___LeftParenthesisKeyword_1_1_RightParenthesisKeyword_1_4__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_4()));
 	}
@@ -45,8 +45,8 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Class_SemicolonKeyword_6_q.equals(syntax))
-				emit_Class_SemicolonKeyword_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Class_SemicolonKeyword_7_q.equals(syntax))
+				emit_Class_SemicolonKeyword_7_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FileImport___FullStopKeyword_1_0_AsteriskKeyword_1_1_0__q.equals(syntax))
 				emit_FileImport___FullStopKeyword_1_0_AsteriskKeyword_1_1_0__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FunctionCall___LeftParenthesisKeyword_1_1_RightParenthesisKeyword_1_4__q.equals(syntax))
@@ -60,13 +60,12 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     context=PolyContext (ambiguity) block=BSharpBlock
-	 *     name=ID (ambiguity) block=BSharpBlock
+	 *     instName=InstName ']' (ambiguity) block=BSharpBlock
 	 *     supertypes=SuperTypeList (ambiguity) block=BSharpBlock
 	 *     varList=TypedVariableList ')' (ambiguity) block=BSharpBlock
 	 *     where=Where (ambiguity) block=BSharpBlock
 	 */
-	protected void emit_Class_SemicolonKeyword_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Class_SemicolonKeyword_7_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

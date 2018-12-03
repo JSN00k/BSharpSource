@@ -5,6 +5,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
+import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
@@ -13,8 +14,11 @@ import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.VariableTyping;
 import ac.soton.bsharp.util.BSharpUtil;
 import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
@@ -52,7 +56,20 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     final Function1<EObject, Boolean> _function_2 = (EObject object) -> {
       return Boolean.valueOf((object instanceof ClassDecl));
     };
-    final ArrayList<? extends EObject> elements = EcoreUtilJ.eFilterUpToIncludingWith(rootElement, _function_1, _function_2);
+    ArrayList<? extends EObject> _eFilterUpToWith = EcoreUtilJ.eFilterUpToWith(rootElement, _function_1, _function_2);
+    ArrayList<GenName> elements = ((ArrayList<GenName>) _eFilterUpToWith);
+    final BSClass bsClass = EcoreUtil2.<BSClass>getContainerOfType(context, BSClass.class);
+    if ((bsClass != null)) {
+      elements.add(bsClass.getInstName());
+    }
+    final Extend extend = EcoreUtil2.<Extend>getContainerOfType(context, Extend.class);
+    boolean _notEquals = (!Objects.equal(extend, null));
+    if (_notEquals) {
+      final ClassDecl extendedClass = extend.getExtendedClass();
+      if ((extendedClass instanceof BSClass)) {
+        elements.add(((BSClass) extendedClass).getInstName());
+      }
+    }
     return Scopes.scopeFor(elements, polyScope);
   }
   
@@ -88,6 +105,14 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   public IScope scope_ExpressionVariable(final EObject context, final EReference reference) {
     IScope parent = this.delegateGetScope(context, reference);
     BSClass bppClass = EcoreUtil2.<BSClass>getContainerOfType(context, BSClass.class);
+    if ((bppClass == null)) {
+      Extend extend = EcoreUtil2.<Extend>getContainerOfType(context, Extend.class);
+      ClassDecl _extendedClass = extend.getExtendedClass();
+      if ((_extendedClass instanceof BSClass)) {
+        ClassDecl _extendedClass_1 = extend.getExtendedClass();
+        bppClass = ((BSClass) _extendedClass_1);
+      }
+    }
     ArrayList<TypedVariable> variables = new ArrayList<TypedVariable>();
     if ((bppClass != null)) {
       ArrayList<EObject> _superClasses = BSharpUtil.superClasses(bppClass);
@@ -127,6 +152,17 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
       return Scopes.scopeFor(matches, parent);
     }
     return parent;
+  }
+  
+  public IScope scope_DatatypeConstructor(final MatchCase context, final EReference reference) {
+    final MatchStatement matchStatement = EcoreUtil2.<MatchStatement>getContainerOfType(context, MatchStatement.class);
+    EObject _eContainer = matchStatement.getMatch().eContainer();
+    TypeBuilder _type = ((VariableTyping) _eContainer).getType();
+    final TypeConstructor tConstr = ((TypeConstructor) _type);
+    GenName _typeName = tConstr.getTypeName();
+    final Datatype dType = ((Datatype) _typeName);
+    final List<DatatypeConstructor> elements = EcoreUtil2.<DatatypeConstructor>getAllContentsOfType(dType, DatatypeConstructor.class);
+    return Scopes.scopeFor(elements, IScope.NULLSCOPE);
   }
   
   public IScope getPolyScopeFor(final EObject context, final IScope parent) {

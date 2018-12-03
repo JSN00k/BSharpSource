@@ -67,6 +67,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.LOCAL_IMPORT: return createLocalImport();
 			case BSharpPackage.BODY_ELEMENTS: return createBodyElements();
 			case BSharpPackage.BS_CLASS: return createBSClass();
+			case BSharpPackage.INST_NAME: return createInstName();
 			case BSharpPackage.BSHARP_BLOCK: return createBSharpBlock();
 			case BSharpPackage.GEN_NAME: return createGenName();
 			case BSharpPackage.POLY_CONTEXT: return createPolyContext();
@@ -98,6 +99,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.INSTANCE: return createInstance();
 			case BSharpPackage.INFIX: return createInfix();
 			case BSharpPackage.NAMED_OBJECT: return createNamedObject();
+			case BSharpPackage.TYPE_POWER_SET: return createTypePowerSet();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -467,6 +469,16 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TypePowerSet createTypePowerSet() {
+		TypePowerSetImpl typePowerSet = new TypePowerSetImpl();
+		return typePowerSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GlobalImport createGlobalImport() {
 		GlobalImportImpl globalImport = new GlobalImportImpl();
 		return globalImport;
@@ -510,6 +522,16 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public BSClass createBSClass() {
 		BSClassImpl bsClass = new BSClassImpl();
 		return bsClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstName createInstName() {
+		InstNameImpl instName = new InstNameImpl();
+		return instName;
 	}
 
 	/**

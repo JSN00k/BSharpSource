@@ -101,4 +101,6 @@ public interface Extend extends IVariableProvider, IPolyTypeProvider, IEventBPre
 	 */
 	void setBlock(BSharpBlock value);
 
+	void compile();
+
 } // Extend

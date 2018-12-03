@@ -186,6 +186,16 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.INST_NAME: {
+				InstName instName = (InstName)theEObject;
+				T result = caseInstName(instName);
+				if (result == null) result = caseExpressionVariable(instName);
+				if (result == null) result = caseGenName(instName);
+				if (result == null) result = caseNamedObject(instName);
+				if (result == null) result = caseIVarType(instName);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.BSHARP_BLOCK: {
 				BSharpBlock bSharpBlock = (BSharpBlock)theEObject;
 				T result = caseBSharpBlock(bSharpBlock);
@@ -422,6 +432,13 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.TYPE_POWER_SET: {
+				TypePowerSet typePowerSet = (TypePowerSet)theEObject;
+				T result = caseTypePowerSet(typePowerSet);
+				if (result == null) result = caseTypeBuilder(typePowerSet);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -513,6 +530,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBSClass(BSClass object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inst Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inst Name</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstName(InstName object) {
 		return null;
 	}
 
@@ -1083,6 +1115,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypeBuilder(TypeBuilder object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Power Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Power Set</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypePowerSet(TypePowerSet object) {
 		return null;
 	}
 

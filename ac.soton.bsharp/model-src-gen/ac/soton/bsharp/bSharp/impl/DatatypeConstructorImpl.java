@@ -15,6 +15,7 @@ import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
@@ -346,8 +347,20 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 
 	@Override
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
-		// TODO Auto-generated method stub
-		return null;
+		String result = name;
+		EList<Expression> args = fc.getArguments();
+		if (args != null && !args.isEmpty()) {
+			result += "(";
+			try {
+				result += CompilationUtil.compileExpressionListWithSeperator(args, ", ");
+			} catch (Exception e) {
+				System.err.println("Failed to compile args for match statement with error: " + e.getMessage());
+			}
+			
+			result += ")";
+		}
+		
+		return result;
 	}
 
 	@Override

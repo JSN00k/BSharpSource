@@ -22,10 +22,16 @@ import ac.soton.bsharp.bSharp.ClassVarDecl
 import ac.soton.bsharp.bSharp.PolyType
 import ac.soton.bsharp.bSharp.BSClass
 import ac.soton.bsharp.bSharp.FunctionDecl
+import java.lang.reflect.Array
+import ac.soton.bsharp.bSharp.GenName
+import ac.soton.bsharp.bSharp.Extend
+import ac.soton.bsharp.bSharp.TypedVariableList
+import ac.soton.bsharp.bSharp.VariableTyping
+import ac.soton.bsharp.bSharp.TypeConstructor
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
-	def IScope scope_GenName(EObject context, EReference reference) {
+	def IScope scope_GenName(EObject context, EReference reference) {		
 		var parent = delegateGetScope(context, reference)
 		/* Gen_Name is used when we know that the type found is either a Type or a 
 		 * Type Variable. It is necessary to find any polymorphic types, or any type 
@@ -43,8 +49,20 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 val typeContainerFinal = typeContainer
 		 val rootElement = EcoreUtil2.getRootContainer(context)
 		 
-		 val elements = EcoreUtilJ.eFilterUpToIncludingWith(rootElement, [object | object == typeContainerFinal], 
-			[object | object instanceof ClassDecl])
+		 var ArrayList<GenName> elements = EcoreUtilJ.eFilterUpToWith(rootElement, [object | object == typeContainerFinal], 
+			[object | object instanceof ClassDecl]) as ArrayList<GenName>
+			
+		val bsClass = EcoreUtil2.getContainerOfType(context, BSClass)
+		if (bsClass !== null) {
+			elements.add(bsClass.instName)
+		}
+		
+		val extend = EcoreUtil2.getContainerOfType(context, Extend)
+		if (extend != null) {
+			val extendedClass = extend.extendedClass
+			if (extendedClass instanceof BSClass)
+				elements.add((extendedClass as BSClass).instName)
+		}
 
 		return Scopes.scopeFor(elements, polyScope)
 	}
@@ -98,33 +116,41 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 */
 		 
 		var parent = delegateGetScope(context, reference)
-		
+
 		var bppClass = EcoreUtil2.getContainerOfType(context, BSClass)
-		 
-		var ArrayList<TypedVariable> variables = new ArrayList
-		 
-		 if (bppClass !== null) {
-		 	for (sc : BSharpUtil.superClasses(bppClass)) {
-		 		if (sc instanceof BSClass) {
-		 			val superClass = sc as BSClass	
-		 			if (superClass.getVarList !== null)	
-		 				variables += EcoreUtil2.getAllContentsOfType(superClass.getVarList, TypedVariable)
-		 		}
-		 	}
-		 	
-		 	parent = Scopes.scopeFor(variables, parent)
-		 }
 		
+		if (bppClass === null) {
+			var extend = EcoreUtil2.getContainerOfType(context, Extend)
+			
+			if (extend.extendedClass instanceof BSClass)
+				bppClass = extend.extendedClass as BSClass
+		}
+
+		var ArrayList<TypedVariable> variables = new ArrayList
+
+		if (bppClass !== null) {
+			for (sc : BSharpUtil.superClasses(bppClass)) {
+				if (sc instanceof BSClass) {
+					val superClass = sc as BSClass
+					if (superClass.getVarList !== null)
+						variables += EcoreUtil2.getAllContentsOfType(superClass.getVarList, TypedVariable)
+				}
+			}
+
+			parent = Scopes.scopeFor(variables, parent)
+		}
+
 		val rootObj = EcoreUtil2.getRootContainer(context)
 		val currentClass = EcoreUtil2.getContainerOfType(context, ClassDecl)
-		
+
 		/* FunctionName can be any function within the current body, or any body above. */
-		var functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, 
-			[object | object == currentClass], [object | object instanceof FunctionDecl])
-		
+		var functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object|object == currentClass], [ object |
+			object instanceof FunctionDecl
+		])
+
 		var scope = getVariableScopeFor(context, parent)
 		scope = Scopes.scopeFor(functionNames, scope)
-		
+
 		return scope;
 	}
 	
@@ -140,6 +166,16 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		}
 		
 		return parent
+	}
+	
+	def IScope scope_DatatypeConstructor(MatchCase context, EReference reference) {
+		val matchStatement = EcoreUtil2.getContainerOfType(context, MatchStatement)
+		val tConstr = ((matchStatement.match.eContainer as VariableTyping).type as TypeConstructor)
+		val dType = (tConstr.typeName as Datatype)
+		
+		val elements = EcoreUtil2.getAllContentsOfType(dType, DatatypeConstructor)
+		
+		return Scopes.scopeFor(elements, IScope.NULLSCOPE)
 	}
 
 	def IScope getPolyScopeFor(EObject context, IScope parent) {

@@ -236,4 +236,11 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 		
 		return result;
 	}
+
+	@Override
+	public boolean isEmpty() {
+		EList<PolyType> contents = getPolyTypes();
+		return contents == null || contents.isEmpty();
+	}
+	
 } //PolyContextImpl

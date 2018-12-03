@@ -51,7 +51,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSClass/supertypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSClass/varList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSClass/where"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSClass/instName"/>
     </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//InstName"/>
     <genClasses ecoreClass="BSharp.ecore#//BSharpBlock">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSharpBlock/functions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSharpBlock/theorems"/>
@@ -169,5 +171,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//NamedObject/name"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BSharp.ecore#//TypeBuilder"/>
+    <genClasses ecoreClass="BSharp.ecore#//TypePowerSet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypePowerSet/child"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

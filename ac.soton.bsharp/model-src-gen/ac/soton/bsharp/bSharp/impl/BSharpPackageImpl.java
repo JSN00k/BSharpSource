@@ -30,6 +30,7 @@ import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
 import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.Infix;
+import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.MatchCase;
@@ -51,6 +52,7 @@ import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.TypePowerSet;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
@@ -110,6 +112,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass bsClassEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass instNameEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -382,6 +391,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass typePowerSetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass globalImportEClass = null;
 
 	/**
@@ -635,6 +651,24 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 */
 	public EReference getBSClass_Where() {
 		return (EReference)bsClassEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBSClass_InstName() {
+		return (EReference)bsClassEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInstName() {
+		return instNameEClass;
 	}
 
 	/**
@@ -1497,6 +1531,24 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTypePowerSet() {
+		return typePowerSetEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTypePowerSet_Child() {
+		return (EReference)typePowerSetEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGlobalImport() {
 		return globalImportEClass;
 	}
@@ -1680,6 +1732,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(bsClassEClass, BS_CLASS__SUPERTYPES);
 		createEReference(bsClassEClass, BS_CLASS__VAR_LIST);
 		createEReference(bsClassEClass, BS_CLASS__WHERE);
+		createEReference(bsClassEClass, BS_CLASS__INST_NAME);
+
+		instNameEClass = createEClass(INST_NAME);
 
 		bSharpBlockEClass = createEClass(BSHARP_BLOCK);
 		createEReference(bSharpBlockEClass, BSHARP_BLOCK__FUNCTIONS);
@@ -1801,6 +1856,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEAttribute(namedObjectEClass, NAMED_OBJECT__NAME);
 
 		typeBuilderEClass = createEClass(TYPE_BUILDER);
+
+		typePowerSetEClass = createEClass(TYPE_POWER_SET);
+		createEReference(typePowerSetEClass, TYPE_POWER_SET__CHILD);
 	}
 
 	/**
@@ -1842,6 +1900,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		classDeclEClass.getESuperTypes().add(this.getTopLevelInstance());
 		classDeclEClass.getESuperTypes().add(this.getIEventBPrefixProvider());
 		bsClassEClass.getESuperTypes().add(this.getClassDecl());
+		instNameEClass.getESuperTypes().add(this.getExpressionVariable());
+		instNameEClass.getESuperTypes().add(this.getGenName());
 		genNameEClass.getESuperTypes().add(this.getNamedObject());
 		polyTypeEClass.getESuperTypes().add(this.getGenName());
 		typeConstructorEClass.getESuperTypes().add(this.getTypeBuilder());
@@ -1869,6 +1929,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		expressionVariableEClass.getESuperTypes().add(this.getNamedObject());
 		expressionVariableEClass.getESuperTypes().add(this.getIVarType());
 		infixEClass.getESuperTypes().add(this.getExpression());
+		typePowerSetEClass.getESuperTypes().add(this.getTypeBuilder());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(iEventBPrefixProviderEClass, IEventBPrefixProvider.class, "IEventBPrefixProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1923,6 +1984,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getBSClass_Supertypes(), this.getSuperTypeList(), null, "supertypes", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBSClass_VarList(), this.getTypedVariableList(), null, "varList", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBSClass_Where(), this.getWhere(), null, "where", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBSClass_InstName(), this.getInstName(), null, "instName", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(instNameEClass, InstName.class, "InstName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(bSharpBlockEClass, BSharpBlock.class, "BSharpBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBSharpBlock_Functions(), this.getFunctionDecl(), null, "functions", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2044,6 +2108,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEAttribute(getNamedObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeBuilderEClass, TypeBuilder.class, "TypeBuilder", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(typePowerSetEClass, TypePowerSet.class, "TypePowerSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypePowerSet_Child(), this.getTypeBuilder(), null, "child", null, 0, 1, TypePowerSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

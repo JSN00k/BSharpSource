@@ -162,4 +162,10 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
 		return false;
 	}
 
+	@Override
+	public boolean isEmpty() {
+		EList<TypeBuilder> tb = getTypeName();
+		return tb == null || tb.isEmpty();
+	}
+
 } //TypeDeclContextImpl

@@ -20,6 +20,7 @@ import ac.soton.bsharp.theory.util.TheoryImportCache;
  *   <li>{@link ac.soton.bsharp.bSharp.BSClass#getSupertypes <em>Supertypes</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.BSClass#getVarList <em>Var List</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.BSClass#getWhere <em>Where</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.BSClass#getInstName <em>Inst Name</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSClass()
@@ -105,19 +106,41 @@ public interface BSClass extends ClassDecl {
 	 */
 	void setWhere(Where value);
 
+	/**
+	 * Returns the value of the '<em><b>Inst Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Inst Name</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inst Name</em>' containment reference.
+	 * @see #setInstName(InstName)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSClass_InstName()
+	 * @model containment="true"
+	 * @generated
+	 */
+	InstName getInstName();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.BSClass#getInstName <em>Inst Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Inst Name</em>' containment reference.
+	 * @see #getInstName()
+	 * @generated
+	 */
+	void setInstName(InstName value);
+
 	Integer eventBRequiredPolyTypes();
 	 
-	 String superName();
+	String instanceName();
 
 	ArrayList<String> getterOperatorSuffixes();
 
 	ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass() throws Exception;
 
-	String eventBPolymorphicTypeConstructorName();
-
 	Boolean isTypeClass();
-
-	String eventBTypeConstructorFromTypes();
 
 	/* In EventB subtypes are represented by mapping the current type with the current types
 	 * with the types for the additional variables, for functions that require the supertype
