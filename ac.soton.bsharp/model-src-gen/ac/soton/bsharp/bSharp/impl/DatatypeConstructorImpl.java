@@ -3,8 +3,10 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
@@ -12,6 +14,7 @@ import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
@@ -395,6 +398,33 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 				
 			}
 		}
+	}
+
+	
+	@Override
+	public String opNameForMatchStatement(MatchStatementImpl match) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TypeBuilder calculateReturnType() {
+		Datatype container = (Datatype)this.eContainer();
+		TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
+		tc.setTypeName(container);
+		
+		return tc;
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
+		return decons.getCompiledVariablesAndTypes();
 	}
 
 } //DatatypeConstructorImpl

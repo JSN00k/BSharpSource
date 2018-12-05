@@ -58,7 +58,7 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		}
 		
 		val extend = EcoreUtil2.getContainerOfType(context, Extend)
-		if (extend != null) {
+		if (extend !== null) {
 			val extendedClass = extend.extendedClass
 			if (extendedClass instanceof BSClass)
 				elements.add((extendedClass as BSClass).instName)
@@ -168,12 +168,16 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		return parent
 	}
 	
-	def IScope scope_DatatypeConstructor(MatchCase context, EReference reference) {
+	def IScope scope_DatatypeConstructor(MatchCase context, EReference reference) {		
 		val matchStatement = EcoreUtil2.getContainerOfType(context, MatchStatement)
-		val tConstr = ((matchStatement.match.eContainer as VariableTyping).type as TypeConstructor)
-		val dType = (tConstr.typeName as Datatype)
+		val wrappedDType = matchStatement.match.calculateType
 		
-		val elements = EcoreUtil2.getAllContentsOfType(dType, DatatypeConstructor)
+		if (!wrappedDType.isDatatype) {
+			return IScope.NULLSCOPE
+		}
+		
+		val dType = wrappedDType.getDatatype;
+		val elements = dType.getConstructors()
 		
 		return Scopes.scopeFor(elements, IScope.NULLSCOPE)
 	}

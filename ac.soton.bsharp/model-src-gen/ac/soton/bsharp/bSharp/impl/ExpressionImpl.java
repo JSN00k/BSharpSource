@@ -172,5 +172,10 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public boolean isInstanceVariable() {
+		return false;
+	}
 
 } //ExpressionImpl

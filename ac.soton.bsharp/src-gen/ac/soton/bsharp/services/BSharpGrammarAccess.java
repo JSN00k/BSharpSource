@@ -161,12 +161,13 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPolyTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cInstNameParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//GenName:
-		//	PolyType | Type;
+		//	PolyType | Type | InstName;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PolyType | Type
+		//PolyType | Type | InstName
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//PolyType
@@ -174,6 +175,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Type
 		public RuleCall getTypeParserRuleCall_1() { return cTypeParserRuleCall_1; }
+		
+		//InstName
+		public RuleCall getInstNameParserRuleCall_2() { return cInstNameParserRuleCall_2; }
 	}
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.QualifiedName");
@@ -1234,8 +1238,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMatchKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cMatchAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cMatchTypedVariableCrossReference_1_0 = (CrossReference)cMatchAssignment_1.eContents().get(0);
-		private final RuleCall cMatchTypedVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cMatchTypedVariableCrossReference_1_0.eContents().get(1);
+		private final RuleCall cMatchRootExpressionParserRuleCall_1_0 = (RuleCall)cMatchAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cInductCaseAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cInductCaseMatchCaseParserRuleCall_3_0 = (RuleCall)cInductCaseAssignment_3.eContents().get(0);
@@ -1244,24 +1247,21 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//MatchStatement:
-		//	'match' match=[TypedVariable] '{'
+		//	'match' match=RootExpression '{'
 		//	inductCase+=MatchCase inductCase+=MatchCase* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'match' match=[TypedVariable] '{' inductCase+=MatchCase inductCase+=MatchCase* '}'
+		//'match' match=RootExpression '{' inductCase+=MatchCase inductCase+=MatchCase* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'match'
 		public Keyword getMatchKeyword_0() { return cMatchKeyword_0; }
 		
-		//match=[TypedVariable]
+		//match=RootExpression
 		public Assignment getMatchAssignment_1() { return cMatchAssignment_1; }
 		
-		//[TypedVariable]
-		public CrossReference getMatchTypedVariableCrossReference_1_0() { return cMatchTypedVariableCrossReference_1_0; }
-		
-		//ID
-		public RuleCall getMatchTypedVariableIDTerminalRuleCall_1_0_1() { return cMatchTypedVariableIDTerminalRuleCall_1_0_1; }
+		//RootExpression
+		public RuleCall getMatchRootExpressionParserRuleCall_1_0() { return cMatchRootExpressionParserRuleCall_1_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -2285,7 +2285,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//GenName:
-	//	PolyType | Type;
+	//	PolyType | Type | InstName;
 	public GenNameElements getGenNameAccess() {
 		return pGenName;
 	}
@@ -2577,7 +2577,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MatchStatement:
-	//	'match' match=[TypedVariable] '{'
+	//	'match' match=RootExpression '{'
 	//	inductCase+=MatchCase inductCase+=MatchCase* '}';
 	public MatchStatementElements getMatchStatementAccess() {
 		return pMatchStatement;

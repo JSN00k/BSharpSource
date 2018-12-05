@@ -81,6 +81,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createIPolyTypeProviderAdapter();
 			}
 			@Override
+			public Adapter caseIClassDeclExtend(IClassDeclExtend object) {
+				return createIClassDeclExtendAdapter();
+			}
+			@Override
 			public Adapter caseITheoryImportCacheProvider(ITheoryImportCacheProvider object) {
 				return createITheoryImportCacheProviderAdapter();
 			}
@@ -97,84 +101,32 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTopLevelInstanceAdapter();
 			}
 			@Override
-			public Adapter caseTopLevel(TopLevel object) {
-				return createTopLevelAdapter();
-			}
-			@Override
-			public Adapter caseTopLevelFile(TopLevelFile object) {
-				return createTopLevelFileAdapter();
-			}
-			@Override
-			public Adapter caseTopLevelImport(TopLevelImport object) {
-				return createTopLevelImportAdapter();
-			}
-			@Override
-			public Adapter caseGlobalImport(GlobalImport object) {
-				return createGlobalImportAdapter();
-			}
-			@Override
-			public Adapter caseFileImport(FileImport object) {
-				return createFileImportAdapter();
-			}
-			@Override
-			public Adapter caseLocalImport(LocalImport object) {
-				return createLocalImportAdapter();
-			}
-			@Override
 			public Adapter caseBodyElements(BodyElements object) {
 				return createBodyElementsAdapter();
 			}
 			@Override
-			public Adapter caseClassDecl(ClassDecl object) {
-				return createClassDeclAdapter();
+			public Adapter caseBracket(Bracket object) {
+				return createBracketAdapter();
 			}
 			@Override
 			public Adapter caseBSClass(BSClass object) {
 				return createBSClassAdapter();
 			}
 			@Override
-			public Adapter caseInstName(InstName object) {
-				return createInstNameAdapter();
-			}
-			@Override
 			public Adapter caseBSharpBlock(BSharpBlock object) {
 				return createBSharpBlockAdapter();
 			}
 			@Override
-			public Adapter caseGenName(GenName object) {
-				return createGenNameAdapter();
+			public Adapter caseClassDecl(ClassDecl object) {
+				return createClassDeclAdapter();
 			}
 			@Override
-			public Adapter casePolyContext(PolyContext object) {
-				return createPolyContextAdapter();
-			}
-			@Override
-			public Adapter casePolyType(PolyType object) {
-				return createPolyTypeAdapter();
-			}
-			@Override
-			public Adapter caseSuperTypeList(SuperTypeList object) {
-				return createSuperTypeListAdapter();
-			}
-			@Override
-			public Adapter caseTypeConstructor(TypeConstructor object) {
-				return createTypeConstructorAdapter();
-			}
-			@Override
-			public Adapter caseTypeConstrBracket(TypeConstrBracket object) {
-				return createTypeConstrBracketAdapter();
+			public Adapter caseClassVarDecl(ClassVarDecl object) {
+				return createClassVarDeclAdapter();
 			}
 			@Override
 			public Adapter caseConstructedType(ConstructedType object) {
 				return createConstructedTypeAdapter();
-			}
-			@Override
-			public Adapter caseTypeDeclContext(TypeDeclContext object) {
-				return createTypeDeclContextAdapter();
-			}
-			@Override
-			public Adapter caseWhere(Where object) {
-				return createWhereAdapter();
 			}
 			@Override
 			public Adapter caseDatatype(Datatype object) {
@@ -189,16 +141,80 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createExtendAdapter();
 			}
 			@Override
+			public Adapter caseExpression(Expression object) {
+				return createExpressionAdapter();
+			}
+			@Override
+			public Adapter caseExpressionVariable(ExpressionVariable object) {
+				return createExpressionVariableAdapter();
+			}
+			@Override
+			public Adapter caseFileImport(FileImport object) {
+				return createFileImportAdapter();
+			}
+			@Override
+			public Adapter caseFunctionCall(FunctionCall object) {
+				return createFunctionCallAdapter();
+			}
+			@Override
 			public Adapter caseFunctionDecl(FunctionDecl object) {
 				return createFunctionDeclAdapter();
+			}
+			@Override
+			public Adapter caseGenName(GenName object) {
+				return createGenNameAdapter();
+			}
+			@Override
+			public Adapter caseGlobalImport(GlobalImport object) {
+				return createGlobalImportAdapter();
+			}
+			@Override
+			public Adapter caseInfix(Infix object) {
+				return createInfixAdapter();
+			}
+			@Override
+			public Adapter caseInstName(InstName object) {
+				return createInstNameAdapter();
+			}
+			@Override
+			public Adapter caseInstance(Instance object) {
+				return createInstanceAdapter();
+			}
+			@Override
+			public Adapter caseLocalImport(LocalImport object) {
+				return createLocalImportAdapter();
+			}
+			@Override
+			public Adapter caseMatchCase(MatchCase object) {
+				return createMatchCaseAdapter();
 			}
 			@Override
 			public Adapter caseMatchStatement(MatchStatement object) {
 				return createMatchStatementAdapter();
 			}
 			@Override
-			public Adapter caseMatchCase(MatchCase object) {
-				return createMatchCaseAdapter();
+			public Adapter caseNamedObject(NamedObject object) {
+				return createNamedObjectAdapter();
+			}
+			@Override
+			public Adapter casePolyContext(PolyContext object) {
+				return createPolyContextAdapter();
+			}
+			@Override
+			public Adapter casePolyType(PolyType object) {
+				return createPolyTypeAdapter();
+			}
+			@Override
+			public Adapter casePrefix(Prefix object) {
+				return createPrefixAdapter();
+			}
+			@Override
+			public Adapter caseQuantLambda(QuantLambda object) {
+				return createQuantLambdaAdapter();
+			}
+			@Override
+			public Adapter caseSuperTypeList(SuperTypeList object) {
+				return createSuperTypeListAdapter();
 			}
 			@Override
 			public Adapter caseTheoremBody(TheoremBody object) {
@@ -209,6 +225,42 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createTheoremDeclAdapter();
 			}
 			@Override
+			public Adapter caseTopLevelFile(TopLevelFile object) {
+				return createTopLevelFileAdapter();
+			}
+			@Override
+			public Adapter caseTopLevel(TopLevel object) {
+				return createTopLevelAdapter();
+			}
+			@Override
+			public Adapter caseTopLevelImport(TopLevelImport object) {
+				return createTopLevelImportAdapter();
+			}
+			@Override
+			public Adapter caseTypeBuilder(TypeBuilder object) {
+				return createTypeBuilderAdapter();
+			}
+			@Override
+			public Adapter caseTypeConstructor(TypeConstructor object) {
+				return createTypeConstructorAdapter();
+			}
+			@Override
+			public Adapter caseTypeConstrBracket(TypeConstrBracket object) {
+				return createTypeConstrBracketAdapter();
+			}
+			@Override
+			public Adapter caseTypeDeclContext(TypeDeclContext object) {
+				return createTypeDeclContextAdapter();
+			}
+			@Override
+			public Adapter caseTypePowerSet(TypePowerSet object) {
+				return createTypePowerSetAdapter();
+			}
+			@Override
+			public Adapter caseTypedVariable(TypedVariable object) {
+				return createTypedVariableAdapter();
+			}
+			@Override
 			public Adapter caseTypedVariableList(TypedVariableList object) {
 				return createTypedVariableListAdapter();
 			}
@@ -217,56 +269,8 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createVariableTypingAdapter();
 			}
 			@Override
-			public Adapter caseTypedVariable(TypedVariable object) {
-				return createTypedVariableAdapter();
-			}
-			@Override
-			public Adapter caseQuantLambda(QuantLambda object) {
-				return createQuantLambdaAdapter();
-			}
-			@Override
-			public Adapter caseExpression(Expression object) {
-				return createExpressionAdapter();
-			}
-			@Override
-			public Adapter caseFunctionCall(FunctionCall object) {
-				return createFunctionCallAdapter();
-			}
-			@Override
-			public Adapter caseClassVarDecl(ClassVarDecl object) {
-				return createClassVarDeclAdapter();
-			}
-			@Override
-			public Adapter casePrefix(Prefix object) {
-				return createPrefixAdapter();
-			}
-			@Override
-			public Adapter caseBracket(Bracket object) {
-				return createBracketAdapter();
-			}
-			@Override
-			public Adapter caseExpressionVariable(ExpressionVariable object) {
-				return createExpressionVariableAdapter();
-			}
-			@Override
-			public Adapter caseInstance(Instance object) {
-				return createInstanceAdapter();
-			}
-			@Override
-			public Adapter caseInfix(Infix object) {
-				return createInfixAdapter();
-			}
-			@Override
-			public Adapter caseNamedObject(NamedObject object) {
-				return createNamedObjectAdapter();
-			}
-			@Override
-			public Adapter caseTypeBuilder(TypeBuilder object) {
-				return createTypeBuilderAdapter();
-			}
-			@Override
-			public Adapter caseTypePowerSet(TypePowerSet object) {
-				return createTypePowerSetAdapter();
+			public Adapter caseWhere(Where object) {
+				return createWhereAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -831,6 +835,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIPolyTypeProviderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IClassDeclExtend <em>IClass Decl Extend</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.IClassDeclExtend
+	 * @generated
+	 */
+	public Adapter createIClassDeclExtendAdapter() {
 		return null;
 	}
 

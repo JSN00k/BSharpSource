@@ -6,8 +6,10 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
@@ -18,6 +20,8 @@ import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.QuantLambda;
+import ac.soton.bsharp.bSharp.TopLevelInstance;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
@@ -42,6 +46,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.PolymorphicDispatcher.WarningErrorHandler;
 import org.eventb.core.ast.extension.IOperatorProperties;
@@ -65,6 +71,7 @@ import org.eventb.theory.core.IRecursiveOperatorDefinition;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getInfix <em>Infix</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getGeneratedLambdas <em>Generated Lambdas</em>}</li>
  * </ul>
  *
  * @generated
@@ -169,6 +176,16 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * @ordered
 	 */
 	protected Expression expr;
+
+	/**
+	 * The cached value of the '{@link #getGeneratedLambdas() <em>Generated Lambdas</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGeneratedLambdas()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Expression> generatedLambdas;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -408,6 +425,18 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Expression> getGeneratedLambdas() {
+		if (generatedLambdas == null) {
+			generatedLambdas = new EObjectContainmentEList<Expression>(Expression.class, this, BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS);
+		}
+		return generatedLambdas;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getName() {
 		return name;
 	}
@@ -440,6 +469,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return basicSetReturnType(null, msgs);
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				return basicSetExpr(null, msgs);
+			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+				return ((InternalEList<?>)getGeneratedLambdas()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -466,6 +497,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return getPrecedence();
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				return getExpr();
+			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+				return getGeneratedLambdas();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -475,6 +508,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -498,6 +532,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return;
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				setExpr((Expression)newValue);
+				return;
+			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+				getGeneratedLambdas().clear();
+				getGeneratedLambdas().addAll((Collection<? extends Expression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -532,6 +570,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				setExpr((Expression)null);
 				return;
+			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+				getGeneratedLambdas().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -558,6 +599,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return precedence != PRECEDENCE_EDEFAULT;
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				return expr != null;
+			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+				return generatedLambdas != null && !generatedLambdas.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -705,7 +748,43 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		System.err.print("In FunctionDeclImpl callWithTypeContext(TypeDeclContext context) is unimplemented\n");
 		return null;
 	}
+	
+	protected Integer compiledMatchStatements = 0;
 
+	ArrayList<Tuple2<String, String>> compiledPolyContext() {
+		boolean hasInferredContext = expr.hasInferredContext();
+		if (context == null && !hasInferredContext) {
+			return null;
+		}
+		
+		ArrayList<Tuple2<String, String>> compiledContext = null;
+		
+		if (hasInferredContext) {
+			TopLevelInstance containerClass = EcoreUtil2.getContainerOfType(this, TopLevelInstance.class);
+			ClassDecl classDecl = null;
+			if (containerClass instanceof Extend) {
+				classDecl = ((Extend)containerClass).getExtendedClass();
+			} else {
+				classDecl = (ClassDecl)containerClass;
+			}
+			
+			compiledContext = classDecl.typedConstructionArgs();
+		}
+		
+		if (context == null) {
+			return compiledContext;
+		} else {
+			TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+			
+			if (compiledContext != null) {
+				compiledContext.addAll(context.namesAndTypesForPolyContext(thyCache));
+				return compiledContext;
+			} else {
+				return context.namesAndTypesForPolyContext(thyCache);
+			}
+		}
+	}
+	
 	@Override
 	public void compile() {
 		/* There are functions with polymorphic contexts, functions with inferred polymorphic contexts,
@@ -714,23 +793,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * work by having an eventB operator that takes the polymorphic context as the argument, and 
 		 * generates a lambda which is then called with the function arguments.
 		 */
-		ArrayList<Tuple2<String, String>> polyContext = null;
-		
-		if (expr.hasInferredContext()) {
-			ClassDecl containerClass = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
-			polyContext = containerClass.typedConstructionArgs();
-		}
-		
-		if (context != null) {
-			TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-			ArrayList<Tuple2<String, String>> contextPolyContext = context.namesAndTypesForPolyContext(thyCache);
-			
-			if (polyContext == null ) {
-				polyContext = contextPolyContext;
-			} else {
-				polyContext.addAll(contextPolyContext);
-			}
-		}
+		compiledMatchStatements = 0;
+		ArrayList<Tuple2<String, String>> polyContext = compiledPolyContext();
 		
 		if (polyContext != null ) {
 			compileWithPolyContext(polyContext);
@@ -746,6 +810,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		lambda.setQType("λ");
 		lambda.setVarList(varList);
 		lambda.setExpr(expr);
+		
+		getGeneratedLambdas().add(lambda);
 		
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		INewOperatorDefinition op;
@@ -948,6 +1014,63 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	public boolean isMethod() {
 		expr = expr.reorderExpresionTree();
 		return expr.referencesContainingType();
+	}
+
+	@Override
+	public String opNameForMatchStatement(MatchStatementImpl match) {
+		return eventBExprName() + "_M" + (compiledMatchStatements++).toString();
+	}
+
+	@Override
+	public TypeBuilder calculateReturnType() {
+		return returnType.reorderTypeTree();
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		/* Cross product of the argsType -> returntype
+		 */
+		if (varList == null || varList.isEmpty()) {
+			return returnType;
+		}
+		
+		Collection<TypeBuilder> types = varList.getTypes();
+		
+		TypeBuilder left = null;
+		for (TypeBuilder type : types) {
+			if (left == null ) {
+				left = type;
+			} else {
+				ConstructedType ct = BSharpFactory.eINSTANCE.createConstructedType();
+				ct.setConstructor("×");
+				ct.setLeft(left);
+				ct.setRight(type);
+				left = ct;
+			}
+		}
+		
+		ConstructedType ct = BSharpFactory.eINSTANCE.createConstructedType();
+		ct.setConstructor("→");
+		ct.setLeft(left);
+		ct.setRight(returnType);
+		return ct;
+	}
+
+	@Override
+	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
+		ArrayList<Tuple2<String, String>> pContext = compiledPolyContext();
+		
+		if (pContext != null) {
+			if (varList != null)
+				pContext.addAll(varList.getCompiledVariablesAndTypes());
+			
+			return pContext;
+		} else {
+			if (varList != null)
+				return varList.getCompiledVariablesAndTypes();
+			
+			return null;
+		}
 	}
 
 } //FunctionDeclImpl

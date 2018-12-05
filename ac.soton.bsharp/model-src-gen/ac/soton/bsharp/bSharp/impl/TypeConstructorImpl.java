@@ -263,14 +263,15 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	
 	@Override
 	public String buildEventBType() {
-		if (typeName instanceof InstName) {
+		GenName tn = getTypeName();
+		if (tn instanceof InstName) {
 			FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
 			TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
 			BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
 			if (func != null) {
 				// TODO: Implement me
 			} else if (theorem != null) {
-				return theorem.baseTypeForBSClass((BSClass)typeName.eContainer());
+				return theorem.baseTypeForBSClass((BSClass)tn.eContainer());
 			} else if (bsClass != null) {
 				return bsClass.baseTypeFromBSContext();
 			}
@@ -278,7 +279,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 			return "";
 		}
 		
-		if (typeName instanceof ClassDecl) {
+		if (tn instanceof ClassDecl) {
 			if (context != null) {
 				/*
 				 * In type class declarations it is possible for a variable to be a : Monoid a
@@ -302,13 +303,13 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 					 * As we're not in a function or theorem, we can check if we're in a type class
 					 * without us bing further into the tree.
 					 */
-					return ((ClassDecl)typeName).constructWithTypeContext(context, bsClass);
+					return ((ClassDecl)tn).constructWithTypeContext(context, bsClass);
 				}
 				
 				return "";
 			}
 
-			String tName = typeName.getName().toString();
+			String tName = tn.getName();
 			if (tName.equals("Bool")) {
 				/*
 				 * When we're in a function that points to a Pred it would be better to deal
@@ -320,7 +321,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 			}
 
 			return ((Datatype) typeName).typeStringWithContext(context);
-		} else if (typeName instanceof PolyType){
+		} else if (tn instanceof PolyType){
 			return ((PolyType)typeName).baseTypeString();
 		} else {
 			System.out.print("Unimplemeneted in TypeConstrutorImpl unexpected case.");
@@ -411,6 +412,19 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 		}
 		
 		return false;
+	}
+	
+	@Override
+	public boolean isDatatype() {
+		return typeName instanceof Datatype;
+	}
+	
+	@Override
+	public Datatype getDatatype() {
+		if (!isDatatype())
+			return null;
+		
+		return (Datatype)getTypeName();
 	}
 
 } //TypeConstructorImpl

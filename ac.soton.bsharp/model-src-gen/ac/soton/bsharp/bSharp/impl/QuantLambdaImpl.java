@@ -4,15 +4,19 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.QuantLambda;
+import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
@@ -585,6 +589,42 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		 * to deconstruct the current type class. This requires knowing what the inferred type class is
 		 * called. This is generated here. */
 		return typedVariable.getName();
+	}
+
+	@Override
+	public String opNameForMatchStatement(MatchStatementImpl match) {
+		/* pass on up (the quant lambda is not in charge of nameing things). */
+		IVariableProvider varProv = EcoreUtil2.getContainerOfType(this.eContainer(), IVariableProvider.class);
+		return varProv.opNameForMatchStatement(match);
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		TypeConstructor tc =  BSharpFactory.eINSTANCE.createTypeConstructor();
+		Datatype bool = BSharpFactory.eINSTANCE.createDatatype();
+		bool.setName("Bool");
+		tc.setTypeName(bool);
+		
+		return tc;
+	}
+
+	@Override
+	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
+		IVariableProvider prov = EcoreUtil2.getContainerOfType(this.eContainer(), IVariableProvider.class);
+		
+		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
+		Collection<? extends Tuple2<String, String>> superScopeTypes = prov.inScopeTypedVariables();
+		
+		if (superScopeTypes != null)
+			result.addAll(superScopeTypes);
+		
+		result.addAll(varList.getCompiledVariablesAndTypes());
+		
+		if (result.isEmpty()) {
+			return null;
+		}
+		
+		return result;
 	}
 
 } //QuantLambdaImpl

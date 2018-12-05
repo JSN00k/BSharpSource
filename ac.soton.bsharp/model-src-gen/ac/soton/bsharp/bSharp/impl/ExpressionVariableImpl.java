@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
@@ -21,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @generated
  */
-public class ExpressionVariableImpl extends NamedObjectImpl implements ExpressionVariable {
+public abstract class ExpressionVariableImpl extends NamedObjectImpl implements ExpressionVariable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,5 +72,6 @@ public class ExpressionVariableImpl extends NamedObjectImpl implements Expressio
 		
 		return result;
 	}
+
 
 } //ExpressionVariableImpl

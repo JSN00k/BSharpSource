@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.ArrayList;
@@ -344,6 +345,19 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 		TheoryUtils.createRecursiveCase(opDef, matchString(),
 				expr.compileToEventBString(false), null, monitor);
 		
+	}
+
+	@Override
+	public String opNameForMatchStatement(MatchStatementImpl match) {
+		/* Pass it on up to the function/type class. */
+		IVariableProvider varProv = EcoreUtil2.getContainerOfType(this, IVariableProvider.class);
+		return varProv.opNameForMatchStatement(match);
+	}
+
+	@Override
+	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
+		IVariableProvider varProv = EcoreUtil2.getContainerOfType(this, IVariableProvider.class);
+		return varProv.inScopeTypedVariables();
 	}
 
 } //MatchCaseImpl

@@ -77,6 +77,10 @@ public interface Expression extends EObject {
 
 	boolean referencesContainingType();
 
-	
+	/* Checks if the current expression is an instance variable, this inculdes checkin that the 
+	 * instance variable is not acting as a function.
+	 */
+	boolean isInstanceVariable();
 
+	TypeBuilder calculateType();
 } // Expression

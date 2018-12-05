@@ -65,4 +65,7 @@ public interface TypedVariableList extends EObject {
 
 
 	boolean isEmpty();
+
+
+	Collection<TypeBuilder> getTypes();
 } // TypedVariableList

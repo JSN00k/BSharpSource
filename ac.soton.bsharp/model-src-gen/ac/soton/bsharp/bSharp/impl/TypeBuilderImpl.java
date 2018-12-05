@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 
 import java.util.ArrayList;
@@ -62,6 +63,16 @@ public abstract class TypeBuilderImpl extends MinimalEObjectImpl.Container imple
 	@Override
 	public boolean isBoolType() {
 		return false;
+	}
+	
+	@Override
+	public boolean isDatatype() {
+		return false;
+	}
+	
+	@Override
+	public Datatype getDatatype() {
+		return null;
 	}
 	
 	protected boolean isOrdered;

@@ -9,43 +9,18 @@
     <genClasses image="false" ecoreClass="BSharp.ecore#//IEventBPrefixProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVariableProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IPolyTypeProvider"/>
+    <genClasses image="false" ecoreClass="BSharp.ecore#//IClassDeclExtend"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//ITheoryImportCacheProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVarType"/>
     <genClasses ecoreClass="BSharp.ecore#//Type"/>
     <genClasses ecoreClass="BSharp.ecore#//TopLevelInstance"/>
-    <genClasses ecoreClass="BSharp.ecore#//TopLevel">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//TopLevel/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevel/topLevelFile"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//TopLevelFile">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//TopLevelFile/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/topLevelImports"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/noImportElements"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//TopLevelImport">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/globalImports"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/localImports"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/bodyElements"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//GlobalImport">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//GlobalImport/fileImports"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//GlobalImport/project"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//FileImport">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FileImport/fileName"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute BSharp.ecore#//FileImport/type"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//LocalImport">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//LocalImport/fileImports"/>
-    </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//BodyElements">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BodyElements/classes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BodyElements/extends"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BodyElements/instances"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//ClassDecl">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/context"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/block"/>
+    <genClasses ecoreClass="BSharp.ecore#//Bracket">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Bracket/child"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//BSClass">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSClass/supertypes"/>
@@ -53,38 +28,22 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSClass/where"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSClass/instName"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//InstName"/>
     <genClasses ecoreClass="BSharp.ecore#//BSharpBlock">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSharpBlock/functions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSharpBlock/theorems"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//GenName"/>
-    <genClasses ecoreClass="BSharp.ecore#//PolyContext">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//PolyContext/polyTypes"/>
+    <genClasses ecoreClass="BSharp.ecore#//ClassDecl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/context"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/block"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//PolyType">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//PolyType/superTypes"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//SuperTypeList">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//SuperTypeList/superTypes"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//TypeConstructor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/typeName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/context"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//TypeConstrBracket">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstrBracket/child"/>
+    <genClasses ecoreClass="BSharp.ecore#//ClassVarDecl">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassVarDecl/ownerType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassVarDecl/typeInst"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ConstructedType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//ConstructedType/constructor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ConstructedType/left"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ConstructedType/right"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//TypeDeclContext">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeDeclContext/typeName"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//Where">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Where/expressions"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//Datatype">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Datatype/constructors"/>
@@ -97,6 +56,20 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute BSharp.ecore#//Extend/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Extend/block"/>
     </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//Expression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Expression/typeInst"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//ExpressionVariable"/>
+    <genClasses ecoreClass="BSharp.ecore#//FileImport">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FileImport/fileName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute BSharp.ecore#//FileImport/type"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//FunctionCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/arguments"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/ownerType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/classVarDecl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/context"/>
+    </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FunctionDecl">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/varList"/>
@@ -104,15 +77,58 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FunctionDecl/infix"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FunctionDecl/precedence"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/generatedLambdas"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//MatchStatement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//MatchStatement/match"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//MatchStatement/inductCase"/>
+    <genClasses ecoreClass="BSharp.ecore#//GenName"/>
+    <genClasses ecoreClass="BSharp.ecore#//GlobalImport">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//GlobalImport/fileImports"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//GlobalImport/project"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//Infix">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Infix/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Infix/funcName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//Infix/opName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Infix/right"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//InstName"/>
+    <genClasses ecoreClass="BSharp.ecore#//Instance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/className"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/context"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/arguments"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//LocalImport">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//LocalImport/fileImports"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//MatchCase">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//MatchCase/deconName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//MatchCase/variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//MatchCase/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//MatchStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//MatchStatement/match"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//MatchStatement/inductCase"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//NamedObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//NamedObject/name"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//PolyContext">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//PolyContext/polyTypes"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//PolyType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//PolyType/superTypes"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//Prefix">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//Prefix/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Prefix/elem"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//QuantLambda">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//QuantLambda/qType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//QuantLambda/context"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//QuantLambda/varList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//QuantLambda/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//SuperTypeList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//SuperTypeList/superTypes"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TheoremBody">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TheoremBody/theoremDecl"/>
@@ -121,6 +137,35 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//TheoremDecl/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TheoremDecl/expr"/>
     </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//TopLevelFile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//TopLevelFile/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/topLevelImports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelFile/noImportElements"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//TopLevel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//TopLevel/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevel/topLevelFile"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//TopLevelImport">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/globalImports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/localImports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/bodyElements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BSharp.ecore#//TypeBuilder"/>
+    <genClasses ecoreClass="BSharp.ecore#//TypeConstructor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/typeName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstructor/context"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//TypeConstrBracket">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeConstrBracket/child"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//TypeDeclContext">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypeDeclContext/typeName"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//TypePowerSet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypePowerSet/child"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//TypedVariable"/>
     <genClasses ecoreClass="BSharp.ecore#//TypedVariableList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypedVariableList/variablesOfType"/>
     </genClasses>
@@ -128,51 +173,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//VariableTyping/typeVar"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//VariableTyping/type"/>
     </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//TypedVariable"/>
-    <genClasses ecoreClass="BSharp.ecore#//QuantLambda">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//QuantLambda/qType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//QuantLambda/context"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//QuantLambda/varList"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//QuantLambda/expr"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//Expression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Expression/typeInst"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//FunctionCall">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/arguments"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/ownerType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/classVarDecl"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/context"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//ClassVarDecl">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassVarDecl/ownerType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassVarDecl/typeInst"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//Prefix">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//Prefix/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Prefix/elem"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//Bracket">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Bracket/child"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//ExpressionVariable"/>
-    <genClasses ecoreClass="BSharp.ecore#//Instance">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/className"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/context"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/arguments"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//Infix">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Infix/left"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Infix/funcName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//Infix/opName"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Infix/right"/>
-    </genClasses>
-    <genClasses ecoreClass="BSharp.ecore#//NamedObject">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//NamedObject/name"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="BSharp.ecore#//TypeBuilder"/>
-    <genClasses ecoreClass="BSharp.ecore#//TypePowerSet">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TypePowerSet/child"/>
+    <genClasses ecoreClass="BSharp.ecore#//Where">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Where/expressions"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

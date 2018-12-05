@@ -137,4 +137,21 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 		return null;
 	}
 
+	@Override
+	public TypeBuilder calculateReturnType() {
+		/*TODO: Need some test cases. The type could be a wrapped type class, so may need more logic here. */
+		TypeBuilder type = getType();
+		
+		if (type instanceof ConstructedType) {
+			return ((ConstructedType) type).getRight();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		return getType();
+	}
+
 } //TypedVariableImpl

@@ -5,44 +5,11 @@
       interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IVariableProvider" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IPolyTypeProvider" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IClassDeclExtend" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ITheoryImportCacheProvider" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IVarType" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//GenName"/>
   <eClassifiers xsi:type="ecore:EClass" name="TopLevelInstance"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TopLevel">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelFile" eType="#//TopLevelFile"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TopLevelFile" eSuperTypes="#//ITheoryImportCacheProvider">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelImports" upperBound="-1"
-        eType="#//TopLevelImport" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="noImportElements" eType="#//BodyElements"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TopLevelImport" eSuperTypes="#//ITheoryImportCacheProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="globalImports" upperBound="-1"
-        eType="#//GlobalImport" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="localImports" upperBound="-1"
-        eType="#//LocalImport" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" lowerBound="1"
-        eType="#//BodyElements" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GlobalImport">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
-        eType="#//FileImport" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="project" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FileImport">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LocalImport">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
-        eType="#//FileImport" containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BodyElements">
     <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
         eType="#//ClassDecl" containment="true"/>
@@ -51,10 +18,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
         eType="#//Instance" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" abstract="true" eSuperTypes="#//GenName #//ExpressionVariable #//IVariableProvider #//IPolyTypeProvider #//Type #//TopLevelInstance #//IEventBPrefixProvider">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
+  <eClassifiers xsi:type="ecore:EClass" name="Bracket" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BSClass" eSuperTypes="#//ClassDecl">
@@ -67,34 +32,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instName" eType="#//InstName"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InstName" eSuperTypes="#//ExpressionVariable #//GenName"/>
   <eClassifiers xsi:type="ecore:EClass" name="BSharpBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
         eType="#//FunctionDecl" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="theorems" upperBound="-1"
         eType="#//TheoremBody" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenName" eSuperTypes="#//NamedObject"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PolyContext">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="polyTypes" upperBound="-1"
-        eType="#//PolyType" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PolyType" eSuperTypes="#//GenName">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superTypes" upperBound="-1"
-        eType="#//ClassDecl"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SuperTypeList">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superTypes" upperBound="-1"
-        eType="#//TypeBuilder" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeConstructor" eSuperTypes="#//TypeBuilder">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="#//GenName"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" abstract="true" eSuperTypes="#//GenName #//ExpressionVariable #//IVariableProvider #//IPolyTypeProvider #//Type #//TopLevelInstance #//IEventBPrefixProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeConstrBracket" eSuperTypes="#//TypeBuilder">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="child" lowerBound="1" eType="#//TypeBuilder"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassVarDecl" eSuperTypes="#//IVarType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerType" eType="#//GenName"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeInst" eType="#//ExpressionVariable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstructedType" eSuperTypes="#//TypeBuilder">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constructor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -102,14 +54,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//TypeBuilder"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDeclContext">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" upperBound="-1"
-        eType="#//TypeBuilder" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Where">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
-        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Datatype" eSuperTypes="#//ClassDecl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constructors" upperBound="-1"
@@ -119,11 +63,29 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="decons" eType="#//TypedVariableList"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Extend" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//IEventBPrefixProvider">
+  <eClassifiers xsi:type="ecore:EClass" name="Extend" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//IEventBPrefixProvider #//TopLevelInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedClass" eType="#//ClassDecl"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeInst" eType="#//ExpressionVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" abstract="true"
+      eSuperTypes="#//NamedObject #//IVarType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FileImport">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerType" eType="#//GenName"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classVarDecl" eType="#//ClassVarDecl"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionDecl" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//ExpressionVariable">
@@ -137,11 +99,34 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="precedence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generatedLambdas" upperBound="-1"
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MatchStatement" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="match" eType="#//TypedVariable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inductCase" upperBound="-1"
-        eType="#//MatchCase" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GenName" eSuperTypes="#//NamedObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalImport">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
+        eType="#//FileImport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="project" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Infix" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funcName" eType="#//FunctionDecl"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="opName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstName" eSuperTypes="#//ExpressionVariable #//GenName"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Instance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="className" eType="#//ClassDecl"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LocalImport">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fileImports" upperBound="-1"
+        eType="#//FileImport" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MatchCase" eSuperTypes="#//IVariableProvider">
     <eStructuralFeatures xsi:type="ecore:EReference" name="deconName" eType="#//DatatypeConstructor"/>
@@ -149,6 +134,41 @@
         eType="#//TypedVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchStatement" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="match" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inductCase" upperBound="-1"
+        eType="#//MatchCase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PolyContext">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polyTypes" upperBound="-1"
+        eType="#//PolyType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PolyType" eSuperTypes="#//GenName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superTypes" upperBound="-1"
+        eType="#//ClassDecl"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Prefix" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elem" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QuantLambda" eSuperTypes="#//Expression #//IVariableProvider #//IPolyTypeProvider">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypedVariableList"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuperTypeList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superTypes" upperBound="-1"
+        eType="#//TypeBuilder" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TheoremBody">
     <eStructuralFeatures xsi:type="ecore:EReference" name="theoremDecl" upperBound="-1"
@@ -160,6 +180,46 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelFile" eSuperTypes="#//ITheoryImportCacheProvider">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelImports" upperBound="-1"
+        eType="#//TopLevelImport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="noImportElements" eType="#//BodyElements"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelFile" eType="#//TopLevelFile"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelImport" eSuperTypes="#//ITheoryImportCacheProvider">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="globalImports" upperBound="-1"
+        eType="#//GlobalImport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localImports" upperBound="-1"
+        eType="#//LocalImport" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" lowerBound="1"
+        eType="#//BodyElements" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeBuilder" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeConstructor" eSuperTypes="#//TypeBuilder">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="#//GenName"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeConstrBracket" eSuperTypes="#//TypeBuilder">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" lowerBound="1" eType="#//TypeBuilder"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDeclContext">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" upperBound="-1"
+        eType="#//TypeBuilder" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypePowerSet" eSuperTypes="#//TypeBuilder">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//TypeBuilder"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedVariable" eSuperTypes="#//ExpressionVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedVariableList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variablesOfType" upperBound="-1"
         eType="#//VariableTyping" containment="true"/>
@@ -170,63 +230,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeBuilder"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypedVariable" eSuperTypes="#//ExpressionVariable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="QuantLambda" eSuperTypes="#//Expression #//IVariableProvider #//IPolyTypeProvider">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypedVariableList"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeInst" eType="#//ExpressionVariable"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+  <eClassifiers xsi:type="ecore:EClass" name="Where">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="#//Expression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerType" eType="#//GenName"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classVarDecl" eType="#//ClassVarDecl"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassVarDecl" eSuperTypes="#//IVarType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownerType" eType="#//GenName"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="typeInst" eType="#//ExpressionVariable"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Prefix" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elem" eType="#//Expression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Bracket" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//Expression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExpressionVariable" eSuperTypes="#//NamedObject #//IVarType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Instance">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="className" eType="#//ClassDecl"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
-        eType="#//Expression" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Infix" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="funcName" eType="#//FunctionDecl"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="opName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Expression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedObject">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeBuilder" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TypePowerSet" eSuperTypes="#//TypeBuilder">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//TypeBuilder"
-        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

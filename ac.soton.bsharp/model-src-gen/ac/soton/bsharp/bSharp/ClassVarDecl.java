@@ -77,4 +77,8 @@ public interface ClassVarDecl extends IVarType {
 
 	boolean referencesContainingType();
 
+	TypeBuilder calculateReturnType();
+
+	TypeBuilder calculateType();
+
 } // ClassVarDecl

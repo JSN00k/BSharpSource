@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend()
  * @model
  */
-public interface Extend extends IVariableProvider, IPolyTypeProvider, IEventBPrefixProvider {
+public interface Extend extends IVariableProvider, IPolyTypeProvider, IEventBPrefixProvider, TopLevelInstance {
 	/**
 	 * Returns the value of the '<em><b>Extended Class</b></em>' reference.
 	 * <!-- begin-user-doc -->

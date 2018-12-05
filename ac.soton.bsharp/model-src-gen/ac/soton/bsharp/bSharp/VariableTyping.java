@@ -77,4 +77,10 @@ public interface VariableTyping extends EObject {
 	ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesAndTypes();
 
 	int varCount();
+
+	/* Returns the type n times where n is the number of variables in the Variable typing.
+	 * This is useful when caculating the type of a function, where we want the type for each
+	 * variable. 
+	 */
+	Collection<? extends TypeBuilder> getTypesSeparately();
 } // VariableTyping

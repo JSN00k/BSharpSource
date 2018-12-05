@@ -9,6 +9,8 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.util.Tuple2;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -341,5 +343,19 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	@Override
 	public void compile() {
 		block.compile();
+	}
+
+	@Override
+	public String opNameForMatchStatement(MatchStatementImpl match) {
+		// This should never happen, if there is a match statement it will be within a function or theorem.
+		return null;
+	}
+
+	@Override
+	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
+		/* This should never happen, as an expression must always be in a theorem or 
+		 * function, or BSClass statement, each of these already handles getting the types.
+		 */
+		return null;
 	}
 } //ExtendImpl

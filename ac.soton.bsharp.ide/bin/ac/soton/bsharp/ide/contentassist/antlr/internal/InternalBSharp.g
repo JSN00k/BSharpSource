@@ -7314,13 +7314,9 @@ rule__MatchStatement__MatchAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0()); }
-		(
-			{ before(grammarAccess.getMatchStatementAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getMatchStatementAccess().getMatchTypedVariableIDTerminalRuleCall_1_0_1()); }
-		)
-		{ after(grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0()); }
+		{ before(grammarAccess.getMatchStatementAccess().getMatchRootExpressionParserRuleCall_1_0()); }
+		ruleRootExpression
+		{ after(grammarAccess.getMatchStatementAccess().getMatchRootExpressionParserRuleCall_1_0()); }
 	)
 ;
 finally {

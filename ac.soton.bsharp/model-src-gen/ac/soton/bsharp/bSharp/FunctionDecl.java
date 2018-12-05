@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Function Decl</b></em>'.
@@ -180,6 +182,22 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, Expr
 	 * @generated
 	 */
 	void setExpr(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Generated Lambdas</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.Expression}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Generated Lambdas</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Generated Lambdas</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl_GeneratedLambdas()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Expression> getGeneratedLambdas();
 
 	String callWithTypeContext(TypeDeclContext context);
 

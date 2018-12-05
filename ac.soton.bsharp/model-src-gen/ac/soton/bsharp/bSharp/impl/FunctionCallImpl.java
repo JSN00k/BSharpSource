@@ -13,6 +13,7 @@ import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.InstName;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 
@@ -477,4 +478,26 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		
 		return false;
 	}
+	
+	@Override
+	public boolean isInstanceVariable() {
+		return typeInst != null && typeInst instanceof TypedVariable && (arguments == null || arguments.isEmpty());
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		if (arguments != null && !arguments.isEmpty()) {
+			if (typeInst != null) {
+				return typeInst.calculateReturnType();
+			} else {
+				return classVarDecl.calculateReturnType();
+			}
+		}
+		
+		if (typeInst != null)
+			return typeInst.calculateType();
+		else
+			return classVarDecl.calculateType();
+	}
+	
 } //FunctionCallImpl

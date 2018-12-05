@@ -85,6 +85,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.ICLASS_DECL_EXTEND: {
+				IClassDeclExtend iClassDeclExtend = (IClassDeclExtend)theEObject;
+				T result = caseIClassDeclExtend(iClassDeclExtend);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.ITHEORY_IMPORT_CACHE_PROVIDER: {
 				ITheoryImportCacheProvider iTheoryImportCacheProvider = (ITheoryImportCacheProvider)theEObject;
 				T result = caseITheoryImportCacheProvider(iTheoryImportCacheProvider);
@@ -111,62 +117,16 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.TOP_LEVEL: {
-				TopLevel topLevel = (TopLevel)theEObject;
-				T result = caseTopLevel(topLevel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TOP_LEVEL_FILE: {
-				TopLevelFile topLevelFile = (TopLevelFile)theEObject;
-				T result = caseTopLevelFile(topLevelFile);
-				if (result == null) result = caseITheoryImportCacheProvider(topLevelFile);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TOP_LEVEL_IMPORT: {
-				TopLevelImport topLevelImport = (TopLevelImport)theEObject;
-				T result = caseTopLevelImport(topLevelImport);
-				if (result == null) result = caseITheoryImportCacheProvider(topLevelImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.GLOBAL_IMPORT: {
-				GlobalImport globalImport = (GlobalImport)theEObject;
-				T result = caseGlobalImport(globalImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.FILE_IMPORT: {
-				FileImport fileImport = (FileImport)theEObject;
-				T result = caseFileImport(fileImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.LOCAL_IMPORT: {
-				LocalImport localImport = (LocalImport)theEObject;
-				T result = caseLocalImport(localImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.BODY_ELEMENTS: {
 				BodyElements bodyElements = (BodyElements)theEObject;
 				T result = caseBodyElements(bodyElements);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.CLASS_DECL: {
-				ClassDecl classDecl = (ClassDecl)theEObject;
-				T result = caseClassDecl(classDecl);
-				if (result == null) result = caseExpressionVariable(classDecl);
-				if (result == null) result = caseIVariableProvider(classDecl);
-				if (result == null) result = caseIPolyTypeProvider(classDecl);
-				if (result == null) result = caseType(classDecl);
-				if (result == null) result = caseTopLevelInstance(classDecl);
-				if (result == null) result = caseIEventBPrefixProvider(classDecl);
-				if (result == null) result = caseGenName(classDecl);
-				if (result == null) result = caseNamedObject(classDecl);
-				if (result == null) result = caseIVarType(classDecl);
+			case BSharpPackage.BRACKET: {
+				Bracket bracket = (Bracket)theEObject;
+				T result = caseBracket(bracket);
+				if (result == null) result = caseExpression(bracket);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -186,60 +146,31 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.INST_NAME: {
-				InstName instName = (InstName)theEObject;
-				T result = caseInstName(instName);
-				if (result == null) result = caseExpressionVariable(instName);
-				if (result == null) result = caseGenName(instName);
-				if (result == null) result = caseNamedObject(instName);
-				if (result == null) result = caseIVarType(instName);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BSharpPackage.BSHARP_BLOCK: {
 				BSharpBlock bSharpBlock = (BSharpBlock)theEObject;
 				T result = caseBSharpBlock(bSharpBlock);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.GEN_NAME: {
-				GenName genName = (GenName)theEObject;
-				T result = caseGenName(genName);
-				if (result == null) result = caseNamedObject(genName);
+			case BSharpPackage.CLASS_DECL: {
+				ClassDecl classDecl = (ClassDecl)theEObject;
+				T result = caseClassDecl(classDecl);
+				if (result == null) result = caseExpressionVariable(classDecl);
+				if (result == null) result = caseIVariableProvider(classDecl);
+				if (result == null) result = caseIPolyTypeProvider(classDecl);
+				if (result == null) result = caseType(classDecl);
+				if (result == null) result = caseTopLevelInstance(classDecl);
+				if (result == null) result = caseIEventBPrefixProvider(classDecl);
+				if (result == null) result = caseGenName(classDecl);
+				if (result == null) result = caseNamedObject(classDecl);
+				if (result == null) result = caseIVarType(classDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.POLY_CONTEXT: {
-				PolyContext polyContext = (PolyContext)theEObject;
-				T result = casePolyContext(polyContext);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.POLY_TYPE: {
-				PolyType polyType = (PolyType)theEObject;
-				T result = casePolyType(polyType);
-				if (result == null) result = caseGenName(polyType);
-				if (result == null) result = caseNamedObject(polyType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.SUPER_TYPE_LIST: {
-				SuperTypeList superTypeList = (SuperTypeList)theEObject;
-				T result = caseSuperTypeList(superTypeList);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TYPE_CONSTRUCTOR: {
-				TypeConstructor typeConstructor = (TypeConstructor)theEObject;
-				T result = caseTypeConstructor(typeConstructor);
-				if (result == null) result = caseTypeBuilder(typeConstructor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TYPE_CONSTR_BRACKET: {
-				TypeConstrBracket typeConstrBracket = (TypeConstrBracket)theEObject;
-				T result = caseTypeConstrBracket(typeConstrBracket);
-				if (result == null) result = caseTypeBuilder(typeConstrBracket);
+			case BSharpPackage.CLASS_VAR_DECL: {
+				ClassVarDecl classVarDecl = (ClassVarDecl)theEObject;
+				T result = caseClassVarDecl(classVarDecl);
+				if (result == null) result = caseIVarType(classVarDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -247,18 +178,6 @@ public class BSharpSwitch<T> extends Switch<T> {
 				ConstructedType constructedType = (ConstructedType)theEObject;
 				T result = caseConstructedType(constructedType);
 				if (result == null) result = caseTypeBuilder(constructedType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TYPE_DECL_CONTEXT: {
-				TypeDeclContext typeDeclContext = (TypeDeclContext)theEObject;
-				T result = caseTypeDeclContext(typeDeclContext);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.WHERE: {
-				Where where = (Where)theEObject;
-				T result = caseWhere(where);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -295,6 +214,34 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIVariableProvider(extend);
 				if (result == null) result = caseIPolyTypeProvider(extend);
 				if (result == null) result = caseIEventBPrefixProvider(extend);
+				if (result == null) result = caseTopLevelInstance(extend);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.EXPRESSION: {
+				Expression expression = (Expression)theEObject;
+				T result = caseExpression(expression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.EXPRESSION_VARIABLE: {
+				ExpressionVariable expressionVariable = (ExpressionVariable)theEObject;
+				T result = caseExpressionVariable(expressionVariable);
+				if (result == null) result = caseNamedObject(expressionVariable);
+				if (result == null) result = caseIVarType(expressionVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.FILE_IMPORT: {
+				FileImport fileImport = (FileImport)theEObject;
+				T result = caseFileImport(fileImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.FUNCTION_CALL: {
+				FunctionCall functionCall = (FunctionCall)theEObject;
+				T result = caseFunctionCall(functionCall);
+				if (result == null) result = caseExpression(functionCall);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -309,10 +256,45 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.MATCH_STATEMENT: {
-				MatchStatement matchStatement = (MatchStatement)theEObject;
-				T result = caseMatchStatement(matchStatement);
-				if (result == null) result = caseExpression(matchStatement);
+			case BSharpPackage.GEN_NAME: {
+				GenName genName = (GenName)theEObject;
+				T result = caseGenName(genName);
+				if (result == null) result = caseNamedObject(genName);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.GLOBAL_IMPORT: {
+				GlobalImport globalImport = (GlobalImport)theEObject;
+				T result = caseGlobalImport(globalImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.INFIX: {
+				Infix infix = (Infix)theEObject;
+				T result = caseInfix(infix);
+				if (result == null) result = caseExpression(infix);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.INST_NAME: {
+				InstName instName = (InstName)theEObject;
+				T result = caseInstName(instName);
+				if (result == null) result = caseExpressionVariable(instName);
+				if (result == null) result = caseGenName(instName);
+				if (result == null) result = caseNamedObject(instName);
+				if (result == null) result = caseIVarType(instName);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.INSTANCE: {
+				Instance instance = (Instance)theEObject;
+				T result = caseInstance(instance);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.LOCAL_IMPORT: {
+				LocalImport localImport = (LocalImport)theEObject;
+				T result = caseLocalImport(localImport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -320,6 +302,55 @@ public class BSharpSwitch<T> extends Switch<T> {
 				MatchCase matchCase = (MatchCase)theEObject;
 				T result = caseMatchCase(matchCase);
 				if (result == null) result = caseIVariableProvider(matchCase);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.MATCH_STATEMENT: {
+				MatchStatement matchStatement = (MatchStatement)theEObject;
+				T result = caseMatchStatement(matchStatement);
+				if (result == null) result = caseExpression(matchStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.NAMED_OBJECT: {
+				NamedObject namedObject = (NamedObject)theEObject;
+				T result = caseNamedObject(namedObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.POLY_CONTEXT: {
+				PolyContext polyContext = (PolyContext)theEObject;
+				T result = casePolyContext(polyContext);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.POLY_TYPE: {
+				PolyType polyType = (PolyType)theEObject;
+				T result = casePolyType(polyType);
+				if (result == null) result = caseGenName(polyType);
+				if (result == null) result = caseNamedObject(polyType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.PREFIX: {
+				Prefix prefix = (Prefix)theEObject;
+				T result = casePrefix(prefix);
+				if (result == null) result = caseExpression(prefix);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.QUANT_LAMBDA: {
+				QuantLambda quantLambda = (QuantLambda)theEObject;
+				T result = caseQuantLambda(quantLambda);
+				if (result == null) result = caseExpression(quantLambda);
+				if (result == null) result = caseIVariableProvider(quantLambda);
+				if (result == null) result = caseIPolyTypeProvider(quantLambda);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.SUPER_TYPE_LIST: {
+				SuperTypeList superTypeList = (SuperTypeList)theEObject;
+				T result = caseSuperTypeList(superTypeList);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -335,15 +366,56 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.TYPED_VARIABLE_LIST: {
-				TypedVariableList typedVariableList = (TypedVariableList)theEObject;
-				T result = caseTypedVariableList(typedVariableList);
+			case BSharpPackage.TOP_LEVEL_FILE: {
+				TopLevelFile topLevelFile = (TopLevelFile)theEObject;
+				T result = caseTopLevelFile(topLevelFile);
+				if (result == null) result = caseITheoryImportCacheProvider(topLevelFile);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.VARIABLE_TYPING: {
-				VariableTyping variableTyping = (VariableTyping)theEObject;
-				T result = caseVariableTyping(variableTyping);
+			case BSharpPackage.TOP_LEVEL: {
+				TopLevel topLevel = (TopLevel)theEObject;
+				T result = caseTopLevel(topLevel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TOP_LEVEL_IMPORT: {
+				TopLevelImport topLevelImport = (TopLevelImport)theEObject;
+				T result = caseTopLevelImport(topLevelImport);
+				if (result == null) result = caseITheoryImportCacheProvider(topLevelImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TYPE_BUILDER: {
+				TypeBuilder typeBuilder = (TypeBuilder)theEObject;
+				T result = caseTypeBuilder(typeBuilder);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TYPE_CONSTRUCTOR: {
+				TypeConstructor typeConstructor = (TypeConstructor)theEObject;
+				T result = caseTypeConstructor(typeConstructor);
+				if (result == null) result = caseTypeBuilder(typeConstructor);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TYPE_CONSTR_BRACKET: {
+				TypeConstrBracket typeConstrBracket = (TypeConstrBracket)theEObject;
+				T result = caseTypeConstrBracket(typeConstrBracket);
+				if (result == null) result = caseTypeBuilder(typeConstrBracket);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TYPE_DECL_CONTEXT: {
+				TypeDeclContext typeDeclContext = (TypeDeclContext)theEObject;
+				T result = caseTypeDeclContext(typeDeclContext);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.TYPE_POWER_SET: {
+				TypePowerSet typePowerSet = (TypePowerSet)theEObject;
+				T result = caseTypePowerSet(typePowerSet);
+				if (result == null) result = caseTypeBuilder(typePowerSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -356,86 +428,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.QUANT_LAMBDA: {
-				QuantLambda quantLambda = (QuantLambda)theEObject;
-				T result = caseQuantLambda(quantLambda);
-				if (result == null) result = caseExpression(quantLambda);
-				if (result == null) result = caseIVariableProvider(quantLambda);
-				if (result == null) result = caseIPolyTypeProvider(quantLambda);
+			case BSharpPackage.TYPED_VARIABLE_LIST: {
+				TypedVariableList typedVariableList = (TypedVariableList)theEObject;
+				T result = caseTypedVariableList(typedVariableList);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.EXPRESSION: {
-				Expression expression = (Expression)theEObject;
-				T result = caseExpression(expression);
+			case BSharpPackage.VARIABLE_TYPING: {
+				VariableTyping variableTyping = (VariableTyping)theEObject;
+				T result = caseVariableTyping(variableTyping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.FUNCTION_CALL: {
-				FunctionCall functionCall = (FunctionCall)theEObject;
-				T result = caseFunctionCall(functionCall);
-				if (result == null) result = caseExpression(functionCall);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.CLASS_VAR_DECL: {
-				ClassVarDecl classVarDecl = (ClassVarDecl)theEObject;
-				T result = caseClassVarDecl(classVarDecl);
-				if (result == null) result = caseIVarType(classVarDecl);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.PREFIX: {
-				Prefix prefix = (Prefix)theEObject;
-				T result = casePrefix(prefix);
-				if (result == null) result = caseExpression(prefix);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.BRACKET: {
-				Bracket bracket = (Bracket)theEObject;
-				T result = caseBracket(bracket);
-				if (result == null) result = caseExpression(bracket);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.EXPRESSION_VARIABLE: {
-				ExpressionVariable expressionVariable = (ExpressionVariable)theEObject;
-				T result = caseExpressionVariable(expressionVariable);
-				if (result == null) result = caseNamedObject(expressionVariable);
-				if (result == null) result = caseIVarType(expressionVariable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.INSTANCE: {
-				Instance instance = (Instance)theEObject;
-				T result = caseInstance(instance);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.INFIX: {
-				Infix infix = (Infix)theEObject;
-				T result = caseInfix(infix);
-				if (result == null) result = caseExpression(infix);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.NAMED_OBJECT: {
-				NamedObject namedObject = (NamedObject)theEObject;
-				T result = caseNamedObject(namedObject);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TYPE_BUILDER: {
-				TypeBuilder typeBuilder = (TypeBuilder)theEObject;
-				T result = caseTypeBuilder(typeBuilder);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BSharpPackage.TYPE_POWER_SET: {
-				TypePowerSet typePowerSet = (TypePowerSet)theEObject;
-				T result = caseTypePowerSet(typePowerSet);
-				if (result == null) result = caseTypeBuilder(typePowerSet);
+			case BSharpPackage.WHERE: {
+				Where where = (Where)theEObject;
+				T result = caseWhere(where);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1025,6 +1032,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIPolyTypeProvider(IPolyTypeProvider object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IClass Decl Extend</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IClass Decl Extend</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIClassDeclExtend(IClassDeclExtend object) {
 		return null;
 	}
 

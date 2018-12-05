@@ -26,30 +26,30 @@ import org.eventb.theory.core.INewOperatorDefinition;
  */
 public interface MatchStatement extends Expression {
 	/**
-	 * Returns the value of the '<em><b>Match</b></em>' reference.
+	 * Returns the value of the '<em><b>Match</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Match</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Match</em>' reference.
-	 * @see #setMatch(TypedVariable)
+	 * @return the value of the '<em>Match</em>' containment reference.
+	 * @see #setMatch(Expression)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getMatchStatement_Match()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	TypedVariable getMatch();
+	Expression getMatch();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.MatchStatement#getMatch <em>Match</em>}' reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.MatchStatement#getMatch <em>Match</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Match</em>' reference.
+	 * @param value the new value of the '<em>Match</em>' containment reference.
 	 * @see #getMatch()
 	 * @generated
 	 */
-	void setMatch(TypedVariable value);
+	void setMatch(Expression value);
 
 	/**
 	 * Returns the value of the '<em><b>Induct Case</b></em>' containment reference list.

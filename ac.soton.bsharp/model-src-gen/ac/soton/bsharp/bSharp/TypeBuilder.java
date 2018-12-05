@@ -25,6 +25,9 @@ public interface TypeBuilder extends EObject {
 
 	/* If the Constructed type wraps a type class without a polymorphic context, this returns true. */
 	boolean isAbstractTypeClass();
+	
+	boolean isDatatype();
+	Datatype getDatatype();
 
 	/* This method will return null if the Constructed type is not wrapping a type class. */
 	BSClass getTypeClass();

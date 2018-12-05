@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
@@ -11,7 +12,10 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.TypePowerSet;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
@@ -278,6 +282,33 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 		result += ")";
 		
 		return result;
+	}
+
+	@Override
+	public String opNameForMatchStatement(MatchStatementImpl match) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TypeBuilder calculateReturnType() {
+		/* DatatypeImpl cannot be called like a function. */
+		return null;
+	}
+	
+	@Override
+	public TypeBuilder calculateType() {
+		TypePowerSet tps = BSharpFactory.eINSTANCE.createTypePowerSet();
+		TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
+		tc.setTypeName(this);
+		tps.setChild(tps);
+		return tps;
+	}
+
+	@Override
+	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
+		/* Datatypes don't provide any type variables that are required by functions. */
+		return new ArrayList<Tuple2<String,String>>();
 	}
 
 } //DatatypeImpl

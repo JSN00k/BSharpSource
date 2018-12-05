@@ -293,15 +293,6 @@ public interface BSharpFactory extends EFactory {
 	Bracket createBracket();
 
 	/**
-	 * Returns a new object of class '<em>Expression Variable</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expression Variable</em>'.
-	 * @generated
-	 */
-	ExpressionVariable createExpressionVariable();
-
-	/**
 	 * Returns a new object of class '<em>Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -59,47 +59,46 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 		switch (eClass.getClassifierID()) {
 			case BSharpPackage.TYPE: return createType();
 			case BSharpPackage.TOP_LEVEL_INSTANCE: return createTopLevelInstance();
-			case BSharpPackage.TOP_LEVEL: return createTopLevel();
-			case BSharpPackage.TOP_LEVEL_FILE: return createTopLevelFile();
-			case BSharpPackage.TOP_LEVEL_IMPORT: return createTopLevelImport();
-			case BSharpPackage.GLOBAL_IMPORT: return createGlobalImport();
-			case BSharpPackage.FILE_IMPORT: return createFileImport();
-			case BSharpPackage.LOCAL_IMPORT: return createLocalImport();
 			case BSharpPackage.BODY_ELEMENTS: return createBodyElements();
+			case BSharpPackage.BRACKET: return createBracket();
 			case BSharpPackage.BS_CLASS: return createBSClass();
-			case BSharpPackage.INST_NAME: return createInstName();
 			case BSharpPackage.BSHARP_BLOCK: return createBSharpBlock();
-			case BSharpPackage.GEN_NAME: return createGenName();
-			case BSharpPackage.POLY_CONTEXT: return createPolyContext();
-			case BSharpPackage.POLY_TYPE: return createPolyType();
-			case BSharpPackage.SUPER_TYPE_LIST: return createSuperTypeList();
-			case BSharpPackage.TYPE_CONSTRUCTOR: return createTypeConstructor();
-			case BSharpPackage.TYPE_CONSTR_BRACKET: return createTypeConstrBracket();
+			case BSharpPackage.CLASS_VAR_DECL: return createClassVarDecl();
 			case BSharpPackage.CONSTRUCTED_TYPE: return createConstructedType();
-			case BSharpPackage.TYPE_DECL_CONTEXT: return createTypeDeclContext();
-			case BSharpPackage.WHERE: return createWhere();
 			case BSharpPackage.DATATYPE: return createDatatype();
 			case BSharpPackage.DATATYPE_CONSTRUCTOR: return createDatatypeConstructor();
 			case BSharpPackage.EXTEND: return createExtend();
+			case BSharpPackage.EXPRESSION: return createExpression();
+			case BSharpPackage.FILE_IMPORT: return createFileImport();
+			case BSharpPackage.FUNCTION_CALL: return createFunctionCall();
 			case BSharpPackage.FUNCTION_DECL: return createFunctionDecl();
-			case BSharpPackage.MATCH_STATEMENT: return createMatchStatement();
+			case BSharpPackage.GEN_NAME: return createGenName();
+			case BSharpPackage.GLOBAL_IMPORT: return createGlobalImport();
+			case BSharpPackage.INFIX: return createInfix();
+			case BSharpPackage.INST_NAME: return createInstName();
+			case BSharpPackage.INSTANCE: return createInstance();
+			case BSharpPackage.LOCAL_IMPORT: return createLocalImport();
 			case BSharpPackage.MATCH_CASE: return createMatchCase();
+			case BSharpPackage.MATCH_STATEMENT: return createMatchStatement();
+			case BSharpPackage.NAMED_OBJECT: return createNamedObject();
+			case BSharpPackage.POLY_CONTEXT: return createPolyContext();
+			case BSharpPackage.POLY_TYPE: return createPolyType();
+			case BSharpPackage.PREFIX: return createPrefix();
+			case BSharpPackage.QUANT_LAMBDA: return createQuantLambda();
+			case BSharpPackage.SUPER_TYPE_LIST: return createSuperTypeList();
 			case BSharpPackage.THEOREM_BODY: return createTheoremBody();
 			case BSharpPackage.THEOREM_DECL: return createTheoremDecl();
+			case BSharpPackage.TOP_LEVEL_FILE: return createTopLevelFile();
+			case BSharpPackage.TOP_LEVEL: return createTopLevel();
+			case BSharpPackage.TOP_LEVEL_IMPORT: return createTopLevelImport();
+			case BSharpPackage.TYPE_CONSTRUCTOR: return createTypeConstructor();
+			case BSharpPackage.TYPE_CONSTR_BRACKET: return createTypeConstrBracket();
+			case BSharpPackage.TYPE_DECL_CONTEXT: return createTypeDeclContext();
+			case BSharpPackage.TYPE_POWER_SET: return createTypePowerSet();
+			case BSharpPackage.TYPED_VARIABLE: return createTypedVariable();
 			case BSharpPackage.TYPED_VARIABLE_LIST: return createTypedVariableList();
 			case BSharpPackage.VARIABLE_TYPING: return createVariableTyping();
-			case BSharpPackage.TYPED_VARIABLE: return createTypedVariable();
-			case BSharpPackage.QUANT_LAMBDA: return createQuantLambda();
-			case BSharpPackage.EXPRESSION: return createExpression();
-			case BSharpPackage.FUNCTION_CALL: return createFunctionCall();
-			case BSharpPackage.CLASS_VAR_DECL: return createClassVarDecl();
-			case BSharpPackage.PREFIX: return createPrefix();
-			case BSharpPackage.BRACKET: return createBracket();
-			case BSharpPackage.EXPRESSION_VARIABLE: return createExpressionVariable();
-			case BSharpPackage.INSTANCE: return createInstance();
-			case BSharpPackage.INFIX: return createInfix();
-			case BSharpPackage.NAMED_OBJECT: return createNamedObject();
-			case BSharpPackage.TYPE_POWER_SET: return createTypePowerSet();
+			case BSharpPackage.WHERE: return createWhere();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -360,7 +359,9 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 */
 	public Expression createExpression() {
-		assert false : "I don't think I should ever return a raw expression";
+		/* I don't believe that an Expression can ever be directly referenced/created, a 
+		 * concrete subtype should be used instead.
+		 */
 		return null;
 	}
 
@@ -402,16 +403,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public Bracket createBracket() {
 		BracketImpl bracket = new BracketImpl();
 		return bracket;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpressionVariable createExpressionVariable() {
-		ExpressionVariableImpl expressionVariable = new ExpressionVariableImpl();
-		return expressionVariable;
 	}
 
 	/**

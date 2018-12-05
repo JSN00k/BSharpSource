@@ -178,4 +178,7 @@ public interface BSClass extends ClassDecl {
 	 */
 	ArrayList<Tuple2<String, String>> argsAndTypingForDeconstructedType(ArrayList<String> args);
 
+	ArrayList<Tuple2<String, String>> typedArgsAndAdditionTypingForDeconstructedType(
+			ArrayList<Tuple2<String, String>> args, String pTypeName);
+
 } // BppClass

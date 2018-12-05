@@ -228,6 +228,18 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 	public boolean isEmpty() {
 		return variablesOfType == null || variablesOfType.isEmpty();
 	}
+
+	/* returns a list of types, a separate type for each of the variables in the list. */
+	@Override
+	public Collection<TypeBuilder> getTypes() {
+		ArrayList<TypeBuilder> result = new ArrayList<TypeBuilder>();
+		
+		for (VariableTyping varTyping : variablesOfType) {
+			result.addAll(varTyping.getTypesSeparately());
+		}
+		
+		return result;
+	}
 	
 	
 

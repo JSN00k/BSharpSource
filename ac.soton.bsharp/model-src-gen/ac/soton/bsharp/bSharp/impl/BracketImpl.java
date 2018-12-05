@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Bracket;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -218,6 +219,11 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 	@Override
 	public boolean referencesContainingType() {
 		return child.referencesContainingType();
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		return child.calculateType();
 	}
 
 } //BracketImpl

@@ -16,9 +16,9 @@ import org.eclipse.xtext.validation.Check;
  */
 @SuppressWarnings("all")
 public class BSharpValidator extends AbstractBSharpValidator {
-  public final static String UNEXPECTED_POLY_CONTEXT = "unexpectedPolyContext";
+  public static final String UNEXPECTED_POLY_CONTEXT = "unexpectedPolyContext";
   
-  public final static String POLYMORPHIC_TYPE_OUT_OF_SCOPE = "PolymorphicTypeOutOfScope";
+  public static final String POLYMORPHIC_TYPE_OUT_OF_SCOPE = "PolymorphicTypeOutOfScope";
   
   @Check
   public void checkExpressionTree(final Infix expression) {

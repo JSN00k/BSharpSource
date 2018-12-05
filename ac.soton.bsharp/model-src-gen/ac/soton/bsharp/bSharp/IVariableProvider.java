@@ -8,6 +8,9 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 
+import ac.soton.bsharp.bSharp.impl.MatchStatementImpl;
+import ac.soton.bsharp.bSharp.util.Tuple2;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IVariable Provider</b></em>'.
@@ -35,4 +38,8 @@ public interface IVariableProvider extends EObject {
 	 * Setoid is passed into this method as it is the type that needs to be passed.
 	 */
 	String inferredPolyTypeArgsForType(ClassDecl t);
+
+	public String opNameForMatchStatement(MatchStatementImpl match);
+
+	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables();
 } // IVariableProvider

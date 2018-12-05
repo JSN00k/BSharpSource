@@ -3,9 +3,13 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.Prefix;
+import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -291,6 +295,16 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 	@Override
 	public boolean referencesContainingType() {
 		return elem.referencesContainingType();
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		TypeConstructor tc =  BSharpFactory.eINSTANCE.createTypeConstructor();
+		Datatype bool = BSharpFactory.eINSTANCE.createDatatype();
+		bool.setName("Bool");
+		tc.setTypeName(bool);
+		
+		return tc;
 	}
 
 } //PrefixImpl

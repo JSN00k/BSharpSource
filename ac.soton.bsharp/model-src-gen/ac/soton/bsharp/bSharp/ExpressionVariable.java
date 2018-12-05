@@ -12,9 +12,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getExpressionVariable()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface ExpressionVariable extends NamedObject, IVarType {
 	String descriptiveName();
+
+	/* Returns the type that will be returned if this expression variable is called like a function. */
+	TypeBuilder calculateReturnType();
+
+	TypeBuilder calculateType();
 } // ExpressionVariable

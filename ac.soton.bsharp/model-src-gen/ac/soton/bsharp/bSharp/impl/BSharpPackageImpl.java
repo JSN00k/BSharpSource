@@ -24,6 +24,7 @@ import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.GlobalImport;
+import ac.soton.bsharp.bSharp.IClassDeclExtend;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
@@ -343,6 +344,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass iPolyTypeProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iClassDeclExtendEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1018,6 +1026,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFunctionDecl_GeneratedLambdas() {
+		return (EReference)functionDeclEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMatchStatement() {
 		return matchStatementEClass;
 	}
@@ -1468,6 +1485,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getIClassDeclExtend() {
+		return iClassDeclExtendEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getITheoryImportCacheProvider() {
 		return iTheoryImportCacheProviderEClass;
 	}
@@ -1686,6 +1712,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		iPolyTypeProviderEClass = createEClass(IPOLY_TYPE_PROVIDER);
 
+		iClassDeclExtendEClass = createEClass(ICLASS_DECL_EXTEND);
+
 		iTheoryImportCacheProviderEClass = createEClass(ITHEORY_IMPORT_CACHE_PROVIDER);
 
 		iVarTypeEClass = createEClass(IVAR_TYPE);
@@ -1694,39 +1722,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		topLevelInstanceEClass = createEClass(TOP_LEVEL_INSTANCE);
 
-		topLevelEClass = createEClass(TOP_LEVEL);
-		createEAttribute(topLevelEClass, TOP_LEVEL__NAME);
-		createEReference(topLevelEClass, TOP_LEVEL__TOP_LEVEL_FILE);
-
-		topLevelFileEClass = createEClass(TOP_LEVEL_FILE);
-		createEAttribute(topLevelFileEClass, TOP_LEVEL_FILE__NAME);
-		createEReference(topLevelFileEClass, TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS);
-		createEReference(topLevelFileEClass, TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS);
-
-		topLevelImportEClass = createEClass(TOP_LEVEL_IMPORT);
-		createEReference(topLevelImportEClass, TOP_LEVEL_IMPORT__GLOBAL_IMPORTS);
-		createEReference(topLevelImportEClass, TOP_LEVEL_IMPORT__LOCAL_IMPORTS);
-		createEReference(topLevelImportEClass, TOP_LEVEL_IMPORT__BODY_ELEMENTS);
-
-		globalImportEClass = createEClass(GLOBAL_IMPORT);
-		createEReference(globalImportEClass, GLOBAL_IMPORT__FILE_IMPORTS);
-		createEAttribute(globalImportEClass, GLOBAL_IMPORT__PROJECT);
-
-		fileImportEClass = createEClass(FILE_IMPORT);
-		createEAttribute(fileImportEClass, FILE_IMPORT__FILE_NAME);
-		createEAttribute(fileImportEClass, FILE_IMPORT__TYPE);
-
-		localImportEClass = createEClass(LOCAL_IMPORT);
-		createEReference(localImportEClass, LOCAL_IMPORT__FILE_IMPORTS);
-
 		bodyElementsEClass = createEClass(BODY_ELEMENTS);
 		createEReference(bodyElementsEClass, BODY_ELEMENTS__CLASSES);
 		createEReference(bodyElementsEClass, BODY_ELEMENTS__EXTENDS);
 		createEReference(bodyElementsEClass, BODY_ELEMENTS__INSTANCES);
 
-		classDeclEClass = createEClass(CLASS_DECL);
-		createEReference(classDeclEClass, CLASS_DECL__CONTEXT);
-		createEReference(classDeclEClass, CLASS_DECL__BLOCK);
+		bracketEClass = createEClass(BRACKET);
+		createEReference(bracketEClass, BRACKET__CHILD);
 
 		bsClassEClass = createEClass(BS_CLASS);
 		createEReference(bsClassEClass, BS_CLASS__SUPERTYPES);
@@ -1734,40 +1736,22 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(bsClassEClass, BS_CLASS__WHERE);
 		createEReference(bsClassEClass, BS_CLASS__INST_NAME);
 
-		instNameEClass = createEClass(INST_NAME);
-
 		bSharpBlockEClass = createEClass(BSHARP_BLOCK);
 		createEReference(bSharpBlockEClass, BSHARP_BLOCK__FUNCTIONS);
 		createEReference(bSharpBlockEClass, BSHARP_BLOCK__THEOREMS);
 
-		genNameEClass = createEClass(GEN_NAME);
+		classDeclEClass = createEClass(CLASS_DECL);
+		createEReference(classDeclEClass, CLASS_DECL__CONTEXT);
+		createEReference(classDeclEClass, CLASS_DECL__BLOCK);
 
-		polyContextEClass = createEClass(POLY_CONTEXT);
-		createEReference(polyContextEClass, POLY_CONTEXT__POLY_TYPES);
-
-		polyTypeEClass = createEClass(POLY_TYPE);
-		createEReference(polyTypeEClass, POLY_TYPE__SUPER_TYPES);
-
-		superTypeListEClass = createEClass(SUPER_TYPE_LIST);
-		createEReference(superTypeListEClass, SUPER_TYPE_LIST__SUPER_TYPES);
-
-		typeConstructorEClass = createEClass(TYPE_CONSTRUCTOR);
-		createEReference(typeConstructorEClass, TYPE_CONSTRUCTOR__TYPE_NAME);
-		createEReference(typeConstructorEClass, TYPE_CONSTRUCTOR__CONTEXT);
-
-		typeConstrBracketEClass = createEClass(TYPE_CONSTR_BRACKET);
-		createEReference(typeConstrBracketEClass, TYPE_CONSTR_BRACKET__CHILD);
+		classVarDeclEClass = createEClass(CLASS_VAR_DECL);
+		createEReference(classVarDeclEClass, CLASS_VAR_DECL__OWNER_TYPE);
+		createEReference(classVarDeclEClass, CLASS_VAR_DECL__TYPE_INST);
 
 		constructedTypeEClass = createEClass(CONSTRUCTED_TYPE);
 		createEAttribute(constructedTypeEClass, CONSTRUCTED_TYPE__CONSTRUCTOR);
 		createEReference(constructedTypeEClass, CONSTRUCTED_TYPE__LEFT);
 		createEReference(constructedTypeEClass, CONSTRUCTED_TYPE__RIGHT);
-
-		typeDeclContextEClass = createEClass(TYPE_DECL_CONTEXT);
-		createEReference(typeDeclContextEClass, TYPE_DECL_CONTEXT__TYPE_NAME);
-
-		whereEClass = createEClass(WHERE);
-		createEReference(whereEClass, WHERE__EXPRESSIONS);
 
 		datatypeEClass = createEClass(DATATYPE);
 		createEReference(datatypeEClass, DATATYPE__CONSTRUCTORS);
@@ -1780,6 +1764,21 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEAttribute(extendEClass, EXTEND__NAME);
 		createEReference(extendEClass, EXTEND__BLOCK);
 
+		expressionEClass = createEClass(EXPRESSION);
+		createEReference(expressionEClass, EXPRESSION__TYPE_INST);
+
+		expressionVariableEClass = createEClass(EXPRESSION_VARIABLE);
+
+		fileImportEClass = createEClass(FILE_IMPORT);
+		createEAttribute(fileImportEClass, FILE_IMPORT__FILE_NAME);
+		createEAttribute(fileImportEClass, FILE_IMPORT__TYPE);
+
+		functionCallEClass = createEClass(FUNCTION_CALL);
+		createEReference(functionCallEClass, FUNCTION_CALL__ARGUMENTS);
+		createEReference(functionCallEClass, FUNCTION_CALL__OWNER_TYPE);
+		createEReference(functionCallEClass, FUNCTION_CALL__CLASS_VAR_DECL);
+		createEReference(functionCallEClass, FUNCTION_CALL__CONTEXT);
+
 		functionDeclEClass = createEClass(FUNCTION_DECL);
 		createEReference(functionDeclEClass, FUNCTION_DECL__CONTEXT);
 		createEReference(functionDeclEClass, FUNCTION_DECL__VAR_LIST);
@@ -1787,15 +1786,60 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEAttribute(functionDeclEClass, FUNCTION_DECL__INFIX);
 		createEAttribute(functionDeclEClass, FUNCTION_DECL__PRECEDENCE);
 		createEReference(functionDeclEClass, FUNCTION_DECL__EXPR);
+		createEReference(functionDeclEClass, FUNCTION_DECL__GENERATED_LAMBDAS);
 
-		matchStatementEClass = createEClass(MATCH_STATEMENT);
-		createEReference(matchStatementEClass, MATCH_STATEMENT__MATCH);
-		createEReference(matchStatementEClass, MATCH_STATEMENT__INDUCT_CASE);
+		genNameEClass = createEClass(GEN_NAME);
+
+		globalImportEClass = createEClass(GLOBAL_IMPORT);
+		createEReference(globalImportEClass, GLOBAL_IMPORT__FILE_IMPORTS);
+		createEAttribute(globalImportEClass, GLOBAL_IMPORT__PROJECT);
+
+		infixEClass = createEClass(INFIX);
+		createEReference(infixEClass, INFIX__LEFT);
+		createEReference(infixEClass, INFIX__FUNC_NAME);
+		createEAttribute(infixEClass, INFIX__OP_NAME);
+		createEReference(infixEClass, INFIX__RIGHT);
+
+		instNameEClass = createEClass(INST_NAME);
+
+		instanceEClass = createEClass(INSTANCE);
+		createEReference(instanceEClass, INSTANCE__CLASS_NAME);
+		createEReference(instanceEClass, INSTANCE__CONTEXT);
+		createEReference(instanceEClass, INSTANCE__ARGUMENTS);
+
+		localImportEClass = createEClass(LOCAL_IMPORT);
+		createEReference(localImportEClass, LOCAL_IMPORT__FILE_IMPORTS);
 
 		matchCaseEClass = createEClass(MATCH_CASE);
 		createEReference(matchCaseEClass, MATCH_CASE__DECON_NAME);
 		createEReference(matchCaseEClass, MATCH_CASE__VARIABLES);
 		createEReference(matchCaseEClass, MATCH_CASE__EXPR);
+
+		matchStatementEClass = createEClass(MATCH_STATEMENT);
+		createEReference(matchStatementEClass, MATCH_STATEMENT__MATCH);
+		createEReference(matchStatementEClass, MATCH_STATEMENT__INDUCT_CASE);
+
+		namedObjectEClass = createEClass(NAMED_OBJECT);
+		createEAttribute(namedObjectEClass, NAMED_OBJECT__NAME);
+
+		polyContextEClass = createEClass(POLY_CONTEXT);
+		createEReference(polyContextEClass, POLY_CONTEXT__POLY_TYPES);
+
+		polyTypeEClass = createEClass(POLY_TYPE);
+		createEReference(polyTypeEClass, POLY_TYPE__SUPER_TYPES);
+
+		prefixEClass = createEClass(PREFIX);
+		createEAttribute(prefixEClass, PREFIX__NAME);
+		createEReference(prefixEClass, PREFIX__ELEM);
+
+		quantLambdaEClass = createEClass(QUANT_LAMBDA);
+		createEAttribute(quantLambdaEClass, QUANT_LAMBDA__QTYPE);
+		createEReference(quantLambdaEClass, QUANT_LAMBDA__CONTEXT);
+		createEReference(quantLambdaEClass, QUANT_LAMBDA__VAR_LIST);
+		createEReference(quantLambdaEClass, QUANT_LAMBDA__EXPR);
+
+		superTypeListEClass = createEClass(SUPER_TYPE_LIST);
+		createEReference(superTypeListEClass, SUPER_TYPE_LIST__SUPER_TYPES);
 
 		theoremBodyEClass = createEClass(THEOREM_BODY);
 		createEReference(theoremBodyEClass, THEOREM_BODY__THEOREM_DECL);
@@ -1804,6 +1848,37 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEAttribute(theoremDeclEClass, THEOREM_DECL__NAME);
 		createEReference(theoremDeclEClass, THEOREM_DECL__EXPR);
 
+		topLevelFileEClass = createEClass(TOP_LEVEL_FILE);
+		createEAttribute(topLevelFileEClass, TOP_LEVEL_FILE__NAME);
+		createEReference(topLevelFileEClass, TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS);
+		createEReference(topLevelFileEClass, TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS);
+
+		topLevelEClass = createEClass(TOP_LEVEL);
+		createEAttribute(topLevelEClass, TOP_LEVEL__NAME);
+		createEReference(topLevelEClass, TOP_LEVEL__TOP_LEVEL_FILE);
+
+		topLevelImportEClass = createEClass(TOP_LEVEL_IMPORT);
+		createEReference(topLevelImportEClass, TOP_LEVEL_IMPORT__GLOBAL_IMPORTS);
+		createEReference(topLevelImportEClass, TOP_LEVEL_IMPORT__LOCAL_IMPORTS);
+		createEReference(topLevelImportEClass, TOP_LEVEL_IMPORT__BODY_ELEMENTS);
+
+		typeBuilderEClass = createEClass(TYPE_BUILDER);
+
+		typeConstructorEClass = createEClass(TYPE_CONSTRUCTOR);
+		createEReference(typeConstructorEClass, TYPE_CONSTRUCTOR__TYPE_NAME);
+		createEReference(typeConstructorEClass, TYPE_CONSTRUCTOR__CONTEXT);
+
+		typeConstrBracketEClass = createEClass(TYPE_CONSTR_BRACKET);
+		createEReference(typeConstrBracketEClass, TYPE_CONSTR_BRACKET__CHILD);
+
+		typeDeclContextEClass = createEClass(TYPE_DECL_CONTEXT);
+		createEReference(typeDeclContextEClass, TYPE_DECL_CONTEXT__TYPE_NAME);
+
+		typePowerSetEClass = createEClass(TYPE_POWER_SET);
+		createEReference(typePowerSetEClass, TYPE_POWER_SET__CHILD);
+
+		typedVariableEClass = createEClass(TYPED_VARIABLE);
+
 		typedVariableListEClass = createEClass(TYPED_VARIABLE_LIST);
 		createEReference(typedVariableListEClass, TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE);
 
@@ -1811,54 +1886,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(variableTypingEClass, VARIABLE_TYPING__TYPE_VAR);
 		createEReference(variableTypingEClass, VARIABLE_TYPING__TYPE);
 
-		typedVariableEClass = createEClass(TYPED_VARIABLE);
-
-		quantLambdaEClass = createEClass(QUANT_LAMBDA);
-		createEAttribute(quantLambdaEClass, QUANT_LAMBDA__QTYPE);
-		createEReference(quantLambdaEClass, QUANT_LAMBDA__CONTEXT);
-		createEReference(quantLambdaEClass, QUANT_LAMBDA__VAR_LIST);
-		createEReference(quantLambdaEClass, QUANT_LAMBDA__EXPR);
-
-		expressionEClass = createEClass(EXPRESSION);
-		createEReference(expressionEClass, EXPRESSION__TYPE_INST);
-
-		functionCallEClass = createEClass(FUNCTION_CALL);
-		createEReference(functionCallEClass, FUNCTION_CALL__ARGUMENTS);
-		createEReference(functionCallEClass, FUNCTION_CALL__OWNER_TYPE);
-		createEReference(functionCallEClass, FUNCTION_CALL__CLASS_VAR_DECL);
-		createEReference(functionCallEClass, FUNCTION_CALL__CONTEXT);
-
-		classVarDeclEClass = createEClass(CLASS_VAR_DECL);
-		createEReference(classVarDeclEClass, CLASS_VAR_DECL__OWNER_TYPE);
-		createEReference(classVarDeclEClass, CLASS_VAR_DECL__TYPE_INST);
-
-		prefixEClass = createEClass(PREFIX);
-		createEAttribute(prefixEClass, PREFIX__NAME);
-		createEReference(prefixEClass, PREFIX__ELEM);
-
-		bracketEClass = createEClass(BRACKET);
-		createEReference(bracketEClass, BRACKET__CHILD);
-
-		expressionVariableEClass = createEClass(EXPRESSION_VARIABLE);
-
-		instanceEClass = createEClass(INSTANCE);
-		createEReference(instanceEClass, INSTANCE__CLASS_NAME);
-		createEReference(instanceEClass, INSTANCE__CONTEXT);
-		createEReference(instanceEClass, INSTANCE__ARGUMENTS);
-
-		infixEClass = createEClass(INFIX);
-		createEReference(infixEClass, INFIX__LEFT);
-		createEReference(infixEClass, INFIX__FUNC_NAME);
-		createEAttribute(infixEClass, INFIX__OP_NAME);
-		createEReference(infixEClass, INFIX__RIGHT);
-
-		namedObjectEClass = createEClass(NAMED_OBJECT);
-		createEAttribute(namedObjectEClass, NAMED_OBJECT__NAME);
-
-		typeBuilderEClass = createEClass(TYPE_BUILDER);
-
-		typePowerSetEClass = createEClass(TYPE_POWER_SET);
-		createEReference(typePowerSetEClass, TYPE_POWER_SET__CHILD);
+		whereEClass = createEClass(WHERE);
+		createEReference(whereEClass, WHERE__EXPRESSIONS);
 	}
 
 	/**
@@ -1890,8 +1919,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		// Add supertypes to classes
 		typeEClass.getESuperTypes().add(this.getGenName());
-		topLevelFileEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
-		topLevelImportEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
+		bracketEClass.getESuperTypes().add(this.getExpression());
+		bsClassEClass.getESuperTypes().add(this.getClassDecl());
 		classDeclEClass.getESuperTypes().add(this.getGenName());
 		classDeclEClass.getESuperTypes().add(this.getExpressionVariable());
 		classDeclEClass.getESuperTypes().add(this.getIVariableProvider());
@@ -1899,13 +1928,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		classDeclEClass.getESuperTypes().add(this.getType());
 		classDeclEClass.getESuperTypes().add(this.getTopLevelInstance());
 		classDeclEClass.getESuperTypes().add(this.getIEventBPrefixProvider());
-		bsClassEClass.getESuperTypes().add(this.getClassDecl());
-		instNameEClass.getESuperTypes().add(this.getExpressionVariable());
-		instNameEClass.getESuperTypes().add(this.getGenName());
-		genNameEClass.getESuperTypes().add(this.getNamedObject());
-		polyTypeEClass.getESuperTypes().add(this.getGenName());
-		typeConstructorEClass.getESuperTypes().add(this.getTypeBuilder());
-		typeConstrBracketEClass.getESuperTypes().add(this.getTypeBuilder());
+		classVarDeclEClass.getESuperTypes().add(this.getIVarType());
 		constructedTypeEClass.getESuperTypes().add(this.getTypeBuilder());
 		datatypeEClass.getESuperTypes().add(this.getClassDecl());
 		datatypeConstructorEClass.getESuperTypes().add(this.getIVariableProvider());
@@ -1913,23 +1936,30 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		extendEClass.getESuperTypes().add(this.getIVariableProvider());
 		extendEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		extendEClass.getESuperTypes().add(this.getIEventBPrefixProvider());
+		extendEClass.getESuperTypes().add(this.getTopLevelInstance());
+		expressionVariableEClass.getESuperTypes().add(this.getNamedObject());
+		expressionVariableEClass.getESuperTypes().add(this.getIVarType());
+		functionCallEClass.getESuperTypes().add(this.getExpression());
 		functionDeclEClass.getESuperTypes().add(this.getIVariableProvider());
 		functionDeclEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		functionDeclEClass.getESuperTypes().add(this.getExpressionVariable());
-		matchStatementEClass.getESuperTypes().add(this.getExpression());
+		genNameEClass.getESuperTypes().add(this.getNamedObject());
+		infixEClass.getESuperTypes().add(this.getExpression());
+		instNameEClass.getESuperTypes().add(this.getExpressionVariable());
+		instNameEClass.getESuperTypes().add(this.getGenName());
 		matchCaseEClass.getESuperTypes().add(this.getIVariableProvider());
-		typedVariableEClass.getESuperTypes().add(this.getExpressionVariable());
+		matchStatementEClass.getESuperTypes().add(this.getExpression());
+		polyTypeEClass.getESuperTypes().add(this.getGenName());
+		prefixEClass.getESuperTypes().add(this.getExpression());
 		quantLambdaEClass.getESuperTypes().add(this.getExpression());
 		quantLambdaEClass.getESuperTypes().add(this.getIVariableProvider());
 		quantLambdaEClass.getESuperTypes().add(this.getIPolyTypeProvider());
-		functionCallEClass.getESuperTypes().add(this.getExpression());
-		classVarDeclEClass.getESuperTypes().add(this.getIVarType());
-		prefixEClass.getESuperTypes().add(this.getExpression());
-		bracketEClass.getESuperTypes().add(this.getExpression());
-		expressionVariableEClass.getESuperTypes().add(this.getNamedObject());
-		expressionVariableEClass.getESuperTypes().add(this.getIVarType());
-		infixEClass.getESuperTypes().add(this.getExpression());
+		topLevelFileEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
+		topLevelImportEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
+		typeConstructorEClass.getESuperTypes().add(this.getTypeBuilder());
+		typeConstrBracketEClass.getESuperTypes().add(this.getTypeBuilder());
 		typePowerSetEClass.getESuperTypes().add(this.getTypeBuilder());
+		typedVariableEClass.getESuperTypes().add(this.getExpressionVariable());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(iEventBPrefixProviderEClass, IEventBPrefixProvider.class, "IEventBPrefixProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1937,6 +1967,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(iVariableProviderEClass, IVariableProvider.class, "IVariableProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iPolyTypeProviderEClass, IPolyTypeProvider.class, "IPolyTypeProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(iClassDeclExtendEClass, IClassDeclExtend.class, "IClassDeclExtend", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iTheoryImportCacheProviderEClass, ITheoryImportCacheProvider.class, "ITheoryImportCacheProvider", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1946,39 +1978,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		initEClass(topLevelInstanceEClass, TopLevelInstance.class, "TopLevelInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(topLevelEClass, TopLevel.class, "TopLevel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTopLevel_Name(), ecorePackage.getEString(), "name", null, 0, 1, TopLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTopLevel_TopLevelFile(), this.getTopLevelFile(), null, "topLevelFile", null, 0, 1, TopLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(topLevelFileEClass, TopLevelFile.class, "TopLevelFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTopLevelFile_Name(), ecorePackage.getEString(), "name", null, 0, 1, TopLevelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTopLevelFile_TopLevelImports(), this.getTopLevelImport(), null, "topLevelImports", null, 0, -1, TopLevelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTopLevelFile_NoImportElements(), this.getBodyElements(), null, "noImportElements", null, 0, 1, TopLevelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(topLevelImportEClass, TopLevelImport.class, "TopLevelImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTopLevelImport_GlobalImports(), this.getGlobalImport(), null, "globalImports", null, 0, -1, TopLevelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTopLevelImport_LocalImports(), this.getLocalImport(), null, "localImports", null, 0, -1, TopLevelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTopLevelImport_BodyElements(), this.getBodyElements(), null, "bodyElements", null, 1, 1, TopLevelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(globalImportEClass, GlobalImport.class, "GlobalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGlobalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGlobalImport_Project(), ecorePackage.getEString(), "project", null, 0, 1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(fileImportEClass, FileImport.class, "FileImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFileImport_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1, FileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFileImport_Type(), ecorePackage.getEString(), "type", null, 0, 1, FileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(localImportEClass, LocalImport.class, "LocalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLocalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, LocalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(bodyElementsEClass, BodyElements.class, "BodyElements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBodyElements_Classes(), this.getClassDecl(), null, "classes", null, 0, -1, BodyElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBodyElements_Extends(), this.getExtend(), null, "extends", null, 0, -1, BodyElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBodyElements_Instances(), this.getInstance(), null, "instances", null, 0, -1, BodyElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(classDeclEClass, ClassDecl.class, "ClassDecl", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassDecl_Block(), this.getBSharpBlock(), null, "block", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(bracketEClass, Bracket.class, "Bracket", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBracket_Child(), this.getExpression(), null, "child", null, 0, 1, Bracket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bsClassEClass, BSClass.class, "BSClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBSClass_Supertypes(), this.getSuperTypeList(), null, "supertypes", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1986,40 +1992,22 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getBSClass_Where(), this.getWhere(), null, "where", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBSClass_InstName(), this.getInstName(), null, "instName", null, 0, 1, BSClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(instNameEClass, InstName.class, "InstName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(bSharpBlockEClass, BSharpBlock.class, "BSharpBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBSharpBlock_Functions(), this.getFunctionDecl(), null, "functions", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBSharpBlock_Theorems(), this.getTheoremBody(), null, "theorems", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(genNameEClass, GenName.class, "GenName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(classDeclEClass, ClassDecl.class, "ClassDecl", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClassDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassDecl_Block(), this.getBSharpBlock(), null, "block", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(polyContextEClass, PolyContext.class, "PolyContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPolyContext_PolyTypes(), this.getPolyType(), null, "polyTypes", null, 0, -1, PolyContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(polyTypeEClass, PolyType.class, "PolyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPolyType_SuperTypes(), this.getClassDecl(), null, "superTypes", null, 0, -1, PolyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(superTypeListEClass, SuperTypeList.class, "SuperTypeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSuperTypeList_SuperTypes(), this.getTypeBuilder(), null, "superTypes", null, 0, -1, SuperTypeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typeConstructorEClass, TypeConstructor.class, "TypeConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeConstructor_TypeName(), this.getGenName(), null, "typeName", null, 0, 1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeConstructor_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typeConstrBracketEClass, TypeConstrBracket.class, "TypeConstrBracket", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeConstrBracket_Child(), this.getTypeBuilder(), null, "child", null, 1, 1, TypeConstrBracket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(classVarDeclEClass, ClassVarDecl.class, "ClassVarDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClassVarDecl_OwnerType(), this.getGenName(), null, "ownerType", null, 0, 1, ClassVarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassVarDecl_TypeInst(), this.getExpressionVariable(), null, "typeInst", null, 0, 1, ClassVarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constructedTypeEClass, ConstructedType.class, "ConstructedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstructedType_Constructor(), ecorePackage.getEString(), "constructor", null, 0, 1, ConstructedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstructedType_Left(), this.getTypeBuilder(), null, "left", null, 0, 1, ConstructedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConstructedType_Right(), this.getTypeBuilder(), null, "right", null, 0, 1, ConstructedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typeDeclContextEClass, TypeDeclContext.class, "TypeDeclContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeDeclContext_TypeName(), this.getTypeBuilder(), null, "typeName", null, 0, -1, TypeDeclContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(whereEClass, Where.class, "Where", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWhere_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, Where.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(datatypeEClass, Datatype.class, "Datatype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDatatype_Constructors(), this.getDatatypeConstructor(), null, "constructors", null, 0, -1, Datatype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2032,6 +2020,21 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEAttribute(getExtend_Name(), ecorePackage.getEString(), "name", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtend_Block(), this.getBSharpBlock(), null, "block", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExpression_TypeInst(), this.getExpressionVariable(), null, "typeInst", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(expressionVariableEClass, ExpressionVariable.class, "ExpressionVariable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(fileImportEClass, FileImport.class, "FileImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFileImport_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1, FileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileImport_Type(), ecorePackage.getEString(), "type", null, 0, 1, FileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFunctionCall_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCall_OwnerType(), this.getGenName(), null, "ownerType", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCall_ClassVarDecl(), this.getClassVarDecl(), null, "classVarDecl", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCall_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(functionDeclEClass, FunctionDecl.class, "FunctionDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDecl_VarList(), this.getTypedVariableList(), null, "varList", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2039,15 +2042,60 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEAttribute(getFunctionDecl_Infix(), ecorePackage.getEString(), "infix", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionDecl_Precedence(), ecorePackage.getEInt(), "precedence", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDecl_Expr(), this.getExpression(), null, "expr", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDecl_GeneratedLambdas(), this.getExpression(), null, "generatedLambdas", null, 0, -1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(matchStatementEClass, MatchStatement.class, "MatchStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMatchStatement_Match(), this.getTypedVariable(), null, "match", null, 0, 1, MatchStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMatchStatement_InductCase(), this.getMatchCase(), null, "inductCase", null, 0, -1, MatchStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(genNameEClass, GenName.class, "GenName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(globalImportEClass, GlobalImport.class, "GlobalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGlobalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGlobalImport_Project(), ecorePackage.getEString(), "project", null, 0, 1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(infixEClass, Infix.class, "Infix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInfix_Left(), this.getExpression(), null, "left", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfix_FuncName(), this.getFunctionDecl(), null, "funcName", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInfix_OpName(), ecorePackage.getEString(), "opName", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfix_Right(), this.getExpression(), null, "right", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(instNameEClass, InstName.class, "InstName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(instanceEClass, Instance.class, "Instance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInstance_ClassName(), this.getClassDecl(), null, "className", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstance_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstance_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(localImportEClass, LocalImport.class, "LocalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLocalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, LocalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(matchCaseEClass, MatchCase.class, "MatchCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMatchCase_DeconName(), this.getDatatypeConstructor(), null, "deconName", null, 0, 1, MatchCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMatchCase_Variables(), this.getTypedVariable(), null, "variables", null, 0, -1, MatchCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMatchCase_Expr(), this.getExpression(), null, "expr", null, 0, 1, MatchCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(matchStatementEClass, MatchStatement.class, "MatchStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMatchStatement_Match(), this.getExpression(), null, "match", null, 0, 1, MatchStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMatchStatement_InductCase(), this.getMatchCase(), null, "inductCase", null, 0, -1, MatchStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(namedObjectEClass, NamedObject.class, "NamedObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNamedObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(polyContextEClass, PolyContext.class, "PolyContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPolyContext_PolyTypes(), this.getPolyType(), null, "polyTypes", null, 0, -1, PolyContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(polyTypeEClass, PolyType.class, "PolyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPolyType_SuperTypes(), this.getClassDecl(), null, "superTypes", null, 0, -1, PolyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(prefixEClass, Prefix.class, "Prefix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPrefix_Name(), ecorePackage.getEString(), "name", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPrefix_Elem(), this.getExpression(), null, "elem", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(quantLambdaEClass, QuantLambda.class, "QuantLambda", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getQuantLambda_QType(), ecorePackage.getEString(), "qType", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuantLambda_Context(), this.getPolyContext(), null, "context", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuantLambda_VarList(), this.getTypedVariableList(), null, "varList", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuantLambda_Expr(), this.getExpression(), null, "expr", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(superTypeListEClass, SuperTypeList.class, "SuperTypeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSuperTypeList_SuperTypes(), this.getTypeBuilder(), null, "superTypes", null, 0, -1, SuperTypeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(theoremBodyEClass, TheoremBody.class, "TheoremBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTheoremBody_TheoremDecl(), this.getTheoremDecl(), null, "theoremDecl", null, 0, -1, TheoremBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2056,6 +2104,37 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEAttribute(getTheoremDecl_Name(), ecorePackage.getEString(), "name", null, 0, 1, TheoremDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTheoremDecl_Expr(), this.getExpression(), null, "expr", null, 0, 1, TheoremDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(topLevelFileEClass, TopLevelFile.class, "TopLevelFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTopLevelFile_Name(), ecorePackage.getEString(), "name", null, 0, 1, TopLevelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTopLevelFile_TopLevelImports(), this.getTopLevelImport(), null, "topLevelImports", null, 0, -1, TopLevelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTopLevelFile_NoImportElements(), this.getBodyElements(), null, "noImportElements", null, 0, 1, TopLevelFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(topLevelEClass, TopLevel.class, "TopLevel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTopLevel_Name(), ecorePackage.getEString(), "name", null, 0, 1, TopLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTopLevel_TopLevelFile(), this.getTopLevelFile(), null, "topLevelFile", null, 0, 1, TopLevel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(topLevelImportEClass, TopLevelImport.class, "TopLevelImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTopLevelImport_GlobalImports(), this.getGlobalImport(), null, "globalImports", null, 0, -1, TopLevelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTopLevelImport_LocalImports(), this.getLocalImport(), null, "localImports", null, 0, -1, TopLevelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTopLevelImport_BodyElements(), this.getBodyElements(), null, "bodyElements", null, 1, 1, TopLevelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typeBuilderEClass, TypeBuilder.class, "TypeBuilder", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(typeConstructorEClass, TypeConstructor.class, "TypeConstructor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypeConstructor_TypeName(), this.getGenName(), null, "typeName", null, 0, 1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypeConstructor_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, TypeConstructor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typeConstrBracketEClass, TypeConstrBracket.class, "TypeConstrBracket", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypeConstrBracket_Child(), this.getTypeBuilder(), null, "child", null, 1, 1, TypeConstrBracket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typeDeclContextEClass, TypeDeclContext.class, "TypeDeclContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypeDeclContext_TypeName(), this.getTypeBuilder(), null, "typeName", null, 0, -1, TypeDeclContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typePowerSetEClass, TypePowerSet.class, "TypePowerSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypePowerSet_Child(), this.getTypeBuilder(), null, "child", null, 0, 1, TypePowerSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(typedVariableEClass, TypedVariable.class, "TypedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(typedVariableListEClass, TypedVariableList.class, "TypedVariableList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypedVariableList_VariablesOfType(), this.getVariableTyping(), null, "variablesOfType", null, 0, -1, TypedVariableList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2063,54 +2142,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getVariableTyping_TypeVar(), this.getTypedVariable(), null, "typeVar", null, 0, -1, VariableTyping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVariableTyping_Type(), this.getTypeBuilder(), null, "type", null, 0, 1, VariableTyping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(typedVariableEClass, TypedVariable.class, "TypedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(quantLambdaEClass, QuantLambda.class, "QuantLambda", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getQuantLambda_QType(), ecorePackage.getEString(), "qType", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getQuantLambda_Context(), this.getPolyContext(), null, "context", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getQuantLambda_VarList(), this.getTypedVariableList(), null, "varList", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getQuantLambda_Expr(), this.getExpression(), null, "expr", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExpression_TypeInst(), this.getExpressionVariable(), null, "typeInst", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionCall_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionCall_OwnerType(), this.getGenName(), null, "ownerType", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionCall_ClassVarDecl(), this.getClassVarDecl(), null, "classVarDecl", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionCall_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(classVarDeclEClass, ClassVarDecl.class, "ClassVarDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassVarDecl_OwnerType(), this.getGenName(), null, "ownerType", null, 0, 1, ClassVarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassVarDecl_TypeInst(), this.getExpressionVariable(), null, "typeInst", null, 0, 1, ClassVarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(prefixEClass, Prefix.class, "Prefix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPrefix_Name(), ecorePackage.getEString(), "name", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPrefix_Elem(), this.getExpression(), null, "elem", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(bracketEClass, Bracket.class, "Bracket", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBracket_Child(), this.getExpression(), null, "child", null, 0, 1, Bracket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(expressionVariableEClass, ExpressionVariable.class, "ExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(instanceEClass, Instance.class, "Instance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInstance_ClassName(), this.getClassDecl(), null, "className", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInstance_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInstance_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(infixEClass, Infix.class, "Infix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInfix_Left(), this.getExpression(), null, "left", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInfix_FuncName(), this.getFunctionDecl(), null, "funcName", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getInfix_OpName(), ecorePackage.getEString(), "opName", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInfix_Right(), this.getExpression(), null, "right", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(namedObjectEClass, NamedObject.class, "NamedObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNamedObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(typeBuilderEClass, TypeBuilder.class, "TypeBuilder", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(typePowerSetEClass, TypePowerSet.class, "TypePowerSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypePowerSet_Child(), this.getTypeBuilder(), null, "child", null, 0, 1, TypePowerSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(whereEClass, Where.class, "Where", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWhere_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, Where.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -458,8 +458,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return varList != null && varList.varCount() != 0;
 	}
 	
+	protected Integer compiledMatchStatements = 0;
+	
 	/* Compiles the operator used to create an instance of this type class. */
 	public void compileOp() throws Exception {
+		compiledMatchStatements = 0;
 		/*TODO: document this method working through a couple of event B examples to show 
 		 * how and where they are compiled. Maybe Monoid and TransitiveOp.
 		 */
@@ -587,8 +590,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return result;
 	}
 	
-	/* Gets the names of all of the typed variables, and returns a string with
-	 * them appended to each other correctly.
+	/* This method is for generating type information for theorems. Given T : Monoid it will 
+	 * add [equ, ident, op] to vars and return "equ |-> (ident |-> op)" The return value can
+	 * then be typed as equ |-> (ident |-> op) : Monoid(T)
 	 */
 	public String typedVariableList(ArrayList<String> vars) {
 		BSClass superT = supertypes.getFirst().getTypeClass();
@@ -602,7 +606,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		
 		if (varList == null)
-			return null;
+			return result;
 		
 		ArrayList<TypedVariable> typedVars = varList.getTypedVariableNames();
 		if (typedVars.size() != 0) {
@@ -628,6 +632,31 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		
 		return result;
+	}
+	
+	/* This is similar to the method above except it is used to compile operators, and therefore 
+	 * needs to return a list of typed vars rather than just a list of vars.
+	 */
+	public String typedArgsList(ArrayList<Tuple2<String, String>> typedVars) {
+		BSClass superT = supertypes.getFirst().getTypeClass();
+		String result = null;
+		boolean isTop = false;
+		if (superT != null) {
+			result = ((BSClassImpl)superT).typedArgsList(typedVars);
+		} else {
+			isTop = false;
+			result = "";
+		}
+		
+		if (varList == null) {
+			return result;
+		}
+		
+		/* This can't be right because it can't know about the polymorphic type name that I'm going to 
+		 * use :-/
+		 */
+		varList.getCompiledVariablesAndTypes();
+		
 	}
 	
 	/* returns all the typed arguments needed to construct a fully polymorphic version of this
@@ -687,6 +716,28 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		typedArgs.add(new Tuple2<String, String>(finalConstruct, bsClassType.y));
 		return typedArgs;
+	}
+	
+	@Override
+	public ArrayList<Tuple2<String, String>> typedArgsAndAdditionTypingForDeconstructedType(ArrayList<Tuple2<String, String>> args, String pTypeName)
+	{
+		String prefix = null;
+		if (pTypeName != null && !pTypeName.isEmpty())
+			prefix = "_" + pTypeName;
+			
+		
+		ArrayList<Tuple2<String, String>> typedArgs = typedConstructionArgs();
+		
+		if (prefix != null) {
+			for (Tuple2<String, String> poly : typedArgs) {
+				poly.x = prefix + poly.x;
+			}
+		}
+		
+		String AdditionalTypeConstr = "";
+		if (typedArgs.size() != 0) {
+			
+		}
 	}
 	
 	INewOperatorDefinition constructOpForGetterWithName(String n) {
@@ -1195,6 +1246,45 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		
 		return result += instName;
+	}
+
+	@Override
+	public String opNameForMatchStatement(MatchStatementImpl match) {
+		return name + "_M" + (compiledMatchStatements++).toString();
+	}
+
+	@Override
+	public TypeBuilder calculateReturnType() {
+		/* I think that I need some serious consideration about whether this should ever happen.
+		 * I don't think that it should.
+		 */
+		return null;
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		TypePowerSet tps = BSharpFactory.eINSTANCE.createTypePowerSet();
+		TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
+		tc.setTypeName(this);
+		tps.setChild(tps);
+		return tps;
+	}
+
+	@Override
+	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
+		/* Check for a supertype and get it's in scope varaibles, then append any 
+		 * additional variables from the varlist.
+		 */
+		TypeBuilder superT = supertypes.getFirst();
+		BSClass bsSuper = superT.getTypeClass();
+		
+		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>();
+		if (bsSuper != null) {
+			result.addAll(bsSuper.inScopeTypedVariables());
+		}
+		
+		result.addAll(varList.getCompiledVariablesAndTypes());
+		return result;
 	}
 	
 } //BppClassImpl

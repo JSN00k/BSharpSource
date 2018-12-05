@@ -3,11 +3,15 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.QuantLambda;
+import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -518,6 +522,19 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	@Override
 	public boolean referencesContainingType() {
 		return left.referencesContainingType() || right.referencesContainingType(); 
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		if (opName != null) {
+			Datatype dt = BSharpFactory.eINSTANCE.createDatatype();
+			dt.setName("Bool");
+			TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
+			tc.setTypeName(dt);
+			return tc;
+		}
+		
+		return funcName.getReturnType();
 	}
 
 } //InfixImpl

@@ -3,13 +3,15 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.InstName;
-import ac.soton.bsharp.bSharp.Where;
+import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +38,25 @@ public class InstNameImpl extends ExpressionVariableImpl implements InstName {
 	@Override
 	protected EClass eStaticClass() {
 		return BSharpPackage.Literals.INST_NAME;
+	}
+
+	@Override
+	public TypeBuilder calculateReturnType() {
+		BSClass bs = (BSClass)this.eContainer();
+		TypeBuilder tb = bs.baseType();
+		
+		tb = tb.reorderTypeTree();
+		if (tb instanceof ConstructedType)
+			return ((ConstructedType)tb).getRight();
+		
+		return null;
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
+		tc.setTypeName((BSClass)eContainer());
+		return tc;
 	}
 
 } //InstNameImpl

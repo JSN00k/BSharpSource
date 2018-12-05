@@ -2051,13 +2051,19 @@ ruleMatchStatement returns [EObject current=null]
 		(
 			(
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getMatchStatementRule());
-					}
+					newCompositeNode(grammarAccess.getMatchStatementAccess().getMatchRootExpressionParserRuleCall_1_0());
 				}
-				otherlv_1=RULE_ID
+				lv_match_1_0=ruleRootExpression
 				{
-					newLeafNode(otherlv_1, grammarAccess.getMatchStatementAccess().getMatchTypedVariableCrossReference_1_0());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMatchStatementRule());
+					}
+					set(
+						$current,
+						"match",
+						lv_match_1_0,
+						"ac.soton.bsharp.BSharp.RootExpression");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)

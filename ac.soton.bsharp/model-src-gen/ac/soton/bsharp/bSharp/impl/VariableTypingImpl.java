@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.VariableTyping;
 import ac.soton.bsharp.bSharp.util.Tuple2;
@@ -230,12 +231,13 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 	public ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesAndTypes() {
 		
 		ArrayList<Tuple2<TypedVariable, TypeBuilder>> result = new ArrayList<Tuple2<TypedVariable, TypeBuilder>>();
-		
-		if (typeVar == null || typeVar.isEmpty())
+		EList<TypedVariable> tv = getTypeVar();
+		TypeBuilder t = getType();
+		if (tv == null || tv.isEmpty())
 			return result;
 		
-		for (TypedVariable var : typeVar) {
-			result.add(new Tuple2<TypedVariable, TypeBuilder>(var, type));
+		for (TypedVariable var : tv) {
+			result.add(new Tuple2<TypedVariable, TypeBuilder>(var, t));
 		}
 		
 		return result;
@@ -247,6 +249,16 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 			return 0;
 		
 		return typeVar.size();
+	}
+
+	@Override
+	public Collection<? extends TypeBuilder> getTypesSeparately() {
+		ArrayList<TypeBuilder> result = new ArrayList<TypeBuilder>();
+		for (int i = 0; i < typeVar.size(); ++i) {
+			result.add(type);
+		}
+		
+		return result;
 	}
 
 } //VariableTypingImpl

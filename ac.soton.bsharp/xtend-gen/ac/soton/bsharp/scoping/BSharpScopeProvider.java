@@ -15,10 +15,8 @@ import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TypeBuilder;
-import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
-import ac.soton.bsharp.bSharp.VariableTyping;
 import ac.soton.bsharp.util.BSharpUtil;
 import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
@@ -26,6 +24,7 @@ import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
@@ -63,8 +62,7 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
       elements.add(bsClass.getInstName());
     }
     final Extend extend = EcoreUtil2.<Extend>getContainerOfType(context, Extend.class);
-    boolean _notEquals = (!Objects.equal(extend, null));
-    if (_notEquals) {
+    if ((extend != null)) {
       final ClassDecl extendedClass = extend.getExtendedClass();
       if ((extendedClass instanceof BSClass)) {
         elements.add(((BSClass) extendedClass).getInstName());
@@ -156,12 +154,14 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   
   public IScope scope_DatatypeConstructor(final MatchCase context, final EReference reference) {
     final MatchStatement matchStatement = EcoreUtil2.<MatchStatement>getContainerOfType(context, MatchStatement.class);
-    EObject _eContainer = matchStatement.getMatch().eContainer();
-    TypeBuilder _type = ((VariableTyping) _eContainer).getType();
-    final TypeConstructor tConstr = ((TypeConstructor) _type);
-    GenName _typeName = tConstr.getTypeName();
-    final Datatype dType = ((Datatype) _typeName);
-    final List<DatatypeConstructor> elements = EcoreUtil2.<DatatypeConstructor>getAllContentsOfType(dType, DatatypeConstructor.class);
+    final TypeBuilder wrappedDType = matchStatement.getMatch().calculateType();
+    boolean _isDatatype = wrappedDType.isDatatype();
+    boolean _not = (!_isDatatype);
+    if (_not) {
+      return IScope.NULLSCOPE;
+    }
+    final Datatype dType = wrappedDType.getDatatype();
+    final EList<DatatypeConstructor> elements = dType.getConstructors();
     return Scopes.scopeFor(elements, IScope.NULLSCOPE);
   }
   

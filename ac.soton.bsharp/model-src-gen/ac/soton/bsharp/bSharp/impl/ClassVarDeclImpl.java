@@ -12,6 +12,7 @@ import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
@@ -270,6 +271,16 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 		}
 		
 		return false;
+	}
+
+	@Override
+	public TypeBuilder calculateReturnType() {
+		return typeInst.calculateReturnType();
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		return typeInst.calculateType();
 	}
 
 } //ClassVarDeclImpl

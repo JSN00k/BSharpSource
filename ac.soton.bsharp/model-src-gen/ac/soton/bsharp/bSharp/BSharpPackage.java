@@ -83,7 +83,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevel()
 	 * @generated
 	 */
-	int TOP_LEVEL = 7;
+	int TOP_LEVEL = 40;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl <em>Class Decl</em>}' class.
@@ -93,7 +93,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getClassDecl()
 	 * @generated
 	 */
-	int CLASS_DECL = 14;
+	int CLASS_DECL = 12;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.NamedObjectImpl <em>Named Object</em>}' class.
@@ -103,7 +103,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getNamedObject()
 	 * @generated
 	 */
-	int NAMED_OBJECT = 47;
+	int NAMED_OBJECT = 31;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.GenNameImpl <em>Gen Name</em>}' class.
@@ -113,7 +113,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getGenName()
 	 * @generated
 	 */
-	int GEN_NAME = 18;
+	int GEN_NAME = 23;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BSharpBlockImpl <em>Block</em>}' class.
@@ -123,7 +123,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBSharpBlock()
 	 * @generated
 	 */
-	int BSHARP_BLOCK = 17;
+	int BSHARP_BLOCK = 11;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.PolyContextImpl <em>Poly Context</em>}' class.
@@ -133,7 +133,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPolyContext()
 	 * @generated
 	 */
-	int POLY_CONTEXT = 19;
+	int POLY_CONTEXT = 32;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.SuperTypeListImpl <em>Super Type List</em>}' class.
@@ -143,7 +143,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getSuperTypeList()
 	 * @generated
 	 */
-	int SUPER_TYPE_LIST = 21;
+	int SUPER_TYPE_LIST = 36;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ConstructedTypeImpl <em>Constructed Type</em>}' class.
@@ -153,7 +153,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getConstructedType()
 	 * @generated
 	 */
-	int CONSTRUCTED_TYPE = 24;
+	int CONSTRUCTED_TYPE = 14;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeConstructorImpl <em>Type Constructor</em>}' class.
@@ -163,7 +163,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeConstructor()
 	 * @generated
 	 */
-	int TYPE_CONSTRUCTOR = 22;
+	int TYPE_CONSTRUCTOR = 43;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeDeclContextImpl <em>Type Decl Context</em>}' class.
@@ -173,7 +173,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeDeclContext()
 	 * @generated
 	 */
-	int TYPE_DECL_CONTEXT = 25;
+	int TYPE_DECL_CONTEXT = 45;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.WhereImpl <em>Where</em>}' class.
@@ -183,7 +183,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getWhere()
 	 * @generated
 	 */
-	int WHERE = 26;
+	int WHERE = 50;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.DatatypeImpl <em>Datatype</em>}' class.
@@ -193,7 +193,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getDatatype()
 	 * @generated
 	 */
-	int DATATYPE = 27;
+	int DATATYPE = 15;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IVariableProvider <em>IVariable Provider</em>}' class.
@@ -222,7 +222,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getDatatypeConstructor()
 	 * @generated
 	 */
-	int DATATYPE_CONSTRUCTOR = 28;
+	int DATATYPE_CONSTRUCTOR = 16;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ExtendImpl <em>Extend</em>}' class.
@@ -232,7 +232,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getExtend()
 	 * @generated
 	 */
-	int EXTEND = 29;
+	int EXTEND = 17;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl <em>Function Decl</em>}' class.
@@ -242,7 +242,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionDecl()
 	 * @generated
 	 */
-	int FUNCTION_DECL = 30;
+	int FUNCTION_DECL = 22;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.
@@ -252,7 +252,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getExpressionVariable()
 	 * @generated
 	 */
-	int EXPRESSION_VARIABLE = 44;
+	int EXPRESSION_VARIABLE = 19;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -262,7 +262,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getExpression()
 	 * @generated
 	 */
-	int EXPRESSION = 39;
+	int EXPRESSION = 18;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.MatchStatementImpl <em>Match Statement</em>}' class.
@@ -272,7 +272,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getMatchStatement()
 	 * @generated
 	 */
-	int MATCH_STATEMENT = 31;
+	int MATCH_STATEMENT = 30;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.MatchCaseImpl <em>Match Case</em>}' class.
@@ -282,7 +282,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getMatchCase()
 	 * @generated
 	 */
-	int MATCH_CASE = 32;
+	int MATCH_CASE = 29;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TheoremBodyImpl <em>Theorem Body</em>}' class.
@@ -292,7 +292,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTheoremBody()
 	 * @generated
 	 */
-	int THEOREM_BODY = 33;
+	int THEOREM_BODY = 37;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl <em>Theorem Decl</em>}' class.
@@ -302,7 +302,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTheoremDecl()
 	 * @generated
 	 */
-	int THEOREM_DECL = 34;
+	int THEOREM_DECL = 38;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypedVariableListImpl <em>Typed Variable List</em>}' class.
@@ -312,7 +312,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypedVariableList()
 	 * @generated
 	 */
-	int TYPED_VARIABLE_LIST = 35;
+	int TYPED_VARIABLE_LIST = 48;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.VariableTypingImpl <em>Variable Typing</em>}' class.
@@ -322,7 +322,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getVariableTyping()
 	 * @generated
 	 */
-	int VARIABLE_TYPING = 36;
+	int VARIABLE_TYPING = 49;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypedVariableImpl <em>Typed Variable</em>}' class.
@@ -332,7 +332,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypedVariable()
 	 * @generated
 	 */
-	int TYPED_VARIABLE = 37;
+	int TYPED_VARIABLE = 47;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl <em>Quant Lambda</em>}' class.
@@ -342,7 +342,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getQuantLambda()
 	 * @generated
 	 */
-	int QUANT_LAMBDA = 38;
+	int QUANT_LAMBDA = 35;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl <em>Function Call</em>}' class.
@@ -352,7 +352,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionCall()
 	 * @generated
 	 */
-	int FUNCTION_CALL = 40;
+	int FUNCTION_CALL = 21;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.PrefixImpl <em>Prefix</em>}' class.
@@ -362,7 +362,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPrefix()
 	 * @generated
 	 */
-	int PREFIX = 42;
+	int PREFIX = 34;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BracketImpl <em>Bracket</em>}' class.
@@ -372,7 +372,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBracket()
 	 * @generated
 	 */
-	int BRACKET = 43;
+	int BRACKET = 9;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InstanceImpl <em>Instance</em>}' class.
@@ -382,7 +382,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInstance()
 	 * @generated
 	 */
-	int INSTANCE = 45;
+	int INSTANCE = 27;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InfixImpl <em>Infix</em>}' class.
@@ -392,7 +392,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInfix()
 	 * @generated
 	 */
-	int INFIX = 46;
+	int INFIX = 25;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IPolyTypeProvider <em>IPoly Type Provider</em>}' class.
@@ -414,6 +414,25 @@ public interface BSharpPackage extends EPackage {
 	int IPOLY_TYPE_PROVIDER_FEATURE_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IClassDeclExtend <em>IClass Decl Extend</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.IClassDeclExtend
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIClassDeclExtend()
+	 * @generated
+	 */
+	int ICLASS_DECL_EXTEND = 3;
+
+	/**
+	 * The number of structural features of the '<em>IClass Decl Extend</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ICLASS_DECL_EXTEND_FEATURE_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ITheoryImportCacheProviderImpl <em>ITheory Import Cache Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -421,7 +440,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getITheoryImportCacheProvider()
 	 * @generated
 	 */
-	int ITHEORY_IMPORT_CACHE_PROVIDER = 3;
+	int ITHEORY_IMPORT_CACHE_PROVIDER = 4;
 
 	/**
 	 * The number of structural features of the '<em>ITheory Import Cache Provider</em>' class.
@@ -440,7 +459,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIVarType()
 	 * @generated
 	 */
-	int IVAR_TYPE = 4;
+	int IVAR_TYPE = 5;
 
 	/**
 	 * The number of structural features of the '<em>IVar Type</em>' class.
@@ -495,7 +514,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 5;
+	int TYPE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -523,7 +542,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelInstance()
 	 * @generated
 	 */
-	int TOP_LEVEL_INSTANCE = 6;
+	int TOP_LEVEL_INSTANCE = 7;
 
 	/**
 	 * The number of structural features of the '<em>Top Level Instance</em>' class.
@@ -535,33 +554,6 @@ public interface BSharpPackage extends EPackage {
 	int TOP_LEVEL_INSTANCE_FEATURE_COUNT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Top Level File</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL__TOP_LEVEL_FILE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Top Level</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl <em>Top Level File</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -569,43 +561,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelFile()
 	 * @generated
 	 */
-	int TOP_LEVEL_FILE = 8;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_FILE__NAME = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Top Level Imports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>No Import Elements</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Top Level File</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_FILE_FEATURE_COUNT = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 3;
+	int TOP_LEVEL_FILE = 39;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TopLevelImportImpl <em>Top Level Import</em>}' class.
@@ -615,43 +571,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelImport()
 	 * @generated
 	 */
-	int TOP_LEVEL_IMPORT = 9;
-
-	/**
-	 * The feature id for the '<em><b>Global Imports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_IMPORT__GLOBAL_IMPORTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Local Imports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_IMPORT__LOCAL_IMPORTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Body Elements</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_IMPORT__BODY_ELEMENTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Top Level Import</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LEVEL_IMPORT_FEATURE_COUNT = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 3;
+	int TOP_LEVEL_IMPORT = 41;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.PolyTypeImpl <em>Poly Type</em>}' class.
@@ -661,7 +581,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPolyType()
 	 * @generated
 	 */
-	int POLY_TYPE = 20;
+	int POLY_TYPE = 33;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ClassVarDeclImpl <em>Class Var Decl</em>}' class.
@@ -671,7 +591,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getClassVarDecl()
 	 * @generated
 	 */
-	int CLASS_VAR_DECL = 41;
+	int CLASS_VAR_DECL = 13;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.GlobalImportImpl <em>Global Import</em>}' class.
@@ -681,34 +601,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getGlobalImport()
 	 * @generated
 	 */
-	int GLOBAL_IMPORT = 10;
-
-	/**
-	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GLOBAL_IMPORT__FILE_IMPORTS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Project</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GLOBAL_IMPORT__PROJECT = 1;
-
-	/**
-	 * The number of structural features of the '<em>Global Import</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GLOBAL_IMPORT_FEATURE_COUNT = 2;
+	int GLOBAL_IMPORT = 24;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FileImportImpl <em>File Import</em>}' class.
@@ -718,34 +611,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFileImport()
 	 * @generated
 	 */
-	int FILE_IMPORT = 11;
-
-	/**
-	 * The feature id for the '<em><b>File Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMPORT__FILE_NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMPORT__TYPE = 1;
-
-	/**
-	 * The number of structural features of the '<em>File Import</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_IMPORT_FEATURE_COUNT = 2;
+	int FILE_IMPORT = 20;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.LocalImportImpl <em>Local Import</em>}' class.
@@ -755,25 +621,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getLocalImport()
 	 * @generated
 	 */
-	int LOCAL_IMPORT = 12;
-
-	/**
-	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_IMPORT__FILE_IMPORTS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Local Import</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_IMPORT_FEATURE_COUNT = 1;
+	int LOCAL_IMPORT = 28;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BodyElementsImpl <em>Body Elements</em>}' class.
@@ -783,7 +631,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBodyElements()
 	 * @generated
 	 */
-	int BODY_ELEMENTS = 13;
+	int BODY_ELEMENTS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -822,6 +670,91 @@ public interface BSharpPackage extends EPackage {
 	int BODY_ELEMENTS_FEATURE_COUNT = 3;
 
 	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BSClassImpl <em>BS Class</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.BSClassImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBSClass()
+	 * @generated
+	 */
+	int BS_CLASS = 10;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeBuilderImpl <em>Type Builder</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.TypeBuilderImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeBuilder()
+	 * @generated
+	 */
+	int TYPE_BUILDER = 42;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeConstrBracketImpl <em>Type Constr Bracket</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.TypeConstrBracketImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeConstrBracket()
+	 * @generated
+	 */
+	int TYPE_CONSTR_BRACKET = 44;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InstNameImpl <em>Inst Name</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.InstNameImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInstName()
+	 * @generated
+	 */
+	int INST_NAME = 26;
+
+	/**
+	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION__TYPE_INST = 0;
+
+	/**
+	 * The number of structural features of the '<em>Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_FEATURE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BRACKET__TYPE_INST = EXPRESSION__TYPE_INST;
+
+	/**
+	 * The feature id for the '<em><b>Child</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BRACKET__CHILD = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Bracket</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BRACKET_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -856,16 +789,6 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_DECL_FEATURE_COUNT = GEN_NAME_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BSClassImpl <em>BS Class</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.BSClassImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBSClass()
-	 * @generated
-	 */
-	int BS_CLASS = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -940,72 +863,6 @@ public interface BSharpPackage extends EPackage {
 	int BS_CLASS_FEATURE_COUNT = CLASS_DECL_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeBuilderImpl <em>Type Builder</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.TypeBuilderImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeBuilder()
-	 * @generated
-	 */
-	int TYPE_BUILDER = 48;
-
-	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeConstrBracketImpl <em>Type Constr Bracket</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.TypeConstrBracketImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeConstrBracket()
-	 * @generated
-	 */
-	int TYPE_CONSTR_BRACKET = 23;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_VARIABLE__NAME = NAMED_OBJECT__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Expression Variable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_VARIABLE_FEATURE_COUNT = NAMED_OBJECT_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InstNameImpl <em>Inst Name</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.InstNameImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInstName()
-	 * @generated
-	 */
-	int INST_NAME = 16;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INST_NAME__NAME = EXPRESSION_VARIABLE__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Inst Name</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INST_NAME_FEATURE_COUNT = EXPRESSION_VARIABLE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Functions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1033,67 +890,31 @@ public interface BSharpPackage extends EPackage {
 	int BSHARP_BLOCK_FEATURE_COUNT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Poly Types</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owner Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLY_CONTEXT__POLY_TYPES = 0;
+	int CLASS_VAR_DECL__OWNER_TYPE = IVAR_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Poly Context</em>' class.
+	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLY_CONTEXT_FEATURE_COUNT = 1;
+	int CLASS_VAR_DECL__TYPE_INST = IVAR_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The number of structural features of the '<em>Class Var Decl</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLY_TYPE__NAME = GEN_NAME__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Super Types</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLY_TYPE__SUPER_TYPES = GEN_NAME_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Poly Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLY_TYPE_FEATURE_COUNT = GEN_NAME_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPER_TYPE_LIST__SUPER_TYPES = 0;
-
-	/**
-	 * The number of structural features of the '<em>Super Type List</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUPER_TYPE_LIST_FEATURE_COUNT = 1;
+	int CLASS_VAR_DECL_FEATURE_COUNT = IVAR_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Type Builder</em>' class.
@@ -1103,51 +924,6 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_BUILDER_FEATURE_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Type Name</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CONSTRUCTOR__TYPE_NAME = TYPE_BUILDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CONSTRUCTOR__CONTEXT = TYPE_BUILDER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Type Constructor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CONSTRUCTOR_FEATURE_COUNT = TYPE_BUILDER_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CONSTR_BRACKET__CHILD = TYPE_BUILDER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Type Constr Bracket</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CONSTR_BRACKET_FEATURE_COUNT = TYPE_BUILDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Constructor</b></em>' attribute.
@@ -1184,42 +960,6 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRUCTED_TYPE_FEATURE_COUNT = TYPE_BUILDER_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Type Name</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_DECL_CONTEXT__TYPE_NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Type Decl Context</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_DECL_CONTEXT_FEATURE_COUNT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WHERE__EXPRESSIONS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Where</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WHERE_FEATURE_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1336,6 +1076,105 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
+	int EXPRESSION_VARIABLE__NAME = NAMED_OBJECT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Expression Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_VARIABLE_FEATURE_COUNT = NAMED_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMPORT__FILE_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMPORT__TYPE = 1;
+
+	/**
+	 * The number of structural features of the '<em>File Import</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_IMPORT_FEATURE_COUNT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__TYPE_INST = EXPRESSION__TYPE_INST;
+
+	/**
+	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__ARGUMENTS = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owner Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__OWNER_TYPE = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Class Var Decl</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__CLASS_VAR_DECL = EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__CONTEXT = EXPRESSION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Function Call</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int FUNCTION_DECL__NAME = IVARIABLE_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
@@ -1393,13 +1232,49 @@ public interface BSharpPackage extends EPackage {
 	int FUNCTION_DECL__EXPR = IVARIABLE_PROVIDER_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Generated Lambdas</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_DECL__GENERATED_LAMBDAS = IVARIABLE_PROVIDER_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Function Decl</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DECL_FEATURE_COUNT = IVARIABLE_PROVIDER_FEATURE_COUNT + 7;
+	int FUNCTION_DECL_FEATURE_COUNT = IVARIABLE_PROVIDER_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_IMPORT__FILE_IMPORTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Project</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_IMPORT__PROJECT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Global Import</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_IMPORT_FEATURE_COUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
@@ -1408,52 +1283,124 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__TYPE_INST = 0;
+	int INFIX__TYPE_INST = EXPRESSION__TYPE_INST;
 
 	/**
-	 * The number of structural features of the '<em>Expression</em>' class.
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_FEATURE_COUNT = 1;
+	int INFIX__LEFT = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * The feature id for the '<em><b>Func Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_STATEMENT__TYPE_INST = EXPRESSION__TYPE_INST;
+	int INFIX__FUNC_NAME = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Match</b></em>' reference.
+	 * The feature id for the '<em><b>Op Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_STATEMENT__MATCH = EXPRESSION_FEATURE_COUNT + 0;
+	int INFIX__OP_NAME = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Induct Case</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_STATEMENT__INDUCT_CASE = EXPRESSION_FEATURE_COUNT + 1;
+	int INFIX__RIGHT = EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>Match Statement</em>' class.
+	 * The number of structural features of the '<em>Infix</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_STATEMENT_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+	int INFIX_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INST_NAME__NAME = EXPRESSION_VARIABLE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Inst Name</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INST_NAME_FEATURE_COUNT = EXPRESSION_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE__CLASS_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE__CONTEXT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE__ARGUMENTS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_FEATURE_COUNT = 3;
+
+	/**
+	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_IMPORT__FILE_IMPORTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Local Import</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_IMPORT_FEATURE_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Decon Name</b></em>' reference.
@@ -1492,94 +1439,58 @@ public interface BSharpPackage extends EPackage {
 	int MATCH_CASE_FEATURE_COUNT = IVARIABLE_PROVIDER_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Theorem Decl</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEOREM_BODY__THEOREM_DECL = 0;
+	int MATCH_STATEMENT__TYPE_INST = EXPRESSION__TYPE_INST;
 
 	/**
-	 * The number of structural features of the '<em>Theorem Body</em>' class.
+	 * The feature id for the '<em><b>Match</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEOREM_BODY_FEATURE_COUNT = 1;
+	int MATCH_STATEMENT__MATCH = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Induct Case</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEOREM_DECL__NAME = 0;
+	int MATCH_STATEMENT__INDUCT_CASE = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
+	 * The number of structural features of the '<em>Match Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEOREM_DECL__EXPR = 1;
+	int MATCH_STATEMENT_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Theorem Decl</em>' class.
+	 * The feature id for the '<em><b>Poly Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEOREM_DECL_FEATURE_COUNT = 2;
+	int POLY_CONTEXT__POLY_TYPES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Variables Of Type</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Poly Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Typed Variable List</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_VARIABLE_LIST_FEATURE_COUNT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Type Var</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_TYPING__TYPE_VAR = 0;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_TYPING__TYPE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Variable Typing</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_TYPING_FEATURE_COUNT = 2;
+	int POLY_CONTEXT_FEATURE_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1588,16 +1499,61 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_VARIABLE__NAME = EXPRESSION_VARIABLE__NAME;
+	int POLY_TYPE__NAME = GEN_NAME__NAME;
 
 	/**
-	 * The number of structural features of the '<em>Typed Variable</em>' class.
+	 * The feature id for the '<em><b>Super Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_VARIABLE_FEATURE_COUNT = EXPRESSION_VARIABLE_FEATURE_COUNT + 0;
+	int POLY_TYPE__SUPER_TYPES = GEN_NAME_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Poly Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLY_TYPE_FEATURE_COUNT = GEN_NAME_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX__TYPE_INST = EXPRESSION__TYPE_INST;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX__NAME = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Elem</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX__ELEM = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Prefix</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
@@ -1654,94 +1610,40 @@ public interface BSharpPackage extends EPackage {
 	int QUANT_LAMBDA_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL__TYPE_INST = EXPRESSION__TYPE_INST;
+	int SUPER_TYPE_LIST__SUPER_TYPES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Super Type List</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL__ARGUMENTS = EXPRESSION_FEATURE_COUNT + 0;
+	int SUPER_TYPE_LIST_FEATURE_COUNT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Owner Type</b></em>' reference.
+	 * The feature id for the '<em><b>Theorem Decl</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL__OWNER_TYPE = EXPRESSION_FEATURE_COUNT + 1;
+	int THEOREM_BODY__THEOREM_DECL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Class Var Decl</b></em>' containment reference.
+	 * The number of structural features of the '<em>Theorem Body</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL__CLASS_VAR_DECL = EXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION_CALL__CONTEXT = EXPRESSION_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Function Call</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Owner Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_VAR_DECL__OWNER_TYPE = IVAR_TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_VAR_DECL__TYPE_INST = IVAR_TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Class Var Decl</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_VAR_DECL_FEATURE_COUNT = IVAR_TYPE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX__TYPE_INST = EXPRESSION__TYPE_INST;
+	int THEOREM_BODY_FEATURE_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1750,61 +1652,133 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX__NAME = EXPRESSION_FEATURE_COUNT + 0;
+	int THEOREM_DECL__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Elem</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX__ELEM = EXPRESSION_FEATURE_COUNT + 1;
+	int THEOREM_DECL__EXPR = 1;
 
 	/**
-	 * The number of structural features of the '<em>Prefix</em>' class.
+	 * The number of structural features of the '<em>Theorem Decl</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+	int THEOREM_DECL_FEATURE_COUNT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BRACKET__TYPE_INST = EXPRESSION__TYPE_INST;
+	int TOP_LEVEL_FILE__NAME = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference.
+	 * The feature id for the '<em><b>Top Level Imports</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BRACKET__CHILD = EXPRESSION_FEATURE_COUNT + 0;
+	int TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Bracket</em>' class.
+	 * The feature id for the '<em><b>No Import Elements</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BRACKET_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+	int TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' reference.
+	 * The number of structural features of the '<em>Top Level File</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__CLASS_NAME = 0;
+	int TOP_LEVEL_FILE_FEATURE_COUNT = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Top Level File</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL__TOP_LEVEL_FILE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Top Level</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_FEATURE_COUNT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Global Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_IMPORT__GLOBAL_IMPORTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Local Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_IMPORT__LOCAL_IMPORTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Body Elements</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_IMPORT__BODY_ELEMENTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Top Level Import</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_IMPORT_FEATURE_COUNT = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Type Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_CONSTRUCTOR__TYPE_NAME = TYPE_BUILDER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -1813,79 +1787,52 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__CONTEXT = 1;
+	int TYPE_CONSTRUCTOR__CONTEXT = TYPE_BUILDER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * The number of structural features of the '<em>Type Constructor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__ARGUMENTS = 2;
+	int TYPE_CONSTRUCTOR_FEATURE_COUNT = TYPE_BUILDER_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Instance</em>' class.
+	 * The feature id for the '<em><b>Child</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FEATURE_COUNT = 3;
+	int TYPE_CONSTR_BRACKET__CHILD = TYPE_BUILDER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * The number of structural features of the '<em>Type Constr Bracket</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX__TYPE_INST = EXPRESSION__TYPE_INST;
+	int TYPE_CONSTR_BRACKET_FEATURE_COUNT = TYPE_BUILDER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * The feature id for the '<em><b>Type Name</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX__LEFT = EXPRESSION_FEATURE_COUNT + 0;
+	int TYPE_DECL_CONTEXT__TYPE_NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Func Name</b></em>' reference.
+	 * The number of structural features of the '<em>Type Decl Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX__FUNC_NAME = EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Op Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX__OP_NAME = EXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Right</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX__RIGHT = EXPRESSION_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Infix</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
+	int TYPE_DECL_CONTEXT_FEATURE_COUNT = 1;
 
 
 	/**
@@ -1896,7 +1843,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypePowerSet()
 	 * @generated
 	 */
-	int TYPE_POWER_SET = 49;
+	int TYPE_POWER_SET = 46;
 
 	/**
 	 * The feature id for the '<em><b>Child</b></em>' containment reference.
@@ -1915,6 +1862,87 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_POWER_SET_FEATURE_COUNT = TYPE_BUILDER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_VARIABLE__NAME = EXPRESSION_VARIABLE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Typed Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_VARIABLE_FEATURE_COUNT = EXPRESSION_VARIABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Variables Of Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Typed Variable List</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_VARIABLE_LIST_FEATURE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Type Var</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_TYPING__TYPE_VAR = 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_TYPING__TYPE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Variable Typing</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_TYPING_FEATURE_COUNT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHERE__EXPRESSIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Where</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHERE_FEATURE_COUNT = 1;
 
 
 	/**
@@ -2546,6 +2574,17 @@ public interface BSharpPackage extends EPackage {
 	EReference getFunctionDecl_Expr();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.FunctionDecl#getGeneratedLambdas <em>Generated Lambdas</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Generated Lambdas</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionDecl#getGeneratedLambdas()
+	 * @see #getFunctionDecl()
+	 * @generated
+	 */
+	EReference getFunctionDecl_GeneratedLambdas();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.MatchStatement <em>Match Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2556,10 +2595,10 @@ public interface BSharpPackage extends EPackage {
 	EClass getMatchStatement();
 
 	/**
-	 * Returns the meta object for the reference '{@link ac.soton.bsharp.bSharp.MatchStatement#getMatch <em>Match</em>}'.
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.MatchStatement#getMatch <em>Match</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Match</em>'.
+	 * @return the meta object for the containment reference '<em>Match</em>'.
 	 * @see ac.soton.bsharp.bSharp.MatchStatement#getMatch()
 	 * @see #getMatchStatement()
 	 * @generated
@@ -3076,6 +3115,16 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIPolyTypeProvider();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.IClassDeclExtend <em>IClass Decl Extend</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IClass Decl Extend</em>'.
+	 * @see ac.soton.bsharp.bSharp.IClassDeclExtend
+	 * @generated
+	 */
+	EClass getIClassDeclExtend();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ITheoryImportCacheProvider <em>ITheory Import Cache Provider</em>}'.
@@ -3834,6 +3883,14 @@ public interface BSharpPackage extends EPackage {
 		EReference FUNCTION_DECL__EXPR = eINSTANCE.getFunctionDecl_Expr();
 
 		/**
+		 * The meta object literal for the '<em><b>Generated Lambdas</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_DECL__GENERATED_LAMBDAS = eINSTANCE.getFunctionDecl_GeneratedLambdas();
+
+		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.MatchStatementImpl <em>Match Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3844,7 +3901,7 @@ public interface BSharpPackage extends EPackage {
 		EClass MATCH_STATEMENT = eINSTANCE.getMatchStatement();
 
 		/**
-		 * The meta object literal for the '<em><b>Match</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Match</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -4268,6 +4325,16 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IPOLY_TYPE_PROVIDER = eINSTANCE.getIPolyTypeProvider();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.IClassDeclExtend <em>IClass Decl Extend</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.IClassDeclExtend
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIClassDeclExtend()
+		 * @generated
+		 */
+		EClass ICLASS_DECL_EXTEND = eINSTANCE.getIClassDeclExtend();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ITheoryImportCacheProviderImpl <em>ITheory Import Cache Provider</em>}' class.

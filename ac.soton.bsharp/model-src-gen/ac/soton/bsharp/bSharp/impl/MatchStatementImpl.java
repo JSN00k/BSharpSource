@@ -5,13 +5,19 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.services.BSharpGrammarAccess.BuilderElemElements;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -27,9 +33,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
 import org.eventb.theory.core.IRecursiveOperatorDefinition;
 import org.eventb.theory.core.ITheoryRoot;
+
+import com.google.common.collect.ImmutableBiMap.Builder;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,14 +57,14 @@ import org.eventb.theory.core.ITheoryRoot;
  */
 public class MatchStatementImpl extends ExpressionImpl implements MatchStatement {
 	/**
-	 * The cached value of the '{@link #getMatch() <em>Match</em>}' reference.
+	 * The cached value of the '{@link #getMatch() <em>Match</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMatch()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypedVariable match;
+	protected Expression match;
 
 	/**
 	 * The cached value of the '{@link #getInductCase() <em>Induct Case</em>}' containment reference list.
@@ -90,15 +100,7 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedVariable getMatch() {
-		if (match != null && match.eIsProxy()) {
-			InternalEObject oldMatch = (InternalEObject)match;
-			match = (TypedVariable)eResolveProxy(oldMatch);
-			if (match != oldMatch) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.MATCH_STATEMENT__MATCH, oldMatch, match));
-			}
-		}
+	public Expression getMatch() {
 		return match;
 	}
 
@@ -107,20 +109,33 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedVariable basicGetMatch() {
-		return match;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMatch(TypedVariable newMatch) {
-		TypedVariable oldMatch = match;
+	public NotificationChain basicSetMatch(Expression newMatch, NotificationChain msgs) {
+		Expression oldMatch = match;
 		match = newMatch;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.MATCH_STATEMENT__MATCH, oldMatch, match));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.MATCH_STATEMENT__MATCH, oldMatch, newMatch);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMatch(Expression newMatch) {
+		if (newMatch != match) {
+			NotificationChain msgs = null;
+			if (match != null)
+				msgs = ((InternalEObject)match).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.MATCH_STATEMENT__MATCH, null, msgs);
+			if (newMatch != null)
+				msgs = ((InternalEObject)newMatch).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.MATCH_STATEMENT__MATCH, null, msgs);
+			msgs = basicSetMatch(newMatch, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.MATCH_STATEMENT__MATCH, newMatch, newMatch));
 	}
 
 	/**
@@ -143,6 +158,8 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case BSharpPackage.MATCH_STATEMENT__MATCH:
+				return basicSetMatch(null, msgs);
 			case BSharpPackage.MATCH_STATEMENT__INDUCT_CASE:
 				return ((InternalEList<?>)getInductCase()).basicRemove(otherEnd, msgs);
 		}
@@ -158,8 +175,7 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BSharpPackage.MATCH_STATEMENT__MATCH:
-				if (resolve) return getMatch();
-				return basicGetMatch();
+				return getMatch();
 			case BSharpPackage.MATCH_STATEMENT__INDUCT_CASE:
 				return getInductCase();
 		}
@@ -176,7 +192,7 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BSharpPackage.MATCH_STATEMENT__MATCH:
-				setMatch((TypedVariable)newValue);
+				setMatch((Expression)newValue);
 				return;
 			case BSharpPackage.MATCH_STATEMENT__INDUCT_CASE:
 				getInductCase().clear();
@@ -195,7 +211,7 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BSharpPackage.MATCH_STATEMENT__MATCH:
-				setMatch((TypedVariable)null);
+				setMatch((Expression)null);
 				return;
 			case BSharpPackage.MATCH_STATEMENT__INDUCT_CASE:
 				getInductCase().clear();
@@ -234,21 +250,74 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
-		/* Match statements could be handled either my generating a new recursive function
-		 * (This is the only thing to do if the match statement is the opt level statement),
-		 * This would involve either passing all variables to the new function or working 
-		 * out which variables need to be passed.
-		 * 
-		 * They could also be handled using a series of COND statements, this has the advantage
-		 * of working Even on non-recursively defined types, however the nested COND have the potential
-		 * to get large. 
-		 * 
-		 * In general I think I should take the functional approach where possible.
+		/* If the match statement is at the top of a function with no polycontext 
+		 * then compileToRecursiveDefs is called directly by the function. Otherwise
+		 * the match statement is compiled to a new recursive function, and this function
+		 * is then called.
 		 */
 		
-		//TODO: Implement me!
+		/* The naming of the match statment is controlled by the variable provider (e.g., the 
+		 * thing that the statement expression is found within.
+		 */
 		
-		throw new Exception("In MatchStatementImpl compileToEventBString is unimplemented");
+		IVariableProvider prov = EcoreUtil2.getContainerOfType(this, IVariableProvider.class);
+		String opName = prov.opNameForMatchStatement(this);
+		
+		ArrayList<Tuple2<String, String>> args = new ArrayList<Tuple2<String, String>>();
+		String recName = null;
+		
+		if (!match.isInstanceVariable()) {
+			/* Check that the type of match is a datatype. When creating the recursive operator
+			 * it is necessary to give the matched expression its own variable.
+			 */
+			
+			match = match.reorderExpresionTree();
+			TypeBuilder type = match.calculateType();
+			
+			if (!type.isDatatype()) {
+				/* TODO: This should be caught in validation, tried to match a statement that wasn't
+				 * a datatype.
+				 */
+				throw new Exception("Tried to construct a matchstatment with a non-datatype argument");
+			}
+			
+			args.add(new Tuple2<String, String>("MCase", type.getDatatype().getName()));
+			recName = "MCase";
+		} else {
+			recName = ((TypedVariable)((FunctionCall)match).getTypeInst()).getName();
+		}
+		
+		
+		args.addAll(prov.inScopeTypedVariables());
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		INewOperatorDefinition op = CompilationUtil.createOpWithArguments(thyCache, opName, args, Notation.PREFIX);
+		
+		IRecursiveOperatorDefinition opDef = TheoryUtils.createRecursiveDefinition(op,
+				recName, null, null);
+		
+		for (MatchCase c : inductCase) {
+			c.compileToRecCase(opDef, null);
+		}
+		
+		String result = opName + "(";
+		
+		result += CompilationUtil.compileTypedVariablesToNameListWithSeparator(args, ", ", true);
+		result += ")";
+		
+		return result;
+	}
+	
+	@Override
+	public void compileToRecursiveDefs(INewOperatorDefinition op, IProgressMonitor monitor) throws Exception {
+		/* In this case the match expression should always be a TypedVariable wrapped in a Function call. 
+		 * as this is called from a function. */
+		String recOpDefName = ((TypedVariable)((FunctionCall)match).getTypeInst()).getName();
+		IRecursiveOperatorDefinition opDef = TheoryUtils.createRecursiveDefinition(op,
+				recOpDefName, null, monitor);
+		
+		for (MatchCase c : inductCase) {
+			c.compileToRecCase(opDef, monitor);
+		}
 	}
 
 	@Override
@@ -291,15 +360,14 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 		
 		return false;
 	}
-	
+
 	@Override
-	public void compileToRecursiveDefs(INewOperatorDefinition op, IProgressMonitor monitor) throws Exception {
-		IRecursiveOperatorDefinition opDef = TheoryUtils.createRecursiveDefinition(op,
-				match.getName(), null, monitor);
+	public TypeBuilder calculateType() {
+		/* Validation should have checked that all of the inductCase expressions have the
+		 * same type.
+		 */
 		
-		for (MatchCase c : inductCase) {
-			c.compileToRecCase(opDef, monitor);
-		}
+		return inductCase.get(0).getExpr().calculateType();
 	}
 
 } //MatchStatementImpl

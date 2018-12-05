@@ -439,6 +439,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     GenName returns InstName
 	 *     InstName returns InstName
 	 *     ExpressionVariable returns InstName
 	 *
@@ -525,7 +526,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     RootExpression returns MatchStatement
 	 *
 	 * Constraint:
-	 *     (match=[TypedVariable|ID] inductCase+=MatchCase inductCase+=MatchCase*)
+	 *     (match=RootExpression inductCase+=MatchCase inductCase+=MatchCase*)
 	 */
 	protected void sequence_MatchStatement(ISerializationContext context, MatchStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
