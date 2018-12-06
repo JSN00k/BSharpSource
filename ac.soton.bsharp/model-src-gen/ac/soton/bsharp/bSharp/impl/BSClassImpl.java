@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.mwe2.language.mwe2.Import;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
@@ -563,9 +564,15 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * this type. Does not include the construction of the type itself.
 	 */
 	@Override
-	public ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass () throws Exception {
+	public ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass (TheoryImportCache theoryCache) throws Exception {
 		generateInferredContext();
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		TheoryImportCache thyCache = null;
+		if (theoryCache == null) {
+			thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		} else {
+			thyCache = theoryCache;
+		}
+ 
 		if (context != null) {
 			return context.namesAndTypesForPolyContext(thyCache);
 		}
@@ -585,7 +592,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			throw new Exception("Type class declared without any sort of supertype");
 		
 		BSClass superClass = sup.getTypeClass();
-		ArrayList<Tuple2<String, String>> result = superClass.polyArgumentsToConstructGenericTypeClass();
+		ArrayList<Tuple2<String, String>> result = superClass.polyArgumentsToConstructGenericTypeClass(thyCache);
 		
 		return result;
 	}
@@ -634,40 +641,15 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return result;
 	}
 	
-	/* This is similar to the method above except it is used to compile operators, and therefore 
-	 * needs to return a list of typed vars rather than just a list of vars.
-	 */
-	public String typedArgsList(ArrayList<Tuple2<String, String>> typedVars) {
-		BSClass superT = supertypes.getFirst().getTypeClass();
-		String result = null;
-		boolean isTop = false;
-		if (superT != null) {
-			result = ((BSClassImpl)superT).typedArgsList(typedVars);
-		} else {
-			isTop = false;
-			result = "";
-		}
-		
-		if (varList == null) {
-			return result;
-		}
-		
-		/* This can't be right because it can't know about the polymorphic type name that I'm going to 
-		 * use :-/
-		 */
-		varList.getCompiledVariablesAndTypes();
-		
-	}
-	
 	/* returns all the typed arguments needed to construct a fully polymorphic version of this
 	 * typeclass, including the argument for the type class itself. 
 	 */
 	@Override
-	public ArrayList<Tuple2<String, String>> typedConstructionArgs() {
+	public ArrayList<Tuple2<String, String>> typedConstructionArgs(TheoryImportCache thyCache) {
 		ArrayList<Tuple2<String, String>> result;
 		
 		try {
-			result = polyArgumentsToConstructGenericTypeClass();
+			result = polyArgumentsToConstructGenericTypeClass(thyCache);
 		} catch (Exception e) {
 			//TODO: Validation against this.
 			System.err.println("Illegal type declaration, this should be validataed against.");
@@ -685,7 +667,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 */
 	@Override
 	public ArrayList<Tuple2<String, String>> argsAndTypingForDeconstructedType(ArrayList<String> args) {
-		ArrayList<Tuple2<String, String>> typedArgs = typedConstructionArgs();
+		ArrayList<Tuple2<String, String>> typedArgs = typedConstructionArgs(null);
 		Tuple2<String, String> bsClassType = typedArgs.get(typedArgs.size() - 1);
 		typedArgs.remove(typedArgs.size() - 1);
 		
@@ -695,6 +677,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		String finalConstruct = "";
 		if (typedArgs.size() != 0) {
+			/* Get the constructed type */
 			finalConstruct = typedArgs.get(typedArgs.size() - 1).x;
 		}
 		
@@ -702,8 +685,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		 * It is required to have a variable to represent the class in question. 
 		 */
 		String tvRes = typedVariableList(args);
-		if (tvRes == null) {
-			ArrayList<Tuple2<String, String>> res = typedConstructionArgs();
+		if (tvRes == null || tvRes.isEmpty()) {
+			ArrayList<Tuple2<String, String>> res = typedConstructionArgs(null);
 			args.add(res.get(res.size() - 1).x);
 			return res;
 		}
@@ -718,28 +701,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return typedArgs;
 	}
 	
-	@Override
-	public ArrayList<Tuple2<String, String>> typedArgsAndAdditionTypingForDeconstructedType(ArrayList<Tuple2<String, String>> args, String pTypeName)
-	{
-		String prefix = null;
-		if (pTypeName != null && !pTypeName.isEmpty())
-			prefix = "_" + pTypeName;
-			
-		
-		ArrayList<Tuple2<String, String>> typedArgs = typedConstructionArgs();
-		
-		if (prefix != null) {
-			for (Tuple2<String, String> poly : typedArgs) {
-				poly.x = prefix + poly.x;
-			}
-		}
-		
-		String AdditionalTypeConstr = "";
-		if (typedArgs.size() != 0) {
-			
-		}
-	}
-	
 	INewOperatorDefinition constructOpForGetterWithName(String n) {
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		INewOperatorDefinition op;
@@ -752,7 +713,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return null;
 		}
 		
-		ArrayList<Tuple2<String, String>> polyArgs = typedConstructionArgs();
+		ArrayList<Tuple2<String, String>> polyArgs = typedConstructionArgs(null);
 		
 		for (Tuple2<String, String> typedVar : polyArgs) {
 			try {
@@ -941,8 +902,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	@Override
 	public String eventBPrefix() {
-		// TODO Auto-generated method stub
-		return null;
+		//TODO Fix this when a prefix can be manually set.
+		return getName();
 	}
 	
 	/* If there is an inferred Context for this type class because it has super types which are 

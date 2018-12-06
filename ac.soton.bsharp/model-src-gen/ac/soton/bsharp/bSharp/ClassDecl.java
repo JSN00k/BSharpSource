@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 
 import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,7 +88,7 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	 * this in EventB a polymorphic instance of the type class is passed as an argument to
 	 * the EventB operator. 
 	 */
-	ArrayList<Tuple2<String, String>> typedConstructionArgs();
+	ArrayList<Tuple2<String, String>> typedConstructionArgs(TheoryImportCache thyCache);
 
 	/* Given a polytype T : Setoid this deals with a call like T.equ(a, b) 
 	 * ownerType would be T, typeInst would be equ, function call contains a polytype and 

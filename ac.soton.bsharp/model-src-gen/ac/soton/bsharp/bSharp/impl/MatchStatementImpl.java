@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
@@ -38,6 +39,7 @@ import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
 import org.eventb.theory.core.IRecursiveOperatorDefinition;
 import org.eventb.theory.core.ITheoryRoot;
+import org.rodinp.core.IInternalElement;
 
 import com.google.common.collect.ImmutableBiMap.Builder;
 
@@ -290,7 +292,16 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 		
 		args.addAll(prov.inScopeTypedVariables());
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-		INewOperatorDefinition op = CompilationUtil.createOpWithArguments(thyCache, opName, args, Notation.PREFIX);
+		
+		FunctionDecl funcDecl = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
+		
+		IInternalElement nextSyb = null;
+		if (funcDecl != null) {
+			nextSyb = funcDecl.getCurrentCompilingOp();
+		}
+		
+		INewOperatorDefinition op = CompilationUtil.createOpWithArgumentsAsPred(thyCache, opName, args, 
+				Notation.PREFIX, nextSyb, false);
 		
 		IRecursiveOperatorDefinition opDef = TheoryUtils.createRecursiveDefinition(op,
 				recName, null, null);

@@ -220,7 +220,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public ArrayList<Tuple2<String, String>> typedConstructionArgs() {
+	public ArrayList<Tuple2<String, String>> typedConstructionArgs(TheoryImportCache thyCache) {
 		// TODO Auto-generated method stub
 		return null;
 	}

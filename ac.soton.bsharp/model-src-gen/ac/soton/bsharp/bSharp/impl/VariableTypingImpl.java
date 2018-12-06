@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtend.lib.annotations.EqualsHashCode;
 
 /**
  * <!-- begin-user-doc -->
@@ -260,5 +261,4 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 		
 		return result;
 	}
-
 } //VariableTypingImpl

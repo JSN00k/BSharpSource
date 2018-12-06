@@ -55,6 +55,7 @@ import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
 import org.eventb.theory.core.IRecursiveOperatorDefinition;
+import org.rodinp.core.IInternalElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -751,7 +752,38 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	
 	protected Integer compiledMatchStatements = 0;
 
+	protected ArrayList<String> inferredBSClassConstructors = null;
+	
+	@Override
+	public ArrayList<String> getInferredBSClassConstructors() {
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		if (inferredBSClassConstructors != null) {
+			return inferredBSClassConstructors;
+		}
+		
+		if (!expr.hasInferredContext()) {
+			return null;
+		}
+		
+		inferredBSClassConstructors = new ArrayList<String>();
+		TopLevelInstance containerClass = EcoreUtil2.getContainerOfType(this, TopLevelInstance.class);
+		ClassDecl classDecl = null;
+		if (containerClass instanceof Extend) {
+			classDecl = ((Extend)containerClass).getExtendedClass();
+		} else {
+			classDecl = (ClassDecl)containerClass;
+		}
+		
+		ArrayList<Tuple2<String, String>> compiledContext = classDecl.typedConstructionArgs(thyCache);
+		for (Tuple2<String, String> type : compiledContext) {
+			inferredBSClassConstructors.add(type.x);
+		}
+		
+		return inferredBSClassConstructors;
+	}
+	
 	ArrayList<Tuple2<String, String>> compiledPolyContext() {
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		boolean hasInferredContext = expr.hasInferredContext();
 		if (context == null && !hasInferredContext) {
 			return null;
@@ -760,6 +792,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		ArrayList<Tuple2<String, String>> compiledContext = null;
 		
 		if (hasInferredContext) {
+			inferredBSClassConstructors = new ArrayList<String>();
+			
 			TopLevelInstance containerClass = EcoreUtil2.getContainerOfType(this, TopLevelInstance.class);
 			ClassDecl classDecl = null;
 			if (containerClass instanceof Extend) {
@@ -768,13 +802,17 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				classDecl = (ClassDecl)containerClass;
 			}
 			
-			compiledContext = classDecl.typedConstructionArgs();
+			compiledContext = classDecl.typedConstructionArgs(thyCache);
+			for (Tuple2<String, String> type : compiledContext) {
+				inferredBSClassConstructors.add(type.x);
+			}
+			
 		}
 		
 		if (context == null) {
 			return compiledContext;
 		} else {
-			TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+			
 			
 			if (compiledContext != null) {
 				compiledContext.addAll(context.namesAndTypesForPolyContext(thyCache));
@@ -783,6 +821,13 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return context.namesAndTypesForPolyContext(thyCache);
 			}
 		}
+	}
+	
+	protected INewOperatorDefinition op = null;
+	
+	@Override
+	public IInternalElement getCurrentCompilingOp() {
+		return op;
 	}
 	
 	@Override
@@ -808,13 +853,12 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		
 		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
 		lambda.setQType("λ");
-		lambda.setVarList(varList);
-		lambda.setExpr(expr);
+		lambda.setVarList(EcoreUtil2.copy(varList));
+		lambda.setExpr(EcoreUtil2.copy(expr));
 		
 		getGeneratedLambdas().add(lambda);
 		
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-		INewOperatorDefinition op;
 		try {
 			op = CompilationUtil.createOpWithArguments(thyCache, name, pContext, Notation.PREFIX);
 		} catch (Exception e) {
@@ -827,6 +871,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		} catch (Exception e) {
 			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
 		}
+		
+		op = null;
 		
 		return;
 	}
@@ -859,7 +905,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		
 		ArrayList<Tuple2<String, String>> args = varList.getCompiledVariablesAndTypes();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-		INewOperatorDefinition op;
 		
 		IOperatorProperties.Notation notation = Notation.PREFIX;
 		if (infix != null && !infix.isEmpty()) {
@@ -879,6 +924,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			compileDirectDefNoPoly(op);
 		}
 		
+		op = null;
+		
 		if (returnType.isBoolType()) {
 			/* Create a predicate version of the function. */
 			try {
@@ -894,6 +941,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
 			}
 		}
+		
+		op = null;
 		
 		/* Build the passable form of the function. */
 		try {
@@ -927,7 +976,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			TheoryUtils.createDirectDefinition(op, lambda.compileToEventBString(false), null, nullMonitor);
 		} catch (Exception e) {
 			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
-		}		
+		}	
+		
+		op = null;
 	}
 
 	@Override
@@ -973,6 +1024,13 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	
 	String comipileFunctionCallNoContext(FunctionCall fc, boolean asPred) throws Exception {
 		EList<Expression> exprs = fc.getArguments();
+		
+		/* There are two additional things that I need to consider here. 1) The function can have an inferred 
+		 * polyContext, which needs to be got from the current function that is being compiled. Functions
+		 * with contexts have a different call structure.
+		 * 2) If this is a recursive function with a polycontext then it generates a new operator to handle
+		 * the match statement, in this case the new operator needs to be called instead of the current op. 
+		 */
 		
 		if (exprs == null || exprs.isEmpty()) {
 			if (varList == null || varList.isEmpty()) {
@@ -1072,5 +1130,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			return null;
 		}
 	}
+
+
 
 } //FunctionDeclImpl

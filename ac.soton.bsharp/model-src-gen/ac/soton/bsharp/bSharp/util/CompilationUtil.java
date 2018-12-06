@@ -12,6 +12,7 @@ import org.eventb.core.ast.extension.IOperatorProperties;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
+import org.rodinp.core.IInternalElement;
 
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
@@ -120,6 +121,16 @@ public class CompilationUtil {
 			String name, ArrayList<Tuple2<String, String>> args, Notation notation, Boolean asPred) throws Exception {
 		INewOperatorDefinition op = TheoryUtils.createOperator(thyCache.theory, name, false, false, 
 				asPred ? FormulaType.PREDICATE : FormulaType.EXPRESSION, notation, null, nullMonitor);
+		
+		compileTypedVariablesToOperatorArgs(args, op);
+		return op;
+	}
+	
+	public static INewOperatorDefinition createOpWithArgumentsAsPred(TheoryImportCache thyCache,
+			String name, ArrayList<Tuple2<String, String>> args, Notation notation, IInternalElement nextSybling, 
+			Boolean asPred) throws Exception {
+		INewOperatorDefinition op = TheoryUtils.createOperator(thyCache.theory, name, false, false, 
+				asPred ? FormulaType.PREDICATE : FormulaType.EXPRESSION, notation, nextSybling, nullMonitor);
 		
 		compileTypedVariablesToOperatorArgs(args, op);
 		return op;

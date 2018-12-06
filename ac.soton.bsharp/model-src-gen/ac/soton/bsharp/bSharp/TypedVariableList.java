@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.util.EList;
 

@@ -11,6 +11,7 @@ import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.InstName;
+import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -269,7 +270,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 			TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
 			BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
 			if (func != null) {
-				// TODO: Implement me
+				return ((BSClass)((InstName)tn).eContainer()).baseTypeFromBSContext();
 			} else if (theorem != null) {
 				return theorem.baseTypeForBSClass((BSClass)tn.eContainer());
 			} else if (bsClass != null) {

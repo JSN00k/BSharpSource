@@ -12,6 +12,7 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 

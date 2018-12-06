@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.PolyContext;
@@ -618,7 +619,11 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		if (superScopeTypes != null)
 			result.addAll(superScopeTypes);
 		
-		result.addAll(varList.getCompiledVariablesAndTypes());
+		EObject container = eContainer();
+		if (!(container instanceof FunctionDecl) || !((FunctionDecl) container).getGeneratedLambdas().contains(this)) {
+			result.addAll(varList.getCompiledVariablesAndTypes());
+		}
+		
 		
 		if (result.isEmpty()) {
 			return null;

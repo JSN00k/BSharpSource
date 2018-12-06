@@ -138,7 +138,7 @@ public interface BSClass extends ClassDecl {
 
 	ArrayList<String> getterOperatorSuffixes();
 
-	ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass() throws Exception;
+	ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass(TheoryImportCache thyCache) throws Exception;
 
 	Boolean isTypeClass();
 
@@ -177,8 +177,4 @@ public interface BSClass extends ClassDecl {
 	 * it is necessary to return the aruments and the types separately.
 	 */
 	ArrayList<Tuple2<String, String>> argsAndTypingForDeconstructedType(ArrayList<String> args);
-
-	ArrayList<Tuple2<String, String>> typedArgsAndAdditionTypingForDeconstructedType(
-			ArrayList<Tuple2<String, String>> args, String pTypeName);
-
 } // BppClass

@@ -6,9 +6,11 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
+import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -17,6 +19,8 @@ import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+
+import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -84,57 +88,53 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 		TheoremDecl theorem = EcoreUtil2.getContainerOfType(fc, TheoremDecl.class);
 		BSClass bsClass = EcoreUtil2.getContainerOfType(fc, BSClass.class);
 		
+		String result = null;
 		if (func != null) {
-			// TODO: implement me!
+			IVariableProvider varProv = EcoreUtil2.getContainerOfType(this, IVariableProvider.class);
+			if (varProv == fc) {
+				/* Could be worth asking the func for the name of this variable on the off chance that
+				 * it's done some name mangling, currently assuming that it hasn't. */
+				result = getName();
+			} else {
+				/* The variable must be from a higher type. */
+				if (varProv instanceof Datatype) {
+					result = getName();
+				} else {
+					ArrayList<String> bsClassVar = func.getInferredBSClassConstructors(); 
+					
+					result = ((BSClass)varProv).getterForOpName(getName()) + "(";
+					result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(bsClassVar, ", ", true) + ")";
+				}
+			}
 		} else if (theorem != null) {
 			/* Ask the theorem for the appropiate variable name, then compile the arguments. 
 			 * The theorem needs to be asked as if there is an implicit reference to the 
 			 * containing type class the theorem assigns the name to this implicit reference. */
-			String result = theorem.getNameExpressionForVariable(this);
-			
-			/*TODO: potentially need to do something about a polycontext here. */
-			EList<Expression> args = fc.getArguments();
-			if (args != null && !args.isEmpty()) {
-				try {
-					result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
-				} catch (Exception e) {
-					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
-				}
-			}
-			
-			if (asPred) {
-				result += "= TRUE";
-			}
-			
-			return result;
+			result = theorem.getNameExpressionForVariable(this);
 		} else if (bsClass != null) {
 			if (EcoreUtil2.isAncestor(bsClass, this)) {
 				// We only need to do something special if the TypedVar is from a supertype.
 				return super.compileToStringWithContextAndArguments(fc, asPred);
 			}
 			
-			String result = bsClass.expandSupertypeMemberReferencedInWhere(this);
-			EList<Expression> args =  fc.getArguments();
-			
-			if (args != null) {
-				try {
-					result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
-				} catch (Exception e) {
-					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
-				}
-				
-			}
-			
-			if (asPred) {
-				result += "= TRUE";
-			}
-			
-			return result;
-			
+			result = bsClass.expandSupertypeMemberReferencedInWhere(this);
 		}
 		
-		// I think that I've covered all of the basis and can't get here.
-		return null;
+		/*TODO: potentially need to do something about a polycontext here. */
+		EList<Expression> args = fc.getArguments();
+		if (args != null && !args.isEmpty()) {
+			try {
+				result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
+			} catch (Exception e) {
+				System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
+			}
+		}
+		
+		if (asPred) {
+			result += "= TRUE";
+		}
+		
+		return result;
 	}
 
 	@Override

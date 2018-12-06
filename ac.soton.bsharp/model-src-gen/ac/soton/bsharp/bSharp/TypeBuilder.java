@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -49,5 +50,4 @@ public interface TypeBuilder extends EObject {
 	String constructWithTypes(ArrayList<String> requiredEBTypes);
 
 	boolean referencesContainingType();
-	
 } // TypeBuilder

@@ -3,7 +3,10 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.util.EList;
+import org.rodinp.core.IInternalElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -210,5 +213,9 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, Expr
 	void compile();
 
 	boolean isMethod();
+
+	ArrayList<String> getInferredBSClassConstructors();
+
+	IInternalElement getCurrentCompilingOp();
 
 } // FunctionDecl
