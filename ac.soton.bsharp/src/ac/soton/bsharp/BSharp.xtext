@@ -182,7 +182,7 @@ Extend:
 
 BSharpBlock:
 	{BSharpBlock}
-	'{' ((functions+=FunctionDecl) | (theorems+=TheoremBody))* '}'
+	'{' ((functions+=FunctionDecl) | (theorems+=TheoremBody) | instances+=Instance)* '}'
 ;
 
 /*------------------------- Functions --------------------------------- */

@@ -21,7 +21,9 @@ import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -426,15 +428,9 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
 	}
-	
+
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
-		return compileToEventBString(asPredicate, null, null);
-	}
-
-	String compileToEventBString(Boolean asPredicate,
-			ArrayList<String> additionalArgs,
-			ArrayList<Tuple2<String, String>> additionalTyping) throws Exception {
 		/* Polymorphic contexts make this a little more complex. There are two possibilities
 		 * either the polymorphic context can become direct arguments to an EventB Quantifier/Lambda
 		 * or an additional operator could be generated which given the polymorphic context
@@ -465,8 +461,10 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		String sep = qType.equals("λ") ? " ↦ " : ", ";
 		
 		boolean isFirst = true;
-		if (additionalArgs != null && !additionalArgs.isEmpty()) {
-			result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(additionalArgs, sep, true);
+		if (classTypeInst != null) {
+			@SuppressWarnings("unchecked")
+			ArrayList<String> typedVars = (ArrayList<String>) classTypeInst.typeConstructionTypes().clone();
+			result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(typedVars, sep, true);
 			isFirst = false;
 		}
 		
@@ -476,8 +474,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		result += "·";
 		
 		isFirst = true;
-		if (additionalTyping != null) {
-			result += CompilationUtil.compileTypedVaribalesToTypedList(additionalTyping, true);
+		if (classTypeInst != null) {
+			result += CompilationUtil.compileTypedVaribalesToTypedList(classTypeInst.typeConstructionTypesTyped(), true);
 			isFirst = false;
 		}
 		
@@ -517,6 +515,15 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 	}
 	
+	/* If this is a lambda created at the top of a method, with a match statment
+	 *  it can have an inferred type instance. */
+	ITypeInstance classTypeInst = null;
+	
+	@Override
+	public ITypeInstance getClassTypeInst() {
+		return classTypeInst;
+	}
+	
 	@Override
 	public String compileToEventBString(boolean asPredicate, boolean asTopLevel) throws Exception {
 		if (!asTopLevel) {
@@ -532,10 +539,12 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 		
 		ClassDecl containingType = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
-		ArrayList<String> additionalArgs = new ArrayList<String>();
-		ArrayList<Tuple2<String, String>> additionalTyping = ((BSClass)containingType).argsAndTypingForDeconstructedType(additionalArgs);
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		classTypeInst = ((BSClass)containingType).deconstructedTypeInstance(thyCache);
 		
-		return compileToEventBString(asPredicate, additionalArgs, additionalTyping);
+		String result = compileToEventBString(asPredicate);
+		classTypeInst = null;
+		return result;
 	}
 
 	@Override
@@ -631,5 +640,4 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		return result;
 	}
-
 } //QuantLambdaImpl

@@ -24,7 +24,7 @@ import ac.soton.bsharp.bSharp.impl.TypedVariableImpl;
  * @model
  * @generated
  */
-public interface TheoremDecl extends EObject {
+public interface TheoremDecl extends IExpressionContainer {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

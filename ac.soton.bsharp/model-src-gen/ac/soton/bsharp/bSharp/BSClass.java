@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
 
+import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 
@@ -173,8 +174,8 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 	/* The Bsharp type expanded so that it doesn't inculde type class declarations within the typing. */
 	TypeBuilder identType();
 
-	/* Due to the polymoprhic arguments having to be typed separately, unlike the type variables
-	 * it is necessary to return the aruments and the types separately.
+	/* Used in the theorems, currently can't be used to create functions with deconstructed types because
+	 * not enough type information is stored.
 	 */
-	ArrayList<Tuple2<String, String>> argsAndTypingForDeconstructedType(ArrayList<String> args);
+	ITypeInstance deconstructedTypeInstance(TheoryImportCache thyCache);
 } // BppClass

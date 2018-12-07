@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import ac.soton.bsharp.bSharp.util.ITypeInstance;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Quant Lambda</b></em>'.
@@ -129,5 +131,7 @@ public interface QuantLambda extends Expression, IVariableProvider, IPolyTypePro
 	String baseTypeForBSClass(BSClass typeName);
 
 	String getNameExpressionForVariable(TypedVariable typedVariable);
+
+	ITypeInstance getClassTypeInst();
 
 } // QuantLambda

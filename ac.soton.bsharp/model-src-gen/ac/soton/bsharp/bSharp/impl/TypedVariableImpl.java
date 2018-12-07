@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
@@ -86,7 +87,12 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 		 */
 		FunctionDecl func = EcoreUtil2.getContainerOfType(fc, FunctionDecl.class);
 		TheoremDecl theorem = EcoreUtil2.getContainerOfType(fc, TheoremDecl.class);
-		BSClass bsClass = EcoreUtil2.getContainerOfType(fc, BSClass.class);
+		ClassDecl cld = CompilationUtil.getClassDecl(fc);
+		BSClass bsClass = null;
+		
+		if (cld instanceof BSClass) {
+			bsClass = (BSClass)cld;
+		}
 		
 		String result = null;
 		if (func != null) {
@@ -100,9 +106,9 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 				if (varProv instanceof Datatype) {
 					result = getName();
 				} else {
-					ArrayList<String> bsClassVar = func.getInferredBSClassConstructors(); 
+					ArrayList<String> bsClassVar = func.getTypeInstance().typeConstructionTypes(); 
 					
-					result = ((BSClass)varProv).getterForOpName(getName()) + "(";
+					result = ((BSClass)bsClass).getterForOpName(getName()) + "(";
 					result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(bsClassVar, ", ", true) + ")";
 				}
 			}

@@ -14,6 +14,10 @@ public interface ITypeInstance {
 	/* Returns a list of the polymophic types used to construct the instance. */
 	ArrayList<String> typeConstructionTypes();
 	
+	/* Returns the construction types paired with their EventB types, Including the 
+	 * instance of the type. */
+	ArrayList<Tuple2<String, String>> typeConstructionTypesTyped();
+	
 	/* returns the EventB version of the instance as a String. */
 	String eventBTypeInstance();
 	

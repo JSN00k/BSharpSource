@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.BSharpBlock#getFunctions <em>Functions</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.BSharpBlock#getTheorems <em>Theorems</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.BSharpBlock#getInstances <em>Instances</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSharpBlock()
@@ -56,6 +57,22 @@ public interface BSharpBlock extends EObject {
 	 * @generated
 	 */
 	EList<TheoremBody> getTheorems();
+
+	/**
+	 * Returns the value of the '<em><b>Instances</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.Instance}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instances</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instances</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getBSharpBlock_Instances()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Instance> getInstances();
 
 	void compile();
 

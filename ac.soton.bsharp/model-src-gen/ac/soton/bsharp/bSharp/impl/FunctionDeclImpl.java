@@ -32,7 +32,6 @@ import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
-import ac.soton.bsharp.util.BSharpUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -51,12 +50,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.util.PolymorphicDispatcher.WarningErrorHandler;
 import org.eventb.core.ast.extension.IOperatorProperties;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
-import org.eventb.theory.core.IRecursiveOperatorDefinition;
 import org.rodinp.core.IInternalElement;
 
 /**
@@ -763,37 +760,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	protected Integer compiledMatchStatements = 0;
+	protected ITypeInstance evBTypeInstance = null;
 
 	protected ArrayList<String> inferredBSClassConstructors = null;
 	
-	@Override
-	public ArrayList<String> getInferredBSClassConstructors() {
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-		if (inferredBSClassConstructors != null) {
-			return inferredBSClassConstructors;
-		}
-		
-		if (!expr.hasInferredContext()) {
-			return null;
-		}
-		
-		inferredBSClassConstructors = new ArrayList<String>();
-		TopLevelInstance containerClass = EcoreUtil2.getContainerOfType(this, TopLevelInstance.class);
-		ClassDecl classDecl = null;
-		if (containerClass instanceof Extend) {
-			classDecl = ((Extend)containerClass).getExtendedClass();
-		} else {
-			classDecl = (ClassDecl)containerClass;
-		}
-		
-		ArrayList<Tuple2<String, String>> compiledContext = classDecl.typedConstructionArgs(thyCache);
-		for (Tuple2<String, String> type : compiledContext) {
-			inferredBSClassConstructors.add(type.x);
-		}
-		
-		return inferredBSClassConstructors;
-	}
-	
+	@SuppressWarnings("unchecked")
 	ArrayList<Tuple2<String, String>> compiledPolyContext() {
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		boolean hasInferredContext = expr.hasInferredContext();
@@ -814,11 +785,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				classDecl = (ClassDecl)containerClass;
 			}
 			
-			compiledContext = classDecl.typedConstructionArgs(thyCache);
-			for (Tuple2<String, String> type : compiledContext) {
-				inferredBSClassConstructors.add(type.x);
-			}
-			
+			evBTypeInstance = classDecl.genericTypeInstance(thyCache);
+			compiledContext = (ArrayList<Tuple2<String, String>>) evBTypeInstance.typeConstructionTypesTyped().clone();
 		}
 		
 		if (context == null) {
@@ -843,6 +811,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	@Override
+	public ITypeInstance getTypeInstance() {
+		return evBTypeInstance;
+	}
+	
+	@Override
 	public void compile() {
 		/* There are functions with polymorphic contexts, functions with inferred polymorphic contexts,
 		 * (They use types from the class that they are declared in), and functions which only work on 
@@ -858,6 +831,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		} else {
 			compileWithoutPolyContext();
 		}
+		
+		evBTypeInstance = null;
 	}
 	
 	void compileWithPolyContext(ArrayList<Tuple2<String, String>> pContext) {
@@ -1023,8 +998,34 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		result += ",  " + typeInst.eventBTypeInstanceForType(containType);
 		return result;
 	}
+	
+	String compileRecursiveCallWithContext(FunctionCall fc, boolean asPred) throws Exception {
+		String result = eventBExprName() + "_M0(";
+		result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(evBTypeInstance.typeConstructionTypes(), ", ", true);
+		if (context != null) {
+			ClassDecl clContainer = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+			result += ", " + context.compileCallWithTypeContext(fc.getContext(), clContainer);
+		}
+		
+		EList<Expression> exprs = fc.getArguments();
+		
+		if (exprs != null && !exprs.isEmpty()) {
+			result += ", " + CompilationUtil.compileExpressionListWithSeperator(exprs, ", ");
+		}
+		
+		result += ")";
+		
+		return result;
+	}
 
 	String compileFunctionCallWithContext(FunctionCall fc, boolean asPred) throws Exception {
+		/* There are two additional things that I need to consider here. 1) The function can have an inferred 
+		 * polyContext, which needs to be got from the current function that is being compiled. Functions
+		 * with contexts have a different call structure.
+		 * 2) If this is a recursive function with a polycontext then it generates a new operator to handle
+		 * the match statement, in this case the new operator needs to be called instead of the current op. 
+		 */
+		
 		TypeDeclContext ctx = fc.getContext();
 		if ((ctx == null || ctx.isEmpty()) && !expr.referencesContainingType()) {
 			/* Having a context called with the wrong number of arguments should be validated
@@ -1033,13 +1034,18 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			throw new Exception("Function with context called with wrong number of arguments");
 		}
 		
-		String result = eventBExprName() + "(";
+		/* Check to see if I'm recursive. */
+		IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
+		if (container == this) {
+			return compileRecursiveCallWithContext(fc, asPred);
+		}
 		
+		String result = eventBExprName() + "(";
 		/* TODO: it is unclear to me why I would need the container type in this context, see if the code
 		 * can be re-written to avoid this.
 		 */
-		ClassDecl container = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
-		result += context.compileCallWithTypeContext(ctx, container);
+		ClassDecl clContainer = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+		result += context.compileCallWithTypeContext(ctx, clContainer);
 		result += ")";
 		
 		EList<Expression> exprs = fc.getArguments();
@@ -1057,14 +1063,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	
 	String comipileFunctionCallNoContext(FunctionCall fc, boolean asPred) throws Exception {
 		EList<Expression> exprs = fc.getArguments();
-		
-		/* There are two additional things that I need to consider here. 1) The function can have an inferred 
-		 * polyContext, which needs to be got from the current function that is being compiled. Functions
-		 * with contexts have a different call structure.
-		 * 2) If this is a recursive function with a polycontext then it generates a new operator to handle
-		 * the match statement, in this case the new operator needs to be called instead of the current op. 
-		 */
-		
 		if (exprs == null || exprs.isEmpty()) {
 			if (varList == null || varList.isEmpty()) {
 				return eventBExprName();
@@ -1163,7 +1161,4 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			return null;
 		}
 	}
-
-
-
 } //FunctionDeclImpl

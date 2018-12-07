@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
 
+import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 
@@ -84,12 +85,6 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	String constructWithTypeContext(TypeDeclContext context, ClassDecl containingClass);
 	void compile() throws Exception;
 
-	/* Methods within ClassDecl's can use functions declared as part of the type. To allow
-	 * this in EventB a polymorphic instance of the type class is passed as an argument to
-	 * the EventB operator. 
-	 */
-	ArrayList<Tuple2<String, String>> typedConstructionArgs(TheoryImportCache thyCache);
-
 	/* Given a polytype T : Setoid this deals with a call like T.equ(a, b) 
 	 * ownerType would be T, typeInst would be equ, function call contains a polytype and 
 	 */
@@ -97,5 +92,7 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 
 	/* Given an expression such as pNat.times this will expand to the call pNat_times in EventB */
 	String appyMemberOrFunc(ExpressionVariable typeInst, FunctionCall fc, Boolean asPred);
+
+	ITypeInstance genericTypeInstance(TheoryImportCache thyCache);
 
 } // ClassDecl

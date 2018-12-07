@@ -900,13 +900,22 @@ public interface BSharpPackage extends EPackage {
 	int BSHARP_BLOCK__THEOREMS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BSHARP_BLOCK__INSTANCES = 2;
+
+	/**
 	 * The number of structural features of the '<em>Block</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BSHARP_BLOCK_FEATURE_COUNT = 2;
+	int BSHARP_BLOCK_FEATURE_COUNT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Owner Type</b></em>' reference.
@@ -1671,7 +1680,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int THEOREM_DECL__NAME = 0;
+	int THEOREM_DECL__NAME = IEXPRESSION_CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1680,7 +1689,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int THEOREM_DECL__EXPR = 1;
+	int THEOREM_DECL__EXPR = IEXPRESSION_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Theorem Decl</em>' class.
@@ -1689,7 +1698,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int THEOREM_DECL_FEATURE_COUNT = 2;
+	int THEOREM_DECL_FEATURE_COUNT = IEXPRESSION_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2219,6 +2228,17 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getBSharpBlock_Theorems();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.BSharpBlock#getInstances <em>Instances</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Instances</em>'.
+	 * @see ac.soton.bsharp.bSharp.BSharpBlock#getInstances()
+	 * @see #getBSharpBlock()
+	 * @generated
+	 */
+	EReference getBSharpBlock_Instances();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.GenName <em>Gen Name</em>}'.
@@ -3604,6 +3624,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BSHARP_BLOCK__THEOREMS = eINSTANCE.getBSharpBlock_Theorems();
+
+		/**
+		 * The meta object literal for the '<em><b>Instances</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BSHARP_BLOCK__INSTANCES = eINSTANCE.getBSharpBlock_Instances();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.GenNameImpl <em>Gen Name</em>}' class.

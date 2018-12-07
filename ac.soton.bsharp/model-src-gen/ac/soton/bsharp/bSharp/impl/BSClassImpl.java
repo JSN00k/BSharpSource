@@ -26,6 +26,12 @@ import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.Where;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.IMapletNode;
+import ac.soton.bsharp.bSharp.util.ITypeInstance;
+import ac.soton.bsharp.bSharp.util.MapletStringLeaf;
+import ac.soton.bsharp.bSharp.util.MapletTree;
+import ac.soton.bsharp.bSharp.util.MapletTypeInstance;
+import ac.soton.bsharp.bSharp.util.StringTypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -45,6 +51,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.mwe2.language.mwe2.Import;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
@@ -461,6 +468,20 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	
 	protected Integer compiledMatchStatements = 0;
 	
+	
+	protected ITypeInstance typeInstance = null;
+	/* Get type instance is used during compilation of the op for the type class. As a result it actually 
+	 * contains an instance representing the supertype.
+	 */
+	@Override
+	public ITypeInstance getTypeInstance() {
+		/* Changing the way that this works could allow the creation of a constructed type 
+		 * rather than a destructed type. For now this is a big change, and needs to be left for 
+		 * latter.
+		 */
+		return typeInstance;
+	}
+	
 	/* Compiles the operator used to create an instance of this type class. */
 	public void compileOp() throws Exception {
 		compiledMatchStatements = 0;
@@ -513,6 +534,14 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			opString += iName + " ∈ ";
 		
 		opString += supertypes.supertypeType(polyTypedVars);
+		
+		polyTypedVars.add(new Tuple2<String, String>(iName, supertypes.supertypeType(polyTypedVars)));
+		BSClass superT = supertypes.getFirst().getTypeClass();
+		if (superT != null) {
+			typeInstance = new StringTypeInstance(superT, polyTypedVars); 
+		} else {
+			typeInstance = new StringTypeInstance(this, polyTypedVars);
+		}
 		
 		if (typedVars != null) {
 			opString += CompilationUtil.compileTypedVaribalesToTypedList(typedVars, false);
@@ -597,109 +626,91 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return result;
 	}
 	
-	/* This method is for generating type information for theorems. Given T : Monoid it will 
-	 * add [equ, ident, op] to vars and return "equ |-> (ident |-> op)" The return value can
-	 * then be typed as equ |-> (ident |-> op) : Monoid(T)
-	 */
-	public String typedVariableList(ArrayList<String> vars) {
-		BSClass superT = supertypes.getFirst().getTypeClass();
-		String result = null;
-		boolean isTop = false;
-		if (superT != null) {
-			result = ((BSClassImpl)superT).typedVariableList(vars);
-		} else {
-			isTop = true;
-			result = "";
-		}
-		
-		if (varList == null)
-			return result;
-		
-		ArrayList<TypedVariable> typedVars = varList.getTypedVariableNames();
-		if (typedVars.size() != 0) {
-			boolean isFirst = true;
-			for (TypedVariable tv : typedVars) {
-				if (isFirst) {
-					if (!isTop) {
-						result += " ↦ (";
-					}
-				} else {
-					result += " ↦ ";
-				}
-				
-				isFirst = false; 
-				
-				result += tv.getName();
-				vars.add(tv.getName());
-			}
-			
-			if (!isTop) {
-				result += ")";
-			}
-		}
-		
-		return result;
-	}
-	
 	/* returns all the typed arguments needed to construct a fully polymorphic version of this
 	 * typeclass, including the argument for the type class itself. 
 	 */
 	@Override
-	public ArrayList<Tuple2<String, String>> typedConstructionArgs(TheoryImportCache thyCache) {
-		ArrayList<Tuple2<String, String>> result;
+	public ITypeInstance genericTypeInstance(TheoryImportCache thyCache) {
+		ArrayList<Tuple2<String, String>> typeConstructors;
 		
 		try {
-			result = polyArgumentsToConstructGenericTypeClass(thyCache);
+			typeConstructors = polyArgumentsToConstructGenericTypeClass(thyCache);
 		} catch (Exception e) {
 			//TODO: Validation against this.
 			System.err.println("Illegal type declaration, this should be validataed against.");
 			return null;
 		}
 		
-		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(result, ", ", true) + ")";
-		result.add(new Tuple2<String, String>(instanceName(), eventBPolymorphicTypeConstructorName() + argsForConstructor));
+		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(typeConstructors, ", ", true) + ")";
+		typeConstructors.add(new Tuple2<String, String>(instanceName(), eventBPolymorphicTypeConstructorName() + argsForConstructor));
 		
-		return result;
+		StringTypeInstance res = new StringTypeInstance(this, typeConstructors);
+		
+		return res;
 	}
 	
-	/* Due to the polymoprhic arguments having to be typed separately, unlike the type variables
-	 * it is necessary to return the aruments and the types separately.
+	/* Only the variables from this declaration, does not include variables from the supertypes. */
+	public IMapletNode localMappedVars() {
+		TypedVariableList vl = getVarList();
+		if (vl == null || vl.isEmpty())
+			return null;
+		
+		ArrayList<TypedVariable> typedVars = vl.getTypedVariableNames();
+		boolean first = true;
+		IMapletNode c = null;
+		for (TypedVariable tv : typedVars) {
+			if (first) {
+				c = new MapletStringLeaf(tv.getName());
+				first = false;
+				continue;
+			}
+			
+			c = new MapletTree(c, new MapletStringLeaf(tv.getName()));
+		}
+		
+		return c;
+	}
+	
+	public IMapletNode mappedVariables() {
+		BSClass superT = supertypes.getFirst().getTypeClass();
+		IMapletNode superVars = null;
+		
+		if (superT != null)
+			superVars = ((BSClassImpl)superT).mappedVariables();
+		
+		IMapletNode myVars = localMappedVars();
+		
+		if (myVars != null)
+			return superVars;
+		
+		if (superVars != null)
+			return myVars;
+		
+		return new MapletTree(superVars, myVars);
+	}
+	
+	/* This is currently used by theorems to generate the inferred type arguments. It currently 
+	 * can't be used in methods as elements are not stored in an individually typed way.
 	 */
 	@Override
-	public ArrayList<Tuple2<String, String>> argsAndTypingForDeconstructedType(ArrayList<String> args) {
-		ArrayList<Tuple2<String, String>> typedArgs = typedConstructionArgs(null);
-		Tuple2<String, String> bsClassType = typedArgs.get(typedArgs.size() - 1);
-		typedArgs.remove(typedArgs.size() - 1);
+	public ITypeInstance deconstructedTypeInstance(TheoryImportCache thyCache) {
+		ArrayList<Tuple2<String, String>> typeConstructors;
 		
-		for (Tuple2<String, String> poly : typedArgs) {
-			args.add(poly.x);
+		try {
+			typeConstructors = polyArgumentsToConstructGenericTypeClass(thyCache);
+		} catch (Exception e) {
+			//TODO: Validation against this.
+			System.err.println("Illegal type declaration, this should be validataed against.");
+			return null;
 		}
 		
-		String finalConstruct = "";
-		if (typedArgs.size() != 0) {
-			/* Get the constructed type */
-			finalConstruct = typedArgs.get(typedArgs.size() - 1).x;
-		}
-		
-		/* In the case that this isn't a type class there won't be any typed variables. In this case
-		 * It is required to have a variable to represent the class in question. 
-		 */
-		String tvRes = typedVariableList(args);
-		if (tvRes == null || tvRes.isEmpty()) {
-			ArrayList<Tuple2<String, String>> res = typedConstructionArgs(null);
-			args.add(res.get(res.size() - 1).x);
-			return res;
-		}
-		
-		if (!finalConstruct.isEmpty() && !tvRes.isEmpty()) {
-			finalConstruct += " ↦ " + tvRes;
-		} else {
-			finalConstruct += tvRes;
-		}
-		
-		typedArgs.add(new Tuple2<String, String>(finalConstruct, bsClassType.y));
-		return typedArgs;
+		IMapletNode mappedVariables = mappedVariables();
+		typeConstructors.get(typeConstructors.size() - 1).x = mappedVariables.compileToString();
+		MapletTypeInstance res = new MapletTypeInstance(this, typeConstructors, mappedVariables);
+		return res;
 	}
+	
+	
 	
 	INewOperatorDefinition constructOpForGetterWithName(String n) {
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
@@ -713,7 +724,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return null;
 		}
 		
-		ArrayList<Tuple2<String, String>> polyArgs = typedConstructionArgs(null);
+		ArrayList<Tuple2<String, String>> polyArgs = genericTypeInstance(null).typeConstructionTypesTyped();
 		
 		for (Tuple2<String, String> typedVar : polyArgs) {
 			try {

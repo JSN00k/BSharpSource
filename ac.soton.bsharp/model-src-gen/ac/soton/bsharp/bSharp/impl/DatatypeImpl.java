@@ -17,6 +17,7 @@ import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypePowerSet;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -220,12 +221,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public ArrayList<Tuple2<String, String>> typedConstructionArgs(TheoryImportCache thyCache) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
 		// TODO Auto-generated method stub
 		return null;
@@ -309,6 +304,18 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
 		/* Datatypes don't provide any type variables that are required by functions. */
 		return new ArrayList<Tuple2<String,String>>();
+	}
+
+	@Override
+	public ITypeInstance genericTypeInstance(TheoryImportCache thyCache) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ITypeInstance getTypeInstance() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //DatatypeImpl

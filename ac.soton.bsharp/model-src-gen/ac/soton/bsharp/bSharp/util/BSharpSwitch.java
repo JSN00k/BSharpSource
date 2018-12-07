@@ -372,6 +372,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.THEOREM_DECL: {
 				TheoremDecl theoremDecl = (TheoremDecl)theEObject;
 				T result = caseTheoremDecl(theoremDecl);
+				if (result == null) result = caseIExpressionContainer(theoremDecl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.FunctionDecl;
+import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.TheoremBody;
 
 import java.util.Collection;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.BSharpBlockImpl#getFunctions <em>Functions</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.BSharpBlockImpl#getTheorems <em>Theorems</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.BSharpBlockImpl#getInstances <em>Instances</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,6 +57,15 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 	 * @ordered
 	 */
 	protected EList<TheoremBody> theorems;
+	/**
+	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstances()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Instance> instances;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,6 +114,18 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Instance> getInstances() {
+		if (instances == null) {
+			instances = new EObjectContainmentEList<Instance>(Instance.class, this, BSharpPackage.BSHARP_BLOCK__INSTANCES);
+		}
+		return instances;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -110,6 +133,8 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 				return ((InternalEList<?>)getFunctions()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.BSHARP_BLOCK__THEOREMS:
 				return ((InternalEList<?>)getTheorems()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.BSHARP_BLOCK__INSTANCES:
+				return ((InternalEList<?>)getInstances()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -126,6 +151,8 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 				return getFunctions();
 			case BSharpPackage.BSHARP_BLOCK__THEOREMS:
 				return getTheorems();
+			case BSharpPackage.BSHARP_BLOCK__INSTANCES:
+				return getInstances();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -147,6 +174,10 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 				getTheorems().clear();
 				getTheorems().addAll((Collection<? extends TheoremBody>)newValue);
 				return;
+			case BSharpPackage.BSHARP_BLOCK__INSTANCES:
+				getInstances().clear();
+				getInstances().addAll((Collection<? extends Instance>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -165,6 +196,9 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 			case BSharpPackage.BSHARP_BLOCK__THEOREMS:
 				getTheorems().clear();
 				return;
+			case BSharpPackage.BSHARP_BLOCK__INSTANCES:
+				getInstances().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -181,6 +215,8 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 				return functions != null && !functions.isEmpty();
 			case BSharpPackage.BSHARP_BLOCK__THEOREMS:
 				return theorems != null && !theorems.isEmpty();
+			case BSharpPackage.BSHARP_BLOCK__INSTANCES:
+				return instances != null && !instances.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

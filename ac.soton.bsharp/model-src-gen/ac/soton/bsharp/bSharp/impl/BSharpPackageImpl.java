@@ -719,6 +719,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getBSharpBlock_Instances() {
+		return (EReference)bSharpBlockEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGenName() {
 		return genNameEClass;
 	}
@@ -1758,6 +1767,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		bSharpBlockEClass = createEClass(BSHARP_BLOCK);
 		createEReference(bSharpBlockEClass, BSHARP_BLOCK__FUNCTIONS);
 		createEReference(bSharpBlockEClass, BSHARP_BLOCK__THEOREMS);
+		createEReference(bSharpBlockEClass, BSHARP_BLOCK__INSTANCES);
 
 		classDeclEClass = createEClass(CLASS_DECL);
 		createEReference(classDeclEClass, CLASS_DECL__CONTEXT);
@@ -1976,6 +1986,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		quantLambdaEClass.getESuperTypes().add(this.getExpression());
 		quantLambdaEClass.getESuperTypes().add(this.getIVariableProvider());
 		quantLambdaEClass.getESuperTypes().add(this.getIPolyTypeProvider());
+		theoremDeclEClass.getESuperTypes().add(this.getIExpressionContainer());
 		topLevelFileEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
 		topLevelImportEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
 		typeConstructorEClass.getESuperTypes().add(this.getTypeBuilder());
@@ -2019,6 +2030,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(bSharpBlockEClass, BSharpBlock.class, "BSharpBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBSharpBlock_Functions(), this.getFunctionDecl(), null, "functions", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBSharpBlock_Theorems(), this.getTheoremBody(), null, "theorems", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBSharpBlock_Instances(), this.getInstance(), null, "instances", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classDeclEClass, ClassDecl.class, "ClassDecl", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

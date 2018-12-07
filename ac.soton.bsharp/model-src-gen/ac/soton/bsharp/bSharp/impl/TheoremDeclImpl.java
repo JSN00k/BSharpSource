@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
@@ -38,7 +39,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements TheoremDecl {
+public class TheoremDeclImpl extends IExpressionContainerImpl implements TheoremDecl {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -273,12 +274,29 @@ public class TheoremDeclImpl extends MinimalEObjectImpl.Container implements The
 	
 	@Override
 	public String baseTypeForBSClass(BSClass typeName) {
-		return ((QuantLambda)expr).baseTypeForBSClass(typeName);
+		if (expr instanceof QuantLambda) {
+			return ((QuantLambda)expr).baseTypeForBSClass(typeName);
+		}
+		
+		return null;
 	}
 
 	@Override
 	public String getNameExpressionForVariable(TypedVariable typedVariable) {
-		return ((QuantLambda)expr).getNameExpressionForVariable(typedVariable);
+		if (expr instanceof QuantLambda) {
+			return ((QuantLambda)expr).getNameExpressionForVariable(typedVariable);
+		}
+		
+		return null;
+	}
+
+	@Override
+	public ITypeInstance getTypeInstance() {
+		if (expr instanceof QuantLambda) {
+			return ((QuantLambda)expr).getClassTypeInst();
+		}
+		
+		return null;
 	}
 
 } //TheoremDeclImpl

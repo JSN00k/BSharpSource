@@ -214,8 +214,6 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, Expr
 
 	boolean isMethod();
 
-	ArrayList<String> getInferredBSClassConstructors();
-
 	IInternalElement getCurrentCompilingOp();
 
 } // FunctionDecl
