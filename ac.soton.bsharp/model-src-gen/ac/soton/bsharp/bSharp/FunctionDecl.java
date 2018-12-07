@@ -29,7 +29,7 @@ import org.rodinp.core.IInternalElement;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl()
  * @model
  */
-public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, ExpressionVariable {
+public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, ExpressionVariable, IExpressionContainer {
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

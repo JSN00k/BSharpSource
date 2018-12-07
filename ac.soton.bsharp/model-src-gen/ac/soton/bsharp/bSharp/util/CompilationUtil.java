@@ -14,8 +14,11 @@ import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
 import org.rodinp.core.IInternalElement;
 
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
+import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 
@@ -176,5 +179,13 @@ public class CompilationUtil {
 		}
 		
 		return result;
+	}
+	
+	public static ClassDecl getClassDecl(EObject obj) {
+		TopLevelInstance tl = EcoreUtil2.getContainerOfType(obj, TopLevelInstance.class);
+		if (tl instanceof ClassDecl)
+			return (ClassDecl)tl;
+		
+		return ((Extend)tl).getExtendedClass();
 	}
 }

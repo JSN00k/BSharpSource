@@ -85,6 +85,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createIClassDeclExtendAdapter();
 			}
 			@Override
+			public Adapter caseIExpressionContainer(IExpressionContainer object) {
+				return createIExpressionContainerAdapter();
+			}
+			@Override
 			public Adapter caseITheoryImportCacheProvider(ITheoryImportCacheProvider object) {
 				return createITheoryImportCacheProviderAdapter();
 			}
@@ -849,6 +853,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIClassDeclExtendAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IExpressionContainer <em>IExpression Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.IExpressionContainer
+	 * @generated
+	 */
+	public Adapter createIExpressionContainerAdapter() {
 		return null;
 	}
 

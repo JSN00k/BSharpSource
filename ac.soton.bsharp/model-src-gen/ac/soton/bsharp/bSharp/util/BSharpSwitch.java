@@ -91,6 +91,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.IEXPRESSION_CONTAINER: {
+				IExpressionContainer iExpressionContainer = (IExpressionContainer)theEObject;
+				T result = caseIExpressionContainer(iExpressionContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.ITHEORY_IMPORT_CACHE_PROVIDER: {
 				ITheoryImportCacheProvider iTheoryImportCacheProvider = (ITheoryImportCacheProvider)theEObject;
 				T result = caseITheoryImportCacheProvider(iTheoryImportCacheProvider);
@@ -134,6 +140,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				BSClass bsClass = (BSClass)theEObject;
 				T result = caseBSClass(bsClass);
 				if (result == null) result = caseClassDecl(bsClass);
+				if (result == null) result = caseIExpressionContainer(bsClass);
 				if (result == null) result = caseExpressionVariable(bsClass);
 				if (result == null) result = caseIVariableProvider(bsClass);
 				if (result == null) result = caseIPolyTypeProvider(bsClass);
@@ -185,6 +192,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				Datatype datatype = (Datatype)theEObject;
 				T result = caseDatatype(datatype);
 				if (result == null) result = caseClassDecl(datatype);
+				if (result == null) result = caseIExpressionContainer(datatype);
 				if (result == null) result = caseExpressionVariable(datatype);
 				if (result == null) result = caseIVariableProvider(datatype);
 				if (result == null) result = caseIPolyTypeProvider(datatype);
@@ -251,6 +259,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseIVariableProvider(functionDecl);
 				if (result == null) result = caseIPolyTypeProvider(functionDecl);
 				if (result == null) result = caseExpressionVariable(functionDecl);
+				if (result == null) result = caseIExpressionContainer(functionDecl);
 				if (result == null) result = caseNamedObject(functionDecl);
 				if (result == null) result = caseIVarType(functionDecl);
 				if (result == null) result = defaultCase(theEObject);
@@ -1047,6 +1056,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIClassDeclExtend(IClassDeclExtend object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>IExpression Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>IExpression Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIExpressionContainer(IExpressionContainer object) {
 		return null;
 	}
 

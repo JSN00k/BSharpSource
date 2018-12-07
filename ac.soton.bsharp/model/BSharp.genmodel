@@ -10,6 +10,7 @@
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVariableProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IPolyTypeProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IClassDeclExtend"/>
+    <genClasses image="false" ecoreClass="BSharp.ecore#//IExpressionContainer"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//ITheoryImportCacheProvider"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVarType"/>
     <genClasses ecoreClass="BSharp.ecore#//Type"/>

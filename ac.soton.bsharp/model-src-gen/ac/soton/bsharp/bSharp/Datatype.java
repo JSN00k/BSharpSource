@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getDatatype()
  * @model
  */
-public interface Datatype extends ClassDecl {
+public interface Datatype extends ClassDecl, IExpressionContainer {
 	/**
 	 * Returns the value of the '<em><b>Constructors</b></em>' containment reference list.
 	 * The list contents are of type {@link ac.soton.bsharp.bSharp.DatatypeConstructor}.

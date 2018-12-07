@@ -26,6 +26,7 @@ import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.IClassDeclExtend;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
+import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
 import ac.soton.bsharp.bSharp.IVarType;
@@ -351,6 +352,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass iClassDeclExtendEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iExpressionContainerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1494,6 +1502,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getIExpressionContainer() {
+		return iExpressionContainerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getITheoryImportCacheProvider() {
 		return iTheoryImportCacheProviderEClass;
 	}
@@ -1714,6 +1731,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		iClassDeclExtendEClass = createEClass(ICLASS_DECL_EXTEND);
 
+		iExpressionContainerEClass = createEClass(IEXPRESSION_CONTAINER);
+
 		iTheoryImportCacheProviderEClass = createEClass(ITHEORY_IMPORT_CACHE_PROVIDER);
 
 		iVarTypeEClass = createEClass(IVAR_TYPE);
@@ -1921,6 +1940,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		typeEClass.getESuperTypes().add(this.getGenName());
 		bracketEClass.getESuperTypes().add(this.getExpression());
 		bsClassEClass.getESuperTypes().add(this.getClassDecl());
+		bsClassEClass.getESuperTypes().add(this.getIExpressionContainer());
 		classDeclEClass.getESuperTypes().add(this.getGenName());
 		classDeclEClass.getESuperTypes().add(this.getExpressionVariable());
 		classDeclEClass.getESuperTypes().add(this.getIVariableProvider());
@@ -1931,6 +1951,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		classVarDeclEClass.getESuperTypes().add(this.getIVarType());
 		constructedTypeEClass.getESuperTypes().add(this.getTypeBuilder());
 		datatypeEClass.getESuperTypes().add(this.getClassDecl());
+		datatypeEClass.getESuperTypes().add(this.getIExpressionContainer());
 		datatypeConstructorEClass.getESuperTypes().add(this.getIVariableProvider());
 		datatypeConstructorEClass.getESuperTypes().add(this.getTypedVariable());
 		extendEClass.getESuperTypes().add(this.getIVariableProvider());
@@ -1943,6 +1964,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		functionDeclEClass.getESuperTypes().add(this.getIVariableProvider());
 		functionDeclEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		functionDeclEClass.getESuperTypes().add(this.getExpressionVariable());
+		functionDeclEClass.getESuperTypes().add(this.getIExpressionContainer());
 		genNameEClass.getESuperTypes().add(this.getNamedObject());
 		infixEClass.getESuperTypes().add(this.getExpression());
 		instNameEClass.getESuperTypes().add(this.getExpressionVariable());
@@ -1969,6 +1991,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(iPolyTypeProviderEClass, IPolyTypeProvider.class, "IPolyTypeProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iClassDeclExtendEClass, IClassDeclExtend.class, "IClassDeclExtend", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(iExpressionContainerEClass, IExpressionContainer.class, "IExpressionContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iTheoryImportCacheProviderEClass, ITheoryImportCacheProvider.class, "ITheoryImportCacheProvider", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

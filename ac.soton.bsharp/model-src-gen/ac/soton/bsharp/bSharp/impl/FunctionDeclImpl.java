@@ -13,6 +13,7 @@ import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
+import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.MatchStatement;
@@ -27,6 +28,7 @@ import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -634,6 +636,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				default: return -1;
 			}
 		}
+		if (baseClass == IExpressionContainer.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -661,6 +668,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			}
 		}
 		if (baseClass == ExpressionVariable.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IExpressionContainer.class) {
 			switch (baseFeatureID) {
 				default: return -1;
 			}
@@ -983,7 +995,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
-		if (context != null && !context.isEmpty()) {
+		if (context != null && !context.isEmpty() || expr.hasInferredContext()) {
 			return compileFunctionCallWithContext(fc, asPred);
 		} else {
 			return comipileFunctionCallNoContext(fc, asPred);
@@ -991,9 +1003,30 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	}
 	
+	String getInferredContextCallString(FunctionCall fc) {
+		/* The context required by this function may be a supertype of the 
+		 * context supplied by the theorem/function/ClassDecl in which the 
+		 * function was called from.
+		 */
+		
+		/* Get expression container in which this is being called. (Note we're in a function
+		 * call, so this is a reference and not suitable for finding the ExpressionContainer
+		 * */
+		IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
+		ITypeInstance typeInst =  container.getTypeInstance();
+		
+		ClassDecl containType = CompilationUtil.getClassDecl(this);
+		
+		ArrayList<String> polyTypes = typeInst.typeConstructionTypes();
+		String result = CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(polyTypes, ", ", true);
+		
+		result += ",  " + typeInst.eventBTypeInstanceForType(containType);
+		return result;
+	}
+
 	String compileFunctionCallWithContext(FunctionCall fc, boolean asPred) throws Exception {
 		TypeDeclContext ctx = fc.getContext();
-		if ((ctx == null || ctx.isEmpty())) {
+		if ((ctx == null || ctx.isEmpty()) && !expr.referencesContainingType()) {
 			/* Having a context called with the wrong number of arguments should be validated
 			 * against.
 			 */

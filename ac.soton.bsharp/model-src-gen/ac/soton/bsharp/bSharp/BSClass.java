@@ -27,7 +27,7 @@ import ac.soton.bsharp.theory.util.TheoryImportCache;
  * @model
  * @generated
  */
-public interface BSClass extends ClassDecl {
+public interface BSClass extends ClassDecl, IExpressionContainer {
 	/**
 	 * Returns the value of the '<em><b>Supertypes</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

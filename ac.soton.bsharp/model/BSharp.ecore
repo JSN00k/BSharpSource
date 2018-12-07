@@ -6,6 +6,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="IVariableProvider" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IPolyTypeProvider" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IClassDeclExtend" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IExpressionContainer" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ITheoryImportCacheProvider" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IVarType" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//GenName"/>
@@ -22,7 +23,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BSClass" eSuperTypes="#//ClassDecl">
+  <eClassifiers xsi:type="ecore:EClass" name="BSClass" eSuperTypes="#//ClassDecl #//IExpressionContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supertypes" eType="#//SuperTypeList"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypedVariableList"
@@ -55,7 +56,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//TypeBuilder"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Datatype" eSuperTypes="#//ClassDecl">
+  <eClassifiers xsi:type="ecore:EClass" name="Datatype" eSuperTypes="#//ClassDecl #//IExpressionContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constructors" upperBound="-1"
         eType="#//DatatypeConstructor" containment="true"/>
   </eClassifiers>
@@ -88,7 +89,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionDecl" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//ExpressionVariable">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionDecl" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//ExpressionVariable #//IExpressionContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypedVariableList"
