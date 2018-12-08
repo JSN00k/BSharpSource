@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,6 +71,26 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	 * @ordered
 	 */
 	protected EList<Expression> arguments;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -188,6 +209,27 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -214,6 +256,8 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 				return getContext();
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return getArguments();
+			case BSharpPackage.INSTANCE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,6 +281,9 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 				getArguments().clear();
 				getArguments().addAll((Collection<? extends Expression>)newValue);
 				return;
+			case BSharpPackage.INSTANCE__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -258,6 +305,9 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				getArguments().clear();
 				return;
+			case BSharpPackage.INSTANCE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -276,8 +326,26 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 				return context != null;
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
+			case BSharpPackage.INSTANCE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //InstanceImpl

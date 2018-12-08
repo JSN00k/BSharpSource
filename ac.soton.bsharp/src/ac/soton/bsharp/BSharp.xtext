@@ -322,7 +322,5 @@ InbuiltInfix:
 /* ------------------------------ Instance ---------------------------------------------*/
 
 Instance:
-	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')'
+	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')' (name=ID)?
 ;
-
-/* TODO: Implement Methods,  Infix keyword and precedence on Infix operators. */

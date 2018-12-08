@@ -1404,13 +1404,22 @@ public interface BSharpPackage extends EPackage {
 	int INSTANCE__ARGUMENTS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE__NAME = 3;
+
+	/**
 	 * The number of structural features of the '<em>Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FEATURE_COUNT = 3;
+	int INSTANCE_FEATURE_COUNT = 4;
 
 	/**
 	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
@@ -3082,6 +3091,17 @@ public interface BSharpPackage extends EPackage {
 	EReference getInstance_Arguments();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.Instance#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see ac.soton.bsharp.bSharp.Instance#getName()
+	 * @see #getInstance()
+	 * @generated
+	 */
+	EAttribute getInstance_Name();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Infix <em>Infix</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4320,6 +4340,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INSTANCE__ARGUMENTS = eINSTANCE.getInstance_Arguments();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INSTANCE__NAME = eINSTANCE.getInstance_Name();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.InfixImpl <em>Infix</em>}' class.

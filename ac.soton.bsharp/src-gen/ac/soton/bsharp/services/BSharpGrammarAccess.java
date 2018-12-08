@@ -1118,14 +1118,16 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionsFunctionDeclParserRuleCall_2_0_0 = (RuleCall)cFunctionsAssignment_2_0.eContents().get(0);
 		private final Assignment cTheoremsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final RuleCall cTheoremsTheoremBodyParserRuleCall_2_1_0 = (RuleCall)cTheoremsAssignment_2_1.eContents().get(0);
+		private final Assignment cInstancesAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cInstancesInstanceParserRuleCall_2_2_0 = (RuleCall)cInstancesAssignment_2_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		///* ------------------------ TypeBodyElements ------------------------------- */ BSharpBlock:
 		//	{BSharpBlock}
-		//	'{' (functions+=FunctionDecl | theorems+=TheoremBody)* '}';
+		//	'{' (functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{BSharpBlock} '{' (functions+=FunctionDecl | theorems+=TheoremBody)* '}'
+		//{BSharpBlock} '{' (functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//{BSharpBlock}
@@ -1134,7 +1136,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//(functions+=FunctionDecl | theorems+=TheoremBody)*
+		//(functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)*
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//functions+=FunctionDecl
@@ -1148,6 +1150,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TheoremBody
 		public RuleCall getTheoremsTheoremBodyParserRuleCall_2_1_0() { return cTheoremsTheoremBodyParserRuleCall_2_1_0; }
+		
+		//instances+=Instance
+		public Assignment getInstancesAssignment_2_2() { return cInstancesAssignment_2_2; }
+		
+		//Instance
+		public RuleCall getInstancesInstanceParserRuleCall_2_2_0() { return cInstancesInstanceParserRuleCall_2_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
@@ -2019,14 +2027,16 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cArgumentsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
 		private final RuleCall cArgumentsRootExpressionParserRuleCall_5_1_0 = (RuleCall)cArgumentsAssignment_5_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cNameAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cNameIDTerminalRuleCall_7_0 = (RuleCall)cNameAssignment_7.eContents().get(0);
 		
 		///* ------------------------------ Instance ---------------------------------------------*/ Instance:
 		//	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
-		//	arguments+=RootExpression)* ')';
+		//	arguments+=RootExpression)* ')' name=ID?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
-		//arguments+=RootExpression)* ')'
+		//arguments+=RootExpression)* ')' name=ID?
 		public Group getGroup() { return cGroup; }
 		
 		//'Instance'
@@ -2070,6 +2080,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
+		
+		//name=ID?
+		public Assignment getNameAssignment_7() { return cNameAssignment_7; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_7_0() { return cNameIDTerminalRuleCall_7_0; }
 	}
 	
 	
@@ -2556,7 +2572,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	///* ------------------------ TypeBodyElements ------------------------------- */ BSharpBlock:
 	//	{BSharpBlock}
-	//	'{' (functions+=FunctionDecl | theorems+=TheoremBody)* '}';
+	//	'{' (functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)* '}';
 	public BSharpBlockElements getBSharpBlockAccess() {
 		return pBSharpBlock;
 	}
@@ -2806,7 +2822,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:
 	//	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
-	//	arguments+=RootExpression)* ')';
+	//	arguments+=RootExpression)* ')' name=ID?;
 	public InstanceElements getInstanceAccess() {
 		return pInstance;
 	}

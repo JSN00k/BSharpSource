@@ -200,7 +200,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     BSharpBlock returns BSharpBlock
 	 *
 	 * Constraint:
-	 *     (functions+=FunctionDecl | theorems+=TheoremBody)*
+	 *     (functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)*
 	 */
 	protected void sequence_BSharpBlock(ISerializationContext context, BSharpBlock semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -462,7 +462,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
-	 *     (className=[ClassDecl|QualifiedName] context=TypeDeclContext arguments+=RootExpression? arguments+=RootExpression*)
+	 *     (className=[ClassDecl|QualifiedName] context=TypeDeclContext arguments+=RootExpression? arguments+=RootExpression* name=ID?)
 	 */
 	protected void sequence_Instance(ISerializationContext context, Instance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

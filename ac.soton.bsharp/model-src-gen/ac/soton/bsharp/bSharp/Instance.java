@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ac.soton.bsharp.bSharp.Instance#getClassName <em>Class Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Instance#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Instance#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.Instance#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance()
@@ -92,5 +93,31 @@ public interface Instance extends EObject {
 	 * @generated
 	 */
 	EList<Expression> getArguments();
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Instance#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // Instance
