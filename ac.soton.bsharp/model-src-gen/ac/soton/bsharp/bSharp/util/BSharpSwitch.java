@@ -298,6 +298,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.INSTANCE: {
 				Instance instance = (Instance)theEObject;
 				T result = caseInstance(instance);
+				if (result == null) result = caseIExpressionContainer(instance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -453,6 +454,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.WHERE: {
 				Where where = (Where)theEObject;
 				T result = caseWhere(where);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.WRAPPED_INFIX: {
+				WrappedInfix wrappedInfix = (WrappedInfix)theEObject;
+				T result = caseWrappedInfix(wrappedInfix);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -712,6 +719,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseWhere(Where object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Wrapped Infix</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Wrapped Infix</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWrappedInfix(WrappedInfix object) {
 		return null;
 	}
 

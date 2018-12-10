@@ -71,6 +71,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/ownerType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/classVarDecl"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/context"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/wrapped"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FunctionDecl">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/context"/>
@@ -178,6 +179,10 @@
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//Where">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Where/expressions"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//WrappedInfix">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//WrappedInfix/funcName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//WrappedInfix/inbuilt"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

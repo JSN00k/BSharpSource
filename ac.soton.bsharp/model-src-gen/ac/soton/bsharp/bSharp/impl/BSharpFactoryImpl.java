@@ -99,6 +99,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.TYPED_VARIABLE_LIST: return createTypedVariableList();
 			case BSharpPackage.VARIABLE_TYPING: return createVariableTyping();
 			case BSharpPackage.WHERE: return createWhere();
+			case BSharpPackage.WRAPPED_INFIX: return createWrappedInfix();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -232,6 +233,16 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public Where createWhere() {
 		WhereImpl where = new WhereImpl();
 		return where;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WrappedInfix createWrappedInfix() {
+		WrappedInfixImpl wrappedInfix = new WrappedInfixImpl();
+		return wrappedInfix;
 	}
 
 	/**

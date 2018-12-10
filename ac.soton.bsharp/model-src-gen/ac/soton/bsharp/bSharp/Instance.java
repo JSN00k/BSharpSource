@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Instance extends EObject {
+public interface Instance extends IExpressionContainer {
 	/**
 	 * Returns the value of the '<em><b>Class Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -35,12 +35,12 @@ public interface Instance extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Class Name</em>' reference.
-	 * @see #setClassName(ClassDecl)
+	 * @see #setClassName(BSClass)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance_ClassName()
 	 * @model
 	 * @generated
 	 */
-	ClassDecl getClassName();
+	BSClass getClassName();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Instance#getClassName <em>Class Name</em>}' reference.
@@ -50,7 +50,7 @@ public interface Instance extends EObject {
 	 * @see #getClassName()
 	 * @generated
 	 */
-	void setClassName(ClassDecl value);
+	void setClassName(BSClass value);
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
@@ -119,5 +119,7 @@ public interface Instance extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	void compile();
 
 } // Instance

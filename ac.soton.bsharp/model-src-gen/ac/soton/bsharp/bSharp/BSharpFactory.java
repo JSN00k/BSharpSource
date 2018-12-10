@@ -140,6 +140,15 @@ public interface BSharpFactory extends EFactory {
 	Where createWhere();
 
 	/**
+	 * Returns a new object of class '<em>Wrapped Infix</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Wrapped Infix</em>'.
+	 * @generated
+	 */
+	WrappedInfix createWrappedInfix();
+
+	/**
 	 * Returns a new object of class '<em>Datatype</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

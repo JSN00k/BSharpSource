@@ -299,7 +299,7 @@ Bracket returns Bracket:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns FunctionCall:
-	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
 ;
 
 /* This is used to get variables from a class I think that it may be only applicable for
@@ -319,10 +319,13 @@ InbuiltInfix:
 	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
 ;
 
+/* Todo scope/validate this. */
+WrappedInfix:
+	'[' (inbuilt=InbuiltInfix | funcName=[ExpressionVariable]) ']'
+;
+
 /* ------------------------------ Instance ---------------------------------------------*/
 
 Instance:
-	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')' (name=ID)?
+	'Instance' className=[BSClass|QualifiedName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')' (name=ID)?
 ;
-
-/* TODO: Implement Methods,  Infix keyword and precedence on Infix operators. */

@@ -1188,13 +1188,22 @@ public interface BSharpPackage extends EPackage {
 	int FUNCTION_CALL__CONTEXT = EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Wrapped</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__WRAPPED = EXPRESSION_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Function Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
+	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1383,7 +1392,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__CLASS_NAME = 0;
+	int INSTANCE__CLASS_NAME = IEXPRESSION_CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -1392,7 +1401,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__CONTEXT = 1;
+	int INSTANCE__CONTEXT = IEXPRESSION_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -1401,7 +1410,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__ARGUMENTS = 2;
+	int INSTANCE__ARGUMENTS = IEXPRESSION_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1410,7 +1419,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__NAME = 3;
+	int INSTANCE__NAME = IEXPRESSION_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Instance</em>' class.
@@ -1419,7 +1428,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FEATURE_COUNT = 4;
+	int INSTANCE_FEATURE_COUNT = IEXPRESSION_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
@@ -1983,6 +1992,44 @@ public interface BSharpPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.WrappedInfixImpl <em>Wrapped Infix</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.WrappedInfixImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getWrappedInfix()
+	 * @generated
+	 */
+	int WRAPPED_INFIX = 52;
+
+	/**
+	 * The feature id for the '<em><b>Func Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WRAPPED_INFIX__FUNC_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Inbuilt</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WRAPPED_INFIX__INBUILT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Wrapped Infix</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WRAPPED_INFIX_FEATURE_COUNT = 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.IEventBPrefixProvider <em>IEvent BPrefix Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2459,6 +2506,38 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getWhere_Expressions();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.WrappedInfix <em>Wrapped Infix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Wrapped Infix</em>'.
+	 * @see ac.soton.bsharp.bSharp.WrappedInfix
+	 * @generated
+	 */
+	EClass getWrappedInfix();
+
+	/**
+	 * Returns the meta object for the reference '{@link ac.soton.bsharp.bSharp.WrappedInfix#getFuncName <em>Func Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Func Name</em>'.
+	 * @see ac.soton.bsharp.bSharp.WrappedInfix#getFuncName()
+	 * @see #getWrappedInfix()
+	 * @generated
+	 */
+	EReference getWrappedInfix_FuncName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.WrappedInfix#getInbuilt <em>Inbuilt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Inbuilt</em>'.
+	 * @see ac.soton.bsharp.bSharp.WrappedInfix#getInbuilt()
+	 * @see #getWrappedInfix()
+	 * @generated
+	 */
+	EAttribute getWrappedInfix_Inbuilt();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Datatype <em>Datatype</em>}'.
@@ -2951,6 +3030,17 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFunctionCall_Context();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.FunctionCall#getWrapped <em>Wrapped</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Wrapped</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionCall#getWrapped()
+	 * @see #getFunctionCall()
+	 * @generated
+	 */
+	EReference getFunctionCall_Wrapped();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ClassVarDecl <em>Class Var Decl</em>}'.
@@ -3832,6 +3922,32 @@ public interface BSharpPackage extends EPackage {
 		EReference WHERE__EXPRESSIONS = eINSTANCE.getWhere_Expressions();
 
 		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.WrappedInfixImpl <em>Wrapped Infix</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.WrappedInfixImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getWrappedInfix()
+		 * @generated
+		 */
+		EClass WRAPPED_INFIX = eINSTANCE.getWrappedInfix();
+
+		/**
+		 * The meta object literal for the '<em><b>Func Name</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WRAPPED_INFIX__FUNC_NAME = eINSTANCE.getWrappedInfix_FuncName();
+
+		/**
+		 * The meta object literal for the '<em><b>Inbuilt</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WRAPPED_INFIX__INBUILT = eINSTANCE.getWrappedInfix_Inbuilt();
+
+		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.DatatypeImpl <em>Datatype</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4226,6 +4342,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTION_CALL__CONTEXT = eINSTANCE.getFunctionCall_Context();
+
+		/**
+		 * The meta object literal for the '<em><b>Wrapped</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_CALL__WRAPPED = eINSTANCE.getFunctionCall_Wrapped();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ClassVarDeclImpl <em>Class Var Decl</em>}' class.

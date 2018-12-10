@@ -1258,5 +1258,10 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		result.addAll(varList.getCompiledVariablesAndTypes());
 		return result;
 	}
+
+	@Override
+	public ClassDecl getFirstSupertypeTypeClass() {
+		return supertypes.getFirst().getTypeClass();
+	}
 	
 } //BppClassImpl

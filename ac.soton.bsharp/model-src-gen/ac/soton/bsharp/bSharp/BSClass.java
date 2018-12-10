@@ -178,4 +178,7 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 	 * not enough type information is stored.
 	 */
 	ITypeInstance deconstructedTypeInstance(TheoryImportCache thyCache);
+	
+	/* If the current typeclasses supertype is a typeclass this type class is returned. */
+	ClassDecl getFirstSupertypeTypeClass();
 } // BppClass

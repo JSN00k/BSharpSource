@@ -277,6 +277,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createWhereAdapter();
 			}
 			@Override
+			public Adapter caseWrappedInfix(WrappedInfix object) {
+				return createWrappedInfixAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -531,6 +535,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createWhereAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.WrappedInfix <em>Wrapped Infix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.WrappedInfix
+	 * @generated
+	 */
+	public Adapter createWrappedInfixAdapter() {
 		return null;
 	}
 

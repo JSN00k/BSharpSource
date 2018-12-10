@@ -41,6 +41,7 @@ import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
 import ac.soton.bsharp.bSharp.Where;
+import ac.soton.bsharp.bSharp.WrappedInfix;
 import ac.soton.bsharp.services.BSharpGrammarAccess;
 import com.google.inject.Inject;
 import java.util.Set;
@@ -189,6 +190,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case BSharpPackage.WHERE:
 				sequence_Where(context, (Where) semanticObject); 
+				return; 
+			case BSharpPackage.WRAPPED_INFIX:
+				sequence_WrappedInfix(context, (WrappedInfix) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -383,7 +387,10 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FunctionCall returns FunctionCall
 	 *
 	 * Constraint:
-	 *     ((typeInst=[ExpressionVariable|ID] | classVarDecl=ClassVarDecl) context=TypeDeclContext? arguments+=RootExpression? arguments+=RootExpression*)
+	 *     (
+	 *         wrapped=WrappedInfix | 
+	 *         ((typeInst=[ExpressionVariable|ID] | classVarDecl=ClassVarDecl) context=TypeDeclContext? arguments+=RootExpression? arguments+=RootExpression*)
+	 *     )
 	 */
 	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -808,6 +815,18 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     (expressions+=RootExpression expressions+=RootExpression*)
 	 */
 	protected void sequence_Where(ISerializationContext context, Where semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     WrappedInfix returns WrappedInfix
+	 *
+	 * Constraint:
+	 *     (inbuilt=InbuiltInfix | funcName=[ExpressionVariable|ID])
+	 */
+	protected void sequence_WrappedInfix(ISerializationContext context, WrappedInfix semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

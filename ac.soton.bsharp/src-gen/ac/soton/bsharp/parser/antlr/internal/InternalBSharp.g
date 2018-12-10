@@ -3077,93 +3077,90 @@ ruleFunctionCall returns [EObject current=null]
 	(
 		(
 			(
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFunctionCallRule());
-						}
+				{
+					newCompositeNode(grammarAccess.getFunctionCallAccess().getWrappedWrappedInfixParserRuleCall_0_0());
+				}
+				lv_wrapped_0_0=ruleWrappedInfix
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
 					}
-					otherlv_0=RULE_ID
-					{
-						newLeafNode(otherlv_0, grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_0_0_0());
-					}
-				)
-			)
-			    |
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getFunctionCallAccess().getClassVarDeclClassVarDeclParserRuleCall_0_1_0());
-					}
-					lv_classVarDecl_1_0=ruleClassVarDecl
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
-						}
-						set(
-							$current,
-							"classVarDecl",
-							lv_classVarDecl_1_0,
-							"ac.soton.bsharp.BSharp.ClassVarDecl");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"wrapped",
+						lv_wrapped_0_0,
+						"ac.soton.bsharp.BSharp.WrappedInfix");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)
+		    |
 		(
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getFunctionCallAccess().getContextTypeDeclContextParserRuleCall_1_0_0());
-					}
-					lv_context_2_0=ruleTypeDeclContext
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
+					(
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getFunctionCallRule());
+							}
 						}
-						set(
-							$current,
-							"context",
-							lv_context_2_0,
-							"ac.soton.bsharp.BSharp.TypeDeclContext");
-						afterParserOrEnumRuleCall();
-					}
+						otherlv_1=RULE_ID
+						{
+							newLeafNode(otherlv_1, grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_1_0_0_0());
+						}
+					)
 				)
-			)?
-			otherlv_3='('
-			{
-				newLeafNode(otherlv_3, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_1());
-			}
+				    |
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getFunctionCallAccess().getClassVarDeclClassVarDeclParserRuleCall_1_0_1_0());
+						}
+						lv_classVarDecl_2_0=ruleClassVarDecl
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
+							}
+							set(
+								$current,
+								"classVarDecl",
+								lv_classVarDecl_2_0,
+								"ac.soton.bsharp.BSharp.ClassVarDecl");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_0());
-					}
-					lv_arguments_4_0=ruleRootExpression
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getFunctionCallAccess().getContextTypeDeclContextParserRuleCall_1_1_0_0());
 						}
-						add(
-							$current,
-							"arguments",
-							lv_arguments_4_0,
-							"ac.soton.bsharp.BSharp.RootExpression");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)?
-			(
-				otherlv_5=','
+						lv_context_3_0=ruleTypeDeclContext
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
+							}
+							set(
+								$current,
+								"context",
+								lv_context_3_0,
+								"ac.soton.bsharp.BSharp.TypeDeclContext");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)?
+				otherlv_4='('
 				{
-					newLeafNode(otherlv_5, grammarAccess.getFunctionCallAccess().getCommaKeyword_1_3_0());
+					newLeafNode(otherlv_4, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_1_1());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_3_1_0());
+							newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_1_2_0());
 						}
-						lv_arguments_6_0=ruleRootExpression
+						lv_arguments_5_0=ruleRootExpression
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
@@ -3171,18 +3168,43 @@ ruleFunctionCall returns [EObject current=null]
 							add(
 								$current,
 								"arguments",
-								lv_arguments_6_0,
+								lv_arguments_5_0,
 								"ac.soton.bsharp.BSharp.RootExpression");
 							afterParserOrEnumRuleCall();
 						}
 					)
-				)
-			)*
-			otherlv_7=')'
-			{
-				newLeafNode(otherlv_7, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_4());
-			}
-		)?
+				)?
+				(
+					otherlv_6=','
+					{
+						newLeafNode(otherlv_6, grammarAccess.getFunctionCallAccess().getCommaKeyword_1_1_3_0());
+					}
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_1_3_1_0());
+							}
+							lv_arguments_7_0=ruleRootExpression
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
+								}
+								add(
+									$current,
+									"arguments",
+									lv_arguments_7_0,
+									"ac.soton.bsharp.BSharp.RootExpression");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+				)*
+				otherlv_8=')'
+				{
+					newLeafNode(otherlv_8, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_1_4());
+				}
+			)?
+		)
 	)
 ;
 
@@ -3285,6 +3307,68 @@ ruleInbuiltInfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
 		{
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getInbuiltInfixAccess().getLogicalOrKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleWrappedInfix
+entryRuleWrappedInfix returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getWrappedInfixRule()); }
+	iv_ruleWrappedInfix=ruleWrappedInfix
+	{ $current=$iv_ruleWrappedInfix.current; }
+	EOF;
+
+// Rule WrappedInfix
+ruleWrappedInfix returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='['
+		{
+			newLeafNode(otherlv_0, grammarAccess.getWrappedInfixAccess().getLeftSquareBracketKeyword_0());
+		}
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getWrappedInfixAccess().getInbuiltInbuiltInfixParserRuleCall_1_0_0());
+					}
+					lv_inbuilt_1_0=ruleInbuiltInfix
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getWrappedInfixRule());
+						}
+						set(
+							$current,
+							"inbuilt",
+							lv_inbuilt_1_0,
+							"ac.soton.bsharp.BSharp.InbuiltInfix");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getWrappedInfixRule());
+						}
+					}
+					otherlv_2=RULE_ID
+					{
+						newLeafNode(otherlv_2, grammarAccess.getWrappedInfixAccess().getFuncNameExpressionVariableCrossReference_1_1_0());
+					}
+				)
+			)
+		)
+		otherlv_3=']'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getWrappedInfixAccess().getRightSquareBracketKeyword_2());
 		}
 	)
 ;

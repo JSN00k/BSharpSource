@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getOwnerType <em>Owner Type</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getContext <em>Context</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getWrapped <em>Wrapped</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall()
@@ -119,5 +120,31 @@ public interface FunctionCall extends Expression {
 	 * @generated
 	 */
 	void setContext(TypeDeclContext value);
+
+	/**
+	 * Returns the value of the '<em><b>Wrapped</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Wrapped</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Wrapped</em>' containment reference.
+	 * @see #setWrapped(WrappedInfix)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_Wrapped()
+	 * @model containment="true"
+	 * @generated
+	 */
+	WrappedInfix getWrapped();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getWrapped <em>Wrapped</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Wrapped</em>' containment reference.
+	 * @see #getWrapped()
+	 * @generated
+	 */
+	void setWrapped(WrappedInfix value);
 
 } // FunctionCall

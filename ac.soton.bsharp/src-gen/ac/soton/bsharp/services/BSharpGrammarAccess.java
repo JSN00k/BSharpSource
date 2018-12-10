@@ -1819,24 +1819,27 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class FunctionCallElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FunctionCall");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Assignment cTypeInstAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
-		private final CrossReference cTypeInstExpressionVariableCrossReference_0_0_0 = (CrossReference)cTypeInstAssignment_0_0.eContents().get(0);
-		private final RuleCall cTypeInstExpressionVariableIDTerminalRuleCall_0_0_0_1 = (RuleCall)cTypeInstExpressionVariableCrossReference_0_0_0.eContents().get(1);
-		private final Assignment cClassVarDeclAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
-		private final RuleCall cClassVarDeclClassVarDeclParserRuleCall_0_1_0 = (RuleCall)cClassVarDeclAssignment_0_1.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cContextAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cContextTypeDeclContextParserRuleCall_1_0_0 = (RuleCall)cContextAssignment_1_0.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cArgumentsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_2_0 = (RuleCall)cArgumentsAssignment_1_2.eContents().get(0);
-		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
-		private final Keyword cCommaKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
-		private final Assignment cArgumentsAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
-		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_3_1_0 = (RuleCall)cArgumentsAssignment_1_3_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cWrappedAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cWrappedWrappedInfixParserRuleCall_0_0 = (RuleCall)cWrappedAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
+		private final Assignment cTypeInstAssignment_1_0_0 = (Assignment)cAlternatives_1_0.eContents().get(0);
+		private final CrossReference cTypeInstExpressionVariableCrossReference_1_0_0_0 = (CrossReference)cTypeInstAssignment_1_0_0.eContents().get(0);
+		private final RuleCall cTypeInstExpressionVariableIDTerminalRuleCall_1_0_0_0_1 = (RuleCall)cTypeInstExpressionVariableCrossReference_1_0_0_0.eContents().get(1);
+		private final Assignment cClassVarDeclAssignment_1_0_1 = (Assignment)cAlternatives_1_0.eContents().get(1);
+		private final RuleCall cClassVarDeclClassVarDeclParserRuleCall_1_0_1_0 = (RuleCall)cClassVarDeclAssignment_1_0_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Assignment cContextAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cContextTypeDeclContextParserRuleCall_1_1_0_0 = (RuleCall)cContextAssignment_1_1_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
+		private final Assignment cArgumentsAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
+		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_1_2_0 = (RuleCall)cArgumentsAssignment_1_1_2.eContents().get(0);
+		private final Group cGroup_1_1_3 = (Group)cGroup_1_1.eContents().get(3);
+		private final Keyword cCommaKeyword_1_1_3_0 = (Keyword)cGroup_1_1_3.eContents().get(0);
+		private final Assignment cArgumentsAssignment_1_1_3_1 = (Assignment)cGroup_1_1_3.eContents().get(1);
+		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_1_3_1_0 = (RuleCall)cArgumentsAssignment_1_1_3_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_1_4 = (Keyword)cGroup_1_1.eContents().get(4);
 		
 		///* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
 		// * scenarios: 
@@ -1851,64 +1854,74 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * 
 		// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
 		// */ FunctionCall:
-		//	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' arguments+=RootExpression?
-		//	(',' arguments+=RootExpression)* ')')?;
+		//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '('
+		//	arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
 		@Override public ParserRule getRule() { return rule; }
+		
+		//wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '('
+		//arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//wrapped=WrappedInfix
+		public Assignment getWrappedAssignment_0() { return cWrappedAssignment_0; }
+		
+		//WrappedInfix
+		public RuleCall getWrappedWrappedInfixParserRuleCall_0_0() { return cWrappedWrappedInfixParserRuleCall_0_0; }
 		
 		//(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' arguments+=RootExpression?
 		//(',' arguments+=RootExpression)* ')')?
-		public Group getGroup() { return cGroup; }
-		
-		//typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-		
-		//typeInst=[ExpressionVariable]
-		public Assignment getTypeInstAssignment_0_0() { return cTypeInstAssignment_0_0; }
-		
-		//[ExpressionVariable]
-		public CrossReference getTypeInstExpressionVariableCrossReference_0_0_0() { return cTypeInstExpressionVariableCrossReference_0_0_0; }
-		
-		//ID
-		public RuleCall getTypeInstExpressionVariableIDTerminalRuleCall_0_0_0_1() { return cTypeInstExpressionVariableIDTerminalRuleCall_0_0_0_1; }
-		
-		//classVarDecl=ClassVarDecl
-		public Assignment getClassVarDeclAssignment_0_1() { return cClassVarDeclAssignment_0_1; }
-		
-		//ClassVarDecl
-		public RuleCall getClassVarDeclClassVarDeclParserRuleCall_0_1_0() { return cClassVarDeclClassVarDeclParserRuleCall_0_1_0; }
-		
-		//(context=TypeDeclContext? '(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl
+		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		
+		//typeInst=[ExpressionVariable]
+		public Assignment getTypeInstAssignment_1_0_0() { return cTypeInstAssignment_1_0_0; }
+		
+		//[ExpressionVariable]
+		public CrossReference getTypeInstExpressionVariableCrossReference_1_0_0_0() { return cTypeInstExpressionVariableCrossReference_1_0_0_0; }
+		
+		//ID
+		public RuleCall getTypeInstExpressionVariableIDTerminalRuleCall_1_0_0_0_1() { return cTypeInstExpressionVariableIDTerminalRuleCall_1_0_0_0_1; }
+		
+		//classVarDecl=ClassVarDecl
+		public Assignment getClassVarDeclAssignment_1_0_1() { return cClassVarDeclAssignment_1_0_1; }
+		
+		//ClassVarDecl
+		public RuleCall getClassVarDeclClassVarDeclParserRuleCall_1_0_1_0() { return cClassVarDeclClassVarDeclParserRuleCall_1_0_1_0; }
+		
+		//(context=TypeDeclContext? '(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
 		//context=TypeDeclContext?
-		public Assignment getContextAssignment_1_0() { return cContextAssignment_1_0; }
+		public Assignment getContextAssignment_1_1_0() { return cContextAssignment_1_1_0; }
 		
 		//TypeDeclContext
-		public RuleCall getContextTypeDeclContextParserRuleCall_1_0_0() { return cContextTypeDeclContextParserRuleCall_1_0_0; }
+		public RuleCall getContextTypeDeclContextParserRuleCall_1_1_0_0() { return cContextTypeDeclContextParserRuleCall_1_1_0_0; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_1_1() { return cLeftParenthesisKeyword_1_1; }
+		public Keyword getLeftParenthesisKeyword_1_1_1() { return cLeftParenthesisKeyword_1_1_1; }
 		
 		//arguments+=RootExpression?
-		public Assignment getArgumentsAssignment_1_2() { return cArgumentsAssignment_1_2; }
+		public Assignment getArgumentsAssignment_1_1_2() { return cArgumentsAssignment_1_1_2; }
 		
 		//RootExpression
-		public RuleCall getArgumentsRootExpressionParserRuleCall_1_2_0() { return cArgumentsRootExpressionParserRuleCall_1_2_0; }
+		public RuleCall getArgumentsRootExpressionParserRuleCall_1_1_2_0() { return cArgumentsRootExpressionParserRuleCall_1_1_2_0; }
 		
 		//(',' arguments+=RootExpression)*
-		public Group getGroup_1_3() { return cGroup_1_3; }
+		public Group getGroup_1_1_3() { return cGroup_1_1_3; }
 		
 		//','
-		public Keyword getCommaKeyword_1_3_0() { return cCommaKeyword_1_3_0; }
+		public Keyword getCommaKeyword_1_1_3_0() { return cCommaKeyword_1_1_3_0; }
 		
 		//arguments+=RootExpression
-		public Assignment getArgumentsAssignment_1_3_1() { return cArgumentsAssignment_1_3_1; }
+		public Assignment getArgumentsAssignment_1_1_3_1() { return cArgumentsAssignment_1_1_3_1; }
 		
 		//RootExpression
-		public RuleCall getArgumentsRootExpressionParserRuleCall_1_3_1_0() { return cArgumentsRootExpressionParserRuleCall_1_3_1_0; }
+		public RuleCall getArgumentsRootExpressionParserRuleCall_1_1_3_1_0() { return cArgumentsRootExpressionParserRuleCall_1_1_3_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_1_4() { return cRightParenthesisKeyword_1_4; }
+		public Keyword getRightParenthesisKeyword_1_1_4() { return cRightParenthesisKeyword_1_1_4; }
 	}
 	public class ClassVarDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ClassVarDecl");
@@ -2009,6 +2022,49 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'∨'
 		public Keyword getLogicalOrKeyword_5() { return cLogicalOrKeyword_5; }
+	}
+	public class WrappedInfixElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.WrappedInfix");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cInbuiltAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cInbuiltInbuiltInfixParserRuleCall_1_0_0 = (RuleCall)cInbuiltAssignment_1_0.eContents().get(0);
+		private final Assignment cFuncNameAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final CrossReference cFuncNameExpressionVariableCrossReference_1_1_0 = (CrossReference)cFuncNameAssignment_1_1.eContents().get(0);
+		private final RuleCall cFuncNameExpressionVariableIDTerminalRuleCall_1_1_0_1 = (RuleCall)cFuncNameExpressionVariableCrossReference_1_1_0.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		///* Todo scope/validate this. */ WrappedInfix:
+		//	'[' (inbuilt=InbuiltInfix | funcName=[ExpressionVariable]) ']';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'[' (inbuilt=InbuiltInfix | funcName=[ExpressionVariable]) ']'
+		public Group getGroup() { return cGroup; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//inbuilt=InbuiltInfix | funcName=[ExpressionVariable]
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//inbuilt=InbuiltInfix
+		public Assignment getInbuiltAssignment_1_0() { return cInbuiltAssignment_1_0; }
+		
+		//InbuiltInfix
+		public RuleCall getInbuiltInbuiltInfixParserRuleCall_1_0_0() { return cInbuiltInbuiltInfixParserRuleCall_1_0_0; }
+		
+		//funcName=[ExpressionVariable]
+		public Assignment getFuncNameAssignment_1_1() { return cFuncNameAssignment_1_1; }
+		
+		//[ExpressionVariable]
+		public CrossReference getFuncNameExpressionVariableCrossReference_1_1_0() { return cFuncNameExpressionVariableCrossReference_1_1_0; }
+		
+		//ID
+		public RuleCall getFuncNameExpressionVariableIDTerminalRuleCall_1_1_0_1() { return cFuncNameExpressionVariableIDTerminalRuleCall_1_1_0_1; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
 	}
 	public class InstanceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Instance");
@@ -2141,6 +2197,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final ClassVarDeclElements pClassVarDecl;
 	private final ExpressionVariableElements pExpressionVariable;
 	private final InbuiltInfixElements pInbuiltInfix;
+	private final WrappedInfixElements pWrappedInfix;
 	private final InstanceElements pInstance;
 	
 	private final Grammar grammar;
@@ -2204,6 +2261,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pClassVarDecl = new ClassVarDeclElements();
 		this.pExpressionVariable = new ExpressionVariableElements();
 		this.pInbuiltInfix = new InbuiltInfixElements();
+		this.pWrappedInfix = new WrappedInfixElements();
 		this.pInstance = new InstanceElements();
 	}
 	
@@ -2777,8 +2835,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * 
 	// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
 	// */ FunctionCall:
-	//	(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' arguments+=RootExpression?
-	//	(',' arguments+=RootExpression)* ')')?;
+	//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '('
+	//	arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
 	public FunctionCallElements getFunctionCallAccess() {
 		return pFunctionCall;
 	}
@@ -2818,6 +2876,16 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getInbuiltInfixRule() {
 		return getInbuiltInfixAccess().getRule();
+	}
+	
+	///* Todo scope/validate this. */ WrappedInfix:
+	//	'[' (inbuilt=InbuiltInfix | funcName=[ExpressionVariable]) ']';
+	public WrappedInfixElements getWrappedInfixAccess() {
+		return pWrappedInfix;
+	}
+	
+	public ParserRule getWrappedInfixRule() {
+		return getWrappedInfixAccess().getRule();
 	}
 	
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:

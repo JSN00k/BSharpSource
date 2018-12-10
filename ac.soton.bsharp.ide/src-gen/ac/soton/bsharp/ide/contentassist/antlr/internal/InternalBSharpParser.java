@@ -3561,31 +3561,31 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleFunctionCall"
-    // InternalBSharp.g:1169:1: ruleFunctionCall : ( ( rule__FunctionCall__Group__0 ) ) ;
+    // InternalBSharp.g:1169:1: ruleFunctionCall : ( ( rule__FunctionCall__Alternatives ) ) ;
     public final void ruleFunctionCall() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1173:2: ( ( ( rule__FunctionCall__Group__0 ) ) )
-            // InternalBSharp.g:1174:2: ( ( rule__FunctionCall__Group__0 ) )
+            // InternalBSharp.g:1173:2: ( ( ( rule__FunctionCall__Alternatives ) ) )
+            // InternalBSharp.g:1174:2: ( ( rule__FunctionCall__Alternatives ) )
             {
-            // InternalBSharp.g:1174:2: ( ( rule__FunctionCall__Group__0 ) )
-            // InternalBSharp.g:1175:3: ( rule__FunctionCall__Group__0 )
+            // InternalBSharp.g:1174:2: ( ( rule__FunctionCall__Alternatives ) )
+            // InternalBSharp.g:1175:3: ( rule__FunctionCall__Alternatives )
             {
-             before(grammarAccess.getFunctionCallAccess().getGroup()); 
-            // InternalBSharp.g:1176:3: ( rule__FunctionCall__Group__0 )
-            // InternalBSharp.g:1176:4: rule__FunctionCall__Group__0
+             before(grammarAccess.getFunctionCallAccess().getAlternatives()); 
+            // InternalBSharp.g:1176:3: ( rule__FunctionCall__Alternatives )
+            // InternalBSharp.g:1176:4: rule__FunctionCall__Alternatives
             {
             pushFollow(FOLLOW_2);
-            rule__FunctionCall__Group__0();
+            rule__FunctionCall__Alternatives();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getFunctionCallAccess().getGroup()); 
+             after(grammarAccess.getFunctionCallAccess().getAlternatives()); 
 
             }
 
@@ -3761,12 +3761,89 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleInbuiltInfix"
 
 
+    // $ANTLR start "entryRuleWrappedInfix"
+    // InternalBSharp.g:1235:1: entryRuleWrappedInfix : ruleWrappedInfix EOF ;
+    public final void entryRuleWrappedInfix() throws RecognitionException {
+        try {
+            // InternalBSharp.g:1236:1: ( ruleWrappedInfix EOF )
+            // InternalBSharp.g:1237:1: ruleWrappedInfix EOF
+            {
+             before(grammarAccess.getWrappedInfixRule()); 
+            pushFollow(FOLLOW_1);
+            ruleWrappedInfix();
+
+            state._fsp--;
+
+             after(grammarAccess.getWrappedInfixRule()); 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleWrappedInfix"
+
+
+    // $ANTLR start "ruleWrappedInfix"
+    // InternalBSharp.g:1244:1: ruleWrappedInfix : ( ( rule__WrappedInfix__Group__0 ) ) ;
+    public final void ruleWrappedInfix() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:1248:2: ( ( ( rule__WrappedInfix__Group__0 ) ) )
+            // InternalBSharp.g:1249:2: ( ( rule__WrappedInfix__Group__0 ) )
+            {
+            // InternalBSharp.g:1249:2: ( ( rule__WrappedInfix__Group__0 ) )
+            // InternalBSharp.g:1250:3: ( rule__WrappedInfix__Group__0 )
+            {
+             before(grammarAccess.getWrappedInfixAccess().getGroup()); 
+            // InternalBSharp.g:1251:3: ( rule__WrappedInfix__Group__0 )
+            // InternalBSharp.g:1251:4: rule__WrappedInfix__Group__0
+            {
+            pushFollow(FOLLOW_2);
+            rule__WrappedInfix__Group__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getWrappedInfixAccess().getGroup()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleWrappedInfix"
+
+
     // $ANTLR start "entryRuleInstance"
-    // InternalBSharp.g:1235:1: entryRuleInstance : ruleInstance EOF ;
+    // InternalBSharp.g:1260:1: entryRuleInstance : ruleInstance EOF ;
     public final void entryRuleInstance() throws RecognitionException {
         try {
-            // InternalBSharp.g:1236:1: ( ruleInstance EOF )
-            // InternalBSharp.g:1237:1: ruleInstance EOF
+            // InternalBSharp.g:1261:1: ( ruleInstance EOF )
+            // InternalBSharp.g:1262:1: ruleInstance EOF
             {
              before(grammarAccess.getInstanceRule()); 
             pushFollow(FOLLOW_1);
@@ -3792,21 +3869,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleInstance"
-    // InternalBSharp.g:1244:1: ruleInstance : ( ( rule__Instance__Group__0 ) ) ;
+    // InternalBSharp.g:1269:1: ruleInstance : ( ( rule__Instance__Group__0 ) ) ;
     public final void ruleInstance() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1248:2: ( ( ( rule__Instance__Group__0 ) ) )
-            // InternalBSharp.g:1249:2: ( ( rule__Instance__Group__0 ) )
+            // InternalBSharp.g:1273:2: ( ( ( rule__Instance__Group__0 ) ) )
+            // InternalBSharp.g:1274:2: ( ( rule__Instance__Group__0 ) )
             {
-            // InternalBSharp.g:1249:2: ( ( rule__Instance__Group__0 ) )
-            // InternalBSharp.g:1250:3: ( rule__Instance__Group__0 )
+            // InternalBSharp.g:1274:2: ( ( rule__Instance__Group__0 ) )
+            // InternalBSharp.g:1275:3: ( rule__Instance__Group__0 )
             {
              before(grammarAccess.getInstanceAccess().getGroup()); 
-            // InternalBSharp.g:1251:3: ( rule__Instance__Group__0 )
-            // InternalBSharp.g:1251:4: rule__Instance__Group__0
+            // InternalBSharp.g:1276:3: ( rule__Instance__Group__0 )
+            // InternalBSharp.g:1276:4: rule__Instance__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__Instance__Group__0();
@@ -3839,13 +3916,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__THM_NAME__Alternatives_0"
-    // InternalBSharp.g:1259:1: rule__THM_NAME__Alternatives_0 : ( ( RULE_INT ) | ( RULE_ID ) | ( RULE_WS ) );
+    // InternalBSharp.g:1284:1: rule__THM_NAME__Alternatives_0 : ( ( RULE_INT ) | ( RULE_ID ) | ( RULE_WS ) );
     public final void rule__THM_NAME__Alternatives_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1263:1: ( ( RULE_INT ) | ( RULE_ID ) | ( RULE_WS ) )
+            // InternalBSharp.g:1288:1: ( ( RULE_INT ) | ( RULE_ID ) | ( RULE_WS ) )
             int alt2=3;
             switch ( input.LA(1) ) {
             case RULE_INT:
@@ -3872,10 +3949,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             switch (alt2) {
                 case 1 :
-                    // InternalBSharp.g:1264:2: ( RULE_INT )
+                    // InternalBSharp.g:1289:2: ( RULE_INT )
                     {
-                    // InternalBSharp.g:1264:2: ( RULE_INT )
-                    // InternalBSharp.g:1265:3: RULE_INT
+                    // InternalBSharp.g:1289:2: ( RULE_INT )
+                    // InternalBSharp.g:1290:3: RULE_INT
                     {
                      before(grammarAccess.getTHM_NAMEAccess().getINTTerminalRuleCall_0_0()); 
                     match(input,RULE_INT,FOLLOW_2); 
@@ -3887,10 +3964,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1270:2: ( RULE_ID )
+                    // InternalBSharp.g:1295:2: ( RULE_ID )
                     {
-                    // InternalBSharp.g:1270:2: ( RULE_ID )
-                    // InternalBSharp.g:1271:3: RULE_ID
+                    // InternalBSharp.g:1295:2: ( RULE_ID )
+                    // InternalBSharp.g:1296:3: RULE_ID
                     {
                      before(grammarAccess.getTHM_NAMEAccess().getIDTerminalRuleCall_0_1()); 
                     match(input,RULE_ID,FOLLOW_2); 
@@ -3902,10 +3979,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalBSharp.g:1276:2: ( RULE_WS )
+                    // InternalBSharp.g:1301:2: ( RULE_WS )
                     {
-                    // InternalBSharp.g:1276:2: ( RULE_WS )
-                    // InternalBSharp.g:1277:3: RULE_WS
+                    // InternalBSharp.g:1301:2: ( RULE_WS )
+                    // InternalBSharp.g:1302:3: RULE_WS
                     {
                      before(grammarAccess.getTHM_NAMEAccess().getWSTerminalRuleCall_0_2()); 
                     match(input,RULE_WS,FOLLOW_2); 
@@ -3934,13 +4011,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDecl__Alternatives"
-    // InternalBSharp.g:1286:1: rule__ClassDecl__Alternatives : ( ( ruleClass ) | ( ruleDatatype ) );
+    // InternalBSharp.g:1311:1: rule__ClassDecl__Alternatives : ( ( ruleClass ) | ( ruleDatatype ) );
     public final void rule__ClassDecl__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1290:1: ( ( ruleClass ) | ( ruleDatatype ) )
+            // InternalBSharp.g:1315:1: ( ( ruleClass ) | ( ruleDatatype ) )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -3958,10 +4035,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             }
             switch (alt3) {
                 case 1 :
-                    // InternalBSharp.g:1291:2: ( ruleClass )
+                    // InternalBSharp.g:1316:2: ( ruleClass )
                     {
-                    // InternalBSharp.g:1291:2: ( ruleClass )
-                    // InternalBSharp.g:1292:3: ruleClass
+                    // InternalBSharp.g:1316:2: ( ruleClass )
+                    // InternalBSharp.g:1317:3: ruleClass
                     {
                      before(grammarAccess.getClassDeclAccess().getClassParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
@@ -3977,10 +4054,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1297:2: ( ruleDatatype )
+                    // InternalBSharp.g:1322:2: ( ruleDatatype )
                     {
-                    // InternalBSharp.g:1297:2: ( ruleDatatype )
-                    // InternalBSharp.g:1298:3: ruleDatatype
+                    // InternalBSharp.g:1322:2: ( ruleDatatype )
+                    // InternalBSharp.g:1323:3: ruleDatatype
                     {
                      before(grammarAccess.getClassDeclAccess().getDatatypeParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -4013,13 +4090,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelImport__Alternatives_0"
-    // InternalBSharp.g:1307:1: rule__TopLevelImport__Alternatives_0 : ( ( ( rule__TopLevelImport__GlobalImportsAssignment_0_0 ) ) | ( ( rule__TopLevelImport__LocalImportsAssignment_0_1 ) ) );
+    // InternalBSharp.g:1332:1: rule__TopLevelImport__Alternatives_0 : ( ( ( rule__TopLevelImport__GlobalImportsAssignment_0_0 ) ) | ( ( rule__TopLevelImport__LocalImportsAssignment_0_1 ) ) );
     public final void rule__TopLevelImport__Alternatives_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1311:1: ( ( ( rule__TopLevelImport__GlobalImportsAssignment_0_0 ) ) | ( ( rule__TopLevelImport__LocalImportsAssignment_0_1 ) ) )
+            // InternalBSharp.g:1336:1: ( ( ( rule__TopLevelImport__GlobalImportsAssignment_0_0 ) ) | ( ( rule__TopLevelImport__LocalImportsAssignment_0_1 ) ) )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -4037,14 +4114,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             }
             switch (alt4) {
                 case 1 :
-                    // InternalBSharp.g:1312:2: ( ( rule__TopLevelImport__GlobalImportsAssignment_0_0 ) )
+                    // InternalBSharp.g:1337:2: ( ( rule__TopLevelImport__GlobalImportsAssignment_0_0 ) )
                     {
-                    // InternalBSharp.g:1312:2: ( ( rule__TopLevelImport__GlobalImportsAssignment_0_0 ) )
-                    // InternalBSharp.g:1313:3: ( rule__TopLevelImport__GlobalImportsAssignment_0_0 )
+                    // InternalBSharp.g:1337:2: ( ( rule__TopLevelImport__GlobalImportsAssignment_0_0 ) )
+                    // InternalBSharp.g:1338:3: ( rule__TopLevelImport__GlobalImportsAssignment_0_0 )
                     {
                      before(grammarAccess.getTopLevelImportAccess().getGlobalImportsAssignment_0_0()); 
-                    // InternalBSharp.g:1314:3: ( rule__TopLevelImport__GlobalImportsAssignment_0_0 )
-                    // InternalBSharp.g:1314:4: rule__TopLevelImport__GlobalImportsAssignment_0_0
+                    // InternalBSharp.g:1339:3: ( rule__TopLevelImport__GlobalImportsAssignment_0_0 )
+                    // InternalBSharp.g:1339:4: rule__TopLevelImport__GlobalImportsAssignment_0_0
                     {
                     pushFollow(FOLLOW_2);
                     rule__TopLevelImport__GlobalImportsAssignment_0_0();
@@ -4062,14 +4139,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1318:2: ( ( rule__TopLevelImport__LocalImportsAssignment_0_1 ) )
+                    // InternalBSharp.g:1343:2: ( ( rule__TopLevelImport__LocalImportsAssignment_0_1 ) )
                     {
-                    // InternalBSharp.g:1318:2: ( ( rule__TopLevelImport__LocalImportsAssignment_0_1 ) )
-                    // InternalBSharp.g:1319:3: ( rule__TopLevelImport__LocalImportsAssignment_0_1 )
+                    // InternalBSharp.g:1343:2: ( ( rule__TopLevelImport__LocalImportsAssignment_0_1 ) )
+                    // InternalBSharp.g:1344:3: ( rule__TopLevelImport__LocalImportsAssignment_0_1 )
                     {
                      before(grammarAccess.getTopLevelImportAccess().getLocalImportsAssignment_0_1()); 
-                    // InternalBSharp.g:1320:3: ( rule__TopLevelImport__LocalImportsAssignment_0_1 )
-                    // InternalBSharp.g:1320:4: rule__TopLevelImport__LocalImportsAssignment_0_1
+                    // InternalBSharp.g:1345:3: ( rule__TopLevelImport__LocalImportsAssignment_0_1 )
+                    // InternalBSharp.g:1345:4: rule__TopLevelImport__LocalImportsAssignment_0_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__TopLevelImport__LocalImportsAssignment_0_1();
@@ -4104,13 +4181,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BodyElements__Alternatives"
-    // InternalBSharp.g:1328:1: rule__BodyElements__Alternatives : ( ( ( rule__BodyElements__ClassesAssignment_0 ) ) | ( ( rule__BodyElements__ExtendsAssignment_1 ) ) );
+    // InternalBSharp.g:1353:1: rule__BodyElements__Alternatives : ( ( ( rule__BodyElements__ClassesAssignment_0 ) ) | ( ( rule__BodyElements__ExtendsAssignment_1 ) ) );
     public final void rule__BodyElements__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1332:1: ( ( ( rule__BodyElements__ClassesAssignment_0 ) ) | ( ( rule__BodyElements__ExtendsAssignment_1 ) ) )
+            // InternalBSharp.g:1357:1: ( ( ( rule__BodyElements__ClassesAssignment_0 ) ) | ( ( rule__BodyElements__ExtendsAssignment_1 ) ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -4128,14 +4205,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             }
             switch (alt5) {
                 case 1 :
-                    // InternalBSharp.g:1333:2: ( ( rule__BodyElements__ClassesAssignment_0 ) )
+                    // InternalBSharp.g:1358:2: ( ( rule__BodyElements__ClassesAssignment_0 ) )
                     {
-                    // InternalBSharp.g:1333:2: ( ( rule__BodyElements__ClassesAssignment_0 ) )
-                    // InternalBSharp.g:1334:3: ( rule__BodyElements__ClassesAssignment_0 )
+                    // InternalBSharp.g:1358:2: ( ( rule__BodyElements__ClassesAssignment_0 ) )
+                    // InternalBSharp.g:1359:3: ( rule__BodyElements__ClassesAssignment_0 )
                     {
                      before(grammarAccess.getBodyElementsAccess().getClassesAssignment_0()); 
-                    // InternalBSharp.g:1335:3: ( rule__BodyElements__ClassesAssignment_0 )
-                    // InternalBSharp.g:1335:4: rule__BodyElements__ClassesAssignment_0
+                    // InternalBSharp.g:1360:3: ( rule__BodyElements__ClassesAssignment_0 )
+                    // InternalBSharp.g:1360:4: rule__BodyElements__ClassesAssignment_0
                     {
                     pushFollow(FOLLOW_2);
                     rule__BodyElements__ClassesAssignment_0();
@@ -4153,14 +4230,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1339:2: ( ( rule__BodyElements__ExtendsAssignment_1 ) )
+                    // InternalBSharp.g:1364:2: ( ( rule__BodyElements__ExtendsAssignment_1 ) )
                     {
-                    // InternalBSharp.g:1339:2: ( ( rule__BodyElements__ExtendsAssignment_1 ) )
-                    // InternalBSharp.g:1340:3: ( rule__BodyElements__ExtendsAssignment_1 )
+                    // InternalBSharp.g:1364:2: ( ( rule__BodyElements__ExtendsAssignment_1 ) )
+                    // InternalBSharp.g:1365:3: ( rule__BodyElements__ExtendsAssignment_1 )
                     {
                      before(grammarAccess.getBodyElementsAccess().getExtendsAssignment_1()); 
-                    // InternalBSharp.g:1341:3: ( rule__BodyElements__ExtendsAssignment_1 )
-                    // InternalBSharp.g:1341:4: rule__BodyElements__ExtendsAssignment_1
+                    // InternalBSharp.g:1366:3: ( rule__BodyElements__ExtendsAssignment_1 )
+                    // InternalBSharp.g:1366:4: rule__BodyElements__ExtendsAssignment_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__BodyElements__ExtendsAssignment_1();
@@ -4195,13 +4272,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__Alternatives_1_1"
-    // InternalBSharp.g:1349:1: rule__FileImport__Alternatives_1_1 : ( ( '*' ) | ( ( rule__FileImport__TypeAssignment_1_1_1 ) ) );
+    // InternalBSharp.g:1374:1: rule__FileImport__Alternatives_1_1 : ( ( '*' ) | ( ( rule__FileImport__TypeAssignment_1_1_1 ) ) );
     public final void rule__FileImport__Alternatives_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1353:1: ( ( '*' ) | ( ( rule__FileImport__TypeAssignment_1_1_1 ) ) )
+            // InternalBSharp.g:1378:1: ( ( '*' ) | ( ( rule__FileImport__TypeAssignment_1_1_1 ) ) )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -4219,10 +4296,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalBSharp.g:1354:2: ( '*' )
+                    // InternalBSharp.g:1379:2: ( '*' )
                     {
-                    // InternalBSharp.g:1354:2: ( '*' )
-                    // InternalBSharp.g:1355:3: '*'
+                    // InternalBSharp.g:1379:2: ( '*' )
+                    // InternalBSharp.g:1380:3: '*'
                     {
                      before(grammarAccess.getFileImportAccess().getAsteriskKeyword_1_1_0()); 
                     match(input,12,FOLLOW_2); 
@@ -4234,14 +4311,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1360:2: ( ( rule__FileImport__TypeAssignment_1_1_1 ) )
+                    // InternalBSharp.g:1385:2: ( ( rule__FileImport__TypeAssignment_1_1_1 ) )
                     {
-                    // InternalBSharp.g:1360:2: ( ( rule__FileImport__TypeAssignment_1_1_1 ) )
-                    // InternalBSharp.g:1361:3: ( rule__FileImport__TypeAssignment_1_1_1 )
+                    // InternalBSharp.g:1385:2: ( ( rule__FileImport__TypeAssignment_1_1_1 ) )
+                    // InternalBSharp.g:1386:3: ( rule__FileImport__TypeAssignment_1_1_1 )
                     {
                      before(grammarAccess.getFileImportAccess().getTypeAssignment_1_1_1()); 
-                    // InternalBSharp.g:1362:3: ( rule__FileImport__TypeAssignment_1_1_1 )
-                    // InternalBSharp.g:1362:4: rule__FileImport__TypeAssignment_1_1_1
+                    // InternalBSharp.g:1387:3: ( rule__FileImport__TypeAssignment_1_1_1 )
+                    // InternalBSharp.g:1387:4: rule__FileImport__TypeAssignment_1_1_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__FileImport__TypeAssignment_1_1_1();
@@ -4276,13 +4353,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BuiltinTypeInfixOp__Alternatives"
-    // InternalBSharp.g:1370:1: rule__BuiltinTypeInfixOp__Alternatives : ( ( '\\u00D7' ) | ( '\\u2192' ) | ( '\\uE102' ) | ( '\\uE100' ) | ( '\\u2194' ) | ( '\\u2916' ) | ( '\\u21F8' ) | ( '\\u21A3' ) | ( '\\u2900' ) | ( '\\u21A0' ) );
+    // InternalBSharp.g:1395:1: rule__BuiltinTypeInfixOp__Alternatives : ( ( '\\u00D7' ) | ( '\\u2192' ) | ( '\\uE102' ) | ( '\\uE100' ) | ( '\\u2194' ) | ( '\\u2916' ) | ( '\\u21F8' ) | ( '\\u21A3' ) | ( '\\u2900' ) | ( '\\u21A0' ) );
     public final void rule__BuiltinTypeInfixOp__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1374:1: ( ( '\\u00D7' ) | ( '\\u2192' ) | ( '\\uE102' ) | ( '\\uE100' ) | ( '\\u2194' ) | ( '\\u2916' ) | ( '\\u21F8' ) | ( '\\u21A3' ) | ( '\\u2900' ) | ( '\\u21A0' ) )
+            // InternalBSharp.g:1399:1: ( ( '\\u00D7' ) | ( '\\u2192' ) | ( '\\uE102' ) | ( '\\uE100' ) | ( '\\u2194' ) | ( '\\u2916' ) | ( '\\u21F8' ) | ( '\\u21A3' ) | ( '\\u2900' ) | ( '\\u21A0' ) )
             int alt7=10;
             switch ( input.LA(1) ) {
             case 13:
@@ -4344,10 +4421,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             switch (alt7) {
                 case 1 :
-                    // InternalBSharp.g:1375:2: ( '\\u00D7' )
+                    // InternalBSharp.g:1400:2: ( '\\u00D7' )
                     {
-                    // InternalBSharp.g:1375:2: ( '\\u00D7' )
-                    // InternalBSharp.g:1376:3: '\\u00D7'
+                    // InternalBSharp.g:1400:2: ( '\\u00D7' )
+                    // InternalBSharp.g:1401:3: '\\u00D7'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getMultiplicationSignKeyword_0()); 
                     match(input,13,FOLLOW_2); 
@@ -4359,10 +4436,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1381:2: ( '\\u2192' )
+                    // InternalBSharp.g:1406:2: ( '\\u2192' )
                     {
-                    // InternalBSharp.g:1381:2: ( '\\u2192' )
-                    // InternalBSharp.g:1382:3: '\\u2192'
+                    // InternalBSharp.g:1406:2: ( '\\u2192' )
+                    // InternalBSharp.g:1407:3: '\\u2192'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getRightwardsArrowKeyword_1()); 
                     match(input,14,FOLLOW_2); 
@@ -4374,10 +4451,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalBSharp.g:1387:2: ( '\\uE102' )
+                    // InternalBSharp.g:1412:2: ( '\\uE102' )
                     {
-                    // InternalBSharp.g:1387:2: ( '\\uE102' )
-                    // InternalBSharp.g:1388:3: '\\uE102'
+                    // InternalBSharp.g:1412:2: ( '\\uE102' )
+                    // InternalBSharp.g:1413:3: '\\uE102'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getPrivateUseAreaE102Keyword_2()); 
                     match(input,15,FOLLOW_2); 
@@ -4389,10 +4466,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // InternalBSharp.g:1393:2: ( '\\uE100' )
+                    // InternalBSharp.g:1418:2: ( '\\uE100' )
                     {
-                    // InternalBSharp.g:1393:2: ( '\\uE100' )
-                    // InternalBSharp.g:1394:3: '\\uE100'
+                    // InternalBSharp.g:1418:2: ( '\\uE100' )
+                    // InternalBSharp.g:1419:3: '\\uE100'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getPrivateUseAreaE100Keyword_3()); 
                     match(input,16,FOLLOW_2); 
@@ -4404,10 +4481,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 5 :
-                    // InternalBSharp.g:1399:2: ( '\\u2194' )
+                    // InternalBSharp.g:1424:2: ( '\\u2194' )
                     {
-                    // InternalBSharp.g:1399:2: ( '\\u2194' )
-                    // InternalBSharp.g:1400:3: '\\u2194'
+                    // InternalBSharp.g:1424:2: ( '\\u2194' )
+                    // InternalBSharp.g:1425:3: '\\u2194'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getLeftRightArrowKeyword_4()); 
                     match(input,17,FOLLOW_2); 
@@ -4419,10 +4496,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 6 :
-                    // InternalBSharp.g:1405:2: ( '\\u2916' )
+                    // InternalBSharp.g:1430:2: ( '\\u2916' )
                     {
-                    // InternalBSharp.g:1405:2: ( '\\u2916' )
-                    // InternalBSharp.g:1406:3: '\\u2916'
+                    // InternalBSharp.g:1430:2: ( '\\u2916' )
+                    // InternalBSharp.g:1431:3: '\\u2916'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getRightwardsTwoHeadedArrowWithTailKeyword_5()); 
                     match(input,18,FOLLOW_2); 
@@ -4434,10 +4511,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 7 :
-                    // InternalBSharp.g:1411:2: ( '\\u21F8' )
+                    // InternalBSharp.g:1436:2: ( '\\u21F8' )
                     {
-                    // InternalBSharp.g:1411:2: ( '\\u21F8' )
-                    // InternalBSharp.g:1412:3: '\\u21F8'
+                    // InternalBSharp.g:1436:2: ( '\\u21F8' )
+                    // InternalBSharp.g:1437:3: '\\u21F8'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getRightwardsArrowWithVerticalStrokeKeyword_6()); 
                     match(input,19,FOLLOW_2); 
@@ -4449,10 +4526,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 8 :
-                    // InternalBSharp.g:1417:2: ( '\\u21A3' )
+                    // InternalBSharp.g:1442:2: ( '\\u21A3' )
                     {
-                    // InternalBSharp.g:1417:2: ( '\\u21A3' )
-                    // InternalBSharp.g:1418:3: '\\u21A3'
+                    // InternalBSharp.g:1442:2: ( '\\u21A3' )
+                    // InternalBSharp.g:1443:3: '\\u21A3'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getRightwardsArrowWithTailKeyword_7()); 
                     match(input,20,FOLLOW_2); 
@@ -4464,10 +4541,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 9 :
-                    // InternalBSharp.g:1423:2: ( '\\u2900' )
+                    // InternalBSharp.g:1448:2: ( '\\u2900' )
                     {
-                    // InternalBSharp.g:1423:2: ( '\\u2900' )
-                    // InternalBSharp.g:1424:3: '\\u2900'
+                    // InternalBSharp.g:1448:2: ( '\\u2900' )
+                    // InternalBSharp.g:1449:3: '\\u2900'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getRightwardsTwoHeadedArrowWithVerticalStrokeKeyword_8()); 
                     match(input,21,FOLLOW_2); 
@@ -4479,10 +4556,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 10 :
-                    // InternalBSharp.g:1429:2: ( '\\u21A0' )
+                    // InternalBSharp.g:1454:2: ( '\\u21A0' )
                     {
-                    // InternalBSharp.g:1429:2: ( '\\u21A0' )
-                    // InternalBSharp.g:1430:3: '\\u21A0'
+                    // InternalBSharp.g:1454:2: ( '\\u21A0' )
+                    // InternalBSharp.g:1455:3: '\\u21A0'
                     {
                      before(grammarAccess.getBuiltinTypeInfixOpAccess().getRightwardsTwoHeadedArrowKeyword_9()); 
                     match(input,22,FOLLOW_2); 
@@ -4511,13 +4588,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BuilderElem__Alternatives"
-    // InternalBSharp.g:1439:1: rule__BuilderElem__Alternatives : ( ( ruleTypeConstructor ) | ( ruleTypeConstrBracket ) | ( ruleTypePowerSet ) );
+    // InternalBSharp.g:1464:1: rule__BuilderElem__Alternatives : ( ( ruleTypeConstructor ) | ( ruleTypeConstrBracket ) | ( ruleTypePowerSet ) );
     public final void rule__BuilderElem__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1443:1: ( ( ruleTypeConstructor ) | ( ruleTypeConstrBracket ) | ( ruleTypePowerSet ) )
+            // InternalBSharp.g:1468:1: ( ( ruleTypeConstructor ) | ( ruleTypeConstrBracket ) | ( ruleTypePowerSet ) )
             int alt8=3;
             switch ( input.LA(1) ) {
             case RULE_ID:
@@ -4544,10 +4621,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             switch (alt8) {
                 case 1 :
-                    // InternalBSharp.g:1444:2: ( ruleTypeConstructor )
+                    // InternalBSharp.g:1469:2: ( ruleTypeConstructor )
                     {
-                    // InternalBSharp.g:1444:2: ( ruleTypeConstructor )
-                    // InternalBSharp.g:1445:3: ruleTypeConstructor
+                    // InternalBSharp.g:1469:2: ( ruleTypeConstructor )
+                    // InternalBSharp.g:1470:3: ruleTypeConstructor
                     {
                      before(grammarAccess.getBuilderElemAccess().getTypeConstructorParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
@@ -4563,10 +4640,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1450:2: ( ruleTypeConstrBracket )
+                    // InternalBSharp.g:1475:2: ( ruleTypeConstrBracket )
                     {
-                    // InternalBSharp.g:1450:2: ( ruleTypeConstrBracket )
-                    // InternalBSharp.g:1451:3: ruleTypeConstrBracket
+                    // InternalBSharp.g:1475:2: ( ruleTypeConstrBracket )
+                    // InternalBSharp.g:1476:3: ruleTypeConstrBracket
                     {
                      before(grammarAccess.getBuilderElemAccess().getTypeConstrBracketParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -4582,10 +4659,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalBSharp.g:1456:2: ( ruleTypePowerSet )
+                    // InternalBSharp.g:1481:2: ( ruleTypePowerSet )
                     {
-                    // InternalBSharp.g:1456:2: ( ruleTypePowerSet )
-                    // InternalBSharp.g:1457:3: ruleTypePowerSet
+                    // InternalBSharp.g:1481:2: ( ruleTypePowerSet )
+                    // InternalBSharp.g:1482:3: ruleTypePowerSet
                     {
                      before(grammarAccess.getBuilderElemAccess().getTypePowerSetParserRuleCall_2()); 
                     pushFollow(FOLLOW_2);
@@ -4618,13 +4695,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__Alternatives_2"
-    // InternalBSharp.g:1466:1: rule__BSharpBlock__Alternatives_2 : ( ( ( rule__BSharpBlock__FunctionsAssignment_2_0 ) ) | ( ( rule__BSharpBlock__TheoremsAssignment_2_1 ) ) | ( ( rule__BSharpBlock__InstancesAssignment_2_2 ) ) );
+    // InternalBSharp.g:1491:1: rule__BSharpBlock__Alternatives_2 : ( ( ( rule__BSharpBlock__FunctionsAssignment_2_0 ) ) | ( ( rule__BSharpBlock__TheoremsAssignment_2_1 ) ) | ( ( rule__BSharpBlock__InstancesAssignment_2_2 ) ) );
     public final void rule__BSharpBlock__Alternatives_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1470:1: ( ( ( rule__BSharpBlock__FunctionsAssignment_2_0 ) ) | ( ( rule__BSharpBlock__TheoremsAssignment_2_1 ) ) | ( ( rule__BSharpBlock__InstancesAssignment_2_2 ) ) )
+            // InternalBSharp.g:1495:1: ( ( ( rule__BSharpBlock__FunctionsAssignment_2_0 ) ) | ( ( rule__BSharpBlock__TheoremsAssignment_2_1 ) ) | ( ( rule__BSharpBlock__InstancesAssignment_2_2 ) ) )
             int alt9=3;
             switch ( input.LA(1) ) {
             case RULE_ID:
@@ -4651,14 +4728,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             switch (alt9) {
                 case 1 :
-                    // InternalBSharp.g:1471:2: ( ( rule__BSharpBlock__FunctionsAssignment_2_0 ) )
+                    // InternalBSharp.g:1496:2: ( ( rule__BSharpBlock__FunctionsAssignment_2_0 ) )
                     {
-                    // InternalBSharp.g:1471:2: ( ( rule__BSharpBlock__FunctionsAssignment_2_0 ) )
-                    // InternalBSharp.g:1472:3: ( rule__BSharpBlock__FunctionsAssignment_2_0 )
+                    // InternalBSharp.g:1496:2: ( ( rule__BSharpBlock__FunctionsAssignment_2_0 ) )
+                    // InternalBSharp.g:1497:3: ( rule__BSharpBlock__FunctionsAssignment_2_0 )
                     {
                      before(grammarAccess.getBSharpBlockAccess().getFunctionsAssignment_2_0()); 
-                    // InternalBSharp.g:1473:3: ( rule__BSharpBlock__FunctionsAssignment_2_0 )
-                    // InternalBSharp.g:1473:4: rule__BSharpBlock__FunctionsAssignment_2_0
+                    // InternalBSharp.g:1498:3: ( rule__BSharpBlock__FunctionsAssignment_2_0 )
+                    // InternalBSharp.g:1498:4: rule__BSharpBlock__FunctionsAssignment_2_0
                     {
                     pushFollow(FOLLOW_2);
                     rule__BSharpBlock__FunctionsAssignment_2_0();
@@ -4676,14 +4753,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1477:2: ( ( rule__BSharpBlock__TheoremsAssignment_2_1 ) )
+                    // InternalBSharp.g:1502:2: ( ( rule__BSharpBlock__TheoremsAssignment_2_1 ) )
                     {
-                    // InternalBSharp.g:1477:2: ( ( rule__BSharpBlock__TheoremsAssignment_2_1 ) )
-                    // InternalBSharp.g:1478:3: ( rule__BSharpBlock__TheoremsAssignment_2_1 )
+                    // InternalBSharp.g:1502:2: ( ( rule__BSharpBlock__TheoremsAssignment_2_1 ) )
+                    // InternalBSharp.g:1503:3: ( rule__BSharpBlock__TheoremsAssignment_2_1 )
                     {
                      before(grammarAccess.getBSharpBlockAccess().getTheoremsAssignment_2_1()); 
-                    // InternalBSharp.g:1479:3: ( rule__BSharpBlock__TheoremsAssignment_2_1 )
-                    // InternalBSharp.g:1479:4: rule__BSharpBlock__TheoremsAssignment_2_1
+                    // InternalBSharp.g:1504:3: ( rule__BSharpBlock__TheoremsAssignment_2_1 )
+                    // InternalBSharp.g:1504:4: rule__BSharpBlock__TheoremsAssignment_2_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__BSharpBlock__TheoremsAssignment_2_1();
@@ -4701,14 +4778,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalBSharp.g:1483:2: ( ( rule__BSharpBlock__InstancesAssignment_2_2 ) )
+                    // InternalBSharp.g:1508:2: ( ( rule__BSharpBlock__InstancesAssignment_2_2 ) )
                     {
-                    // InternalBSharp.g:1483:2: ( ( rule__BSharpBlock__InstancesAssignment_2_2 ) )
-                    // InternalBSharp.g:1484:3: ( rule__BSharpBlock__InstancesAssignment_2_2 )
+                    // InternalBSharp.g:1508:2: ( ( rule__BSharpBlock__InstancesAssignment_2_2 ) )
+                    // InternalBSharp.g:1509:3: ( rule__BSharpBlock__InstancesAssignment_2_2 )
                     {
                      before(grammarAccess.getBSharpBlockAccess().getInstancesAssignment_2_2()); 
-                    // InternalBSharp.g:1485:3: ( rule__BSharpBlock__InstancesAssignment_2_2 )
-                    // InternalBSharp.g:1485:4: rule__BSharpBlock__InstancesAssignment_2_2
+                    // InternalBSharp.g:1510:3: ( rule__BSharpBlock__InstancesAssignment_2_2 )
+                    // InternalBSharp.g:1510:4: rule__BSharpBlock__InstancesAssignment_2_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__BSharpBlock__InstancesAssignment_2_2();
@@ -4743,13 +4820,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__QTypeAlternatives_0_0"
-    // InternalBSharp.g:1493:1: rule__Quantifier__QTypeAlternatives_0_0 : ( ( '\\u2200' ) | ( '\\u2203' ) );
+    // InternalBSharp.g:1518:1: rule__Quantifier__QTypeAlternatives_0_0 : ( ( '\\u2200' ) | ( '\\u2203' ) );
     public final void rule__Quantifier__QTypeAlternatives_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1497:1: ( ( '\\u2200' ) | ( '\\u2203' ) )
+            // InternalBSharp.g:1522:1: ( ( '\\u2200' ) | ( '\\u2203' ) )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -4767,10 +4844,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalBSharp.g:1498:2: ( '\\u2200' )
+                    // InternalBSharp.g:1523:2: ( '\\u2200' )
                     {
-                    // InternalBSharp.g:1498:2: ( '\\u2200' )
-                    // InternalBSharp.g:1499:3: '\\u2200'
+                    // InternalBSharp.g:1523:2: ( '\\u2200' )
+                    // InternalBSharp.g:1524:3: '\\u2200'
                     {
                      before(grammarAccess.getQuantifierAccess().getQTypeForAllKeyword_0_0_0()); 
                     match(input,23,FOLLOW_2); 
@@ -4782,10 +4859,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1504:2: ( '\\u2203' )
+                    // InternalBSharp.g:1529:2: ( '\\u2203' )
                     {
-                    // InternalBSharp.g:1504:2: ( '\\u2203' )
-                    // InternalBSharp.g:1505:3: '\\u2203'
+                    // InternalBSharp.g:1529:2: ( '\\u2203' )
+                    // InternalBSharp.g:1530:3: '\\u2203'
                     {
                      before(grammarAccess.getQuantifierAccess().getQTypeThereExistsKeyword_0_0_1()); 
                     match(input,24,FOLLOW_2); 
@@ -4814,13 +4891,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RootExpression__Alternatives"
-    // InternalBSharp.g:1514:1: rule__RootExpression__Alternatives : ( ( ruleLambda ) | ( ruleQuantifier ) | ( ruleInfix ) | ( ruleMatchStatement ) );
+    // InternalBSharp.g:1539:1: rule__RootExpression__Alternatives : ( ( ruleLambda ) | ( ruleQuantifier ) | ( ruleInfix ) | ( ruleMatchStatement ) );
     public final void rule__RootExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1518:1: ( ( ruleLambda ) | ( ruleQuantifier ) | ( ruleInfix ) | ( ruleMatchStatement ) )
+            // InternalBSharp.g:1543:1: ( ( ruleLambda ) | ( ruleQuantifier ) | ( ruleInfix ) | ( ruleMatchStatement ) )
             int alt11=4;
             switch ( input.LA(1) ) {
             case 57:
@@ -4836,6 +4913,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                 break;
             case RULE_ID:
             case 11:
+            case 38:
             case 40:
                 {
                 alt11=3;
@@ -4855,10 +4933,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             switch (alt11) {
                 case 1 :
-                    // InternalBSharp.g:1519:2: ( ruleLambda )
+                    // InternalBSharp.g:1544:2: ( ruleLambda )
                     {
-                    // InternalBSharp.g:1519:2: ( ruleLambda )
-                    // InternalBSharp.g:1520:3: ruleLambda
+                    // InternalBSharp.g:1544:2: ( ruleLambda )
+                    // InternalBSharp.g:1545:3: ruleLambda
                     {
                      before(grammarAccess.getRootExpressionAccess().getLambdaParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
@@ -4874,10 +4952,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1525:2: ( ruleQuantifier )
+                    // InternalBSharp.g:1550:2: ( ruleQuantifier )
                     {
-                    // InternalBSharp.g:1525:2: ( ruleQuantifier )
-                    // InternalBSharp.g:1526:3: ruleQuantifier
+                    // InternalBSharp.g:1550:2: ( ruleQuantifier )
+                    // InternalBSharp.g:1551:3: ruleQuantifier
                     {
                      before(grammarAccess.getRootExpressionAccess().getQuantifierParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -4893,10 +4971,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalBSharp.g:1531:2: ( ruleInfix )
+                    // InternalBSharp.g:1556:2: ( ruleInfix )
                     {
-                    // InternalBSharp.g:1531:2: ( ruleInfix )
-                    // InternalBSharp.g:1532:3: ruleInfix
+                    // InternalBSharp.g:1556:2: ( ruleInfix )
+                    // InternalBSharp.g:1557:3: ruleInfix
                     {
                      before(grammarAccess.getRootExpressionAccess().getInfixParserRuleCall_2()); 
                     pushFollow(FOLLOW_2);
@@ -4912,10 +4990,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // InternalBSharp.g:1537:2: ( ruleMatchStatement )
+                    // InternalBSharp.g:1562:2: ( ruleMatchStatement )
                     {
-                    // InternalBSharp.g:1537:2: ( ruleMatchStatement )
-                    // InternalBSharp.g:1538:3: ruleMatchStatement
+                    // InternalBSharp.g:1562:2: ( ruleMatchStatement )
+                    // InternalBSharp.g:1563:3: ruleMatchStatement
                     {
                      before(grammarAccess.getRootExpressionAccess().getMatchStatementParserRuleCall_3()); 
                     pushFollow(FOLLOW_2);
@@ -4948,13 +5026,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Alternatives_1_1"
-    // InternalBSharp.g:1547:1: rule__Infix__Alternatives_1_1 : ( ( ( rule__Infix__FuncNameAssignment_1_1_0 ) ) | ( ( rule__Infix__OpNameAssignment_1_1_1 ) ) );
+    // InternalBSharp.g:1572:1: rule__Infix__Alternatives_1_1 : ( ( ( rule__Infix__FuncNameAssignment_1_1_0 ) ) | ( ( rule__Infix__OpNameAssignment_1_1_1 ) ) );
     public final void rule__Infix__Alternatives_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1551:1: ( ( ( rule__Infix__FuncNameAssignment_1_1_0 ) ) | ( ( rule__Infix__OpNameAssignment_1_1_1 ) ) )
+            // InternalBSharp.g:1576:1: ( ( ( rule__Infix__FuncNameAssignment_1_1_0 ) ) | ( ( rule__Infix__OpNameAssignment_1_1_1 ) ) )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -4972,14 +5050,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             }
             switch (alt12) {
                 case 1 :
-                    // InternalBSharp.g:1552:2: ( ( rule__Infix__FuncNameAssignment_1_1_0 ) )
+                    // InternalBSharp.g:1577:2: ( ( rule__Infix__FuncNameAssignment_1_1_0 ) )
                     {
-                    // InternalBSharp.g:1552:2: ( ( rule__Infix__FuncNameAssignment_1_1_0 ) )
-                    // InternalBSharp.g:1553:3: ( rule__Infix__FuncNameAssignment_1_1_0 )
+                    // InternalBSharp.g:1577:2: ( ( rule__Infix__FuncNameAssignment_1_1_0 ) )
+                    // InternalBSharp.g:1578:3: ( rule__Infix__FuncNameAssignment_1_1_0 )
                     {
                      before(grammarAccess.getInfixAccess().getFuncNameAssignment_1_1_0()); 
-                    // InternalBSharp.g:1554:3: ( rule__Infix__FuncNameAssignment_1_1_0 )
-                    // InternalBSharp.g:1554:4: rule__Infix__FuncNameAssignment_1_1_0
+                    // InternalBSharp.g:1579:3: ( rule__Infix__FuncNameAssignment_1_1_0 )
+                    // InternalBSharp.g:1579:4: rule__Infix__FuncNameAssignment_1_1_0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Infix__FuncNameAssignment_1_1_0();
@@ -4997,14 +5075,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1558:2: ( ( rule__Infix__OpNameAssignment_1_1_1 ) )
+                    // InternalBSharp.g:1583:2: ( ( rule__Infix__OpNameAssignment_1_1_1 ) )
                     {
-                    // InternalBSharp.g:1558:2: ( ( rule__Infix__OpNameAssignment_1_1_1 ) )
-                    // InternalBSharp.g:1559:3: ( rule__Infix__OpNameAssignment_1_1_1 )
+                    // InternalBSharp.g:1583:2: ( ( rule__Infix__OpNameAssignment_1_1_1 ) )
+                    // InternalBSharp.g:1584:3: ( rule__Infix__OpNameAssignment_1_1_1 )
                     {
                      before(grammarAccess.getInfixAccess().getOpNameAssignment_1_1_1()); 
-                    // InternalBSharp.g:1560:3: ( rule__Infix__OpNameAssignment_1_1_1 )
-                    // InternalBSharp.g:1560:4: rule__Infix__OpNameAssignment_1_1_1
+                    // InternalBSharp.g:1585:3: ( rule__Infix__OpNameAssignment_1_1_1 )
+                    // InternalBSharp.g:1585:4: rule__Infix__OpNameAssignment_1_1_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__Infix__OpNameAssignment_1_1_1();
@@ -5039,13 +5117,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__Alternatives"
-    // InternalBSharp.g:1568:1: rule__Element__Alternatives : ( ( ruleBracket ) | ( rulePrefix ) | ( ruleFunctionCall ) );
+    // InternalBSharp.g:1593:1: rule__Element__Alternatives : ( ( ruleBracket ) | ( rulePrefix ) | ( ruleFunctionCall ) );
     public final void rule__Element__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1572:1: ( ( ruleBracket ) | ( rulePrefix ) | ( ruleFunctionCall ) )
+            // InternalBSharp.g:1597:1: ( ( ruleBracket ) | ( rulePrefix ) | ( ruleFunctionCall ) )
             int alt13=3;
             switch ( input.LA(1) ) {
             case 40:
@@ -5059,6 +5137,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                 }
                 break;
             case RULE_ID:
+            case 38:
                 {
                 alt13=3;
                 }
@@ -5072,10 +5151,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             switch (alt13) {
                 case 1 :
-                    // InternalBSharp.g:1573:2: ( ruleBracket )
+                    // InternalBSharp.g:1598:2: ( ruleBracket )
                     {
-                    // InternalBSharp.g:1573:2: ( ruleBracket )
-                    // InternalBSharp.g:1574:3: ruleBracket
+                    // InternalBSharp.g:1598:2: ( ruleBracket )
+                    // InternalBSharp.g:1599:3: ruleBracket
                     {
                      before(grammarAccess.getElementAccess().getBracketParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
@@ -5091,10 +5170,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1579:2: ( rulePrefix )
+                    // InternalBSharp.g:1604:2: ( rulePrefix )
                     {
-                    // InternalBSharp.g:1579:2: ( rulePrefix )
-                    // InternalBSharp.g:1580:3: rulePrefix
+                    // InternalBSharp.g:1604:2: ( rulePrefix )
+                    // InternalBSharp.g:1605:3: rulePrefix
                     {
                      before(grammarAccess.getElementAccess().getPrefixParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -5110,10 +5189,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalBSharp.g:1585:2: ( ruleFunctionCall )
+                    // InternalBSharp.g:1610:2: ( ruleFunctionCall )
                     {
-                    // InternalBSharp.g:1585:2: ( ruleFunctionCall )
-                    // InternalBSharp.g:1586:3: ruleFunctionCall
+                    // InternalBSharp.g:1610:2: ( ruleFunctionCall )
+                    // InternalBSharp.g:1611:3: ruleFunctionCall
                     {
                      before(grammarAccess.getElementAccess().getFunctionCallParserRuleCall_2()); 
                     pushFollow(FOLLOW_2);
@@ -5145,32 +5224,22 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Element__Alternatives"
 
 
-    // $ANTLR start "rule__FunctionCall__Alternatives_0"
-    // InternalBSharp.g:1595:1: rule__FunctionCall__Alternatives_0 : ( ( ( rule__FunctionCall__TypeInstAssignment_0_0 ) ) | ( ( rule__FunctionCall__ClassVarDeclAssignment_0_1 ) ) );
-    public final void rule__FunctionCall__Alternatives_0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Alternatives"
+    // InternalBSharp.g:1620:1: rule__FunctionCall__Alternatives : ( ( ( rule__FunctionCall__WrappedAssignment_0 ) ) | ( ( rule__FunctionCall__Group_1__0 ) ) );
+    public final void rule__FunctionCall__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1599:1: ( ( ( rule__FunctionCall__TypeInstAssignment_0_0 ) ) | ( ( rule__FunctionCall__ClassVarDeclAssignment_0_1 ) ) )
+            // InternalBSharp.g:1624:1: ( ( ( rule__FunctionCall__WrappedAssignment_0 ) ) | ( ( rule__FunctionCall__Group_1__0 ) ) )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==RULE_ID) ) {
-                int LA14_1 = input.LA(2);
-
-                if ( (LA14_1==33) ) {
-                    alt14=2;
-                }
-                else if ( (LA14_1==EOF||LA14_1==RULE_ID||(LA14_1>=25 && LA14_1<=30)||LA14_1==37||(LA14_1>=40 && LA14_1<=42)||LA14_1==44||LA14_1==48||(LA14_1>=50 && LA14_1<=51)||LA14_1==53||LA14_1==55) ) {
-                    alt14=1;
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 14, 1, input);
-
-                    throw nvae;
-                }
+            if ( (LA14_0==38) ) {
+                alt14=1;
+            }
+            else if ( (LA14_0==RULE_ID) ) {
+                alt14=2;
             }
             else {
                 NoViableAltException nvae =
@@ -5180,24 +5249,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             }
             switch (alt14) {
                 case 1 :
-                    // InternalBSharp.g:1600:2: ( ( rule__FunctionCall__TypeInstAssignment_0_0 ) )
+                    // InternalBSharp.g:1625:2: ( ( rule__FunctionCall__WrappedAssignment_0 ) )
                     {
-                    // InternalBSharp.g:1600:2: ( ( rule__FunctionCall__TypeInstAssignment_0_0 ) )
-                    // InternalBSharp.g:1601:3: ( rule__FunctionCall__TypeInstAssignment_0_0 )
+                    // InternalBSharp.g:1625:2: ( ( rule__FunctionCall__WrappedAssignment_0 ) )
+                    // InternalBSharp.g:1626:3: ( rule__FunctionCall__WrappedAssignment_0 )
                     {
-                     before(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_0_0()); 
-                    // InternalBSharp.g:1602:3: ( rule__FunctionCall__TypeInstAssignment_0_0 )
-                    // InternalBSharp.g:1602:4: rule__FunctionCall__TypeInstAssignment_0_0
+                     before(grammarAccess.getFunctionCallAccess().getWrappedAssignment_0()); 
+                    // InternalBSharp.g:1627:3: ( rule__FunctionCall__WrappedAssignment_0 )
+                    // InternalBSharp.g:1627:4: rule__FunctionCall__WrappedAssignment_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FunctionCall__TypeInstAssignment_0_0();
+                    rule__FunctionCall__WrappedAssignment_0();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_0_0()); 
+                     after(grammarAccess.getFunctionCallAccess().getWrappedAssignment_0()); 
 
                     }
 
@@ -5205,24 +5274,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1606:2: ( ( rule__FunctionCall__ClassVarDeclAssignment_0_1 ) )
+                    // InternalBSharp.g:1631:2: ( ( rule__FunctionCall__Group_1__0 ) )
                     {
-                    // InternalBSharp.g:1606:2: ( ( rule__FunctionCall__ClassVarDeclAssignment_0_1 ) )
-                    // InternalBSharp.g:1607:3: ( rule__FunctionCall__ClassVarDeclAssignment_0_1 )
+                    // InternalBSharp.g:1631:2: ( ( rule__FunctionCall__Group_1__0 ) )
+                    // InternalBSharp.g:1632:3: ( rule__FunctionCall__Group_1__0 )
                     {
-                     before(grammarAccess.getFunctionCallAccess().getClassVarDeclAssignment_0_1()); 
-                    // InternalBSharp.g:1608:3: ( rule__FunctionCall__ClassVarDeclAssignment_0_1 )
-                    // InternalBSharp.g:1608:4: rule__FunctionCall__ClassVarDeclAssignment_0_1
+                     before(grammarAccess.getFunctionCallAccess().getGroup_1()); 
+                    // InternalBSharp.g:1633:3: ( rule__FunctionCall__Group_1__0 )
+                    // InternalBSharp.g:1633:4: rule__FunctionCall__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FunctionCall__ClassVarDeclAssignment_0_1();
+                    rule__FunctionCall__Group_1__0();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getFunctionCallAccess().getClassVarDeclAssignment_0_1()); 
+                     after(grammarAccess.getFunctionCallAccess().getGroup_1()); 
 
                     }
 
@@ -5243,62 +5312,163 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Alternatives_0"
+    // $ANTLR end "rule__FunctionCall__Alternatives"
 
 
-    // $ANTLR start "rule__InbuiltInfix__Alternatives"
-    // InternalBSharp.g:1616:1: rule__InbuiltInfix__Alternatives : ( ( '\\u21D4' ) | ( '\\u21D2' ) | ( '=' ) | ( '\\u2260' ) | ( '\\u2227' ) | ( '\\u2228' ) );
-    public final void rule__InbuiltInfix__Alternatives() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Alternatives_1_0"
+    // InternalBSharp.g:1641:1: rule__FunctionCall__Alternatives_1_0 : ( ( ( rule__FunctionCall__TypeInstAssignment_1_0_0 ) ) | ( ( rule__FunctionCall__ClassVarDeclAssignment_1_0_1 ) ) );
+    public final void rule__FunctionCall__Alternatives_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1620:1: ( ( '\\u21D4' ) | ( '\\u21D2' ) | ( '=' ) | ( '\\u2260' ) | ( '\\u2227' ) | ( '\\u2228' ) )
-            int alt15=6;
-            switch ( input.LA(1) ) {
-            case 25:
-                {
-                alt15=1;
+            // InternalBSharp.g:1645:1: ( ( ( rule__FunctionCall__TypeInstAssignment_1_0_0 ) ) | ( ( rule__FunctionCall__ClassVarDeclAssignment_1_0_1 ) ) )
+            int alt15=2;
+            int LA15_0 = input.LA(1);
+
+            if ( (LA15_0==RULE_ID) ) {
+                int LA15_1 = input.LA(2);
+
+                if ( (LA15_1==33) ) {
+                    alt15=2;
                 }
-                break;
-            case 26:
-                {
-                alt15=2;
+                else if ( (LA15_1==EOF||LA15_1==RULE_ID||(LA15_1>=25 && LA15_1<=30)||LA15_1==37||(LA15_1>=40 && LA15_1<=42)||LA15_1==44||LA15_1==48||(LA15_1>=50 && LA15_1<=51)||LA15_1==53||LA15_1==55) ) {
+                    alt15=1;
                 }
-                break;
-            case 27:
-                {
-                alt15=3;
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 15, 1, input);
+
+                    throw nvae;
                 }
-                break;
-            case 28:
-                {
-                alt15=4;
-                }
-                break;
-            case 29:
-                {
-                alt15=5;
-                }
-                break;
-            case 30:
-                {
-                alt15=6;
-                }
-                break;
-            default:
+            }
+            else {
                 NoViableAltException nvae =
                     new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
             }
-
             switch (alt15) {
                 case 1 :
-                    // InternalBSharp.g:1621:2: ( '\\u21D4' )
+                    // InternalBSharp.g:1646:2: ( ( rule__FunctionCall__TypeInstAssignment_1_0_0 ) )
                     {
-                    // InternalBSharp.g:1621:2: ( '\\u21D4' )
-                    // InternalBSharp.g:1622:3: '\\u21D4'
+                    // InternalBSharp.g:1646:2: ( ( rule__FunctionCall__TypeInstAssignment_1_0_0 ) )
+                    // InternalBSharp.g:1647:3: ( rule__FunctionCall__TypeInstAssignment_1_0_0 )
+                    {
+                     before(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_1_0_0()); 
+                    // InternalBSharp.g:1648:3: ( rule__FunctionCall__TypeInstAssignment_1_0_0 )
+                    // InternalBSharp.g:1648:4: rule__FunctionCall__TypeInstAssignment_1_0_0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__FunctionCall__TypeInstAssignment_1_0_0();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_1_0_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalBSharp.g:1652:2: ( ( rule__FunctionCall__ClassVarDeclAssignment_1_0_1 ) )
+                    {
+                    // InternalBSharp.g:1652:2: ( ( rule__FunctionCall__ClassVarDeclAssignment_1_0_1 ) )
+                    // InternalBSharp.g:1653:3: ( rule__FunctionCall__ClassVarDeclAssignment_1_0_1 )
+                    {
+                     before(grammarAccess.getFunctionCallAccess().getClassVarDeclAssignment_1_0_1()); 
+                    // InternalBSharp.g:1654:3: ( rule__FunctionCall__ClassVarDeclAssignment_1_0_1 )
+                    // InternalBSharp.g:1654:4: rule__FunctionCall__ClassVarDeclAssignment_1_0_1
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__FunctionCall__ClassVarDeclAssignment_1_0_1();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getFunctionCallAccess().getClassVarDeclAssignment_1_0_1()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FunctionCall__Alternatives_1_0"
+
+
+    // $ANTLR start "rule__InbuiltInfix__Alternatives"
+    // InternalBSharp.g:1662:1: rule__InbuiltInfix__Alternatives : ( ( '\\u21D4' ) | ( '\\u21D2' ) | ( '=' ) | ( '\\u2260' ) | ( '\\u2227' ) | ( '\\u2228' ) );
+    public final void rule__InbuiltInfix__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:1666:1: ( ( '\\u21D4' ) | ( '\\u21D2' ) | ( '=' ) | ( '\\u2260' ) | ( '\\u2227' ) | ( '\\u2228' ) )
+            int alt16=6;
+            switch ( input.LA(1) ) {
+            case 25:
+                {
+                alt16=1;
+                }
+                break;
+            case 26:
+                {
+                alt16=2;
+                }
+                break;
+            case 27:
+                {
+                alt16=3;
+                }
+                break;
+            case 28:
+                {
+                alt16=4;
+                }
+                break;
+            case 29:
+                {
+                alt16=5;
+                }
+                break;
+            case 30:
+                {
+                alt16=6;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 16, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt16) {
+                case 1 :
+                    // InternalBSharp.g:1667:2: ( '\\u21D4' )
+                    {
+                    // InternalBSharp.g:1667:2: ( '\\u21D4' )
+                    // InternalBSharp.g:1668:3: '\\u21D4'
                     {
                      before(grammarAccess.getInbuiltInfixAccess().getLeftRightDoubleArrowKeyword_0()); 
                     match(input,25,FOLLOW_2); 
@@ -5310,10 +5480,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:1627:2: ( '\\u21D2' )
+                    // InternalBSharp.g:1673:2: ( '\\u21D2' )
                     {
-                    // InternalBSharp.g:1627:2: ( '\\u21D2' )
-                    // InternalBSharp.g:1628:3: '\\u21D2'
+                    // InternalBSharp.g:1673:2: ( '\\u21D2' )
+                    // InternalBSharp.g:1674:3: '\\u21D2'
                     {
                      before(grammarAccess.getInbuiltInfixAccess().getRightwardsDoubleArrowKeyword_1()); 
                     match(input,26,FOLLOW_2); 
@@ -5325,10 +5495,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalBSharp.g:1633:2: ( '=' )
+                    // InternalBSharp.g:1679:2: ( '=' )
                     {
-                    // InternalBSharp.g:1633:2: ( '=' )
-                    // InternalBSharp.g:1634:3: '='
+                    // InternalBSharp.g:1679:2: ( '=' )
+                    // InternalBSharp.g:1680:3: '='
                     {
                      before(grammarAccess.getInbuiltInfixAccess().getEqualsSignKeyword_2()); 
                     match(input,27,FOLLOW_2); 
@@ -5340,10 +5510,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // InternalBSharp.g:1639:2: ( '\\u2260' )
+                    // InternalBSharp.g:1685:2: ( '\\u2260' )
                     {
-                    // InternalBSharp.g:1639:2: ( '\\u2260' )
-                    // InternalBSharp.g:1640:3: '\\u2260'
+                    // InternalBSharp.g:1685:2: ( '\\u2260' )
+                    // InternalBSharp.g:1686:3: '\\u2260'
                     {
                      before(grammarAccess.getInbuiltInfixAccess().getNotEqualToKeyword_3()); 
                     match(input,28,FOLLOW_2); 
@@ -5355,10 +5525,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 5 :
-                    // InternalBSharp.g:1645:2: ( '\\u2227' )
+                    // InternalBSharp.g:1691:2: ( '\\u2227' )
                     {
-                    // InternalBSharp.g:1645:2: ( '\\u2227' )
-                    // InternalBSharp.g:1646:3: '\\u2227'
+                    // InternalBSharp.g:1691:2: ( '\\u2227' )
+                    // InternalBSharp.g:1692:3: '\\u2227'
                     {
                      before(grammarAccess.getInbuiltInfixAccess().getLogicalAndKeyword_4()); 
                     match(input,29,FOLLOW_2); 
@@ -5370,10 +5540,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 6 :
-                    // InternalBSharp.g:1651:2: ( '\\u2228' )
+                    // InternalBSharp.g:1697:2: ( '\\u2228' )
                     {
-                    // InternalBSharp.g:1651:2: ( '\\u2228' )
-                    // InternalBSharp.g:1652:3: '\\u2228'
+                    // InternalBSharp.g:1697:2: ( '\\u2228' )
+                    // InternalBSharp.g:1698:3: '\\u2228'
                     {
                      before(grammarAccess.getInbuiltInfixAccess().getLogicalOrKeyword_5()); 
                     match(input,30,FOLLOW_2); 
@@ -5401,15 +5571,106 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__InbuiltInfix__Alternatives"
 
 
+    // $ANTLR start "rule__WrappedInfix__Alternatives_1"
+    // InternalBSharp.g:1707:1: rule__WrappedInfix__Alternatives_1 : ( ( ( rule__WrappedInfix__InbuiltAssignment_1_0 ) ) | ( ( rule__WrappedInfix__FuncNameAssignment_1_1 ) ) );
+    public final void rule__WrappedInfix__Alternatives_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:1711:1: ( ( ( rule__WrappedInfix__InbuiltAssignment_1_0 ) ) | ( ( rule__WrappedInfix__FuncNameAssignment_1_1 ) ) )
+            int alt17=2;
+            int LA17_0 = input.LA(1);
+
+            if ( ((LA17_0>=25 && LA17_0<=30)) ) {
+                alt17=1;
+            }
+            else if ( (LA17_0==RULE_ID) ) {
+                alt17=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 17, 0, input);
+
+                throw nvae;
+            }
+            switch (alt17) {
+                case 1 :
+                    // InternalBSharp.g:1712:2: ( ( rule__WrappedInfix__InbuiltAssignment_1_0 ) )
+                    {
+                    // InternalBSharp.g:1712:2: ( ( rule__WrappedInfix__InbuiltAssignment_1_0 ) )
+                    // InternalBSharp.g:1713:3: ( rule__WrappedInfix__InbuiltAssignment_1_0 )
+                    {
+                     before(grammarAccess.getWrappedInfixAccess().getInbuiltAssignment_1_0()); 
+                    // InternalBSharp.g:1714:3: ( rule__WrappedInfix__InbuiltAssignment_1_0 )
+                    // InternalBSharp.g:1714:4: rule__WrappedInfix__InbuiltAssignment_1_0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__WrappedInfix__InbuiltAssignment_1_0();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getWrappedInfixAccess().getInbuiltAssignment_1_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalBSharp.g:1718:2: ( ( rule__WrappedInfix__FuncNameAssignment_1_1 ) )
+                    {
+                    // InternalBSharp.g:1718:2: ( ( rule__WrappedInfix__FuncNameAssignment_1_1 ) )
+                    // InternalBSharp.g:1719:3: ( rule__WrappedInfix__FuncNameAssignment_1_1 )
+                    {
+                     before(grammarAccess.getWrappedInfixAccess().getFuncNameAssignment_1_1()); 
+                    // InternalBSharp.g:1720:3: ( rule__WrappedInfix__FuncNameAssignment_1_1 )
+                    // InternalBSharp.g:1720:4: rule__WrappedInfix__FuncNameAssignment_1_1
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__WrappedInfix__FuncNameAssignment_1_1();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getWrappedInfixAccess().getFuncNameAssignment_1_1()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__WrappedInfix__Alternatives_1"
+
+
     // $ANTLR start "rule__TopLevel__Group__0"
-    // InternalBSharp.g:1661:1: rule__TopLevel__Group__0 : rule__TopLevel__Group__0__Impl rule__TopLevel__Group__1 ;
+    // InternalBSharp.g:1728:1: rule__TopLevel__Group__0 : rule__TopLevel__Group__0__Impl rule__TopLevel__Group__1 ;
     public final void rule__TopLevel__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1665:1: ( rule__TopLevel__Group__0__Impl rule__TopLevel__Group__1 )
-            // InternalBSharp.g:1666:2: rule__TopLevel__Group__0__Impl rule__TopLevel__Group__1
+            // InternalBSharp.g:1732:1: ( rule__TopLevel__Group__0__Impl rule__TopLevel__Group__1 )
+            // InternalBSharp.g:1733:2: rule__TopLevel__Group__0__Impl rule__TopLevel__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__TopLevel__Group__0__Impl();
@@ -5440,17 +5701,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevel__Group__0__Impl"
-    // InternalBSharp.g:1673:1: rule__TopLevel__Group__0__Impl : ( 'package' ) ;
+    // InternalBSharp.g:1740:1: rule__TopLevel__Group__0__Impl : ( 'package' ) ;
     public final void rule__TopLevel__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1677:1: ( ( 'package' ) )
-            // InternalBSharp.g:1678:1: ( 'package' )
+            // InternalBSharp.g:1744:1: ( ( 'package' ) )
+            // InternalBSharp.g:1745:1: ( 'package' )
             {
-            // InternalBSharp.g:1678:1: ( 'package' )
-            // InternalBSharp.g:1679:2: 'package'
+            // InternalBSharp.g:1745:1: ( 'package' )
+            // InternalBSharp.g:1746:2: 'package'
             {
              before(grammarAccess.getTopLevelAccess().getPackageKeyword_0()); 
             match(input,31,FOLLOW_2); 
@@ -5477,14 +5738,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevel__Group__1"
-    // InternalBSharp.g:1688:1: rule__TopLevel__Group__1 : rule__TopLevel__Group__1__Impl rule__TopLevel__Group__2 ;
+    // InternalBSharp.g:1755:1: rule__TopLevel__Group__1 : rule__TopLevel__Group__1__Impl rule__TopLevel__Group__2 ;
     public final void rule__TopLevel__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1692:1: ( rule__TopLevel__Group__1__Impl rule__TopLevel__Group__2 )
-            // InternalBSharp.g:1693:2: rule__TopLevel__Group__1__Impl rule__TopLevel__Group__2
+            // InternalBSharp.g:1759:1: ( rule__TopLevel__Group__1__Impl rule__TopLevel__Group__2 )
+            // InternalBSharp.g:1760:2: rule__TopLevel__Group__1__Impl rule__TopLevel__Group__2
             {
             pushFollow(FOLLOW_5);
             rule__TopLevel__Group__1__Impl();
@@ -5515,21 +5776,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevel__Group__1__Impl"
-    // InternalBSharp.g:1700:1: rule__TopLevel__Group__1__Impl : ( ( rule__TopLevel__NameAssignment_1 ) ) ;
+    // InternalBSharp.g:1767:1: rule__TopLevel__Group__1__Impl : ( ( rule__TopLevel__NameAssignment_1 ) ) ;
     public final void rule__TopLevel__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1704:1: ( ( ( rule__TopLevel__NameAssignment_1 ) ) )
-            // InternalBSharp.g:1705:1: ( ( rule__TopLevel__NameAssignment_1 ) )
+            // InternalBSharp.g:1771:1: ( ( ( rule__TopLevel__NameAssignment_1 ) ) )
+            // InternalBSharp.g:1772:1: ( ( rule__TopLevel__NameAssignment_1 ) )
             {
-            // InternalBSharp.g:1705:1: ( ( rule__TopLevel__NameAssignment_1 ) )
-            // InternalBSharp.g:1706:2: ( rule__TopLevel__NameAssignment_1 )
+            // InternalBSharp.g:1772:1: ( ( rule__TopLevel__NameAssignment_1 ) )
+            // InternalBSharp.g:1773:2: ( rule__TopLevel__NameAssignment_1 )
             {
              before(grammarAccess.getTopLevelAccess().getNameAssignment_1()); 
-            // InternalBSharp.g:1707:2: ( rule__TopLevel__NameAssignment_1 )
-            // InternalBSharp.g:1707:3: rule__TopLevel__NameAssignment_1
+            // InternalBSharp.g:1774:2: ( rule__TopLevel__NameAssignment_1 )
+            // InternalBSharp.g:1774:3: rule__TopLevel__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__TopLevel__NameAssignment_1();
@@ -5562,14 +5823,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevel__Group__2"
-    // InternalBSharp.g:1715:1: rule__TopLevel__Group__2 : rule__TopLevel__Group__2__Impl ;
+    // InternalBSharp.g:1782:1: rule__TopLevel__Group__2 : rule__TopLevel__Group__2__Impl ;
     public final void rule__TopLevel__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1719:1: ( rule__TopLevel__Group__2__Impl )
-            // InternalBSharp.g:1720:2: rule__TopLevel__Group__2__Impl
+            // InternalBSharp.g:1786:1: ( rule__TopLevel__Group__2__Impl )
+            // InternalBSharp.g:1787:2: rule__TopLevel__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TopLevel__Group__2__Impl();
@@ -5595,21 +5856,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevel__Group__2__Impl"
-    // InternalBSharp.g:1726:1: rule__TopLevel__Group__2__Impl : ( ( rule__TopLevel__TopLevelFileAssignment_2 ) ) ;
+    // InternalBSharp.g:1793:1: rule__TopLevel__Group__2__Impl : ( ( rule__TopLevel__TopLevelFileAssignment_2 ) ) ;
     public final void rule__TopLevel__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1730:1: ( ( ( rule__TopLevel__TopLevelFileAssignment_2 ) ) )
-            // InternalBSharp.g:1731:1: ( ( rule__TopLevel__TopLevelFileAssignment_2 ) )
+            // InternalBSharp.g:1797:1: ( ( ( rule__TopLevel__TopLevelFileAssignment_2 ) ) )
+            // InternalBSharp.g:1798:1: ( ( rule__TopLevel__TopLevelFileAssignment_2 ) )
             {
-            // InternalBSharp.g:1731:1: ( ( rule__TopLevel__TopLevelFileAssignment_2 ) )
-            // InternalBSharp.g:1732:2: ( rule__TopLevel__TopLevelFileAssignment_2 )
+            // InternalBSharp.g:1798:1: ( ( rule__TopLevel__TopLevelFileAssignment_2 ) )
+            // InternalBSharp.g:1799:2: ( rule__TopLevel__TopLevelFileAssignment_2 )
             {
              before(grammarAccess.getTopLevelAccess().getTopLevelFileAssignment_2()); 
-            // InternalBSharp.g:1733:2: ( rule__TopLevel__TopLevelFileAssignment_2 )
-            // InternalBSharp.g:1733:3: rule__TopLevel__TopLevelFileAssignment_2
+            // InternalBSharp.g:1800:2: ( rule__TopLevel__TopLevelFileAssignment_2 )
+            // InternalBSharp.g:1800:3: rule__TopLevel__TopLevelFileAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__TopLevel__TopLevelFileAssignment_2();
@@ -5642,14 +5903,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__THM_NAME__Group__0"
-    // InternalBSharp.g:1742:1: rule__THM_NAME__Group__0 : rule__THM_NAME__Group__0__Impl rule__THM_NAME__Group__1 ;
+    // InternalBSharp.g:1809:1: rule__THM_NAME__Group__0 : rule__THM_NAME__Group__0__Impl rule__THM_NAME__Group__1 ;
     public final void rule__THM_NAME__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1746:1: ( rule__THM_NAME__Group__0__Impl rule__THM_NAME__Group__1 )
-            // InternalBSharp.g:1747:2: rule__THM_NAME__Group__0__Impl rule__THM_NAME__Group__1
+            // InternalBSharp.g:1813:1: ( rule__THM_NAME__Group__0__Impl rule__THM_NAME__Group__1 )
+            // InternalBSharp.g:1814:2: rule__THM_NAME__Group__0__Impl rule__THM_NAME__Group__1
             {
             pushFollow(FOLLOW_6);
             rule__THM_NAME__Group__0__Impl();
@@ -5680,33 +5941,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__THM_NAME__Group__0__Impl"
-    // InternalBSharp.g:1754:1: rule__THM_NAME__Group__0__Impl : ( ( rule__THM_NAME__Alternatives_0 )* ) ;
+    // InternalBSharp.g:1821:1: rule__THM_NAME__Group__0__Impl : ( ( rule__THM_NAME__Alternatives_0 )* ) ;
     public final void rule__THM_NAME__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1758:1: ( ( ( rule__THM_NAME__Alternatives_0 )* ) )
-            // InternalBSharp.g:1759:1: ( ( rule__THM_NAME__Alternatives_0 )* )
+            // InternalBSharp.g:1825:1: ( ( ( rule__THM_NAME__Alternatives_0 )* ) )
+            // InternalBSharp.g:1826:1: ( ( rule__THM_NAME__Alternatives_0 )* )
             {
-            // InternalBSharp.g:1759:1: ( ( rule__THM_NAME__Alternatives_0 )* )
-            // InternalBSharp.g:1760:2: ( rule__THM_NAME__Alternatives_0 )*
+            // InternalBSharp.g:1826:1: ( ( rule__THM_NAME__Alternatives_0 )* )
+            // InternalBSharp.g:1827:2: ( rule__THM_NAME__Alternatives_0 )*
             {
              before(grammarAccess.getTHM_NAMEAccess().getAlternatives_0()); 
-            // InternalBSharp.g:1761:2: ( rule__THM_NAME__Alternatives_0 )*
-            loop16:
+            // InternalBSharp.g:1828:2: ( rule__THM_NAME__Alternatives_0 )*
+            loop18:
             do {
-                int alt16=2;
-                int LA16_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( ((LA16_0>=RULE_INT && LA16_0<=RULE_WS)) ) {
-                    alt16=1;
+                if ( ((LA18_0>=RULE_INT && LA18_0<=RULE_WS)) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt16) {
+                switch (alt18) {
             	case 1 :
-            	    // InternalBSharp.g:1761:3: rule__THM_NAME__Alternatives_0
+            	    // InternalBSharp.g:1828:3: rule__THM_NAME__Alternatives_0
             	    {
             	    pushFollow(FOLLOW_7);
             	    rule__THM_NAME__Alternatives_0();
@@ -5718,7 +5979,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop16;
+            	    break loop18;
                 }
             } while (true);
 
@@ -5745,14 +6006,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__THM_NAME__Group__1"
-    // InternalBSharp.g:1769:1: rule__THM_NAME__Group__1 : rule__THM_NAME__Group__1__Impl ;
+    // InternalBSharp.g:1836:1: rule__THM_NAME__Group__1 : rule__THM_NAME__Group__1__Impl ;
     public final void rule__THM_NAME__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1773:1: ( rule__THM_NAME__Group__1__Impl )
-            // InternalBSharp.g:1774:2: rule__THM_NAME__Group__1__Impl
+            // InternalBSharp.g:1840:1: ( rule__THM_NAME__Group__1__Impl )
+            // InternalBSharp.g:1841:2: rule__THM_NAME__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__THM_NAME__Group__1__Impl();
@@ -5778,17 +6039,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__THM_NAME__Group__1__Impl"
-    // InternalBSharp.g:1780:1: rule__THM_NAME__Group__1__Impl : ( ':' ) ;
+    // InternalBSharp.g:1847:1: rule__THM_NAME__Group__1__Impl : ( ':' ) ;
     public final void rule__THM_NAME__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1784:1: ( ( ':' ) )
-            // InternalBSharp.g:1785:1: ( ':' )
+            // InternalBSharp.g:1851:1: ( ( ':' ) )
+            // InternalBSharp.g:1852:1: ( ':' )
             {
-            // InternalBSharp.g:1785:1: ( ':' )
-            // InternalBSharp.g:1786:2: ':'
+            // InternalBSharp.g:1852:1: ( ':' )
+            // InternalBSharp.g:1853:2: ':'
             {
              before(grammarAccess.getTHM_NAMEAccess().getColonKeyword_1()); 
             match(input,32,FOLLOW_2); 
@@ -5815,14 +6076,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelFile__Group__0"
-    // InternalBSharp.g:1796:1: rule__TopLevelFile__Group__0 : rule__TopLevelFile__Group__0__Impl rule__TopLevelFile__Group__1 ;
+    // InternalBSharp.g:1863:1: rule__TopLevelFile__Group__0 : rule__TopLevelFile__Group__0__Impl rule__TopLevelFile__Group__1 ;
     public final void rule__TopLevelFile__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1800:1: ( rule__TopLevelFile__Group__0__Impl rule__TopLevelFile__Group__1 )
-            // InternalBSharp.g:1801:2: rule__TopLevelFile__Group__0__Impl rule__TopLevelFile__Group__1
+            // InternalBSharp.g:1867:1: ( rule__TopLevelFile__Group__0__Impl rule__TopLevelFile__Group__1 )
+            // InternalBSharp.g:1868:2: rule__TopLevelFile__Group__0__Impl rule__TopLevelFile__Group__1
             {
             pushFollow(FOLLOW_5);
             rule__TopLevelFile__Group__0__Impl();
@@ -5853,21 +6114,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelFile__Group__0__Impl"
-    // InternalBSharp.g:1808:1: rule__TopLevelFile__Group__0__Impl : ( () ) ;
+    // InternalBSharp.g:1875:1: rule__TopLevelFile__Group__0__Impl : ( () ) ;
     public final void rule__TopLevelFile__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1812:1: ( ( () ) )
-            // InternalBSharp.g:1813:1: ( () )
+            // InternalBSharp.g:1879:1: ( ( () ) )
+            // InternalBSharp.g:1880:1: ( () )
             {
-            // InternalBSharp.g:1813:1: ( () )
-            // InternalBSharp.g:1814:2: ()
+            // InternalBSharp.g:1880:1: ( () )
+            // InternalBSharp.g:1881:2: ()
             {
              before(grammarAccess.getTopLevelFileAccess().getTopLevelFileAction_0()); 
-            // InternalBSharp.g:1815:2: ()
-            // InternalBSharp.g:1815:3: 
+            // InternalBSharp.g:1882:2: ()
+            // InternalBSharp.g:1882:3: 
             {
             }
 
@@ -5890,14 +6151,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelFile__Group__1"
-    // InternalBSharp.g:1823:1: rule__TopLevelFile__Group__1 : rule__TopLevelFile__Group__1__Impl rule__TopLevelFile__Group__2 ;
+    // InternalBSharp.g:1890:1: rule__TopLevelFile__Group__1 : rule__TopLevelFile__Group__1__Impl rule__TopLevelFile__Group__2 ;
     public final void rule__TopLevelFile__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1827:1: ( rule__TopLevelFile__Group__1__Impl rule__TopLevelFile__Group__2 )
-            // InternalBSharp.g:1828:2: rule__TopLevelFile__Group__1__Impl rule__TopLevelFile__Group__2
+            // InternalBSharp.g:1894:1: ( rule__TopLevelFile__Group__1__Impl rule__TopLevelFile__Group__2 )
+            // InternalBSharp.g:1895:2: rule__TopLevelFile__Group__1__Impl rule__TopLevelFile__Group__2
             {
             pushFollow(FOLLOW_5);
             rule__TopLevelFile__Group__1__Impl();
@@ -5928,29 +6189,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelFile__Group__1__Impl"
-    // InternalBSharp.g:1835:1: rule__TopLevelFile__Group__1__Impl : ( ( rule__TopLevelFile__NoImportElementsAssignment_1 )? ) ;
+    // InternalBSharp.g:1902:1: rule__TopLevelFile__Group__1__Impl : ( ( rule__TopLevelFile__NoImportElementsAssignment_1 )? ) ;
     public final void rule__TopLevelFile__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1839:1: ( ( ( rule__TopLevelFile__NoImportElementsAssignment_1 )? ) )
-            // InternalBSharp.g:1840:1: ( ( rule__TopLevelFile__NoImportElementsAssignment_1 )? )
+            // InternalBSharp.g:1906:1: ( ( ( rule__TopLevelFile__NoImportElementsAssignment_1 )? ) )
+            // InternalBSharp.g:1907:1: ( ( rule__TopLevelFile__NoImportElementsAssignment_1 )? )
             {
-            // InternalBSharp.g:1840:1: ( ( rule__TopLevelFile__NoImportElementsAssignment_1 )? )
-            // InternalBSharp.g:1841:2: ( rule__TopLevelFile__NoImportElementsAssignment_1 )?
+            // InternalBSharp.g:1907:1: ( ( rule__TopLevelFile__NoImportElementsAssignment_1 )? )
+            // InternalBSharp.g:1908:2: ( rule__TopLevelFile__NoImportElementsAssignment_1 )?
             {
              before(grammarAccess.getTopLevelFileAccess().getNoImportElementsAssignment_1()); 
-            // InternalBSharp.g:1842:2: ( rule__TopLevelFile__NoImportElementsAssignment_1 )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // InternalBSharp.g:1909:2: ( rule__TopLevelFile__NoImportElementsAssignment_1 )?
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( (LA17_0==36||LA17_0==47||LA17_0==49) ) {
-                alt17=1;
+            if ( (LA19_0==36||LA19_0==47||LA19_0==49) ) {
+                alt19=1;
             }
-            switch (alt17) {
+            switch (alt19) {
                 case 1 :
-                    // InternalBSharp.g:1842:3: rule__TopLevelFile__NoImportElementsAssignment_1
+                    // InternalBSharp.g:1909:3: rule__TopLevelFile__NoImportElementsAssignment_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__TopLevelFile__NoImportElementsAssignment_1();
@@ -5986,14 +6247,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelFile__Group__2"
-    // InternalBSharp.g:1850:1: rule__TopLevelFile__Group__2 : rule__TopLevelFile__Group__2__Impl ;
+    // InternalBSharp.g:1917:1: rule__TopLevelFile__Group__2 : rule__TopLevelFile__Group__2__Impl ;
     public final void rule__TopLevelFile__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1854:1: ( rule__TopLevelFile__Group__2__Impl )
-            // InternalBSharp.g:1855:2: rule__TopLevelFile__Group__2__Impl
+            // InternalBSharp.g:1921:1: ( rule__TopLevelFile__Group__2__Impl )
+            // InternalBSharp.g:1922:2: rule__TopLevelFile__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TopLevelFile__Group__2__Impl();
@@ -6019,33 +6280,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelFile__Group__2__Impl"
-    // InternalBSharp.g:1861:1: rule__TopLevelFile__Group__2__Impl : ( ( rule__TopLevelFile__TopLevelImportsAssignment_2 )* ) ;
+    // InternalBSharp.g:1928:1: rule__TopLevelFile__Group__2__Impl : ( ( rule__TopLevelFile__TopLevelImportsAssignment_2 )* ) ;
     public final void rule__TopLevelFile__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1865:1: ( ( ( rule__TopLevelFile__TopLevelImportsAssignment_2 )* ) )
-            // InternalBSharp.g:1866:1: ( ( rule__TopLevelFile__TopLevelImportsAssignment_2 )* )
+            // InternalBSharp.g:1932:1: ( ( ( rule__TopLevelFile__TopLevelImportsAssignment_2 )* ) )
+            // InternalBSharp.g:1933:1: ( ( rule__TopLevelFile__TopLevelImportsAssignment_2 )* )
             {
-            // InternalBSharp.g:1866:1: ( ( rule__TopLevelFile__TopLevelImportsAssignment_2 )* )
-            // InternalBSharp.g:1867:2: ( rule__TopLevelFile__TopLevelImportsAssignment_2 )*
+            // InternalBSharp.g:1933:1: ( ( rule__TopLevelFile__TopLevelImportsAssignment_2 )* )
+            // InternalBSharp.g:1934:2: ( rule__TopLevelFile__TopLevelImportsAssignment_2 )*
             {
              before(grammarAccess.getTopLevelFileAccess().getTopLevelImportsAssignment_2()); 
-            // InternalBSharp.g:1868:2: ( rule__TopLevelFile__TopLevelImportsAssignment_2 )*
-            loop18:
+            // InternalBSharp.g:1935:2: ( rule__TopLevelFile__TopLevelImportsAssignment_2 )*
+            loop20:
             do {
-                int alt18=2;
-                int LA18_0 = input.LA(1);
+                int alt20=2;
+                int LA20_0 = input.LA(1);
 
-                if ( ((LA18_0>=34 && LA18_0<=35)) ) {
-                    alt18=1;
+                if ( ((LA20_0>=34 && LA20_0<=35)) ) {
+                    alt20=1;
                 }
 
 
-                switch (alt18) {
+                switch (alt20) {
             	case 1 :
-            	    // InternalBSharp.g:1868:3: rule__TopLevelFile__TopLevelImportsAssignment_2
+            	    // InternalBSharp.g:1935:3: rule__TopLevelFile__TopLevelImportsAssignment_2
             	    {
             	    pushFollow(FOLLOW_8);
             	    rule__TopLevelFile__TopLevelImportsAssignment_2();
@@ -6057,7 +6318,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop18;
+            	    break loop20;
                 }
             } while (true);
 
@@ -6084,14 +6345,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__0"
-    // InternalBSharp.g:1877:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
+    // InternalBSharp.g:1944:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1881:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
-            // InternalBSharp.g:1882:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
+            // InternalBSharp.g:1948:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
+            // InternalBSharp.g:1949:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
             pushFollow(FOLLOW_9);
             rule__QualifiedName__Group__0__Impl();
@@ -6122,17 +6383,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__0__Impl"
-    // InternalBSharp.g:1889:1: rule__QualifiedName__Group__0__Impl : ( RULE_ID ) ;
+    // InternalBSharp.g:1956:1: rule__QualifiedName__Group__0__Impl : ( RULE_ID ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1893:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:1894:1: ( RULE_ID )
+            // InternalBSharp.g:1960:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:1961:1: ( RULE_ID )
             {
-            // InternalBSharp.g:1894:1: ( RULE_ID )
-            // InternalBSharp.g:1895:2: RULE_ID
+            // InternalBSharp.g:1961:1: ( RULE_ID )
+            // InternalBSharp.g:1962:2: RULE_ID
             {
              before(grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -6159,14 +6420,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__1"
-    // InternalBSharp.g:1904:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
+    // InternalBSharp.g:1971:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1908:1: ( rule__QualifiedName__Group__1__Impl )
-            // InternalBSharp.g:1909:2: rule__QualifiedName__Group__1__Impl
+            // InternalBSharp.g:1975:1: ( rule__QualifiedName__Group__1__Impl )
+            // InternalBSharp.g:1976:2: rule__QualifiedName__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group__1__Impl();
@@ -6192,33 +6453,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__1__Impl"
-    // InternalBSharp.g:1915:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
+    // InternalBSharp.g:1982:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1919:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
-            // InternalBSharp.g:1920:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // InternalBSharp.g:1986:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
+            // InternalBSharp.g:1987:1: ( ( rule__QualifiedName__Group_1__0 )* )
             {
-            // InternalBSharp.g:1920:1: ( ( rule__QualifiedName__Group_1__0 )* )
-            // InternalBSharp.g:1921:2: ( rule__QualifiedName__Group_1__0 )*
+            // InternalBSharp.g:1987:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // InternalBSharp.g:1988:2: ( rule__QualifiedName__Group_1__0 )*
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
-            // InternalBSharp.g:1922:2: ( rule__QualifiedName__Group_1__0 )*
-            loop19:
+            // InternalBSharp.g:1989:2: ( rule__QualifiedName__Group_1__0 )*
+            loop21:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt21=2;
+                int LA21_0 = input.LA(1);
 
-                if ( (LA19_0==33) ) {
-                    alt19=1;
+                if ( (LA21_0==33) ) {
+                    alt21=1;
                 }
 
 
-                switch (alt19) {
+                switch (alt21) {
             	case 1 :
-            	    // InternalBSharp.g:1922:3: rule__QualifiedName__Group_1__0
+            	    // InternalBSharp.g:1989:3: rule__QualifiedName__Group_1__0
             	    {
             	    pushFollow(FOLLOW_10);
             	    rule__QualifiedName__Group_1__0();
@@ -6230,7 +6491,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop21;
                 }
             } while (true);
 
@@ -6257,14 +6518,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0"
-    // InternalBSharp.g:1931:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
+    // InternalBSharp.g:1998:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
     public final void rule__QualifiedName__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1935:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
-            // InternalBSharp.g:1936:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
+            // InternalBSharp.g:2002:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
+            // InternalBSharp.g:2003:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
             {
             pushFollow(FOLLOW_4);
             rule__QualifiedName__Group_1__0__Impl();
@@ -6295,17 +6556,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0__Impl"
-    // InternalBSharp.g:1943:1: rule__QualifiedName__Group_1__0__Impl : ( '.' ) ;
+    // InternalBSharp.g:2010:1: rule__QualifiedName__Group_1__0__Impl : ( '.' ) ;
     public final void rule__QualifiedName__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1947:1: ( ( '.' ) )
-            // InternalBSharp.g:1948:1: ( '.' )
+            // InternalBSharp.g:2014:1: ( ( '.' ) )
+            // InternalBSharp.g:2015:1: ( '.' )
             {
-            // InternalBSharp.g:1948:1: ( '.' )
-            // InternalBSharp.g:1949:2: '.'
+            // InternalBSharp.g:2015:1: ( '.' )
+            // InternalBSharp.g:2016:2: '.'
             {
              before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
             match(input,33,FOLLOW_2); 
@@ -6332,14 +6593,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1"
-    // InternalBSharp.g:1958:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
+    // InternalBSharp.g:2025:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
     public final void rule__QualifiedName__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1962:1: ( rule__QualifiedName__Group_1__1__Impl )
-            // InternalBSharp.g:1963:2: rule__QualifiedName__Group_1__1__Impl
+            // InternalBSharp.g:2029:1: ( rule__QualifiedName__Group_1__1__Impl )
+            // InternalBSharp.g:2030:2: rule__QualifiedName__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group_1__1__Impl();
@@ -6365,17 +6626,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1__Impl"
-    // InternalBSharp.g:1969:1: rule__QualifiedName__Group_1__1__Impl : ( RULE_ID ) ;
+    // InternalBSharp.g:2036:1: rule__QualifiedName__Group_1__1__Impl : ( RULE_ID ) ;
     public final void rule__QualifiedName__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1973:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:1974:1: ( RULE_ID )
+            // InternalBSharp.g:2040:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:2041:1: ( RULE_ID )
             {
-            // InternalBSharp.g:1974:1: ( RULE_ID )
-            // InternalBSharp.g:1975:2: RULE_ID
+            // InternalBSharp.g:2041:1: ( RULE_ID )
+            // InternalBSharp.g:2042:2: RULE_ID
             {
              before(grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_1_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -6402,14 +6663,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelImport__Group__0"
-    // InternalBSharp.g:1985:1: rule__TopLevelImport__Group__0 : rule__TopLevelImport__Group__0__Impl rule__TopLevelImport__Group__1 ;
+    // InternalBSharp.g:2052:1: rule__TopLevelImport__Group__0 : rule__TopLevelImport__Group__0__Impl rule__TopLevelImport__Group__1 ;
     public final void rule__TopLevelImport__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:1989:1: ( rule__TopLevelImport__Group__0__Impl rule__TopLevelImport__Group__1 )
-            // InternalBSharp.g:1990:2: rule__TopLevelImport__Group__0__Impl rule__TopLevelImport__Group__1
+            // InternalBSharp.g:2056:1: ( rule__TopLevelImport__Group__0__Impl rule__TopLevelImport__Group__1 )
+            // InternalBSharp.g:2057:2: rule__TopLevelImport__Group__0__Impl rule__TopLevelImport__Group__1
             {
             pushFollow(FOLLOW_11);
             rule__TopLevelImport__Group__0__Impl();
@@ -6440,24 +6701,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelImport__Group__0__Impl"
-    // InternalBSharp.g:1997:1: rule__TopLevelImport__Group__0__Impl : ( ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* ) ) ;
+    // InternalBSharp.g:2064:1: rule__TopLevelImport__Group__0__Impl : ( ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* ) ) ;
     public final void rule__TopLevelImport__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2001:1: ( ( ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* ) ) )
-            // InternalBSharp.g:2002:1: ( ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* ) )
+            // InternalBSharp.g:2068:1: ( ( ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* ) ) )
+            // InternalBSharp.g:2069:1: ( ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* ) )
             {
-            // InternalBSharp.g:2002:1: ( ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* ) )
-            // InternalBSharp.g:2003:2: ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* )
+            // InternalBSharp.g:2069:1: ( ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* ) )
+            // InternalBSharp.g:2070:2: ( ( rule__TopLevelImport__Alternatives_0 ) ) ( ( rule__TopLevelImport__Alternatives_0 )* )
             {
-            // InternalBSharp.g:2003:2: ( ( rule__TopLevelImport__Alternatives_0 ) )
-            // InternalBSharp.g:2004:3: ( rule__TopLevelImport__Alternatives_0 )
+            // InternalBSharp.g:2070:2: ( ( rule__TopLevelImport__Alternatives_0 ) )
+            // InternalBSharp.g:2071:3: ( rule__TopLevelImport__Alternatives_0 )
             {
              before(grammarAccess.getTopLevelImportAccess().getAlternatives_0()); 
-            // InternalBSharp.g:2005:3: ( rule__TopLevelImport__Alternatives_0 )
-            // InternalBSharp.g:2005:4: rule__TopLevelImport__Alternatives_0
+            // InternalBSharp.g:2072:3: ( rule__TopLevelImport__Alternatives_0 )
+            // InternalBSharp.g:2072:4: rule__TopLevelImport__Alternatives_0
             {
             pushFollow(FOLLOW_8);
             rule__TopLevelImport__Alternatives_0();
@@ -6471,24 +6732,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             }
 
-            // InternalBSharp.g:2008:2: ( ( rule__TopLevelImport__Alternatives_0 )* )
-            // InternalBSharp.g:2009:3: ( rule__TopLevelImport__Alternatives_0 )*
+            // InternalBSharp.g:2075:2: ( ( rule__TopLevelImport__Alternatives_0 )* )
+            // InternalBSharp.g:2076:3: ( rule__TopLevelImport__Alternatives_0 )*
             {
              before(grammarAccess.getTopLevelImportAccess().getAlternatives_0()); 
-            // InternalBSharp.g:2010:3: ( rule__TopLevelImport__Alternatives_0 )*
-            loop20:
+            // InternalBSharp.g:2077:3: ( rule__TopLevelImport__Alternatives_0 )*
+            loop22:
             do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( ((LA20_0>=34 && LA20_0<=35)) ) {
-                    alt20=1;
+                if ( ((LA22_0>=34 && LA22_0<=35)) ) {
+                    alt22=1;
                 }
 
 
-                switch (alt20) {
+                switch (alt22) {
             	case 1 :
-            	    // InternalBSharp.g:2010:4: rule__TopLevelImport__Alternatives_0
+            	    // InternalBSharp.g:2077:4: rule__TopLevelImport__Alternatives_0
             	    {
             	    pushFollow(FOLLOW_8);
             	    rule__TopLevelImport__Alternatives_0();
@@ -6500,7 +6761,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop20;
+            	    break loop22;
                 }
             } while (true);
 
@@ -6530,14 +6791,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelImport__Group__1"
-    // InternalBSharp.g:2019:1: rule__TopLevelImport__Group__1 : rule__TopLevelImport__Group__1__Impl ;
+    // InternalBSharp.g:2086:1: rule__TopLevelImport__Group__1 : rule__TopLevelImport__Group__1__Impl ;
     public final void rule__TopLevelImport__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2023:1: ( rule__TopLevelImport__Group__1__Impl )
-            // InternalBSharp.g:2024:2: rule__TopLevelImport__Group__1__Impl
+            // InternalBSharp.g:2090:1: ( rule__TopLevelImport__Group__1__Impl )
+            // InternalBSharp.g:2091:2: rule__TopLevelImport__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TopLevelImport__Group__1__Impl();
@@ -6563,21 +6824,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelImport__Group__1__Impl"
-    // InternalBSharp.g:2030:1: rule__TopLevelImport__Group__1__Impl : ( ( rule__TopLevelImport__BodyElementsAssignment_1 ) ) ;
+    // InternalBSharp.g:2097:1: rule__TopLevelImport__Group__1__Impl : ( ( rule__TopLevelImport__BodyElementsAssignment_1 ) ) ;
     public final void rule__TopLevelImport__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2034:1: ( ( ( rule__TopLevelImport__BodyElementsAssignment_1 ) ) )
-            // InternalBSharp.g:2035:1: ( ( rule__TopLevelImport__BodyElementsAssignment_1 ) )
+            // InternalBSharp.g:2101:1: ( ( ( rule__TopLevelImport__BodyElementsAssignment_1 ) ) )
+            // InternalBSharp.g:2102:1: ( ( rule__TopLevelImport__BodyElementsAssignment_1 ) )
             {
-            // InternalBSharp.g:2035:1: ( ( rule__TopLevelImport__BodyElementsAssignment_1 ) )
-            // InternalBSharp.g:2036:2: ( rule__TopLevelImport__BodyElementsAssignment_1 )
+            // InternalBSharp.g:2102:1: ( ( rule__TopLevelImport__BodyElementsAssignment_1 ) )
+            // InternalBSharp.g:2103:2: ( rule__TopLevelImport__BodyElementsAssignment_1 )
             {
              before(grammarAccess.getTopLevelImportAccess().getBodyElementsAssignment_1()); 
-            // InternalBSharp.g:2037:2: ( rule__TopLevelImport__BodyElementsAssignment_1 )
-            // InternalBSharp.g:2037:3: rule__TopLevelImport__BodyElementsAssignment_1
+            // InternalBSharp.g:2104:2: ( rule__TopLevelImport__BodyElementsAssignment_1 )
+            // InternalBSharp.g:2104:3: rule__TopLevelImport__BodyElementsAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__TopLevelImport__BodyElementsAssignment_1();
@@ -6610,14 +6871,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__Group__0"
-    // InternalBSharp.g:2046:1: rule__GlobalImport__Group__0 : rule__GlobalImport__Group__0__Impl rule__GlobalImport__Group__1 ;
+    // InternalBSharp.g:2113:1: rule__GlobalImport__Group__0 : rule__GlobalImport__Group__0__Impl rule__GlobalImport__Group__1 ;
     public final void rule__GlobalImport__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2050:1: ( rule__GlobalImport__Group__0__Impl rule__GlobalImport__Group__1 )
-            // InternalBSharp.g:2051:2: rule__GlobalImport__Group__0__Impl rule__GlobalImport__Group__1
+            // InternalBSharp.g:2117:1: ( rule__GlobalImport__Group__0__Impl rule__GlobalImport__Group__1 )
+            // InternalBSharp.g:2118:2: rule__GlobalImport__Group__0__Impl rule__GlobalImport__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__GlobalImport__Group__0__Impl();
@@ -6648,17 +6909,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__Group__0__Impl"
-    // InternalBSharp.g:2058:1: rule__GlobalImport__Group__0__Impl : ( 'From' ) ;
+    // InternalBSharp.g:2125:1: rule__GlobalImport__Group__0__Impl : ( 'From' ) ;
     public final void rule__GlobalImport__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2062:1: ( ( 'From' ) )
-            // InternalBSharp.g:2063:1: ( 'From' )
+            // InternalBSharp.g:2129:1: ( ( 'From' ) )
+            // InternalBSharp.g:2130:1: ( 'From' )
             {
-            // InternalBSharp.g:2063:1: ( 'From' )
-            // InternalBSharp.g:2064:2: 'From'
+            // InternalBSharp.g:2130:1: ( 'From' )
+            // InternalBSharp.g:2131:2: 'From'
             {
              before(grammarAccess.getGlobalImportAccess().getFromKeyword_0()); 
             match(input,34,FOLLOW_2); 
@@ -6685,14 +6946,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__Group__1"
-    // InternalBSharp.g:2073:1: rule__GlobalImport__Group__1 : rule__GlobalImport__Group__1__Impl rule__GlobalImport__Group__2 ;
+    // InternalBSharp.g:2140:1: rule__GlobalImport__Group__1 : rule__GlobalImport__Group__1__Impl rule__GlobalImport__Group__2 ;
     public final void rule__GlobalImport__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2077:1: ( rule__GlobalImport__Group__1__Impl rule__GlobalImport__Group__2 )
-            // InternalBSharp.g:2078:2: rule__GlobalImport__Group__1__Impl rule__GlobalImport__Group__2
+            // InternalBSharp.g:2144:1: ( rule__GlobalImport__Group__1__Impl rule__GlobalImport__Group__2 )
+            // InternalBSharp.g:2145:2: rule__GlobalImport__Group__1__Impl rule__GlobalImport__Group__2
             {
             pushFollow(FOLLOW_12);
             rule__GlobalImport__Group__1__Impl();
@@ -6723,21 +6984,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__Group__1__Impl"
-    // InternalBSharp.g:2085:1: rule__GlobalImport__Group__1__Impl : ( ( rule__GlobalImport__ProjectAssignment_1 ) ) ;
+    // InternalBSharp.g:2152:1: rule__GlobalImport__Group__1__Impl : ( ( rule__GlobalImport__ProjectAssignment_1 ) ) ;
     public final void rule__GlobalImport__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2089:1: ( ( ( rule__GlobalImport__ProjectAssignment_1 ) ) )
-            // InternalBSharp.g:2090:1: ( ( rule__GlobalImport__ProjectAssignment_1 ) )
+            // InternalBSharp.g:2156:1: ( ( ( rule__GlobalImport__ProjectAssignment_1 ) ) )
+            // InternalBSharp.g:2157:1: ( ( rule__GlobalImport__ProjectAssignment_1 ) )
             {
-            // InternalBSharp.g:2090:1: ( ( rule__GlobalImport__ProjectAssignment_1 ) )
-            // InternalBSharp.g:2091:2: ( rule__GlobalImport__ProjectAssignment_1 )
+            // InternalBSharp.g:2157:1: ( ( rule__GlobalImport__ProjectAssignment_1 ) )
+            // InternalBSharp.g:2158:2: ( rule__GlobalImport__ProjectAssignment_1 )
             {
              before(grammarAccess.getGlobalImportAccess().getProjectAssignment_1()); 
-            // InternalBSharp.g:2092:2: ( rule__GlobalImport__ProjectAssignment_1 )
-            // InternalBSharp.g:2092:3: rule__GlobalImport__ProjectAssignment_1
+            // InternalBSharp.g:2159:2: ( rule__GlobalImport__ProjectAssignment_1 )
+            // InternalBSharp.g:2159:3: rule__GlobalImport__ProjectAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__GlobalImport__ProjectAssignment_1();
@@ -6770,14 +7031,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__Group__2"
-    // InternalBSharp.g:2100:1: rule__GlobalImport__Group__2 : rule__GlobalImport__Group__2__Impl rule__GlobalImport__Group__3 ;
+    // InternalBSharp.g:2167:1: rule__GlobalImport__Group__2 : rule__GlobalImport__Group__2__Impl rule__GlobalImport__Group__3 ;
     public final void rule__GlobalImport__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2104:1: ( rule__GlobalImport__Group__2__Impl rule__GlobalImport__Group__3 )
-            // InternalBSharp.g:2105:2: rule__GlobalImport__Group__2__Impl rule__GlobalImport__Group__3
+            // InternalBSharp.g:2171:1: ( rule__GlobalImport__Group__2__Impl rule__GlobalImport__Group__3 )
+            // InternalBSharp.g:2172:2: rule__GlobalImport__Group__2__Impl rule__GlobalImport__Group__3
             {
             pushFollow(FOLLOW_4);
             rule__GlobalImport__Group__2__Impl();
@@ -6808,17 +7069,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__Group__2__Impl"
-    // InternalBSharp.g:2112:1: rule__GlobalImport__Group__2__Impl : ( 'Import' ) ;
+    // InternalBSharp.g:2179:1: rule__GlobalImport__Group__2__Impl : ( 'Import' ) ;
     public final void rule__GlobalImport__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2116:1: ( ( 'Import' ) )
-            // InternalBSharp.g:2117:1: ( 'Import' )
+            // InternalBSharp.g:2183:1: ( ( 'Import' ) )
+            // InternalBSharp.g:2184:1: ( 'Import' )
             {
-            // InternalBSharp.g:2117:1: ( 'Import' )
-            // InternalBSharp.g:2118:2: 'Import'
+            // InternalBSharp.g:2184:1: ( 'Import' )
+            // InternalBSharp.g:2185:2: 'Import'
             {
              before(grammarAccess.getGlobalImportAccess().getImportKeyword_2()); 
             match(input,35,FOLLOW_2); 
@@ -6845,14 +7106,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__Group__3"
-    // InternalBSharp.g:2127:1: rule__GlobalImport__Group__3 : rule__GlobalImport__Group__3__Impl ;
+    // InternalBSharp.g:2194:1: rule__GlobalImport__Group__3 : rule__GlobalImport__Group__3__Impl ;
     public final void rule__GlobalImport__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2131:1: ( rule__GlobalImport__Group__3__Impl )
-            // InternalBSharp.g:2132:2: rule__GlobalImport__Group__3__Impl
+            // InternalBSharp.g:2198:1: ( rule__GlobalImport__Group__3__Impl )
+            // InternalBSharp.g:2199:2: rule__GlobalImport__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__GlobalImport__Group__3__Impl();
@@ -6878,24 +7139,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__Group__3__Impl"
-    // InternalBSharp.g:2138:1: rule__GlobalImport__Group__3__Impl : ( ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* ) ) ;
+    // InternalBSharp.g:2205:1: rule__GlobalImport__Group__3__Impl : ( ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* ) ) ;
     public final void rule__GlobalImport__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2142:1: ( ( ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* ) ) )
-            // InternalBSharp.g:2143:1: ( ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* ) )
+            // InternalBSharp.g:2209:1: ( ( ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* ) ) )
+            // InternalBSharp.g:2210:1: ( ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* ) )
             {
-            // InternalBSharp.g:2143:1: ( ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* ) )
-            // InternalBSharp.g:2144:2: ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* )
+            // InternalBSharp.g:2210:1: ( ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* ) )
+            // InternalBSharp.g:2211:2: ( ( rule__GlobalImport__FileImportsAssignment_3 ) ) ( ( rule__GlobalImport__FileImportsAssignment_3 )* )
             {
-            // InternalBSharp.g:2144:2: ( ( rule__GlobalImport__FileImportsAssignment_3 ) )
-            // InternalBSharp.g:2145:3: ( rule__GlobalImport__FileImportsAssignment_3 )
+            // InternalBSharp.g:2211:2: ( ( rule__GlobalImport__FileImportsAssignment_3 ) )
+            // InternalBSharp.g:2212:3: ( rule__GlobalImport__FileImportsAssignment_3 )
             {
              before(grammarAccess.getGlobalImportAccess().getFileImportsAssignment_3()); 
-            // InternalBSharp.g:2146:3: ( rule__GlobalImport__FileImportsAssignment_3 )
-            // InternalBSharp.g:2146:4: rule__GlobalImport__FileImportsAssignment_3
+            // InternalBSharp.g:2213:3: ( rule__GlobalImport__FileImportsAssignment_3 )
+            // InternalBSharp.g:2213:4: rule__GlobalImport__FileImportsAssignment_3
             {
             pushFollow(FOLLOW_13);
             rule__GlobalImport__FileImportsAssignment_3();
@@ -6909,24 +7170,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             }
 
-            // InternalBSharp.g:2149:2: ( ( rule__GlobalImport__FileImportsAssignment_3 )* )
-            // InternalBSharp.g:2150:3: ( rule__GlobalImport__FileImportsAssignment_3 )*
+            // InternalBSharp.g:2216:2: ( ( rule__GlobalImport__FileImportsAssignment_3 )* )
+            // InternalBSharp.g:2217:3: ( rule__GlobalImport__FileImportsAssignment_3 )*
             {
              before(grammarAccess.getGlobalImportAccess().getFileImportsAssignment_3()); 
-            // InternalBSharp.g:2151:3: ( rule__GlobalImport__FileImportsAssignment_3 )*
-            loop21:
+            // InternalBSharp.g:2218:3: ( rule__GlobalImport__FileImportsAssignment_3 )*
+            loop23:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA21_0==RULE_ID) ) {
-                    alt21=1;
+                if ( (LA23_0==RULE_ID) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt23) {
             	case 1 :
-            	    // InternalBSharp.g:2151:4: rule__GlobalImport__FileImportsAssignment_3
+            	    // InternalBSharp.g:2218:4: rule__GlobalImport__FileImportsAssignment_3
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__GlobalImport__FileImportsAssignment_3();
@@ -6938,7 +7199,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop23;
                 }
             } while (true);
 
@@ -6968,14 +7229,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__Group__0"
-    // InternalBSharp.g:2161:1: rule__FileImport__Group__0 : rule__FileImport__Group__0__Impl rule__FileImport__Group__1 ;
+    // InternalBSharp.g:2228:1: rule__FileImport__Group__0 : rule__FileImport__Group__0__Impl rule__FileImport__Group__1 ;
     public final void rule__FileImport__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2165:1: ( rule__FileImport__Group__0__Impl rule__FileImport__Group__1 )
-            // InternalBSharp.g:2166:2: rule__FileImport__Group__0__Impl rule__FileImport__Group__1
+            // InternalBSharp.g:2232:1: ( rule__FileImport__Group__0__Impl rule__FileImport__Group__1 )
+            // InternalBSharp.g:2233:2: rule__FileImport__Group__0__Impl rule__FileImport__Group__1
             {
             pushFollow(FOLLOW_9);
             rule__FileImport__Group__0__Impl();
@@ -7006,21 +7267,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__Group__0__Impl"
-    // InternalBSharp.g:2173:1: rule__FileImport__Group__0__Impl : ( ( rule__FileImport__FileNameAssignment_0 ) ) ;
+    // InternalBSharp.g:2240:1: rule__FileImport__Group__0__Impl : ( ( rule__FileImport__FileNameAssignment_0 ) ) ;
     public final void rule__FileImport__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2177:1: ( ( ( rule__FileImport__FileNameAssignment_0 ) ) )
-            // InternalBSharp.g:2178:1: ( ( rule__FileImport__FileNameAssignment_0 ) )
+            // InternalBSharp.g:2244:1: ( ( ( rule__FileImport__FileNameAssignment_0 ) ) )
+            // InternalBSharp.g:2245:1: ( ( rule__FileImport__FileNameAssignment_0 ) )
             {
-            // InternalBSharp.g:2178:1: ( ( rule__FileImport__FileNameAssignment_0 ) )
-            // InternalBSharp.g:2179:2: ( rule__FileImport__FileNameAssignment_0 )
+            // InternalBSharp.g:2245:1: ( ( rule__FileImport__FileNameAssignment_0 ) )
+            // InternalBSharp.g:2246:2: ( rule__FileImport__FileNameAssignment_0 )
             {
              before(grammarAccess.getFileImportAccess().getFileNameAssignment_0()); 
-            // InternalBSharp.g:2180:2: ( rule__FileImport__FileNameAssignment_0 )
-            // InternalBSharp.g:2180:3: rule__FileImport__FileNameAssignment_0
+            // InternalBSharp.g:2247:2: ( rule__FileImport__FileNameAssignment_0 )
+            // InternalBSharp.g:2247:3: rule__FileImport__FileNameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__FileImport__FileNameAssignment_0();
@@ -7053,14 +7314,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__Group__1"
-    // InternalBSharp.g:2188:1: rule__FileImport__Group__1 : rule__FileImport__Group__1__Impl ;
+    // InternalBSharp.g:2255:1: rule__FileImport__Group__1 : rule__FileImport__Group__1__Impl ;
     public final void rule__FileImport__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2192:1: ( rule__FileImport__Group__1__Impl )
-            // InternalBSharp.g:2193:2: rule__FileImport__Group__1__Impl
+            // InternalBSharp.g:2259:1: ( rule__FileImport__Group__1__Impl )
+            // InternalBSharp.g:2260:2: rule__FileImport__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__FileImport__Group__1__Impl();
@@ -7086,29 +7347,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__Group__1__Impl"
-    // InternalBSharp.g:2199:1: rule__FileImport__Group__1__Impl : ( ( rule__FileImport__Group_1__0 )? ) ;
+    // InternalBSharp.g:2266:1: rule__FileImport__Group__1__Impl : ( ( rule__FileImport__Group_1__0 )? ) ;
     public final void rule__FileImport__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2203:1: ( ( ( rule__FileImport__Group_1__0 )? ) )
-            // InternalBSharp.g:2204:1: ( ( rule__FileImport__Group_1__0 )? )
+            // InternalBSharp.g:2270:1: ( ( ( rule__FileImport__Group_1__0 )? ) )
+            // InternalBSharp.g:2271:1: ( ( rule__FileImport__Group_1__0 )? )
             {
-            // InternalBSharp.g:2204:1: ( ( rule__FileImport__Group_1__0 )? )
-            // InternalBSharp.g:2205:2: ( rule__FileImport__Group_1__0 )?
+            // InternalBSharp.g:2271:1: ( ( rule__FileImport__Group_1__0 )? )
+            // InternalBSharp.g:2272:2: ( rule__FileImport__Group_1__0 )?
             {
              before(grammarAccess.getFileImportAccess().getGroup_1()); 
-            // InternalBSharp.g:2206:2: ( rule__FileImport__Group_1__0 )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // InternalBSharp.g:2273:2: ( rule__FileImport__Group_1__0 )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA22_0==33) ) {
-                alt22=1;
+            if ( (LA24_0==33) ) {
+                alt24=1;
             }
-            switch (alt22) {
+            switch (alt24) {
                 case 1 :
-                    // InternalBSharp.g:2206:3: rule__FileImport__Group_1__0
+                    // InternalBSharp.g:2273:3: rule__FileImport__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__FileImport__Group_1__0();
@@ -7144,14 +7405,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__Group_1__0"
-    // InternalBSharp.g:2215:1: rule__FileImport__Group_1__0 : rule__FileImport__Group_1__0__Impl rule__FileImport__Group_1__1 ;
+    // InternalBSharp.g:2282:1: rule__FileImport__Group_1__0 : rule__FileImport__Group_1__0__Impl rule__FileImport__Group_1__1 ;
     public final void rule__FileImport__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2219:1: ( rule__FileImport__Group_1__0__Impl rule__FileImport__Group_1__1 )
-            // InternalBSharp.g:2220:2: rule__FileImport__Group_1__0__Impl rule__FileImport__Group_1__1
+            // InternalBSharp.g:2286:1: ( rule__FileImport__Group_1__0__Impl rule__FileImport__Group_1__1 )
+            // InternalBSharp.g:2287:2: rule__FileImport__Group_1__0__Impl rule__FileImport__Group_1__1
             {
             pushFollow(FOLLOW_14);
             rule__FileImport__Group_1__0__Impl();
@@ -7182,17 +7443,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__Group_1__0__Impl"
-    // InternalBSharp.g:2227:1: rule__FileImport__Group_1__0__Impl : ( '.' ) ;
+    // InternalBSharp.g:2294:1: rule__FileImport__Group_1__0__Impl : ( '.' ) ;
     public final void rule__FileImport__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2231:1: ( ( '.' ) )
-            // InternalBSharp.g:2232:1: ( '.' )
+            // InternalBSharp.g:2298:1: ( ( '.' ) )
+            // InternalBSharp.g:2299:1: ( '.' )
             {
-            // InternalBSharp.g:2232:1: ( '.' )
-            // InternalBSharp.g:2233:2: '.'
+            // InternalBSharp.g:2299:1: ( '.' )
+            // InternalBSharp.g:2300:2: '.'
             {
              before(grammarAccess.getFileImportAccess().getFullStopKeyword_1_0()); 
             match(input,33,FOLLOW_2); 
@@ -7219,14 +7480,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__Group_1__1"
-    // InternalBSharp.g:2242:1: rule__FileImport__Group_1__1 : rule__FileImport__Group_1__1__Impl ;
+    // InternalBSharp.g:2309:1: rule__FileImport__Group_1__1 : rule__FileImport__Group_1__1__Impl ;
     public final void rule__FileImport__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2246:1: ( rule__FileImport__Group_1__1__Impl )
-            // InternalBSharp.g:2247:2: rule__FileImport__Group_1__1__Impl
+            // InternalBSharp.g:2313:1: ( rule__FileImport__Group_1__1__Impl )
+            // InternalBSharp.g:2314:2: rule__FileImport__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__FileImport__Group_1__1__Impl();
@@ -7252,21 +7513,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__Group_1__1__Impl"
-    // InternalBSharp.g:2253:1: rule__FileImport__Group_1__1__Impl : ( ( rule__FileImport__Alternatives_1_1 ) ) ;
+    // InternalBSharp.g:2320:1: rule__FileImport__Group_1__1__Impl : ( ( rule__FileImport__Alternatives_1_1 ) ) ;
     public final void rule__FileImport__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2257:1: ( ( ( rule__FileImport__Alternatives_1_1 ) ) )
-            // InternalBSharp.g:2258:1: ( ( rule__FileImport__Alternatives_1_1 ) )
+            // InternalBSharp.g:2324:1: ( ( ( rule__FileImport__Alternatives_1_1 ) ) )
+            // InternalBSharp.g:2325:1: ( ( rule__FileImport__Alternatives_1_1 ) )
             {
-            // InternalBSharp.g:2258:1: ( ( rule__FileImport__Alternatives_1_1 ) )
-            // InternalBSharp.g:2259:2: ( rule__FileImport__Alternatives_1_1 )
+            // InternalBSharp.g:2325:1: ( ( rule__FileImport__Alternatives_1_1 ) )
+            // InternalBSharp.g:2326:2: ( rule__FileImport__Alternatives_1_1 )
             {
              before(grammarAccess.getFileImportAccess().getAlternatives_1_1()); 
-            // InternalBSharp.g:2260:2: ( rule__FileImport__Alternatives_1_1 )
-            // InternalBSharp.g:2260:3: rule__FileImport__Alternatives_1_1
+            // InternalBSharp.g:2327:2: ( rule__FileImport__Alternatives_1_1 )
+            // InternalBSharp.g:2327:3: rule__FileImport__Alternatives_1_1
             {
             pushFollow(FOLLOW_2);
             rule__FileImport__Alternatives_1_1();
@@ -7299,14 +7560,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LocalImport__Group__0"
-    // InternalBSharp.g:2269:1: rule__LocalImport__Group__0 : rule__LocalImport__Group__0__Impl rule__LocalImport__Group__1 ;
+    // InternalBSharp.g:2336:1: rule__LocalImport__Group__0 : rule__LocalImport__Group__0__Impl rule__LocalImport__Group__1 ;
     public final void rule__LocalImport__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2273:1: ( rule__LocalImport__Group__0__Impl rule__LocalImport__Group__1 )
-            // InternalBSharp.g:2274:2: rule__LocalImport__Group__0__Impl rule__LocalImport__Group__1
+            // InternalBSharp.g:2340:1: ( rule__LocalImport__Group__0__Impl rule__LocalImport__Group__1 )
+            // InternalBSharp.g:2341:2: rule__LocalImport__Group__0__Impl rule__LocalImport__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__LocalImport__Group__0__Impl();
@@ -7337,17 +7598,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LocalImport__Group__0__Impl"
-    // InternalBSharp.g:2281:1: rule__LocalImport__Group__0__Impl : ( 'Import' ) ;
+    // InternalBSharp.g:2348:1: rule__LocalImport__Group__0__Impl : ( 'Import' ) ;
     public final void rule__LocalImport__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2285:1: ( ( 'Import' ) )
-            // InternalBSharp.g:2286:1: ( 'Import' )
+            // InternalBSharp.g:2352:1: ( ( 'Import' ) )
+            // InternalBSharp.g:2353:1: ( 'Import' )
             {
-            // InternalBSharp.g:2286:1: ( 'Import' )
-            // InternalBSharp.g:2287:2: 'Import'
+            // InternalBSharp.g:2353:1: ( 'Import' )
+            // InternalBSharp.g:2354:2: 'Import'
             {
              before(grammarAccess.getLocalImportAccess().getImportKeyword_0()); 
             match(input,35,FOLLOW_2); 
@@ -7374,14 +7635,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LocalImport__Group__1"
-    // InternalBSharp.g:2296:1: rule__LocalImport__Group__1 : rule__LocalImport__Group__1__Impl ;
+    // InternalBSharp.g:2363:1: rule__LocalImport__Group__1 : rule__LocalImport__Group__1__Impl ;
     public final void rule__LocalImport__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2300:1: ( rule__LocalImport__Group__1__Impl )
-            // InternalBSharp.g:2301:2: rule__LocalImport__Group__1__Impl
+            // InternalBSharp.g:2367:1: ( rule__LocalImport__Group__1__Impl )
+            // InternalBSharp.g:2368:2: rule__LocalImport__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__LocalImport__Group__1__Impl();
@@ -7407,24 +7668,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LocalImport__Group__1__Impl"
-    // InternalBSharp.g:2307:1: rule__LocalImport__Group__1__Impl : ( ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* ) ) ;
+    // InternalBSharp.g:2374:1: rule__LocalImport__Group__1__Impl : ( ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* ) ) ;
     public final void rule__LocalImport__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2311:1: ( ( ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* ) ) )
-            // InternalBSharp.g:2312:1: ( ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* ) )
+            // InternalBSharp.g:2378:1: ( ( ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* ) ) )
+            // InternalBSharp.g:2379:1: ( ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* ) )
             {
-            // InternalBSharp.g:2312:1: ( ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* ) )
-            // InternalBSharp.g:2313:2: ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* )
+            // InternalBSharp.g:2379:1: ( ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* ) )
+            // InternalBSharp.g:2380:2: ( ( rule__LocalImport__FileImportsAssignment_1 ) ) ( ( rule__LocalImport__FileImportsAssignment_1 )* )
             {
-            // InternalBSharp.g:2313:2: ( ( rule__LocalImport__FileImportsAssignment_1 ) )
-            // InternalBSharp.g:2314:3: ( rule__LocalImport__FileImportsAssignment_1 )
+            // InternalBSharp.g:2380:2: ( ( rule__LocalImport__FileImportsAssignment_1 ) )
+            // InternalBSharp.g:2381:3: ( rule__LocalImport__FileImportsAssignment_1 )
             {
              before(grammarAccess.getLocalImportAccess().getFileImportsAssignment_1()); 
-            // InternalBSharp.g:2315:3: ( rule__LocalImport__FileImportsAssignment_1 )
-            // InternalBSharp.g:2315:4: rule__LocalImport__FileImportsAssignment_1
+            // InternalBSharp.g:2382:3: ( rule__LocalImport__FileImportsAssignment_1 )
+            // InternalBSharp.g:2382:4: rule__LocalImport__FileImportsAssignment_1
             {
             pushFollow(FOLLOW_13);
             rule__LocalImport__FileImportsAssignment_1();
@@ -7438,24 +7699,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             }
 
-            // InternalBSharp.g:2318:2: ( ( rule__LocalImport__FileImportsAssignment_1 )* )
-            // InternalBSharp.g:2319:3: ( rule__LocalImport__FileImportsAssignment_1 )*
+            // InternalBSharp.g:2385:2: ( ( rule__LocalImport__FileImportsAssignment_1 )* )
+            // InternalBSharp.g:2386:3: ( rule__LocalImport__FileImportsAssignment_1 )*
             {
              before(grammarAccess.getLocalImportAccess().getFileImportsAssignment_1()); 
-            // InternalBSharp.g:2320:3: ( rule__LocalImport__FileImportsAssignment_1 )*
-            loop23:
+            // InternalBSharp.g:2387:3: ( rule__LocalImport__FileImportsAssignment_1 )*
+            loop25:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt25=2;
+                int LA25_0 = input.LA(1);
 
-                if ( (LA23_0==RULE_ID) ) {
-                    alt23=1;
+                if ( (LA25_0==RULE_ID) ) {
+                    alt25=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt25) {
             	case 1 :
-            	    // InternalBSharp.g:2320:4: rule__LocalImport__FileImportsAssignment_1
+            	    // InternalBSharp.g:2387:4: rule__LocalImport__FileImportsAssignment_1
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__LocalImport__FileImportsAssignment_1();
@@ -7467,7 +7728,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop25;
                 }
             } while (true);
 
@@ -7497,14 +7758,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__0"
-    // InternalBSharp.g:2330:1: rule__Class__Group__0 : rule__Class__Group__0__Impl rule__Class__Group__1 ;
+    // InternalBSharp.g:2397:1: rule__Class__Group__0 : rule__Class__Group__0__Impl rule__Class__Group__1 ;
     public final void rule__Class__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2334:1: ( rule__Class__Group__0__Impl rule__Class__Group__1 )
-            // InternalBSharp.g:2335:2: rule__Class__Group__0__Impl rule__Class__Group__1
+            // InternalBSharp.g:2401:1: ( rule__Class__Group__0__Impl rule__Class__Group__1 )
+            // InternalBSharp.g:2402:2: rule__Class__Group__0__Impl rule__Class__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__Class__Group__0__Impl();
@@ -7535,17 +7796,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__0__Impl"
-    // InternalBSharp.g:2342:1: rule__Class__Group__0__Impl : ( 'Class' ) ;
+    // InternalBSharp.g:2409:1: rule__Class__Group__0__Impl : ( 'Class' ) ;
     public final void rule__Class__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2346:1: ( ( 'Class' ) )
-            // InternalBSharp.g:2347:1: ( 'Class' )
+            // InternalBSharp.g:2413:1: ( ( 'Class' ) )
+            // InternalBSharp.g:2414:1: ( 'Class' )
             {
-            // InternalBSharp.g:2347:1: ( 'Class' )
-            // InternalBSharp.g:2348:2: 'Class'
+            // InternalBSharp.g:2414:1: ( 'Class' )
+            // InternalBSharp.g:2415:2: 'Class'
             {
              before(grammarAccess.getClassAccess().getClassKeyword_0()); 
             match(input,36,FOLLOW_2); 
@@ -7572,14 +7833,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__1"
-    // InternalBSharp.g:2357:1: rule__Class__Group__1 : rule__Class__Group__1__Impl rule__Class__Group__2 ;
+    // InternalBSharp.g:2424:1: rule__Class__Group__1 : rule__Class__Group__1__Impl rule__Class__Group__2 ;
     public final void rule__Class__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2361:1: ( rule__Class__Group__1__Impl rule__Class__Group__2 )
-            // InternalBSharp.g:2362:2: rule__Class__Group__1__Impl rule__Class__Group__2
+            // InternalBSharp.g:2428:1: ( rule__Class__Group__1__Impl rule__Class__Group__2 )
+            // InternalBSharp.g:2429:2: rule__Class__Group__1__Impl rule__Class__Group__2
             {
             pushFollow(FOLLOW_15);
             rule__Class__Group__1__Impl();
@@ -7610,21 +7871,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__1__Impl"
-    // InternalBSharp.g:2369:1: rule__Class__Group__1__Impl : ( ( rule__Class__NameAssignment_1 ) ) ;
+    // InternalBSharp.g:2436:1: rule__Class__Group__1__Impl : ( ( rule__Class__NameAssignment_1 ) ) ;
     public final void rule__Class__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2373:1: ( ( ( rule__Class__NameAssignment_1 ) ) )
-            // InternalBSharp.g:2374:1: ( ( rule__Class__NameAssignment_1 ) )
+            // InternalBSharp.g:2440:1: ( ( ( rule__Class__NameAssignment_1 ) ) )
+            // InternalBSharp.g:2441:1: ( ( rule__Class__NameAssignment_1 ) )
             {
-            // InternalBSharp.g:2374:1: ( ( rule__Class__NameAssignment_1 ) )
-            // InternalBSharp.g:2375:2: ( rule__Class__NameAssignment_1 )
+            // InternalBSharp.g:2441:1: ( ( rule__Class__NameAssignment_1 ) )
+            // InternalBSharp.g:2442:2: ( rule__Class__NameAssignment_1 )
             {
              before(grammarAccess.getClassAccess().getNameAssignment_1()); 
-            // InternalBSharp.g:2376:2: ( rule__Class__NameAssignment_1 )
-            // InternalBSharp.g:2376:3: rule__Class__NameAssignment_1
+            // InternalBSharp.g:2443:2: ( rule__Class__NameAssignment_1 )
+            // InternalBSharp.g:2443:3: rule__Class__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Class__NameAssignment_1();
@@ -7657,14 +7918,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__2"
-    // InternalBSharp.g:2384:1: rule__Class__Group__2 : rule__Class__Group__2__Impl rule__Class__Group__3 ;
+    // InternalBSharp.g:2451:1: rule__Class__Group__2 : rule__Class__Group__2__Impl rule__Class__Group__3 ;
     public final void rule__Class__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2388:1: ( rule__Class__Group__2__Impl rule__Class__Group__3 )
-            // InternalBSharp.g:2389:2: rule__Class__Group__2__Impl rule__Class__Group__3
+            // InternalBSharp.g:2455:1: ( rule__Class__Group__2__Impl rule__Class__Group__3 )
+            // InternalBSharp.g:2456:2: rule__Class__Group__2__Impl rule__Class__Group__3
             {
             pushFollow(FOLLOW_15);
             rule__Class__Group__2__Impl();
@@ -7695,29 +7956,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__2__Impl"
-    // InternalBSharp.g:2396:1: rule__Class__Group__2__Impl : ( ( rule__Class__ContextAssignment_2 )? ) ;
+    // InternalBSharp.g:2463:1: rule__Class__Group__2__Impl : ( ( rule__Class__ContextAssignment_2 )? ) ;
     public final void rule__Class__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2400:1: ( ( ( rule__Class__ContextAssignment_2 )? ) )
-            // InternalBSharp.g:2401:1: ( ( rule__Class__ContextAssignment_2 )? )
+            // InternalBSharp.g:2467:1: ( ( ( rule__Class__ContextAssignment_2 )? ) )
+            // InternalBSharp.g:2468:1: ( ( rule__Class__ContextAssignment_2 )? )
             {
-            // InternalBSharp.g:2401:1: ( ( rule__Class__ContextAssignment_2 )? )
-            // InternalBSharp.g:2402:2: ( rule__Class__ContextAssignment_2 )?
+            // InternalBSharp.g:2468:1: ( ( rule__Class__ContextAssignment_2 )? )
+            // InternalBSharp.g:2469:2: ( rule__Class__ContextAssignment_2 )?
             {
              before(grammarAccess.getClassAccess().getContextAssignment_2()); 
-            // InternalBSharp.g:2403:2: ( rule__Class__ContextAssignment_2 )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // InternalBSharp.g:2470:2: ( rule__Class__ContextAssignment_2 )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA24_0==42) ) {
-                alt24=1;
+            if ( (LA26_0==42) ) {
+                alt26=1;
             }
-            switch (alt24) {
+            switch (alt26) {
                 case 1 :
-                    // InternalBSharp.g:2403:3: rule__Class__ContextAssignment_2
+                    // InternalBSharp.g:2470:3: rule__Class__ContextAssignment_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__Class__ContextAssignment_2();
@@ -7753,14 +8014,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__3"
-    // InternalBSharp.g:2411:1: rule__Class__Group__3 : rule__Class__Group__3__Impl rule__Class__Group__4 ;
+    // InternalBSharp.g:2478:1: rule__Class__Group__3 : rule__Class__Group__3__Impl rule__Class__Group__4 ;
     public final void rule__Class__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2415:1: ( rule__Class__Group__3__Impl rule__Class__Group__4 )
-            // InternalBSharp.g:2416:2: rule__Class__Group__3__Impl rule__Class__Group__4
+            // InternalBSharp.g:2482:1: ( rule__Class__Group__3__Impl rule__Class__Group__4 )
+            // InternalBSharp.g:2483:2: rule__Class__Group__3__Impl rule__Class__Group__4
             {
             pushFollow(FOLLOW_16);
             rule__Class__Group__3__Impl();
@@ -7791,21 +8052,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__3__Impl"
-    // InternalBSharp.g:2423:1: rule__Class__Group__3__Impl : ( ( rule__Class__Group_3__0 ) ) ;
+    // InternalBSharp.g:2490:1: rule__Class__Group__3__Impl : ( ( rule__Class__Group_3__0 ) ) ;
     public final void rule__Class__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2427:1: ( ( ( rule__Class__Group_3__0 ) ) )
-            // InternalBSharp.g:2428:1: ( ( rule__Class__Group_3__0 ) )
+            // InternalBSharp.g:2494:1: ( ( ( rule__Class__Group_3__0 ) ) )
+            // InternalBSharp.g:2495:1: ( ( rule__Class__Group_3__0 ) )
             {
-            // InternalBSharp.g:2428:1: ( ( rule__Class__Group_3__0 ) )
-            // InternalBSharp.g:2429:2: ( rule__Class__Group_3__0 )
+            // InternalBSharp.g:2495:1: ( ( rule__Class__Group_3__0 ) )
+            // InternalBSharp.g:2496:2: ( rule__Class__Group_3__0 )
             {
              before(grammarAccess.getClassAccess().getGroup_3()); 
-            // InternalBSharp.g:2430:2: ( rule__Class__Group_3__0 )
-            // InternalBSharp.g:2430:3: rule__Class__Group_3__0
+            // InternalBSharp.g:2497:2: ( rule__Class__Group_3__0 )
+            // InternalBSharp.g:2497:3: rule__Class__Group_3__0
             {
             pushFollow(FOLLOW_2);
             rule__Class__Group_3__0();
@@ -7838,14 +8099,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__4"
-    // InternalBSharp.g:2438:1: rule__Class__Group__4 : rule__Class__Group__4__Impl rule__Class__Group__5 ;
+    // InternalBSharp.g:2505:1: rule__Class__Group__4 : rule__Class__Group__4__Impl rule__Class__Group__5 ;
     public final void rule__Class__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2442:1: ( rule__Class__Group__4__Impl rule__Class__Group__5 )
-            // InternalBSharp.g:2443:2: rule__Class__Group__4__Impl rule__Class__Group__5
+            // InternalBSharp.g:2509:1: ( rule__Class__Group__4__Impl rule__Class__Group__5 )
+            // InternalBSharp.g:2510:2: rule__Class__Group__4__Impl rule__Class__Group__5
             {
             pushFollow(FOLLOW_16);
             rule__Class__Group__4__Impl();
@@ -7876,29 +8137,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__4__Impl"
-    // InternalBSharp.g:2450:1: rule__Class__Group__4__Impl : ( ( rule__Class__SupertypesAssignment_4 )? ) ;
+    // InternalBSharp.g:2517:1: rule__Class__Group__4__Impl : ( ( rule__Class__SupertypesAssignment_4 )? ) ;
     public final void rule__Class__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2454:1: ( ( ( rule__Class__SupertypesAssignment_4 )? ) )
-            // InternalBSharp.g:2455:1: ( ( rule__Class__SupertypesAssignment_4 )? )
+            // InternalBSharp.g:2521:1: ( ( ( rule__Class__SupertypesAssignment_4 )? ) )
+            // InternalBSharp.g:2522:1: ( ( rule__Class__SupertypesAssignment_4 )? )
             {
-            // InternalBSharp.g:2455:1: ( ( rule__Class__SupertypesAssignment_4 )? )
-            // InternalBSharp.g:2456:2: ( rule__Class__SupertypesAssignment_4 )?
+            // InternalBSharp.g:2522:1: ( ( rule__Class__SupertypesAssignment_4 )? )
+            // InternalBSharp.g:2523:2: ( rule__Class__SupertypesAssignment_4 )?
             {
              before(grammarAccess.getClassAccess().getSupertypesAssignment_4()); 
-            // InternalBSharp.g:2457:2: ( rule__Class__SupertypesAssignment_4 )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            // InternalBSharp.g:2524:2: ( rule__Class__SupertypesAssignment_4 )?
+            int alt27=2;
+            int LA27_0 = input.LA(1);
 
-            if ( (LA25_0==32) ) {
-                alt25=1;
+            if ( (LA27_0==32) ) {
+                alt27=1;
             }
-            switch (alt25) {
+            switch (alt27) {
                 case 1 :
-                    // InternalBSharp.g:2457:3: rule__Class__SupertypesAssignment_4
+                    // InternalBSharp.g:2524:3: rule__Class__SupertypesAssignment_4
                     {
                     pushFollow(FOLLOW_2);
                     rule__Class__SupertypesAssignment_4();
@@ -7934,14 +8195,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__5"
-    // InternalBSharp.g:2465:1: rule__Class__Group__5 : rule__Class__Group__5__Impl rule__Class__Group__6 ;
+    // InternalBSharp.g:2532:1: rule__Class__Group__5 : rule__Class__Group__5__Impl rule__Class__Group__6 ;
     public final void rule__Class__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2469:1: ( rule__Class__Group__5__Impl rule__Class__Group__6 )
-            // InternalBSharp.g:2470:2: rule__Class__Group__5__Impl rule__Class__Group__6
+            // InternalBSharp.g:2536:1: ( rule__Class__Group__5__Impl rule__Class__Group__6 )
+            // InternalBSharp.g:2537:2: rule__Class__Group__5__Impl rule__Class__Group__6
             {
             pushFollow(FOLLOW_16);
             rule__Class__Group__5__Impl();
@@ -7972,29 +8233,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__5__Impl"
-    // InternalBSharp.g:2477:1: rule__Class__Group__5__Impl : ( ( rule__Class__Group_5__0 )? ) ;
+    // InternalBSharp.g:2544:1: rule__Class__Group__5__Impl : ( ( rule__Class__Group_5__0 )? ) ;
     public final void rule__Class__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2481:1: ( ( ( rule__Class__Group_5__0 )? ) )
-            // InternalBSharp.g:2482:1: ( ( rule__Class__Group_5__0 )? )
+            // InternalBSharp.g:2548:1: ( ( ( rule__Class__Group_5__0 )? ) )
+            // InternalBSharp.g:2549:1: ( ( rule__Class__Group_5__0 )? )
             {
-            // InternalBSharp.g:2482:1: ( ( rule__Class__Group_5__0 )? )
-            // InternalBSharp.g:2483:2: ( rule__Class__Group_5__0 )?
+            // InternalBSharp.g:2549:1: ( ( rule__Class__Group_5__0 )? )
+            // InternalBSharp.g:2550:2: ( rule__Class__Group_5__0 )?
             {
              before(grammarAccess.getClassAccess().getGroup_5()); 
-            // InternalBSharp.g:2484:2: ( rule__Class__Group_5__0 )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            // InternalBSharp.g:2551:2: ( rule__Class__Group_5__0 )?
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA26_0==40) ) {
-                alt26=1;
+            if ( (LA28_0==40) ) {
+                alt28=1;
             }
-            switch (alt26) {
+            switch (alt28) {
                 case 1 :
-                    // InternalBSharp.g:2484:3: rule__Class__Group_5__0
+                    // InternalBSharp.g:2551:3: rule__Class__Group_5__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Class__Group_5__0();
@@ -8030,14 +8291,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__6"
-    // InternalBSharp.g:2492:1: rule__Class__Group__6 : rule__Class__Group__6__Impl rule__Class__Group__7 ;
+    // InternalBSharp.g:2559:1: rule__Class__Group__6 : rule__Class__Group__6__Impl rule__Class__Group__7 ;
     public final void rule__Class__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2496:1: ( rule__Class__Group__6__Impl rule__Class__Group__7 )
-            // InternalBSharp.g:2497:2: rule__Class__Group__6__Impl rule__Class__Group__7
+            // InternalBSharp.g:2563:1: ( rule__Class__Group__6__Impl rule__Class__Group__7 )
+            // InternalBSharp.g:2564:2: rule__Class__Group__6__Impl rule__Class__Group__7
             {
             pushFollow(FOLLOW_16);
             rule__Class__Group__6__Impl();
@@ -8068,29 +8329,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__6__Impl"
-    // InternalBSharp.g:2504:1: rule__Class__Group__6__Impl : ( ( rule__Class__WhereAssignment_6 )? ) ;
+    // InternalBSharp.g:2571:1: rule__Class__Group__6__Impl : ( ( rule__Class__WhereAssignment_6 )? ) ;
     public final void rule__Class__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2508:1: ( ( ( rule__Class__WhereAssignment_6 )? ) )
-            // InternalBSharp.g:2509:1: ( ( rule__Class__WhereAssignment_6 )? )
+            // InternalBSharp.g:2575:1: ( ( ( rule__Class__WhereAssignment_6 )? ) )
+            // InternalBSharp.g:2576:1: ( ( rule__Class__WhereAssignment_6 )? )
             {
-            // InternalBSharp.g:2509:1: ( ( rule__Class__WhereAssignment_6 )? )
-            // InternalBSharp.g:2510:2: ( rule__Class__WhereAssignment_6 )?
+            // InternalBSharp.g:2576:1: ( ( rule__Class__WhereAssignment_6 )? )
+            // InternalBSharp.g:2577:2: ( rule__Class__WhereAssignment_6 )?
             {
              before(grammarAccess.getClassAccess().getWhereAssignment_6()); 
-            // InternalBSharp.g:2511:2: ( rule__Class__WhereAssignment_6 )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // InternalBSharp.g:2578:2: ( rule__Class__WhereAssignment_6 )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA27_0==46) ) {
-                alt27=1;
+            if ( (LA29_0==46) ) {
+                alt29=1;
             }
-            switch (alt27) {
+            switch (alt29) {
                 case 1 :
-                    // InternalBSharp.g:2511:3: rule__Class__WhereAssignment_6
+                    // InternalBSharp.g:2578:3: rule__Class__WhereAssignment_6
                     {
                     pushFollow(FOLLOW_2);
                     rule__Class__WhereAssignment_6();
@@ -8126,14 +8387,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__7"
-    // InternalBSharp.g:2519:1: rule__Class__Group__7 : rule__Class__Group__7__Impl rule__Class__Group__8 ;
+    // InternalBSharp.g:2586:1: rule__Class__Group__7 : rule__Class__Group__7__Impl rule__Class__Group__8 ;
     public final void rule__Class__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2523:1: ( rule__Class__Group__7__Impl rule__Class__Group__8 )
-            // InternalBSharp.g:2524:2: rule__Class__Group__7__Impl rule__Class__Group__8
+            // InternalBSharp.g:2590:1: ( rule__Class__Group__7__Impl rule__Class__Group__8 )
+            // InternalBSharp.g:2591:2: rule__Class__Group__7__Impl rule__Class__Group__8
             {
             pushFollow(FOLLOW_16);
             rule__Class__Group__7__Impl();
@@ -8164,29 +8425,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__7__Impl"
-    // InternalBSharp.g:2531:1: rule__Class__Group__7__Impl : ( ( ';' )? ) ;
+    // InternalBSharp.g:2598:1: rule__Class__Group__7__Impl : ( ( ';' )? ) ;
     public final void rule__Class__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2535:1: ( ( ( ';' )? ) )
-            // InternalBSharp.g:2536:1: ( ( ';' )? )
+            // InternalBSharp.g:2602:1: ( ( ( ';' )? ) )
+            // InternalBSharp.g:2603:1: ( ( ';' )? )
             {
-            // InternalBSharp.g:2536:1: ( ( ';' )? )
-            // InternalBSharp.g:2537:2: ( ';' )?
+            // InternalBSharp.g:2603:1: ( ( ';' )? )
+            // InternalBSharp.g:2604:2: ( ';' )?
             {
              before(grammarAccess.getClassAccess().getSemicolonKeyword_7()); 
-            // InternalBSharp.g:2538:2: ( ';' )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // InternalBSharp.g:2605:2: ( ';' )?
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA28_0==37) ) {
-                alt28=1;
+            if ( (LA30_0==37) ) {
+                alt30=1;
             }
-            switch (alt28) {
+            switch (alt30) {
                 case 1 :
-                    // InternalBSharp.g:2538:3: ';'
+                    // InternalBSharp.g:2605:3: ';'
                     {
                     match(input,37,FOLLOW_2); 
 
@@ -8218,14 +8479,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__8"
-    // InternalBSharp.g:2546:1: rule__Class__Group__8 : rule__Class__Group__8__Impl ;
+    // InternalBSharp.g:2613:1: rule__Class__Group__8 : rule__Class__Group__8__Impl ;
     public final void rule__Class__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2550:1: ( rule__Class__Group__8__Impl )
-            // InternalBSharp.g:2551:2: rule__Class__Group__8__Impl
+            // InternalBSharp.g:2617:1: ( rule__Class__Group__8__Impl )
+            // InternalBSharp.g:2618:2: rule__Class__Group__8__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Class__Group__8__Impl();
@@ -8251,21 +8512,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__8__Impl"
-    // InternalBSharp.g:2557:1: rule__Class__Group__8__Impl : ( ( rule__Class__BlockAssignment_8 ) ) ;
+    // InternalBSharp.g:2624:1: rule__Class__Group__8__Impl : ( ( rule__Class__BlockAssignment_8 ) ) ;
     public final void rule__Class__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2561:1: ( ( ( rule__Class__BlockAssignment_8 ) ) )
-            // InternalBSharp.g:2562:1: ( ( rule__Class__BlockAssignment_8 ) )
+            // InternalBSharp.g:2628:1: ( ( ( rule__Class__BlockAssignment_8 ) ) )
+            // InternalBSharp.g:2629:1: ( ( rule__Class__BlockAssignment_8 ) )
             {
-            // InternalBSharp.g:2562:1: ( ( rule__Class__BlockAssignment_8 ) )
-            // InternalBSharp.g:2563:2: ( rule__Class__BlockAssignment_8 )
+            // InternalBSharp.g:2629:1: ( ( rule__Class__BlockAssignment_8 ) )
+            // InternalBSharp.g:2630:2: ( rule__Class__BlockAssignment_8 )
             {
              before(grammarAccess.getClassAccess().getBlockAssignment_8()); 
-            // InternalBSharp.g:2564:2: ( rule__Class__BlockAssignment_8 )
-            // InternalBSharp.g:2564:3: rule__Class__BlockAssignment_8
+            // InternalBSharp.g:2631:2: ( rule__Class__BlockAssignment_8 )
+            // InternalBSharp.g:2631:3: rule__Class__BlockAssignment_8
             {
             pushFollow(FOLLOW_2);
             rule__Class__BlockAssignment_8();
@@ -8298,14 +8559,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_3__0"
-    // InternalBSharp.g:2573:1: rule__Class__Group_3__0 : rule__Class__Group_3__0__Impl rule__Class__Group_3__1 ;
+    // InternalBSharp.g:2640:1: rule__Class__Group_3__0 : rule__Class__Group_3__0__Impl rule__Class__Group_3__1 ;
     public final void rule__Class__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2577:1: ( rule__Class__Group_3__0__Impl rule__Class__Group_3__1 )
-            // InternalBSharp.g:2578:2: rule__Class__Group_3__0__Impl rule__Class__Group_3__1
+            // InternalBSharp.g:2644:1: ( rule__Class__Group_3__0__Impl rule__Class__Group_3__1 )
+            // InternalBSharp.g:2645:2: rule__Class__Group_3__0__Impl rule__Class__Group_3__1
             {
             pushFollow(FOLLOW_4);
             rule__Class__Group_3__0__Impl();
@@ -8336,17 +8597,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_3__0__Impl"
-    // InternalBSharp.g:2585:1: rule__Class__Group_3__0__Impl : ( '[' ) ;
+    // InternalBSharp.g:2652:1: rule__Class__Group_3__0__Impl : ( '[' ) ;
     public final void rule__Class__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2589:1: ( ( '[' ) )
-            // InternalBSharp.g:2590:1: ( '[' )
+            // InternalBSharp.g:2656:1: ( ( '[' ) )
+            // InternalBSharp.g:2657:1: ( '[' )
             {
-            // InternalBSharp.g:2590:1: ( '[' )
-            // InternalBSharp.g:2591:2: '['
+            // InternalBSharp.g:2657:1: ( '[' )
+            // InternalBSharp.g:2658:2: '['
             {
              before(grammarAccess.getClassAccess().getLeftSquareBracketKeyword_3_0()); 
             match(input,38,FOLLOW_2); 
@@ -8373,14 +8634,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_3__1"
-    // InternalBSharp.g:2600:1: rule__Class__Group_3__1 : rule__Class__Group_3__1__Impl rule__Class__Group_3__2 ;
+    // InternalBSharp.g:2667:1: rule__Class__Group_3__1 : rule__Class__Group_3__1__Impl rule__Class__Group_3__2 ;
     public final void rule__Class__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2604:1: ( rule__Class__Group_3__1__Impl rule__Class__Group_3__2 )
-            // InternalBSharp.g:2605:2: rule__Class__Group_3__1__Impl rule__Class__Group_3__2
+            // InternalBSharp.g:2671:1: ( rule__Class__Group_3__1__Impl rule__Class__Group_3__2 )
+            // InternalBSharp.g:2672:2: rule__Class__Group_3__1__Impl rule__Class__Group_3__2
             {
             pushFollow(FOLLOW_17);
             rule__Class__Group_3__1__Impl();
@@ -8411,21 +8672,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_3__1__Impl"
-    // InternalBSharp.g:2612:1: rule__Class__Group_3__1__Impl : ( ( rule__Class__InstNameAssignment_3_1 ) ) ;
+    // InternalBSharp.g:2679:1: rule__Class__Group_3__1__Impl : ( ( rule__Class__InstNameAssignment_3_1 ) ) ;
     public final void rule__Class__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2616:1: ( ( ( rule__Class__InstNameAssignment_3_1 ) ) )
-            // InternalBSharp.g:2617:1: ( ( rule__Class__InstNameAssignment_3_1 ) )
+            // InternalBSharp.g:2683:1: ( ( ( rule__Class__InstNameAssignment_3_1 ) ) )
+            // InternalBSharp.g:2684:1: ( ( rule__Class__InstNameAssignment_3_1 ) )
             {
-            // InternalBSharp.g:2617:1: ( ( rule__Class__InstNameAssignment_3_1 ) )
-            // InternalBSharp.g:2618:2: ( rule__Class__InstNameAssignment_3_1 )
+            // InternalBSharp.g:2684:1: ( ( rule__Class__InstNameAssignment_3_1 ) )
+            // InternalBSharp.g:2685:2: ( rule__Class__InstNameAssignment_3_1 )
             {
              before(grammarAccess.getClassAccess().getInstNameAssignment_3_1()); 
-            // InternalBSharp.g:2619:2: ( rule__Class__InstNameAssignment_3_1 )
-            // InternalBSharp.g:2619:3: rule__Class__InstNameAssignment_3_1
+            // InternalBSharp.g:2686:2: ( rule__Class__InstNameAssignment_3_1 )
+            // InternalBSharp.g:2686:3: rule__Class__InstNameAssignment_3_1
             {
             pushFollow(FOLLOW_2);
             rule__Class__InstNameAssignment_3_1();
@@ -8458,14 +8719,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_3__2"
-    // InternalBSharp.g:2627:1: rule__Class__Group_3__2 : rule__Class__Group_3__2__Impl ;
+    // InternalBSharp.g:2694:1: rule__Class__Group_3__2 : rule__Class__Group_3__2__Impl ;
     public final void rule__Class__Group_3__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2631:1: ( rule__Class__Group_3__2__Impl )
-            // InternalBSharp.g:2632:2: rule__Class__Group_3__2__Impl
+            // InternalBSharp.g:2698:1: ( rule__Class__Group_3__2__Impl )
+            // InternalBSharp.g:2699:2: rule__Class__Group_3__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Class__Group_3__2__Impl();
@@ -8491,17 +8752,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_3__2__Impl"
-    // InternalBSharp.g:2638:1: rule__Class__Group_3__2__Impl : ( ']' ) ;
+    // InternalBSharp.g:2705:1: rule__Class__Group_3__2__Impl : ( ']' ) ;
     public final void rule__Class__Group_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2642:1: ( ( ']' ) )
-            // InternalBSharp.g:2643:1: ( ']' )
+            // InternalBSharp.g:2709:1: ( ( ']' ) )
+            // InternalBSharp.g:2710:1: ( ']' )
             {
-            // InternalBSharp.g:2643:1: ( ']' )
-            // InternalBSharp.g:2644:2: ']'
+            // InternalBSharp.g:2710:1: ( ']' )
+            // InternalBSharp.g:2711:2: ']'
             {
              before(grammarAccess.getClassAccess().getRightSquareBracketKeyword_3_2()); 
             match(input,39,FOLLOW_2); 
@@ -8528,14 +8789,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_5__0"
-    // InternalBSharp.g:2654:1: rule__Class__Group_5__0 : rule__Class__Group_5__0__Impl rule__Class__Group_5__1 ;
+    // InternalBSharp.g:2721:1: rule__Class__Group_5__0 : rule__Class__Group_5__0__Impl rule__Class__Group_5__1 ;
     public final void rule__Class__Group_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2658:1: ( rule__Class__Group_5__0__Impl rule__Class__Group_5__1 )
-            // InternalBSharp.g:2659:2: rule__Class__Group_5__0__Impl rule__Class__Group_5__1
+            // InternalBSharp.g:2725:1: ( rule__Class__Group_5__0__Impl rule__Class__Group_5__1 )
+            // InternalBSharp.g:2726:2: rule__Class__Group_5__0__Impl rule__Class__Group_5__1
             {
             pushFollow(FOLLOW_4);
             rule__Class__Group_5__0__Impl();
@@ -8566,17 +8827,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_5__0__Impl"
-    // InternalBSharp.g:2666:1: rule__Class__Group_5__0__Impl : ( '(' ) ;
+    // InternalBSharp.g:2733:1: rule__Class__Group_5__0__Impl : ( '(' ) ;
     public final void rule__Class__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2670:1: ( ( '(' ) )
-            // InternalBSharp.g:2671:1: ( '(' )
+            // InternalBSharp.g:2737:1: ( ( '(' ) )
+            // InternalBSharp.g:2738:1: ( '(' )
             {
-            // InternalBSharp.g:2671:1: ( '(' )
-            // InternalBSharp.g:2672:2: '('
+            // InternalBSharp.g:2738:1: ( '(' )
+            // InternalBSharp.g:2739:2: '('
             {
              before(grammarAccess.getClassAccess().getLeftParenthesisKeyword_5_0()); 
             match(input,40,FOLLOW_2); 
@@ -8603,14 +8864,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_5__1"
-    // InternalBSharp.g:2681:1: rule__Class__Group_5__1 : rule__Class__Group_5__1__Impl rule__Class__Group_5__2 ;
+    // InternalBSharp.g:2748:1: rule__Class__Group_5__1 : rule__Class__Group_5__1__Impl rule__Class__Group_5__2 ;
     public final void rule__Class__Group_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2685:1: ( rule__Class__Group_5__1__Impl rule__Class__Group_5__2 )
-            // InternalBSharp.g:2686:2: rule__Class__Group_5__1__Impl rule__Class__Group_5__2
+            // InternalBSharp.g:2752:1: ( rule__Class__Group_5__1__Impl rule__Class__Group_5__2 )
+            // InternalBSharp.g:2753:2: rule__Class__Group_5__1__Impl rule__Class__Group_5__2
             {
             pushFollow(FOLLOW_18);
             rule__Class__Group_5__1__Impl();
@@ -8641,21 +8902,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_5__1__Impl"
-    // InternalBSharp.g:2693:1: rule__Class__Group_5__1__Impl : ( ( rule__Class__VarListAssignment_5_1 ) ) ;
+    // InternalBSharp.g:2760:1: rule__Class__Group_5__1__Impl : ( ( rule__Class__VarListAssignment_5_1 ) ) ;
     public final void rule__Class__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2697:1: ( ( ( rule__Class__VarListAssignment_5_1 ) ) )
-            // InternalBSharp.g:2698:1: ( ( rule__Class__VarListAssignment_5_1 ) )
+            // InternalBSharp.g:2764:1: ( ( ( rule__Class__VarListAssignment_5_1 ) ) )
+            // InternalBSharp.g:2765:1: ( ( rule__Class__VarListAssignment_5_1 ) )
             {
-            // InternalBSharp.g:2698:1: ( ( rule__Class__VarListAssignment_5_1 ) )
-            // InternalBSharp.g:2699:2: ( rule__Class__VarListAssignment_5_1 )
+            // InternalBSharp.g:2765:1: ( ( rule__Class__VarListAssignment_5_1 ) )
+            // InternalBSharp.g:2766:2: ( rule__Class__VarListAssignment_5_1 )
             {
              before(grammarAccess.getClassAccess().getVarListAssignment_5_1()); 
-            // InternalBSharp.g:2700:2: ( rule__Class__VarListAssignment_5_1 )
-            // InternalBSharp.g:2700:3: rule__Class__VarListAssignment_5_1
+            // InternalBSharp.g:2767:2: ( rule__Class__VarListAssignment_5_1 )
+            // InternalBSharp.g:2767:3: rule__Class__VarListAssignment_5_1
             {
             pushFollow(FOLLOW_2);
             rule__Class__VarListAssignment_5_1();
@@ -8688,14 +8949,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_5__2"
-    // InternalBSharp.g:2708:1: rule__Class__Group_5__2 : rule__Class__Group_5__2__Impl ;
+    // InternalBSharp.g:2775:1: rule__Class__Group_5__2 : rule__Class__Group_5__2__Impl ;
     public final void rule__Class__Group_5__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2712:1: ( rule__Class__Group_5__2__Impl )
-            // InternalBSharp.g:2713:2: rule__Class__Group_5__2__Impl
+            // InternalBSharp.g:2779:1: ( rule__Class__Group_5__2__Impl )
+            // InternalBSharp.g:2780:2: rule__Class__Group_5__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Class__Group_5__2__Impl();
@@ -8721,17 +8982,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group_5__2__Impl"
-    // InternalBSharp.g:2719:1: rule__Class__Group_5__2__Impl : ( ')' ) ;
+    // InternalBSharp.g:2786:1: rule__Class__Group_5__2__Impl : ( ')' ) ;
     public final void rule__Class__Group_5__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2723:1: ( ( ')' ) )
-            // InternalBSharp.g:2724:1: ( ')' )
+            // InternalBSharp.g:2790:1: ( ( ')' ) )
+            // InternalBSharp.g:2791:1: ( ')' )
             {
-            // InternalBSharp.g:2724:1: ( ')' )
-            // InternalBSharp.g:2725:2: ')'
+            // InternalBSharp.g:2791:1: ( ')' )
+            // InternalBSharp.g:2792:2: ')'
             {
              before(grammarAccess.getClassAccess().getRightParenthesisKeyword_5_2()); 
             match(input,41,FOLLOW_2); 
@@ -8758,14 +9019,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyContext__Group__0"
-    // InternalBSharp.g:2735:1: rule__PolyContext__Group__0 : rule__PolyContext__Group__0__Impl rule__PolyContext__Group__1 ;
+    // InternalBSharp.g:2802:1: rule__PolyContext__Group__0 : rule__PolyContext__Group__0__Impl rule__PolyContext__Group__1 ;
     public final void rule__PolyContext__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2739:1: ( rule__PolyContext__Group__0__Impl rule__PolyContext__Group__1 )
-            // InternalBSharp.g:2740:2: rule__PolyContext__Group__0__Impl rule__PolyContext__Group__1
+            // InternalBSharp.g:2806:1: ( rule__PolyContext__Group__0__Impl rule__PolyContext__Group__1 )
+            // InternalBSharp.g:2807:2: rule__PolyContext__Group__0__Impl rule__PolyContext__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__PolyContext__Group__0__Impl();
@@ -8796,17 +9057,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyContext__Group__0__Impl"
-    // InternalBSharp.g:2747:1: rule__PolyContext__Group__0__Impl : ( '<' ) ;
+    // InternalBSharp.g:2814:1: rule__PolyContext__Group__0__Impl : ( '<' ) ;
     public final void rule__PolyContext__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2751:1: ( ( '<' ) )
-            // InternalBSharp.g:2752:1: ( '<' )
+            // InternalBSharp.g:2818:1: ( ( '<' ) )
+            // InternalBSharp.g:2819:1: ( '<' )
             {
-            // InternalBSharp.g:2752:1: ( '<' )
-            // InternalBSharp.g:2753:2: '<'
+            // InternalBSharp.g:2819:1: ( '<' )
+            // InternalBSharp.g:2820:2: '<'
             {
              before(grammarAccess.getPolyContextAccess().getLessThanSignKeyword_0()); 
             match(input,42,FOLLOW_2); 
@@ -8833,14 +9094,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyContext__Group__1"
-    // InternalBSharp.g:2762:1: rule__PolyContext__Group__1 : rule__PolyContext__Group__1__Impl rule__PolyContext__Group__2 ;
+    // InternalBSharp.g:2829:1: rule__PolyContext__Group__1 : rule__PolyContext__Group__1__Impl rule__PolyContext__Group__2 ;
     public final void rule__PolyContext__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2766:1: ( rule__PolyContext__Group__1__Impl rule__PolyContext__Group__2 )
-            // InternalBSharp.g:2767:2: rule__PolyContext__Group__1__Impl rule__PolyContext__Group__2
+            // InternalBSharp.g:2833:1: ( rule__PolyContext__Group__1__Impl rule__PolyContext__Group__2 )
+            // InternalBSharp.g:2834:2: rule__PolyContext__Group__1__Impl rule__PolyContext__Group__2
             {
             pushFollow(FOLLOW_19);
             rule__PolyContext__Group__1__Impl();
@@ -8871,24 +9132,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyContext__Group__1__Impl"
-    // InternalBSharp.g:2774:1: rule__PolyContext__Group__1__Impl : ( ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* ) ) ;
+    // InternalBSharp.g:2841:1: rule__PolyContext__Group__1__Impl : ( ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* ) ) ;
     public final void rule__PolyContext__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2778:1: ( ( ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* ) ) )
-            // InternalBSharp.g:2779:1: ( ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* ) )
+            // InternalBSharp.g:2845:1: ( ( ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* ) ) )
+            // InternalBSharp.g:2846:1: ( ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* ) )
             {
-            // InternalBSharp.g:2779:1: ( ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* ) )
-            // InternalBSharp.g:2780:2: ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* )
+            // InternalBSharp.g:2846:1: ( ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* ) )
+            // InternalBSharp.g:2847:2: ( ( rule__PolyContext__PolyTypesAssignment_1 ) ) ( ( rule__PolyContext__PolyTypesAssignment_1 )* )
             {
-            // InternalBSharp.g:2780:2: ( ( rule__PolyContext__PolyTypesAssignment_1 ) )
-            // InternalBSharp.g:2781:3: ( rule__PolyContext__PolyTypesAssignment_1 )
+            // InternalBSharp.g:2847:2: ( ( rule__PolyContext__PolyTypesAssignment_1 ) )
+            // InternalBSharp.g:2848:3: ( rule__PolyContext__PolyTypesAssignment_1 )
             {
              before(grammarAccess.getPolyContextAccess().getPolyTypesAssignment_1()); 
-            // InternalBSharp.g:2782:3: ( rule__PolyContext__PolyTypesAssignment_1 )
-            // InternalBSharp.g:2782:4: rule__PolyContext__PolyTypesAssignment_1
+            // InternalBSharp.g:2849:3: ( rule__PolyContext__PolyTypesAssignment_1 )
+            // InternalBSharp.g:2849:4: rule__PolyContext__PolyTypesAssignment_1
             {
             pushFollow(FOLLOW_13);
             rule__PolyContext__PolyTypesAssignment_1();
@@ -8902,24 +9163,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             }
 
-            // InternalBSharp.g:2785:2: ( ( rule__PolyContext__PolyTypesAssignment_1 )* )
-            // InternalBSharp.g:2786:3: ( rule__PolyContext__PolyTypesAssignment_1 )*
+            // InternalBSharp.g:2852:2: ( ( rule__PolyContext__PolyTypesAssignment_1 )* )
+            // InternalBSharp.g:2853:3: ( rule__PolyContext__PolyTypesAssignment_1 )*
             {
              before(grammarAccess.getPolyContextAccess().getPolyTypesAssignment_1()); 
-            // InternalBSharp.g:2787:3: ( rule__PolyContext__PolyTypesAssignment_1 )*
-            loop29:
+            // InternalBSharp.g:2854:3: ( rule__PolyContext__PolyTypesAssignment_1 )*
+            loop31:
             do {
-                int alt29=2;
-                int LA29_0 = input.LA(1);
+                int alt31=2;
+                int LA31_0 = input.LA(1);
 
-                if ( (LA29_0==RULE_ID) ) {
-                    alt29=1;
+                if ( (LA31_0==RULE_ID) ) {
+                    alt31=1;
                 }
 
 
-                switch (alt29) {
+                switch (alt31) {
             	case 1 :
-            	    // InternalBSharp.g:2787:4: rule__PolyContext__PolyTypesAssignment_1
+            	    // InternalBSharp.g:2854:4: rule__PolyContext__PolyTypesAssignment_1
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__PolyContext__PolyTypesAssignment_1();
@@ -8931,7 +9192,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop29;
+            	    break loop31;
                 }
             } while (true);
 
@@ -8961,14 +9222,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyContext__Group__2"
-    // InternalBSharp.g:2796:1: rule__PolyContext__Group__2 : rule__PolyContext__Group__2__Impl ;
+    // InternalBSharp.g:2863:1: rule__PolyContext__Group__2 : rule__PolyContext__Group__2__Impl ;
     public final void rule__PolyContext__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2800:1: ( rule__PolyContext__Group__2__Impl )
-            // InternalBSharp.g:2801:2: rule__PolyContext__Group__2__Impl
+            // InternalBSharp.g:2867:1: ( rule__PolyContext__Group__2__Impl )
+            // InternalBSharp.g:2868:2: rule__PolyContext__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PolyContext__Group__2__Impl();
@@ -8994,17 +9255,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyContext__Group__2__Impl"
-    // InternalBSharp.g:2807:1: rule__PolyContext__Group__2__Impl : ( '>' ) ;
+    // InternalBSharp.g:2874:1: rule__PolyContext__Group__2__Impl : ( '>' ) ;
     public final void rule__PolyContext__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2811:1: ( ( '>' ) )
-            // InternalBSharp.g:2812:1: ( '>' )
+            // InternalBSharp.g:2878:1: ( ( '>' ) )
+            // InternalBSharp.g:2879:1: ( '>' )
             {
-            // InternalBSharp.g:2812:1: ( '>' )
-            // InternalBSharp.g:2813:2: '>'
+            // InternalBSharp.g:2879:1: ( '>' )
+            // InternalBSharp.g:2880:2: '>'
             {
              before(grammarAccess.getPolyContextAccess().getGreaterThanSignKeyword_2()); 
             match(input,43,FOLLOW_2); 
@@ -9031,14 +9292,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group__0"
-    // InternalBSharp.g:2823:1: rule__PolyType__Group__0 : rule__PolyType__Group__0__Impl rule__PolyType__Group__1 ;
+    // InternalBSharp.g:2890:1: rule__PolyType__Group__0 : rule__PolyType__Group__0__Impl rule__PolyType__Group__1 ;
     public final void rule__PolyType__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2827:1: ( rule__PolyType__Group__0__Impl rule__PolyType__Group__1 )
-            // InternalBSharp.g:2828:2: rule__PolyType__Group__0__Impl rule__PolyType__Group__1
+            // InternalBSharp.g:2894:1: ( rule__PolyType__Group__0__Impl rule__PolyType__Group__1 )
+            // InternalBSharp.g:2895:2: rule__PolyType__Group__0__Impl rule__PolyType__Group__1
             {
             pushFollow(FOLLOW_6);
             rule__PolyType__Group__0__Impl();
@@ -9069,21 +9330,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group__0__Impl"
-    // InternalBSharp.g:2835:1: rule__PolyType__Group__0__Impl : ( ( rule__PolyType__NameAssignment_0 ) ) ;
+    // InternalBSharp.g:2902:1: rule__PolyType__Group__0__Impl : ( ( rule__PolyType__NameAssignment_0 ) ) ;
     public final void rule__PolyType__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2839:1: ( ( ( rule__PolyType__NameAssignment_0 ) ) )
-            // InternalBSharp.g:2840:1: ( ( rule__PolyType__NameAssignment_0 ) )
+            // InternalBSharp.g:2906:1: ( ( ( rule__PolyType__NameAssignment_0 ) ) )
+            // InternalBSharp.g:2907:1: ( ( rule__PolyType__NameAssignment_0 ) )
             {
-            // InternalBSharp.g:2840:1: ( ( rule__PolyType__NameAssignment_0 ) )
-            // InternalBSharp.g:2841:2: ( rule__PolyType__NameAssignment_0 )
+            // InternalBSharp.g:2907:1: ( ( rule__PolyType__NameAssignment_0 ) )
+            // InternalBSharp.g:2908:2: ( rule__PolyType__NameAssignment_0 )
             {
              before(grammarAccess.getPolyTypeAccess().getNameAssignment_0()); 
-            // InternalBSharp.g:2842:2: ( rule__PolyType__NameAssignment_0 )
-            // InternalBSharp.g:2842:3: rule__PolyType__NameAssignment_0
+            // InternalBSharp.g:2909:2: ( rule__PolyType__NameAssignment_0 )
+            // InternalBSharp.g:2909:3: rule__PolyType__NameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__PolyType__NameAssignment_0();
@@ -9116,14 +9377,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group__1"
-    // InternalBSharp.g:2850:1: rule__PolyType__Group__1 : rule__PolyType__Group__1__Impl ;
+    // InternalBSharp.g:2917:1: rule__PolyType__Group__1 : rule__PolyType__Group__1__Impl ;
     public final void rule__PolyType__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2854:1: ( rule__PolyType__Group__1__Impl )
-            // InternalBSharp.g:2855:2: rule__PolyType__Group__1__Impl
+            // InternalBSharp.g:2921:1: ( rule__PolyType__Group__1__Impl )
+            // InternalBSharp.g:2922:2: rule__PolyType__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PolyType__Group__1__Impl();
@@ -9149,29 +9410,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group__1__Impl"
-    // InternalBSharp.g:2861:1: rule__PolyType__Group__1__Impl : ( ( rule__PolyType__Group_1__0 )? ) ;
+    // InternalBSharp.g:2928:1: rule__PolyType__Group__1__Impl : ( ( rule__PolyType__Group_1__0 )? ) ;
     public final void rule__PolyType__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2865:1: ( ( ( rule__PolyType__Group_1__0 )? ) )
-            // InternalBSharp.g:2866:1: ( ( rule__PolyType__Group_1__0 )? )
+            // InternalBSharp.g:2932:1: ( ( ( rule__PolyType__Group_1__0 )? ) )
+            // InternalBSharp.g:2933:1: ( ( rule__PolyType__Group_1__0 )? )
             {
-            // InternalBSharp.g:2866:1: ( ( rule__PolyType__Group_1__0 )? )
-            // InternalBSharp.g:2867:2: ( rule__PolyType__Group_1__0 )?
+            // InternalBSharp.g:2933:1: ( ( rule__PolyType__Group_1__0 )? )
+            // InternalBSharp.g:2934:2: ( rule__PolyType__Group_1__0 )?
             {
              before(grammarAccess.getPolyTypeAccess().getGroup_1()); 
-            // InternalBSharp.g:2868:2: ( rule__PolyType__Group_1__0 )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            // InternalBSharp.g:2935:2: ( rule__PolyType__Group_1__0 )?
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA30_0==32) ) {
-                alt30=1;
+            if ( (LA32_0==32) ) {
+                alt32=1;
             }
-            switch (alt30) {
+            switch (alt32) {
                 case 1 :
-                    // InternalBSharp.g:2868:3: rule__PolyType__Group_1__0
+                    // InternalBSharp.g:2935:3: rule__PolyType__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PolyType__Group_1__0();
@@ -9207,14 +9468,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1__0"
-    // InternalBSharp.g:2877:1: rule__PolyType__Group_1__0 : rule__PolyType__Group_1__0__Impl rule__PolyType__Group_1__1 ;
+    // InternalBSharp.g:2944:1: rule__PolyType__Group_1__0 : rule__PolyType__Group_1__0__Impl rule__PolyType__Group_1__1 ;
     public final void rule__PolyType__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2881:1: ( rule__PolyType__Group_1__0__Impl rule__PolyType__Group_1__1 )
-            // InternalBSharp.g:2882:2: rule__PolyType__Group_1__0__Impl rule__PolyType__Group_1__1
+            // InternalBSharp.g:2948:1: ( rule__PolyType__Group_1__0__Impl rule__PolyType__Group_1__1 )
+            // InternalBSharp.g:2949:2: rule__PolyType__Group_1__0__Impl rule__PolyType__Group_1__1
             {
             pushFollow(FOLLOW_4);
             rule__PolyType__Group_1__0__Impl();
@@ -9245,17 +9506,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1__0__Impl"
-    // InternalBSharp.g:2889:1: rule__PolyType__Group_1__0__Impl : ( ':' ) ;
+    // InternalBSharp.g:2956:1: rule__PolyType__Group_1__0__Impl : ( ':' ) ;
     public final void rule__PolyType__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2893:1: ( ( ':' ) )
-            // InternalBSharp.g:2894:1: ( ':' )
+            // InternalBSharp.g:2960:1: ( ( ':' ) )
+            // InternalBSharp.g:2961:1: ( ':' )
             {
-            // InternalBSharp.g:2894:1: ( ':' )
-            // InternalBSharp.g:2895:2: ':'
+            // InternalBSharp.g:2961:1: ( ':' )
+            // InternalBSharp.g:2962:2: ':'
             {
              before(grammarAccess.getPolyTypeAccess().getColonKeyword_1_0()); 
             match(input,32,FOLLOW_2); 
@@ -9282,14 +9543,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1__1"
-    // InternalBSharp.g:2904:1: rule__PolyType__Group_1__1 : rule__PolyType__Group_1__1__Impl rule__PolyType__Group_1__2 ;
+    // InternalBSharp.g:2971:1: rule__PolyType__Group_1__1 : rule__PolyType__Group_1__1__Impl rule__PolyType__Group_1__2 ;
     public final void rule__PolyType__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2908:1: ( rule__PolyType__Group_1__1__Impl rule__PolyType__Group_1__2 )
-            // InternalBSharp.g:2909:2: rule__PolyType__Group_1__1__Impl rule__PolyType__Group_1__2
+            // InternalBSharp.g:2975:1: ( rule__PolyType__Group_1__1__Impl rule__PolyType__Group_1__2 )
+            // InternalBSharp.g:2976:2: rule__PolyType__Group_1__1__Impl rule__PolyType__Group_1__2
             {
             pushFollow(FOLLOW_20);
             rule__PolyType__Group_1__1__Impl();
@@ -9320,21 +9581,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1__1__Impl"
-    // InternalBSharp.g:2916:1: rule__PolyType__Group_1__1__Impl : ( ( rule__PolyType__SuperTypesAssignment_1_1 ) ) ;
+    // InternalBSharp.g:2983:1: rule__PolyType__Group_1__1__Impl : ( ( rule__PolyType__SuperTypesAssignment_1_1 ) ) ;
     public final void rule__PolyType__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2920:1: ( ( ( rule__PolyType__SuperTypesAssignment_1_1 ) ) )
-            // InternalBSharp.g:2921:1: ( ( rule__PolyType__SuperTypesAssignment_1_1 ) )
+            // InternalBSharp.g:2987:1: ( ( ( rule__PolyType__SuperTypesAssignment_1_1 ) ) )
+            // InternalBSharp.g:2988:1: ( ( rule__PolyType__SuperTypesAssignment_1_1 ) )
             {
-            // InternalBSharp.g:2921:1: ( ( rule__PolyType__SuperTypesAssignment_1_1 ) )
-            // InternalBSharp.g:2922:2: ( rule__PolyType__SuperTypesAssignment_1_1 )
+            // InternalBSharp.g:2988:1: ( ( rule__PolyType__SuperTypesAssignment_1_1 ) )
+            // InternalBSharp.g:2989:2: ( rule__PolyType__SuperTypesAssignment_1_1 )
             {
              before(grammarAccess.getPolyTypeAccess().getSuperTypesAssignment_1_1()); 
-            // InternalBSharp.g:2923:2: ( rule__PolyType__SuperTypesAssignment_1_1 )
-            // InternalBSharp.g:2923:3: rule__PolyType__SuperTypesAssignment_1_1
+            // InternalBSharp.g:2990:2: ( rule__PolyType__SuperTypesAssignment_1_1 )
+            // InternalBSharp.g:2990:3: rule__PolyType__SuperTypesAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__PolyType__SuperTypesAssignment_1_1();
@@ -9367,14 +9628,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1__2"
-    // InternalBSharp.g:2931:1: rule__PolyType__Group_1__2 : rule__PolyType__Group_1__2__Impl ;
+    // InternalBSharp.g:2998:1: rule__PolyType__Group_1__2 : rule__PolyType__Group_1__2__Impl ;
     public final void rule__PolyType__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2935:1: ( rule__PolyType__Group_1__2__Impl )
-            // InternalBSharp.g:2936:2: rule__PolyType__Group_1__2__Impl
+            // InternalBSharp.g:3002:1: ( rule__PolyType__Group_1__2__Impl )
+            // InternalBSharp.g:3003:2: rule__PolyType__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PolyType__Group_1__2__Impl();
@@ -9400,33 +9661,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1__2__Impl"
-    // InternalBSharp.g:2942:1: rule__PolyType__Group_1__2__Impl : ( ( rule__PolyType__Group_1_2__0 )* ) ;
+    // InternalBSharp.g:3009:1: rule__PolyType__Group_1__2__Impl : ( ( rule__PolyType__Group_1_2__0 )* ) ;
     public final void rule__PolyType__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2946:1: ( ( ( rule__PolyType__Group_1_2__0 )* ) )
-            // InternalBSharp.g:2947:1: ( ( rule__PolyType__Group_1_2__0 )* )
+            // InternalBSharp.g:3013:1: ( ( ( rule__PolyType__Group_1_2__0 )* ) )
+            // InternalBSharp.g:3014:1: ( ( rule__PolyType__Group_1_2__0 )* )
             {
-            // InternalBSharp.g:2947:1: ( ( rule__PolyType__Group_1_2__0 )* )
-            // InternalBSharp.g:2948:2: ( rule__PolyType__Group_1_2__0 )*
+            // InternalBSharp.g:3014:1: ( ( rule__PolyType__Group_1_2__0 )* )
+            // InternalBSharp.g:3015:2: ( rule__PolyType__Group_1_2__0 )*
             {
              before(grammarAccess.getPolyTypeAccess().getGroup_1_2()); 
-            // InternalBSharp.g:2949:2: ( rule__PolyType__Group_1_2__0 )*
-            loop31:
+            // InternalBSharp.g:3016:2: ( rule__PolyType__Group_1_2__0 )*
+            loop33:
             do {
-                int alt31=2;
-                int LA31_0 = input.LA(1);
+                int alt33=2;
+                int LA33_0 = input.LA(1);
 
-                if ( (LA31_0==44) ) {
-                    alt31=1;
+                if ( (LA33_0==44) ) {
+                    alt33=1;
                 }
 
 
-                switch (alt31) {
+                switch (alt33) {
             	case 1 :
-            	    // InternalBSharp.g:2949:3: rule__PolyType__Group_1_2__0
+            	    // InternalBSharp.g:3016:3: rule__PolyType__Group_1_2__0
             	    {
             	    pushFollow(FOLLOW_21);
             	    rule__PolyType__Group_1_2__0();
@@ -9438,7 +9699,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop31;
+            	    break loop33;
                 }
             } while (true);
 
@@ -9465,14 +9726,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1_2__0"
-    // InternalBSharp.g:2958:1: rule__PolyType__Group_1_2__0 : rule__PolyType__Group_1_2__0__Impl rule__PolyType__Group_1_2__1 ;
+    // InternalBSharp.g:3025:1: rule__PolyType__Group_1_2__0 : rule__PolyType__Group_1_2__0__Impl rule__PolyType__Group_1_2__1 ;
     public final void rule__PolyType__Group_1_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2962:1: ( rule__PolyType__Group_1_2__0__Impl rule__PolyType__Group_1_2__1 )
-            // InternalBSharp.g:2963:2: rule__PolyType__Group_1_2__0__Impl rule__PolyType__Group_1_2__1
+            // InternalBSharp.g:3029:1: ( rule__PolyType__Group_1_2__0__Impl rule__PolyType__Group_1_2__1 )
+            // InternalBSharp.g:3030:2: rule__PolyType__Group_1_2__0__Impl rule__PolyType__Group_1_2__1
             {
             pushFollow(FOLLOW_4);
             rule__PolyType__Group_1_2__0__Impl();
@@ -9503,17 +9764,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1_2__0__Impl"
-    // InternalBSharp.g:2970:1: rule__PolyType__Group_1_2__0__Impl : ( ',' ) ;
+    // InternalBSharp.g:3037:1: rule__PolyType__Group_1_2__0__Impl : ( ',' ) ;
     public final void rule__PolyType__Group_1_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2974:1: ( ( ',' ) )
-            // InternalBSharp.g:2975:1: ( ',' )
+            // InternalBSharp.g:3041:1: ( ( ',' ) )
+            // InternalBSharp.g:3042:1: ( ',' )
             {
-            // InternalBSharp.g:2975:1: ( ',' )
-            // InternalBSharp.g:2976:2: ','
+            // InternalBSharp.g:3042:1: ( ',' )
+            // InternalBSharp.g:3043:2: ','
             {
              before(grammarAccess.getPolyTypeAccess().getCommaKeyword_1_2_0()); 
             match(input,44,FOLLOW_2); 
@@ -9540,14 +9801,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1_2__1"
-    // InternalBSharp.g:2985:1: rule__PolyType__Group_1_2__1 : rule__PolyType__Group_1_2__1__Impl ;
+    // InternalBSharp.g:3052:1: rule__PolyType__Group_1_2__1 : rule__PolyType__Group_1_2__1__Impl ;
     public final void rule__PolyType__Group_1_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2989:1: ( rule__PolyType__Group_1_2__1__Impl )
-            // InternalBSharp.g:2990:2: rule__PolyType__Group_1_2__1__Impl
+            // InternalBSharp.g:3056:1: ( rule__PolyType__Group_1_2__1__Impl )
+            // InternalBSharp.g:3057:2: rule__PolyType__Group_1_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PolyType__Group_1_2__1__Impl();
@@ -9573,21 +9834,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__Group_1_2__1__Impl"
-    // InternalBSharp.g:2996:1: rule__PolyType__Group_1_2__1__Impl : ( ( rule__PolyType__SuperTypesAssignment_1_2_1 ) ) ;
+    // InternalBSharp.g:3063:1: rule__PolyType__Group_1_2__1__Impl : ( ( rule__PolyType__SuperTypesAssignment_1_2_1 ) ) ;
     public final void rule__PolyType__Group_1_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3000:1: ( ( ( rule__PolyType__SuperTypesAssignment_1_2_1 ) ) )
-            // InternalBSharp.g:3001:1: ( ( rule__PolyType__SuperTypesAssignment_1_2_1 ) )
+            // InternalBSharp.g:3067:1: ( ( ( rule__PolyType__SuperTypesAssignment_1_2_1 ) ) )
+            // InternalBSharp.g:3068:1: ( ( rule__PolyType__SuperTypesAssignment_1_2_1 ) )
             {
-            // InternalBSharp.g:3001:1: ( ( rule__PolyType__SuperTypesAssignment_1_2_1 ) )
-            // InternalBSharp.g:3002:2: ( rule__PolyType__SuperTypesAssignment_1_2_1 )
+            // InternalBSharp.g:3068:1: ( ( rule__PolyType__SuperTypesAssignment_1_2_1 ) )
+            // InternalBSharp.g:3069:2: ( rule__PolyType__SuperTypesAssignment_1_2_1 )
             {
              before(grammarAccess.getPolyTypeAccess().getSuperTypesAssignment_1_2_1()); 
-            // InternalBSharp.g:3003:2: ( rule__PolyType__SuperTypesAssignment_1_2_1 )
-            // InternalBSharp.g:3003:3: rule__PolyType__SuperTypesAssignment_1_2_1
+            // InternalBSharp.g:3070:2: ( rule__PolyType__SuperTypesAssignment_1_2_1 )
+            // InternalBSharp.g:3070:3: rule__PolyType__SuperTypesAssignment_1_2_1
             {
             pushFollow(FOLLOW_2);
             rule__PolyType__SuperTypesAssignment_1_2_1();
@@ -9620,14 +9881,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group__0"
-    // InternalBSharp.g:3012:1: rule__SuperTypeList__Group__0 : rule__SuperTypeList__Group__0__Impl rule__SuperTypeList__Group__1 ;
+    // InternalBSharp.g:3079:1: rule__SuperTypeList__Group__0 : rule__SuperTypeList__Group__0__Impl rule__SuperTypeList__Group__1 ;
     public final void rule__SuperTypeList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3016:1: ( rule__SuperTypeList__Group__0__Impl rule__SuperTypeList__Group__1 )
-            // InternalBSharp.g:3017:2: rule__SuperTypeList__Group__0__Impl rule__SuperTypeList__Group__1
+            // InternalBSharp.g:3083:1: ( rule__SuperTypeList__Group__0__Impl rule__SuperTypeList__Group__1 )
+            // InternalBSharp.g:3084:2: rule__SuperTypeList__Group__0__Impl rule__SuperTypeList__Group__1
             {
             pushFollow(FOLLOW_22);
             rule__SuperTypeList__Group__0__Impl();
@@ -9658,17 +9919,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group__0__Impl"
-    // InternalBSharp.g:3024:1: rule__SuperTypeList__Group__0__Impl : ( ':' ) ;
+    // InternalBSharp.g:3091:1: rule__SuperTypeList__Group__0__Impl : ( ':' ) ;
     public final void rule__SuperTypeList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3028:1: ( ( ':' ) )
-            // InternalBSharp.g:3029:1: ( ':' )
+            // InternalBSharp.g:3095:1: ( ( ':' ) )
+            // InternalBSharp.g:3096:1: ( ':' )
             {
-            // InternalBSharp.g:3029:1: ( ':' )
-            // InternalBSharp.g:3030:2: ':'
+            // InternalBSharp.g:3096:1: ( ':' )
+            // InternalBSharp.g:3097:2: ':'
             {
              before(grammarAccess.getSuperTypeListAccess().getColonKeyword_0()); 
             match(input,32,FOLLOW_2); 
@@ -9695,14 +9956,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group__1"
-    // InternalBSharp.g:3039:1: rule__SuperTypeList__Group__1 : rule__SuperTypeList__Group__1__Impl rule__SuperTypeList__Group__2 ;
+    // InternalBSharp.g:3106:1: rule__SuperTypeList__Group__1 : rule__SuperTypeList__Group__1__Impl rule__SuperTypeList__Group__2 ;
     public final void rule__SuperTypeList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3043:1: ( rule__SuperTypeList__Group__1__Impl rule__SuperTypeList__Group__2 )
-            // InternalBSharp.g:3044:2: rule__SuperTypeList__Group__1__Impl rule__SuperTypeList__Group__2
+            // InternalBSharp.g:3110:1: ( rule__SuperTypeList__Group__1__Impl rule__SuperTypeList__Group__2 )
+            // InternalBSharp.g:3111:2: rule__SuperTypeList__Group__1__Impl rule__SuperTypeList__Group__2
             {
             pushFollow(FOLLOW_20);
             rule__SuperTypeList__Group__1__Impl();
@@ -9733,21 +9994,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group__1__Impl"
-    // InternalBSharp.g:3051:1: rule__SuperTypeList__Group__1__Impl : ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) ) ;
+    // InternalBSharp.g:3118:1: rule__SuperTypeList__Group__1__Impl : ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) ) ;
     public final void rule__SuperTypeList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3055:1: ( ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) ) )
-            // InternalBSharp.g:3056:1: ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) )
+            // InternalBSharp.g:3122:1: ( ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) ) )
+            // InternalBSharp.g:3123:1: ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) )
             {
-            // InternalBSharp.g:3056:1: ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) )
-            // InternalBSharp.g:3057:2: ( rule__SuperTypeList__SuperTypesAssignment_1 )
+            // InternalBSharp.g:3123:1: ( ( rule__SuperTypeList__SuperTypesAssignment_1 ) )
+            // InternalBSharp.g:3124:2: ( rule__SuperTypeList__SuperTypesAssignment_1 )
             {
              before(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_1()); 
-            // InternalBSharp.g:3058:2: ( rule__SuperTypeList__SuperTypesAssignment_1 )
-            // InternalBSharp.g:3058:3: rule__SuperTypeList__SuperTypesAssignment_1
+            // InternalBSharp.g:3125:2: ( rule__SuperTypeList__SuperTypesAssignment_1 )
+            // InternalBSharp.g:3125:3: rule__SuperTypeList__SuperTypesAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__SuperTypeList__SuperTypesAssignment_1();
@@ -9780,14 +10041,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group__2"
-    // InternalBSharp.g:3066:1: rule__SuperTypeList__Group__2 : rule__SuperTypeList__Group__2__Impl ;
+    // InternalBSharp.g:3133:1: rule__SuperTypeList__Group__2 : rule__SuperTypeList__Group__2__Impl ;
     public final void rule__SuperTypeList__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3070:1: ( rule__SuperTypeList__Group__2__Impl )
-            // InternalBSharp.g:3071:2: rule__SuperTypeList__Group__2__Impl
+            // InternalBSharp.g:3137:1: ( rule__SuperTypeList__Group__2__Impl )
+            // InternalBSharp.g:3138:2: rule__SuperTypeList__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SuperTypeList__Group__2__Impl();
@@ -9813,33 +10074,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group__2__Impl"
-    // InternalBSharp.g:3077:1: rule__SuperTypeList__Group__2__Impl : ( ( rule__SuperTypeList__Group_2__0 )* ) ;
+    // InternalBSharp.g:3144:1: rule__SuperTypeList__Group__2__Impl : ( ( rule__SuperTypeList__Group_2__0 )* ) ;
     public final void rule__SuperTypeList__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3081:1: ( ( ( rule__SuperTypeList__Group_2__0 )* ) )
-            // InternalBSharp.g:3082:1: ( ( rule__SuperTypeList__Group_2__0 )* )
+            // InternalBSharp.g:3148:1: ( ( ( rule__SuperTypeList__Group_2__0 )* ) )
+            // InternalBSharp.g:3149:1: ( ( rule__SuperTypeList__Group_2__0 )* )
             {
-            // InternalBSharp.g:3082:1: ( ( rule__SuperTypeList__Group_2__0 )* )
-            // InternalBSharp.g:3083:2: ( rule__SuperTypeList__Group_2__0 )*
+            // InternalBSharp.g:3149:1: ( ( rule__SuperTypeList__Group_2__0 )* )
+            // InternalBSharp.g:3150:2: ( rule__SuperTypeList__Group_2__0 )*
             {
              before(grammarAccess.getSuperTypeListAccess().getGroup_2()); 
-            // InternalBSharp.g:3084:2: ( rule__SuperTypeList__Group_2__0 )*
-            loop32:
+            // InternalBSharp.g:3151:2: ( rule__SuperTypeList__Group_2__0 )*
+            loop34:
             do {
-                int alt32=2;
-                int LA32_0 = input.LA(1);
+                int alt34=2;
+                int LA34_0 = input.LA(1);
 
-                if ( (LA32_0==44) ) {
-                    alt32=1;
+                if ( (LA34_0==44) ) {
+                    alt34=1;
                 }
 
 
-                switch (alt32) {
+                switch (alt34) {
             	case 1 :
-            	    // InternalBSharp.g:3084:3: rule__SuperTypeList__Group_2__0
+            	    // InternalBSharp.g:3151:3: rule__SuperTypeList__Group_2__0
             	    {
             	    pushFollow(FOLLOW_21);
             	    rule__SuperTypeList__Group_2__0();
@@ -9851,7 +10112,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop32;
+            	    break loop34;
                 }
             } while (true);
 
@@ -9878,14 +10139,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group_2__0"
-    // InternalBSharp.g:3093:1: rule__SuperTypeList__Group_2__0 : rule__SuperTypeList__Group_2__0__Impl rule__SuperTypeList__Group_2__1 ;
+    // InternalBSharp.g:3160:1: rule__SuperTypeList__Group_2__0 : rule__SuperTypeList__Group_2__0__Impl rule__SuperTypeList__Group_2__1 ;
     public final void rule__SuperTypeList__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3097:1: ( rule__SuperTypeList__Group_2__0__Impl rule__SuperTypeList__Group_2__1 )
-            // InternalBSharp.g:3098:2: rule__SuperTypeList__Group_2__0__Impl rule__SuperTypeList__Group_2__1
+            // InternalBSharp.g:3164:1: ( rule__SuperTypeList__Group_2__0__Impl rule__SuperTypeList__Group_2__1 )
+            // InternalBSharp.g:3165:2: rule__SuperTypeList__Group_2__0__Impl rule__SuperTypeList__Group_2__1
             {
             pushFollow(FOLLOW_22);
             rule__SuperTypeList__Group_2__0__Impl();
@@ -9916,17 +10177,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group_2__0__Impl"
-    // InternalBSharp.g:3105:1: rule__SuperTypeList__Group_2__0__Impl : ( ',' ) ;
+    // InternalBSharp.g:3172:1: rule__SuperTypeList__Group_2__0__Impl : ( ',' ) ;
     public final void rule__SuperTypeList__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3109:1: ( ( ',' ) )
-            // InternalBSharp.g:3110:1: ( ',' )
+            // InternalBSharp.g:3176:1: ( ( ',' ) )
+            // InternalBSharp.g:3177:1: ( ',' )
             {
-            // InternalBSharp.g:3110:1: ( ',' )
-            // InternalBSharp.g:3111:2: ','
+            // InternalBSharp.g:3177:1: ( ',' )
+            // InternalBSharp.g:3178:2: ','
             {
              before(grammarAccess.getSuperTypeListAccess().getCommaKeyword_2_0()); 
             match(input,44,FOLLOW_2); 
@@ -9953,14 +10214,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group_2__1"
-    // InternalBSharp.g:3120:1: rule__SuperTypeList__Group_2__1 : rule__SuperTypeList__Group_2__1__Impl ;
+    // InternalBSharp.g:3187:1: rule__SuperTypeList__Group_2__1 : rule__SuperTypeList__Group_2__1__Impl ;
     public final void rule__SuperTypeList__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3124:1: ( rule__SuperTypeList__Group_2__1__Impl )
-            // InternalBSharp.g:3125:2: rule__SuperTypeList__Group_2__1__Impl
+            // InternalBSharp.g:3191:1: ( rule__SuperTypeList__Group_2__1__Impl )
+            // InternalBSharp.g:3192:2: rule__SuperTypeList__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SuperTypeList__Group_2__1__Impl();
@@ -9986,21 +10247,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__Group_2__1__Impl"
-    // InternalBSharp.g:3131:1: rule__SuperTypeList__Group_2__1__Impl : ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) ) ;
+    // InternalBSharp.g:3198:1: rule__SuperTypeList__Group_2__1__Impl : ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) ) ;
     public final void rule__SuperTypeList__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3135:1: ( ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) ) )
-            // InternalBSharp.g:3136:1: ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) )
+            // InternalBSharp.g:3202:1: ( ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) ) )
+            // InternalBSharp.g:3203:1: ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) )
             {
-            // InternalBSharp.g:3136:1: ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) )
-            // InternalBSharp.g:3137:2: ( rule__SuperTypeList__SuperTypesAssignment_2_1 )
+            // InternalBSharp.g:3203:1: ( ( rule__SuperTypeList__SuperTypesAssignment_2_1 ) )
+            // InternalBSharp.g:3204:2: ( rule__SuperTypeList__SuperTypesAssignment_2_1 )
             {
              before(grammarAccess.getSuperTypeListAccess().getSuperTypesAssignment_2_1()); 
-            // InternalBSharp.g:3138:2: ( rule__SuperTypeList__SuperTypesAssignment_2_1 )
-            // InternalBSharp.g:3138:3: rule__SuperTypeList__SuperTypesAssignment_2_1
+            // InternalBSharp.g:3205:2: ( rule__SuperTypeList__SuperTypesAssignment_2_1 )
+            // InternalBSharp.g:3205:3: rule__SuperTypeList__SuperTypesAssignment_2_1
             {
             pushFollow(FOLLOW_2);
             rule__SuperTypeList__SuperTypesAssignment_2_1();
@@ -10033,14 +10294,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group__0"
-    // InternalBSharp.g:3147:1: rule__ConstructedType__Group__0 : rule__ConstructedType__Group__0__Impl rule__ConstructedType__Group__1 ;
+    // InternalBSharp.g:3214:1: rule__ConstructedType__Group__0 : rule__ConstructedType__Group__0__Impl rule__ConstructedType__Group__1 ;
     public final void rule__ConstructedType__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3151:1: ( rule__ConstructedType__Group__0__Impl rule__ConstructedType__Group__1 )
-            // InternalBSharp.g:3152:2: rule__ConstructedType__Group__0__Impl rule__ConstructedType__Group__1
+            // InternalBSharp.g:3218:1: ( rule__ConstructedType__Group__0__Impl rule__ConstructedType__Group__1 )
+            // InternalBSharp.g:3219:2: rule__ConstructedType__Group__0__Impl rule__ConstructedType__Group__1
             {
             pushFollow(FOLLOW_23);
             rule__ConstructedType__Group__0__Impl();
@@ -10071,17 +10332,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group__0__Impl"
-    // InternalBSharp.g:3159:1: rule__ConstructedType__Group__0__Impl : ( ruleBuilderElem ) ;
+    // InternalBSharp.g:3226:1: rule__ConstructedType__Group__0__Impl : ( ruleBuilderElem ) ;
     public final void rule__ConstructedType__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3163:1: ( ( ruleBuilderElem ) )
-            // InternalBSharp.g:3164:1: ( ruleBuilderElem )
+            // InternalBSharp.g:3230:1: ( ( ruleBuilderElem ) )
+            // InternalBSharp.g:3231:1: ( ruleBuilderElem )
             {
-            // InternalBSharp.g:3164:1: ( ruleBuilderElem )
-            // InternalBSharp.g:3165:2: ruleBuilderElem
+            // InternalBSharp.g:3231:1: ( ruleBuilderElem )
+            // InternalBSharp.g:3232:2: ruleBuilderElem
             {
              before(grammarAccess.getConstructedTypeAccess().getBuilderElemParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -10112,14 +10373,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group__1"
-    // InternalBSharp.g:3174:1: rule__ConstructedType__Group__1 : rule__ConstructedType__Group__1__Impl ;
+    // InternalBSharp.g:3241:1: rule__ConstructedType__Group__1 : rule__ConstructedType__Group__1__Impl ;
     public final void rule__ConstructedType__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3178:1: ( rule__ConstructedType__Group__1__Impl )
-            // InternalBSharp.g:3179:2: rule__ConstructedType__Group__1__Impl
+            // InternalBSharp.g:3245:1: ( rule__ConstructedType__Group__1__Impl )
+            // InternalBSharp.g:3246:2: rule__ConstructedType__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ConstructedType__Group__1__Impl();
@@ -10145,33 +10406,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group__1__Impl"
-    // InternalBSharp.g:3185:1: rule__ConstructedType__Group__1__Impl : ( ( rule__ConstructedType__Group_1__0 )* ) ;
+    // InternalBSharp.g:3252:1: rule__ConstructedType__Group__1__Impl : ( ( rule__ConstructedType__Group_1__0 )* ) ;
     public final void rule__ConstructedType__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3189:1: ( ( ( rule__ConstructedType__Group_1__0 )* ) )
-            // InternalBSharp.g:3190:1: ( ( rule__ConstructedType__Group_1__0 )* )
+            // InternalBSharp.g:3256:1: ( ( ( rule__ConstructedType__Group_1__0 )* ) )
+            // InternalBSharp.g:3257:1: ( ( rule__ConstructedType__Group_1__0 )* )
             {
-            // InternalBSharp.g:3190:1: ( ( rule__ConstructedType__Group_1__0 )* )
-            // InternalBSharp.g:3191:2: ( rule__ConstructedType__Group_1__0 )*
+            // InternalBSharp.g:3257:1: ( ( rule__ConstructedType__Group_1__0 )* )
+            // InternalBSharp.g:3258:2: ( rule__ConstructedType__Group_1__0 )*
             {
              before(grammarAccess.getConstructedTypeAccess().getGroup_1()); 
-            // InternalBSharp.g:3192:2: ( rule__ConstructedType__Group_1__0 )*
-            loop33:
+            // InternalBSharp.g:3259:2: ( rule__ConstructedType__Group_1__0 )*
+            loop35:
             do {
-                int alt33=2;
-                int LA33_0 = input.LA(1);
+                int alt35=2;
+                int LA35_0 = input.LA(1);
 
-                if ( ((LA33_0>=13 && LA33_0<=22)) ) {
-                    alt33=1;
+                if ( ((LA35_0>=13 && LA35_0<=22)) ) {
+                    alt35=1;
                 }
 
 
-                switch (alt33) {
+                switch (alt35) {
             	case 1 :
-            	    // InternalBSharp.g:3192:3: rule__ConstructedType__Group_1__0
+            	    // InternalBSharp.g:3259:3: rule__ConstructedType__Group_1__0
             	    {
             	    pushFollow(FOLLOW_24);
             	    rule__ConstructedType__Group_1__0();
@@ -10183,7 +10444,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop33;
+            	    break loop35;
                 }
             } while (true);
 
@@ -10210,14 +10471,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group_1__0"
-    // InternalBSharp.g:3201:1: rule__ConstructedType__Group_1__0 : rule__ConstructedType__Group_1__0__Impl rule__ConstructedType__Group_1__1 ;
+    // InternalBSharp.g:3268:1: rule__ConstructedType__Group_1__0 : rule__ConstructedType__Group_1__0__Impl rule__ConstructedType__Group_1__1 ;
     public final void rule__ConstructedType__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3205:1: ( rule__ConstructedType__Group_1__0__Impl rule__ConstructedType__Group_1__1 )
-            // InternalBSharp.g:3206:2: rule__ConstructedType__Group_1__0__Impl rule__ConstructedType__Group_1__1
+            // InternalBSharp.g:3272:1: ( rule__ConstructedType__Group_1__0__Impl rule__ConstructedType__Group_1__1 )
+            // InternalBSharp.g:3273:2: rule__ConstructedType__Group_1__0__Impl rule__ConstructedType__Group_1__1
             {
             pushFollow(FOLLOW_23);
             rule__ConstructedType__Group_1__0__Impl();
@@ -10248,21 +10509,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group_1__0__Impl"
-    // InternalBSharp.g:3213:1: rule__ConstructedType__Group_1__0__Impl : ( () ) ;
+    // InternalBSharp.g:3280:1: rule__ConstructedType__Group_1__0__Impl : ( () ) ;
     public final void rule__ConstructedType__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3217:1: ( ( () ) )
-            // InternalBSharp.g:3218:1: ( () )
+            // InternalBSharp.g:3284:1: ( ( () ) )
+            // InternalBSharp.g:3285:1: ( () )
             {
-            // InternalBSharp.g:3218:1: ( () )
-            // InternalBSharp.g:3219:2: ()
+            // InternalBSharp.g:3285:1: ( () )
+            // InternalBSharp.g:3286:2: ()
             {
              before(grammarAccess.getConstructedTypeAccess().getConstructedTypeLeftAction_1_0()); 
-            // InternalBSharp.g:3220:2: ()
-            // InternalBSharp.g:3220:3: 
+            // InternalBSharp.g:3287:2: ()
+            // InternalBSharp.g:3287:3: 
             {
             }
 
@@ -10285,14 +10546,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group_1__1"
-    // InternalBSharp.g:3228:1: rule__ConstructedType__Group_1__1 : rule__ConstructedType__Group_1__1__Impl rule__ConstructedType__Group_1__2 ;
+    // InternalBSharp.g:3295:1: rule__ConstructedType__Group_1__1 : rule__ConstructedType__Group_1__1__Impl rule__ConstructedType__Group_1__2 ;
     public final void rule__ConstructedType__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3232:1: ( rule__ConstructedType__Group_1__1__Impl rule__ConstructedType__Group_1__2 )
-            // InternalBSharp.g:3233:2: rule__ConstructedType__Group_1__1__Impl rule__ConstructedType__Group_1__2
+            // InternalBSharp.g:3299:1: ( rule__ConstructedType__Group_1__1__Impl rule__ConstructedType__Group_1__2 )
+            // InternalBSharp.g:3300:2: rule__ConstructedType__Group_1__1__Impl rule__ConstructedType__Group_1__2
             {
             pushFollow(FOLLOW_22);
             rule__ConstructedType__Group_1__1__Impl();
@@ -10323,21 +10584,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group_1__1__Impl"
-    // InternalBSharp.g:3240:1: rule__ConstructedType__Group_1__1__Impl : ( ( rule__ConstructedType__ConstructorAssignment_1_1 ) ) ;
+    // InternalBSharp.g:3307:1: rule__ConstructedType__Group_1__1__Impl : ( ( rule__ConstructedType__ConstructorAssignment_1_1 ) ) ;
     public final void rule__ConstructedType__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3244:1: ( ( ( rule__ConstructedType__ConstructorAssignment_1_1 ) ) )
-            // InternalBSharp.g:3245:1: ( ( rule__ConstructedType__ConstructorAssignment_1_1 ) )
+            // InternalBSharp.g:3311:1: ( ( ( rule__ConstructedType__ConstructorAssignment_1_1 ) ) )
+            // InternalBSharp.g:3312:1: ( ( rule__ConstructedType__ConstructorAssignment_1_1 ) )
             {
-            // InternalBSharp.g:3245:1: ( ( rule__ConstructedType__ConstructorAssignment_1_1 ) )
-            // InternalBSharp.g:3246:2: ( rule__ConstructedType__ConstructorAssignment_1_1 )
+            // InternalBSharp.g:3312:1: ( ( rule__ConstructedType__ConstructorAssignment_1_1 ) )
+            // InternalBSharp.g:3313:2: ( rule__ConstructedType__ConstructorAssignment_1_1 )
             {
              before(grammarAccess.getConstructedTypeAccess().getConstructorAssignment_1_1()); 
-            // InternalBSharp.g:3247:2: ( rule__ConstructedType__ConstructorAssignment_1_1 )
-            // InternalBSharp.g:3247:3: rule__ConstructedType__ConstructorAssignment_1_1
+            // InternalBSharp.g:3314:2: ( rule__ConstructedType__ConstructorAssignment_1_1 )
+            // InternalBSharp.g:3314:3: rule__ConstructedType__ConstructorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__ConstructedType__ConstructorAssignment_1_1();
@@ -10370,14 +10631,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group_1__2"
-    // InternalBSharp.g:3255:1: rule__ConstructedType__Group_1__2 : rule__ConstructedType__Group_1__2__Impl ;
+    // InternalBSharp.g:3322:1: rule__ConstructedType__Group_1__2 : rule__ConstructedType__Group_1__2__Impl ;
     public final void rule__ConstructedType__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3259:1: ( rule__ConstructedType__Group_1__2__Impl )
-            // InternalBSharp.g:3260:2: rule__ConstructedType__Group_1__2__Impl
+            // InternalBSharp.g:3326:1: ( rule__ConstructedType__Group_1__2__Impl )
+            // InternalBSharp.g:3327:2: rule__ConstructedType__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ConstructedType__Group_1__2__Impl();
@@ -10403,21 +10664,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__Group_1__2__Impl"
-    // InternalBSharp.g:3266:1: rule__ConstructedType__Group_1__2__Impl : ( ( rule__ConstructedType__RightAssignment_1_2 ) ) ;
+    // InternalBSharp.g:3333:1: rule__ConstructedType__Group_1__2__Impl : ( ( rule__ConstructedType__RightAssignment_1_2 ) ) ;
     public final void rule__ConstructedType__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3270:1: ( ( ( rule__ConstructedType__RightAssignment_1_2 ) ) )
-            // InternalBSharp.g:3271:1: ( ( rule__ConstructedType__RightAssignment_1_2 ) )
+            // InternalBSharp.g:3337:1: ( ( ( rule__ConstructedType__RightAssignment_1_2 ) ) )
+            // InternalBSharp.g:3338:1: ( ( rule__ConstructedType__RightAssignment_1_2 ) )
             {
-            // InternalBSharp.g:3271:1: ( ( rule__ConstructedType__RightAssignment_1_2 ) )
-            // InternalBSharp.g:3272:2: ( rule__ConstructedType__RightAssignment_1_2 )
+            // InternalBSharp.g:3338:1: ( ( rule__ConstructedType__RightAssignment_1_2 ) )
+            // InternalBSharp.g:3339:2: ( rule__ConstructedType__RightAssignment_1_2 )
             {
              before(grammarAccess.getConstructedTypeAccess().getRightAssignment_1_2()); 
-            // InternalBSharp.g:3273:2: ( rule__ConstructedType__RightAssignment_1_2 )
-            // InternalBSharp.g:3273:3: rule__ConstructedType__RightAssignment_1_2
+            // InternalBSharp.g:3340:2: ( rule__ConstructedType__RightAssignment_1_2 )
+            // InternalBSharp.g:3340:3: rule__ConstructedType__RightAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__ConstructedType__RightAssignment_1_2();
@@ -10450,14 +10711,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstructor__Group__0"
-    // InternalBSharp.g:3282:1: rule__TypeConstructor__Group__0 : rule__TypeConstructor__Group__0__Impl rule__TypeConstructor__Group__1 ;
+    // InternalBSharp.g:3349:1: rule__TypeConstructor__Group__0 : rule__TypeConstructor__Group__0__Impl rule__TypeConstructor__Group__1 ;
     public final void rule__TypeConstructor__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3286:1: ( rule__TypeConstructor__Group__0__Impl rule__TypeConstructor__Group__1 )
-            // InternalBSharp.g:3287:2: rule__TypeConstructor__Group__0__Impl rule__TypeConstructor__Group__1
+            // InternalBSharp.g:3353:1: ( rule__TypeConstructor__Group__0__Impl rule__TypeConstructor__Group__1 )
+            // InternalBSharp.g:3354:2: rule__TypeConstructor__Group__0__Impl rule__TypeConstructor__Group__1
             {
             pushFollow(FOLLOW_25);
             rule__TypeConstructor__Group__0__Impl();
@@ -10488,21 +10749,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstructor__Group__0__Impl"
-    // InternalBSharp.g:3294:1: rule__TypeConstructor__Group__0__Impl : ( ( rule__TypeConstructor__TypeNameAssignment_0 ) ) ;
+    // InternalBSharp.g:3361:1: rule__TypeConstructor__Group__0__Impl : ( ( rule__TypeConstructor__TypeNameAssignment_0 ) ) ;
     public final void rule__TypeConstructor__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3298:1: ( ( ( rule__TypeConstructor__TypeNameAssignment_0 ) ) )
-            // InternalBSharp.g:3299:1: ( ( rule__TypeConstructor__TypeNameAssignment_0 ) )
+            // InternalBSharp.g:3365:1: ( ( ( rule__TypeConstructor__TypeNameAssignment_0 ) ) )
+            // InternalBSharp.g:3366:1: ( ( rule__TypeConstructor__TypeNameAssignment_0 ) )
             {
-            // InternalBSharp.g:3299:1: ( ( rule__TypeConstructor__TypeNameAssignment_0 ) )
-            // InternalBSharp.g:3300:2: ( rule__TypeConstructor__TypeNameAssignment_0 )
+            // InternalBSharp.g:3366:1: ( ( rule__TypeConstructor__TypeNameAssignment_0 ) )
+            // InternalBSharp.g:3367:2: ( rule__TypeConstructor__TypeNameAssignment_0 )
             {
              before(grammarAccess.getTypeConstructorAccess().getTypeNameAssignment_0()); 
-            // InternalBSharp.g:3301:2: ( rule__TypeConstructor__TypeNameAssignment_0 )
-            // InternalBSharp.g:3301:3: rule__TypeConstructor__TypeNameAssignment_0
+            // InternalBSharp.g:3368:2: ( rule__TypeConstructor__TypeNameAssignment_0 )
+            // InternalBSharp.g:3368:3: rule__TypeConstructor__TypeNameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__TypeConstructor__TypeNameAssignment_0();
@@ -10535,14 +10796,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstructor__Group__1"
-    // InternalBSharp.g:3309:1: rule__TypeConstructor__Group__1 : rule__TypeConstructor__Group__1__Impl ;
+    // InternalBSharp.g:3376:1: rule__TypeConstructor__Group__1 : rule__TypeConstructor__Group__1__Impl ;
     public final void rule__TypeConstructor__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3313:1: ( rule__TypeConstructor__Group__1__Impl )
-            // InternalBSharp.g:3314:2: rule__TypeConstructor__Group__1__Impl
+            // InternalBSharp.g:3380:1: ( rule__TypeConstructor__Group__1__Impl )
+            // InternalBSharp.g:3381:2: rule__TypeConstructor__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TypeConstructor__Group__1__Impl();
@@ -10568,29 +10829,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstructor__Group__1__Impl"
-    // InternalBSharp.g:3320:1: rule__TypeConstructor__Group__1__Impl : ( ( rule__TypeConstructor__ContextAssignment_1 )? ) ;
+    // InternalBSharp.g:3387:1: rule__TypeConstructor__Group__1__Impl : ( ( rule__TypeConstructor__ContextAssignment_1 )? ) ;
     public final void rule__TypeConstructor__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3324:1: ( ( ( rule__TypeConstructor__ContextAssignment_1 )? ) )
-            // InternalBSharp.g:3325:1: ( ( rule__TypeConstructor__ContextAssignment_1 )? )
+            // InternalBSharp.g:3391:1: ( ( ( rule__TypeConstructor__ContextAssignment_1 )? ) )
+            // InternalBSharp.g:3392:1: ( ( rule__TypeConstructor__ContextAssignment_1 )? )
             {
-            // InternalBSharp.g:3325:1: ( ( rule__TypeConstructor__ContextAssignment_1 )? )
-            // InternalBSharp.g:3326:2: ( rule__TypeConstructor__ContextAssignment_1 )?
+            // InternalBSharp.g:3392:1: ( ( rule__TypeConstructor__ContextAssignment_1 )? )
+            // InternalBSharp.g:3393:2: ( rule__TypeConstructor__ContextAssignment_1 )?
             {
              before(grammarAccess.getTypeConstructorAccess().getContextAssignment_1()); 
-            // InternalBSharp.g:3327:2: ( rule__TypeConstructor__ContextAssignment_1 )?
-            int alt34=2;
-            int LA34_0 = input.LA(1);
+            // InternalBSharp.g:3394:2: ( rule__TypeConstructor__ContextAssignment_1 )?
+            int alt36=2;
+            int LA36_0 = input.LA(1);
 
-            if ( (LA34_0==42) ) {
-                alt34=1;
+            if ( (LA36_0==42) ) {
+                alt36=1;
             }
-            switch (alt34) {
+            switch (alt36) {
                 case 1 :
-                    // InternalBSharp.g:3327:3: rule__TypeConstructor__ContextAssignment_1
+                    // InternalBSharp.g:3394:3: rule__TypeConstructor__ContextAssignment_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__TypeConstructor__ContextAssignment_1();
@@ -10626,14 +10887,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePowerSet__Group__0"
-    // InternalBSharp.g:3336:1: rule__TypePowerSet__Group__0 : rule__TypePowerSet__Group__0__Impl rule__TypePowerSet__Group__1 ;
+    // InternalBSharp.g:3403:1: rule__TypePowerSet__Group__0 : rule__TypePowerSet__Group__0__Impl rule__TypePowerSet__Group__1 ;
     public final void rule__TypePowerSet__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3340:1: ( rule__TypePowerSet__Group__0__Impl rule__TypePowerSet__Group__1 )
-            // InternalBSharp.g:3341:2: rule__TypePowerSet__Group__0__Impl rule__TypePowerSet__Group__1
+            // InternalBSharp.g:3407:1: ( rule__TypePowerSet__Group__0__Impl rule__TypePowerSet__Group__1 )
+            // InternalBSharp.g:3408:2: rule__TypePowerSet__Group__0__Impl rule__TypePowerSet__Group__1
             {
             pushFollow(FOLLOW_26);
             rule__TypePowerSet__Group__0__Impl();
@@ -10664,17 +10925,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePowerSet__Group__0__Impl"
-    // InternalBSharp.g:3348:1: rule__TypePowerSet__Group__0__Impl : ( '\\u2119' ) ;
+    // InternalBSharp.g:3415:1: rule__TypePowerSet__Group__0__Impl : ( '\\u2119' ) ;
     public final void rule__TypePowerSet__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3352:1: ( ( '\\u2119' ) )
-            // InternalBSharp.g:3353:1: ( '\\u2119' )
+            // InternalBSharp.g:3419:1: ( ( '\\u2119' ) )
+            // InternalBSharp.g:3420:1: ( '\\u2119' )
             {
-            // InternalBSharp.g:3353:1: ( '\\u2119' )
-            // InternalBSharp.g:3354:2: '\\u2119'
+            // InternalBSharp.g:3420:1: ( '\\u2119' )
+            // InternalBSharp.g:3421:2: '\\u2119'
             {
              before(grammarAccess.getTypePowerSetAccess().getDoubleStruckCapitalPKeyword_0()); 
             match(input,45,FOLLOW_2); 
@@ -10701,14 +10962,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePowerSet__Group__1"
-    // InternalBSharp.g:3363:1: rule__TypePowerSet__Group__1 : rule__TypePowerSet__Group__1__Impl rule__TypePowerSet__Group__2 ;
+    // InternalBSharp.g:3430:1: rule__TypePowerSet__Group__1 : rule__TypePowerSet__Group__1__Impl rule__TypePowerSet__Group__2 ;
     public final void rule__TypePowerSet__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3367:1: ( rule__TypePowerSet__Group__1__Impl rule__TypePowerSet__Group__2 )
-            // InternalBSharp.g:3368:2: rule__TypePowerSet__Group__1__Impl rule__TypePowerSet__Group__2
+            // InternalBSharp.g:3434:1: ( rule__TypePowerSet__Group__1__Impl rule__TypePowerSet__Group__2 )
+            // InternalBSharp.g:3435:2: rule__TypePowerSet__Group__1__Impl rule__TypePowerSet__Group__2
             {
             pushFollow(FOLLOW_22);
             rule__TypePowerSet__Group__1__Impl();
@@ -10739,17 +11000,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePowerSet__Group__1__Impl"
-    // InternalBSharp.g:3375:1: rule__TypePowerSet__Group__1__Impl : ( '(' ) ;
+    // InternalBSharp.g:3442:1: rule__TypePowerSet__Group__1__Impl : ( '(' ) ;
     public final void rule__TypePowerSet__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3379:1: ( ( '(' ) )
-            // InternalBSharp.g:3380:1: ( '(' )
+            // InternalBSharp.g:3446:1: ( ( '(' ) )
+            // InternalBSharp.g:3447:1: ( '(' )
             {
-            // InternalBSharp.g:3380:1: ( '(' )
-            // InternalBSharp.g:3381:2: '('
+            // InternalBSharp.g:3447:1: ( '(' )
+            // InternalBSharp.g:3448:2: '('
             {
              before(grammarAccess.getTypePowerSetAccess().getLeftParenthesisKeyword_1()); 
             match(input,40,FOLLOW_2); 
@@ -10776,14 +11037,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePowerSet__Group__2"
-    // InternalBSharp.g:3390:1: rule__TypePowerSet__Group__2 : rule__TypePowerSet__Group__2__Impl rule__TypePowerSet__Group__3 ;
+    // InternalBSharp.g:3457:1: rule__TypePowerSet__Group__2 : rule__TypePowerSet__Group__2__Impl rule__TypePowerSet__Group__3 ;
     public final void rule__TypePowerSet__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3394:1: ( rule__TypePowerSet__Group__2__Impl rule__TypePowerSet__Group__3 )
-            // InternalBSharp.g:3395:2: rule__TypePowerSet__Group__2__Impl rule__TypePowerSet__Group__3
+            // InternalBSharp.g:3461:1: ( rule__TypePowerSet__Group__2__Impl rule__TypePowerSet__Group__3 )
+            // InternalBSharp.g:3462:2: rule__TypePowerSet__Group__2__Impl rule__TypePowerSet__Group__3
             {
             pushFollow(FOLLOW_18);
             rule__TypePowerSet__Group__2__Impl();
@@ -10814,21 +11075,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePowerSet__Group__2__Impl"
-    // InternalBSharp.g:3402:1: rule__TypePowerSet__Group__2__Impl : ( ( rule__TypePowerSet__ChildAssignment_2 ) ) ;
+    // InternalBSharp.g:3469:1: rule__TypePowerSet__Group__2__Impl : ( ( rule__TypePowerSet__ChildAssignment_2 ) ) ;
     public final void rule__TypePowerSet__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3406:1: ( ( ( rule__TypePowerSet__ChildAssignment_2 ) ) )
-            // InternalBSharp.g:3407:1: ( ( rule__TypePowerSet__ChildAssignment_2 ) )
+            // InternalBSharp.g:3473:1: ( ( ( rule__TypePowerSet__ChildAssignment_2 ) ) )
+            // InternalBSharp.g:3474:1: ( ( rule__TypePowerSet__ChildAssignment_2 ) )
             {
-            // InternalBSharp.g:3407:1: ( ( rule__TypePowerSet__ChildAssignment_2 ) )
-            // InternalBSharp.g:3408:2: ( rule__TypePowerSet__ChildAssignment_2 )
+            // InternalBSharp.g:3474:1: ( ( rule__TypePowerSet__ChildAssignment_2 ) )
+            // InternalBSharp.g:3475:2: ( rule__TypePowerSet__ChildAssignment_2 )
             {
              before(grammarAccess.getTypePowerSetAccess().getChildAssignment_2()); 
-            // InternalBSharp.g:3409:2: ( rule__TypePowerSet__ChildAssignment_2 )
-            // InternalBSharp.g:3409:3: rule__TypePowerSet__ChildAssignment_2
+            // InternalBSharp.g:3476:2: ( rule__TypePowerSet__ChildAssignment_2 )
+            // InternalBSharp.g:3476:3: rule__TypePowerSet__ChildAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__TypePowerSet__ChildAssignment_2();
@@ -10861,14 +11122,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePowerSet__Group__3"
-    // InternalBSharp.g:3417:1: rule__TypePowerSet__Group__3 : rule__TypePowerSet__Group__3__Impl ;
+    // InternalBSharp.g:3484:1: rule__TypePowerSet__Group__3 : rule__TypePowerSet__Group__3__Impl ;
     public final void rule__TypePowerSet__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3421:1: ( rule__TypePowerSet__Group__3__Impl )
-            // InternalBSharp.g:3422:2: rule__TypePowerSet__Group__3__Impl
+            // InternalBSharp.g:3488:1: ( rule__TypePowerSet__Group__3__Impl )
+            // InternalBSharp.g:3489:2: rule__TypePowerSet__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TypePowerSet__Group__3__Impl();
@@ -10894,17 +11155,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePowerSet__Group__3__Impl"
-    // InternalBSharp.g:3428:1: rule__TypePowerSet__Group__3__Impl : ( ')' ) ;
+    // InternalBSharp.g:3495:1: rule__TypePowerSet__Group__3__Impl : ( ')' ) ;
     public final void rule__TypePowerSet__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3432:1: ( ( ')' ) )
-            // InternalBSharp.g:3433:1: ( ')' )
+            // InternalBSharp.g:3499:1: ( ( ')' ) )
+            // InternalBSharp.g:3500:1: ( ')' )
             {
-            // InternalBSharp.g:3433:1: ( ')' )
-            // InternalBSharp.g:3434:2: ')'
+            // InternalBSharp.g:3500:1: ( ')' )
+            // InternalBSharp.g:3501:2: ')'
             {
              before(grammarAccess.getTypePowerSetAccess().getRightParenthesisKeyword_3()); 
             match(input,41,FOLLOW_2); 
@@ -10931,14 +11192,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstrBracket__Group__0"
-    // InternalBSharp.g:3444:1: rule__TypeConstrBracket__Group__0 : rule__TypeConstrBracket__Group__0__Impl rule__TypeConstrBracket__Group__1 ;
+    // InternalBSharp.g:3511:1: rule__TypeConstrBracket__Group__0 : rule__TypeConstrBracket__Group__0__Impl rule__TypeConstrBracket__Group__1 ;
     public final void rule__TypeConstrBracket__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3448:1: ( rule__TypeConstrBracket__Group__0__Impl rule__TypeConstrBracket__Group__1 )
-            // InternalBSharp.g:3449:2: rule__TypeConstrBracket__Group__0__Impl rule__TypeConstrBracket__Group__1
+            // InternalBSharp.g:3515:1: ( rule__TypeConstrBracket__Group__0__Impl rule__TypeConstrBracket__Group__1 )
+            // InternalBSharp.g:3516:2: rule__TypeConstrBracket__Group__0__Impl rule__TypeConstrBracket__Group__1
             {
             pushFollow(FOLLOW_22);
             rule__TypeConstrBracket__Group__0__Impl();
@@ -10969,17 +11230,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstrBracket__Group__0__Impl"
-    // InternalBSharp.g:3456:1: rule__TypeConstrBracket__Group__0__Impl : ( '(' ) ;
+    // InternalBSharp.g:3523:1: rule__TypeConstrBracket__Group__0__Impl : ( '(' ) ;
     public final void rule__TypeConstrBracket__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3460:1: ( ( '(' ) )
-            // InternalBSharp.g:3461:1: ( '(' )
+            // InternalBSharp.g:3527:1: ( ( '(' ) )
+            // InternalBSharp.g:3528:1: ( '(' )
             {
-            // InternalBSharp.g:3461:1: ( '(' )
-            // InternalBSharp.g:3462:2: '('
+            // InternalBSharp.g:3528:1: ( '(' )
+            // InternalBSharp.g:3529:2: '('
             {
              before(grammarAccess.getTypeConstrBracketAccess().getLeftParenthesisKeyword_0()); 
             match(input,40,FOLLOW_2); 
@@ -11006,14 +11267,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstrBracket__Group__1"
-    // InternalBSharp.g:3471:1: rule__TypeConstrBracket__Group__1 : rule__TypeConstrBracket__Group__1__Impl rule__TypeConstrBracket__Group__2 ;
+    // InternalBSharp.g:3538:1: rule__TypeConstrBracket__Group__1 : rule__TypeConstrBracket__Group__1__Impl rule__TypeConstrBracket__Group__2 ;
     public final void rule__TypeConstrBracket__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3475:1: ( rule__TypeConstrBracket__Group__1__Impl rule__TypeConstrBracket__Group__2 )
-            // InternalBSharp.g:3476:2: rule__TypeConstrBracket__Group__1__Impl rule__TypeConstrBracket__Group__2
+            // InternalBSharp.g:3542:1: ( rule__TypeConstrBracket__Group__1__Impl rule__TypeConstrBracket__Group__2 )
+            // InternalBSharp.g:3543:2: rule__TypeConstrBracket__Group__1__Impl rule__TypeConstrBracket__Group__2
             {
             pushFollow(FOLLOW_18);
             rule__TypeConstrBracket__Group__1__Impl();
@@ -11044,21 +11305,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstrBracket__Group__1__Impl"
-    // InternalBSharp.g:3483:1: rule__TypeConstrBracket__Group__1__Impl : ( ( rule__TypeConstrBracket__ChildAssignment_1 ) ) ;
+    // InternalBSharp.g:3550:1: rule__TypeConstrBracket__Group__1__Impl : ( ( rule__TypeConstrBracket__ChildAssignment_1 ) ) ;
     public final void rule__TypeConstrBracket__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3487:1: ( ( ( rule__TypeConstrBracket__ChildAssignment_1 ) ) )
-            // InternalBSharp.g:3488:1: ( ( rule__TypeConstrBracket__ChildAssignment_1 ) )
+            // InternalBSharp.g:3554:1: ( ( ( rule__TypeConstrBracket__ChildAssignment_1 ) ) )
+            // InternalBSharp.g:3555:1: ( ( rule__TypeConstrBracket__ChildAssignment_1 ) )
             {
-            // InternalBSharp.g:3488:1: ( ( rule__TypeConstrBracket__ChildAssignment_1 ) )
-            // InternalBSharp.g:3489:2: ( rule__TypeConstrBracket__ChildAssignment_1 )
+            // InternalBSharp.g:3555:1: ( ( rule__TypeConstrBracket__ChildAssignment_1 ) )
+            // InternalBSharp.g:3556:2: ( rule__TypeConstrBracket__ChildAssignment_1 )
             {
              before(grammarAccess.getTypeConstrBracketAccess().getChildAssignment_1()); 
-            // InternalBSharp.g:3490:2: ( rule__TypeConstrBracket__ChildAssignment_1 )
-            // InternalBSharp.g:3490:3: rule__TypeConstrBracket__ChildAssignment_1
+            // InternalBSharp.g:3557:2: ( rule__TypeConstrBracket__ChildAssignment_1 )
+            // InternalBSharp.g:3557:3: rule__TypeConstrBracket__ChildAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__TypeConstrBracket__ChildAssignment_1();
@@ -11091,14 +11352,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstrBracket__Group__2"
-    // InternalBSharp.g:3498:1: rule__TypeConstrBracket__Group__2 : rule__TypeConstrBracket__Group__2__Impl ;
+    // InternalBSharp.g:3565:1: rule__TypeConstrBracket__Group__2 : rule__TypeConstrBracket__Group__2__Impl ;
     public final void rule__TypeConstrBracket__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3502:1: ( rule__TypeConstrBracket__Group__2__Impl )
-            // InternalBSharp.g:3503:2: rule__TypeConstrBracket__Group__2__Impl
+            // InternalBSharp.g:3569:1: ( rule__TypeConstrBracket__Group__2__Impl )
+            // InternalBSharp.g:3570:2: rule__TypeConstrBracket__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TypeConstrBracket__Group__2__Impl();
@@ -11124,17 +11385,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstrBracket__Group__2__Impl"
-    // InternalBSharp.g:3509:1: rule__TypeConstrBracket__Group__2__Impl : ( ')' ) ;
+    // InternalBSharp.g:3576:1: rule__TypeConstrBracket__Group__2__Impl : ( ')' ) ;
     public final void rule__TypeConstrBracket__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3513:1: ( ( ')' ) )
-            // InternalBSharp.g:3514:1: ( ')' )
+            // InternalBSharp.g:3580:1: ( ( ')' ) )
+            // InternalBSharp.g:3581:1: ( ')' )
             {
-            // InternalBSharp.g:3514:1: ( ')' )
-            // InternalBSharp.g:3515:2: ')'
+            // InternalBSharp.g:3581:1: ( ')' )
+            // InternalBSharp.g:3582:2: ')'
             {
              before(grammarAccess.getTypeConstrBracketAccess().getRightParenthesisKeyword_2()); 
             match(input,41,FOLLOW_2); 
@@ -11161,14 +11422,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group__0"
-    // InternalBSharp.g:3525:1: rule__TypeDeclContext__Group__0 : rule__TypeDeclContext__Group__0__Impl rule__TypeDeclContext__Group__1 ;
+    // InternalBSharp.g:3592:1: rule__TypeDeclContext__Group__0 : rule__TypeDeclContext__Group__0__Impl rule__TypeDeclContext__Group__1 ;
     public final void rule__TypeDeclContext__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3529:1: ( rule__TypeDeclContext__Group__0__Impl rule__TypeDeclContext__Group__1 )
-            // InternalBSharp.g:3530:2: rule__TypeDeclContext__Group__0__Impl rule__TypeDeclContext__Group__1
+            // InternalBSharp.g:3596:1: ( rule__TypeDeclContext__Group__0__Impl rule__TypeDeclContext__Group__1 )
+            // InternalBSharp.g:3597:2: rule__TypeDeclContext__Group__0__Impl rule__TypeDeclContext__Group__1
             {
             pushFollow(FOLLOW_22);
             rule__TypeDeclContext__Group__0__Impl();
@@ -11199,17 +11460,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group__0__Impl"
-    // InternalBSharp.g:3537:1: rule__TypeDeclContext__Group__0__Impl : ( '<' ) ;
+    // InternalBSharp.g:3604:1: rule__TypeDeclContext__Group__0__Impl : ( '<' ) ;
     public final void rule__TypeDeclContext__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3541:1: ( ( '<' ) )
-            // InternalBSharp.g:3542:1: ( '<' )
+            // InternalBSharp.g:3608:1: ( ( '<' ) )
+            // InternalBSharp.g:3609:1: ( '<' )
             {
-            // InternalBSharp.g:3542:1: ( '<' )
-            // InternalBSharp.g:3543:2: '<'
+            // InternalBSharp.g:3609:1: ( '<' )
+            // InternalBSharp.g:3610:2: '<'
             {
              before(grammarAccess.getTypeDeclContextAccess().getLessThanSignKeyword_0()); 
             match(input,42,FOLLOW_2); 
@@ -11236,14 +11497,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group__1"
-    // InternalBSharp.g:3552:1: rule__TypeDeclContext__Group__1 : rule__TypeDeclContext__Group__1__Impl rule__TypeDeclContext__Group__2 ;
+    // InternalBSharp.g:3619:1: rule__TypeDeclContext__Group__1 : rule__TypeDeclContext__Group__1__Impl rule__TypeDeclContext__Group__2 ;
     public final void rule__TypeDeclContext__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3556:1: ( rule__TypeDeclContext__Group__1__Impl rule__TypeDeclContext__Group__2 )
-            // InternalBSharp.g:3557:2: rule__TypeDeclContext__Group__1__Impl rule__TypeDeclContext__Group__2
+            // InternalBSharp.g:3623:1: ( rule__TypeDeclContext__Group__1__Impl rule__TypeDeclContext__Group__2 )
+            // InternalBSharp.g:3624:2: rule__TypeDeclContext__Group__1__Impl rule__TypeDeclContext__Group__2
             {
             pushFollow(FOLLOW_27);
             rule__TypeDeclContext__Group__1__Impl();
@@ -11274,21 +11535,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group__1__Impl"
-    // InternalBSharp.g:3564:1: rule__TypeDeclContext__Group__1__Impl : ( ( rule__TypeDeclContext__TypeNameAssignment_1 ) ) ;
+    // InternalBSharp.g:3631:1: rule__TypeDeclContext__Group__1__Impl : ( ( rule__TypeDeclContext__TypeNameAssignment_1 ) ) ;
     public final void rule__TypeDeclContext__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3568:1: ( ( ( rule__TypeDeclContext__TypeNameAssignment_1 ) ) )
-            // InternalBSharp.g:3569:1: ( ( rule__TypeDeclContext__TypeNameAssignment_1 ) )
+            // InternalBSharp.g:3635:1: ( ( ( rule__TypeDeclContext__TypeNameAssignment_1 ) ) )
+            // InternalBSharp.g:3636:1: ( ( rule__TypeDeclContext__TypeNameAssignment_1 ) )
             {
-            // InternalBSharp.g:3569:1: ( ( rule__TypeDeclContext__TypeNameAssignment_1 ) )
-            // InternalBSharp.g:3570:2: ( rule__TypeDeclContext__TypeNameAssignment_1 )
+            // InternalBSharp.g:3636:1: ( ( rule__TypeDeclContext__TypeNameAssignment_1 ) )
+            // InternalBSharp.g:3637:2: ( rule__TypeDeclContext__TypeNameAssignment_1 )
             {
              before(grammarAccess.getTypeDeclContextAccess().getTypeNameAssignment_1()); 
-            // InternalBSharp.g:3571:2: ( rule__TypeDeclContext__TypeNameAssignment_1 )
-            // InternalBSharp.g:3571:3: rule__TypeDeclContext__TypeNameAssignment_1
+            // InternalBSharp.g:3638:2: ( rule__TypeDeclContext__TypeNameAssignment_1 )
+            // InternalBSharp.g:3638:3: rule__TypeDeclContext__TypeNameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__TypeDeclContext__TypeNameAssignment_1();
@@ -11321,14 +11582,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group__2"
-    // InternalBSharp.g:3579:1: rule__TypeDeclContext__Group__2 : rule__TypeDeclContext__Group__2__Impl rule__TypeDeclContext__Group__3 ;
+    // InternalBSharp.g:3646:1: rule__TypeDeclContext__Group__2 : rule__TypeDeclContext__Group__2__Impl rule__TypeDeclContext__Group__3 ;
     public final void rule__TypeDeclContext__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3583:1: ( rule__TypeDeclContext__Group__2__Impl rule__TypeDeclContext__Group__3 )
-            // InternalBSharp.g:3584:2: rule__TypeDeclContext__Group__2__Impl rule__TypeDeclContext__Group__3
+            // InternalBSharp.g:3650:1: ( rule__TypeDeclContext__Group__2__Impl rule__TypeDeclContext__Group__3 )
+            // InternalBSharp.g:3651:2: rule__TypeDeclContext__Group__2__Impl rule__TypeDeclContext__Group__3
             {
             pushFollow(FOLLOW_27);
             rule__TypeDeclContext__Group__2__Impl();
@@ -11359,33 +11620,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group__2__Impl"
-    // InternalBSharp.g:3591:1: rule__TypeDeclContext__Group__2__Impl : ( ( rule__TypeDeclContext__Group_2__0 )* ) ;
+    // InternalBSharp.g:3658:1: rule__TypeDeclContext__Group__2__Impl : ( ( rule__TypeDeclContext__Group_2__0 )* ) ;
     public final void rule__TypeDeclContext__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3595:1: ( ( ( rule__TypeDeclContext__Group_2__0 )* ) )
-            // InternalBSharp.g:3596:1: ( ( rule__TypeDeclContext__Group_2__0 )* )
+            // InternalBSharp.g:3662:1: ( ( ( rule__TypeDeclContext__Group_2__0 )* ) )
+            // InternalBSharp.g:3663:1: ( ( rule__TypeDeclContext__Group_2__0 )* )
             {
-            // InternalBSharp.g:3596:1: ( ( rule__TypeDeclContext__Group_2__0 )* )
-            // InternalBSharp.g:3597:2: ( rule__TypeDeclContext__Group_2__0 )*
+            // InternalBSharp.g:3663:1: ( ( rule__TypeDeclContext__Group_2__0 )* )
+            // InternalBSharp.g:3664:2: ( rule__TypeDeclContext__Group_2__0 )*
             {
              before(grammarAccess.getTypeDeclContextAccess().getGroup_2()); 
-            // InternalBSharp.g:3598:2: ( rule__TypeDeclContext__Group_2__0 )*
-            loop35:
+            // InternalBSharp.g:3665:2: ( rule__TypeDeclContext__Group_2__0 )*
+            loop37:
             do {
-                int alt35=2;
-                int LA35_0 = input.LA(1);
+                int alt37=2;
+                int LA37_0 = input.LA(1);
 
-                if ( (LA35_0==44) ) {
-                    alt35=1;
+                if ( (LA37_0==44) ) {
+                    alt37=1;
                 }
 
 
-                switch (alt35) {
+                switch (alt37) {
             	case 1 :
-            	    // InternalBSharp.g:3598:3: rule__TypeDeclContext__Group_2__0
+            	    // InternalBSharp.g:3665:3: rule__TypeDeclContext__Group_2__0
             	    {
             	    pushFollow(FOLLOW_21);
             	    rule__TypeDeclContext__Group_2__0();
@@ -11397,7 +11658,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop35;
+            	    break loop37;
                 }
             } while (true);
 
@@ -11424,14 +11685,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group__3"
-    // InternalBSharp.g:3606:1: rule__TypeDeclContext__Group__3 : rule__TypeDeclContext__Group__3__Impl ;
+    // InternalBSharp.g:3673:1: rule__TypeDeclContext__Group__3 : rule__TypeDeclContext__Group__3__Impl ;
     public final void rule__TypeDeclContext__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3610:1: ( rule__TypeDeclContext__Group__3__Impl )
-            // InternalBSharp.g:3611:2: rule__TypeDeclContext__Group__3__Impl
+            // InternalBSharp.g:3677:1: ( rule__TypeDeclContext__Group__3__Impl )
+            // InternalBSharp.g:3678:2: rule__TypeDeclContext__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TypeDeclContext__Group__3__Impl();
@@ -11457,17 +11718,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group__3__Impl"
-    // InternalBSharp.g:3617:1: rule__TypeDeclContext__Group__3__Impl : ( '>' ) ;
+    // InternalBSharp.g:3684:1: rule__TypeDeclContext__Group__3__Impl : ( '>' ) ;
     public final void rule__TypeDeclContext__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3621:1: ( ( '>' ) )
-            // InternalBSharp.g:3622:1: ( '>' )
+            // InternalBSharp.g:3688:1: ( ( '>' ) )
+            // InternalBSharp.g:3689:1: ( '>' )
             {
-            // InternalBSharp.g:3622:1: ( '>' )
-            // InternalBSharp.g:3623:2: '>'
+            // InternalBSharp.g:3689:1: ( '>' )
+            // InternalBSharp.g:3690:2: '>'
             {
              before(grammarAccess.getTypeDeclContextAccess().getGreaterThanSignKeyword_3()); 
             match(input,43,FOLLOW_2); 
@@ -11494,14 +11755,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group_2__0"
-    // InternalBSharp.g:3633:1: rule__TypeDeclContext__Group_2__0 : rule__TypeDeclContext__Group_2__0__Impl rule__TypeDeclContext__Group_2__1 ;
+    // InternalBSharp.g:3700:1: rule__TypeDeclContext__Group_2__0 : rule__TypeDeclContext__Group_2__0__Impl rule__TypeDeclContext__Group_2__1 ;
     public final void rule__TypeDeclContext__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3637:1: ( rule__TypeDeclContext__Group_2__0__Impl rule__TypeDeclContext__Group_2__1 )
-            // InternalBSharp.g:3638:2: rule__TypeDeclContext__Group_2__0__Impl rule__TypeDeclContext__Group_2__1
+            // InternalBSharp.g:3704:1: ( rule__TypeDeclContext__Group_2__0__Impl rule__TypeDeclContext__Group_2__1 )
+            // InternalBSharp.g:3705:2: rule__TypeDeclContext__Group_2__0__Impl rule__TypeDeclContext__Group_2__1
             {
             pushFollow(FOLLOW_22);
             rule__TypeDeclContext__Group_2__0__Impl();
@@ -11532,17 +11793,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group_2__0__Impl"
-    // InternalBSharp.g:3645:1: rule__TypeDeclContext__Group_2__0__Impl : ( ',' ) ;
+    // InternalBSharp.g:3712:1: rule__TypeDeclContext__Group_2__0__Impl : ( ',' ) ;
     public final void rule__TypeDeclContext__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3649:1: ( ( ',' ) )
-            // InternalBSharp.g:3650:1: ( ',' )
+            // InternalBSharp.g:3716:1: ( ( ',' ) )
+            // InternalBSharp.g:3717:1: ( ',' )
             {
-            // InternalBSharp.g:3650:1: ( ',' )
-            // InternalBSharp.g:3651:2: ','
+            // InternalBSharp.g:3717:1: ( ',' )
+            // InternalBSharp.g:3718:2: ','
             {
              before(grammarAccess.getTypeDeclContextAccess().getCommaKeyword_2_0()); 
             match(input,44,FOLLOW_2); 
@@ -11569,14 +11830,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group_2__1"
-    // InternalBSharp.g:3660:1: rule__TypeDeclContext__Group_2__1 : rule__TypeDeclContext__Group_2__1__Impl ;
+    // InternalBSharp.g:3727:1: rule__TypeDeclContext__Group_2__1 : rule__TypeDeclContext__Group_2__1__Impl ;
     public final void rule__TypeDeclContext__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3664:1: ( rule__TypeDeclContext__Group_2__1__Impl )
-            // InternalBSharp.g:3665:2: rule__TypeDeclContext__Group_2__1__Impl
+            // InternalBSharp.g:3731:1: ( rule__TypeDeclContext__Group_2__1__Impl )
+            // InternalBSharp.g:3732:2: rule__TypeDeclContext__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TypeDeclContext__Group_2__1__Impl();
@@ -11602,21 +11863,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__Group_2__1__Impl"
-    // InternalBSharp.g:3671:1: rule__TypeDeclContext__Group_2__1__Impl : ( ( rule__TypeDeclContext__TypeNameAssignment_2_1 ) ) ;
+    // InternalBSharp.g:3738:1: rule__TypeDeclContext__Group_2__1__Impl : ( ( rule__TypeDeclContext__TypeNameAssignment_2_1 ) ) ;
     public final void rule__TypeDeclContext__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3675:1: ( ( ( rule__TypeDeclContext__TypeNameAssignment_2_1 ) ) )
-            // InternalBSharp.g:3676:1: ( ( rule__TypeDeclContext__TypeNameAssignment_2_1 ) )
+            // InternalBSharp.g:3742:1: ( ( ( rule__TypeDeclContext__TypeNameAssignment_2_1 ) ) )
+            // InternalBSharp.g:3743:1: ( ( rule__TypeDeclContext__TypeNameAssignment_2_1 ) )
             {
-            // InternalBSharp.g:3676:1: ( ( rule__TypeDeclContext__TypeNameAssignment_2_1 ) )
-            // InternalBSharp.g:3677:2: ( rule__TypeDeclContext__TypeNameAssignment_2_1 )
+            // InternalBSharp.g:3743:1: ( ( rule__TypeDeclContext__TypeNameAssignment_2_1 ) )
+            // InternalBSharp.g:3744:2: ( rule__TypeDeclContext__TypeNameAssignment_2_1 )
             {
              before(grammarAccess.getTypeDeclContextAccess().getTypeNameAssignment_2_1()); 
-            // InternalBSharp.g:3678:2: ( rule__TypeDeclContext__TypeNameAssignment_2_1 )
-            // InternalBSharp.g:3678:3: rule__TypeDeclContext__TypeNameAssignment_2_1
+            // InternalBSharp.g:3745:2: ( rule__TypeDeclContext__TypeNameAssignment_2_1 )
+            // InternalBSharp.g:3745:3: rule__TypeDeclContext__TypeNameAssignment_2_1
             {
             pushFollow(FOLLOW_2);
             rule__TypeDeclContext__TypeNameAssignment_2_1();
@@ -11649,14 +11910,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group__0"
-    // InternalBSharp.g:3687:1: rule__Where__Group__0 : rule__Where__Group__0__Impl rule__Where__Group__1 ;
+    // InternalBSharp.g:3754:1: rule__Where__Group__0 : rule__Where__Group__0__Impl rule__Where__Group__1 ;
     public final void rule__Where__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3691:1: ( rule__Where__Group__0__Impl rule__Where__Group__1 )
-            // InternalBSharp.g:3692:2: rule__Where__Group__0__Impl rule__Where__Group__1
+            // InternalBSharp.g:3758:1: ( rule__Where__Group__0__Impl rule__Where__Group__1 )
+            // InternalBSharp.g:3759:2: rule__Where__Group__0__Impl rule__Where__Group__1
             {
             pushFollow(FOLLOW_28);
             rule__Where__Group__0__Impl();
@@ -11687,17 +11948,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group__0__Impl"
-    // InternalBSharp.g:3699:1: rule__Where__Group__0__Impl : ( 'where' ) ;
+    // InternalBSharp.g:3766:1: rule__Where__Group__0__Impl : ( 'where' ) ;
     public final void rule__Where__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3703:1: ( ( 'where' ) )
-            // InternalBSharp.g:3704:1: ( 'where' )
+            // InternalBSharp.g:3770:1: ( ( 'where' ) )
+            // InternalBSharp.g:3771:1: ( 'where' )
             {
-            // InternalBSharp.g:3704:1: ( 'where' )
-            // InternalBSharp.g:3705:2: 'where'
+            // InternalBSharp.g:3771:1: ( 'where' )
+            // InternalBSharp.g:3772:2: 'where'
             {
              before(grammarAccess.getWhereAccess().getWhereKeyword_0()); 
             match(input,46,FOLLOW_2); 
@@ -11724,14 +11985,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group__1"
-    // InternalBSharp.g:3714:1: rule__Where__Group__1 : rule__Where__Group__1__Impl rule__Where__Group__2 ;
+    // InternalBSharp.g:3781:1: rule__Where__Group__1 : rule__Where__Group__1__Impl rule__Where__Group__2 ;
     public final void rule__Where__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3718:1: ( rule__Where__Group__1__Impl rule__Where__Group__2 )
-            // InternalBSharp.g:3719:2: rule__Where__Group__1__Impl rule__Where__Group__2
+            // InternalBSharp.g:3785:1: ( rule__Where__Group__1__Impl rule__Where__Group__2 )
+            // InternalBSharp.g:3786:2: rule__Where__Group__1__Impl rule__Where__Group__2
             {
             pushFollow(FOLLOW_29);
             rule__Where__Group__1__Impl();
@@ -11762,21 +12023,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group__1__Impl"
-    // InternalBSharp.g:3726:1: rule__Where__Group__1__Impl : ( ( rule__Where__ExpressionsAssignment_1 ) ) ;
+    // InternalBSharp.g:3793:1: rule__Where__Group__1__Impl : ( ( rule__Where__ExpressionsAssignment_1 ) ) ;
     public final void rule__Where__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3730:1: ( ( ( rule__Where__ExpressionsAssignment_1 ) ) )
-            // InternalBSharp.g:3731:1: ( ( rule__Where__ExpressionsAssignment_1 ) )
+            // InternalBSharp.g:3797:1: ( ( ( rule__Where__ExpressionsAssignment_1 ) ) )
+            // InternalBSharp.g:3798:1: ( ( rule__Where__ExpressionsAssignment_1 ) )
             {
-            // InternalBSharp.g:3731:1: ( ( rule__Where__ExpressionsAssignment_1 ) )
-            // InternalBSharp.g:3732:2: ( rule__Where__ExpressionsAssignment_1 )
+            // InternalBSharp.g:3798:1: ( ( rule__Where__ExpressionsAssignment_1 ) )
+            // InternalBSharp.g:3799:2: ( rule__Where__ExpressionsAssignment_1 )
             {
              before(grammarAccess.getWhereAccess().getExpressionsAssignment_1()); 
-            // InternalBSharp.g:3733:2: ( rule__Where__ExpressionsAssignment_1 )
-            // InternalBSharp.g:3733:3: rule__Where__ExpressionsAssignment_1
+            // InternalBSharp.g:3800:2: ( rule__Where__ExpressionsAssignment_1 )
+            // InternalBSharp.g:3800:3: rule__Where__ExpressionsAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Where__ExpressionsAssignment_1();
@@ -11809,14 +12070,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group__2"
-    // InternalBSharp.g:3741:1: rule__Where__Group__2 : rule__Where__Group__2__Impl ;
+    // InternalBSharp.g:3808:1: rule__Where__Group__2 : rule__Where__Group__2__Impl ;
     public final void rule__Where__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3745:1: ( rule__Where__Group__2__Impl )
-            // InternalBSharp.g:3746:2: rule__Where__Group__2__Impl
+            // InternalBSharp.g:3812:1: ( rule__Where__Group__2__Impl )
+            // InternalBSharp.g:3813:2: rule__Where__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Where__Group__2__Impl();
@@ -11842,39 +12103,39 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group__2__Impl"
-    // InternalBSharp.g:3752:1: rule__Where__Group__2__Impl : ( ( rule__Where__Group_2__0 )* ) ;
+    // InternalBSharp.g:3819:1: rule__Where__Group__2__Impl : ( ( rule__Where__Group_2__0 )* ) ;
     public final void rule__Where__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3756:1: ( ( ( rule__Where__Group_2__0 )* ) )
-            // InternalBSharp.g:3757:1: ( ( rule__Where__Group_2__0 )* )
+            // InternalBSharp.g:3823:1: ( ( ( rule__Where__Group_2__0 )* ) )
+            // InternalBSharp.g:3824:1: ( ( rule__Where__Group_2__0 )* )
             {
-            // InternalBSharp.g:3757:1: ( ( rule__Where__Group_2__0 )* )
-            // InternalBSharp.g:3758:2: ( rule__Where__Group_2__0 )*
+            // InternalBSharp.g:3824:1: ( ( rule__Where__Group_2__0 )* )
+            // InternalBSharp.g:3825:2: ( rule__Where__Group_2__0 )*
             {
              before(grammarAccess.getWhereAccess().getGroup_2()); 
-            // InternalBSharp.g:3759:2: ( rule__Where__Group_2__0 )*
-            loop36:
+            // InternalBSharp.g:3826:2: ( rule__Where__Group_2__0 )*
+            loop38:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt38=2;
+                int LA38_0 = input.LA(1);
 
-                if ( (LA36_0==37) ) {
-                    int LA36_2 = input.LA(2);
+                if ( (LA38_0==37) ) {
+                    int LA38_2 = input.LA(2);
 
-                    if ( (LA36_2==RULE_ID||LA36_2==11||(LA36_2>=23 && LA36_2<=24)||LA36_2==40||LA36_2==52||LA36_2==57) ) {
-                        alt36=1;
+                    if ( (LA38_2==RULE_ID||LA38_2==11||(LA38_2>=23 && LA38_2<=24)||LA38_2==38||LA38_2==40||LA38_2==52||LA38_2==57) ) {
+                        alt38=1;
                     }
 
 
                 }
 
 
-                switch (alt36) {
+                switch (alt38) {
             	case 1 :
-            	    // InternalBSharp.g:3759:3: rule__Where__Group_2__0
+            	    // InternalBSharp.g:3826:3: rule__Where__Group_2__0
             	    {
             	    pushFollow(FOLLOW_30);
             	    rule__Where__Group_2__0();
@@ -11886,7 +12147,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop38;
                 }
             } while (true);
 
@@ -11913,14 +12174,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group_2__0"
-    // InternalBSharp.g:3768:1: rule__Where__Group_2__0 : rule__Where__Group_2__0__Impl rule__Where__Group_2__1 ;
+    // InternalBSharp.g:3835:1: rule__Where__Group_2__0 : rule__Where__Group_2__0__Impl rule__Where__Group_2__1 ;
     public final void rule__Where__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3772:1: ( rule__Where__Group_2__0__Impl rule__Where__Group_2__1 )
-            // InternalBSharp.g:3773:2: rule__Where__Group_2__0__Impl rule__Where__Group_2__1
+            // InternalBSharp.g:3839:1: ( rule__Where__Group_2__0__Impl rule__Where__Group_2__1 )
+            // InternalBSharp.g:3840:2: rule__Where__Group_2__0__Impl rule__Where__Group_2__1
             {
             pushFollow(FOLLOW_28);
             rule__Where__Group_2__0__Impl();
@@ -11951,17 +12212,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group_2__0__Impl"
-    // InternalBSharp.g:3780:1: rule__Where__Group_2__0__Impl : ( ';' ) ;
+    // InternalBSharp.g:3847:1: rule__Where__Group_2__0__Impl : ( ';' ) ;
     public final void rule__Where__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3784:1: ( ( ';' ) )
-            // InternalBSharp.g:3785:1: ( ';' )
+            // InternalBSharp.g:3851:1: ( ( ';' ) )
+            // InternalBSharp.g:3852:1: ( ';' )
             {
-            // InternalBSharp.g:3785:1: ( ';' )
-            // InternalBSharp.g:3786:2: ';'
+            // InternalBSharp.g:3852:1: ( ';' )
+            // InternalBSharp.g:3853:2: ';'
             {
              before(grammarAccess.getWhereAccess().getSemicolonKeyword_2_0()); 
             match(input,37,FOLLOW_2); 
@@ -11988,14 +12249,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group_2__1"
-    // InternalBSharp.g:3795:1: rule__Where__Group_2__1 : rule__Where__Group_2__1__Impl ;
+    // InternalBSharp.g:3862:1: rule__Where__Group_2__1 : rule__Where__Group_2__1__Impl ;
     public final void rule__Where__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3799:1: ( rule__Where__Group_2__1__Impl )
-            // InternalBSharp.g:3800:2: rule__Where__Group_2__1__Impl
+            // InternalBSharp.g:3866:1: ( rule__Where__Group_2__1__Impl )
+            // InternalBSharp.g:3867:2: rule__Where__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Where__Group_2__1__Impl();
@@ -12021,21 +12282,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__Group_2__1__Impl"
-    // InternalBSharp.g:3806:1: rule__Where__Group_2__1__Impl : ( ( rule__Where__ExpressionsAssignment_2_1 ) ) ;
+    // InternalBSharp.g:3873:1: rule__Where__Group_2__1__Impl : ( ( rule__Where__ExpressionsAssignment_2_1 ) ) ;
     public final void rule__Where__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3810:1: ( ( ( rule__Where__ExpressionsAssignment_2_1 ) ) )
-            // InternalBSharp.g:3811:1: ( ( rule__Where__ExpressionsAssignment_2_1 ) )
+            // InternalBSharp.g:3877:1: ( ( ( rule__Where__ExpressionsAssignment_2_1 ) ) )
+            // InternalBSharp.g:3878:1: ( ( rule__Where__ExpressionsAssignment_2_1 ) )
             {
-            // InternalBSharp.g:3811:1: ( ( rule__Where__ExpressionsAssignment_2_1 ) )
-            // InternalBSharp.g:3812:2: ( rule__Where__ExpressionsAssignment_2_1 )
+            // InternalBSharp.g:3878:1: ( ( rule__Where__ExpressionsAssignment_2_1 ) )
+            // InternalBSharp.g:3879:2: ( rule__Where__ExpressionsAssignment_2_1 )
             {
              before(grammarAccess.getWhereAccess().getExpressionsAssignment_2_1()); 
-            // InternalBSharp.g:3813:2: ( rule__Where__ExpressionsAssignment_2_1 )
-            // InternalBSharp.g:3813:3: rule__Where__ExpressionsAssignment_2_1
+            // InternalBSharp.g:3880:2: ( rule__Where__ExpressionsAssignment_2_1 )
+            // InternalBSharp.g:3880:3: rule__Where__ExpressionsAssignment_2_1
             {
             pushFollow(FOLLOW_2);
             rule__Where__ExpressionsAssignment_2_1();
@@ -12068,14 +12329,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__0"
-    // InternalBSharp.g:3822:1: rule__Datatype__Group__0 : rule__Datatype__Group__0__Impl rule__Datatype__Group__1 ;
+    // InternalBSharp.g:3889:1: rule__Datatype__Group__0 : rule__Datatype__Group__0__Impl rule__Datatype__Group__1 ;
     public final void rule__Datatype__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3826:1: ( rule__Datatype__Group__0__Impl rule__Datatype__Group__1 )
-            // InternalBSharp.g:3827:2: rule__Datatype__Group__0__Impl rule__Datatype__Group__1
+            // InternalBSharp.g:3893:1: ( rule__Datatype__Group__0__Impl rule__Datatype__Group__1 )
+            // InternalBSharp.g:3894:2: rule__Datatype__Group__0__Impl rule__Datatype__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__Datatype__Group__0__Impl();
@@ -12106,17 +12367,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__0__Impl"
-    // InternalBSharp.g:3834:1: rule__Datatype__Group__0__Impl : ( 'Datatype' ) ;
+    // InternalBSharp.g:3901:1: rule__Datatype__Group__0__Impl : ( 'Datatype' ) ;
     public final void rule__Datatype__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3838:1: ( ( 'Datatype' ) )
-            // InternalBSharp.g:3839:1: ( 'Datatype' )
+            // InternalBSharp.g:3905:1: ( ( 'Datatype' ) )
+            // InternalBSharp.g:3906:1: ( 'Datatype' )
             {
-            // InternalBSharp.g:3839:1: ( 'Datatype' )
-            // InternalBSharp.g:3840:2: 'Datatype'
+            // InternalBSharp.g:3906:1: ( 'Datatype' )
+            // InternalBSharp.g:3907:2: 'Datatype'
             {
              before(grammarAccess.getDatatypeAccess().getDatatypeKeyword_0()); 
             match(input,47,FOLLOW_2); 
@@ -12143,14 +12404,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__1"
-    // InternalBSharp.g:3849:1: rule__Datatype__Group__1 : rule__Datatype__Group__1__Impl rule__Datatype__Group__2 ;
+    // InternalBSharp.g:3916:1: rule__Datatype__Group__1 : rule__Datatype__Group__1__Impl rule__Datatype__Group__2 ;
     public final void rule__Datatype__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3853:1: ( rule__Datatype__Group__1__Impl rule__Datatype__Group__2 )
-            // InternalBSharp.g:3854:2: rule__Datatype__Group__1__Impl rule__Datatype__Group__2
+            // InternalBSharp.g:3920:1: ( rule__Datatype__Group__1__Impl rule__Datatype__Group__2 )
+            // InternalBSharp.g:3921:2: rule__Datatype__Group__1__Impl rule__Datatype__Group__2
             {
             pushFollow(FOLLOW_31);
             rule__Datatype__Group__1__Impl();
@@ -12181,21 +12442,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__1__Impl"
-    // InternalBSharp.g:3861:1: rule__Datatype__Group__1__Impl : ( ( rule__Datatype__NameAssignment_1 ) ) ;
+    // InternalBSharp.g:3928:1: rule__Datatype__Group__1__Impl : ( ( rule__Datatype__NameAssignment_1 ) ) ;
     public final void rule__Datatype__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3865:1: ( ( ( rule__Datatype__NameAssignment_1 ) ) )
-            // InternalBSharp.g:3866:1: ( ( rule__Datatype__NameAssignment_1 ) )
+            // InternalBSharp.g:3932:1: ( ( ( rule__Datatype__NameAssignment_1 ) ) )
+            // InternalBSharp.g:3933:1: ( ( rule__Datatype__NameAssignment_1 ) )
             {
-            // InternalBSharp.g:3866:1: ( ( rule__Datatype__NameAssignment_1 ) )
-            // InternalBSharp.g:3867:2: ( rule__Datatype__NameAssignment_1 )
+            // InternalBSharp.g:3933:1: ( ( rule__Datatype__NameAssignment_1 ) )
+            // InternalBSharp.g:3934:2: ( rule__Datatype__NameAssignment_1 )
             {
              before(grammarAccess.getDatatypeAccess().getNameAssignment_1()); 
-            // InternalBSharp.g:3868:2: ( rule__Datatype__NameAssignment_1 )
-            // InternalBSharp.g:3868:3: rule__Datatype__NameAssignment_1
+            // InternalBSharp.g:3935:2: ( rule__Datatype__NameAssignment_1 )
+            // InternalBSharp.g:3935:3: rule__Datatype__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Datatype__NameAssignment_1();
@@ -12228,14 +12489,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__2"
-    // InternalBSharp.g:3876:1: rule__Datatype__Group__2 : rule__Datatype__Group__2__Impl rule__Datatype__Group__3 ;
+    // InternalBSharp.g:3943:1: rule__Datatype__Group__2 : rule__Datatype__Group__2__Impl rule__Datatype__Group__3 ;
     public final void rule__Datatype__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3880:1: ( rule__Datatype__Group__2__Impl rule__Datatype__Group__3 )
-            // InternalBSharp.g:3881:2: rule__Datatype__Group__2__Impl rule__Datatype__Group__3
+            // InternalBSharp.g:3947:1: ( rule__Datatype__Group__2__Impl rule__Datatype__Group__3 )
+            // InternalBSharp.g:3948:2: rule__Datatype__Group__2__Impl rule__Datatype__Group__3
             {
             pushFollow(FOLLOW_31);
             rule__Datatype__Group__2__Impl();
@@ -12266,29 +12527,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__2__Impl"
-    // InternalBSharp.g:3888:1: rule__Datatype__Group__2__Impl : ( ( rule__Datatype__ContextAssignment_2 )? ) ;
+    // InternalBSharp.g:3955:1: rule__Datatype__Group__2__Impl : ( ( rule__Datatype__ContextAssignment_2 )? ) ;
     public final void rule__Datatype__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3892:1: ( ( ( rule__Datatype__ContextAssignment_2 )? ) )
-            // InternalBSharp.g:3893:1: ( ( rule__Datatype__ContextAssignment_2 )? )
+            // InternalBSharp.g:3959:1: ( ( ( rule__Datatype__ContextAssignment_2 )? ) )
+            // InternalBSharp.g:3960:1: ( ( rule__Datatype__ContextAssignment_2 )? )
             {
-            // InternalBSharp.g:3893:1: ( ( rule__Datatype__ContextAssignment_2 )? )
-            // InternalBSharp.g:3894:2: ( rule__Datatype__ContextAssignment_2 )?
+            // InternalBSharp.g:3960:1: ( ( rule__Datatype__ContextAssignment_2 )? )
+            // InternalBSharp.g:3961:2: ( rule__Datatype__ContextAssignment_2 )?
             {
              before(grammarAccess.getDatatypeAccess().getContextAssignment_2()); 
-            // InternalBSharp.g:3895:2: ( rule__Datatype__ContextAssignment_2 )?
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            // InternalBSharp.g:3962:2: ( rule__Datatype__ContextAssignment_2 )?
+            int alt39=2;
+            int LA39_0 = input.LA(1);
 
-            if ( (LA37_0==42) ) {
-                alt37=1;
+            if ( (LA39_0==42) ) {
+                alt39=1;
             }
-            switch (alt37) {
+            switch (alt39) {
                 case 1 :
-                    // InternalBSharp.g:3895:3: rule__Datatype__ContextAssignment_2
+                    // InternalBSharp.g:3962:3: rule__Datatype__ContextAssignment_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__Datatype__ContextAssignment_2();
@@ -12324,14 +12585,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__3"
-    // InternalBSharp.g:3903:1: rule__Datatype__Group__3 : rule__Datatype__Group__3__Impl rule__Datatype__Group__4 ;
+    // InternalBSharp.g:3970:1: rule__Datatype__Group__3 : rule__Datatype__Group__3__Impl rule__Datatype__Group__4 ;
     public final void rule__Datatype__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3907:1: ( rule__Datatype__Group__3__Impl rule__Datatype__Group__4 )
-            // InternalBSharp.g:3908:2: rule__Datatype__Group__3__Impl rule__Datatype__Group__4
+            // InternalBSharp.g:3974:1: ( rule__Datatype__Group__3__Impl rule__Datatype__Group__4 )
+            // InternalBSharp.g:3975:2: rule__Datatype__Group__3__Impl rule__Datatype__Group__4
             {
             pushFollow(FOLLOW_16);
             rule__Datatype__Group__3__Impl();
@@ -12362,24 +12623,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__3__Impl"
-    // InternalBSharp.g:3915:1: rule__Datatype__Group__3__Impl : ( ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* ) ) ;
+    // InternalBSharp.g:3982:1: rule__Datatype__Group__3__Impl : ( ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* ) ) ;
     public final void rule__Datatype__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3919:1: ( ( ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* ) ) )
-            // InternalBSharp.g:3920:1: ( ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* ) )
+            // InternalBSharp.g:3986:1: ( ( ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* ) ) )
+            // InternalBSharp.g:3987:1: ( ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* ) )
             {
-            // InternalBSharp.g:3920:1: ( ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* ) )
-            // InternalBSharp.g:3921:2: ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* )
+            // InternalBSharp.g:3987:1: ( ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* ) )
+            // InternalBSharp.g:3988:2: ( ( rule__Datatype__Group_3__0 ) ) ( ( rule__Datatype__Group_3__0 )* )
             {
-            // InternalBSharp.g:3921:2: ( ( rule__Datatype__Group_3__0 ) )
-            // InternalBSharp.g:3922:3: ( rule__Datatype__Group_3__0 )
+            // InternalBSharp.g:3988:2: ( ( rule__Datatype__Group_3__0 ) )
+            // InternalBSharp.g:3989:3: ( rule__Datatype__Group_3__0 )
             {
              before(grammarAccess.getDatatypeAccess().getGroup_3()); 
-            // InternalBSharp.g:3923:3: ( rule__Datatype__Group_3__0 )
-            // InternalBSharp.g:3923:4: rule__Datatype__Group_3__0
+            // InternalBSharp.g:3990:3: ( rule__Datatype__Group_3__0 )
+            // InternalBSharp.g:3990:4: rule__Datatype__Group_3__0
             {
             pushFollow(FOLLOW_32);
             rule__Datatype__Group_3__0();
@@ -12393,24 +12654,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             }
 
-            // InternalBSharp.g:3926:2: ( ( rule__Datatype__Group_3__0 )* )
-            // InternalBSharp.g:3927:3: ( rule__Datatype__Group_3__0 )*
+            // InternalBSharp.g:3993:2: ( ( rule__Datatype__Group_3__0 )* )
+            // InternalBSharp.g:3994:3: ( rule__Datatype__Group_3__0 )*
             {
              before(grammarAccess.getDatatypeAccess().getGroup_3()); 
-            // InternalBSharp.g:3928:3: ( rule__Datatype__Group_3__0 )*
-            loop38:
+            // InternalBSharp.g:3995:3: ( rule__Datatype__Group_3__0 )*
+            loop40:
             do {
-                int alt38=2;
-                int LA38_0 = input.LA(1);
+                int alt40=2;
+                int LA40_0 = input.LA(1);
 
-                if ( (LA38_0==48) ) {
-                    alt38=1;
+                if ( (LA40_0==48) ) {
+                    alt40=1;
                 }
 
 
-                switch (alt38) {
+                switch (alt40) {
             	case 1 :
-            	    // InternalBSharp.g:3928:4: rule__Datatype__Group_3__0
+            	    // InternalBSharp.g:3995:4: rule__Datatype__Group_3__0
             	    {
             	    pushFollow(FOLLOW_32);
             	    rule__Datatype__Group_3__0();
@@ -12422,7 +12683,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop38;
+            	    break loop40;
                 }
             } while (true);
 
@@ -12452,14 +12713,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__4"
-    // InternalBSharp.g:3937:1: rule__Datatype__Group__4 : rule__Datatype__Group__4__Impl ;
+    // InternalBSharp.g:4004:1: rule__Datatype__Group__4 : rule__Datatype__Group__4__Impl ;
     public final void rule__Datatype__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3941:1: ( rule__Datatype__Group__4__Impl )
-            // InternalBSharp.g:3942:2: rule__Datatype__Group__4__Impl
+            // InternalBSharp.g:4008:1: ( rule__Datatype__Group__4__Impl )
+            // InternalBSharp.g:4009:2: rule__Datatype__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Datatype__Group__4__Impl();
@@ -12485,21 +12746,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__4__Impl"
-    // InternalBSharp.g:3948:1: rule__Datatype__Group__4__Impl : ( ( rule__Datatype__BlockAssignment_4 ) ) ;
+    // InternalBSharp.g:4015:1: rule__Datatype__Group__4__Impl : ( ( rule__Datatype__BlockAssignment_4 ) ) ;
     public final void rule__Datatype__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3952:1: ( ( ( rule__Datatype__BlockAssignment_4 ) ) )
-            // InternalBSharp.g:3953:1: ( ( rule__Datatype__BlockAssignment_4 ) )
+            // InternalBSharp.g:4019:1: ( ( ( rule__Datatype__BlockAssignment_4 ) ) )
+            // InternalBSharp.g:4020:1: ( ( rule__Datatype__BlockAssignment_4 ) )
             {
-            // InternalBSharp.g:3953:1: ( ( rule__Datatype__BlockAssignment_4 ) )
-            // InternalBSharp.g:3954:2: ( rule__Datatype__BlockAssignment_4 )
+            // InternalBSharp.g:4020:1: ( ( rule__Datatype__BlockAssignment_4 ) )
+            // InternalBSharp.g:4021:2: ( rule__Datatype__BlockAssignment_4 )
             {
              before(grammarAccess.getDatatypeAccess().getBlockAssignment_4()); 
-            // InternalBSharp.g:3955:2: ( rule__Datatype__BlockAssignment_4 )
-            // InternalBSharp.g:3955:3: rule__Datatype__BlockAssignment_4
+            // InternalBSharp.g:4022:2: ( rule__Datatype__BlockAssignment_4 )
+            // InternalBSharp.g:4022:3: rule__Datatype__BlockAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__Datatype__BlockAssignment_4();
@@ -12532,14 +12793,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group_3__0"
-    // InternalBSharp.g:3964:1: rule__Datatype__Group_3__0 : rule__Datatype__Group_3__0__Impl rule__Datatype__Group_3__1 ;
+    // InternalBSharp.g:4031:1: rule__Datatype__Group_3__0 : rule__Datatype__Group_3__0__Impl rule__Datatype__Group_3__1 ;
     public final void rule__Datatype__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3968:1: ( rule__Datatype__Group_3__0__Impl rule__Datatype__Group_3__1 )
-            // InternalBSharp.g:3969:2: rule__Datatype__Group_3__0__Impl rule__Datatype__Group_3__1
+            // InternalBSharp.g:4035:1: ( rule__Datatype__Group_3__0__Impl rule__Datatype__Group_3__1 )
+            // InternalBSharp.g:4036:2: rule__Datatype__Group_3__0__Impl rule__Datatype__Group_3__1
             {
             pushFollow(FOLLOW_4);
             rule__Datatype__Group_3__0__Impl();
@@ -12570,17 +12831,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group_3__0__Impl"
-    // InternalBSharp.g:3976:1: rule__Datatype__Group_3__0__Impl : ( '|' ) ;
+    // InternalBSharp.g:4043:1: rule__Datatype__Group_3__0__Impl : ( '|' ) ;
     public final void rule__Datatype__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3980:1: ( ( '|' ) )
-            // InternalBSharp.g:3981:1: ( '|' )
+            // InternalBSharp.g:4047:1: ( ( '|' ) )
+            // InternalBSharp.g:4048:1: ( '|' )
             {
-            // InternalBSharp.g:3981:1: ( '|' )
-            // InternalBSharp.g:3982:2: '|'
+            // InternalBSharp.g:4048:1: ( '|' )
+            // InternalBSharp.g:4049:2: '|'
             {
              before(grammarAccess.getDatatypeAccess().getVerticalLineKeyword_3_0()); 
             match(input,48,FOLLOW_2); 
@@ -12607,14 +12868,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group_3__1"
-    // InternalBSharp.g:3991:1: rule__Datatype__Group_3__1 : rule__Datatype__Group_3__1__Impl ;
+    // InternalBSharp.g:4058:1: rule__Datatype__Group_3__1 : rule__Datatype__Group_3__1__Impl ;
     public final void rule__Datatype__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:3995:1: ( rule__Datatype__Group_3__1__Impl )
-            // InternalBSharp.g:3996:2: rule__Datatype__Group_3__1__Impl
+            // InternalBSharp.g:4062:1: ( rule__Datatype__Group_3__1__Impl )
+            // InternalBSharp.g:4063:2: rule__Datatype__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Datatype__Group_3__1__Impl();
@@ -12640,21 +12901,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group_3__1__Impl"
-    // InternalBSharp.g:4002:1: rule__Datatype__Group_3__1__Impl : ( ( rule__Datatype__ConstructorsAssignment_3_1 ) ) ;
+    // InternalBSharp.g:4069:1: rule__Datatype__Group_3__1__Impl : ( ( rule__Datatype__ConstructorsAssignment_3_1 ) ) ;
     public final void rule__Datatype__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4006:1: ( ( ( rule__Datatype__ConstructorsAssignment_3_1 ) ) )
-            // InternalBSharp.g:4007:1: ( ( rule__Datatype__ConstructorsAssignment_3_1 ) )
+            // InternalBSharp.g:4073:1: ( ( ( rule__Datatype__ConstructorsAssignment_3_1 ) ) )
+            // InternalBSharp.g:4074:1: ( ( rule__Datatype__ConstructorsAssignment_3_1 ) )
             {
-            // InternalBSharp.g:4007:1: ( ( rule__Datatype__ConstructorsAssignment_3_1 ) )
-            // InternalBSharp.g:4008:2: ( rule__Datatype__ConstructorsAssignment_3_1 )
+            // InternalBSharp.g:4074:1: ( ( rule__Datatype__ConstructorsAssignment_3_1 ) )
+            // InternalBSharp.g:4075:2: ( rule__Datatype__ConstructorsAssignment_3_1 )
             {
              before(grammarAccess.getDatatypeAccess().getConstructorsAssignment_3_1()); 
-            // InternalBSharp.g:4009:2: ( rule__Datatype__ConstructorsAssignment_3_1 )
-            // InternalBSharp.g:4009:3: rule__Datatype__ConstructorsAssignment_3_1
+            // InternalBSharp.g:4076:2: ( rule__Datatype__ConstructorsAssignment_3_1 )
+            // InternalBSharp.g:4076:3: rule__Datatype__ConstructorsAssignment_3_1
             {
             pushFollow(FOLLOW_2);
             rule__Datatype__ConstructorsAssignment_3_1();
@@ -12687,14 +12948,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group__0"
-    // InternalBSharp.g:4018:1: rule__DatatypeConstructor__Group__0 : rule__DatatypeConstructor__Group__0__Impl rule__DatatypeConstructor__Group__1 ;
+    // InternalBSharp.g:4085:1: rule__DatatypeConstructor__Group__0 : rule__DatatypeConstructor__Group__0__Impl rule__DatatypeConstructor__Group__1 ;
     public final void rule__DatatypeConstructor__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4022:1: ( rule__DatatypeConstructor__Group__0__Impl rule__DatatypeConstructor__Group__1 )
-            // InternalBSharp.g:4023:2: rule__DatatypeConstructor__Group__0__Impl rule__DatatypeConstructor__Group__1
+            // InternalBSharp.g:4089:1: ( rule__DatatypeConstructor__Group__0__Impl rule__DatatypeConstructor__Group__1 )
+            // InternalBSharp.g:4090:2: rule__DatatypeConstructor__Group__0__Impl rule__DatatypeConstructor__Group__1
             {
             pushFollow(FOLLOW_26);
             rule__DatatypeConstructor__Group__0__Impl();
@@ -12725,21 +12986,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group__0__Impl"
-    // InternalBSharp.g:4030:1: rule__DatatypeConstructor__Group__0__Impl : ( ( rule__DatatypeConstructor__NameAssignment_0 ) ) ;
+    // InternalBSharp.g:4097:1: rule__DatatypeConstructor__Group__0__Impl : ( ( rule__DatatypeConstructor__NameAssignment_0 ) ) ;
     public final void rule__DatatypeConstructor__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4034:1: ( ( ( rule__DatatypeConstructor__NameAssignment_0 ) ) )
-            // InternalBSharp.g:4035:1: ( ( rule__DatatypeConstructor__NameAssignment_0 ) )
+            // InternalBSharp.g:4101:1: ( ( ( rule__DatatypeConstructor__NameAssignment_0 ) ) )
+            // InternalBSharp.g:4102:1: ( ( rule__DatatypeConstructor__NameAssignment_0 ) )
             {
-            // InternalBSharp.g:4035:1: ( ( rule__DatatypeConstructor__NameAssignment_0 ) )
-            // InternalBSharp.g:4036:2: ( rule__DatatypeConstructor__NameAssignment_0 )
+            // InternalBSharp.g:4102:1: ( ( rule__DatatypeConstructor__NameAssignment_0 ) )
+            // InternalBSharp.g:4103:2: ( rule__DatatypeConstructor__NameAssignment_0 )
             {
              before(grammarAccess.getDatatypeConstructorAccess().getNameAssignment_0()); 
-            // InternalBSharp.g:4037:2: ( rule__DatatypeConstructor__NameAssignment_0 )
-            // InternalBSharp.g:4037:3: rule__DatatypeConstructor__NameAssignment_0
+            // InternalBSharp.g:4104:2: ( rule__DatatypeConstructor__NameAssignment_0 )
+            // InternalBSharp.g:4104:3: rule__DatatypeConstructor__NameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__DatatypeConstructor__NameAssignment_0();
@@ -12772,14 +13033,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group__1"
-    // InternalBSharp.g:4045:1: rule__DatatypeConstructor__Group__1 : rule__DatatypeConstructor__Group__1__Impl ;
+    // InternalBSharp.g:4112:1: rule__DatatypeConstructor__Group__1 : rule__DatatypeConstructor__Group__1__Impl ;
     public final void rule__DatatypeConstructor__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4049:1: ( rule__DatatypeConstructor__Group__1__Impl )
-            // InternalBSharp.g:4050:2: rule__DatatypeConstructor__Group__1__Impl
+            // InternalBSharp.g:4116:1: ( rule__DatatypeConstructor__Group__1__Impl )
+            // InternalBSharp.g:4117:2: rule__DatatypeConstructor__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DatatypeConstructor__Group__1__Impl();
@@ -12805,29 +13066,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group__1__Impl"
-    // InternalBSharp.g:4056:1: rule__DatatypeConstructor__Group__1__Impl : ( ( rule__DatatypeConstructor__Group_1__0 )? ) ;
+    // InternalBSharp.g:4123:1: rule__DatatypeConstructor__Group__1__Impl : ( ( rule__DatatypeConstructor__Group_1__0 )? ) ;
     public final void rule__DatatypeConstructor__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4060:1: ( ( ( rule__DatatypeConstructor__Group_1__0 )? ) )
-            // InternalBSharp.g:4061:1: ( ( rule__DatatypeConstructor__Group_1__0 )? )
+            // InternalBSharp.g:4127:1: ( ( ( rule__DatatypeConstructor__Group_1__0 )? ) )
+            // InternalBSharp.g:4128:1: ( ( rule__DatatypeConstructor__Group_1__0 )? )
             {
-            // InternalBSharp.g:4061:1: ( ( rule__DatatypeConstructor__Group_1__0 )? )
-            // InternalBSharp.g:4062:2: ( rule__DatatypeConstructor__Group_1__0 )?
+            // InternalBSharp.g:4128:1: ( ( rule__DatatypeConstructor__Group_1__0 )? )
+            // InternalBSharp.g:4129:2: ( rule__DatatypeConstructor__Group_1__0 )?
             {
              before(grammarAccess.getDatatypeConstructorAccess().getGroup_1()); 
-            // InternalBSharp.g:4063:2: ( rule__DatatypeConstructor__Group_1__0 )?
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            // InternalBSharp.g:4130:2: ( rule__DatatypeConstructor__Group_1__0 )?
+            int alt41=2;
+            int LA41_0 = input.LA(1);
 
-            if ( (LA39_0==40) ) {
-                alt39=1;
+            if ( (LA41_0==40) ) {
+                alt41=1;
             }
-            switch (alt39) {
+            switch (alt41) {
                 case 1 :
-                    // InternalBSharp.g:4063:3: rule__DatatypeConstructor__Group_1__0
+                    // InternalBSharp.g:4130:3: rule__DatatypeConstructor__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__DatatypeConstructor__Group_1__0();
@@ -12863,14 +13124,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group_1__0"
-    // InternalBSharp.g:4072:1: rule__DatatypeConstructor__Group_1__0 : rule__DatatypeConstructor__Group_1__0__Impl rule__DatatypeConstructor__Group_1__1 ;
+    // InternalBSharp.g:4139:1: rule__DatatypeConstructor__Group_1__0 : rule__DatatypeConstructor__Group_1__0__Impl rule__DatatypeConstructor__Group_1__1 ;
     public final void rule__DatatypeConstructor__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4076:1: ( rule__DatatypeConstructor__Group_1__0__Impl rule__DatatypeConstructor__Group_1__1 )
-            // InternalBSharp.g:4077:2: rule__DatatypeConstructor__Group_1__0__Impl rule__DatatypeConstructor__Group_1__1
+            // InternalBSharp.g:4143:1: ( rule__DatatypeConstructor__Group_1__0__Impl rule__DatatypeConstructor__Group_1__1 )
+            // InternalBSharp.g:4144:2: rule__DatatypeConstructor__Group_1__0__Impl rule__DatatypeConstructor__Group_1__1
             {
             pushFollow(FOLLOW_4);
             rule__DatatypeConstructor__Group_1__0__Impl();
@@ -12901,17 +13162,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group_1__0__Impl"
-    // InternalBSharp.g:4084:1: rule__DatatypeConstructor__Group_1__0__Impl : ( '(' ) ;
+    // InternalBSharp.g:4151:1: rule__DatatypeConstructor__Group_1__0__Impl : ( '(' ) ;
     public final void rule__DatatypeConstructor__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4088:1: ( ( '(' ) )
-            // InternalBSharp.g:4089:1: ( '(' )
+            // InternalBSharp.g:4155:1: ( ( '(' ) )
+            // InternalBSharp.g:4156:1: ( '(' )
             {
-            // InternalBSharp.g:4089:1: ( '(' )
-            // InternalBSharp.g:4090:2: '('
+            // InternalBSharp.g:4156:1: ( '(' )
+            // InternalBSharp.g:4157:2: '('
             {
              before(grammarAccess.getDatatypeConstructorAccess().getLeftParenthesisKeyword_1_0()); 
             match(input,40,FOLLOW_2); 
@@ -12938,14 +13199,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group_1__1"
-    // InternalBSharp.g:4099:1: rule__DatatypeConstructor__Group_1__1 : rule__DatatypeConstructor__Group_1__1__Impl rule__DatatypeConstructor__Group_1__2 ;
+    // InternalBSharp.g:4166:1: rule__DatatypeConstructor__Group_1__1 : rule__DatatypeConstructor__Group_1__1__Impl rule__DatatypeConstructor__Group_1__2 ;
     public final void rule__DatatypeConstructor__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4103:1: ( rule__DatatypeConstructor__Group_1__1__Impl rule__DatatypeConstructor__Group_1__2 )
-            // InternalBSharp.g:4104:2: rule__DatatypeConstructor__Group_1__1__Impl rule__DatatypeConstructor__Group_1__2
+            // InternalBSharp.g:4170:1: ( rule__DatatypeConstructor__Group_1__1__Impl rule__DatatypeConstructor__Group_1__2 )
+            // InternalBSharp.g:4171:2: rule__DatatypeConstructor__Group_1__1__Impl rule__DatatypeConstructor__Group_1__2
             {
             pushFollow(FOLLOW_18);
             rule__DatatypeConstructor__Group_1__1__Impl();
@@ -12976,21 +13237,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group_1__1__Impl"
-    // InternalBSharp.g:4111:1: rule__DatatypeConstructor__Group_1__1__Impl : ( ( rule__DatatypeConstructor__DeconsAssignment_1_1 ) ) ;
+    // InternalBSharp.g:4178:1: rule__DatatypeConstructor__Group_1__1__Impl : ( ( rule__DatatypeConstructor__DeconsAssignment_1_1 ) ) ;
     public final void rule__DatatypeConstructor__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4115:1: ( ( ( rule__DatatypeConstructor__DeconsAssignment_1_1 ) ) )
-            // InternalBSharp.g:4116:1: ( ( rule__DatatypeConstructor__DeconsAssignment_1_1 ) )
+            // InternalBSharp.g:4182:1: ( ( ( rule__DatatypeConstructor__DeconsAssignment_1_1 ) ) )
+            // InternalBSharp.g:4183:1: ( ( rule__DatatypeConstructor__DeconsAssignment_1_1 ) )
             {
-            // InternalBSharp.g:4116:1: ( ( rule__DatatypeConstructor__DeconsAssignment_1_1 ) )
-            // InternalBSharp.g:4117:2: ( rule__DatatypeConstructor__DeconsAssignment_1_1 )
+            // InternalBSharp.g:4183:1: ( ( rule__DatatypeConstructor__DeconsAssignment_1_1 ) )
+            // InternalBSharp.g:4184:2: ( rule__DatatypeConstructor__DeconsAssignment_1_1 )
             {
              before(grammarAccess.getDatatypeConstructorAccess().getDeconsAssignment_1_1()); 
-            // InternalBSharp.g:4118:2: ( rule__DatatypeConstructor__DeconsAssignment_1_1 )
-            // InternalBSharp.g:4118:3: rule__DatatypeConstructor__DeconsAssignment_1_1
+            // InternalBSharp.g:4185:2: ( rule__DatatypeConstructor__DeconsAssignment_1_1 )
+            // InternalBSharp.g:4185:3: rule__DatatypeConstructor__DeconsAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__DatatypeConstructor__DeconsAssignment_1_1();
@@ -13023,14 +13284,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group_1__2"
-    // InternalBSharp.g:4126:1: rule__DatatypeConstructor__Group_1__2 : rule__DatatypeConstructor__Group_1__2__Impl ;
+    // InternalBSharp.g:4193:1: rule__DatatypeConstructor__Group_1__2 : rule__DatatypeConstructor__Group_1__2__Impl ;
     public final void rule__DatatypeConstructor__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4130:1: ( rule__DatatypeConstructor__Group_1__2__Impl )
-            // InternalBSharp.g:4131:2: rule__DatatypeConstructor__Group_1__2__Impl
+            // InternalBSharp.g:4197:1: ( rule__DatatypeConstructor__Group_1__2__Impl )
+            // InternalBSharp.g:4198:2: rule__DatatypeConstructor__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DatatypeConstructor__Group_1__2__Impl();
@@ -13056,17 +13317,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__Group_1__2__Impl"
-    // InternalBSharp.g:4137:1: rule__DatatypeConstructor__Group_1__2__Impl : ( ')' ) ;
+    // InternalBSharp.g:4204:1: rule__DatatypeConstructor__Group_1__2__Impl : ( ')' ) ;
     public final void rule__DatatypeConstructor__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4141:1: ( ( ')' ) )
-            // InternalBSharp.g:4142:1: ( ')' )
+            // InternalBSharp.g:4208:1: ( ( ')' ) )
+            // InternalBSharp.g:4209:1: ( ')' )
             {
-            // InternalBSharp.g:4142:1: ( ')' )
-            // InternalBSharp.g:4143:2: ')'
+            // InternalBSharp.g:4209:1: ( ')' )
+            // InternalBSharp.g:4210:2: ')'
             {
              before(grammarAccess.getDatatypeConstructorAccess().getRightParenthesisKeyword_1_2()); 
             match(input,41,FOLLOW_2); 
@@ -13093,14 +13354,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__0"
-    // InternalBSharp.g:4153:1: rule__Extend__Group__0 : rule__Extend__Group__0__Impl rule__Extend__Group__1 ;
+    // InternalBSharp.g:4220:1: rule__Extend__Group__0 : rule__Extend__Group__0__Impl rule__Extend__Group__1 ;
     public final void rule__Extend__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4157:1: ( rule__Extend__Group__0__Impl rule__Extend__Group__1 )
-            // InternalBSharp.g:4158:2: rule__Extend__Group__0__Impl rule__Extend__Group__1
+            // InternalBSharp.g:4224:1: ( rule__Extend__Group__0__Impl rule__Extend__Group__1 )
+            // InternalBSharp.g:4225:2: rule__Extend__Group__0__Impl rule__Extend__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__Extend__Group__0__Impl();
@@ -13131,17 +13392,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__0__Impl"
-    // InternalBSharp.g:4165:1: rule__Extend__Group__0__Impl : ( 'Extend' ) ;
+    // InternalBSharp.g:4232:1: rule__Extend__Group__0__Impl : ( 'Extend' ) ;
     public final void rule__Extend__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4169:1: ( ( 'Extend' ) )
-            // InternalBSharp.g:4170:1: ( 'Extend' )
+            // InternalBSharp.g:4236:1: ( ( 'Extend' ) )
+            // InternalBSharp.g:4237:1: ( 'Extend' )
             {
-            // InternalBSharp.g:4170:1: ( 'Extend' )
-            // InternalBSharp.g:4171:2: 'Extend'
+            // InternalBSharp.g:4237:1: ( 'Extend' )
+            // InternalBSharp.g:4238:2: 'Extend'
             {
              before(grammarAccess.getExtendAccess().getExtendKeyword_0()); 
             match(input,49,FOLLOW_2); 
@@ -13168,14 +13429,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__1"
-    // InternalBSharp.g:4180:1: rule__Extend__Group__1 : rule__Extend__Group__1__Impl rule__Extend__Group__2 ;
+    // InternalBSharp.g:4247:1: rule__Extend__Group__1 : rule__Extend__Group__1__Impl rule__Extend__Group__2 ;
     public final void rule__Extend__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4184:1: ( rule__Extend__Group__1__Impl rule__Extend__Group__2 )
-            // InternalBSharp.g:4185:2: rule__Extend__Group__1__Impl rule__Extend__Group__2
+            // InternalBSharp.g:4251:1: ( rule__Extend__Group__1__Impl rule__Extend__Group__2 )
+            // InternalBSharp.g:4252:2: rule__Extend__Group__1__Impl rule__Extend__Group__2
             {
             pushFollow(FOLLOW_26);
             rule__Extend__Group__1__Impl();
@@ -13206,21 +13467,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__1__Impl"
-    // InternalBSharp.g:4192:1: rule__Extend__Group__1__Impl : ( ( rule__Extend__ExtendedClassAssignment_1 ) ) ;
+    // InternalBSharp.g:4259:1: rule__Extend__Group__1__Impl : ( ( rule__Extend__ExtendedClassAssignment_1 ) ) ;
     public final void rule__Extend__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4196:1: ( ( ( rule__Extend__ExtendedClassAssignment_1 ) ) )
-            // InternalBSharp.g:4197:1: ( ( rule__Extend__ExtendedClassAssignment_1 ) )
+            // InternalBSharp.g:4263:1: ( ( ( rule__Extend__ExtendedClassAssignment_1 ) ) )
+            // InternalBSharp.g:4264:1: ( ( rule__Extend__ExtendedClassAssignment_1 ) )
             {
-            // InternalBSharp.g:4197:1: ( ( rule__Extend__ExtendedClassAssignment_1 ) )
-            // InternalBSharp.g:4198:2: ( rule__Extend__ExtendedClassAssignment_1 )
+            // InternalBSharp.g:4264:1: ( ( rule__Extend__ExtendedClassAssignment_1 ) )
+            // InternalBSharp.g:4265:2: ( rule__Extend__ExtendedClassAssignment_1 )
             {
              before(grammarAccess.getExtendAccess().getExtendedClassAssignment_1()); 
-            // InternalBSharp.g:4199:2: ( rule__Extend__ExtendedClassAssignment_1 )
-            // InternalBSharp.g:4199:3: rule__Extend__ExtendedClassAssignment_1
+            // InternalBSharp.g:4266:2: ( rule__Extend__ExtendedClassAssignment_1 )
+            // InternalBSharp.g:4266:3: rule__Extend__ExtendedClassAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Extend__ExtendedClassAssignment_1();
@@ -13253,14 +13514,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__2"
-    // InternalBSharp.g:4207:1: rule__Extend__Group__2 : rule__Extend__Group__2__Impl rule__Extend__Group__3 ;
+    // InternalBSharp.g:4274:1: rule__Extend__Group__2 : rule__Extend__Group__2__Impl rule__Extend__Group__3 ;
     public final void rule__Extend__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4211:1: ( rule__Extend__Group__2__Impl rule__Extend__Group__3 )
-            // InternalBSharp.g:4212:2: rule__Extend__Group__2__Impl rule__Extend__Group__3
+            // InternalBSharp.g:4278:1: ( rule__Extend__Group__2__Impl rule__Extend__Group__3 )
+            // InternalBSharp.g:4279:2: rule__Extend__Group__2__Impl rule__Extend__Group__3
             {
             pushFollow(FOLLOW_4);
             rule__Extend__Group__2__Impl();
@@ -13291,17 +13552,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__2__Impl"
-    // InternalBSharp.g:4219:1: rule__Extend__Group__2__Impl : ( '(' ) ;
+    // InternalBSharp.g:4286:1: rule__Extend__Group__2__Impl : ( '(' ) ;
     public final void rule__Extend__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4223:1: ( ( '(' ) )
-            // InternalBSharp.g:4224:1: ( '(' )
+            // InternalBSharp.g:4290:1: ( ( '(' ) )
+            // InternalBSharp.g:4291:1: ( '(' )
             {
-            // InternalBSharp.g:4224:1: ( '(' )
-            // InternalBSharp.g:4225:2: '('
+            // InternalBSharp.g:4291:1: ( '(' )
+            // InternalBSharp.g:4292:2: '('
             {
              before(grammarAccess.getExtendAccess().getLeftParenthesisKeyword_2()); 
             match(input,40,FOLLOW_2); 
@@ -13328,14 +13589,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__3"
-    // InternalBSharp.g:4234:1: rule__Extend__Group__3 : rule__Extend__Group__3__Impl rule__Extend__Group__4 ;
+    // InternalBSharp.g:4301:1: rule__Extend__Group__3 : rule__Extend__Group__3__Impl rule__Extend__Group__4 ;
     public final void rule__Extend__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4238:1: ( rule__Extend__Group__3__Impl rule__Extend__Group__4 )
-            // InternalBSharp.g:4239:2: rule__Extend__Group__3__Impl rule__Extend__Group__4
+            // InternalBSharp.g:4305:1: ( rule__Extend__Group__3__Impl rule__Extend__Group__4 )
+            // InternalBSharp.g:4306:2: rule__Extend__Group__3__Impl rule__Extend__Group__4
             {
             pushFollow(FOLLOW_18);
             rule__Extend__Group__3__Impl();
@@ -13366,21 +13627,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__3__Impl"
-    // InternalBSharp.g:4246:1: rule__Extend__Group__3__Impl : ( ( rule__Extend__NameAssignment_3 ) ) ;
+    // InternalBSharp.g:4313:1: rule__Extend__Group__3__Impl : ( ( rule__Extend__NameAssignment_3 ) ) ;
     public final void rule__Extend__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4250:1: ( ( ( rule__Extend__NameAssignment_3 ) ) )
-            // InternalBSharp.g:4251:1: ( ( rule__Extend__NameAssignment_3 ) )
+            // InternalBSharp.g:4317:1: ( ( ( rule__Extend__NameAssignment_3 ) ) )
+            // InternalBSharp.g:4318:1: ( ( rule__Extend__NameAssignment_3 ) )
             {
-            // InternalBSharp.g:4251:1: ( ( rule__Extend__NameAssignment_3 ) )
-            // InternalBSharp.g:4252:2: ( rule__Extend__NameAssignment_3 )
+            // InternalBSharp.g:4318:1: ( ( rule__Extend__NameAssignment_3 ) )
+            // InternalBSharp.g:4319:2: ( rule__Extend__NameAssignment_3 )
             {
              before(grammarAccess.getExtendAccess().getNameAssignment_3()); 
-            // InternalBSharp.g:4253:2: ( rule__Extend__NameAssignment_3 )
-            // InternalBSharp.g:4253:3: rule__Extend__NameAssignment_3
+            // InternalBSharp.g:4320:2: ( rule__Extend__NameAssignment_3 )
+            // InternalBSharp.g:4320:3: rule__Extend__NameAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__Extend__NameAssignment_3();
@@ -13413,14 +13674,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__4"
-    // InternalBSharp.g:4261:1: rule__Extend__Group__4 : rule__Extend__Group__4__Impl rule__Extend__Group__5 ;
+    // InternalBSharp.g:4328:1: rule__Extend__Group__4 : rule__Extend__Group__4__Impl rule__Extend__Group__5 ;
     public final void rule__Extend__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4265:1: ( rule__Extend__Group__4__Impl rule__Extend__Group__5 )
-            // InternalBSharp.g:4266:2: rule__Extend__Group__4__Impl rule__Extend__Group__5
+            // InternalBSharp.g:4332:1: ( rule__Extend__Group__4__Impl rule__Extend__Group__5 )
+            // InternalBSharp.g:4333:2: rule__Extend__Group__4__Impl rule__Extend__Group__5
             {
             pushFollow(FOLLOW_16);
             rule__Extend__Group__4__Impl();
@@ -13451,17 +13712,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__4__Impl"
-    // InternalBSharp.g:4273:1: rule__Extend__Group__4__Impl : ( ')' ) ;
+    // InternalBSharp.g:4340:1: rule__Extend__Group__4__Impl : ( ')' ) ;
     public final void rule__Extend__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4277:1: ( ( ')' ) )
-            // InternalBSharp.g:4278:1: ( ')' )
+            // InternalBSharp.g:4344:1: ( ( ')' ) )
+            // InternalBSharp.g:4345:1: ( ')' )
             {
-            // InternalBSharp.g:4278:1: ( ')' )
-            // InternalBSharp.g:4279:2: ')'
+            // InternalBSharp.g:4345:1: ( ')' )
+            // InternalBSharp.g:4346:2: ')'
             {
              before(grammarAccess.getExtendAccess().getRightParenthesisKeyword_4()); 
             match(input,41,FOLLOW_2); 
@@ -13488,14 +13749,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__5"
-    // InternalBSharp.g:4288:1: rule__Extend__Group__5 : rule__Extend__Group__5__Impl ;
+    // InternalBSharp.g:4355:1: rule__Extend__Group__5 : rule__Extend__Group__5__Impl ;
     public final void rule__Extend__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4292:1: ( rule__Extend__Group__5__Impl )
-            // InternalBSharp.g:4293:2: rule__Extend__Group__5__Impl
+            // InternalBSharp.g:4359:1: ( rule__Extend__Group__5__Impl )
+            // InternalBSharp.g:4360:2: rule__Extend__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Extend__Group__5__Impl();
@@ -13521,21 +13782,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__Group__5__Impl"
-    // InternalBSharp.g:4299:1: rule__Extend__Group__5__Impl : ( ( rule__Extend__BlockAssignment_5 ) ) ;
+    // InternalBSharp.g:4366:1: rule__Extend__Group__5__Impl : ( ( rule__Extend__BlockAssignment_5 ) ) ;
     public final void rule__Extend__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4303:1: ( ( ( rule__Extend__BlockAssignment_5 ) ) )
-            // InternalBSharp.g:4304:1: ( ( rule__Extend__BlockAssignment_5 ) )
+            // InternalBSharp.g:4370:1: ( ( ( rule__Extend__BlockAssignment_5 ) ) )
+            // InternalBSharp.g:4371:1: ( ( rule__Extend__BlockAssignment_5 ) )
             {
-            // InternalBSharp.g:4304:1: ( ( rule__Extend__BlockAssignment_5 ) )
-            // InternalBSharp.g:4305:2: ( rule__Extend__BlockAssignment_5 )
+            // InternalBSharp.g:4371:1: ( ( rule__Extend__BlockAssignment_5 ) )
+            // InternalBSharp.g:4372:2: ( rule__Extend__BlockAssignment_5 )
             {
              before(grammarAccess.getExtendAccess().getBlockAssignment_5()); 
-            // InternalBSharp.g:4306:2: ( rule__Extend__BlockAssignment_5 )
-            // InternalBSharp.g:4306:3: rule__Extend__BlockAssignment_5
+            // InternalBSharp.g:4373:2: ( rule__Extend__BlockAssignment_5 )
+            // InternalBSharp.g:4373:3: rule__Extend__BlockAssignment_5
             {
             pushFollow(FOLLOW_2);
             rule__Extend__BlockAssignment_5();
@@ -13568,14 +13829,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__Group__0"
-    // InternalBSharp.g:4315:1: rule__BSharpBlock__Group__0 : rule__BSharpBlock__Group__0__Impl rule__BSharpBlock__Group__1 ;
+    // InternalBSharp.g:4382:1: rule__BSharpBlock__Group__0 : rule__BSharpBlock__Group__0__Impl rule__BSharpBlock__Group__1 ;
     public final void rule__BSharpBlock__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4319:1: ( rule__BSharpBlock__Group__0__Impl rule__BSharpBlock__Group__1 )
-            // InternalBSharp.g:4320:2: rule__BSharpBlock__Group__0__Impl rule__BSharpBlock__Group__1
+            // InternalBSharp.g:4386:1: ( rule__BSharpBlock__Group__0__Impl rule__BSharpBlock__Group__1 )
+            // InternalBSharp.g:4387:2: rule__BSharpBlock__Group__0__Impl rule__BSharpBlock__Group__1
             {
             pushFollow(FOLLOW_16);
             rule__BSharpBlock__Group__0__Impl();
@@ -13606,21 +13867,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__Group__0__Impl"
-    // InternalBSharp.g:4327:1: rule__BSharpBlock__Group__0__Impl : ( () ) ;
+    // InternalBSharp.g:4394:1: rule__BSharpBlock__Group__0__Impl : ( () ) ;
     public final void rule__BSharpBlock__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4331:1: ( ( () ) )
-            // InternalBSharp.g:4332:1: ( () )
+            // InternalBSharp.g:4398:1: ( ( () ) )
+            // InternalBSharp.g:4399:1: ( () )
             {
-            // InternalBSharp.g:4332:1: ( () )
-            // InternalBSharp.g:4333:2: ()
+            // InternalBSharp.g:4399:1: ( () )
+            // InternalBSharp.g:4400:2: ()
             {
              before(grammarAccess.getBSharpBlockAccess().getBSharpBlockAction_0()); 
-            // InternalBSharp.g:4334:2: ()
-            // InternalBSharp.g:4334:3: 
+            // InternalBSharp.g:4401:2: ()
+            // InternalBSharp.g:4401:3: 
             {
             }
 
@@ -13643,14 +13904,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__Group__1"
-    // InternalBSharp.g:4342:1: rule__BSharpBlock__Group__1 : rule__BSharpBlock__Group__1__Impl rule__BSharpBlock__Group__2 ;
+    // InternalBSharp.g:4409:1: rule__BSharpBlock__Group__1 : rule__BSharpBlock__Group__1__Impl rule__BSharpBlock__Group__2 ;
     public final void rule__BSharpBlock__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4346:1: ( rule__BSharpBlock__Group__1__Impl rule__BSharpBlock__Group__2 )
-            // InternalBSharp.g:4347:2: rule__BSharpBlock__Group__1__Impl rule__BSharpBlock__Group__2
+            // InternalBSharp.g:4413:1: ( rule__BSharpBlock__Group__1__Impl rule__BSharpBlock__Group__2 )
+            // InternalBSharp.g:4414:2: rule__BSharpBlock__Group__1__Impl rule__BSharpBlock__Group__2
             {
             pushFollow(FOLLOW_33);
             rule__BSharpBlock__Group__1__Impl();
@@ -13681,17 +13942,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__Group__1__Impl"
-    // InternalBSharp.g:4354:1: rule__BSharpBlock__Group__1__Impl : ( '{' ) ;
+    // InternalBSharp.g:4421:1: rule__BSharpBlock__Group__1__Impl : ( '{' ) ;
     public final void rule__BSharpBlock__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4358:1: ( ( '{' ) )
-            // InternalBSharp.g:4359:1: ( '{' )
+            // InternalBSharp.g:4425:1: ( ( '{' ) )
+            // InternalBSharp.g:4426:1: ( '{' )
             {
-            // InternalBSharp.g:4359:1: ( '{' )
-            // InternalBSharp.g:4360:2: '{'
+            // InternalBSharp.g:4426:1: ( '{' )
+            // InternalBSharp.g:4427:2: '{'
             {
              before(grammarAccess.getBSharpBlockAccess().getLeftCurlyBracketKeyword_1()); 
             match(input,50,FOLLOW_2); 
@@ -13718,14 +13979,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__Group__2"
-    // InternalBSharp.g:4369:1: rule__BSharpBlock__Group__2 : rule__BSharpBlock__Group__2__Impl rule__BSharpBlock__Group__3 ;
+    // InternalBSharp.g:4436:1: rule__BSharpBlock__Group__2 : rule__BSharpBlock__Group__2__Impl rule__BSharpBlock__Group__3 ;
     public final void rule__BSharpBlock__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4373:1: ( rule__BSharpBlock__Group__2__Impl rule__BSharpBlock__Group__3 )
-            // InternalBSharp.g:4374:2: rule__BSharpBlock__Group__2__Impl rule__BSharpBlock__Group__3
+            // InternalBSharp.g:4440:1: ( rule__BSharpBlock__Group__2__Impl rule__BSharpBlock__Group__3 )
+            // InternalBSharp.g:4441:2: rule__BSharpBlock__Group__2__Impl rule__BSharpBlock__Group__3
             {
             pushFollow(FOLLOW_33);
             rule__BSharpBlock__Group__2__Impl();
@@ -13756,33 +14017,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__Group__2__Impl"
-    // InternalBSharp.g:4381:1: rule__BSharpBlock__Group__2__Impl : ( ( rule__BSharpBlock__Alternatives_2 )* ) ;
+    // InternalBSharp.g:4448:1: rule__BSharpBlock__Group__2__Impl : ( ( rule__BSharpBlock__Alternatives_2 )* ) ;
     public final void rule__BSharpBlock__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4385:1: ( ( ( rule__BSharpBlock__Alternatives_2 )* ) )
-            // InternalBSharp.g:4386:1: ( ( rule__BSharpBlock__Alternatives_2 )* )
+            // InternalBSharp.g:4452:1: ( ( ( rule__BSharpBlock__Alternatives_2 )* ) )
+            // InternalBSharp.g:4453:1: ( ( rule__BSharpBlock__Alternatives_2 )* )
             {
-            // InternalBSharp.g:4386:1: ( ( rule__BSharpBlock__Alternatives_2 )* )
-            // InternalBSharp.g:4387:2: ( rule__BSharpBlock__Alternatives_2 )*
+            // InternalBSharp.g:4453:1: ( ( rule__BSharpBlock__Alternatives_2 )* )
+            // InternalBSharp.g:4454:2: ( rule__BSharpBlock__Alternatives_2 )*
             {
              before(grammarAccess.getBSharpBlockAccess().getAlternatives_2()); 
-            // InternalBSharp.g:4388:2: ( rule__BSharpBlock__Alternatives_2 )*
-            loop40:
+            // InternalBSharp.g:4455:2: ( rule__BSharpBlock__Alternatives_2 )*
+            loop42:
             do {
-                int alt40=2;
-                int LA40_0 = input.LA(1);
+                int alt42=2;
+                int LA42_0 = input.LA(1);
 
-                if ( (LA40_0==RULE_ID||LA40_0==53||LA40_0==55) ) {
-                    alt40=1;
+                if ( (LA42_0==RULE_ID||LA42_0==53||LA42_0==55) ) {
+                    alt42=1;
                 }
 
 
-                switch (alt40) {
+                switch (alt42) {
             	case 1 :
-            	    // InternalBSharp.g:4388:3: rule__BSharpBlock__Alternatives_2
+            	    // InternalBSharp.g:4455:3: rule__BSharpBlock__Alternatives_2
             	    {
             	    pushFollow(FOLLOW_34);
             	    rule__BSharpBlock__Alternatives_2();
@@ -13794,7 +14055,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop40;
+            	    break loop42;
                 }
             } while (true);
 
@@ -13821,14 +14082,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__Group__3"
-    // InternalBSharp.g:4396:1: rule__BSharpBlock__Group__3 : rule__BSharpBlock__Group__3__Impl ;
+    // InternalBSharp.g:4463:1: rule__BSharpBlock__Group__3 : rule__BSharpBlock__Group__3__Impl ;
     public final void rule__BSharpBlock__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4400:1: ( rule__BSharpBlock__Group__3__Impl )
-            // InternalBSharp.g:4401:2: rule__BSharpBlock__Group__3__Impl
+            // InternalBSharp.g:4467:1: ( rule__BSharpBlock__Group__3__Impl )
+            // InternalBSharp.g:4468:2: rule__BSharpBlock__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__BSharpBlock__Group__3__Impl();
@@ -13854,17 +14115,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__Group__3__Impl"
-    // InternalBSharp.g:4407:1: rule__BSharpBlock__Group__3__Impl : ( '}' ) ;
+    // InternalBSharp.g:4474:1: rule__BSharpBlock__Group__3__Impl : ( '}' ) ;
     public final void rule__BSharpBlock__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4411:1: ( ( '}' ) )
-            // InternalBSharp.g:4412:1: ( '}' )
+            // InternalBSharp.g:4478:1: ( ( '}' ) )
+            // InternalBSharp.g:4479:1: ( '}' )
             {
-            // InternalBSharp.g:4412:1: ( '}' )
-            // InternalBSharp.g:4413:2: '}'
+            // InternalBSharp.g:4479:1: ( '}' )
+            // InternalBSharp.g:4480:2: '}'
             {
              before(grammarAccess.getBSharpBlockAccess().getRightCurlyBracketKeyword_3()); 
             match(input,51,FOLLOW_2); 
@@ -13891,14 +14152,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__0"
-    // InternalBSharp.g:4423:1: rule__FunctionDecl__Group__0 : rule__FunctionDecl__Group__0__Impl rule__FunctionDecl__Group__1 ;
+    // InternalBSharp.g:4490:1: rule__FunctionDecl__Group__0 : rule__FunctionDecl__Group__0__Impl rule__FunctionDecl__Group__1 ;
     public final void rule__FunctionDecl__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4427:1: ( rule__FunctionDecl__Group__0__Impl rule__FunctionDecl__Group__1 )
-            // InternalBSharp.g:4428:2: rule__FunctionDecl__Group__0__Impl rule__FunctionDecl__Group__1
+            // InternalBSharp.g:4494:1: ( rule__FunctionDecl__Group__0__Impl rule__FunctionDecl__Group__1 )
+            // InternalBSharp.g:4495:2: rule__FunctionDecl__Group__0__Impl rule__FunctionDecl__Group__1
             {
             pushFollow(FOLLOW_35);
             rule__FunctionDecl__Group__0__Impl();
@@ -13929,21 +14190,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__0__Impl"
-    // InternalBSharp.g:4435:1: rule__FunctionDecl__Group__0__Impl : ( ( rule__FunctionDecl__NameAssignment_0 ) ) ;
+    // InternalBSharp.g:4502:1: rule__FunctionDecl__Group__0__Impl : ( ( rule__FunctionDecl__NameAssignment_0 ) ) ;
     public final void rule__FunctionDecl__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4439:1: ( ( ( rule__FunctionDecl__NameAssignment_0 ) ) )
-            // InternalBSharp.g:4440:1: ( ( rule__FunctionDecl__NameAssignment_0 ) )
+            // InternalBSharp.g:4506:1: ( ( ( rule__FunctionDecl__NameAssignment_0 ) ) )
+            // InternalBSharp.g:4507:1: ( ( rule__FunctionDecl__NameAssignment_0 ) )
             {
-            // InternalBSharp.g:4440:1: ( ( rule__FunctionDecl__NameAssignment_0 ) )
-            // InternalBSharp.g:4441:2: ( rule__FunctionDecl__NameAssignment_0 )
+            // InternalBSharp.g:4507:1: ( ( rule__FunctionDecl__NameAssignment_0 ) )
+            // InternalBSharp.g:4508:2: ( rule__FunctionDecl__NameAssignment_0 )
             {
              before(grammarAccess.getFunctionDeclAccess().getNameAssignment_0()); 
-            // InternalBSharp.g:4442:2: ( rule__FunctionDecl__NameAssignment_0 )
-            // InternalBSharp.g:4442:3: rule__FunctionDecl__NameAssignment_0
+            // InternalBSharp.g:4509:2: ( rule__FunctionDecl__NameAssignment_0 )
+            // InternalBSharp.g:4509:3: rule__FunctionDecl__NameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__FunctionDecl__NameAssignment_0();
@@ -13976,14 +14237,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__1"
-    // InternalBSharp.g:4450:1: rule__FunctionDecl__Group__1 : rule__FunctionDecl__Group__1__Impl rule__FunctionDecl__Group__2 ;
+    // InternalBSharp.g:4517:1: rule__FunctionDecl__Group__1 : rule__FunctionDecl__Group__1__Impl rule__FunctionDecl__Group__2 ;
     public final void rule__FunctionDecl__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4454:1: ( rule__FunctionDecl__Group__1__Impl rule__FunctionDecl__Group__2 )
-            // InternalBSharp.g:4455:2: rule__FunctionDecl__Group__1__Impl rule__FunctionDecl__Group__2
+            // InternalBSharp.g:4521:1: ( rule__FunctionDecl__Group__1__Impl rule__FunctionDecl__Group__2 )
+            // InternalBSharp.g:4522:2: rule__FunctionDecl__Group__1__Impl rule__FunctionDecl__Group__2
             {
             pushFollow(FOLLOW_35);
             rule__FunctionDecl__Group__1__Impl();
@@ -14014,29 +14275,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__1__Impl"
-    // InternalBSharp.g:4462:1: rule__FunctionDecl__Group__1__Impl : ( ( rule__FunctionDecl__ContextAssignment_1 )? ) ;
+    // InternalBSharp.g:4529:1: rule__FunctionDecl__Group__1__Impl : ( ( rule__FunctionDecl__ContextAssignment_1 )? ) ;
     public final void rule__FunctionDecl__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4466:1: ( ( ( rule__FunctionDecl__ContextAssignment_1 )? ) )
-            // InternalBSharp.g:4467:1: ( ( rule__FunctionDecl__ContextAssignment_1 )? )
+            // InternalBSharp.g:4533:1: ( ( ( rule__FunctionDecl__ContextAssignment_1 )? ) )
+            // InternalBSharp.g:4534:1: ( ( rule__FunctionDecl__ContextAssignment_1 )? )
             {
-            // InternalBSharp.g:4467:1: ( ( rule__FunctionDecl__ContextAssignment_1 )? )
-            // InternalBSharp.g:4468:2: ( rule__FunctionDecl__ContextAssignment_1 )?
+            // InternalBSharp.g:4534:1: ( ( rule__FunctionDecl__ContextAssignment_1 )? )
+            // InternalBSharp.g:4535:2: ( rule__FunctionDecl__ContextAssignment_1 )?
             {
              before(grammarAccess.getFunctionDeclAccess().getContextAssignment_1()); 
-            // InternalBSharp.g:4469:2: ( rule__FunctionDecl__ContextAssignment_1 )?
-            int alt41=2;
-            int LA41_0 = input.LA(1);
+            // InternalBSharp.g:4536:2: ( rule__FunctionDecl__ContextAssignment_1 )?
+            int alt43=2;
+            int LA43_0 = input.LA(1);
 
-            if ( (LA41_0==42) ) {
-                alt41=1;
+            if ( (LA43_0==42) ) {
+                alt43=1;
             }
-            switch (alt41) {
+            switch (alt43) {
                 case 1 :
-                    // InternalBSharp.g:4469:3: rule__FunctionDecl__ContextAssignment_1
+                    // InternalBSharp.g:4536:3: rule__FunctionDecl__ContextAssignment_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__FunctionDecl__ContextAssignment_1();
@@ -14072,14 +14333,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__2"
-    // InternalBSharp.g:4477:1: rule__FunctionDecl__Group__2 : rule__FunctionDecl__Group__2__Impl rule__FunctionDecl__Group__3 ;
+    // InternalBSharp.g:4544:1: rule__FunctionDecl__Group__2 : rule__FunctionDecl__Group__2__Impl rule__FunctionDecl__Group__3 ;
     public final void rule__FunctionDecl__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4481:1: ( rule__FunctionDecl__Group__2__Impl rule__FunctionDecl__Group__3 )
-            // InternalBSharp.g:4482:2: rule__FunctionDecl__Group__2__Impl rule__FunctionDecl__Group__3
+            // InternalBSharp.g:4548:1: ( rule__FunctionDecl__Group__2__Impl rule__FunctionDecl__Group__3 )
+            // InternalBSharp.g:4549:2: rule__FunctionDecl__Group__2__Impl rule__FunctionDecl__Group__3
             {
             pushFollow(FOLLOW_36);
             rule__FunctionDecl__Group__2__Impl();
@@ -14110,17 +14371,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__2__Impl"
-    // InternalBSharp.g:4489:1: rule__FunctionDecl__Group__2__Impl : ( '(' ) ;
+    // InternalBSharp.g:4556:1: rule__FunctionDecl__Group__2__Impl : ( '(' ) ;
     public final void rule__FunctionDecl__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4493:1: ( ( '(' ) )
-            // InternalBSharp.g:4494:1: ( '(' )
+            // InternalBSharp.g:4560:1: ( ( '(' ) )
+            // InternalBSharp.g:4561:1: ( '(' )
             {
-            // InternalBSharp.g:4494:1: ( '(' )
-            // InternalBSharp.g:4495:2: '('
+            // InternalBSharp.g:4561:1: ( '(' )
+            // InternalBSharp.g:4562:2: '('
             {
              before(grammarAccess.getFunctionDeclAccess().getLeftParenthesisKeyword_2()); 
             match(input,40,FOLLOW_2); 
@@ -14147,14 +14408,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__3"
-    // InternalBSharp.g:4504:1: rule__FunctionDecl__Group__3 : rule__FunctionDecl__Group__3__Impl rule__FunctionDecl__Group__4 ;
+    // InternalBSharp.g:4571:1: rule__FunctionDecl__Group__3 : rule__FunctionDecl__Group__3__Impl rule__FunctionDecl__Group__4 ;
     public final void rule__FunctionDecl__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4508:1: ( rule__FunctionDecl__Group__3__Impl rule__FunctionDecl__Group__4 )
-            // InternalBSharp.g:4509:2: rule__FunctionDecl__Group__3__Impl rule__FunctionDecl__Group__4
+            // InternalBSharp.g:4575:1: ( rule__FunctionDecl__Group__3__Impl rule__FunctionDecl__Group__4 )
+            // InternalBSharp.g:4576:2: rule__FunctionDecl__Group__3__Impl rule__FunctionDecl__Group__4
             {
             pushFollow(FOLLOW_36);
             rule__FunctionDecl__Group__3__Impl();
@@ -14185,29 +14446,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__3__Impl"
-    // InternalBSharp.g:4516:1: rule__FunctionDecl__Group__3__Impl : ( ( rule__FunctionDecl__VarListAssignment_3 )? ) ;
+    // InternalBSharp.g:4583:1: rule__FunctionDecl__Group__3__Impl : ( ( rule__FunctionDecl__VarListAssignment_3 )? ) ;
     public final void rule__FunctionDecl__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4520:1: ( ( ( rule__FunctionDecl__VarListAssignment_3 )? ) )
-            // InternalBSharp.g:4521:1: ( ( rule__FunctionDecl__VarListAssignment_3 )? )
+            // InternalBSharp.g:4587:1: ( ( ( rule__FunctionDecl__VarListAssignment_3 )? ) )
+            // InternalBSharp.g:4588:1: ( ( rule__FunctionDecl__VarListAssignment_3 )? )
             {
-            // InternalBSharp.g:4521:1: ( ( rule__FunctionDecl__VarListAssignment_3 )? )
-            // InternalBSharp.g:4522:2: ( rule__FunctionDecl__VarListAssignment_3 )?
+            // InternalBSharp.g:4588:1: ( ( rule__FunctionDecl__VarListAssignment_3 )? )
+            // InternalBSharp.g:4589:2: ( rule__FunctionDecl__VarListAssignment_3 )?
             {
              before(grammarAccess.getFunctionDeclAccess().getVarListAssignment_3()); 
-            // InternalBSharp.g:4523:2: ( rule__FunctionDecl__VarListAssignment_3 )?
-            int alt42=2;
-            int LA42_0 = input.LA(1);
+            // InternalBSharp.g:4590:2: ( rule__FunctionDecl__VarListAssignment_3 )?
+            int alt44=2;
+            int LA44_0 = input.LA(1);
 
-            if ( (LA42_0==RULE_ID) ) {
-                alt42=1;
+            if ( (LA44_0==RULE_ID) ) {
+                alt44=1;
             }
-            switch (alt42) {
+            switch (alt44) {
                 case 1 :
-                    // InternalBSharp.g:4523:3: rule__FunctionDecl__VarListAssignment_3
+                    // InternalBSharp.g:4590:3: rule__FunctionDecl__VarListAssignment_3
                     {
                     pushFollow(FOLLOW_2);
                     rule__FunctionDecl__VarListAssignment_3();
@@ -14243,14 +14504,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__4"
-    // InternalBSharp.g:4531:1: rule__FunctionDecl__Group__4 : rule__FunctionDecl__Group__4__Impl rule__FunctionDecl__Group__5 ;
+    // InternalBSharp.g:4598:1: rule__FunctionDecl__Group__4 : rule__FunctionDecl__Group__4__Impl rule__FunctionDecl__Group__5 ;
     public final void rule__FunctionDecl__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4535:1: ( rule__FunctionDecl__Group__4__Impl rule__FunctionDecl__Group__5 )
-            // InternalBSharp.g:4536:2: rule__FunctionDecl__Group__4__Impl rule__FunctionDecl__Group__5
+            // InternalBSharp.g:4602:1: ( rule__FunctionDecl__Group__4__Impl rule__FunctionDecl__Group__5 )
+            // InternalBSharp.g:4603:2: rule__FunctionDecl__Group__4__Impl rule__FunctionDecl__Group__5
             {
             pushFollow(FOLLOW_6);
             rule__FunctionDecl__Group__4__Impl();
@@ -14281,17 +14542,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__4__Impl"
-    // InternalBSharp.g:4543:1: rule__FunctionDecl__Group__4__Impl : ( ')' ) ;
+    // InternalBSharp.g:4610:1: rule__FunctionDecl__Group__4__Impl : ( ')' ) ;
     public final void rule__FunctionDecl__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4547:1: ( ( ')' ) )
-            // InternalBSharp.g:4548:1: ( ')' )
+            // InternalBSharp.g:4614:1: ( ( ')' ) )
+            // InternalBSharp.g:4615:1: ( ')' )
             {
-            // InternalBSharp.g:4548:1: ( ')' )
-            // InternalBSharp.g:4549:2: ')'
+            // InternalBSharp.g:4615:1: ( ')' )
+            // InternalBSharp.g:4616:2: ')'
             {
              before(grammarAccess.getFunctionDeclAccess().getRightParenthesisKeyword_4()); 
             match(input,41,FOLLOW_2); 
@@ -14318,14 +14579,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__5"
-    // InternalBSharp.g:4558:1: rule__FunctionDecl__Group__5 : rule__FunctionDecl__Group__5__Impl rule__FunctionDecl__Group__6 ;
+    // InternalBSharp.g:4625:1: rule__FunctionDecl__Group__5 : rule__FunctionDecl__Group__5__Impl rule__FunctionDecl__Group__6 ;
     public final void rule__FunctionDecl__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4562:1: ( rule__FunctionDecl__Group__5__Impl rule__FunctionDecl__Group__6 )
-            // InternalBSharp.g:4563:2: rule__FunctionDecl__Group__5__Impl rule__FunctionDecl__Group__6
+            // InternalBSharp.g:4629:1: ( rule__FunctionDecl__Group__5__Impl rule__FunctionDecl__Group__6 )
+            // InternalBSharp.g:4630:2: rule__FunctionDecl__Group__5__Impl rule__FunctionDecl__Group__6
             {
             pushFollow(FOLLOW_4);
             rule__FunctionDecl__Group__5__Impl();
@@ -14356,17 +14617,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__5__Impl"
-    // InternalBSharp.g:4570:1: rule__FunctionDecl__Group__5__Impl : ( ':' ) ;
+    // InternalBSharp.g:4637:1: rule__FunctionDecl__Group__5__Impl : ( ':' ) ;
     public final void rule__FunctionDecl__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4574:1: ( ( ':' ) )
-            // InternalBSharp.g:4575:1: ( ':' )
+            // InternalBSharp.g:4641:1: ( ( ':' ) )
+            // InternalBSharp.g:4642:1: ( ':' )
             {
-            // InternalBSharp.g:4575:1: ( ':' )
-            // InternalBSharp.g:4576:2: ':'
+            // InternalBSharp.g:4642:1: ( ':' )
+            // InternalBSharp.g:4643:2: ':'
             {
              before(grammarAccess.getFunctionDeclAccess().getColonKeyword_5()); 
             match(input,32,FOLLOW_2); 
@@ -14393,14 +14654,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__6"
-    // InternalBSharp.g:4585:1: rule__FunctionDecl__Group__6 : rule__FunctionDecl__Group__6__Impl rule__FunctionDecl__Group__7 ;
+    // InternalBSharp.g:4652:1: rule__FunctionDecl__Group__6 : rule__FunctionDecl__Group__6__Impl rule__FunctionDecl__Group__7 ;
     public final void rule__FunctionDecl__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4589:1: ( rule__FunctionDecl__Group__6__Impl rule__FunctionDecl__Group__7 )
-            // InternalBSharp.g:4590:2: rule__FunctionDecl__Group__6__Impl rule__FunctionDecl__Group__7
+            // InternalBSharp.g:4656:1: ( rule__FunctionDecl__Group__6__Impl rule__FunctionDecl__Group__7 )
+            // InternalBSharp.g:4657:2: rule__FunctionDecl__Group__6__Impl rule__FunctionDecl__Group__7
             {
             pushFollow(FOLLOW_37);
             rule__FunctionDecl__Group__6__Impl();
@@ -14431,21 +14692,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__6__Impl"
-    // InternalBSharp.g:4597:1: rule__FunctionDecl__Group__6__Impl : ( ( rule__FunctionDecl__ReturnTypeAssignment_6 ) ) ;
+    // InternalBSharp.g:4664:1: rule__FunctionDecl__Group__6__Impl : ( ( rule__FunctionDecl__ReturnTypeAssignment_6 ) ) ;
     public final void rule__FunctionDecl__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4601:1: ( ( ( rule__FunctionDecl__ReturnTypeAssignment_6 ) ) )
-            // InternalBSharp.g:4602:1: ( ( rule__FunctionDecl__ReturnTypeAssignment_6 ) )
+            // InternalBSharp.g:4668:1: ( ( ( rule__FunctionDecl__ReturnTypeAssignment_6 ) ) )
+            // InternalBSharp.g:4669:1: ( ( rule__FunctionDecl__ReturnTypeAssignment_6 ) )
             {
-            // InternalBSharp.g:4602:1: ( ( rule__FunctionDecl__ReturnTypeAssignment_6 ) )
-            // InternalBSharp.g:4603:2: ( rule__FunctionDecl__ReturnTypeAssignment_6 )
+            // InternalBSharp.g:4669:1: ( ( rule__FunctionDecl__ReturnTypeAssignment_6 ) )
+            // InternalBSharp.g:4670:2: ( rule__FunctionDecl__ReturnTypeAssignment_6 )
             {
              before(grammarAccess.getFunctionDeclAccess().getReturnTypeAssignment_6()); 
-            // InternalBSharp.g:4604:2: ( rule__FunctionDecl__ReturnTypeAssignment_6 )
-            // InternalBSharp.g:4604:3: rule__FunctionDecl__ReturnTypeAssignment_6
+            // InternalBSharp.g:4671:2: ( rule__FunctionDecl__ReturnTypeAssignment_6 )
+            // InternalBSharp.g:4671:3: rule__FunctionDecl__ReturnTypeAssignment_6
             {
             pushFollow(FOLLOW_2);
             rule__FunctionDecl__ReturnTypeAssignment_6();
@@ -14478,14 +14739,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__7"
-    // InternalBSharp.g:4612:1: rule__FunctionDecl__Group__7 : rule__FunctionDecl__Group__7__Impl rule__FunctionDecl__Group__8 ;
+    // InternalBSharp.g:4679:1: rule__FunctionDecl__Group__7 : rule__FunctionDecl__Group__7__Impl rule__FunctionDecl__Group__8 ;
     public final void rule__FunctionDecl__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4616:1: ( rule__FunctionDecl__Group__7__Impl rule__FunctionDecl__Group__8 )
-            // InternalBSharp.g:4617:2: rule__FunctionDecl__Group__7__Impl rule__FunctionDecl__Group__8
+            // InternalBSharp.g:4683:1: ( rule__FunctionDecl__Group__7__Impl rule__FunctionDecl__Group__8 )
+            // InternalBSharp.g:4684:2: rule__FunctionDecl__Group__7__Impl rule__FunctionDecl__Group__8
             {
             pushFollow(FOLLOW_37);
             rule__FunctionDecl__Group__7__Impl();
@@ -14516,29 +14777,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__7__Impl"
-    // InternalBSharp.g:4624:1: rule__FunctionDecl__Group__7__Impl : ( ( rule__FunctionDecl__InfixAssignment_7 )? ) ;
+    // InternalBSharp.g:4691:1: rule__FunctionDecl__Group__7__Impl : ( ( rule__FunctionDecl__InfixAssignment_7 )? ) ;
     public final void rule__FunctionDecl__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4628:1: ( ( ( rule__FunctionDecl__InfixAssignment_7 )? ) )
-            // InternalBSharp.g:4629:1: ( ( rule__FunctionDecl__InfixAssignment_7 )? )
+            // InternalBSharp.g:4695:1: ( ( ( rule__FunctionDecl__InfixAssignment_7 )? ) )
+            // InternalBSharp.g:4696:1: ( ( rule__FunctionDecl__InfixAssignment_7 )? )
             {
-            // InternalBSharp.g:4629:1: ( ( rule__FunctionDecl__InfixAssignment_7 )? )
-            // InternalBSharp.g:4630:2: ( rule__FunctionDecl__InfixAssignment_7 )?
+            // InternalBSharp.g:4696:1: ( ( rule__FunctionDecl__InfixAssignment_7 )? )
+            // InternalBSharp.g:4697:2: ( rule__FunctionDecl__InfixAssignment_7 )?
             {
              before(grammarAccess.getFunctionDeclAccess().getInfixAssignment_7()); 
-            // InternalBSharp.g:4631:2: ( rule__FunctionDecl__InfixAssignment_7 )?
-            int alt43=2;
-            int LA43_0 = input.LA(1);
+            // InternalBSharp.g:4698:2: ( rule__FunctionDecl__InfixAssignment_7 )?
+            int alt45=2;
+            int LA45_0 = input.LA(1);
 
-            if ( (LA43_0==56) ) {
-                alt43=1;
+            if ( (LA45_0==56) ) {
+                alt45=1;
             }
-            switch (alt43) {
+            switch (alt45) {
                 case 1 :
-                    // InternalBSharp.g:4631:3: rule__FunctionDecl__InfixAssignment_7
+                    // InternalBSharp.g:4698:3: rule__FunctionDecl__InfixAssignment_7
                     {
                     pushFollow(FOLLOW_2);
                     rule__FunctionDecl__InfixAssignment_7();
@@ -14574,14 +14835,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__8"
-    // InternalBSharp.g:4639:1: rule__FunctionDecl__Group__8 : rule__FunctionDecl__Group__8__Impl rule__FunctionDecl__Group__9 ;
+    // InternalBSharp.g:4706:1: rule__FunctionDecl__Group__8 : rule__FunctionDecl__Group__8__Impl rule__FunctionDecl__Group__9 ;
     public final void rule__FunctionDecl__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4643:1: ( rule__FunctionDecl__Group__8__Impl rule__FunctionDecl__Group__9 )
-            // InternalBSharp.g:4644:2: rule__FunctionDecl__Group__8__Impl rule__FunctionDecl__Group__9
+            // InternalBSharp.g:4710:1: ( rule__FunctionDecl__Group__8__Impl rule__FunctionDecl__Group__9 )
+            // InternalBSharp.g:4711:2: rule__FunctionDecl__Group__8__Impl rule__FunctionDecl__Group__9
             {
             pushFollow(FOLLOW_37);
             rule__FunctionDecl__Group__8__Impl();
@@ -14612,29 +14873,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__8__Impl"
-    // InternalBSharp.g:4651:1: rule__FunctionDecl__Group__8__Impl : ( ( rule__FunctionDecl__PrecedenceAssignment_8 )? ) ;
+    // InternalBSharp.g:4718:1: rule__FunctionDecl__Group__8__Impl : ( ( rule__FunctionDecl__PrecedenceAssignment_8 )? ) ;
     public final void rule__FunctionDecl__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4655:1: ( ( ( rule__FunctionDecl__PrecedenceAssignment_8 )? ) )
-            // InternalBSharp.g:4656:1: ( ( rule__FunctionDecl__PrecedenceAssignment_8 )? )
+            // InternalBSharp.g:4722:1: ( ( ( rule__FunctionDecl__PrecedenceAssignment_8 )? ) )
+            // InternalBSharp.g:4723:1: ( ( rule__FunctionDecl__PrecedenceAssignment_8 )? )
             {
-            // InternalBSharp.g:4656:1: ( ( rule__FunctionDecl__PrecedenceAssignment_8 )? )
-            // InternalBSharp.g:4657:2: ( rule__FunctionDecl__PrecedenceAssignment_8 )?
+            // InternalBSharp.g:4723:1: ( ( rule__FunctionDecl__PrecedenceAssignment_8 )? )
+            // InternalBSharp.g:4724:2: ( rule__FunctionDecl__PrecedenceAssignment_8 )?
             {
              before(grammarAccess.getFunctionDeclAccess().getPrecedenceAssignment_8()); 
-            // InternalBSharp.g:4658:2: ( rule__FunctionDecl__PrecedenceAssignment_8 )?
-            int alt44=2;
-            int LA44_0 = input.LA(1);
+            // InternalBSharp.g:4725:2: ( rule__FunctionDecl__PrecedenceAssignment_8 )?
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA44_0==RULE_INT) ) {
-                alt44=1;
+            if ( (LA46_0==RULE_INT) ) {
+                alt46=1;
             }
-            switch (alt44) {
+            switch (alt46) {
                 case 1 :
-                    // InternalBSharp.g:4658:3: rule__FunctionDecl__PrecedenceAssignment_8
+                    // InternalBSharp.g:4725:3: rule__FunctionDecl__PrecedenceAssignment_8
                     {
                     pushFollow(FOLLOW_2);
                     rule__FunctionDecl__PrecedenceAssignment_8();
@@ -14670,14 +14931,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__9"
-    // InternalBSharp.g:4666:1: rule__FunctionDecl__Group__9 : rule__FunctionDecl__Group__9__Impl ;
+    // InternalBSharp.g:4733:1: rule__FunctionDecl__Group__9 : rule__FunctionDecl__Group__9__Impl ;
     public final void rule__FunctionDecl__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4670:1: ( rule__FunctionDecl__Group__9__Impl )
-            // InternalBSharp.g:4671:2: rule__FunctionDecl__Group__9__Impl
+            // InternalBSharp.g:4737:1: ( rule__FunctionDecl__Group__9__Impl )
+            // InternalBSharp.g:4738:2: rule__FunctionDecl__Group__9__Impl
             {
             pushFollow(FOLLOW_2);
             rule__FunctionDecl__Group__9__Impl();
@@ -14703,21 +14964,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__Group__9__Impl"
-    // InternalBSharp.g:4677:1: rule__FunctionDecl__Group__9__Impl : ( ( rule__FunctionDecl__ExprAssignment_9 ) ) ;
+    // InternalBSharp.g:4744:1: rule__FunctionDecl__Group__9__Impl : ( ( rule__FunctionDecl__ExprAssignment_9 ) ) ;
     public final void rule__FunctionDecl__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4681:1: ( ( ( rule__FunctionDecl__ExprAssignment_9 ) ) )
-            // InternalBSharp.g:4682:1: ( ( rule__FunctionDecl__ExprAssignment_9 ) )
+            // InternalBSharp.g:4748:1: ( ( ( rule__FunctionDecl__ExprAssignment_9 ) ) )
+            // InternalBSharp.g:4749:1: ( ( rule__FunctionDecl__ExprAssignment_9 ) )
             {
-            // InternalBSharp.g:4682:1: ( ( rule__FunctionDecl__ExprAssignment_9 ) )
-            // InternalBSharp.g:4683:2: ( rule__FunctionDecl__ExprAssignment_9 )
+            // InternalBSharp.g:4749:1: ( ( rule__FunctionDecl__ExprAssignment_9 ) )
+            // InternalBSharp.g:4750:2: ( rule__FunctionDecl__ExprAssignment_9 )
             {
              before(grammarAccess.getFunctionDeclAccess().getExprAssignment_9()); 
-            // InternalBSharp.g:4684:2: ( rule__FunctionDecl__ExprAssignment_9 )
-            // InternalBSharp.g:4684:3: rule__FunctionDecl__ExprAssignment_9
+            // InternalBSharp.g:4751:2: ( rule__FunctionDecl__ExprAssignment_9 )
+            // InternalBSharp.g:4751:3: rule__FunctionDecl__ExprAssignment_9
             {
             pushFollow(FOLLOW_2);
             rule__FunctionDecl__ExprAssignment_9();
@@ -14750,14 +15011,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__0"
-    // InternalBSharp.g:4693:1: rule__MatchStatement__Group__0 : rule__MatchStatement__Group__0__Impl rule__MatchStatement__Group__1 ;
+    // InternalBSharp.g:4760:1: rule__MatchStatement__Group__0 : rule__MatchStatement__Group__0__Impl rule__MatchStatement__Group__1 ;
     public final void rule__MatchStatement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4697:1: ( rule__MatchStatement__Group__0__Impl rule__MatchStatement__Group__1 )
-            // InternalBSharp.g:4698:2: rule__MatchStatement__Group__0__Impl rule__MatchStatement__Group__1
+            // InternalBSharp.g:4764:1: ( rule__MatchStatement__Group__0__Impl rule__MatchStatement__Group__1 )
+            // InternalBSharp.g:4765:2: rule__MatchStatement__Group__0__Impl rule__MatchStatement__Group__1
             {
             pushFollow(FOLLOW_28);
             rule__MatchStatement__Group__0__Impl();
@@ -14788,17 +15049,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__0__Impl"
-    // InternalBSharp.g:4705:1: rule__MatchStatement__Group__0__Impl : ( 'match' ) ;
+    // InternalBSharp.g:4772:1: rule__MatchStatement__Group__0__Impl : ( 'match' ) ;
     public final void rule__MatchStatement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4709:1: ( ( 'match' ) )
-            // InternalBSharp.g:4710:1: ( 'match' )
+            // InternalBSharp.g:4776:1: ( ( 'match' ) )
+            // InternalBSharp.g:4777:1: ( 'match' )
             {
-            // InternalBSharp.g:4710:1: ( 'match' )
-            // InternalBSharp.g:4711:2: 'match'
+            // InternalBSharp.g:4777:1: ( 'match' )
+            // InternalBSharp.g:4778:2: 'match'
             {
              before(grammarAccess.getMatchStatementAccess().getMatchKeyword_0()); 
             match(input,52,FOLLOW_2); 
@@ -14825,14 +15086,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__1"
-    // InternalBSharp.g:4720:1: rule__MatchStatement__Group__1 : rule__MatchStatement__Group__1__Impl rule__MatchStatement__Group__2 ;
+    // InternalBSharp.g:4787:1: rule__MatchStatement__Group__1 : rule__MatchStatement__Group__1__Impl rule__MatchStatement__Group__2 ;
     public final void rule__MatchStatement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4724:1: ( rule__MatchStatement__Group__1__Impl rule__MatchStatement__Group__2 )
-            // InternalBSharp.g:4725:2: rule__MatchStatement__Group__1__Impl rule__MatchStatement__Group__2
+            // InternalBSharp.g:4791:1: ( rule__MatchStatement__Group__1__Impl rule__MatchStatement__Group__2 )
+            // InternalBSharp.g:4792:2: rule__MatchStatement__Group__1__Impl rule__MatchStatement__Group__2
             {
             pushFollow(FOLLOW_38);
             rule__MatchStatement__Group__1__Impl();
@@ -14863,21 +15124,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__1__Impl"
-    // InternalBSharp.g:4732:1: rule__MatchStatement__Group__1__Impl : ( ( rule__MatchStatement__MatchAssignment_1 ) ) ;
+    // InternalBSharp.g:4799:1: rule__MatchStatement__Group__1__Impl : ( ( rule__MatchStatement__MatchAssignment_1 ) ) ;
     public final void rule__MatchStatement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4736:1: ( ( ( rule__MatchStatement__MatchAssignment_1 ) ) )
-            // InternalBSharp.g:4737:1: ( ( rule__MatchStatement__MatchAssignment_1 ) )
+            // InternalBSharp.g:4803:1: ( ( ( rule__MatchStatement__MatchAssignment_1 ) ) )
+            // InternalBSharp.g:4804:1: ( ( rule__MatchStatement__MatchAssignment_1 ) )
             {
-            // InternalBSharp.g:4737:1: ( ( rule__MatchStatement__MatchAssignment_1 ) )
-            // InternalBSharp.g:4738:2: ( rule__MatchStatement__MatchAssignment_1 )
+            // InternalBSharp.g:4804:1: ( ( rule__MatchStatement__MatchAssignment_1 ) )
+            // InternalBSharp.g:4805:2: ( rule__MatchStatement__MatchAssignment_1 )
             {
              before(grammarAccess.getMatchStatementAccess().getMatchAssignment_1()); 
-            // InternalBSharp.g:4739:2: ( rule__MatchStatement__MatchAssignment_1 )
-            // InternalBSharp.g:4739:3: rule__MatchStatement__MatchAssignment_1
+            // InternalBSharp.g:4806:2: ( rule__MatchStatement__MatchAssignment_1 )
+            // InternalBSharp.g:4806:3: rule__MatchStatement__MatchAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__MatchStatement__MatchAssignment_1();
@@ -14910,14 +15171,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__2"
-    // InternalBSharp.g:4747:1: rule__MatchStatement__Group__2 : rule__MatchStatement__Group__2__Impl rule__MatchStatement__Group__3 ;
+    // InternalBSharp.g:4814:1: rule__MatchStatement__Group__2 : rule__MatchStatement__Group__2__Impl rule__MatchStatement__Group__3 ;
     public final void rule__MatchStatement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4751:1: ( rule__MatchStatement__Group__2__Impl rule__MatchStatement__Group__3 )
-            // InternalBSharp.g:4752:2: rule__MatchStatement__Group__2__Impl rule__MatchStatement__Group__3
+            // InternalBSharp.g:4818:1: ( rule__MatchStatement__Group__2__Impl rule__MatchStatement__Group__3 )
+            // InternalBSharp.g:4819:2: rule__MatchStatement__Group__2__Impl rule__MatchStatement__Group__3
             {
             pushFollow(FOLLOW_39);
             rule__MatchStatement__Group__2__Impl();
@@ -14948,17 +15209,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__2__Impl"
-    // InternalBSharp.g:4759:1: rule__MatchStatement__Group__2__Impl : ( '{' ) ;
+    // InternalBSharp.g:4826:1: rule__MatchStatement__Group__2__Impl : ( '{' ) ;
     public final void rule__MatchStatement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4763:1: ( ( '{' ) )
-            // InternalBSharp.g:4764:1: ( '{' )
+            // InternalBSharp.g:4830:1: ( ( '{' ) )
+            // InternalBSharp.g:4831:1: ( '{' )
             {
-            // InternalBSharp.g:4764:1: ( '{' )
-            // InternalBSharp.g:4765:2: '{'
+            // InternalBSharp.g:4831:1: ( '{' )
+            // InternalBSharp.g:4832:2: '{'
             {
              before(grammarAccess.getMatchStatementAccess().getLeftCurlyBracketKeyword_2()); 
             match(input,50,FOLLOW_2); 
@@ -14985,14 +15246,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__3"
-    // InternalBSharp.g:4774:1: rule__MatchStatement__Group__3 : rule__MatchStatement__Group__3__Impl rule__MatchStatement__Group__4 ;
+    // InternalBSharp.g:4841:1: rule__MatchStatement__Group__3 : rule__MatchStatement__Group__3__Impl rule__MatchStatement__Group__4 ;
     public final void rule__MatchStatement__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4778:1: ( rule__MatchStatement__Group__3__Impl rule__MatchStatement__Group__4 )
-            // InternalBSharp.g:4779:2: rule__MatchStatement__Group__3__Impl rule__MatchStatement__Group__4
+            // InternalBSharp.g:4845:1: ( rule__MatchStatement__Group__3__Impl rule__MatchStatement__Group__4 )
+            // InternalBSharp.g:4846:2: rule__MatchStatement__Group__3__Impl rule__MatchStatement__Group__4
             {
             pushFollow(FOLLOW_40);
             rule__MatchStatement__Group__3__Impl();
@@ -15023,21 +15284,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__3__Impl"
-    // InternalBSharp.g:4786:1: rule__MatchStatement__Group__3__Impl : ( ( rule__MatchStatement__InductCaseAssignment_3 ) ) ;
+    // InternalBSharp.g:4853:1: rule__MatchStatement__Group__3__Impl : ( ( rule__MatchStatement__InductCaseAssignment_3 ) ) ;
     public final void rule__MatchStatement__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4790:1: ( ( ( rule__MatchStatement__InductCaseAssignment_3 ) ) )
-            // InternalBSharp.g:4791:1: ( ( rule__MatchStatement__InductCaseAssignment_3 ) )
+            // InternalBSharp.g:4857:1: ( ( ( rule__MatchStatement__InductCaseAssignment_3 ) ) )
+            // InternalBSharp.g:4858:1: ( ( rule__MatchStatement__InductCaseAssignment_3 ) )
             {
-            // InternalBSharp.g:4791:1: ( ( rule__MatchStatement__InductCaseAssignment_3 ) )
-            // InternalBSharp.g:4792:2: ( rule__MatchStatement__InductCaseAssignment_3 )
+            // InternalBSharp.g:4858:1: ( ( rule__MatchStatement__InductCaseAssignment_3 ) )
+            // InternalBSharp.g:4859:2: ( rule__MatchStatement__InductCaseAssignment_3 )
             {
              before(grammarAccess.getMatchStatementAccess().getInductCaseAssignment_3()); 
-            // InternalBSharp.g:4793:2: ( rule__MatchStatement__InductCaseAssignment_3 )
-            // InternalBSharp.g:4793:3: rule__MatchStatement__InductCaseAssignment_3
+            // InternalBSharp.g:4860:2: ( rule__MatchStatement__InductCaseAssignment_3 )
+            // InternalBSharp.g:4860:3: rule__MatchStatement__InductCaseAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__MatchStatement__InductCaseAssignment_3();
@@ -15070,14 +15331,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__4"
-    // InternalBSharp.g:4801:1: rule__MatchStatement__Group__4 : rule__MatchStatement__Group__4__Impl rule__MatchStatement__Group__5 ;
+    // InternalBSharp.g:4868:1: rule__MatchStatement__Group__4 : rule__MatchStatement__Group__4__Impl rule__MatchStatement__Group__5 ;
     public final void rule__MatchStatement__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4805:1: ( rule__MatchStatement__Group__4__Impl rule__MatchStatement__Group__5 )
-            // InternalBSharp.g:4806:2: rule__MatchStatement__Group__4__Impl rule__MatchStatement__Group__5
+            // InternalBSharp.g:4872:1: ( rule__MatchStatement__Group__4__Impl rule__MatchStatement__Group__5 )
+            // InternalBSharp.g:4873:2: rule__MatchStatement__Group__4__Impl rule__MatchStatement__Group__5
             {
             pushFollow(FOLLOW_40);
             rule__MatchStatement__Group__4__Impl();
@@ -15108,33 +15369,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__4__Impl"
-    // InternalBSharp.g:4813:1: rule__MatchStatement__Group__4__Impl : ( ( rule__MatchStatement__InductCaseAssignment_4 )* ) ;
+    // InternalBSharp.g:4880:1: rule__MatchStatement__Group__4__Impl : ( ( rule__MatchStatement__InductCaseAssignment_4 )* ) ;
     public final void rule__MatchStatement__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4817:1: ( ( ( rule__MatchStatement__InductCaseAssignment_4 )* ) )
-            // InternalBSharp.g:4818:1: ( ( rule__MatchStatement__InductCaseAssignment_4 )* )
+            // InternalBSharp.g:4884:1: ( ( ( rule__MatchStatement__InductCaseAssignment_4 )* ) )
+            // InternalBSharp.g:4885:1: ( ( rule__MatchStatement__InductCaseAssignment_4 )* )
             {
-            // InternalBSharp.g:4818:1: ( ( rule__MatchStatement__InductCaseAssignment_4 )* )
-            // InternalBSharp.g:4819:2: ( rule__MatchStatement__InductCaseAssignment_4 )*
+            // InternalBSharp.g:4885:1: ( ( rule__MatchStatement__InductCaseAssignment_4 )* )
+            // InternalBSharp.g:4886:2: ( rule__MatchStatement__InductCaseAssignment_4 )*
             {
              before(grammarAccess.getMatchStatementAccess().getInductCaseAssignment_4()); 
-            // InternalBSharp.g:4820:2: ( rule__MatchStatement__InductCaseAssignment_4 )*
-            loop45:
+            // InternalBSharp.g:4887:2: ( rule__MatchStatement__InductCaseAssignment_4 )*
+            loop47:
             do {
-                int alt45=2;
-                int LA45_0 = input.LA(1);
+                int alt47=2;
+                int LA47_0 = input.LA(1);
 
-                if ( (LA45_0==48) ) {
-                    alt45=1;
+                if ( (LA47_0==48) ) {
+                    alt47=1;
                 }
 
 
-                switch (alt45) {
+                switch (alt47) {
             	case 1 :
-            	    // InternalBSharp.g:4820:3: rule__MatchStatement__InductCaseAssignment_4
+            	    // InternalBSharp.g:4887:3: rule__MatchStatement__InductCaseAssignment_4
             	    {
             	    pushFollow(FOLLOW_41);
             	    rule__MatchStatement__InductCaseAssignment_4();
@@ -15146,7 +15407,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop45;
+            	    break loop47;
                 }
             } while (true);
 
@@ -15173,14 +15434,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__5"
-    // InternalBSharp.g:4828:1: rule__MatchStatement__Group__5 : rule__MatchStatement__Group__5__Impl ;
+    // InternalBSharp.g:4895:1: rule__MatchStatement__Group__5 : rule__MatchStatement__Group__5__Impl ;
     public final void rule__MatchStatement__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4832:1: ( rule__MatchStatement__Group__5__Impl )
-            // InternalBSharp.g:4833:2: rule__MatchStatement__Group__5__Impl
+            // InternalBSharp.g:4899:1: ( rule__MatchStatement__Group__5__Impl )
+            // InternalBSharp.g:4900:2: rule__MatchStatement__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MatchStatement__Group__5__Impl();
@@ -15206,17 +15467,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__Group__5__Impl"
-    // InternalBSharp.g:4839:1: rule__MatchStatement__Group__5__Impl : ( '}' ) ;
+    // InternalBSharp.g:4906:1: rule__MatchStatement__Group__5__Impl : ( '}' ) ;
     public final void rule__MatchStatement__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4843:1: ( ( '}' ) )
-            // InternalBSharp.g:4844:1: ( '}' )
+            // InternalBSharp.g:4910:1: ( ( '}' ) )
+            // InternalBSharp.g:4911:1: ( '}' )
             {
-            // InternalBSharp.g:4844:1: ( '}' )
-            // InternalBSharp.g:4845:2: '}'
+            // InternalBSharp.g:4911:1: ( '}' )
+            // InternalBSharp.g:4912:2: '}'
             {
              before(grammarAccess.getMatchStatementAccess().getRightCurlyBracketKeyword_5()); 
             match(input,51,FOLLOW_2); 
@@ -15243,14 +15504,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__0"
-    // InternalBSharp.g:4855:1: rule__MatchCase__Group__0 : rule__MatchCase__Group__0__Impl rule__MatchCase__Group__1 ;
+    // InternalBSharp.g:4922:1: rule__MatchCase__Group__0 : rule__MatchCase__Group__0__Impl rule__MatchCase__Group__1 ;
     public final void rule__MatchCase__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4859:1: ( rule__MatchCase__Group__0__Impl rule__MatchCase__Group__1 )
-            // InternalBSharp.g:4860:2: rule__MatchCase__Group__0__Impl rule__MatchCase__Group__1
+            // InternalBSharp.g:4926:1: ( rule__MatchCase__Group__0__Impl rule__MatchCase__Group__1 )
+            // InternalBSharp.g:4927:2: rule__MatchCase__Group__0__Impl rule__MatchCase__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__MatchCase__Group__0__Impl();
@@ -15281,17 +15542,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__0__Impl"
-    // InternalBSharp.g:4867:1: rule__MatchCase__Group__0__Impl : ( '|' ) ;
+    // InternalBSharp.g:4934:1: rule__MatchCase__Group__0__Impl : ( '|' ) ;
     public final void rule__MatchCase__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4871:1: ( ( '|' ) )
-            // InternalBSharp.g:4872:1: ( '|' )
+            // InternalBSharp.g:4938:1: ( ( '|' ) )
+            // InternalBSharp.g:4939:1: ( '|' )
             {
-            // InternalBSharp.g:4872:1: ( '|' )
-            // InternalBSharp.g:4873:2: '|'
+            // InternalBSharp.g:4939:1: ( '|' )
+            // InternalBSharp.g:4940:2: '|'
             {
              before(grammarAccess.getMatchCaseAccess().getVerticalLineKeyword_0()); 
             match(input,48,FOLLOW_2); 
@@ -15318,14 +15579,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__1"
-    // InternalBSharp.g:4882:1: rule__MatchCase__Group__1 : rule__MatchCase__Group__1__Impl rule__MatchCase__Group__2 ;
+    // InternalBSharp.g:4949:1: rule__MatchCase__Group__1 : rule__MatchCase__Group__1__Impl rule__MatchCase__Group__2 ;
     public final void rule__MatchCase__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4886:1: ( rule__MatchCase__Group__1__Impl rule__MatchCase__Group__2 )
-            // InternalBSharp.g:4887:2: rule__MatchCase__Group__1__Impl rule__MatchCase__Group__2
+            // InternalBSharp.g:4953:1: ( rule__MatchCase__Group__1__Impl rule__MatchCase__Group__2 )
+            // InternalBSharp.g:4954:2: rule__MatchCase__Group__1__Impl rule__MatchCase__Group__2
             {
             pushFollow(FOLLOW_42);
             rule__MatchCase__Group__1__Impl();
@@ -15356,21 +15617,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__1__Impl"
-    // InternalBSharp.g:4894:1: rule__MatchCase__Group__1__Impl : ( ( rule__MatchCase__DeconNameAssignment_1 ) ) ;
+    // InternalBSharp.g:4961:1: rule__MatchCase__Group__1__Impl : ( ( rule__MatchCase__DeconNameAssignment_1 ) ) ;
     public final void rule__MatchCase__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4898:1: ( ( ( rule__MatchCase__DeconNameAssignment_1 ) ) )
-            // InternalBSharp.g:4899:1: ( ( rule__MatchCase__DeconNameAssignment_1 ) )
+            // InternalBSharp.g:4965:1: ( ( ( rule__MatchCase__DeconNameAssignment_1 ) ) )
+            // InternalBSharp.g:4966:1: ( ( rule__MatchCase__DeconNameAssignment_1 ) )
             {
-            // InternalBSharp.g:4899:1: ( ( rule__MatchCase__DeconNameAssignment_1 ) )
-            // InternalBSharp.g:4900:2: ( rule__MatchCase__DeconNameAssignment_1 )
+            // InternalBSharp.g:4966:1: ( ( rule__MatchCase__DeconNameAssignment_1 ) )
+            // InternalBSharp.g:4967:2: ( rule__MatchCase__DeconNameAssignment_1 )
             {
              before(grammarAccess.getMatchCaseAccess().getDeconNameAssignment_1()); 
-            // InternalBSharp.g:4901:2: ( rule__MatchCase__DeconNameAssignment_1 )
-            // InternalBSharp.g:4901:3: rule__MatchCase__DeconNameAssignment_1
+            // InternalBSharp.g:4968:2: ( rule__MatchCase__DeconNameAssignment_1 )
+            // InternalBSharp.g:4968:3: rule__MatchCase__DeconNameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__MatchCase__DeconNameAssignment_1();
@@ -15403,14 +15664,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__2"
-    // InternalBSharp.g:4909:1: rule__MatchCase__Group__2 : rule__MatchCase__Group__2__Impl rule__MatchCase__Group__3 ;
+    // InternalBSharp.g:4976:1: rule__MatchCase__Group__2 : rule__MatchCase__Group__2__Impl rule__MatchCase__Group__3 ;
     public final void rule__MatchCase__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4913:1: ( rule__MatchCase__Group__2__Impl rule__MatchCase__Group__3 )
-            // InternalBSharp.g:4914:2: rule__MatchCase__Group__2__Impl rule__MatchCase__Group__3
+            // InternalBSharp.g:4980:1: ( rule__MatchCase__Group__2__Impl rule__MatchCase__Group__3 )
+            // InternalBSharp.g:4981:2: rule__MatchCase__Group__2__Impl rule__MatchCase__Group__3
             {
             pushFollow(FOLLOW_42);
             rule__MatchCase__Group__2__Impl();
@@ -15441,29 +15702,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__2__Impl"
-    // InternalBSharp.g:4921:1: rule__MatchCase__Group__2__Impl : ( ( rule__MatchCase__Group_2__0 )? ) ;
+    // InternalBSharp.g:4988:1: rule__MatchCase__Group__2__Impl : ( ( rule__MatchCase__Group_2__0 )? ) ;
     public final void rule__MatchCase__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4925:1: ( ( ( rule__MatchCase__Group_2__0 )? ) )
-            // InternalBSharp.g:4926:1: ( ( rule__MatchCase__Group_2__0 )? )
+            // InternalBSharp.g:4992:1: ( ( ( rule__MatchCase__Group_2__0 )? ) )
+            // InternalBSharp.g:4993:1: ( ( rule__MatchCase__Group_2__0 )? )
             {
-            // InternalBSharp.g:4926:1: ( ( rule__MatchCase__Group_2__0 )? )
-            // InternalBSharp.g:4927:2: ( rule__MatchCase__Group_2__0 )?
+            // InternalBSharp.g:4993:1: ( ( rule__MatchCase__Group_2__0 )? )
+            // InternalBSharp.g:4994:2: ( rule__MatchCase__Group_2__0 )?
             {
              before(grammarAccess.getMatchCaseAccess().getGroup_2()); 
-            // InternalBSharp.g:4928:2: ( rule__MatchCase__Group_2__0 )?
-            int alt46=2;
-            int LA46_0 = input.LA(1);
+            // InternalBSharp.g:4995:2: ( rule__MatchCase__Group_2__0 )?
+            int alt48=2;
+            int LA48_0 = input.LA(1);
 
-            if ( (LA46_0==40) ) {
-                alt46=1;
+            if ( (LA48_0==40) ) {
+                alt48=1;
             }
-            switch (alt46) {
+            switch (alt48) {
                 case 1 :
-                    // InternalBSharp.g:4928:3: rule__MatchCase__Group_2__0
+                    // InternalBSharp.g:4995:3: rule__MatchCase__Group_2__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__MatchCase__Group_2__0();
@@ -15499,14 +15760,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__3"
-    // InternalBSharp.g:4936:1: rule__MatchCase__Group__3 : rule__MatchCase__Group__3__Impl rule__MatchCase__Group__4 ;
+    // InternalBSharp.g:5003:1: rule__MatchCase__Group__3 : rule__MatchCase__Group__3__Impl rule__MatchCase__Group__4 ;
     public final void rule__MatchCase__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4940:1: ( rule__MatchCase__Group__3__Impl rule__MatchCase__Group__4 )
-            // InternalBSharp.g:4941:2: rule__MatchCase__Group__3__Impl rule__MatchCase__Group__4
+            // InternalBSharp.g:5007:1: ( rule__MatchCase__Group__3__Impl rule__MatchCase__Group__4 )
+            // InternalBSharp.g:5008:2: rule__MatchCase__Group__3__Impl rule__MatchCase__Group__4
             {
             pushFollow(FOLLOW_28);
             rule__MatchCase__Group__3__Impl();
@@ -15537,17 +15798,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__3__Impl"
-    // InternalBSharp.g:4948:1: rule__MatchCase__Group__3__Impl : ( ':' ) ;
+    // InternalBSharp.g:5015:1: rule__MatchCase__Group__3__Impl : ( ':' ) ;
     public final void rule__MatchCase__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4952:1: ( ( ':' ) )
-            // InternalBSharp.g:4953:1: ( ':' )
+            // InternalBSharp.g:5019:1: ( ( ':' ) )
+            // InternalBSharp.g:5020:1: ( ':' )
             {
-            // InternalBSharp.g:4953:1: ( ':' )
-            // InternalBSharp.g:4954:2: ':'
+            // InternalBSharp.g:5020:1: ( ':' )
+            // InternalBSharp.g:5021:2: ':'
             {
              before(grammarAccess.getMatchCaseAccess().getColonKeyword_3()); 
             match(input,32,FOLLOW_2); 
@@ -15574,14 +15835,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__4"
-    // InternalBSharp.g:4963:1: rule__MatchCase__Group__4 : rule__MatchCase__Group__4__Impl ;
+    // InternalBSharp.g:5030:1: rule__MatchCase__Group__4 : rule__MatchCase__Group__4__Impl ;
     public final void rule__MatchCase__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4967:1: ( rule__MatchCase__Group__4__Impl )
-            // InternalBSharp.g:4968:2: rule__MatchCase__Group__4__Impl
+            // InternalBSharp.g:5034:1: ( rule__MatchCase__Group__4__Impl )
+            // InternalBSharp.g:5035:2: rule__MatchCase__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MatchCase__Group__4__Impl();
@@ -15607,21 +15868,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group__4__Impl"
-    // InternalBSharp.g:4974:1: rule__MatchCase__Group__4__Impl : ( ( rule__MatchCase__ExprAssignment_4 ) ) ;
+    // InternalBSharp.g:5041:1: rule__MatchCase__Group__4__Impl : ( ( rule__MatchCase__ExprAssignment_4 ) ) ;
     public final void rule__MatchCase__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4978:1: ( ( ( rule__MatchCase__ExprAssignment_4 ) ) )
-            // InternalBSharp.g:4979:1: ( ( rule__MatchCase__ExprAssignment_4 ) )
+            // InternalBSharp.g:5045:1: ( ( ( rule__MatchCase__ExprAssignment_4 ) ) )
+            // InternalBSharp.g:5046:1: ( ( rule__MatchCase__ExprAssignment_4 ) )
             {
-            // InternalBSharp.g:4979:1: ( ( rule__MatchCase__ExprAssignment_4 ) )
-            // InternalBSharp.g:4980:2: ( rule__MatchCase__ExprAssignment_4 )
+            // InternalBSharp.g:5046:1: ( ( rule__MatchCase__ExprAssignment_4 ) )
+            // InternalBSharp.g:5047:2: ( rule__MatchCase__ExprAssignment_4 )
             {
              before(grammarAccess.getMatchCaseAccess().getExprAssignment_4()); 
-            // InternalBSharp.g:4981:2: ( rule__MatchCase__ExprAssignment_4 )
-            // InternalBSharp.g:4981:3: rule__MatchCase__ExprAssignment_4
+            // InternalBSharp.g:5048:2: ( rule__MatchCase__ExprAssignment_4 )
+            // InternalBSharp.g:5048:3: rule__MatchCase__ExprAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__MatchCase__ExprAssignment_4();
@@ -15654,14 +15915,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2__0"
-    // InternalBSharp.g:4990:1: rule__MatchCase__Group_2__0 : rule__MatchCase__Group_2__0__Impl rule__MatchCase__Group_2__1 ;
+    // InternalBSharp.g:5057:1: rule__MatchCase__Group_2__0 : rule__MatchCase__Group_2__0__Impl rule__MatchCase__Group_2__1 ;
     public final void rule__MatchCase__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4994:1: ( rule__MatchCase__Group_2__0__Impl rule__MatchCase__Group_2__1 )
-            // InternalBSharp.g:4995:2: rule__MatchCase__Group_2__0__Impl rule__MatchCase__Group_2__1
+            // InternalBSharp.g:5061:1: ( rule__MatchCase__Group_2__0__Impl rule__MatchCase__Group_2__1 )
+            // InternalBSharp.g:5062:2: rule__MatchCase__Group_2__0__Impl rule__MatchCase__Group_2__1
             {
             pushFollow(FOLLOW_4);
             rule__MatchCase__Group_2__0__Impl();
@@ -15692,17 +15953,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2__0__Impl"
-    // InternalBSharp.g:5002:1: rule__MatchCase__Group_2__0__Impl : ( '(' ) ;
+    // InternalBSharp.g:5069:1: rule__MatchCase__Group_2__0__Impl : ( '(' ) ;
     public final void rule__MatchCase__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5006:1: ( ( '(' ) )
-            // InternalBSharp.g:5007:1: ( '(' )
+            // InternalBSharp.g:5073:1: ( ( '(' ) )
+            // InternalBSharp.g:5074:1: ( '(' )
             {
-            // InternalBSharp.g:5007:1: ( '(' )
-            // InternalBSharp.g:5008:2: '('
+            // InternalBSharp.g:5074:1: ( '(' )
+            // InternalBSharp.g:5075:2: '('
             {
              before(grammarAccess.getMatchCaseAccess().getLeftParenthesisKeyword_2_0()); 
             match(input,40,FOLLOW_2); 
@@ -15729,14 +15990,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2__1"
-    // InternalBSharp.g:5017:1: rule__MatchCase__Group_2__1 : rule__MatchCase__Group_2__1__Impl rule__MatchCase__Group_2__2 ;
+    // InternalBSharp.g:5084:1: rule__MatchCase__Group_2__1 : rule__MatchCase__Group_2__1__Impl rule__MatchCase__Group_2__2 ;
     public final void rule__MatchCase__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5021:1: ( rule__MatchCase__Group_2__1__Impl rule__MatchCase__Group_2__2 )
-            // InternalBSharp.g:5022:2: rule__MatchCase__Group_2__1__Impl rule__MatchCase__Group_2__2
+            // InternalBSharp.g:5088:1: ( rule__MatchCase__Group_2__1__Impl rule__MatchCase__Group_2__2 )
+            // InternalBSharp.g:5089:2: rule__MatchCase__Group_2__1__Impl rule__MatchCase__Group_2__2
             {
             pushFollow(FOLLOW_43);
             rule__MatchCase__Group_2__1__Impl();
@@ -15767,21 +16028,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2__1__Impl"
-    // InternalBSharp.g:5029:1: rule__MatchCase__Group_2__1__Impl : ( ( rule__MatchCase__VariablesAssignment_2_1 ) ) ;
+    // InternalBSharp.g:5096:1: rule__MatchCase__Group_2__1__Impl : ( ( rule__MatchCase__VariablesAssignment_2_1 ) ) ;
     public final void rule__MatchCase__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5033:1: ( ( ( rule__MatchCase__VariablesAssignment_2_1 ) ) )
-            // InternalBSharp.g:5034:1: ( ( rule__MatchCase__VariablesAssignment_2_1 ) )
+            // InternalBSharp.g:5100:1: ( ( ( rule__MatchCase__VariablesAssignment_2_1 ) ) )
+            // InternalBSharp.g:5101:1: ( ( rule__MatchCase__VariablesAssignment_2_1 ) )
             {
-            // InternalBSharp.g:5034:1: ( ( rule__MatchCase__VariablesAssignment_2_1 ) )
-            // InternalBSharp.g:5035:2: ( rule__MatchCase__VariablesAssignment_2_1 )
+            // InternalBSharp.g:5101:1: ( ( rule__MatchCase__VariablesAssignment_2_1 ) )
+            // InternalBSharp.g:5102:2: ( rule__MatchCase__VariablesAssignment_2_1 )
             {
              before(grammarAccess.getMatchCaseAccess().getVariablesAssignment_2_1()); 
-            // InternalBSharp.g:5036:2: ( rule__MatchCase__VariablesAssignment_2_1 )
-            // InternalBSharp.g:5036:3: rule__MatchCase__VariablesAssignment_2_1
+            // InternalBSharp.g:5103:2: ( rule__MatchCase__VariablesAssignment_2_1 )
+            // InternalBSharp.g:5103:3: rule__MatchCase__VariablesAssignment_2_1
             {
             pushFollow(FOLLOW_2);
             rule__MatchCase__VariablesAssignment_2_1();
@@ -15814,14 +16075,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2__2"
-    // InternalBSharp.g:5044:1: rule__MatchCase__Group_2__2 : rule__MatchCase__Group_2__2__Impl rule__MatchCase__Group_2__3 ;
+    // InternalBSharp.g:5111:1: rule__MatchCase__Group_2__2 : rule__MatchCase__Group_2__2__Impl rule__MatchCase__Group_2__3 ;
     public final void rule__MatchCase__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5048:1: ( rule__MatchCase__Group_2__2__Impl rule__MatchCase__Group_2__3 )
-            // InternalBSharp.g:5049:2: rule__MatchCase__Group_2__2__Impl rule__MatchCase__Group_2__3
+            // InternalBSharp.g:5115:1: ( rule__MatchCase__Group_2__2__Impl rule__MatchCase__Group_2__3 )
+            // InternalBSharp.g:5116:2: rule__MatchCase__Group_2__2__Impl rule__MatchCase__Group_2__3
             {
             pushFollow(FOLLOW_43);
             rule__MatchCase__Group_2__2__Impl();
@@ -15852,33 +16113,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2__2__Impl"
-    // InternalBSharp.g:5056:1: rule__MatchCase__Group_2__2__Impl : ( ( rule__MatchCase__Group_2_2__0 )* ) ;
+    // InternalBSharp.g:5123:1: rule__MatchCase__Group_2__2__Impl : ( ( rule__MatchCase__Group_2_2__0 )* ) ;
     public final void rule__MatchCase__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5060:1: ( ( ( rule__MatchCase__Group_2_2__0 )* ) )
-            // InternalBSharp.g:5061:1: ( ( rule__MatchCase__Group_2_2__0 )* )
+            // InternalBSharp.g:5127:1: ( ( ( rule__MatchCase__Group_2_2__0 )* ) )
+            // InternalBSharp.g:5128:1: ( ( rule__MatchCase__Group_2_2__0 )* )
             {
-            // InternalBSharp.g:5061:1: ( ( rule__MatchCase__Group_2_2__0 )* )
-            // InternalBSharp.g:5062:2: ( rule__MatchCase__Group_2_2__0 )*
+            // InternalBSharp.g:5128:1: ( ( rule__MatchCase__Group_2_2__0 )* )
+            // InternalBSharp.g:5129:2: ( rule__MatchCase__Group_2_2__0 )*
             {
              before(grammarAccess.getMatchCaseAccess().getGroup_2_2()); 
-            // InternalBSharp.g:5063:2: ( rule__MatchCase__Group_2_2__0 )*
-            loop47:
+            // InternalBSharp.g:5130:2: ( rule__MatchCase__Group_2_2__0 )*
+            loop49:
             do {
-                int alt47=2;
-                int LA47_0 = input.LA(1);
+                int alt49=2;
+                int LA49_0 = input.LA(1);
 
-                if ( (LA47_0==44) ) {
-                    alt47=1;
+                if ( (LA49_0==44) ) {
+                    alt49=1;
                 }
 
 
-                switch (alt47) {
+                switch (alt49) {
             	case 1 :
-            	    // InternalBSharp.g:5063:3: rule__MatchCase__Group_2_2__0
+            	    // InternalBSharp.g:5130:3: rule__MatchCase__Group_2_2__0
             	    {
             	    pushFollow(FOLLOW_21);
             	    rule__MatchCase__Group_2_2__0();
@@ -15890,7 +16151,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop47;
+            	    break loop49;
                 }
             } while (true);
 
@@ -15917,14 +16178,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2__3"
-    // InternalBSharp.g:5071:1: rule__MatchCase__Group_2__3 : rule__MatchCase__Group_2__3__Impl ;
+    // InternalBSharp.g:5138:1: rule__MatchCase__Group_2__3 : rule__MatchCase__Group_2__3__Impl ;
     public final void rule__MatchCase__Group_2__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5075:1: ( rule__MatchCase__Group_2__3__Impl )
-            // InternalBSharp.g:5076:2: rule__MatchCase__Group_2__3__Impl
+            // InternalBSharp.g:5142:1: ( rule__MatchCase__Group_2__3__Impl )
+            // InternalBSharp.g:5143:2: rule__MatchCase__Group_2__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MatchCase__Group_2__3__Impl();
@@ -15950,17 +16211,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2__3__Impl"
-    // InternalBSharp.g:5082:1: rule__MatchCase__Group_2__3__Impl : ( ')' ) ;
+    // InternalBSharp.g:5149:1: rule__MatchCase__Group_2__3__Impl : ( ')' ) ;
     public final void rule__MatchCase__Group_2__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5086:1: ( ( ')' ) )
-            // InternalBSharp.g:5087:1: ( ')' )
+            // InternalBSharp.g:5153:1: ( ( ')' ) )
+            // InternalBSharp.g:5154:1: ( ')' )
             {
-            // InternalBSharp.g:5087:1: ( ')' )
-            // InternalBSharp.g:5088:2: ')'
+            // InternalBSharp.g:5154:1: ( ')' )
+            // InternalBSharp.g:5155:2: ')'
             {
              before(grammarAccess.getMatchCaseAccess().getRightParenthesisKeyword_2_3()); 
             match(input,41,FOLLOW_2); 
@@ -15987,14 +16248,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2_2__0"
-    // InternalBSharp.g:5098:1: rule__MatchCase__Group_2_2__0 : rule__MatchCase__Group_2_2__0__Impl rule__MatchCase__Group_2_2__1 ;
+    // InternalBSharp.g:5165:1: rule__MatchCase__Group_2_2__0 : rule__MatchCase__Group_2_2__0__Impl rule__MatchCase__Group_2_2__1 ;
     public final void rule__MatchCase__Group_2_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5102:1: ( rule__MatchCase__Group_2_2__0__Impl rule__MatchCase__Group_2_2__1 )
-            // InternalBSharp.g:5103:2: rule__MatchCase__Group_2_2__0__Impl rule__MatchCase__Group_2_2__1
+            // InternalBSharp.g:5169:1: ( rule__MatchCase__Group_2_2__0__Impl rule__MatchCase__Group_2_2__1 )
+            // InternalBSharp.g:5170:2: rule__MatchCase__Group_2_2__0__Impl rule__MatchCase__Group_2_2__1
             {
             pushFollow(FOLLOW_4);
             rule__MatchCase__Group_2_2__0__Impl();
@@ -16025,17 +16286,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2_2__0__Impl"
-    // InternalBSharp.g:5110:1: rule__MatchCase__Group_2_2__0__Impl : ( ',' ) ;
+    // InternalBSharp.g:5177:1: rule__MatchCase__Group_2_2__0__Impl : ( ',' ) ;
     public final void rule__MatchCase__Group_2_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5114:1: ( ( ',' ) )
-            // InternalBSharp.g:5115:1: ( ',' )
+            // InternalBSharp.g:5181:1: ( ( ',' ) )
+            // InternalBSharp.g:5182:1: ( ',' )
             {
-            // InternalBSharp.g:5115:1: ( ',' )
-            // InternalBSharp.g:5116:2: ','
+            // InternalBSharp.g:5182:1: ( ',' )
+            // InternalBSharp.g:5183:2: ','
             {
              before(grammarAccess.getMatchCaseAccess().getCommaKeyword_2_2_0()); 
             match(input,44,FOLLOW_2); 
@@ -16062,14 +16323,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2_2__1"
-    // InternalBSharp.g:5125:1: rule__MatchCase__Group_2_2__1 : rule__MatchCase__Group_2_2__1__Impl ;
+    // InternalBSharp.g:5192:1: rule__MatchCase__Group_2_2__1 : rule__MatchCase__Group_2_2__1__Impl ;
     public final void rule__MatchCase__Group_2_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5129:1: ( rule__MatchCase__Group_2_2__1__Impl )
-            // InternalBSharp.g:5130:2: rule__MatchCase__Group_2_2__1__Impl
+            // InternalBSharp.g:5196:1: ( rule__MatchCase__Group_2_2__1__Impl )
+            // InternalBSharp.g:5197:2: rule__MatchCase__Group_2_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MatchCase__Group_2_2__1__Impl();
@@ -16095,21 +16356,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__Group_2_2__1__Impl"
-    // InternalBSharp.g:5136:1: rule__MatchCase__Group_2_2__1__Impl : ( ( rule__MatchCase__VariablesAssignment_2_2_1 ) ) ;
+    // InternalBSharp.g:5203:1: rule__MatchCase__Group_2_2__1__Impl : ( ( rule__MatchCase__VariablesAssignment_2_2_1 ) ) ;
     public final void rule__MatchCase__Group_2_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5140:1: ( ( ( rule__MatchCase__VariablesAssignment_2_2_1 ) ) )
-            // InternalBSharp.g:5141:1: ( ( rule__MatchCase__VariablesAssignment_2_2_1 ) )
+            // InternalBSharp.g:5207:1: ( ( ( rule__MatchCase__VariablesAssignment_2_2_1 ) ) )
+            // InternalBSharp.g:5208:1: ( ( rule__MatchCase__VariablesAssignment_2_2_1 ) )
             {
-            // InternalBSharp.g:5141:1: ( ( rule__MatchCase__VariablesAssignment_2_2_1 ) )
-            // InternalBSharp.g:5142:2: ( rule__MatchCase__VariablesAssignment_2_2_1 )
+            // InternalBSharp.g:5208:1: ( ( rule__MatchCase__VariablesAssignment_2_2_1 ) )
+            // InternalBSharp.g:5209:2: ( rule__MatchCase__VariablesAssignment_2_2_1 )
             {
              before(grammarAccess.getMatchCaseAccess().getVariablesAssignment_2_2_1()); 
-            // InternalBSharp.g:5143:2: ( rule__MatchCase__VariablesAssignment_2_2_1 )
-            // InternalBSharp.g:5143:3: rule__MatchCase__VariablesAssignment_2_2_1
+            // InternalBSharp.g:5210:2: ( rule__MatchCase__VariablesAssignment_2_2_1 )
+            // InternalBSharp.g:5210:3: rule__MatchCase__VariablesAssignment_2_2_1
             {
             pushFollow(FOLLOW_2);
             rule__MatchCase__VariablesAssignment_2_2_1();
@@ -16142,14 +16403,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremBody__Group__0"
-    // InternalBSharp.g:5152:1: rule__TheoremBody__Group__0 : rule__TheoremBody__Group__0__Impl rule__TheoremBody__Group__1 ;
+    // InternalBSharp.g:5219:1: rule__TheoremBody__Group__0 : rule__TheoremBody__Group__0__Impl rule__TheoremBody__Group__1 ;
     public final void rule__TheoremBody__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5156:1: ( rule__TheoremBody__Group__0__Impl rule__TheoremBody__Group__1 )
-            // InternalBSharp.g:5157:2: rule__TheoremBody__Group__0__Impl rule__TheoremBody__Group__1
+            // InternalBSharp.g:5223:1: ( rule__TheoremBody__Group__0__Impl rule__TheoremBody__Group__1 )
+            // InternalBSharp.g:5224:2: rule__TheoremBody__Group__0__Impl rule__TheoremBody__Group__1
             {
             pushFollow(FOLLOW_38);
             rule__TheoremBody__Group__0__Impl();
@@ -16180,17 +16441,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremBody__Group__0__Impl"
-    // InternalBSharp.g:5164:1: rule__TheoremBody__Group__0__Impl : ( 'Theorems' ) ;
+    // InternalBSharp.g:5231:1: rule__TheoremBody__Group__0__Impl : ( 'Theorems' ) ;
     public final void rule__TheoremBody__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5168:1: ( ( 'Theorems' ) )
-            // InternalBSharp.g:5169:1: ( 'Theorems' )
+            // InternalBSharp.g:5235:1: ( ( 'Theorems' ) )
+            // InternalBSharp.g:5236:1: ( 'Theorems' )
             {
-            // InternalBSharp.g:5169:1: ( 'Theorems' )
-            // InternalBSharp.g:5170:2: 'Theorems'
+            // InternalBSharp.g:5236:1: ( 'Theorems' )
+            // InternalBSharp.g:5237:2: 'Theorems'
             {
              before(grammarAccess.getTheoremBodyAccess().getTheoremsKeyword_0()); 
             match(input,53,FOLLOW_2); 
@@ -16217,14 +16478,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremBody__Group__1"
-    // InternalBSharp.g:5179:1: rule__TheoremBody__Group__1 : rule__TheoremBody__Group__1__Impl rule__TheoremBody__Group__2 ;
+    // InternalBSharp.g:5246:1: rule__TheoremBody__Group__1 : rule__TheoremBody__Group__1__Impl rule__TheoremBody__Group__2 ;
     public final void rule__TheoremBody__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5183:1: ( rule__TheoremBody__Group__1__Impl rule__TheoremBody__Group__2 )
-            // InternalBSharp.g:5184:2: rule__TheoremBody__Group__1__Impl rule__TheoremBody__Group__2
+            // InternalBSharp.g:5250:1: ( rule__TheoremBody__Group__1__Impl rule__TheoremBody__Group__2 )
+            // InternalBSharp.g:5251:2: rule__TheoremBody__Group__1__Impl rule__TheoremBody__Group__2
             {
             pushFollow(FOLLOW_44);
             rule__TheoremBody__Group__1__Impl();
@@ -16255,17 +16516,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremBody__Group__1__Impl"
-    // InternalBSharp.g:5191:1: rule__TheoremBody__Group__1__Impl : ( '{' ) ;
+    // InternalBSharp.g:5258:1: rule__TheoremBody__Group__1__Impl : ( '{' ) ;
     public final void rule__TheoremBody__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5195:1: ( ( '{' ) )
-            // InternalBSharp.g:5196:1: ( '{' )
+            // InternalBSharp.g:5262:1: ( ( '{' ) )
+            // InternalBSharp.g:5263:1: ( '{' )
             {
-            // InternalBSharp.g:5196:1: ( '{' )
-            // InternalBSharp.g:5197:2: '{'
+            // InternalBSharp.g:5263:1: ( '{' )
+            // InternalBSharp.g:5264:2: '{'
             {
              before(grammarAccess.getTheoremBodyAccess().getLeftCurlyBracketKeyword_1()); 
             match(input,50,FOLLOW_2); 
@@ -16292,14 +16553,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremBody__Group__2"
-    // InternalBSharp.g:5206:1: rule__TheoremBody__Group__2 : rule__TheoremBody__Group__2__Impl rule__TheoremBody__Group__3 ;
+    // InternalBSharp.g:5273:1: rule__TheoremBody__Group__2 : rule__TheoremBody__Group__2__Impl rule__TheoremBody__Group__3 ;
     public final void rule__TheoremBody__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5210:1: ( rule__TheoremBody__Group__2__Impl rule__TheoremBody__Group__3 )
-            // InternalBSharp.g:5211:2: rule__TheoremBody__Group__2__Impl rule__TheoremBody__Group__3
+            // InternalBSharp.g:5277:1: ( rule__TheoremBody__Group__2__Impl rule__TheoremBody__Group__3 )
+            // InternalBSharp.g:5278:2: rule__TheoremBody__Group__2__Impl rule__TheoremBody__Group__3
             {
             pushFollow(FOLLOW_45);
             rule__TheoremBody__Group__2__Impl();
@@ -16330,24 +16591,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremBody__Group__2__Impl"
-    // InternalBSharp.g:5218:1: rule__TheoremBody__Group__2__Impl : ( ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* ) ) ;
+    // InternalBSharp.g:5285:1: rule__TheoremBody__Group__2__Impl : ( ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* ) ) ;
     public final void rule__TheoremBody__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5222:1: ( ( ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* ) ) )
-            // InternalBSharp.g:5223:1: ( ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* ) )
+            // InternalBSharp.g:5289:1: ( ( ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* ) ) )
+            // InternalBSharp.g:5290:1: ( ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* ) )
             {
-            // InternalBSharp.g:5223:1: ( ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* ) )
-            // InternalBSharp.g:5224:2: ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* )
+            // InternalBSharp.g:5290:1: ( ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* ) )
+            // InternalBSharp.g:5291:2: ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) ) ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* )
             {
-            // InternalBSharp.g:5224:2: ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) )
-            // InternalBSharp.g:5225:3: ( rule__TheoremBody__TheoremDeclAssignment_2 )
+            // InternalBSharp.g:5291:2: ( ( rule__TheoremBody__TheoremDeclAssignment_2 ) )
+            // InternalBSharp.g:5292:3: ( rule__TheoremBody__TheoremDeclAssignment_2 )
             {
              before(grammarAccess.getTheoremBodyAccess().getTheoremDeclAssignment_2()); 
-            // InternalBSharp.g:5226:3: ( rule__TheoremBody__TheoremDeclAssignment_2 )
-            // InternalBSharp.g:5226:4: rule__TheoremBody__TheoremDeclAssignment_2
+            // InternalBSharp.g:5293:3: ( rule__TheoremBody__TheoremDeclAssignment_2 )
+            // InternalBSharp.g:5293:4: rule__TheoremBody__TheoremDeclAssignment_2
             {
             pushFollow(FOLLOW_7);
             rule__TheoremBody__TheoremDeclAssignment_2();
@@ -16361,24 +16622,24 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             }
 
-            // InternalBSharp.g:5229:2: ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* )
-            // InternalBSharp.g:5230:3: ( rule__TheoremBody__TheoremDeclAssignment_2 )*
+            // InternalBSharp.g:5296:2: ( ( rule__TheoremBody__TheoremDeclAssignment_2 )* )
+            // InternalBSharp.g:5297:3: ( rule__TheoremBody__TheoremDeclAssignment_2 )*
             {
              before(grammarAccess.getTheoremBodyAccess().getTheoremDeclAssignment_2()); 
-            // InternalBSharp.g:5231:3: ( rule__TheoremBody__TheoremDeclAssignment_2 )*
-            loop48:
+            // InternalBSharp.g:5298:3: ( rule__TheoremBody__TheoremDeclAssignment_2 )*
+            loop50:
             do {
-                int alt48=2;
-                int LA48_0 = input.LA(1);
+                int alt50=2;
+                int LA50_0 = input.LA(1);
 
-                if ( ((LA48_0>=RULE_INT && LA48_0<=RULE_WS)||LA48_0==32) ) {
-                    alt48=1;
+                if ( ((LA50_0>=RULE_INT && LA50_0<=RULE_WS)||LA50_0==32) ) {
+                    alt50=1;
                 }
 
 
-                switch (alt48) {
+                switch (alt50) {
             	case 1 :
-            	    // InternalBSharp.g:5231:4: rule__TheoremBody__TheoremDeclAssignment_2
+            	    // InternalBSharp.g:5298:4: rule__TheoremBody__TheoremDeclAssignment_2
             	    {
             	    pushFollow(FOLLOW_7);
             	    rule__TheoremBody__TheoremDeclAssignment_2();
@@ -16390,7 +16651,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop48;
+            	    break loop50;
                 }
             } while (true);
 
@@ -16420,14 +16681,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremBody__Group__3"
-    // InternalBSharp.g:5240:1: rule__TheoremBody__Group__3 : rule__TheoremBody__Group__3__Impl ;
+    // InternalBSharp.g:5307:1: rule__TheoremBody__Group__3 : rule__TheoremBody__Group__3__Impl ;
     public final void rule__TheoremBody__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5244:1: ( rule__TheoremBody__Group__3__Impl )
-            // InternalBSharp.g:5245:2: rule__TheoremBody__Group__3__Impl
+            // InternalBSharp.g:5311:1: ( rule__TheoremBody__Group__3__Impl )
+            // InternalBSharp.g:5312:2: rule__TheoremBody__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TheoremBody__Group__3__Impl();
@@ -16453,17 +16714,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremBody__Group__3__Impl"
-    // InternalBSharp.g:5251:1: rule__TheoremBody__Group__3__Impl : ( '}' ) ;
+    // InternalBSharp.g:5318:1: rule__TheoremBody__Group__3__Impl : ( '}' ) ;
     public final void rule__TheoremBody__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5255:1: ( ( '}' ) )
-            // InternalBSharp.g:5256:1: ( '}' )
+            // InternalBSharp.g:5322:1: ( ( '}' ) )
+            // InternalBSharp.g:5323:1: ( '}' )
             {
-            // InternalBSharp.g:5256:1: ( '}' )
-            // InternalBSharp.g:5257:2: '}'
+            // InternalBSharp.g:5323:1: ( '}' )
+            // InternalBSharp.g:5324:2: '}'
             {
              before(grammarAccess.getTheoremBodyAccess().getRightCurlyBracketKeyword_3()); 
             match(input,51,FOLLOW_2); 
@@ -16490,14 +16751,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremDecl__Group__0"
-    // InternalBSharp.g:5267:1: rule__TheoremDecl__Group__0 : rule__TheoremDecl__Group__0__Impl rule__TheoremDecl__Group__1 ;
+    // InternalBSharp.g:5334:1: rule__TheoremDecl__Group__0 : rule__TheoremDecl__Group__0__Impl rule__TheoremDecl__Group__1 ;
     public final void rule__TheoremDecl__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5271:1: ( rule__TheoremDecl__Group__0__Impl rule__TheoremDecl__Group__1 )
-            // InternalBSharp.g:5272:2: rule__TheoremDecl__Group__0__Impl rule__TheoremDecl__Group__1
+            // InternalBSharp.g:5338:1: ( rule__TheoremDecl__Group__0__Impl rule__TheoremDecl__Group__1 )
+            // InternalBSharp.g:5339:2: rule__TheoremDecl__Group__0__Impl rule__TheoremDecl__Group__1
             {
             pushFollow(FOLLOW_28);
             rule__TheoremDecl__Group__0__Impl();
@@ -16528,21 +16789,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremDecl__Group__0__Impl"
-    // InternalBSharp.g:5279:1: rule__TheoremDecl__Group__0__Impl : ( ( rule__TheoremDecl__NameAssignment_0 ) ) ;
+    // InternalBSharp.g:5346:1: rule__TheoremDecl__Group__0__Impl : ( ( rule__TheoremDecl__NameAssignment_0 ) ) ;
     public final void rule__TheoremDecl__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5283:1: ( ( ( rule__TheoremDecl__NameAssignment_0 ) ) )
-            // InternalBSharp.g:5284:1: ( ( rule__TheoremDecl__NameAssignment_0 ) )
+            // InternalBSharp.g:5350:1: ( ( ( rule__TheoremDecl__NameAssignment_0 ) ) )
+            // InternalBSharp.g:5351:1: ( ( rule__TheoremDecl__NameAssignment_0 ) )
             {
-            // InternalBSharp.g:5284:1: ( ( rule__TheoremDecl__NameAssignment_0 ) )
-            // InternalBSharp.g:5285:2: ( rule__TheoremDecl__NameAssignment_0 )
+            // InternalBSharp.g:5351:1: ( ( rule__TheoremDecl__NameAssignment_0 ) )
+            // InternalBSharp.g:5352:2: ( rule__TheoremDecl__NameAssignment_0 )
             {
              before(grammarAccess.getTheoremDeclAccess().getNameAssignment_0()); 
-            // InternalBSharp.g:5286:2: ( rule__TheoremDecl__NameAssignment_0 )
-            // InternalBSharp.g:5286:3: rule__TheoremDecl__NameAssignment_0
+            // InternalBSharp.g:5353:2: ( rule__TheoremDecl__NameAssignment_0 )
+            // InternalBSharp.g:5353:3: rule__TheoremDecl__NameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__TheoremDecl__NameAssignment_0();
@@ -16575,14 +16836,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremDecl__Group__1"
-    // InternalBSharp.g:5294:1: rule__TheoremDecl__Group__1 : rule__TheoremDecl__Group__1__Impl rule__TheoremDecl__Group__2 ;
+    // InternalBSharp.g:5361:1: rule__TheoremDecl__Group__1 : rule__TheoremDecl__Group__1__Impl rule__TheoremDecl__Group__2 ;
     public final void rule__TheoremDecl__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5298:1: ( rule__TheoremDecl__Group__1__Impl rule__TheoremDecl__Group__2 )
-            // InternalBSharp.g:5299:2: rule__TheoremDecl__Group__1__Impl rule__TheoremDecl__Group__2
+            // InternalBSharp.g:5365:1: ( rule__TheoremDecl__Group__1__Impl rule__TheoremDecl__Group__2 )
+            // InternalBSharp.g:5366:2: rule__TheoremDecl__Group__1__Impl rule__TheoremDecl__Group__2
             {
             pushFollow(FOLLOW_29);
             rule__TheoremDecl__Group__1__Impl();
@@ -16613,21 +16874,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremDecl__Group__1__Impl"
-    // InternalBSharp.g:5306:1: rule__TheoremDecl__Group__1__Impl : ( ( rule__TheoremDecl__ExprAssignment_1 ) ) ;
+    // InternalBSharp.g:5373:1: rule__TheoremDecl__Group__1__Impl : ( ( rule__TheoremDecl__ExprAssignment_1 ) ) ;
     public final void rule__TheoremDecl__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5310:1: ( ( ( rule__TheoremDecl__ExprAssignment_1 ) ) )
-            // InternalBSharp.g:5311:1: ( ( rule__TheoremDecl__ExprAssignment_1 ) )
+            // InternalBSharp.g:5377:1: ( ( ( rule__TheoremDecl__ExprAssignment_1 ) ) )
+            // InternalBSharp.g:5378:1: ( ( rule__TheoremDecl__ExprAssignment_1 ) )
             {
-            // InternalBSharp.g:5311:1: ( ( rule__TheoremDecl__ExprAssignment_1 ) )
-            // InternalBSharp.g:5312:2: ( rule__TheoremDecl__ExprAssignment_1 )
+            // InternalBSharp.g:5378:1: ( ( rule__TheoremDecl__ExprAssignment_1 ) )
+            // InternalBSharp.g:5379:2: ( rule__TheoremDecl__ExprAssignment_1 )
             {
              before(grammarAccess.getTheoremDeclAccess().getExprAssignment_1()); 
-            // InternalBSharp.g:5313:2: ( rule__TheoremDecl__ExprAssignment_1 )
-            // InternalBSharp.g:5313:3: rule__TheoremDecl__ExprAssignment_1
+            // InternalBSharp.g:5380:2: ( rule__TheoremDecl__ExprAssignment_1 )
+            // InternalBSharp.g:5380:3: rule__TheoremDecl__ExprAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__TheoremDecl__ExprAssignment_1();
@@ -16660,14 +16921,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremDecl__Group__2"
-    // InternalBSharp.g:5321:1: rule__TheoremDecl__Group__2 : rule__TheoremDecl__Group__2__Impl ;
+    // InternalBSharp.g:5388:1: rule__TheoremDecl__Group__2 : rule__TheoremDecl__Group__2__Impl ;
     public final void rule__TheoremDecl__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5325:1: ( rule__TheoremDecl__Group__2__Impl )
-            // InternalBSharp.g:5326:2: rule__TheoremDecl__Group__2__Impl
+            // InternalBSharp.g:5392:1: ( rule__TheoremDecl__Group__2__Impl )
+            // InternalBSharp.g:5393:2: rule__TheoremDecl__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TheoremDecl__Group__2__Impl();
@@ -16693,17 +16954,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremDecl__Group__2__Impl"
-    // InternalBSharp.g:5332:1: rule__TheoremDecl__Group__2__Impl : ( ';' ) ;
+    // InternalBSharp.g:5399:1: rule__TheoremDecl__Group__2__Impl : ( ';' ) ;
     public final void rule__TheoremDecl__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5336:1: ( ( ';' ) )
-            // InternalBSharp.g:5337:1: ( ';' )
+            // InternalBSharp.g:5403:1: ( ( ';' ) )
+            // InternalBSharp.g:5404:1: ( ';' )
             {
-            // InternalBSharp.g:5337:1: ( ';' )
-            // InternalBSharp.g:5338:2: ';'
+            // InternalBSharp.g:5404:1: ( ';' )
+            // InternalBSharp.g:5405:2: ';'
             {
              before(grammarAccess.getTheoremDeclAccess().getSemicolonKeyword_2()); 
             match(input,37,FOLLOW_2); 
@@ -16730,14 +16991,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__Group__0"
-    // InternalBSharp.g:5348:1: rule__TypedVariableList__Group__0 : rule__TypedVariableList__Group__0__Impl rule__TypedVariableList__Group__1 ;
+    // InternalBSharp.g:5415:1: rule__TypedVariableList__Group__0 : rule__TypedVariableList__Group__0__Impl rule__TypedVariableList__Group__1 ;
     public final void rule__TypedVariableList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5352:1: ( rule__TypedVariableList__Group__0__Impl rule__TypedVariableList__Group__1 )
-            // InternalBSharp.g:5353:2: rule__TypedVariableList__Group__0__Impl rule__TypedVariableList__Group__1
+            // InternalBSharp.g:5419:1: ( rule__TypedVariableList__Group__0__Impl rule__TypedVariableList__Group__1 )
+            // InternalBSharp.g:5420:2: rule__TypedVariableList__Group__0__Impl rule__TypedVariableList__Group__1
             {
             pushFollow(FOLLOW_20);
             rule__TypedVariableList__Group__0__Impl();
@@ -16768,21 +17029,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__Group__0__Impl"
-    // InternalBSharp.g:5360:1: rule__TypedVariableList__Group__0__Impl : ( ( rule__TypedVariableList__VariablesOfTypeAssignment_0 ) ) ;
+    // InternalBSharp.g:5427:1: rule__TypedVariableList__Group__0__Impl : ( ( rule__TypedVariableList__VariablesOfTypeAssignment_0 ) ) ;
     public final void rule__TypedVariableList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5364:1: ( ( ( rule__TypedVariableList__VariablesOfTypeAssignment_0 ) ) )
-            // InternalBSharp.g:5365:1: ( ( rule__TypedVariableList__VariablesOfTypeAssignment_0 ) )
+            // InternalBSharp.g:5431:1: ( ( ( rule__TypedVariableList__VariablesOfTypeAssignment_0 ) ) )
+            // InternalBSharp.g:5432:1: ( ( rule__TypedVariableList__VariablesOfTypeAssignment_0 ) )
             {
-            // InternalBSharp.g:5365:1: ( ( rule__TypedVariableList__VariablesOfTypeAssignment_0 ) )
-            // InternalBSharp.g:5366:2: ( rule__TypedVariableList__VariablesOfTypeAssignment_0 )
+            // InternalBSharp.g:5432:1: ( ( rule__TypedVariableList__VariablesOfTypeAssignment_0 ) )
+            // InternalBSharp.g:5433:2: ( rule__TypedVariableList__VariablesOfTypeAssignment_0 )
             {
              before(grammarAccess.getTypedVariableListAccess().getVariablesOfTypeAssignment_0()); 
-            // InternalBSharp.g:5367:2: ( rule__TypedVariableList__VariablesOfTypeAssignment_0 )
-            // InternalBSharp.g:5367:3: rule__TypedVariableList__VariablesOfTypeAssignment_0
+            // InternalBSharp.g:5434:2: ( rule__TypedVariableList__VariablesOfTypeAssignment_0 )
+            // InternalBSharp.g:5434:3: rule__TypedVariableList__VariablesOfTypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__TypedVariableList__VariablesOfTypeAssignment_0();
@@ -16815,14 +17076,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__Group__1"
-    // InternalBSharp.g:5375:1: rule__TypedVariableList__Group__1 : rule__TypedVariableList__Group__1__Impl ;
+    // InternalBSharp.g:5442:1: rule__TypedVariableList__Group__1 : rule__TypedVariableList__Group__1__Impl ;
     public final void rule__TypedVariableList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5379:1: ( rule__TypedVariableList__Group__1__Impl )
-            // InternalBSharp.g:5380:2: rule__TypedVariableList__Group__1__Impl
+            // InternalBSharp.g:5446:1: ( rule__TypedVariableList__Group__1__Impl )
+            // InternalBSharp.g:5447:2: rule__TypedVariableList__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TypedVariableList__Group__1__Impl();
@@ -16848,33 +17109,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__Group__1__Impl"
-    // InternalBSharp.g:5386:1: rule__TypedVariableList__Group__1__Impl : ( ( rule__TypedVariableList__Group_1__0 )* ) ;
+    // InternalBSharp.g:5453:1: rule__TypedVariableList__Group__1__Impl : ( ( rule__TypedVariableList__Group_1__0 )* ) ;
     public final void rule__TypedVariableList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5390:1: ( ( ( rule__TypedVariableList__Group_1__0 )* ) )
-            // InternalBSharp.g:5391:1: ( ( rule__TypedVariableList__Group_1__0 )* )
+            // InternalBSharp.g:5457:1: ( ( ( rule__TypedVariableList__Group_1__0 )* ) )
+            // InternalBSharp.g:5458:1: ( ( rule__TypedVariableList__Group_1__0 )* )
             {
-            // InternalBSharp.g:5391:1: ( ( rule__TypedVariableList__Group_1__0 )* )
-            // InternalBSharp.g:5392:2: ( rule__TypedVariableList__Group_1__0 )*
+            // InternalBSharp.g:5458:1: ( ( rule__TypedVariableList__Group_1__0 )* )
+            // InternalBSharp.g:5459:2: ( rule__TypedVariableList__Group_1__0 )*
             {
              before(grammarAccess.getTypedVariableListAccess().getGroup_1()); 
-            // InternalBSharp.g:5393:2: ( rule__TypedVariableList__Group_1__0 )*
-            loop49:
+            // InternalBSharp.g:5460:2: ( rule__TypedVariableList__Group_1__0 )*
+            loop51:
             do {
-                int alt49=2;
-                int LA49_0 = input.LA(1);
+                int alt51=2;
+                int LA51_0 = input.LA(1);
 
-                if ( (LA49_0==44) ) {
-                    alt49=1;
+                if ( (LA51_0==44) ) {
+                    alt51=1;
                 }
 
 
-                switch (alt49) {
+                switch (alt51) {
             	case 1 :
-            	    // InternalBSharp.g:5393:3: rule__TypedVariableList__Group_1__0
+            	    // InternalBSharp.g:5460:3: rule__TypedVariableList__Group_1__0
             	    {
             	    pushFollow(FOLLOW_21);
             	    rule__TypedVariableList__Group_1__0();
@@ -16886,7 +17147,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop49;
+            	    break loop51;
                 }
             } while (true);
 
@@ -16913,14 +17174,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__Group_1__0"
-    // InternalBSharp.g:5402:1: rule__TypedVariableList__Group_1__0 : rule__TypedVariableList__Group_1__0__Impl rule__TypedVariableList__Group_1__1 ;
+    // InternalBSharp.g:5469:1: rule__TypedVariableList__Group_1__0 : rule__TypedVariableList__Group_1__0__Impl rule__TypedVariableList__Group_1__1 ;
     public final void rule__TypedVariableList__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5406:1: ( rule__TypedVariableList__Group_1__0__Impl rule__TypedVariableList__Group_1__1 )
-            // InternalBSharp.g:5407:2: rule__TypedVariableList__Group_1__0__Impl rule__TypedVariableList__Group_1__1
+            // InternalBSharp.g:5473:1: ( rule__TypedVariableList__Group_1__0__Impl rule__TypedVariableList__Group_1__1 )
+            // InternalBSharp.g:5474:2: rule__TypedVariableList__Group_1__0__Impl rule__TypedVariableList__Group_1__1
             {
             pushFollow(FOLLOW_4);
             rule__TypedVariableList__Group_1__0__Impl();
@@ -16951,17 +17212,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__Group_1__0__Impl"
-    // InternalBSharp.g:5414:1: rule__TypedVariableList__Group_1__0__Impl : ( ',' ) ;
+    // InternalBSharp.g:5481:1: rule__TypedVariableList__Group_1__0__Impl : ( ',' ) ;
     public final void rule__TypedVariableList__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5418:1: ( ( ',' ) )
-            // InternalBSharp.g:5419:1: ( ',' )
+            // InternalBSharp.g:5485:1: ( ( ',' ) )
+            // InternalBSharp.g:5486:1: ( ',' )
             {
-            // InternalBSharp.g:5419:1: ( ',' )
-            // InternalBSharp.g:5420:2: ','
+            // InternalBSharp.g:5486:1: ( ',' )
+            // InternalBSharp.g:5487:2: ','
             {
              before(grammarAccess.getTypedVariableListAccess().getCommaKeyword_1_0()); 
             match(input,44,FOLLOW_2); 
@@ -16988,14 +17249,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__Group_1__1"
-    // InternalBSharp.g:5429:1: rule__TypedVariableList__Group_1__1 : rule__TypedVariableList__Group_1__1__Impl ;
+    // InternalBSharp.g:5496:1: rule__TypedVariableList__Group_1__1 : rule__TypedVariableList__Group_1__1__Impl ;
     public final void rule__TypedVariableList__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5433:1: ( rule__TypedVariableList__Group_1__1__Impl )
-            // InternalBSharp.g:5434:2: rule__TypedVariableList__Group_1__1__Impl
+            // InternalBSharp.g:5500:1: ( rule__TypedVariableList__Group_1__1__Impl )
+            // InternalBSharp.g:5501:2: rule__TypedVariableList__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TypedVariableList__Group_1__1__Impl();
@@ -17021,21 +17282,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__Group_1__1__Impl"
-    // InternalBSharp.g:5440:1: rule__TypedVariableList__Group_1__1__Impl : ( ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 ) ) ;
+    // InternalBSharp.g:5507:1: rule__TypedVariableList__Group_1__1__Impl : ( ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 ) ) ;
     public final void rule__TypedVariableList__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5444:1: ( ( ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 ) ) )
-            // InternalBSharp.g:5445:1: ( ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 ) )
+            // InternalBSharp.g:5511:1: ( ( ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 ) ) )
+            // InternalBSharp.g:5512:1: ( ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 ) )
             {
-            // InternalBSharp.g:5445:1: ( ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 ) )
-            // InternalBSharp.g:5446:2: ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 )
+            // InternalBSharp.g:5512:1: ( ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 ) )
+            // InternalBSharp.g:5513:2: ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 )
             {
              before(grammarAccess.getTypedVariableListAccess().getVariablesOfTypeAssignment_1_1()); 
-            // InternalBSharp.g:5447:2: ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 )
-            // InternalBSharp.g:5447:3: rule__TypedVariableList__VariablesOfTypeAssignment_1_1
+            // InternalBSharp.g:5514:2: ( rule__TypedVariableList__VariablesOfTypeAssignment_1_1 )
+            // InternalBSharp.g:5514:3: rule__TypedVariableList__VariablesOfTypeAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__TypedVariableList__VariablesOfTypeAssignment_1_1();
@@ -17068,14 +17329,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group__0"
-    // InternalBSharp.g:5456:1: rule__VariableTyping__Group__0 : rule__VariableTyping__Group__0__Impl rule__VariableTyping__Group__1 ;
+    // InternalBSharp.g:5523:1: rule__VariableTyping__Group__0 : rule__VariableTyping__Group__0__Impl rule__VariableTyping__Group__1 ;
     public final void rule__VariableTyping__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5460:1: ( rule__VariableTyping__Group__0__Impl rule__VariableTyping__Group__1 )
-            // InternalBSharp.g:5461:2: rule__VariableTyping__Group__0__Impl rule__VariableTyping__Group__1
+            // InternalBSharp.g:5527:1: ( rule__VariableTyping__Group__0__Impl rule__VariableTyping__Group__1 )
+            // InternalBSharp.g:5528:2: rule__VariableTyping__Group__0__Impl rule__VariableTyping__Group__1
             {
             pushFollow(FOLLOW_46);
             rule__VariableTyping__Group__0__Impl();
@@ -17106,21 +17367,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group__0__Impl"
-    // InternalBSharp.g:5468:1: rule__VariableTyping__Group__0__Impl : ( ( rule__VariableTyping__TypeVarAssignment_0 ) ) ;
+    // InternalBSharp.g:5535:1: rule__VariableTyping__Group__0__Impl : ( ( rule__VariableTyping__TypeVarAssignment_0 ) ) ;
     public final void rule__VariableTyping__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5472:1: ( ( ( rule__VariableTyping__TypeVarAssignment_0 ) ) )
-            // InternalBSharp.g:5473:1: ( ( rule__VariableTyping__TypeVarAssignment_0 ) )
+            // InternalBSharp.g:5539:1: ( ( ( rule__VariableTyping__TypeVarAssignment_0 ) ) )
+            // InternalBSharp.g:5540:1: ( ( rule__VariableTyping__TypeVarAssignment_0 ) )
             {
-            // InternalBSharp.g:5473:1: ( ( rule__VariableTyping__TypeVarAssignment_0 ) )
-            // InternalBSharp.g:5474:2: ( rule__VariableTyping__TypeVarAssignment_0 )
+            // InternalBSharp.g:5540:1: ( ( rule__VariableTyping__TypeVarAssignment_0 ) )
+            // InternalBSharp.g:5541:2: ( rule__VariableTyping__TypeVarAssignment_0 )
             {
              before(grammarAccess.getVariableTypingAccess().getTypeVarAssignment_0()); 
-            // InternalBSharp.g:5475:2: ( rule__VariableTyping__TypeVarAssignment_0 )
-            // InternalBSharp.g:5475:3: rule__VariableTyping__TypeVarAssignment_0
+            // InternalBSharp.g:5542:2: ( rule__VariableTyping__TypeVarAssignment_0 )
+            // InternalBSharp.g:5542:3: rule__VariableTyping__TypeVarAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__VariableTyping__TypeVarAssignment_0();
@@ -17153,14 +17414,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group__1"
-    // InternalBSharp.g:5483:1: rule__VariableTyping__Group__1 : rule__VariableTyping__Group__1__Impl rule__VariableTyping__Group__2 ;
+    // InternalBSharp.g:5550:1: rule__VariableTyping__Group__1 : rule__VariableTyping__Group__1__Impl rule__VariableTyping__Group__2 ;
     public final void rule__VariableTyping__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5487:1: ( rule__VariableTyping__Group__1__Impl rule__VariableTyping__Group__2 )
-            // InternalBSharp.g:5488:2: rule__VariableTyping__Group__1__Impl rule__VariableTyping__Group__2
+            // InternalBSharp.g:5554:1: ( rule__VariableTyping__Group__1__Impl rule__VariableTyping__Group__2 )
+            // InternalBSharp.g:5555:2: rule__VariableTyping__Group__1__Impl rule__VariableTyping__Group__2
             {
             pushFollow(FOLLOW_46);
             rule__VariableTyping__Group__1__Impl();
@@ -17191,33 +17452,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group__1__Impl"
-    // InternalBSharp.g:5495:1: rule__VariableTyping__Group__1__Impl : ( ( rule__VariableTyping__Group_1__0 )* ) ;
+    // InternalBSharp.g:5562:1: rule__VariableTyping__Group__1__Impl : ( ( rule__VariableTyping__Group_1__0 )* ) ;
     public final void rule__VariableTyping__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5499:1: ( ( ( rule__VariableTyping__Group_1__0 )* ) )
-            // InternalBSharp.g:5500:1: ( ( rule__VariableTyping__Group_1__0 )* )
+            // InternalBSharp.g:5566:1: ( ( ( rule__VariableTyping__Group_1__0 )* ) )
+            // InternalBSharp.g:5567:1: ( ( rule__VariableTyping__Group_1__0 )* )
             {
-            // InternalBSharp.g:5500:1: ( ( rule__VariableTyping__Group_1__0 )* )
-            // InternalBSharp.g:5501:2: ( rule__VariableTyping__Group_1__0 )*
+            // InternalBSharp.g:5567:1: ( ( rule__VariableTyping__Group_1__0 )* )
+            // InternalBSharp.g:5568:2: ( rule__VariableTyping__Group_1__0 )*
             {
              before(grammarAccess.getVariableTypingAccess().getGroup_1()); 
-            // InternalBSharp.g:5502:2: ( rule__VariableTyping__Group_1__0 )*
-            loop50:
+            // InternalBSharp.g:5569:2: ( rule__VariableTyping__Group_1__0 )*
+            loop52:
             do {
-                int alt50=2;
-                int LA50_0 = input.LA(1);
+                int alt52=2;
+                int LA52_0 = input.LA(1);
 
-                if ( (LA50_0==44) ) {
-                    alt50=1;
+                if ( (LA52_0==44) ) {
+                    alt52=1;
                 }
 
 
-                switch (alt50) {
+                switch (alt52) {
             	case 1 :
-            	    // InternalBSharp.g:5502:3: rule__VariableTyping__Group_1__0
+            	    // InternalBSharp.g:5569:3: rule__VariableTyping__Group_1__0
             	    {
             	    pushFollow(FOLLOW_21);
             	    rule__VariableTyping__Group_1__0();
@@ -17229,7 +17490,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop50;
+            	    break loop52;
                 }
             } while (true);
 
@@ -17256,14 +17517,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group__2"
-    // InternalBSharp.g:5510:1: rule__VariableTyping__Group__2 : rule__VariableTyping__Group__2__Impl rule__VariableTyping__Group__3 ;
+    // InternalBSharp.g:5577:1: rule__VariableTyping__Group__2 : rule__VariableTyping__Group__2__Impl rule__VariableTyping__Group__3 ;
     public final void rule__VariableTyping__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5514:1: ( rule__VariableTyping__Group__2__Impl rule__VariableTyping__Group__3 )
-            // InternalBSharp.g:5515:2: rule__VariableTyping__Group__2__Impl rule__VariableTyping__Group__3
+            // InternalBSharp.g:5581:1: ( rule__VariableTyping__Group__2__Impl rule__VariableTyping__Group__3 )
+            // InternalBSharp.g:5582:2: rule__VariableTyping__Group__2__Impl rule__VariableTyping__Group__3
             {
             pushFollow(FOLLOW_22);
             rule__VariableTyping__Group__2__Impl();
@@ -17294,17 +17555,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group__2__Impl"
-    // InternalBSharp.g:5522:1: rule__VariableTyping__Group__2__Impl : ( ':' ) ;
+    // InternalBSharp.g:5589:1: rule__VariableTyping__Group__2__Impl : ( ':' ) ;
     public final void rule__VariableTyping__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5526:1: ( ( ':' ) )
-            // InternalBSharp.g:5527:1: ( ':' )
+            // InternalBSharp.g:5593:1: ( ( ':' ) )
+            // InternalBSharp.g:5594:1: ( ':' )
             {
-            // InternalBSharp.g:5527:1: ( ':' )
-            // InternalBSharp.g:5528:2: ':'
+            // InternalBSharp.g:5594:1: ( ':' )
+            // InternalBSharp.g:5595:2: ':'
             {
              before(grammarAccess.getVariableTypingAccess().getColonKeyword_2()); 
             match(input,32,FOLLOW_2); 
@@ -17331,14 +17592,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group__3"
-    // InternalBSharp.g:5537:1: rule__VariableTyping__Group__3 : rule__VariableTyping__Group__3__Impl ;
+    // InternalBSharp.g:5604:1: rule__VariableTyping__Group__3 : rule__VariableTyping__Group__3__Impl ;
     public final void rule__VariableTyping__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5541:1: ( rule__VariableTyping__Group__3__Impl )
-            // InternalBSharp.g:5542:2: rule__VariableTyping__Group__3__Impl
+            // InternalBSharp.g:5608:1: ( rule__VariableTyping__Group__3__Impl )
+            // InternalBSharp.g:5609:2: rule__VariableTyping__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VariableTyping__Group__3__Impl();
@@ -17364,21 +17625,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group__3__Impl"
-    // InternalBSharp.g:5548:1: rule__VariableTyping__Group__3__Impl : ( ( rule__VariableTyping__TypeAssignment_3 ) ) ;
+    // InternalBSharp.g:5615:1: rule__VariableTyping__Group__3__Impl : ( ( rule__VariableTyping__TypeAssignment_3 ) ) ;
     public final void rule__VariableTyping__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5552:1: ( ( ( rule__VariableTyping__TypeAssignment_3 ) ) )
-            // InternalBSharp.g:5553:1: ( ( rule__VariableTyping__TypeAssignment_3 ) )
+            // InternalBSharp.g:5619:1: ( ( ( rule__VariableTyping__TypeAssignment_3 ) ) )
+            // InternalBSharp.g:5620:1: ( ( rule__VariableTyping__TypeAssignment_3 ) )
             {
-            // InternalBSharp.g:5553:1: ( ( rule__VariableTyping__TypeAssignment_3 ) )
-            // InternalBSharp.g:5554:2: ( rule__VariableTyping__TypeAssignment_3 )
+            // InternalBSharp.g:5620:1: ( ( rule__VariableTyping__TypeAssignment_3 ) )
+            // InternalBSharp.g:5621:2: ( rule__VariableTyping__TypeAssignment_3 )
             {
              before(grammarAccess.getVariableTypingAccess().getTypeAssignment_3()); 
-            // InternalBSharp.g:5555:2: ( rule__VariableTyping__TypeAssignment_3 )
-            // InternalBSharp.g:5555:3: rule__VariableTyping__TypeAssignment_3
+            // InternalBSharp.g:5622:2: ( rule__VariableTyping__TypeAssignment_3 )
+            // InternalBSharp.g:5622:3: rule__VariableTyping__TypeAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__VariableTyping__TypeAssignment_3();
@@ -17411,14 +17672,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group_1__0"
-    // InternalBSharp.g:5564:1: rule__VariableTyping__Group_1__0 : rule__VariableTyping__Group_1__0__Impl rule__VariableTyping__Group_1__1 ;
+    // InternalBSharp.g:5631:1: rule__VariableTyping__Group_1__0 : rule__VariableTyping__Group_1__0__Impl rule__VariableTyping__Group_1__1 ;
     public final void rule__VariableTyping__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5568:1: ( rule__VariableTyping__Group_1__0__Impl rule__VariableTyping__Group_1__1 )
-            // InternalBSharp.g:5569:2: rule__VariableTyping__Group_1__0__Impl rule__VariableTyping__Group_1__1
+            // InternalBSharp.g:5635:1: ( rule__VariableTyping__Group_1__0__Impl rule__VariableTyping__Group_1__1 )
+            // InternalBSharp.g:5636:2: rule__VariableTyping__Group_1__0__Impl rule__VariableTyping__Group_1__1
             {
             pushFollow(FOLLOW_4);
             rule__VariableTyping__Group_1__0__Impl();
@@ -17449,17 +17710,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group_1__0__Impl"
-    // InternalBSharp.g:5576:1: rule__VariableTyping__Group_1__0__Impl : ( ',' ) ;
+    // InternalBSharp.g:5643:1: rule__VariableTyping__Group_1__0__Impl : ( ',' ) ;
     public final void rule__VariableTyping__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5580:1: ( ( ',' ) )
-            // InternalBSharp.g:5581:1: ( ',' )
+            // InternalBSharp.g:5647:1: ( ( ',' ) )
+            // InternalBSharp.g:5648:1: ( ',' )
             {
-            // InternalBSharp.g:5581:1: ( ',' )
-            // InternalBSharp.g:5582:2: ','
+            // InternalBSharp.g:5648:1: ( ',' )
+            // InternalBSharp.g:5649:2: ','
             {
              before(grammarAccess.getVariableTypingAccess().getCommaKeyword_1_0()); 
             match(input,44,FOLLOW_2); 
@@ -17486,14 +17747,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group_1__1"
-    // InternalBSharp.g:5591:1: rule__VariableTyping__Group_1__1 : rule__VariableTyping__Group_1__1__Impl ;
+    // InternalBSharp.g:5658:1: rule__VariableTyping__Group_1__1 : rule__VariableTyping__Group_1__1__Impl ;
     public final void rule__VariableTyping__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5595:1: ( rule__VariableTyping__Group_1__1__Impl )
-            // InternalBSharp.g:5596:2: rule__VariableTyping__Group_1__1__Impl
+            // InternalBSharp.g:5662:1: ( rule__VariableTyping__Group_1__1__Impl )
+            // InternalBSharp.g:5663:2: rule__VariableTyping__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VariableTyping__Group_1__1__Impl();
@@ -17519,21 +17780,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__Group_1__1__Impl"
-    // InternalBSharp.g:5602:1: rule__VariableTyping__Group_1__1__Impl : ( ( rule__VariableTyping__TypeVarAssignment_1_1 ) ) ;
+    // InternalBSharp.g:5669:1: rule__VariableTyping__Group_1__1__Impl : ( ( rule__VariableTyping__TypeVarAssignment_1_1 ) ) ;
     public final void rule__VariableTyping__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5606:1: ( ( ( rule__VariableTyping__TypeVarAssignment_1_1 ) ) )
-            // InternalBSharp.g:5607:1: ( ( rule__VariableTyping__TypeVarAssignment_1_1 ) )
+            // InternalBSharp.g:5673:1: ( ( ( rule__VariableTyping__TypeVarAssignment_1_1 ) ) )
+            // InternalBSharp.g:5674:1: ( ( rule__VariableTyping__TypeVarAssignment_1_1 ) )
             {
-            // InternalBSharp.g:5607:1: ( ( rule__VariableTyping__TypeVarAssignment_1_1 ) )
-            // InternalBSharp.g:5608:2: ( rule__VariableTyping__TypeVarAssignment_1_1 )
+            // InternalBSharp.g:5674:1: ( ( rule__VariableTyping__TypeVarAssignment_1_1 ) )
+            // InternalBSharp.g:5675:2: ( rule__VariableTyping__TypeVarAssignment_1_1 )
             {
              before(grammarAccess.getVariableTypingAccess().getTypeVarAssignment_1_1()); 
-            // InternalBSharp.g:5609:2: ( rule__VariableTyping__TypeVarAssignment_1_1 )
-            // InternalBSharp.g:5609:3: rule__VariableTyping__TypeVarAssignment_1_1
+            // InternalBSharp.g:5676:2: ( rule__VariableTyping__TypeVarAssignment_1_1 )
+            // InternalBSharp.g:5676:3: rule__VariableTyping__TypeVarAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__VariableTyping__TypeVarAssignment_1_1();
@@ -17566,14 +17827,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__0"
-    // InternalBSharp.g:5618:1: rule__Lambda__Group__0 : rule__Lambda__Group__0__Impl rule__Lambda__Group__1 ;
+    // InternalBSharp.g:5685:1: rule__Lambda__Group__0 : rule__Lambda__Group__0__Impl rule__Lambda__Group__1 ;
     public final void rule__Lambda__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5622:1: ( rule__Lambda__Group__0__Impl rule__Lambda__Group__1 )
-            // InternalBSharp.g:5623:2: rule__Lambda__Group__0__Impl rule__Lambda__Group__1
+            // InternalBSharp.g:5689:1: ( rule__Lambda__Group__0__Impl rule__Lambda__Group__1 )
+            // InternalBSharp.g:5690:2: rule__Lambda__Group__0__Impl rule__Lambda__Group__1
             {
             pushFollow(FOLLOW_47);
             rule__Lambda__Group__0__Impl();
@@ -17604,21 +17865,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__0__Impl"
-    // InternalBSharp.g:5630:1: rule__Lambda__Group__0__Impl : ( ( rule__Lambda__QTypeAssignment_0 ) ) ;
+    // InternalBSharp.g:5697:1: rule__Lambda__Group__0__Impl : ( ( rule__Lambda__QTypeAssignment_0 ) ) ;
     public final void rule__Lambda__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5634:1: ( ( ( rule__Lambda__QTypeAssignment_0 ) ) )
-            // InternalBSharp.g:5635:1: ( ( rule__Lambda__QTypeAssignment_0 ) )
+            // InternalBSharp.g:5701:1: ( ( ( rule__Lambda__QTypeAssignment_0 ) ) )
+            // InternalBSharp.g:5702:1: ( ( rule__Lambda__QTypeAssignment_0 ) )
             {
-            // InternalBSharp.g:5635:1: ( ( rule__Lambda__QTypeAssignment_0 ) )
-            // InternalBSharp.g:5636:2: ( rule__Lambda__QTypeAssignment_0 )
+            // InternalBSharp.g:5702:1: ( ( rule__Lambda__QTypeAssignment_0 ) )
+            // InternalBSharp.g:5703:2: ( rule__Lambda__QTypeAssignment_0 )
             {
              before(grammarAccess.getLambdaAccess().getQTypeAssignment_0()); 
-            // InternalBSharp.g:5637:2: ( rule__Lambda__QTypeAssignment_0 )
-            // InternalBSharp.g:5637:3: rule__Lambda__QTypeAssignment_0
+            // InternalBSharp.g:5704:2: ( rule__Lambda__QTypeAssignment_0 )
+            // InternalBSharp.g:5704:3: rule__Lambda__QTypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__Lambda__QTypeAssignment_0();
@@ -17651,14 +17912,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__1"
-    // InternalBSharp.g:5645:1: rule__Lambda__Group__1 : rule__Lambda__Group__1__Impl rule__Lambda__Group__2 ;
+    // InternalBSharp.g:5712:1: rule__Lambda__Group__1 : rule__Lambda__Group__1__Impl rule__Lambda__Group__2 ;
     public final void rule__Lambda__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5649:1: ( rule__Lambda__Group__1__Impl rule__Lambda__Group__2 )
-            // InternalBSharp.g:5650:2: rule__Lambda__Group__1__Impl rule__Lambda__Group__2
+            // InternalBSharp.g:5716:1: ( rule__Lambda__Group__1__Impl rule__Lambda__Group__2 )
+            // InternalBSharp.g:5717:2: rule__Lambda__Group__1__Impl rule__Lambda__Group__2
             {
             pushFollow(FOLLOW_47);
             rule__Lambda__Group__1__Impl();
@@ -17689,29 +17950,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__1__Impl"
-    // InternalBSharp.g:5657:1: rule__Lambda__Group__1__Impl : ( ( rule__Lambda__ContextAssignment_1 )? ) ;
+    // InternalBSharp.g:5724:1: rule__Lambda__Group__1__Impl : ( ( rule__Lambda__ContextAssignment_1 )? ) ;
     public final void rule__Lambda__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5661:1: ( ( ( rule__Lambda__ContextAssignment_1 )? ) )
-            // InternalBSharp.g:5662:1: ( ( rule__Lambda__ContextAssignment_1 )? )
+            // InternalBSharp.g:5728:1: ( ( ( rule__Lambda__ContextAssignment_1 )? ) )
+            // InternalBSharp.g:5729:1: ( ( rule__Lambda__ContextAssignment_1 )? )
             {
-            // InternalBSharp.g:5662:1: ( ( rule__Lambda__ContextAssignment_1 )? )
-            // InternalBSharp.g:5663:2: ( rule__Lambda__ContextAssignment_1 )?
+            // InternalBSharp.g:5729:1: ( ( rule__Lambda__ContextAssignment_1 )? )
+            // InternalBSharp.g:5730:2: ( rule__Lambda__ContextAssignment_1 )?
             {
              before(grammarAccess.getLambdaAccess().getContextAssignment_1()); 
-            // InternalBSharp.g:5664:2: ( rule__Lambda__ContextAssignment_1 )?
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            // InternalBSharp.g:5731:2: ( rule__Lambda__ContextAssignment_1 )?
+            int alt53=2;
+            int LA53_0 = input.LA(1);
 
-            if ( (LA51_0==42) ) {
-                alt51=1;
+            if ( (LA53_0==42) ) {
+                alt53=1;
             }
-            switch (alt51) {
+            switch (alt53) {
                 case 1 :
-                    // InternalBSharp.g:5664:3: rule__Lambda__ContextAssignment_1
+                    // InternalBSharp.g:5731:3: rule__Lambda__ContextAssignment_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__Lambda__ContextAssignment_1();
@@ -17747,14 +18008,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__2"
-    // InternalBSharp.g:5672:1: rule__Lambda__Group__2 : rule__Lambda__Group__2__Impl rule__Lambda__Group__3 ;
+    // InternalBSharp.g:5739:1: rule__Lambda__Group__2 : rule__Lambda__Group__2__Impl rule__Lambda__Group__3 ;
     public final void rule__Lambda__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5676:1: ( rule__Lambda__Group__2__Impl rule__Lambda__Group__3 )
-            // InternalBSharp.g:5677:2: rule__Lambda__Group__2__Impl rule__Lambda__Group__3
+            // InternalBSharp.g:5743:1: ( rule__Lambda__Group__2__Impl rule__Lambda__Group__3 )
+            // InternalBSharp.g:5744:2: rule__Lambda__Group__2__Impl rule__Lambda__Group__3
             {
             pushFollow(FOLLOW_39);
             rule__Lambda__Group__2__Impl();
@@ -17785,21 +18046,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__2__Impl"
-    // InternalBSharp.g:5684:1: rule__Lambda__Group__2__Impl : ( ( rule__Lambda__VarListAssignment_2 ) ) ;
+    // InternalBSharp.g:5751:1: rule__Lambda__Group__2__Impl : ( ( rule__Lambda__VarListAssignment_2 ) ) ;
     public final void rule__Lambda__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5688:1: ( ( ( rule__Lambda__VarListAssignment_2 ) ) )
-            // InternalBSharp.g:5689:1: ( ( rule__Lambda__VarListAssignment_2 ) )
+            // InternalBSharp.g:5755:1: ( ( ( rule__Lambda__VarListAssignment_2 ) ) )
+            // InternalBSharp.g:5756:1: ( ( rule__Lambda__VarListAssignment_2 ) )
             {
-            // InternalBSharp.g:5689:1: ( ( rule__Lambda__VarListAssignment_2 ) )
-            // InternalBSharp.g:5690:2: ( rule__Lambda__VarListAssignment_2 )
+            // InternalBSharp.g:5756:1: ( ( rule__Lambda__VarListAssignment_2 ) )
+            // InternalBSharp.g:5757:2: ( rule__Lambda__VarListAssignment_2 )
             {
              before(grammarAccess.getLambdaAccess().getVarListAssignment_2()); 
-            // InternalBSharp.g:5691:2: ( rule__Lambda__VarListAssignment_2 )
-            // InternalBSharp.g:5691:3: rule__Lambda__VarListAssignment_2
+            // InternalBSharp.g:5758:2: ( rule__Lambda__VarListAssignment_2 )
+            // InternalBSharp.g:5758:3: rule__Lambda__VarListAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Lambda__VarListAssignment_2();
@@ -17832,14 +18093,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__3"
-    // InternalBSharp.g:5699:1: rule__Lambda__Group__3 : rule__Lambda__Group__3__Impl rule__Lambda__Group__4 ;
+    // InternalBSharp.g:5766:1: rule__Lambda__Group__3 : rule__Lambda__Group__3__Impl rule__Lambda__Group__4 ;
     public final void rule__Lambda__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5703:1: ( rule__Lambda__Group__3__Impl rule__Lambda__Group__4 )
-            // InternalBSharp.g:5704:2: rule__Lambda__Group__3__Impl rule__Lambda__Group__4
+            // InternalBSharp.g:5770:1: ( rule__Lambda__Group__3__Impl rule__Lambda__Group__4 )
+            // InternalBSharp.g:5771:2: rule__Lambda__Group__3__Impl rule__Lambda__Group__4
             {
             pushFollow(FOLLOW_28);
             rule__Lambda__Group__3__Impl();
@@ -17870,17 +18131,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__3__Impl"
-    // InternalBSharp.g:5711:1: rule__Lambda__Group__3__Impl : ( '|' ) ;
+    // InternalBSharp.g:5778:1: rule__Lambda__Group__3__Impl : ( '|' ) ;
     public final void rule__Lambda__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5715:1: ( ( '|' ) )
-            // InternalBSharp.g:5716:1: ( '|' )
+            // InternalBSharp.g:5782:1: ( ( '|' ) )
+            // InternalBSharp.g:5783:1: ( '|' )
             {
-            // InternalBSharp.g:5716:1: ( '|' )
-            // InternalBSharp.g:5717:2: '|'
+            // InternalBSharp.g:5783:1: ( '|' )
+            // InternalBSharp.g:5784:2: '|'
             {
              before(grammarAccess.getLambdaAccess().getVerticalLineKeyword_3()); 
             match(input,48,FOLLOW_2); 
@@ -17907,14 +18168,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__4"
-    // InternalBSharp.g:5726:1: rule__Lambda__Group__4 : rule__Lambda__Group__4__Impl ;
+    // InternalBSharp.g:5793:1: rule__Lambda__Group__4 : rule__Lambda__Group__4__Impl ;
     public final void rule__Lambda__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5730:1: ( rule__Lambda__Group__4__Impl )
-            // InternalBSharp.g:5731:2: rule__Lambda__Group__4__Impl
+            // InternalBSharp.g:5797:1: ( rule__Lambda__Group__4__Impl )
+            // InternalBSharp.g:5798:2: rule__Lambda__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Lambda__Group__4__Impl();
@@ -17940,21 +18201,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__Group__4__Impl"
-    // InternalBSharp.g:5737:1: rule__Lambda__Group__4__Impl : ( ( rule__Lambda__ExprAssignment_4 ) ) ;
+    // InternalBSharp.g:5804:1: rule__Lambda__Group__4__Impl : ( ( rule__Lambda__ExprAssignment_4 ) ) ;
     public final void rule__Lambda__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5741:1: ( ( ( rule__Lambda__ExprAssignment_4 ) ) )
-            // InternalBSharp.g:5742:1: ( ( rule__Lambda__ExprAssignment_4 ) )
+            // InternalBSharp.g:5808:1: ( ( ( rule__Lambda__ExprAssignment_4 ) ) )
+            // InternalBSharp.g:5809:1: ( ( rule__Lambda__ExprAssignment_4 ) )
             {
-            // InternalBSharp.g:5742:1: ( ( rule__Lambda__ExprAssignment_4 ) )
-            // InternalBSharp.g:5743:2: ( rule__Lambda__ExprAssignment_4 )
+            // InternalBSharp.g:5809:1: ( ( rule__Lambda__ExprAssignment_4 ) )
+            // InternalBSharp.g:5810:2: ( rule__Lambda__ExprAssignment_4 )
             {
              before(grammarAccess.getLambdaAccess().getExprAssignment_4()); 
-            // InternalBSharp.g:5744:2: ( rule__Lambda__ExprAssignment_4 )
-            // InternalBSharp.g:5744:3: rule__Lambda__ExprAssignment_4
+            // InternalBSharp.g:5811:2: ( rule__Lambda__ExprAssignment_4 )
+            // InternalBSharp.g:5811:3: rule__Lambda__ExprAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__Lambda__ExprAssignment_4();
@@ -17987,14 +18248,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__0"
-    // InternalBSharp.g:5753:1: rule__Quantifier__Group__0 : rule__Quantifier__Group__0__Impl rule__Quantifier__Group__1 ;
+    // InternalBSharp.g:5820:1: rule__Quantifier__Group__0 : rule__Quantifier__Group__0__Impl rule__Quantifier__Group__1 ;
     public final void rule__Quantifier__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5757:1: ( rule__Quantifier__Group__0__Impl rule__Quantifier__Group__1 )
-            // InternalBSharp.g:5758:2: rule__Quantifier__Group__0__Impl rule__Quantifier__Group__1
+            // InternalBSharp.g:5824:1: ( rule__Quantifier__Group__0__Impl rule__Quantifier__Group__1 )
+            // InternalBSharp.g:5825:2: rule__Quantifier__Group__0__Impl rule__Quantifier__Group__1
             {
             pushFollow(FOLLOW_47);
             rule__Quantifier__Group__0__Impl();
@@ -18025,21 +18286,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__0__Impl"
-    // InternalBSharp.g:5765:1: rule__Quantifier__Group__0__Impl : ( ( rule__Quantifier__QTypeAssignment_0 ) ) ;
+    // InternalBSharp.g:5832:1: rule__Quantifier__Group__0__Impl : ( ( rule__Quantifier__QTypeAssignment_0 ) ) ;
     public final void rule__Quantifier__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5769:1: ( ( ( rule__Quantifier__QTypeAssignment_0 ) ) )
-            // InternalBSharp.g:5770:1: ( ( rule__Quantifier__QTypeAssignment_0 ) )
+            // InternalBSharp.g:5836:1: ( ( ( rule__Quantifier__QTypeAssignment_0 ) ) )
+            // InternalBSharp.g:5837:1: ( ( rule__Quantifier__QTypeAssignment_0 ) )
             {
-            // InternalBSharp.g:5770:1: ( ( rule__Quantifier__QTypeAssignment_0 ) )
-            // InternalBSharp.g:5771:2: ( rule__Quantifier__QTypeAssignment_0 )
+            // InternalBSharp.g:5837:1: ( ( rule__Quantifier__QTypeAssignment_0 ) )
+            // InternalBSharp.g:5838:2: ( rule__Quantifier__QTypeAssignment_0 )
             {
              before(grammarAccess.getQuantifierAccess().getQTypeAssignment_0()); 
-            // InternalBSharp.g:5772:2: ( rule__Quantifier__QTypeAssignment_0 )
-            // InternalBSharp.g:5772:3: rule__Quantifier__QTypeAssignment_0
+            // InternalBSharp.g:5839:2: ( rule__Quantifier__QTypeAssignment_0 )
+            // InternalBSharp.g:5839:3: rule__Quantifier__QTypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__Quantifier__QTypeAssignment_0();
@@ -18072,14 +18333,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__1"
-    // InternalBSharp.g:5780:1: rule__Quantifier__Group__1 : rule__Quantifier__Group__1__Impl rule__Quantifier__Group__2 ;
+    // InternalBSharp.g:5847:1: rule__Quantifier__Group__1 : rule__Quantifier__Group__1__Impl rule__Quantifier__Group__2 ;
     public final void rule__Quantifier__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5784:1: ( rule__Quantifier__Group__1__Impl rule__Quantifier__Group__2 )
-            // InternalBSharp.g:5785:2: rule__Quantifier__Group__1__Impl rule__Quantifier__Group__2
+            // InternalBSharp.g:5851:1: ( rule__Quantifier__Group__1__Impl rule__Quantifier__Group__2 )
+            // InternalBSharp.g:5852:2: rule__Quantifier__Group__1__Impl rule__Quantifier__Group__2
             {
             pushFollow(FOLLOW_47);
             rule__Quantifier__Group__1__Impl();
@@ -18110,29 +18371,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__1__Impl"
-    // InternalBSharp.g:5792:1: rule__Quantifier__Group__1__Impl : ( ( rule__Quantifier__ContextAssignment_1 )? ) ;
+    // InternalBSharp.g:5859:1: rule__Quantifier__Group__1__Impl : ( ( rule__Quantifier__ContextAssignment_1 )? ) ;
     public final void rule__Quantifier__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5796:1: ( ( ( rule__Quantifier__ContextAssignment_1 )? ) )
-            // InternalBSharp.g:5797:1: ( ( rule__Quantifier__ContextAssignment_1 )? )
+            // InternalBSharp.g:5863:1: ( ( ( rule__Quantifier__ContextAssignment_1 )? ) )
+            // InternalBSharp.g:5864:1: ( ( rule__Quantifier__ContextAssignment_1 )? )
             {
-            // InternalBSharp.g:5797:1: ( ( rule__Quantifier__ContextAssignment_1 )? )
-            // InternalBSharp.g:5798:2: ( rule__Quantifier__ContextAssignment_1 )?
+            // InternalBSharp.g:5864:1: ( ( rule__Quantifier__ContextAssignment_1 )? )
+            // InternalBSharp.g:5865:2: ( rule__Quantifier__ContextAssignment_1 )?
             {
              before(grammarAccess.getQuantifierAccess().getContextAssignment_1()); 
-            // InternalBSharp.g:5799:2: ( rule__Quantifier__ContextAssignment_1 )?
-            int alt52=2;
-            int LA52_0 = input.LA(1);
+            // InternalBSharp.g:5866:2: ( rule__Quantifier__ContextAssignment_1 )?
+            int alt54=2;
+            int LA54_0 = input.LA(1);
 
-            if ( (LA52_0==42) ) {
-                alt52=1;
+            if ( (LA54_0==42) ) {
+                alt54=1;
             }
-            switch (alt52) {
+            switch (alt54) {
                 case 1 :
-                    // InternalBSharp.g:5799:3: rule__Quantifier__ContextAssignment_1
+                    // InternalBSharp.g:5866:3: rule__Quantifier__ContextAssignment_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__Quantifier__ContextAssignment_1();
@@ -18168,14 +18429,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__2"
-    // InternalBSharp.g:5807:1: rule__Quantifier__Group__2 : rule__Quantifier__Group__2__Impl rule__Quantifier__Group__3 ;
+    // InternalBSharp.g:5874:1: rule__Quantifier__Group__2 : rule__Quantifier__Group__2__Impl rule__Quantifier__Group__3 ;
     public final void rule__Quantifier__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5811:1: ( rule__Quantifier__Group__2__Impl rule__Quantifier__Group__3 )
-            // InternalBSharp.g:5812:2: rule__Quantifier__Group__2__Impl rule__Quantifier__Group__3
+            // InternalBSharp.g:5878:1: ( rule__Quantifier__Group__2__Impl rule__Quantifier__Group__3 )
+            // InternalBSharp.g:5879:2: rule__Quantifier__Group__2__Impl rule__Quantifier__Group__3
             {
             pushFollow(FOLLOW_48);
             rule__Quantifier__Group__2__Impl();
@@ -18206,21 +18467,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__2__Impl"
-    // InternalBSharp.g:5819:1: rule__Quantifier__Group__2__Impl : ( ( rule__Quantifier__VarListAssignment_2 ) ) ;
+    // InternalBSharp.g:5886:1: rule__Quantifier__Group__2__Impl : ( ( rule__Quantifier__VarListAssignment_2 ) ) ;
     public final void rule__Quantifier__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5823:1: ( ( ( rule__Quantifier__VarListAssignment_2 ) ) )
-            // InternalBSharp.g:5824:1: ( ( rule__Quantifier__VarListAssignment_2 ) )
+            // InternalBSharp.g:5890:1: ( ( ( rule__Quantifier__VarListAssignment_2 ) ) )
+            // InternalBSharp.g:5891:1: ( ( rule__Quantifier__VarListAssignment_2 ) )
             {
-            // InternalBSharp.g:5824:1: ( ( rule__Quantifier__VarListAssignment_2 ) )
-            // InternalBSharp.g:5825:2: ( rule__Quantifier__VarListAssignment_2 )
+            // InternalBSharp.g:5891:1: ( ( rule__Quantifier__VarListAssignment_2 ) )
+            // InternalBSharp.g:5892:2: ( rule__Quantifier__VarListAssignment_2 )
             {
              before(grammarAccess.getQuantifierAccess().getVarListAssignment_2()); 
-            // InternalBSharp.g:5826:2: ( rule__Quantifier__VarListAssignment_2 )
-            // InternalBSharp.g:5826:3: rule__Quantifier__VarListAssignment_2
+            // InternalBSharp.g:5893:2: ( rule__Quantifier__VarListAssignment_2 )
+            // InternalBSharp.g:5893:3: rule__Quantifier__VarListAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Quantifier__VarListAssignment_2();
@@ -18253,14 +18514,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__3"
-    // InternalBSharp.g:5834:1: rule__Quantifier__Group__3 : rule__Quantifier__Group__3__Impl rule__Quantifier__Group__4 ;
+    // InternalBSharp.g:5901:1: rule__Quantifier__Group__3 : rule__Quantifier__Group__3__Impl rule__Quantifier__Group__4 ;
     public final void rule__Quantifier__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5838:1: ( rule__Quantifier__Group__3__Impl rule__Quantifier__Group__4 )
-            // InternalBSharp.g:5839:2: rule__Quantifier__Group__3__Impl rule__Quantifier__Group__4
+            // InternalBSharp.g:5905:1: ( rule__Quantifier__Group__3__Impl rule__Quantifier__Group__4 )
+            // InternalBSharp.g:5906:2: rule__Quantifier__Group__3__Impl rule__Quantifier__Group__4
             {
             pushFollow(FOLLOW_28);
             rule__Quantifier__Group__3__Impl();
@@ -18291,17 +18552,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__3__Impl"
-    // InternalBSharp.g:5846:1: rule__Quantifier__Group__3__Impl : ( '\\u00B7' ) ;
+    // InternalBSharp.g:5913:1: rule__Quantifier__Group__3__Impl : ( '\\u00B7' ) ;
     public final void rule__Quantifier__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5850:1: ( ( '\\u00B7' ) )
-            // InternalBSharp.g:5851:1: ( '\\u00B7' )
+            // InternalBSharp.g:5917:1: ( ( '\\u00B7' ) )
+            // InternalBSharp.g:5918:1: ( '\\u00B7' )
             {
-            // InternalBSharp.g:5851:1: ( '\\u00B7' )
-            // InternalBSharp.g:5852:2: '\\u00B7'
+            // InternalBSharp.g:5918:1: ( '\\u00B7' )
+            // InternalBSharp.g:5919:2: '\\u00B7'
             {
              before(grammarAccess.getQuantifierAccess().getMiddleDotKeyword_3()); 
             match(input,54,FOLLOW_2); 
@@ -18328,14 +18589,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__4"
-    // InternalBSharp.g:5861:1: rule__Quantifier__Group__4 : rule__Quantifier__Group__4__Impl ;
+    // InternalBSharp.g:5928:1: rule__Quantifier__Group__4 : rule__Quantifier__Group__4__Impl ;
     public final void rule__Quantifier__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5865:1: ( rule__Quantifier__Group__4__Impl )
-            // InternalBSharp.g:5866:2: rule__Quantifier__Group__4__Impl
+            // InternalBSharp.g:5932:1: ( rule__Quantifier__Group__4__Impl )
+            // InternalBSharp.g:5933:2: rule__Quantifier__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Quantifier__Group__4__Impl();
@@ -18361,21 +18622,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__Group__4__Impl"
-    // InternalBSharp.g:5872:1: rule__Quantifier__Group__4__Impl : ( ( rule__Quantifier__ExprAssignment_4 ) ) ;
+    // InternalBSharp.g:5939:1: rule__Quantifier__Group__4__Impl : ( ( rule__Quantifier__ExprAssignment_4 ) ) ;
     public final void rule__Quantifier__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5876:1: ( ( ( rule__Quantifier__ExprAssignment_4 ) ) )
-            // InternalBSharp.g:5877:1: ( ( rule__Quantifier__ExprAssignment_4 ) )
+            // InternalBSharp.g:5943:1: ( ( ( rule__Quantifier__ExprAssignment_4 ) ) )
+            // InternalBSharp.g:5944:1: ( ( rule__Quantifier__ExprAssignment_4 ) )
             {
-            // InternalBSharp.g:5877:1: ( ( rule__Quantifier__ExprAssignment_4 ) )
-            // InternalBSharp.g:5878:2: ( rule__Quantifier__ExprAssignment_4 )
+            // InternalBSharp.g:5944:1: ( ( rule__Quantifier__ExprAssignment_4 ) )
+            // InternalBSharp.g:5945:2: ( rule__Quantifier__ExprAssignment_4 )
             {
              before(grammarAccess.getQuantifierAccess().getExprAssignment_4()); 
-            // InternalBSharp.g:5879:2: ( rule__Quantifier__ExprAssignment_4 )
-            // InternalBSharp.g:5879:3: rule__Quantifier__ExprAssignment_4
+            // InternalBSharp.g:5946:2: ( rule__Quantifier__ExprAssignment_4 )
+            // InternalBSharp.g:5946:3: rule__Quantifier__ExprAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__Quantifier__ExprAssignment_4();
@@ -18408,14 +18669,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Prefix__Group__0"
-    // InternalBSharp.g:5888:1: rule__Prefix__Group__0 : rule__Prefix__Group__0__Impl rule__Prefix__Group__1 ;
+    // InternalBSharp.g:5955:1: rule__Prefix__Group__0 : rule__Prefix__Group__0__Impl rule__Prefix__Group__1 ;
     public final void rule__Prefix__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5892:1: ( rule__Prefix__Group__0__Impl rule__Prefix__Group__1 )
-            // InternalBSharp.g:5893:2: rule__Prefix__Group__0__Impl rule__Prefix__Group__1
+            // InternalBSharp.g:5959:1: ( rule__Prefix__Group__0__Impl rule__Prefix__Group__1 )
+            // InternalBSharp.g:5960:2: rule__Prefix__Group__0__Impl rule__Prefix__Group__1
             {
             pushFollow(FOLLOW_49);
             rule__Prefix__Group__0__Impl();
@@ -18446,21 +18707,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Prefix__Group__0__Impl"
-    // InternalBSharp.g:5900:1: rule__Prefix__Group__0__Impl : ( ( rule__Prefix__NameAssignment_0 ) ) ;
+    // InternalBSharp.g:5967:1: rule__Prefix__Group__0__Impl : ( ( rule__Prefix__NameAssignment_0 ) ) ;
     public final void rule__Prefix__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5904:1: ( ( ( rule__Prefix__NameAssignment_0 ) ) )
-            // InternalBSharp.g:5905:1: ( ( rule__Prefix__NameAssignment_0 ) )
+            // InternalBSharp.g:5971:1: ( ( ( rule__Prefix__NameAssignment_0 ) ) )
+            // InternalBSharp.g:5972:1: ( ( rule__Prefix__NameAssignment_0 ) )
             {
-            // InternalBSharp.g:5905:1: ( ( rule__Prefix__NameAssignment_0 ) )
-            // InternalBSharp.g:5906:2: ( rule__Prefix__NameAssignment_0 )
+            // InternalBSharp.g:5972:1: ( ( rule__Prefix__NameAssignment_0 ) )
+            // InternalBSharp.g:5973:2: ( rule__Prefix__NameAssignment_0 )
             {
              before(grammarAccess.getPrefixAccess().getNameAssignment_0()); 
-            // InternalBSharp.g:5907:2: ( rule__Prefix__NameAssignment_0 )
-            // InternalBSharp.g:5907:3: rule__Prefix__NameAssignment_0
+            // InternalBSharp.g:5974:2: ( rule__Prefix__NameAssignment_0 )
+            // InternalBSharp.g:5974:3: rule__Prefix__NameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__Prefix__NameAssignment_0();
@@ -18493,14 +18754,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Prefix__Group__1"
-    // InternalBSharp.g:5915:1: rule__Prefix__Group__1 : rule__Prefix__Group__1__Impl ;
+    // InternalBSharp.g:5982:1: rule__Prefix__Group__1 : rule__Prefix__Group__1__Impl ;
     public final void rule__Prefix__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5919:1: ( rule__Prefix__Group__1__Impl )
-            // InternalBSharp.g:5920:2: rule__Prefix__Group__1__Impl
+            // InternalBSharp.g:5986:1: ( rule__Prefix__Group__1__Impl )
+            // InternalBSharp.g:5987:2: rule__Prefix__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Prefix__Group__1__Impl();
@@ -18526,21 +18787,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Prefix__Group__1__Impl"
-    // InternalBSharp.g:5926:1: rule__Prefix__Group__1__Impl : ( ( rule__Prefix__ElemAssignment_1 ) ) ;
+    // InternalBSharp.g:5993:1: rule__Prefix__Group__1__Impl : ( ( rule__Prefix__ElemAssignment_1 ) ) ;
     public final void rule__Prefix__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5930:1: ( ( ( rule__Prefix__ElemAssignment_1 ) ) )
-            // InternalBSharp.g:5931:1: ( ( rule__Prefix__ElemAssignment_1 ) )
+            // InternalBSharp.g:5997:1: ( ( ( rule__Prefix__ElemAssignment_1 ) ) )
+            // InternalBSharp.g:5998:1: ( ( rule__Prefix__ElemAssignment_1 ) )
             {
-            // InternalBSharp.g:5931:1: ( ( rule__Prefix__ElemAssignment_1 ) )
-            // InternalBSharp.g:5932:2: ( rule__Prefix__ElemAssignment_1 )
+            // InternalBSharp.g:5998:1: ( ( rule__Prefix__ElemAssignment_1 ) )
+            // InternalBSharp.g:5999:2: ( rule__Prefix__ElemAssignment_1 )
             {
              before(grammarAccess.getPrefixAccess().getElemAssignment_1()); 
-            // InternalBSharp.g:5933:2: ( rule__Prefix__ElemAssignment_1 )
-            // InternalBSharp.g:5933:3: rule__Prefix__ElemAssignment_1
+            // InternalBSharp.g:6000:2: ( rule__Prefix__ElemAssignment_1 )
+            // InternalBSharp.g:6000:3: rule__Prefix__ElemAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Prefix__ElemAssignment_1();
@@ -18573,14 +18834,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group__0"
-    // InternalBSharp.g:5942:1: rule__Infix__Group__0 : rule__Infix__Group__0__Impl rule__Infix__Group__1 ;
+    // InternalBSharp.g:6009:1: rule__Infix__Group__0 : rule__Infix__Group__0__Impl rule__Infix__Group__1 ;
     public final void rule__Infix__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5946:1: ( rule__Infix__Group__0__Impl rule__Infix__Group__1 )
-            // InternalBSharp.g:5947:2: rule__Infix__Group__0__Impl rule__Infix__Group__1
+            // InternalBSharp.g:6013:1: ( rule__Infix__Group__0__Impl rule__Infix__Group__1 )
+            // InternalBSharp.g:6014:2: rule__Infix__Group__0__Impl rule__Infix__Group__1
             {
             pushFollow(FOLLOW_50);
             rule__Infix__Group__0__Impl();
@@ -18611,17 +18872,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group__0__Impl"
-    // InternalBSharp.g:5954:1: rule__Infix__Group__0__Impl : ( ruleElement ) ;
+    // InternalBSharp.g:6021:1: rule__Infix__Group__0__Impl : ( ruleElement ) ;
     public final void rule__Infix__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5958:1: ( ( ruleElement ) )
-            // InternalBSharp.g:5959:1: ( ruleElement )
+            // InternalBSharp.g:6025:1: ( ( ruleElement ) )
+            // InternalBSharp.g:6026:1: ( ruleElement )
             {
-            // InternalBSharp.g:5959:1: ( ruleElement )
-            // InternalBSharp.g:5960:2: ruleElement
+            // InternalBSharp.g:6026:1: ( ruleElement )
+            // InternalBSharp.g:6027:2: ruleElement
             {
              before(grammarAccess.getInfixAccess().getElementParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -18652,14 +18913,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group__1"
-    // InternalBSharp.g:5969:1: rule__Infix__Group__1 : rule__Infix__Group__1__Impl ;
+    // InternalBSharp.g:6036:1: rule__Infix__Group__1 : rule__Infix__Group__1__Impl ;
     public final void rule__Infix__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5973:1: ( rule__Infix__Group__1__Impl )
-            // InternalBSharp.g:5974:2: rule__Infix__Group__1__Impl
+            // InternalBSharp.g:6040:1: ( rule__Infix__Group__1__Impl )
+            // InternalBSharp.g:6041:2: rule__Infix__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Infix__Group__1__Impl();
@@ -18685,39 +18946,39 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group__1__Impl"
-    // InternalBSharp.g:5980:1: rule__Infix__Group__1__Impl : ( ( rule__Infix__Group_1__0 )* ) ;
+    // InternalBSharp.g:6047:1: rule__Infix__Group__1__Impl : ( ( rule__Infix__Group_1__0 )* ) ;
     public final void rule__Infix__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:5984:1: ( ( ( rule__Infix__Group_1__0 )* ) )
-            // InternalBSharp.g:5985:1: ( ( rule__Infix__Group_1__0 )* )
+            // InternalBSharp.g:6051:1: ( ( ( rule__Infix__Group_1__0 )* ) )
+            // InternalBSharp.g:6052:1: ( ( rule__Infix__Group_1__0 )* )
             {
-            // InternalBSharp.g:5985:1: ( ( rule__Infix__Group_1__0 )* )
-            // InternalBSharp.g:5986:2: ( rule__Infix__Group_1__0 )*
+            // InternalBSharp.g:6052:1: ( ( rule__Infix__Group_1__0 )* )
+            // InternalBSharp.g:6053:2: ( rule__Infix__Group_1__0 )*
             {
              before(grammarAccess.getInfixAccess().getGroup_1()); 
-            // InternalBSharp.g:5987:2: ( rule__Infix__Group_1__0 )*
-            loop53:
+            // InternalBSharp.g:6054:2: ( rule__Infix__Group_1__0 )*
+            loop55:
             do {
-                int alt53=2;
-                int LA53_0 = input.LA(1);
+                int alt55=2;
+                int LA55_0 = input.LA(1);
 
-                if ( (LA53_0==RULE_ID) ) {
-                    int LA53_2 = input.LA(2);
+                if ( (LA55_0==RULE_ID) ) {
+                    int LA55_2 = input.LA(2);
 
-                    if ( (LA53_2==40) ) {
-                        int LA53_4 = input.LA(3);
+                    if ( (LA55_2==40) ) {
+                        int LA55_4 = input.LA(3);
 
-                        if ( (LA53_4==11||(LA53_4>=23 && LA53_4<=24)||LA53_4==40||LA53_4==52||LA53_4==57) ) {
-                            alt53=1;
+                        if ( (LA55_4==11||(LA55_4>=23 && LA55_4<=24)||LA55_4==38||LA55_4==40||LA55_4==52||LA55_4==57) ) {
+                            alt55=1;
                         }
-                        else if ( (LA53_4==RULE_ID) ) {
-                            int LA53_5 = input.LA(4);
+                        else if ( (LA55_4==RULE_ID) ) {
+                            int LA55_5 = input.LA(4);
 
-                            if ( (LA53_5==RULE_ID||(LA53_5>=25 && LA53_5<=30)||LA53_5==33||(LA53_5>=40 && LA53_5<=42)) ) {
-                                alt53=1;
+                            if ( (LA55_5==RULE_ID||(LA55_5>=25 && LA55_5<=30)||LA55_5==33||(LA55_5>=40 && LA55_5<=42)) ) {
+                                alt55=1;
                             }
 
 
@@ -18725,20 +18986,20 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
                     }
-                    else if ( (LA53_2==RULE_ID||LA53_2==11) ) {
-                        alt53=1;
+                    else if ( (LA55_2==RULE_ID||LA55_2==11||LA55_2==38) ) {
+                        alt55=1;
                     }
 
 
                 }
-                else if ( ((LA53_0>=25 && LA53_0<=30)) ) {
-                    alt53=1;
+                else if ( ((LA55_0>=25 && LA55_0<=30)) ) {
+                    alt55=1;
                 }
 
 
-                switch (alt53) {
+                switch (alt55) {
             	case 1 :
-            	    // InternalBSharp.g:5987:3: rule__Infix__Group_1__0
+            	    // InternalBSharp.g:6054:3: rule__Infix__Group_1__0
             	    {
             	    pushFollow(FOLLOW_51);
             	    rule__Infix__Group_1__0();
@@ -18750,7 +19011,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop53;
+            	    break loop55;
                 }
             } while (true);
 
@@ -18777,14 +19038,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group_1__0"
-    // InternalBSharp.g:5996:1: rule__Infix__Group_1__0 : rule__Infix__Group_1__0__Impl rule__Infix__Group_1__1 ;
+    // InternalBSharp.g:6063:1: rule__Infix__Group_1__0 : rule__Infix__Group_1__0__Impl rule__Infix__Group_1__1 ;
     public final void rule__Infix__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6000:1: ( rule__Infix__Group_1__0__Impl rule__Infix__Group_1__1 )
-            // InternalBSharp.g:6001:2: rule__Infix__Group_1__0__Impl rule__Infix__Group_1__1
+            // InternalBSharp.g:6067:1: ( rule__Infix__Group_1__0__Impl rule__Infix__Group_1__1 )
+            // InternalBSharp.g:6068:2: rule__Infix__Group_1__0__Impl rule__Infix__Group_1__1
             {
             pushFollow(FOLLOW_50);
             rule__Infix__Group_1__0__Impl();
@@ -18815,21 +19076,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group_1__0__Impl"
-    // InternalBSharp.g:6008:1: rule__Infix__Group_1__0__Impl : ( () ) ;
+    // InternalBSharp.g:6075:1: rule__Infix__Group_1__0__Impl : ( () ) ;
     public final void rule__Infix__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6012:1: ( ( () ) )
-            // InternalBSharp.g:6013:1: ( () )
+            // InternalBSharp.g:6079:1: ( ( () ) )
+            // InternalBSharp.g:6080:1: ( () )
             {
-            // InternalBSharp.g:6013:1: ( () )
-            // InternalBSharp.g:6014:2: ()
+            // InternalBSharp.g:6080:1: ( () )
+            // InternalBSharp.g:6081:2: ()
             {
              before(grammarAccess.getInfixAccess().getInfixLeftAction_1_0()); 
-            // InternalBSharp.g:6015:2: ()
-            // InternalBSharp.g:6015:3: 
+            // InternalBSharp.g:6082:2: ()
+            // InternalBSharp.g:6082:3: 
             {
             }
 
@@ -18852,14 +19113,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group_1__1"
-    // InternalBSharp.g:6023:1: rule__Infix__Group_1__1 : rule__Infix__Group_1__1__Impl rule__Infix__Group_1__2 ;
+    // InternalBSharp.g:6090:1: rule__Infix__Group_1__1 : rule__Infix__Group_1__1__Impl rule__Infix__Group_1__2 ;
     public final void rule__Infix__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6027:1: ( rule__Infix__Group_1__1__Impl rule__Infix__Group_1__2 )
-            // InternalBSharp.g:6028:2: rule__Infix__Group_1__1__Impl rule__Infix__Group_1__2
+            // InternalBSharp.g:6094:1: ( rule__Infix__Group_1__1__Impl rule__Infix__Group_1__2 )
+            // InternalBSharp.g:6095:2: rule__Infix__Group_1__1__Impl rule__Infix__Group_1__2
             {
             pushFollow(FOLLOW_49);
             rule__Infix__Group_1__1__Impl();
@@ -18890,21 +19151,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group_1__1__Impl"
-    // InternalBSharp.g:6035:1: rule__Infix__Group_1__1__Impl : ( ( rule__Infix__Alternatives_1_1 ) ) ;
+    // InternalBSharp.g:6102:1: rule__Infix__Group_1__1__Impl : ( ( rule__Infix__Alternatives_1_1 ) ) ;
     public final void rule__Infix__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6039:1: ( ( ( rule__Infix__Alternatives_1_1 ) ) )
-            // InternalBSharp.g:6040:1: ( ( rule__Infix__Alternatives_1_1 ) )
+            // InternalBSharp.g:6106:1: ( ( ( rule__Infix__Alternatives_1_1 ) ) )
+            // InternalBSharp.g:6107:1: ( ( rule__Infix__Alternatives_1_1 ) )
             {
-            // InternalBSharp.g:6040:1: ( ( rule__Infix__Alternatives_1_1 ) )
-            // InternalBSharp.g:6041:2: ( rule__Infix__Alternatives_1_1 )
+            // InternalBSharp.g:6107:1: ( ( rule__Infix__Alternatives_1_1 ) )
+            // InternalBSharp.g:6108:2: ( rule__Infix__Alternatives_1_1 )
             {
              before(grammarAccess.getInfixAccess().getAlternatives_1_1()); 
-            // InternalBSharp.g:6042:2: ( rule__Infix__Alternatives_1_1 )
-            // InternalBSharp.g:6042:3: rule__Infix__Alternatives_1_1
+            // InternalBSharp.g:6109:2: ( rule__Infix__Alternatives_1_1 )
+            // InternalBSharp.g:6109:3: rule__Infix__Alternatives_1_1
             {
             pushFollow(FOLLOW_2);
             rule__Infix__Alternatives_1_1();
@@ -18937,14 +19198,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group_1__2"
-    // InternalBSharp.g:6050:1: rule__Infix__Group_1__2 : rule__Infix__Group_1__2__Impl ;
+    // InternalBSharp.g:6117:1: rule__Infix__Group_1__2 : rule__Infix__Group_1__2__Impl ;
     public final void rule__Infix__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6054:1: ( rule__Infix__Group_1__2__Impl )
-            // InternalBSharp.g:6055:2: rule__Infix__Group_1__2__Impl
+            // InternalBSharp.g:6121:1: ( rule__Infix__Group_1__2__Impl )
+            // InternalBSharp.g:6122:2: rule__Infix__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Infix__Group_1__2__Impl();
@@ -18970,21 +19231,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__Group_1__2__Impl"
-    // InternalBSharp.g:6061:1: rule__Infix__Group_1__2__Impl : ( ( rule__Infix__RightAssignment_1_2 ) ) ;
+    // InternalBSharp.g:6128:1: rule__Infix__Group_1__2__Impl : ( ( rule__Infix__RightAssignment_1_2 ) ) ;
     public final void rule__Infix__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6065:1: ( ( ( rule__Infix__RightAssignment_1_2 ) ) )
-            // InternalBSharp.g:6066:1: ( ( rule__Infix__RightAssignment_1_2 ) )
+            // InternalBSharp.g:6132:1: ( ( ( rule__Infix__RightAssignment_1_2 ) ) )
+            // InternalBSharp.g:6133:1: ( ( rule__Infix__RightAssignment_1_2 ) )
             {
-            // InternalBSharp.g:6066:1: ( ( rule__Infix__RightAssignment_1_2 ) )
-            // InternalBSharp.g:6067:2: ( rule__Infix__RightAssignment_1_2 )
+            // InternalBSharp.g:6133:1: ( ( rule__Infix__RightAssignment_1_2 ) )
+            // InternalBSharp.g:6134:2: ( rule__Infix__RightAssignment_1_2 )
             {
              before(grammarAccess.getInfixAccess().getRightAssignment_1_2()); 
-            // InternalBSharp.g:6068:2: ( rule__Infix__RightAssignment_1_2 )
-            // InternalBSharp.g:6068:3: rule__Infix__RightAssignment_1_2
+            // InternalBSharp.g:6135:2: ( rule__Infix__RightAssignment_1_2 )
+            // InternalBSharp.g:6135:3: rule__Infix__RightAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__Infix__RightAssignment_1_2();
@@ -19017,14 +19278,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Bracket__Group__0"
-    // InternalBSharp.g:6077:1: rule__Bracket__Group__0 : rule__Bracket__Group__0__Impl rule__Bracket__Group__1 ;
+    // InternalBSharp.g:6144:1: rule__Bracket__Group__0 : rule__Bracket__Group__0__Impl rule__Bracket__Group__1 ;
     public final void rule__Bracket__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6081:1: ( rule__Bracket__Group__0__Impl rule__Bracket__Group__1 )
-            // InternalBSharp.g:6082:2: rule__Bracket__Group__0__Impl rule__Bracket__Group__1
+            // InternalBSharp.g:6148:1: ( rule__Bracket__Group__0__Impl rule__Bracket__Group__1 )
+            // InternalBSharp.g:6149:2: rule__Bracket__Group__0__Impl rule__Bracket__Group__1
             {
             pushFollow(FOLLOW_28);
             rule__Bracket__Group__0__Impl();
@@ -19055,17 +19316,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Bracket__Group__0__Impl"
-    // InternalBSharp.g:6089:1: rule__Bracket__Group__0__Impl : ( '(' ) ;
+    // InternalBSharp.g:6156:1: rule__Bracket__Group__0__Impl : ( '(' ) ;
     public final void rule__Bracket__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6093:1: ( ( '(' ) )
-            // InternalBSharp.g:6094:1: ( '(' )
+            // InternalBSharp.g:6160:1: ( ( '(' ) )
+            // InternalBSharp.g:6161:1: ( '(' )
             {
-            // InternalBSharp.g:6094:1: ( '(' )
-            // InternalBSharp.g:6095:2: '('
+            // InternalBSharp.g:6161:1: ( '(' )
+            // InternalBSharp.g:6162:2: '('
             {
              before(grammarAccess.getBracketAccess().getLeftParenthesisKeyword_0()); 
             match(input,40,FOLLOW_2); 
@@ -19092,14 +19353,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Bracket__Group__1"
-    // InternalBSharp.g:6104:1: rule__Bracket__Group__1 : rule__Bracket__Group__1__Impl rule__Bracket__Group__2 ;
+    // InternalBSharp.g:6171:1: rule__Bracket__Group__1 : rule__Bracket__Group__1__Impl rule__Bracket__Group__2 ;
     public final void rule__Bracket__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6108:1: ( rule__Bracket__Group__1__Impl rule__Bracket__Group__2 )
-            // InternalBSharp.g:6109:2: rule__Bracket__Group__1__Impl rule__Bracket__Group__2
+            // InternalBSharp.g:6175:1: ( rule__Bracket__Group__1__Impl rule__Bracket__Group__2 )
+            // InternalBSharp.g:6176:2: rule__Bracket__Group__1__Impl rule__Bracket__Group__2
             {
             pushFollow(FOLLOW_18);
             rule__Bracket__Group__1__Impl();
@@ -19130,21 +19391,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Bracket__Group__1__Impl"
-    // InternalBSharp.g:6116:1: rule__Bracket__Group__1__Impl : ( ( rule__Bracket__ChildAssignment_1 ) ) ;
+    // InternalBSharp.g:6183:1: rule__Bracket__Group__1__Impl : ( ( rule__Bracket__ChildAssignment_1 ) ) ;
     public final void rule__Bracket__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6120:1: ( ( ( rule__Bracket__ChildAssignment_1 ) ) )
-            // InternalBSharp.g:6121:1: ( ( rule__Bracket__ChildAssignment_1 ) )
+            // InternalBSharp.g:6187:1: ( ( ( rule__Bracket__ChildAssignment_1 ) ) )
+            // InternalBSharp.g:6188:1: ( ( rule__Bracket__ChildAssignment_1 ) )
             {
-            // InternalBSharp.g:6121:1: ( ( rule__Bracket__ChildAssignment_1 ) )
-            // InternalBSharp.g:6122:2: ( rule__Bracket__ChildAssignment_1 )
+            // InternalBSharp.g:6188:1: ( ( rule__Bracket__ChildAssignment_1 ) )
+            // InternalBSharp.g:6189:2: ( rule__Bracket__ChildAssignment_1 )
             {
              before(grammarAccess.getBracketAccess().getChildAssignment_1()); 
-            // InternalBSharp.g:6123:2: ( rule__Bracket__ChildAssignment_1 )
-            // InternalBSharp.g:6123:3: rule__Bracket__ChildAssignment_1
+            // InternalBSharp.g:6190:2: ( rule__Bracket__ChildAssignment_1 )
+            // InternalBSharp.g:6190:3: rule__Bracket__ChildAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Bracket__ChildAssignment_1();
@@ -19177,14 +19438,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Bracket__Group__2"
-    // InternalBSharp.g:6131:1: rule__Bracket__Group__2 : rule__Bracket__Group__2__Impl ;
+    // InternalBSharp.g:6198:1: rule__Bracket__Group__2 : rule__Bracket__Group__2__Impl ;
     public final void rule__Bracket__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6135:1: ( rule__Bracket__Group__2__Impl )
-            // InternalBSharp.g:6136:2: rule__Bracket__Group__2__Impl
+            // InternalBSharp.g:6202:1: ( rule__Bracket__Group__2__Impl )
+            // InternalBSharp.g:6203:2: rule__Bracket__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Bracket__Group__2__Impl();
@@ -19210,17 +19471,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Bracket__Group__2__Impl"
-    // InternalBSharp.g:6142:1: rule__Bracket__Group__2__Impl : ( ')' ) ;
+    // InternalBSharp.g:6209:1: rule__Bracket__Group__2__Impl : ( ')' ) ;
     public final void rule__Bracket__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6146:1: ( ( ')' ) )
-            // InternalBSharp.g:6147:1: ( ')' )
+            // InternalBSharp.g:6213:1: ( ( ')' ) )
+            // InternalBSharp.g:6214:1: ( ')' )
             {
-            // InternalBSharp.g:6147:1: ( ')' )
-            // InternalBSharp.g:6148:2: ')'
+            // InternalBSharp.g:6214:1: ( ')' )
+            // InternalBSharp.g:6215:2: ')'
             {
              before(grammarAccess.getBracketAccess().getRightParenthesisKeyword_2()); 
             match(input,41,FOLLOW_2); 
@@ -19246,191 +19507,15 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Bracket__Group__2__Impl"
 
 
-    // $ANTLR start "rule__FunctionCall__Group__0"
-    // InternalBSharp.g:6158:1: rule__FunctionCall__Group__0 : rule__FunctionCall__Group__0__Impl rule__FunctionCall__Group__1 ;
-    public final void rule__FunctionCall__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalBSharp.g:6162:1: ( rule__FunctionCall__Group__0__Impl rule__FunctionCall__Group__1 )
-            // InternalBSharp.g:6163:2: rule__FunctionCall__Group__0__Impl rule__FunctionCall__Group__1
-            {
-            pushFollow(FOLLOW_35);
-            rule__FunctionCall__Group__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__FunctionCall__Group__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FunctionCall__Group__0"
-
-
-    // $ANTLR start "rule__FunctionCall__Group__0__Impl"
-    // InternalBSharp.g:6170:1: rule__FunctionCall__Group__0__Impl : ( ( rule__FunctionCall__Alternatives_0 ) ) ;
-    public final void rule__FunctionCall__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalBSharp.g:6174:1: ( ( ( rule__FunctionCall__Alternatives_0 ) ) )
-            // InternalBSharp.g:6175:1: ( ( rule__FunctionCall__Alternatives_0 ) )
-            {
-            // InternalBSharp.g:6175:1: ( ( rule__FunctionCall__Alternatives_0 ) )
-            // InternalBSharp.g:6176:2: ( rule__FunctionCall__Alternatives_0 )
-            {
-             before(grammarAccess.getFunctionCallAccess().getAlternatives_0()); 
-            // InternalBSharp.g:6177:2: ( rule__FunctionCall__Alternatives_0 )
-            // InternalBSharp.g:6177:3: rule__FunctionCall__Alternatives_0
-            {
-            pushFollow(FOLLOW_2);
-            rule__FunctionCall__Alternatives_0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getFunctionCallAccess().getAlternatives_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FunctionCall__Group__0__Impl"
-
-
-    // $ANTLR start "rule__FunctionCall__Group__1"
-    // InternalBSharp.g:6185:1: rule__FunctionCall__Group__1 : rule__FunctionCall__Group__1__Impl ;
-    public final void rule__FunctionCall__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalBSharp.g:6189:1: ( rule__FunctionCall__Group__1__Impl )
-            // InternalBSharp.g:6190:2: rule__FunctionCall__Group__1__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__FunctionCall__Group__1__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FunctionCall__Group__1"
-
-
-    // $ANTLR start "rule__FunctionCall__Group__1__Impl"
-    // InternalBSharp.g:6196:1: rule__FunctionCall__Group__1__Impl : ( ( rule__FunctionCall__Group_1__0 )? ) ;
-    public final void rule__FunctionCall__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalBSharp.g:6200:1: ( ( ( rule__FunctionCall__Group_1__0 )? ) )
-            // InternalBSharp.g:6201:1: ( ( rule__FunctionCall__Group_1__0 )? )
-            {
-            // InternalBSharp.g:6201:1: ( ( rule__FunctionCall__Group_1__0 )? )
-            // InternalBSharp.g:6202:2: ( rule__FunctionCall__Group_1__0 )?
-            {
-             before(grammarAccess.getFunctionCallAccess().getGroup_1()); 
-            // InternalBSharp.g:6203:2: ( rule__FunctionCall__Group_1__0 )?
-            int alt54=2;
-            int LA54_0 = input.LA(1);
-
-            if ( (LA54_0==40||LA54_0==42) ) {
-                alt54=1;
-            }
-            switch (alt54) {
-                case 1 :
-                    // InternalBSharp.g:6203:3: rule__FunctionCall__Group_1__0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__FunctionCall__Group_1__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getFunctionCallAccess().getGroup_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FunctionCall__Group__1__Impl"
-
-
     // $ANTLR start "rule__FunctionCall__Group_1__0"
-    // InternalBSharp.g:6212:1: rule__FunctionCall__Group_1__0 : rule__FunctionCall__Group_1__0__Impl rule__FunctionCall__Group_1__1 ;
+    // InternalBSharp.g:6225:1: rule__FunctionCall__Group_1__0 : rule__FunctionCall__Group_1__0__Impl rule__FunctionCall__Group_1__1 ;
     public final void rule__FunctionCall__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6216:1: ( rule__FunctionCall__Group_1__0__Impl rule__FunctionCall__Group_1__1 )
-            // InternalBSharp.g:6217:2: rule__FunctionCall__Group_1__0__Impl rule__FunctionCall__Group_1__1
+            // InternalBSharp.g:6229:1: ( rule__FunctionCall__Group_1__0__Impl rule__FunctionCall__Group_1__1 )
+            // InternalBSharp.g:6230:2: rule__FunctionCall__Group_1__0__Impl rule__FunctionCall__Group_1__1
             {
             pushFollow(FOLLOW_35);
             rule__FunctionCall__Group_1__0__Impl();
@@ -19461,42 +19546,31 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionCall__Group_1__0__Impl"
-    // InternalBSharp.g:6224:1: rule__FunctionCall__Group_1__0__Impl : ( ( rule__FunctionCall__ContextAssignment_1_0 )? ) ;
+    // InternalBSharp.g:6237:1: rule__FunctionCall__Group_1__0__Impl : ( ( rule__FunctionCall__Alternatives_1_0 ) ) ;
     public final void rule__FunctionCall__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6228:1: ( ( ( rule__FunctionCall__ContextAssignment_1_0 )? ) )
-            // InternalBSharp.g:6229:1: ( ( rule__FunctionCall__ContextAssignment_1_0 )? )
+            // InternalBSharp.g:6241:1: ( ( ( rule__FunctionCall__Alternatives_1_0 ) ) )
+            // InternalBSharp.g:6242:1: ( ( rule__FunctionCall__Alternatives_1_0 ) )
             {
-            // InternalBSharp.g:6229:1: ( ( rule__FunctionCall__ContextAssignment_1_0 )? )
-            // InternalBSharp.g:6230:2: ( rule__FunctionCall__ContextAssignment_1_0 )?
+            // InternalBSharp.g:6242:1: ( ( rule__FunctionCall__Alternatives_1_0 ) )
+            // InternalBSharp.g:6243:2: ( rule__FunctionCall__Alternatives_1_0 )
             {
-             before(grammarAccess.getFunctionCallAccess().getContextAssignment_1_0()); 
-            // InternalBSharp.g:6231:2: ( rule__FunctionCall__ContextAssignment_1_0 )?
-            int alt55=2;
-            int LA55_0 = input.LA(1);
+             before(grammarAccess.getFunctionCallAccess().getAlternatives_1_0()); 
+            // InternalBSharp.g:6244:2: ( rule__FunctionCall__Alternatives_1_0 )
+            // InternalBSharp.g:6244:3: rule__FunctionCall__Alternatives_1_0
+            {
+            pushFollow(FOLLOW_2);
+            rule__FunctionCall__Alternatives_1_0();
 
-            if ( (LA55_0==42) ) {
-                alt55=1;
-            }
-            switch (alt55) {
-                case 1 :
-                    // InternalBSharp.g:6231:3: rule__FunctionCall__ContextAssignment_1_0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__FunctionCall__ContextAssignment_1_0();
+            state._fsp--;
 
-                    state._fsp--;
-
-
-                    }
-                    break;
 
             }
 
-             after(grammarAccess.getFunctionCallAccess().getContextAssignment_1_0()); 
+             after(grammarAccess.getFunctionCallAccess().getAlternatives_1_0()); 
 
             }
 
@@ -19519,22 +19593,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionCall__Group_1__1"
-    // InternalBSharp.g:6239:1: rule__FunctionCall__Group_1__1 : rule__FunctionCall__Group_1__1__Impl rule__FunctionCall__Group_1__2 ;
+    // InternalBSharp.g:6252:1: rule__FunctionCall__Group_1__1 : rule__FunctionCall__Group_1__1__Impl ;
     public final void rule__FunctionCall__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6243:1: ( rule__FunctionCall__Group_1__1__Impl rule__FunctionCall__Group_1__2 )
-            // InternalBSharp.g:6244:2: rule__FunctionCall__Group_1__1__Impl rule__FunctionCall__Group_1__2
+            // InternalBSharp.g:6256:1: ( rule__FunctionCall__Group_1__1__Impl )
+            // InternalBSharp.g:6257:2: rule__FunctionCall__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_52);
-            rule__FunctionCall__Group_1__1__Impl();
-
-            state._fsp--;
-
             pushFollow(FOLLOW_2);
-            rule__FunctionCall__Group_1__2();
+            rule__FunctionCall__Group_1__1__Impl();
 
             state._fsp--;
 
@@ -19557,21 +19626,42 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionCall__Group_1__1__Impl"
-    // InternalBSharp.g:6251:1: rule__FunctionCall__Group_1__1__Impl : ( '(' ) ;
+    // InternalBSharp.g:6263:1: rule__FunctionCall__Group_1__1__Impl : ( ( rule__FunctionCall__Group_1_1__0 )? ) ;
     public final void rule__FunctionCall__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6255:1: ( ( '(' ) )
-            // InternalBSharp.g:6256:1: ( '(' )
+            // InternalBSharp.g:6267:1: ( ( ( rule__FunctionCall__Group_1_1__0 )? ) )
+            // InternalBSharp.g:6268:1: ( ( rule__FunctionCall__Group_1_1__0 )? )
             {
-            // InternalBSharp.g:6256:1: ( '(' )
-            // InternalBSharp.g:6257:2: '('
+            // InternalBSharp.g:6268:1: ( ( rule__FunctionCall__Group_1_1__0 )? )
+            // InternalBSharp.g:6269:2: ( rule__FunctionCall__Group_1_1__0 )?
             {
-             before(grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_1()); 
-            match(input,40,FOLLOW_2); 
-             after(grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_1()); 
+             before(grammarAccess.getFunctionCallAccess().getGroup_1_1()); 
+            // InternalBSharp.g:6270:2: ( rule__FunctionCall__Group_1_1__0 )?
+            int alt56=2;
+            int LA56_0 = input.LA(1);
+
+            if ( (LA56_0==40||LA56_0==42) ) {
+                alt56=1;
+            }
+            switch (alt56) {
+                case 1 :
+                    // InternalBSharp.g:6270:3: rule__FunctionCall__Group_1_1__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__FunctionCall__Group_1_1__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getFunctionCallAccess().getGroup_1_1()); 
 
             }
 
@@ -19593,23 +19683,23 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FunctionCall__Group_1__1__Impl"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1__2"
-    // InternalBSharp.g:6266:1: rule__FunctionCall__Group_1__2 : rule__FunctionCall__Group_1__2__Impl rule__FunctionCall__Group_1__3 ;
-    public final void rule__FunctionCall__Group_1__2() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1__0"
+    // InternalBSharp.g:6279:1: rule__FunctionCall__Group_1_1__0 : rule__FunctionCall__Group_1_1__0__Impl rule__FunctionCall__Group_1_1__1 ;
+    public final void rule__FunctionCall__Group_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6270:1: ( rule__FunctionCall__Group_1__2__Impl rule__FunctionCall__Group_1__3 )
-            // InternalBSharp.g:6271:2: rule__FunctionCall__Group_1__2__Impl rule__FunctionCall__Group_1__3
+            // InternalBSharp.g:6283:1: ( rule__FunctionCall__Group_1_1__0__Impl rule__FunctionCall__Group_1_1__1 )
+            // InternalBSharp.g:6284:2: rule__FunctionCall__Group_1_1__0__Impl rule__FunctionCall__Group_1_1__1
             {
-            pushFollow(FOLLOW_52);
-            rule__FunctionCall__Group_1__2__Impl();
+            pushFollow(FOLLOW_35);
+            rule__FunctionCall__Group_1_1__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__FunctionCall__Group_1__3();
+            rule__FunctionCall__Group_1_1__1();
 
             state._fsp--;
 
@@ -19628,36 +19718,36 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1__2"
+    // $ANTLR end "rule__FunctionCall__Group_1_1__0"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1__2__Impl"
-    // InternalBSharp.g:6278:1: rule__FunctionCall__Group_1__2__Impl : ( ( rule__FunctionCall__ArgumentsAssignment_1_2 )? ) ;
-    public final void rule__FunctionCall__Group_1__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1__0__Impl"
+    // InternalBSharp.g:6291:1: rule__FunctionCall__Group_1_1__0__Impl : ( ( rule__FunctionCall__ContextAssignment_1_1_0 )? ) ;
+    public final void rule__FunctionCall__Group_1_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6282:1: ( ( ( rule__FunctionCall__ArgumentsAssignment_1_2 )? ) )
-            // InternalBSharp.g:6283:1: ( ( rule__FunctionCall__ArgumentsAssignment_1_2 )? )
+            // InternalBSharp.g:6295:1: ( ( ( rule__FunctionCall__ContextAssignment_1_1_0 )? ) )
+            // InternalBSharp.g:6296:1: ( ( rule__FunctionCall__ContextAssignment_1_1_0 )? )
             {
-            // InternalBSharp.g:6283:1: ( ( rule__FunctionCall__ArgumentsAssignment_1_2 )? )
-            // InternalBSharp.g:6284:2: ( rule__FunctionCall__ArgumentsAssignment_1_2 )?
+            // InternalBSharp.g:6296:1: ( ( rule__FunctionCall__ContextAssignment_1_1_0 )? )
+            // InternalBSharp.g:6297:2: ( rule__FunctionCall__ContextAssignment_1_1_0 )?
             {
-             before(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_2()); 
-            // InternalBSharp.g:6285:2: ( rule__FunctionCall__ArgumentsAssignment_1_2 )?
-            int alt56=2;
-            int LA56_0 = input.LA(1);
+             before(grammarAccess.getFunctionCallAccess().getContextAssignment_1_1_0()); 
+            // InternalBSharp.g:6298:2: ( rule__FunctionCall__ContextAssignment_1_1_0 )?
+            int alt57=2;
+            int LA57_0 = input.LA(1);
 
-            if ( (LA56_0==RULE_ID||LA56_0==11||(LA56_0>=23 && LA56_0<=24)||LA56_0==40||LA56_0==52||LA56_0==57) ) {
-                alt56=1;
+            if ( (LA57_0==42) ) {
+                alt57=1;
             }
-            switch (alt56) {
+            switch (alt57) {
                 case 1 :
-                    // InternalBSharp.g:6285:3: rule__FunctionCall__ArgumentsAssignment_1_2
+                    // InternalBSharp.g:6298:3: rule__FunctionCall__ContextAssignment_1_1_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__FunctionCall__ArgumentsAssignment_1_2();
+                    rule__FunctionCall__ContextAssignment_1_1_0();
 
                     state._fsp--;
 
@@ -19667,7 +19757,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_2()); 
+             after(grammarAccess.getFunctionCallAccess().getContextAssignment_1_1_0()); 
 
             }
 
@@ -19686,26 +19776,26 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1__2__Impl"
+    // $ANTLR end "rule__FunctionCall__Group_1_1__0__Impl"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1__3"
-    // InternalBSharp.g:6293:1: rule__FunctionCall__Group_1__3 : rule__FunctionCall__Group_1__3__Impl rule__FunctionCall__Group_1__4 ;
-    public final void rule__FunctionCall__Group_1__3() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1__1"
+    // InternalBSharp.g:6306:1: rule__FunctionCall__Group_1_1__1 : rule__FunctionCall__Group_1_1__1__Impl rule__FunctionCall__Group_1_1__2 ;
+    public final void rule__FunctionCall__Group_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6297:1: ( rule__FunctionCall__Group_1__3__Impl rule__FunctionCall__Group_1__4 )
-            // InternalBSharp.g:6298:2: rule__FunctionCall__Group_1__3__Impl rule__FunctionCall__Group_1__4
+            // InternalBSharp.g:6310:1: ( rule__FunctionCall__Group_1_1__1__Impl rule__FunctionCall__Group_1_1__2 )
+            // InternalBSharp.g:6311:2: rule__FunctionCall__Group_1_1__1__Impl rule__FunctionCall__Group_1_1__2
             {
             pushFollow(FOLLOW_52);
-            rule__FunctionCall__Group_1__3__Impl();
+            rule__FunctionCall__Group_1_1__1__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__FunctionCall__Group_1__4();
+            rule__FunctionCall__Group_1_1__2();
 
             state._fsp--;
 
@@ -19724,40 +19814,211 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1__3"
+    // $ANTLR end "rule__FunctionCall__Group_1_1__1"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1__3__Impl"
-    // InternalBSharp.g:6305:1: rule__FunctionCall__Group_1__3__Impl : ( ( rule__FunctionCall__Group_1_3__0 )* ) ;
-    public final void rule__FunctionCall__Group_1__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1__1__Impl"
+    // InternalBSharp.g:6318:1: rule__FunctionCall__Group_1_1__1__Impl : ( '(' ) ;
+    public final void rule__FunctionCall__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6309:1: ( ( ( rule__FunctionCall__Group_1_3__0 )* ) )
-            // InternalBSharp.g:6310:1: ( ( rule__FunctionCall__Group_1_3__0 )* )
+            // InternalBSharp.g:6322:1: ( ( '(' ) )
+            // InternalBSharp.g:6323:1: ( '(' )
             {
-            // InternalBSharp.g:6310:1: ( ( rule__FunctionCall__Group_1_3__0 )* )
-            // InternalBSharp.g:6311:2: ( rule__FunctionCall__Group_1_3__0 )*
+            // InternalBSharp.g:6323:1: ( '(' )
+            // InternalBSharp.g:6324:2: '('
             {
-             before(grammarAccess.getFunctionCallAccess().getGroup_1_3()); 
-            // InternalBSharp.g:6312:2: ( rule__FunctionCall__Group_1_3__0 )*
-            loop57:
-            do {
-                int alt57=2;
-                int LA57_0 = input.LA(1);
+             before(grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_1_1()); 
+            match(input,40,FOLLOW_2); 
+             after(grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_1_1()); 
 
-                if ( (LA57_0==44) ) {
-                    alt57=1;
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FunctionCall__Group_1_1__1__Impl"
+
+
+    // $ANTLR start "rule__FunctionCall__Group_1_1__2"
+    // InternalBSharp.g:6333:1: rule__FunctionCall__Group_1_1__2 : rule__FunctionCall__Group_1_1__2__Impl rule__FunctionCall__Group_1_1__3 ;
+    public final void rule__FunctionCall__Group_1_1__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6337:1: ( rule__FunctionCall__Group_1_1__2__Impl rule__FunctionCall__Group_1_1__3 )
+            // InternalBSharp.g:6338:2: rule__FunctionCall__Group_1_1__2__Impl rule__FunctionCall__Group_1_1__3
+            {
+            pushFollow(FOLLOW_52);
+            rule__FunctionCall__Group_1_1__2__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__FunctionCall__Group_1_1__3();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FunctionCall__Group_1_1__2"
+
+
+    // $ANTLR start "rule__FunctionCall__Group_1_1__2__Impl"
+    // InternalBSharp.g:6345:1: rule__FunctionCall__Group_1_1__2__Impl : ( ( rule__FunctionCall__ArgumentsAssignment_1_1_2 )? ) ;
+    public final void rule__FunctionCall__Group_1_1__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6349:1: ( ( ( rule__FunctionCall__ArgumentsAssignment_1_1_2 )? ) )
+            // InternalBSharp.g:6350:1: ( ( rule__FunctionCall__ArgumentsAssignment_1_1_2 )? )
+            {
+            // InternalBSharp.g:6350:1: ( ( rule__FunctionCall__ArgumentsAssignment_1_1_2 )? )
+            // InternalBSharp.g:6351:2: ( rule__FunctionCall__ArgumentsAssignment_1_1_2 )?
+            {
+             before(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_1_2()); 
+            // InternalBSharp.g:6352:2: ( rule__FunctionCall__ArgumentsAssignment_1_1_2 )?
+            int alt58=2;
+            int LA58_0 = input.LA(1);
+
+            if ( (LA58_0==RULE_ID||LA58_0==11||(LA58_0>=23 && LA58_0<=24)||LA58_0==38||LA58_0==40||LA58_0==52||LA58_0==57) ) {
+                alt58=1;
+            }
+            switch (alt58) {
+                case 1 :
+                    // InternalBSharp.g:6352:3: rule__FunctionCall__ArgumentsAssignment_1_1_2
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__FunctionCall__ArgumentsAssignment_1_1_2();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_1_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FunctionCall__Group_1_1__2__Impl"
+
+
+    // $ANTLR start "rule__FunctionCall__Group_1_1__3"
+    // InternalBSharp.g:6360:1: rule__FunctionCall__Group_1_1__3 : rule__FunctionCall__Group_1_1__3__Impl rule__FunctionCall__Group_1_1__4 ;
+    public final void rule__FunctionCall__Group_1_1__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6364:1: ( rule__FunctionCall__Group_1_1__3__Impl rule__FunctionCall__Group_1_1__4 )
+            // InternalBSharp.g:6365:2: rule__FunctionCall__Group_1_1__3__Impl rule__FunctionCall__Group_1_1__4
+            {
+            pushFollow(FOLLOW_52);
+            rule__FunctionCall__Group_1_1__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__FunctionCall__Group_1_1__4();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FunctionCall__Group_1_1__3"
+
+
+    // $ANTLR start "rule__FunctionCall__Group_1_1__3__Impl"
+    // InternalBSharp.g:6372:1: rule__FunctionCall__Group_1_1__3__Impl : ( ( rule__FunctionCall__Group_1_1_3__0 )* ) ;
+    public final void rule__FunctionCall__Group_1_1__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6376:1: ( ( ( rule__FunctionCall__Group_1_1_3__0 )* ) )
+            // InternalBSharp.g:6377:1: ( ( rule__FunctionCall__Group_1_1_3__0 )* )
+            {
+            // InternalBSharp.g:6377:1: ( ( rule__FunctionCall__Group_1_1_3__0 )* )
+            // InternalBSharp.g:6378:2: ( rule__FunctionCall__Group_1_1_3__0 )*
+            {
+             before(grammarAccess.getFunctionCallAccess().getGroup_1_1_3()); 
+            // InternalBSharp.g:6379:2: ( rule__FunctionCall__Group_1_1_3__0 )*
+            loop59:
+            do {
+                int alt59=2;
+                int LA59_0 = input.LA(1);
+
+                if ( (LA59_0==44) ) {
+                    alt59=1;
                 }
 
 
-                switch (alt57) {
+                switch (alt59) {
             	case 1 :
-            	    // InternalBSharp.g:6312:3: rule__FunctionCall__Group_1_3__0
+            	    // InternalBSharp.g:6379:3: rule__FunctionCall__Group_1_1_3__0
             	    {
             	    pushFollow(FOLLOW_21);
-            	    rule__FunctionCall__Group_1_3__0();
+            	    rule__FunctionCall__Group_1_1_3__0();
 
             	    state._fsp--;
 
@@ -19766,11 +20027,11 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop57;
+            	    break loop59;
                 }
             } while (true);
 
-             after(grammarAccess.getFunctionCallAccess().getGroup_1_3()); 
+             after(grammarAccess.getFunctionCallAccess().getGroup_1_1_3()); 
 
             }
 
@@ -19789,21 +20050,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1__3__Impl"
+    // $ANTLR end "rule__FunctionCall__Group_1_1__3__Impl"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1__4"
-    // InternalBSharp.g:6320:1: rule__FunctionCall__Group_1__4 : rule__FunctionCall__Group_1__4__Impl ;
-    public final void rule__FunctionCall__Group_1__4() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1__4"
+    // InternalBSharp.g:6387:1: rule__FunctionCall__Group_1_1__4 : rule__FunctionCall__Group_1_1__4__Impl ;
+    public final void rule__FunctionCall__Group_1_1__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6324:1: ( rule__FunctionCall__Group_1__4__Impl )
-            // InternalBSharp.g:6325:2: rule__FunctionCall__Group_1__4__Impl
+            // InternalBSharp.g:6391:1: ( rule__FunctionCall__Group_1_1__4__Impl )
+            // InternalBSharp.g:6392:2: rule__FunctionCall__Group_1_1__4__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__FunctionCall__Group_1__4__Impl();
+            rule__FunctionCall__Group_1_1__4__Impl();
 
             state._fsp--;
 
@@ -19822,25 +20083,25 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1__4"
+    // $ANTLR end "rule__FunctionCall__Group_1_1__4"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1__4__Impl"
-    // InternalBSharp.g:6331:1: rule__FunctionCall__Group_1__4__Impl : ( ')' ) ;
-    public final void rule__FunctionCall__Group_1__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1__4__Impl"
+    // InternalBSharp.g:6398:1: rule__FunctionCall__Group_1_1__4__Impl : ( ')' ) ;
+    public final void rule__FunctionCall__Group_1_1__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6335:1: ( ( ')' ) )
-            // InternalBSharp.g:6336:1: ( ')' )
+            // InternalBSharp.g:6402:1: ( ( ')' ) )
+            // InternalBSharp.g:6403:1: ( ')' )
             {
-            // InternalBSharp.g:6336:1: ( ')' )
-            // InternalBSharp.g:6337:2: ')'
+            // InternalBSharp.g:6403:1: ( ')' )
+            // InternalBSharp.g:6404:2: ')'
             {
-             before(grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_4()); 
+             before(grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_1_4()); 
             match(input,41,FOLLOW_2); 
-             after(grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_4()); 
+             after(grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_1_4()); 
 
             }
 
@@ -19859,26 +20120,26 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1__4__Impl"
+    // $ANTLR end "rule__FunctionCall__Group_1_1__4__Impl"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1_3__0"
-    // InternalBSharp.g:6347:1: rule__FunctionCall__Group_1_3__0 : rule__FunctionCall__Group_1_3__0__Impl rule__FunctionCall__Group_1_3__1 ;
-    public final void rule__FunctionCall__Group_1_3__0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1_3__0"
+    // InternalBSharp.g:6414:1: rule__FunctionCall__Group_1_1_3__0 : rule__FunctionCall__Group_1_1_3__0__Impl rule__FunctionCall__Group_1_1_3__1 ;
+    public final void rule__FunctionCall__Group_1_1_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6351:1: ( rule__FunctionCall__Group_1_3__0__Impl rule__FunctionCall__Group_1_3__1 )
-            // InternalBSharp.g:6352:2: rule__FunctionCall__Group_1_3__0__Impl rule__FunctionCall__Group_1_3__1
+            // InternalBSharp.g:6418:1: ( rule__FunctionCall__Group_1_1_3__0__Impl rule__FunctionCall__Group_1_1_3__1 )
+            // InternalBSharp.g:6419:2: rule__FunctionCall__Group_1_1_3__0__Impl rule__FunctionCall__Group_1_1_3__1
             {
             pushFollow(FOLLOW_28);
-            rule__FunctionCall__Group_1_3__0__Impl();
+            rule__FunctionCall__Group_1_1_3__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__FunctionCall__Group_1_3__1();
+            rule__FunctionCall__Group_1_1_3__1();
 
             state._fsp--;
 
@@ -19897,25 +20158,25 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1_3__0"
+    // $ANTLR end "rule__FunctionCall__Group_1_1_3__0"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1_3__0__Impl"
-    // InternalBSharp.g:6359:1: rule__FunctionCall__Group_1_3__0__Impl : ( ',' ) ;
-    public final void rule__FunctionCall__Group_1_3__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1_3__0__Impl"
+    // InternalBSharp.g:6426:1: rule__FunctionCall__Group_1_1_3__0__Impl : ( ',' ) ;
+    public final void rule__FunctionCall__Group_1_1_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6363:1: ( ( ',' ) )
-            // InternalBSharp.g:6364:1: ( ',' )
+            // InternalBSharp.g:6430:1: ( ( ',' ) )
+            // InternalBSharp.g:6431:1: ( ',' )
             {
-            // InternalBSharp.g:6364:1: ( ',' )
-            // InternalBSharp.g:6365:2: ','
+            // InternalBSharp.g:6431:1: ( ',' )
+            // InternalBSharp.g:6432:2: ','
             {
-             before(grammarAccess.getFunctionCallAccess().getCommaKeyword_1_3_0()); 
+             before(grammarAccess.getFunctionCallAccess().getCommaKeyword_1_1_3_0()); 
             match(input,44,FOLLOW_2); 
-             after(grammarAccess.getFunctionCallAccess().getCommaKeyword_1_3_0()); 
+             after(grammarAccess.getFunctionCallAccess().getCommaKeyword_1_1_3_0()); 
 
             }
 
@@ -19934,21 +20195,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1_3__0__Impl"
+    // $ANTLR end "rule__FunctionCall__Group_1_1_3__0__Impl"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1_3__1"
-    // InternalBSharp.g:6374:1: rule__FunctionCall__Group_1_3__1 : rule__FunctionCall__Group_1_3__1__Impl ;
-    public final void rule__FunctionCall__Group_1_3__1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1_3__1"
+    // InternalBSharp.g:6441:1: rule__FunctionCall__Group_1_1_3__1 : rule__FunctionCall__Group_1_1_3__1__Impl ;
+    public final void rule__FunctionCall__Group_1_1_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6378:1: ( rule__FunctionCall__Group_1_3__1__Impl )
-            // InternalBSharp.g:6379:2: rule__FunctionCall__Group_1_3__1__Impl
+            // InternalBSharp.g:6445:1: ( rule__FunctionCall__Group_1_1_3__1__Impl )
+            // InternalBSharp.g:6446:2: rule__FunctionCall__Group_1_1_3__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__FunctionCall__Group_1_3__1__Impl();
+            rule__FunctionCall__Group_1_1_3__1__Impl();
 
             state._fsp--;
 
@@ -19967,35 +20228,35 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1_3__1"
+    // $ANTLR end "rule__FunctionCall__Group_1_1_3__1"
 
 
-    // $ANTLR start "rule__FunctionCall__Group_1_3__1__Impl"
-    // InternalBSharp.g:6385:1: rule__FunctionCall__Group_1_3__1__Impl : ( ( rule__FunctionCall__ArgumentsAssignment_1_3_1 ) ) ;
-    public final void rule__FunctionCall__Group_1_3__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__Group_1_1_3__1__Impl"
+    // InternalBSharp.g:6452:1: rule__FunctionCall__Group_1_1_3__1__Impl : ( ( rule__FunctionCall__ArgumentsAssignment_1_1_3_1 ) ) ;
+    public final void rule__FunctionCall__Group_1_1_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6389:1: ( ( ( rule__FunctionCall__ArgumentsAssignment_1_3_1 ) ) )
-            // InternalBSharp.g:6390:1: ( ( rule__FunctionCall__ArgumentsAssignment_1_3_1 ) )
+            // InternalBSharp.g:6456:1: ( ( ( rule__FunctionCall__ArgumentsAssignment_1_1_3_1 ) ) )
+            // InternalBSharp.g:6457:1: ( ( rule__FunctionCall__ArgumentsAssignment_1_1_3_1 ) )
             {
-            // InternalBSharp.g:6390:1: ( ( rule__FunctionCall__ArgumentsAssignment_1_3_1 ) )
-            // InternalBSharp.g:6391:2: ( rule__FunctionCall__ArgumentsAssignment_1_3_1 )
+            // InternalBSharp.g:6457:1: ( ( rule__FunctionCall__ArgumentsAssignment_1_1_3_1 ) )
+            // InternalBSharp.g:6458:2: ( rule__FunctionCall__ArgumentsAssignment_1_1_3_1 )
             {
-             before(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_3_1()); 
-            // InternalBSharp.g:6392:2: ( rule__FunctionCall__ArgumentsAssignment_1_3_1 )
-            // InternalBSharp.g:6392:3: rule__FunctionCall__ArgumentsAssignment_1_3_1
+             before(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_1_3_1()); 
+            // InternalBSharp.g:6459:2: ( rule__FunctionCall__ArgumentsAssignment_1_1_3_1 )
+            // InternalBSharp.g:6459:3: rule__FunctionCall__ArgumentsAssignment_1_1_3_1
             {
             pushFollow(FOLLOW_2);
-            rule__FunctionCall__ArgumentsAssignment_1_3_1();
+            rule__FunctionCall__ArgumentsAssignment_1_1_3_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_3_1()); 
+             after(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_1_3_1()); 
 
             }
 
@@ -20014,18 +20275,18 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__Group_1_3__1__Impl"
+    // $ANTLR end "rule__FunctionCall__Group_1_1_3__1__Impl"
 
 
     // $ANTLR start "rule__ClassVarDecl__Group__0"
-    // InternalBSharp.g:6401:1: rule__ClassVarDecl__Group__0 : rule__ClassVarDecl__Group__0__Impl rule__ClassVarDecl__Group__1 ;
+    // InternalBSharp.g:6468:1: rule__ClassVarDecl__Group__0 : rule__ClassVarDecl__Group__0__Impl rule__ClassVarDecl__Group__1 ;
     public final void rule__ClassVarDecl__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6405:1: ( rule__ClassVarDecl__Group__0__Impl rule__ClassVarDecl__Group__1 )
-            // InternalBSharp.g:6406:2: rule__ClassVarDecl__Group__0__Impl rule__ClassVarDecl__Group__1
+            // InternalBSharp.g:6472:1: ( rule__ClassVarDecl__Group__0__Impl rule__ClassVarDecl__Group__1 )
+            // InternalBSharp.g:6473:2: rule__ClassVarDecl__Group__0__Impl rule__ClassVarDecl__Group__1
             {
             pushFollow(FOLLOW_9);
             rule__ClassVarDecl__Group__0__Impl();
@@ -20056,21 +20317,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassVarDecl__Group__0__Impl"
-    // InternalBSharp.g:6413:1: rule__ClassVarDecl__Group__0__Impl : ( ( rule__ClassVarDecl__OwnerTypeAssignment_0 ) ) ;
+    // InternalBSharp.g:6480:1: rule__ClassVarDecl__Group__0__Impl : ( ( rule__ClassVarDecl__OwnerTypeAssignment_0 ) ) ;
     public final void rule__ClassVarDecl__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6417:1: ( ( ( rule__ClassVarDecl__OwnerTypeAssignment_0 ) ) )
-            // InternalBSharp.g:6418:1: ( ( rule__ClassVarDecl__OwnerTypeAssignment_0 ) )
+            // InternalBSharp.g:6484:1: ( ( ( rule__ClassVarDecl__OwnerTypeAssignment_0 ) ) )
+            // InternalBSharp.g:6485:1: ( ( rule__ClassVarDecl__OwnerTypeAssignment_0 ) )
             {
-            // InternalBSharp.g:6418:1: ( ( rule__ClassVarDecl__OwnerTypeAssignment_0 ) )
-            // InternalBSharp.g:6419:2: ( rule__ClassVarDecl__OwnerTypeAssignment_0 )
+            // InternalBSharp.g:6485:1: ( ( rule__ClassVarDecl__OwnerTypeAssignment_0 ) )
+            // InternalBSharp.g:6486:2: ( rule__ClassVarDecl__OwnerTypeAssignment_0 )
             {
              before(grammarAccess.getClassVarDeclAccess().getOwnerTypeAssignment_0()); 
-            // InternalBSharp.g:6420:2: ( rule__ClassVarDecl__OwnerTypeAssignment_0 )
-            // InternalBSharp.g:6420:3: rule__ClassVarDecl__OwnerTypeAssignment_0
+            // InternalBSharp.g:6487:2: ( rule__ClassVarDecl__OwnerTypeAssignment_0 )
+            // InternalBSharp.g:6487:3: rule__ClassVarDecl__OwnerTypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__ClassVarDecl__OwnerTypeAssignment_0();
@@ -20103,14 +20364,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassVarDecl__Group__1"
-    // InternalBSharp.g:6428:1: rule__ClassVarDecl__Group__1 : rule__ClassVarDecl__Group__1__Impl rule__ClassVarDecl__Group__2 ;
+    // InternalBSharp.g:6495:1: rule__ClassVarDecl__Group__1 : rule__ClassVarDecl__Group__1__Impl rule__ClassVarDecl__Group__2 ;
     public final void rule__ClassVarDecl__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6432:1: ( rule__ClassVarDecl__Group__1__Impl rule__ClassVarDecl__Group__2 )
-            // InternalBSharp.g:6433:2: rule__ClassVarDecl__Group__1__Impl rule__ClassVarDecl__Group__2
+            // InternalBSharp.g:6499:1: ( rule__ClassVarDecl__Group__1__Impl rule__ClassVarDecl__Group__2 )
+            // InternalBSharp.g:6500:2: rule__ClassVarDecl__Group__1__Impl rule__ClassVarDecl__Group__2
             {
             pushFollow(FOLLOW_4);
             rule__ClassVarDecl__Group__1__Impl();
@@ -20141,17 +20402,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassVarDecl__Group__1__Impl"
-    // InternalBSharp.g:6440:1: rule__ClassVarDecl__Group__1__Impl : ( '.' ) ;
+    // InternalBSharp.g:6507:1: rule__ClassVarDecl__Group__1__Impl : ( '.' ) ;
     public final void rule__ClassVarDecl__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6444:1: ( ( '.' ) )
-            // InternalBSharp.g:6445:1: ( '.' )
+            // InternalBSharp.g:6511:1: ( ( '.' ) )
+            // InternalBSharp.g:6512:1: ( '.' )
             {
-            // InternalBSharp.g:6445:1: ( '.' )
-            // InternalBSharp.g:6446:2: '.'
+            // InternalBSharp.g:6512:1: ( '.' )
+            // InternalBSharp.g:6513:2: '.'
             {
              before(grammarAccess.getClassVarDeclAccess().getFullStopKeyword_1()); 
             match(input,33,FOLLOW_2); 
@@ -20178,14 +20439,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassVarDecl__Group__2"
-    // InternalBSharp.g:6455:1: rule__ClassVarDecl__Group__2 : rule__ClassVarDecl__Group__2__Impl ;
+    // InternalBSharp.g:6522:1: rule__ClassVarDecl__Group__2 : rule__ClassVarDecl__Group__2__Impl ;
     public final void rule__ClassVarDecl__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6459:1: ( rule__ClassVarDecl__Group__2__Impl )
-            // InternalBSharp.g:6460:2: rule__ClassVarDecl__Group__2__Impl
+            // InternalBSharp.g:6526:1: ( rule__ClassVarDecl__Group__2__Impl )
+            // InternalBSharp.g:6527:2: rule__ClassVarDecl__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ClassVarDecl__Group__2__Impl();
@@ -20211,21 +20472,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassVarDecl__Group__2__Impl"
-    // InternalBSharp.g:6466:1: rule__ClassVarDecl__Group__2__Impl : ( ( rule__ClassVarDecl__TypeInstAssignment_2 ) ) ;
+    // InternalBSharp.g:6533:1: rule__ClassVarDecl__Group__2__Impl : ( ( rule__ClassVarDecl__TypeInstAssignment_2 ) ) ;
     public final void rule__ClassVarDecl__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6470:1: ( ( ( rule__ClassVarDecl__TypeInstAssignment_2 ) ) )
-            // InternalBSharp.g:6471:1: ( ( rule__ClassVarDecl__TypeInstAssignment_2 ) )
+            // InternalBSharp.g:6537:1: ( ( ( rule__ClassVarDecl__TypeInstAssignment_2 ) ) )
+            // InternalBSharp.g:6538:1: ( ( rule__ClassVarDecl__TypeInstAssignment_2 ) )
             {
-            // InternalBSharp.g:6471:1: ( ( rule__ClassVarDecl__TypeInstAssignment_2 ) )
-            // InternalBSharp.g:6472:2: ( rule__ClassVarDecl__TypeInstAssignment_2 )
+            // InternalBSharp.g:6538:1: ( ( rule__ClassVarDecl__TypeInstAssignment_2 ) )
+            // InternalBSharp.g:6539:2: ( rule__ClassVarDecl__TypeInstAssignment_2 )
             {
              before(grammarAccess.getClassVarDeclAccess().getTypeInstAssignment_2()); 
-            // InternalBSharp.g:6473:2: ( rule__ClassVarDecl__TypeInstAssignment_2 )
-            // InternalBSharp.g:6473:3: rule__ClassVarDecl__TypeInstAssignment_2
+            // InternalBSharp.g:6540:2: ( rule__ClassVarDecl__TypeInstAssignment_2 )
+            // InternalBSharp.g:6540:3: rule__ClassVarDecl__TypeInstAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__ClassVarDecl__TypeInstAssignment_2();
@@ -20257,15 +20518,245 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ClassVarDecl__Group__2__Impl"
 
 
+    // $ANTLR start "rule__WrappedInfix__Group__0"
+    // InternalBSharp.g:6549:1: rule__WrappedInfix__Group__0 : rule__WrappedInfix__Group__0__Impl rule__WrappedInfix__Group__1 ;
+    public final void rule__WrappedInfix__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6553:1: ( rule__WrappedInfix__Group__0__Impl rule__WrappedInfix__Group__1 )
+            // InternalBSharp.g:6554:2: rule__WrappedInfix__Group__0__Impl rule__WrappedInfix__Group__1
+            {
+            pushFollow(FOLLOW_50);
+            rule__WrappedInfix__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__WrappedInfix__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__WrappedInfix__Group__0"
+
+
+    // $ANTLR start "rule__WrappedInfix__Group__0__Impl"
+    // InternalBSharp.g:6561:1: rule__WrappedInfix__Group__0__Impl : ( '[' ) ;
+    public final void rule__WrappedInfix__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6565:1: ( ( '[' ) )
+            // InternalBSharp.g:6566:1: ( '[' )
+            {
+            // InternalBSharp.g:6566:1: ( '[' )
+            // InternalBSharp.g:6567:2: '['
+            {
+             before(grammarAccess.getWrappedInfixAccess().getLeftSquareBracketKeyword_0()); 
+            match(input,38,FOLLOW_2); 
+             after(grammarAccess.getWrappedInfixAccess().getLeftSquareBracketKeyword_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__WrappedInfix__Group__0__Impl"
+
+
+    // $ANTLR start "rule__WrappedInfix__Group__1"
+    // InternalBSharp.g:6576:1: rule__WrappedInfix__Group__1 : rule__WrappedInfix__Group__1__Impl rule__WrappedInfix__Group__2 ;
+    public final void rule__WrappedInfix__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6580:1: ( rule__WrappedInfix__Group__1__Impl rule__WrappedInfix__Group__2 )
+            // InternalBSharp.g:6581:2: rule__WrappedInfix__Group__1__Impl rule__WrappedInfix__Group__2
+            {
+            pushFollow(FOLLOW_17);
+            rule__WrappedInfix__Group__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__WrappedInfix__Group__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__WrappedInfix__Group__1"
+
+
+    // $ANTLR start "rule__WrappedInfix__Group__1__Impl"
+    // InternalBSharp.g:6588:1: rule__WrappedInfix__Group__1__Impl : ( ( rule__WrappedInfix__Alternatives_1 ) ) ;
+    public final void rule__WrappedInfix__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6592:1: ( ( ( rule__WrappedInfix__Alternatives_1 ) ) )
+            // InternalBSharp.g:6593:1: ( ( rule__WrappedInfix__Alternatives_1 ) )
+            {
+            // InternalBSharp.g:6593:1: ( ( rule__WrappedInfix__Alternatives_1 ) )
+            // InternalBSharp.g:6594:2: ( rule__WrappedInfix__Alternatives_1 )
+            {
+             before(grammarAccess.getWrappedInfixAccess().getAlternatives_1()); 
+            // InternalBSharp.g:6595:2: ( rule__WrappedInfix__Alternatives_1 )
+            // InternalBSharp.g:6595:3: rule__WrappedInfix__Alternatives_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__WrappedInfix__Alternatives_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getWrappedInfixAccess().getAlternatives_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__WrappedInfix__Group__1__Impl"
+
+
+    // $ANTLR start "rule__WrappedInfix__Group__2"
+    // InternalBSharp.g:6603:1: rule__WrappedInfix__Group__2 : rule__WrappedInfix__Group__2__Impl ;
+    public final void rule__WrappedInfix__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6607:1: ( rule__WrappedInfix__Group__2__Impl )
+            // InternalBSharp.g:6608:2: rule__WrappedInfix__Group__2__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__WrappedInfix__Group__2__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__WrappedInfix__Group__2"
+
+
+    // $ANTLR start "rule__WrappedInfix__Group__2__Impl"
+    // InternalBSharp.g:6614:1: rule__WrappedInfix__Group__2__Impl : ( ']' ) ;
+    public final void rule__WrappedInfix__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:6618:1: ( ( ']' ) )
+            // InternalBSharp.g:6619:1: ( ']' )
+            {
+            // InternalBSharp.g:6619:1: ( ']' )
+            // InternalBSharp.g:6620:2: ']'
+            {
+             before(grammarAccess.getWrappedInfixAccess().getRightSquareBracketKeyword_2()); 
+            match(input,39,FOLLOW_2); 
+             after(grammarAccess.getWrappedInfixAccess().getRightSquareBracketKeyword_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__WrappedInfix__Group__2__Impl"
+
+
     // $ANTLR start "rule__Instance__Group__0"
-    // InternalBSharp.g:6482:1: rule__Instance__Group__0 : rule__Instance__Group__0__Impl rule__Instance__Group__1 ;
+    // InternalBSharp.g:6630:1: rule__Instance__Group__0 : rule__Instance__Group__0__Impl rule__Instance__Group__1 ;
     public final void rule__Instance__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6486:1: ( rule__Instance__Group__0__Impl rule__Instance__Group__1 )
-            // InternalBSharp.g:6487:2: rule__Instance__Group__0__Impl rule__Instance__Group__1
+            // InternalBSharp.g:6634:1: ( rule__Instance__Group__0__Impl rule__Instance__Group__1 )
+            // InternalBSharp.g:6635:2: rule__Instance__Group__0__Impl rule__Instance__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__Instance__Group__0__Impl();
@@ -20296,17 +20787,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__0__Impl"
-    // InternalBSharp.g:6494:1: rule__Instance__Group__0__Impl : ( 'Instance' ) ;
+    // InternalBSharp.g:6642:1: rule__Instance__Group__0__Impl : ( 'Instance' ) ;
     public final void rule__Instance__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6498:1: ( ( 'Instance' ) )
-            // InternalBSharp.g:6499:1: ( 'Instance' )
+            // InternalBSharp.g:6646:1: ( ( 'Instance' ) )
+            // InternalBSharp.g:6647:1: ( 'Instance' )
             {
-            // InternalBSharp.g:6499:1: ( 'Instance' )
-            // InternalBSharp.g:6500:2: 'Instance'
+            // InternalBSharp.g:6647:1: ( 'Instance' )
+            // InternalBSharp.g:6648:2: 'Instance'
             {
              before(grammarAccess.getInstanceAccess().getInstanceKeyword_0()); 
             match(input,55,FOLLOW_2); 
@@ -20333,14 +20824,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__1"
-    // InternalBSharp.g:6509:1: rule__Instance__Group__1 : rule__Instance__Group__1__Impl rule__Instance__Group__2 ;
+    // InternalBSharp.g:6657:1: rule__Instance__Group__1 : rule__Instance__Group__1__Impl rule__Instance__Group__2 ;
     public final void rule__Instance__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6513:1: ( rule__Instance__Group__1__Impl rule__Instance__Group__2 )
-            // InternalBSharp.g:6514:2: rule__Instance__Group__1__Impl rule__Instance__Group__2
+            // InternalBSharp.g:6661:1: ( rule__Instance__Group__1__Impl rule__Instance__Group__2 )
+            // InternalBSharp.g:6662:2: rule__Instance__Group__1__Impl rule__Instance__Group__2
             {
             pushFollow(FOLLOW_25);
             rule__Instance__Group__1__Impl();
@@ -20371,21 +20862,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__1__Impl"
-    // InternalBSharp.g:6521:1: rule__Instance__Group__1__Impl : ( ( rule__Instance__ClassNameAssignment_1 ) ) ;
+    // InternalBSharp.g:6669:1: rule__Instance__Group__1__Impl : ( ( rule__Instance__ClassNameAssignment_1 ) ) ;
     public final void rule__Instance__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6525:1: ( ( ( rule__Instance__ClassNameAssignment_1 ) ) )
-            // InternalBSharp.g:6526:1: ( ( rule__Instance__ClassNameAssignment_1 ) )
+            // InternalBSharp.g:6673:1: ( ( ( rule__Instance__ClassNameAssignment_1 ) ) )
+            // InternalBSharp.g:6674:1: ( ( rule__Instance__ClassNameAssignment_1 ) )
             {
-            // InternalBSharp.g:6526:1: ( ( rule__Instance__ClassNameAssignment_1 ) )
-            // InternalBSharp.g:6527:2: ( rule__Instance__ClassNameAssignment_1 )
+            // InternalBSharp.g:6674:1: ( ( rule__Instance__ClassNameAssignment_1 ) )
+            // InternalBSharp.g:6675:2: ( rule__Instance__ClassNameAssignment_1 )
             {
              before(grammarAccess.getInstanceAccess().getClassNameAssignment_1()); 
-            // InternalBSharp.g:6528:2: ( rule__Instance__ClassNameAssignment_1 )
-            // InternalBSharp.g:6528:3: rule__Instance__ClassNameAssignment_1
+            // InternalBSharp.g:6676:2: ( rule__Instance__ClassNameAssignment_1 )
+            // InternalBSharp.g:6676:3: rule__Instance__ClassNameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Instance__ClassNameAssignment_1();
@@ -20418,14 +20909,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__2"
-    // InternalBSharp.g:6536:1: rule__Instance__Group__2 : rule__Instance__Group__2__Impl rule__Instance__Group__3 ;
+    // InternalBSharp.g:6684:1: rule__Instance__Group__2 : rule__Instance__Group__2__Impl rule__Instance__Group__3 ;
     public final void rule__Instance__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6540:1: ( rule__Instance__Group__2__Impl rule__Instance__Group__3 )
-            // InternalBSharp.g:6541:2: rule__Instance__Group__2__Impl rule__Instance__Group__3
+            // InternalBSharp.g:6688:1: ( rule__Instance__Group__2__Impl rule__Instance__Group__3 )
+            // InternalBSharp.g:6689:2: rule__Instance__Group__2__Impl rule__Instance__Group__3
             {
             pushFollow(FOLLOW_26);
             rule__Instance__Group__2__Impl();
@@ -20456,21 +20947,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__2__Impl"
-    // InternalBSharp.g:6548:1: rule__Instance__Group__2__Impl : ( ( rule__Instance__ContextAssignment_2 ) ) ;
+    // InternalBSharp.g:6696:1: rule__Instance__Group__2__Impl : ( ( rule__Instance__ContextAssignment_2 ) ) ;
     public final void rule__Instance__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6552:1: ( ( ( rule__Instance__ContextAssignment_2 ) ) )
-            // InternalBSharp.g:6553:1: ( ( rule__Instance__ContextAssignment_2 ) )
+            // InternalBSharp.g:6700:1: ( ( ( rule__Instance__ContextAssignment_2 ) ) )
+            // InternalBSharp.g:6701:1: ( ( rule__Instance__ContextAssignment_2 ) )
             {
-            // InternalBSharp.g:6553:1: ( ( rule__Instance__ContextAssignment_2 ) )
-            // InternalBSharp.g:6554:2: ( rule__Instance__ContextAssignment_2 )
+            // InternalBSharp.g:6701:1: ( ( rule__Instance__ContextAssignment_2 ) )
+            // InternalBSharp.g:6702:2: ( rule__Instance__ContextAssignment_2 )
             {
              before(grammarAccess.getInstanceAccess().getContextAssignment_2()); 
-            // InternalBSharp.g:6555:2: ( rule__Instance__ContextAssignment_2 )
-            // InternalBSharp.g:6555:3: rule__Instance__ContextAssignment_2
+            // InternalBSharp.g:6703:2: ( rule__Instance__ContextAssignment_2 )
+            // InternalBSharp.g:6703:3: rule__Instance__ContextAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Instance__ContextAssignment_2();
@@ -20503,14 +20994,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__3"
-    // InternalBSharp.g:6563:1: rule__Instance__Group__3 : rule__Instance__Group__3__Impl rule__Instance__Group__4 ;
+    // InternalBSharp.g:6711:1: rule__Instance__Group__3 : rule__Instance__Group__3__Impl rule__Instance__Group__4 ;
     public final void rule__Instance__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6567:1: ( rule__Instance__Group__3__Impl rule__Instance__Group__4 )
-            // InternalBSharp.g:6568:2: rule__Instance__Group__3__Impl rule__Instance__Group__4
+            // InternalBSharp.g:6715:1: ( rule__Instance__Group__3__Impl rule__Instance__Group__4 )
+            // InternalBSharp.g:6716:2: rule__Instance__Group__3__Impl rule__Instance__Group__4
             {
             pushFollow(FOLLOW_52);
             rule__Instance__Group__3__Impl();
@@ -20541,17 +21032,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__3__Impl"
-    // InternalBSharp.g:6575:1: rule__Instance__Group__3__Impl : ( '(' ) ;
+    // InternalBSharp.g:6723:1: rule__Instance__Group__3__Impl : ( '(' ) ;
     public final void rule__Instance__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6579:1: ( ( '(' ) )
-            // InternalBSharp.g:6580:1: ( '(' )
+            // InternalBSharp.g:6727:1: ( ( '(' ) )
+            // InternalBSharp.g:6728:1: ( '(' )
             {
-            // InternalBSharp.g:6580:1: ( '(' )
-            // InternalBSharp.g:6581:2: '('
+            // InternalBSharp.g:6728:1: ( '(' )
+            // InternalBSharp.g:6729:2: '('
             {
              before(grammarAccess.getInstanceAccess().getLeftParenthesisKeyword_3()); 
             match(input,40,FOLLOW_2); 
@@ -20578,14 +21069,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__4"
-    // InternalBSharp.g:6590:1: rule__Instance__Group__4 : rule__Instance__Group__4__Impl rule__Instance__Group__5 ;
+    // InternalBSharp.g:6738:1: rule__Instance__Group__4 : rule__Instance__Group__4__Impl rule__Instance__Group__5 ;
     public final void rule__Instance__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6594:1: ( rule__Instance__Group__4__Impl rule__Instance__Group__5 )
-            // InternalBSharp.g:6595:2: rule__Instance__Group__4__Impl rule__Instance__Group__5
+            // InternalBSharp.g:6742:1: ( rule__Instance__Group__4__Impl rule__Instance__Group__5 )
+            // InternalBSharp.g:6743:2: rule__Instance__Group__4__Impl rule__Instance__Group__5
             {
             pushFollow(FOLLOW_52);
             rule__Instance__Group__4__Impl();
@@ -20616,29 +21107,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__4__Impl"
-    // InternalBSharp.g:6602:1: rule__Instance__Group__4__Impl : ( ( rule__Instance__ArgumentsAssignment_4 )? ) ;
+    // InternalBSharp.g:6750:1: rule__Instance__Group__4__Impl : ( ( rule__Instance__ArgumentsAssignment_4 )? ) ;
     public final void rule__Instance__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6606:1: ( ( ( rule__Instance__ArgumentsAssignment_4 )? ) )
-            // InternalBSharp.g:6607:1: ( ( rule__Instance__ArgumentsAssignment_4 )? )
+            // InternalBSharp.g:6754:1: ( ( ( rule__Instance__ArgumentsAssignment_4 )? ) )
+            // InternalBSharp.g:6755:1: ( ( rule__Instance__ArgumentsAssignment_4 )? )
             {
-            // InternalBSharp.g:6607:1: ( ( rule__Instance__ArgumentsAssignment_4 )? )
-            // InternalBSharp.g:6608:2: ( rule__Instance__ArgumentsAssignment_4 )?
+            // InternalBSharp.g:6755:1: ( ( rule__Instance__ArgumentsAssignment_4 )? )
+            // InternalBSharp.g:6756:2: ( rule__Instance__ArgumentsAssignment_4 )?
             {
              before(grammarAccess.getInstanceAccess().getArgumentsAssignment_4()); 
-            // InternalBSharp.g:6609:2: ( rule__Instance__ArgumentsAssignment_4 )?
-            int alt58=2;
-            int LA58_0 = input.LA(1);
+            // InternalBSharp.g:6757:2: ( rule__Instance__ArgumentsAssignment_4 )?
+            int alt60=2;
+            int LA60_0 = input.LA(1);
 
-            if ( (LA58_0==RULE_ID||LA58_0==11||(LA58_0>=23 && LA58_0<=24)||LA58_0==40||LA58_0==52||LA58_0==57) ) {
-                alt58=1;
+            if ( (LA60_0==RULE_ID||LA60_0==11||(LA60_0>=23 && LA60_0<=24)||LA60_0==38||LA60_0==40||LA60_0==52||LA60_0==57) ) {
+                alt60=1;
             }
-            switch (alt58) {
+            switch (alt60) {
                 case 1 :
-                    // InternalBSharp.g:6609:3: rule__Instance__ArgumentsAssignment_4
+                    // InternalBSharp.g:6757:3: rule__Instance__ArgumentsAssignment_4
                     {
                     pushFollow(FOLLOW_2);
                     rule__Instance__ArgumentsAssignment_4();
@@ -20674,14 +21165,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__5"
-    // InternalBSharp.g:6617:1: rule__Instance__Group__5 : rule__Instance__Group__5__Impl rule__Instance__Group__6 ;
+    // InternalBSharp.g:6765:1: rule__Instance__Group__5 : rule__Instance__Group__5__Impl rule__Instance__Group__6 ;
     public final void rule__Instance__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6621:1: ( rule__Instance__Group__5__Impl rule__Instance__Group__6 )
-            // InternalBSharp.g:6622:2: rule__Instance__Group__5__Impl rule__Instance__Group__6
+            // InternalBSharp.g:6769:1: ( rule__Instance__Group__5__Impl rule__Instance__Group__6 )
+            // InternalBSharp.g:6770:2: rule__Instance__Group__5__Impl rule__Instance__Group__6
             {
             pushFollow(FOLLOW_52);
             rule__Instance__Group__5__Impl();
@@ -20712,33 +21203,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__5__Impl"
-    // InternalBSharp.g:6629:1: rule__Instance__Group__5__Impl : ( ( rule__Instance__Group_5__0 )* ) ;
+    // InternalBSharp.g:6777:1: rule__Instance__Group__5__Impl : ( ( rule__Instance__Group_5__0 )* ) ;
     public final void rule__Instance__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6633:1: ( ( ( rule__Instance__Group_5__0 )* ) )
-            // InternalBSharp.g:6634:1: ( ( rule__Instance__Group_5__0 )* )
+            // InternalBSharp.g:6781:1: ( ( ( rule__Instance__Group_5__0 )* ) )
+            // InternalBSharp.g:6782:1: ( ( rule__Instance__Group_5__0 )* )
             {
-            // InternalBSharp.g:6634:1: ( ( rule__Instance__Group_5__0 )* )
-            // InternalBSharp.g:6635:2: ( rule__Instance__Group_5__0 )*
+            // InternalBSharp.g:6782:1: ( ( rule__Instance__Group_5__0 )* )
+            // InternalBSharp.g:6783:2: ( rule__Instance__Group_5__0 )*
             {
              before(grammarAccess.getInstanceAccess().getGroup_5()); 
-            // InternalBSharp.g:6636:2: ( rule__Instance__Group_5__0 )*
-            loop59:
+            // InternalBSharp.g:6784:2: ( rule__Instance__Group_5__0 )*
+            loop61:
             do {
-                int alt59=2;
-                int LA59_0 = input.LA(1);
+                int alt61=2;
+                int LA61_0 = input.LA(1);
 
-                if ( (LA59_0==44) ) {
-                    alt59=1;
+                if ( (LA61_0==44) ) {
+                    alt61=1;
                 }
 
 
-                switch (alt59) {
+                switch (alt61) {
             	case 1 :
-            	    // InternalBSharp.g:6636:3: rule__Instance__Group_5__0
+            	    // InternalBSharp.g:6784:3: rule__Instance__Group_5__0
             	    {
             	    pushFollow(FOLLOW_21);
             	    rule__Instance__Group_5__0();
@@ -20750,7 +21241,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop59;
+            	    break loop61;
                 }
             } while (true);
 
@@ -20777,14 +21268,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__6"
-    // InternalBSharp.g:6644:1: rule__Instance__Group__6 : rule__Instance__Group__6__Impl rule__Instance__Group__7 ;
+    // InternalBSharp.g:6792:1: rule__Instance__Group__6 : rule__Instance__Group__6__Impl rule__Instance__Group__7 ;
     public final void rule__Instance__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6648:1: ( rule__Instance__Group__6__Impl rule__Instance__Group__7 )
-            // InternalBSharp.g:6649:2: rule__Instance__Group__6__Impl rule__Instance__Group__7
+            // InternalBSharp.g:6796:1: ( rule__Instance__Group__6__Impl rule__Instance__Group__7 )
+            // InternalBSharp.g:6797:2: rule__Instance__Group__6__Impl rule__Instance__Group__7
             {
             pushFollow(FOLLOW_4);
             rule__Instance__Group__6__Impl();
@@ -20815,17 +21306,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__6__Impl"
-    // InternalBSharp.g:6656:1: rule__Instance__Group__6__Impl : ( ')' ) ;
+    // InternalBSharp.g:6804:1: rule__Instance__Group__6__Impl : ( ')' ) ;
     public final void rule__Instance__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6660:1: ( ( ')' ) )
-            // InternalBSharp.g:6661:1: ( ')' )
+            // InternalBSharp.g:6808:1: ( ( ')' ) )
+            // InternalBSharp.g:6809:1: ( ')' )
             {
-            // InternalBSharp.g:6661:1: ( ')' )
-            // InternalBSharp.g:6662:2: ')'
+            // InternalBSharp.g:6809:1: ( ')' )
+            // InternalBSharp.g:6810:2: ')'
             {
              before(grammarAccess.getInstanceAccess().getRightParenthesisKeyword_6()); 
             match(input,41,FOLLOW_2); 
@@ -20852,14 +21343,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__7"
-    // InternalBSharp.g:6671:1: rule__Instance__Group__7 : rule__Instance__Group__7__Impl ;
+    // InternalBSharp.g:6819:1: rule__Instance__Group__7 : rule__Instance__Group__7__Impl ;
     public final void rule__Instance__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6675:1: ( rule__Instance__Group__7__Impl )
-            // InternalBSharp.g:6676:2: rule__Instance__Group__7__Impl
+            // InternalBSharp.g:6823:1: ( rule__Instance__Group__7__Impl )
+            // InternalBSharp.g:6824:2: rule__Instance__Group__7__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Instance__Group__7__Impl();
@@ -20885,33 +21376,33 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group__7__Impl"
-    // InternalBSharp.g:6682:1: rule__Instance__Group__7__Impl : ( ( rule__Instance__NameAssignment_7 )? ) ;
+    // InternalBSharp.g:6830:1: rule__Instance__Group__7__Impl : ( ( rule__Instance__NameAssignment_7 )? ) ;
     public final void rule__Instance__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6686:1: ( ( ( rule__Instance__NameAssignment_7 )? ) )
-            // InternalBSharp.g:6687:1: ( ( rule__Instance__NameAssignment_7 )? )
+            // InternalBSharp.g:6834:1: ( ( ( rule__Instance__NameAssignment_7 )? ) )
+            // InternalBSharp.g:6835:1: ( ( rule__Instance__NameAssignment_7 )? )
             {
-            // InternalBSharp.g:6687:1: ( ( rule__Instance__NameAssignment_7 )? )
-            // InternalBSharp.g:6688:2: ( rule__Instance__NameAssignment_7 )?
+            // InternalBSharp.g:6835:1: ( ( rule__Instance__NameAssignment_7 )? )
+            // InternalBSharp.g:6836:2: ( rule__Instance__NameAssignment_7 )?
             {
              before(grammarAccess.getInstanceAccess().getNameAssignment_7()); 
-            // InternalBSharp.g:6689:2: ( rule__Instance__NameAssignment_7 )?
-            int alt60=2;
-            int LA60_0 = input.LA(1);
+            // InternalBSharp.g:6837:2: ( rule__Instance__NameAssignment_7 )?
+            int alt62=2;
+            int LA62_0 = input.LA(1);
 
-            if ( (LA60_0==RULE_ID) ) {
-                int LA60_1 = input.LA(2);
+            if ( (LA62_0==RULE_ID) ) {
+                int LA62_1 = input.LA(2);
 
-                if ( (LA60_1==EOF||LA60_1==RULE_ID||LA60_1==51||LA60_1==53||LA60_1==55) ) {
-                    alt60=1;
+                if ( (LA62_1==EOF||LA62_1==RULE_ID||LA62_1==51||LA62_1==53||LA62_1==55) ) {
+                    alt62=1;
                 }
             }
-            switch (alt60) {
+            switch (alt62) {
                 case 1 :
-                    // InternalBSharp.g:6689:3: rule__Instance__NameAssignment_7
+                    // InternalBSharp.g:6837:3: rule__Instance__NameAssignment_7
                     {
                     pushFollow(FOLLOW_2);
                     rule__Instance__NameAssignment_7();
@@ -20947,14 +21438,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group_5__0"
-    // InternalBSharp.g:6698:1: rule__Instance__Group_5__0 : rule__Instance__Group_5__0__Impl rule__Instance__Group_5__1 ;
+    // InternalBSharp.g:6846:1: rule__Instance__Group_5__0 : rule__Instance__Group_5__0__Impl rule__Instance__Group_5__1 ;
     public final void rule__Instance__Group_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6702:1: ( rule__Instance__Group_5__0__Impl rule__Instance__Group_5__1 )
-            // InternalBSharp.g:6703:2: rule__Instance__Group_5__0__Impl rule__Instance__Group_5__1
+            // InternalBSharp.g:6850:1: ( rule__Instance__Group_5__0__Impl rule__Instance__Group_5__1 )
+            // InternalBSharp.g:6851:2: rule__Instance__Group_5__0__Impl rule__Instance__Group_5__1
             {
             pushFollow(FOLLOW_28);
             rule__Instance__Group_5__0__Impl();
@@ -20985,17 +21476,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group_5__0__Impl"
-    // InternalBSharp.g:6710:1: rule__Instance__Group_5__0__Impl : ( ',' ) ;
+    // InternalBSharp.g:6858:1: rule__Instance__Group_5__0__Impl : ( ',' ) ;
     public final void rule__Instance__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6714:1: ( ( ',' ) )
-            // InternalBSharp.g:6715:1: ( ',' )
+            // InternalBSharp.g:6862:1: ( ( ',' ) )
+            // InternalBSharp.g:6863:1: ( ',' )
             {
-            // InternalBSharp.g:6715:1: ( ',' )
-            // InternalBSharp.g:6716:2: ','
+            // InternalBSharp.g:6863:1: ( ',' )
+            // InternalBSharp.g:6864:2: ','
             {
              before(grammarAccess.getInstanceAccess().getCommaKeyword_5_0()); 
             match(input,44,FOLLOW_2); 
@@ -21022,14 +21513,14 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group_5__1"
-    // InternalBSharp.g:6725:1: rule__Instance__Group_5__1 : rule__Instance__Group_5__1__Impl ;
+    // InternalBSharp.g:6873:1: rule__Instance__Group_5__1 : rule__Instance__Group_5__1__Impl ;
     public final void rule__Instance__Group_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6729:1: ( rule__Instance__Group_5__1__Impl )
-            // InternalBSharp.g:6730:2: rule__Instance__Group_5__1__Impl
+            // InternalBSharp.g:6877:1: ( rule__Instance__Group_5__1__Impl )
+            // InternalBSharp.g:6878:2: rule__Instance__Group_5__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Instance__Group_5__1__Impl();
@@ -21055,21 +21546,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__Group_5__1__Impl"
-    // InternalBSharp.g:6736:1: rule__Instance__Group_5__1__Impl : ( ( rule__Instance__ArgumentsAssignment_5_1 ) ) ;
+    // InternalBSharp.g:6884:1: rule__Instance__Group_5__1__Impl : ( ( rule__Instance__ArgumentsAssignment_5_1 ) ) ;
     public final void rule__Instance__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6740:1: ( ( ( rule__Instance__ArgumentsAssignment_5_1 ) ) )
-            // InternalBSharp.g:6741:1: ( ( rule__Instance__ArgumentsAssignment_5_1 ) )
+            // InternalBSharp.g:6888:1: ( ( ( rule__Instance__ArgumentsAssignment_5_1 ) ) )
+            // InternalBSharp.g:6889:1: ( ( rule__Instance__ArgumentsAssignment_5_1 ) )
             {
-            // InternalBSharp.g:6741:1: ( ( rule__Instance__ArgumentsAssignment_5_1 ) )
-            // InternalBSharp.g:6742:2: ( rule__Instance__ArgumentsAssignment_5_1 )
+            // InternalBSharp.g:6889:1: ( ( rule__Instance__ArgumentsAssignment_5_1 ) )
+            // InternalBSharp.g:6890:2: ( rule__Instance__ArgumentsAssignment_5_1 )
             {
              before(grammarAccess.getInstanceAccess().getArgumentsAssignment_5_1()); 
-            // InternalBSharp.g:6743:2: ( rule__Instance__ArgumentsAssignment_5_1 )
-            // InternalBSharp.g:6743:3: rule__Instance__ArgumentsAssignment_5_1
+            // InternalBSharp.g:6891:2: ( rule__Instance__ArgumentsAssignment_5_1 )
+            // InternalBSharp.g:6891:3: rule__Instance__ArgumentsAssignment_5_1
             {
             pushFollow(FOLLOW_2);
             rule__Instance__ArgumentsAssignment_5_1();
@@ -21102,17 +21593,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevel__NameAssignment_1"
-    // InternalBSharp.g:6752:1: rule__TopLevel__NameAssignment_1 : ( ruleQualifiedName ) ;
+    // InternalBSharp.g:6900:1: rule__TopLevel__NameAssignment_1 : ( ruleQualifiedName ) ;
     public final void rule__TopLevel__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6756:1: ( ( ruleQualifiedName ) )
-            // InternalBSharp.g:6757:2: ( ruleQualifiedName )
+            // InternalBSharp.g:6904:1: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:6905:2: ( ruleQualifiedName )
             {
-            // InternalBSharp.g:6757:2: ( ruleQualifiedName )
-            // InternalBSharp.g:6758:3: ruleQualifiedName
+            // InternalBSharp.g:6905:2: ( ruleQualifiedName )
+            // InternalBSharp.g:6906:3: ruleQualifiedName
             {
              before(grammarAccess.getTopLevelAccess().getNameQualifiedNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21143,17 +21634,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevel__TopLevelFileAssignment_2"
-    // InternalBSharp.g:6767:1: rule__TopLevel__TopLevelFileAssignment_2 : ( ruleTopLevelFile ) ;
+    // InternalBSharp.g:6915:1: rule__TopLevel__TopLevelFileAssignment_2 : ( ruleTopLevelFile ) ;
     public final void rule__TopLevel__TopLevelFileAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6771:1: ( ( ruleTopLevelFile ) )
-            // InternalBSharp.g:6772:2: ( ruleTopLevelFile )
+            // InternalBSharp.g:6919:1: ( ( ruleTopLevelFile ) )
+            // InternalBSharp.g:6920:2: ( ruleTopLevelFile )
             {
-            // InternalBSharp.g:6772:2: ( ruleTopLevelFile )
-            // InternalBSharp.g:6773:3: ruleTopLevelFile
+            // InternalBSharp.g:6920:2: ( ruleTopLevelFile )
+            // InternalBSharp.g:6921:3: ruleTopLevelFile
             {
              before(grammarAccess.getTopLevelAccess().getTopLevelFileTopLevelFileParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21184,17 +21675,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelFile__NoImportElementsAssignment_1"
-    // InternalBSharp.g:6782:1: rule__TopLevelFile__NoImportElementsAssignment_1 : ( ruleBodyElements ) ;
+    // InternalBSharp.g:6930:1: rule__TopLevelFile__NoImportElementsAssignment_1 : ( ruleBodyElements ) ;
     public final void rule__TopLevelFile__NoImportElementsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6786:1: ( ( ruleBodyElements ) )
-            // InternalBSharp.g:6787:2: ( ruleBodyElements )
+            // InternalBSharp.g:6934:1: ( ( ruleBodyElements ) )
+            // InternalBSharp.g:6935:2: ( ruleBodyElements )
             {
-            // InternalBSharp.g:6787:2: ( ruleBodyElements )
-            // InternalBSharp.g:6788:3: ruleBodyElements
+            // InternalBSharp.g:6935:2: ( ruleBodyElements )
+            // InternalBSharp.g:6936:3: ruleBodyElements
             {
              before(grammarAccess.getTopLevelFileAccess().getNoImportElementsBodyElementsParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21225,17 +21716,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelFile__TopLevelImportsAssignment_2"
-    // InternalBSharp.g:6797:1: rule__TopLevelFile__TopLevelImportsAssignment_2 : ( ruleTopLevelImport ) ;
+    // InternalBSharp.g:6945:1: rule__TopLevelFile__TopLevelImportsAssignment_2 : ( ruleTopLevelImport ) ;
     public final void rule__TopLevelFile__TopLevelImportsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6801:1: ( ( ruleTopLevelImport ) )
-            // InternalBSharp.g:6802:2: ( ruleTopLevelImport )
+            // InternalBSharp.g:6949:1: ( ( ruleTopLevelImport ) )
+            // InternalBSharp.g:6950:2: ( ruleTopLevelImport )
             {
-            // InternalBSharp.g:6802:2: ( ruleTopLevelImport )
-            // InternalBSharp.g:6803:3: ruleTopLevelImport
+            // InternalBSharp.g:6950:2: ( ruleTopLevelImport )
+            // InternalBSharp.g:6951:3: ruleTopLevelImport
             {
              before(grammarAccess.getTopLevelFileAccess().getTopLevelImportsTopLevelImportParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21266,17 +21757,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelImport__GlobalImportsAssignment_0_0"
-    // InternalBSharp.g:6812:1: rule__TopLevelImport__GlobalImportsAssignment_0_0 : ( ruleGlobalImport ) ;
+    // InternalBSharp.g:6960:1: rule__TopLevelImport__GlobalImportsAssignment_0_0 : ( ruleGlobalImport ) ;
     public final void rule__TopLevelImport__GlobalImportsAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6816:1: ( ( ruleGlobalImport ) )
-            // InternalBSharp.g:6817:2: ( ruleGlobalImport )
+            // InternalBSharp.g:6964:1: ( ( ruleGlobalImport ) )
+            // InternalBSharp.g:6965:2: ( ruleGlobalImport )
             {
-            // InternalBSharp.g:6817:2: ( ruleGlobalImport )
-            // InternalBSharp.g:6818:3: ruleGlobalImport
+            // InternalBSharp.g:6965:2: ( ruleGlobalImport )
+            // InternalBSharp.g:6966:3: ruleGlobalImport
             {
              before(grammarAccess.getTopLevelImportAccess().getGlobalImportsGlobalImportParserRuleCall_0_0_0()); 
             pushFollow(FOLLOW_2);
@@ -21307,17 +21798,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelImport__LocalImportsAssignment_0_1"
-    // InternalBSharp.g:6827:1: rule__TopLevelImport__LocalImportsAssignment_0_1 : ( ruleLocalImport ) ;
+    // InternalBSharp.g:6975:1: rule__TopLevelImport__LocalImportsAssignment_0_1 : ( ruleLocalImport ) ;
     public final void rule__TopLevelImport__LocalImportsAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6831:1: ( ( ruleLocalImport ) )
-            // InternalBSharp.g:6832:2: ( ruleLocalImport )
+            // InternalBSharp.g:6979:1: ( ( ruleLocalImport ) )
+            // InternalBSharp.g:6980:2: ( ruleLocalImport )
             {
-            // InternalBSharp.g:6832:2: ( ruleLocalImport )
-            // InternalBSharp.g:6833:3: ruleLocalImport
+            // InternalBSharp.g:6980:2: ( ruleLocalImport )
+            // InternalBSharp.g:6981:3: ruleLocalImport
             {
              before(grammarAccess.getTopLevelImportAccess().getLocalImportsLocalImportParserRuleCall_0_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21348,17 +21839,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TopLevelImport__BodyElementsAssignment_1"
-    // InternalBSharp.g:6842:1: rule__TopLevelImport__BodyElementsAssignment_1 : ( ruleBodyElements ) ;
+    // InternalBSharp.g:6990:1: rule__TopLevelImport__BodyElementsAssignment_1 : ( ruleBodyElements ) ;
     public final void rule__TopLevelImport__BodyElementsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6846:1: ( ( ruleBodyElements ) )
-            // InternalBSharp.g:6847:2: ( ruleBodyElements )
+            // InternalBSharp.g:6994:1: ( ( ruleBodyElements ) )
+            // InternalBSharp.g:6995:2: ( ruleBodyElements )
             {
-            // InternalBSharp.g:6847:2: ( ruleBodyElements )
-            // InternalBSharp.g:6848:3: ruleBodyElements
+            // InternalBSharp.g:6995:2: ( ruleBodyElements )
+            // InternalBSharp.g:6996:3: ruleBodyElements
             {
              before(grammarAccess.getTopLevelImportAccess().getBodyElementsBodyElementsParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21389,17 +21880,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BodyElements__ClassesAssignment_0"
-    // InternalBSharp.g:6857:1: rule__BodyElements__ClassesAssignment_0 : ( ruleClassDecl ) ;
+    // InternalBSharp.g:7005:1: rule__BodyElements__ClassesAssignment_0 : ( ruleClassDecl ) ;
     public final void rule__BodyElements__ClassesAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6861:1: ( ( ruleClassDecl ) )
-            // InternalBSharp.g:6862:2: ( ruleClassDecl )
+            // InternalBSharp.g:7009:1: ( ( ruleClassDecl ) )
+            // InternalBSharp.g:7010:2: ( ruleClassDecl )
             {
-            // InternalBSharp.g:6862:2: ( ruleClassDecl )
-            // InternalBSharp.g:6863:3: ruleClassDecl
+            // InternalBSharp.g:7010:2: ( ruleClassDecl )
+            // InternalBSharp.g:7011:3: ruleClassDecl
             {
              before(grammarAccess.getBodyElementsAccess().getClassesClassDeclParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -21430,17 +21921,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BodyElements__ExtendsAssignment_1"
-    // InternalBSharp.g:6872:1: rule__BodyElements__ExtendsAssignment_1 : ( ruleExtend ) ;
+    // InternalBSharp.g:7020:1: rule__BodyElements__ExtendsAssignment_1 : ( ruleExtend ) ;
     public final void rule__BodyElements__ExtendsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6876:1: ( ( ruleExtend ) )
-            // InternalBSharp.g:6877:2: ( ruleExtend )
+            // InternalBSharp.g:7024:1: ( ( ruleExtend ) )
+            // InternalBSharp.g:7025:2: ( ruleExtend )
             {
-            // InternalBSharp.g:6877:2: ( ruleExtend )
-            // InternalBSharp.g:6878:3: ruleExtend
+            // InternalBSharp.g:7025:2: ( ruleExtend )
+            // InternalBSharp.g:7026:3: ruleExtend
             {
              before(grammarAccess.getBodyElementsAccess().getExtendsExtendParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21471,17 +21962,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__ProjectAssignment_1"
-    // InternalBSharp.g:6887:1: rule__GlobalImport__ProjectAssignment_1 : ( ruleQualifiedName ) ;
+    // InternalBSharp.g:7035:1: rule__GlobalImport__ProjectAssignment_1 : ( ruleQualifiedName ) ;
     public final void rule__GlobalImport__ProjectAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6891:1: ( ( ruleQualifiedName ) )
-            // InternalBSharp.g:6892:2: ( ruleQualifiedName )
+            // InternalBSharp.g:7039:1: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:7040:2: ( ruleQualifiedName )
             {
-            // InternalBSharp.g:6892:2: ( ruleQualifiedName )
-            // InternalBSharp.g:6893:3: ruleQualifiedName
+            // InternalBSharp.g:7040:2: ( ruleQualifiedName )
+            // InternalBSharp.g:7041:3: ruleQualifiedName
             {
              before(grammarAccess.getGlobalImportAccess().getProjectQualifiedNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21512,17 +22003,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalImport__FileImportsAssignment_3"
-    // InternalBSharp.g:6902:1: rule__GlobalImport__FileImportsAssignment_3 : ( ruleFileImport ) ;
+    // InternalBSharp.g:7050:1: rule__GlobalImport__FileImportsAssignment_3 : ( ruleFileImport ) ;
     public final void rule__GlobalImport__FileImportsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6906:1: ( ( ruleFileImport ) )
-            // InternalBSharp.g:6907:2: ( ruleFileImport )
+            // InternalBSharp.g:7054:1: ( ( ruleFileImport ) )
+            // InternalBSharp.g:7055:2: ( ruleFileImport )
             {
-            // InternalBSharp.g:6907:2: ( ruleFileImport )
-            // InternalBSharp.g:6908:3: ruleFileImport
+            // InternalBSharp.g:7055:2: ( ruleFileImport )
+            // InternalBSharp.g:7056:3: ruleFileImport
             {
              before(grammarAccess.getGlobalImportAccess().getFileImportsFileImportParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -21553,17 +22044,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__FileNameAssignment_0"
-    // InternalBSharp.g:6917:1: rule__FileImport__FileNameAssignment_0 : ( RULE_ID ) ;
+    // InternalBSharp.g:7065:1: rule__FileImport__FileNameAssignment_0 : ( RULE_ID ) ;
     public final void rule__FileImport__FileNameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6921:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:6922:2: ( RULE_ID )
+            // InternalBSharp.g:7069:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:7070:2: ( RULE_ID )
             {
-            // InternalBSharp.g:6922:2: ( RULE_ID )
-            // InternalBSharp.g:6923:3: RULE_ID
+            // InternalBSharp.g:7070:2: ( RULE_ID )
+            // InternalBSharp.g:7071:3: RULE_ID
             {
              before(grammarAccess.getFileImportAccess().getFileNameIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -21590,17 +22081,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FileImport__TypeAssignment_1_1_1"
-    // InternalBSharp.g:6932:1: rule__FileImport__TypeAssignment_1_1_1 : ( RULE_ID ) ;
+    // InternalBSharp.g:7080:1: rule__FileImport__TypeAssignment_1_1_1 : ( RULE_ID ) ;
     public final void rule__FileImport__TypeAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6936:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:6937:2: ( RULE_ID )
+            // InternalBSharp.g:7084:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:7085:2: ( RULE_ID )
             {
-            // InternalBSharp.g:6937:2: ( RULE_ID )
-            // InternalBSharp.g:6938:3: RULE_ID
+            // InternalBSharp.g:7085:2: ( RULE_ID )
+            // InternalBSharp.g:7086:3: RULE_ID
             {
              before(grammarAccess.getFileImportAccess().getTypeIDTerminalRuleCall_1_1_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -21627,17 +22118,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LocalImport__FileImportsAssignment_1"
-    // InternalBSharp.g:6947:1: rule__LocalImport__FileImportsAssignment_1 : ( ruleFileImport ) ;
+    // InternalBSharp.g:7095:1: rule__LocalImport__FileImportsAssignment_1 : ( ruleFileImport ) ;
     public final void rule__LocalImport__FileImportsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6951:1: ( ( ruleFileImport ) )
-            // InternalBSharp.g:6952:2: ( ruleFileImport )
+            // InternalBSharp.g:7099:1: ( ( ruleFileImport ) )
+            // InternalBSharp.g:7100:2: ( ruleFileImport )
             {
-            // InternalBSharp.g:6952:2: ( ruleFileImport )
-            // InternalBSharp.g:6953:3: ruleFileImport
+            // InternalBSharp.g:7100:2: ( ruleFileImport )
+            // InternalBSharp.g:7101:3: ruleFileImport
             {
              before(grammarAccess.getLocalImportAccess().getFileImportsFileImportParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21668,17 +22159,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__NameAssignment_1"
-    // InternalBSharp.g:6962:1: rule__Class__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalBSharp.g:7110:1: rule__Class__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Class__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6966:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:6967:2: ( RULE_ID )
+            // InternalBSharp.g:7114:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:7115:2: ( RULE_ID )
             {
-            // InternalBSharp.g:6967:2: ( RULE_ID )
-            // InternalBSharp.g:6968:3: RULE_ID
+            // InternalBSharp.g:7115:2: ( RULE_ID )
+            // InternalBSharp.g:7116:3: RULE_ID
             {
              before(grammarAccess.getClassAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -21705,17 +22196,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__ContextAssignment_2"
-    // InternalBSharp.g:6977:1: rule__Class__ContextAssignment_2 : ( rulePolyContext ) ;
+    // InternalBSharp.g:7125:1: rule__Class__ContextAssignment_2 : ( rulePolyContext ) ;
     public final void rule__Class__ContextAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6981:1: ( ( rulePolyContext ) )
-            // InternalBSharp.g:6982:2: ( rulePolyContext )
+            // InternalBSharp.g:7129:1: ( ( rulePolyContext ) )
+            // InternalBSharp.g:7130:2: ( rulePolyContext )
             {
-            // InternalBSharp.g:6982:2: ( rulePolyContext )
-            // InternalBSharp.g:6983:3: rulePolyContext
+            // InternalBSharp.g:7130:2: ( rulePolyContext )
+            // InternalBSharp.g:7131:3: rulePolyContext
             {
              before(grammarAccess.getClassAccess().getContextPolyContextParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21746,17 +22237,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__InstNameAssignment_3_1"
-    // InternalBSharp.g:6992:1: rule__Class__InstNameAssignment_3_1 : ( ruleInstName ) ;
+    // InternalBSharp.g:7140:1: rule__Class__InstNameAssignment_3_1 : ( ruleInstName ) ;
     public final void rule__Class__InstNameAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:6996:1: ( ( ruleInstName ) )
-            // InternalBSharp.g:6997:2: ( ruleInstName )
+            // InternalBSharp.g:7144:1: ( ( ruleInstName ) )
+            // InternalBSharp.g:7145:2: ( ruleInstName )
             {
-            // InternalBSharp.g:6997:2: ( ruleInstName )
-            // InternalBSharp.g:6998:3: ruleInstName
+            // InternalBSharp.g:7145:2: ( ruleInstName )
+            // InternalBSharp.g:7146:3: ruleInstName
             {
              before(grammarAccess.getClassAccess().getInstNameInstNameParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21787,17 +22278,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__SupertypesAssignment_4"
-    // InternalBSharp.g:7007:1: rule__Class__SupertypesAssignment_4 : ( ruleSuperTypeList ) ;
+    // InternalBSharp.g:7155:1: rule__Class__SupertypesAssignment_4 : ( ruleSuperTypeList ) ;
     public final void rule__Class__SupertypesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7011:1: ( ( ruleSuperTypeList ) )
-            // InternalBSharp.g:7012:2: ( ruleSuperTypeList )
+            // InternalBSharp.g:7159:1: ( ( ruleSuperTypeList ) )
+            // InternalBSharp.g:7160:2: ( ruleSuperTypeList )
             {
-            // InternalBSharp.g:7012:2: ( ruleSuperTypeList )
-            // InternalBSharp.g:7013:3: ruleSuperTypeList
+            // InternalBSharp.g:7160:2: ( ruleSuperTypeList )
+            // InternalBSharp.g:7161:3: ruleSuperTypeList
             {
              before(grammarAccess.getClassAccess().getSupertypesSuperTypeListParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -21828,17 +22319,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__VarListAssignment_5_1"
-    // InternalBSharp.g:7022:1: rule__Class__VarListAssignment_5_1 : ( ruleTypedVariableList ) ;
+    // InternalBSharp.g:7170:1: rule__Class__VarListAssignment_5_1 : ( ruleTypedVariableList ) ;
     public final void rule__Class__VarListAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7026:1: ( ( ruleTypedVariableList ) )
-            // InternalBSharp.g:7027:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:7174:1: ( ( ruleTypedVariableList ) )
+            // InternalBSharp.g:7175:2: ( ruleTypedVariableList )
             {
-            // InternalBSharp.g:7027:2: ( ruleTypedVariableList )
-            // InternalBSharp.g:7028:3: ruleTypedVariableList
+            // InternalBSharp.g:7175:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:7176:3: ruleTypedVariableList
             {
              before(grammarAccess.getClassAccess().getVarListTypedVariableListParserRuleCall_5_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21869,17 +22360,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__WhereAssignment_6"
-    // InternalBSharp.g:7037:1: rule__Class__WhereAssignment_6 : ( ruleWhere ) ;
+    // InternalBSharp.g:7185:1: rule__Class__WhereAssignment_6 : ( ruleWhere ) ;
     public final void rule__Class__WhereAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7041:1: ( ( ruleWhere ) )
-            // InternalBSharp.g:7042:2: ( ruleWhere )
+            // InternalBSharp.g:7189:1: ( ( ruleWhere ) )
+            // InternalBSharp.g:7190:2: ( ruleWhere )
             {
-            // InternalBSharp.g:7042:2: ( ruleWhere )
-            // InternalBSharp.g:7043:3: ruleWhere
+            // InternalBSharp.g:7190:2: ( ruleWhere )
+            // InternalBSharp.g:7191:3: ruleWhere
             {
              before(grammarAccess.getClassAccess().getWhereWhereParserRuleCall_6_0()); 
             pushFollow(FOLLOW_2);
@@ -21910,17 +22401,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__BlockAssignment_8"
-    // InternalBSharp.g:7052:1: rule__Class__BlockAssignment_8 : ( ruleBSharpBlock ) ;
+    // InternalBSharp.g:7200:1: rule__Class__BlockAssignment_8 : ( ruleBSharpBlock ) ;
     public final void rule__Class__BlockAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7056:1: ( ( ruleBSharpBlock ) )
-            // InternalBSharp.g:7057:2: ( ruleBSharpBlock )
+            // InternalBSharp.g:7204:1: ( ( ruleBSharpBlock ) )
+            // InternalBSharp.g:7205:2: ( ruleBSharpBlock )
             {
-            // InternalBSharp.g:7057:2: ( ruleBSharpBlock )
-            // InternalBSharp.g:7058:3: ruleBSharpBlock
+            // InternalBSharp.g:7205:2: ( ruleBSharpBlock )
+            // InternalBSharp.g:7206:3: ruleBSharpBlock
             {
              before(grammarAccess.getClassAccess().getBlockBSharpBlockParserRuleCall_8_0()); 
             pushFollow(FOLLOW_2);
@@ -21951,17 +22442,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InstName__NameAssignment"
-    // InternalBSharp.g:7067:1: rule__InstName__NameAssignment : ( RULE_ID ) ;
+    // InternalBSharp.g:7215:1: rule__InstName__NameAssignment : ( RULE_ID ) ;
     public final void rule__InstName__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7071:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:7072:2: ( RULE_ID )
+            // InternalBSharp.g:7219:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:7220:2: ( RULE_ID )
             {
-            // InternalBSharp.g:7072:2: ( RULE_ID )
-            // InternalBSharp.g:7073:3: RULE_ID
+            // InternalBSharp.g:7220:2: ( RULE_ID )
+            // InternalBSharp.g:7221:3: RULE_ID
             {
              before(grammarAccess.getInstNameAccess().getNameIDTerminalRuleCall_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -21988,17 +22479,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyContext__PolyTypesAssignment_1"
-    // InternalBSharp.g:7082:1: rule__PolyContext__PolyTypesAssignment_1 : ( rulePolyType ) ;
+    // InternalBSharp.g:7230:1: rule__PolyContext__PolyTypesAssignment_1 : ( rulePolyType ) ;
     public final void rule__PolyContext__PolyTypesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7086:1: ( ( rulePolyType ) )
-            // InternalBSharp.g:7087:2: ( rulePolyType )
+            // InternalBSharp.g:7234:1: ( ( rulePolyType ) )
+            // InternalBSharp.g:7235:2: ( rulePolyType )
             {
-            // InternalBSharp.g:7087:2: ( rulePolyType )
-            // InternalBSharp.g:7088:3: rulePolyType
+            // InternalBSharp.g:7235:2: ( rulePolyType )
+            // InternalBSharp.g:7236:3: rulePolyType
             {
              before(grammarAccess.getPolyContextAccess().getPolyTypesPolyTypeParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22029,17 +22520,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__NameAssignment_0"
-    // InternalBSharp.g:7097:1: rule__PolyType__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalBSharp.g:7245:1: rule__PolyType__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__PolyType__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7101:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:7102:2: ( RULE_ID )
+            // InternalBSharp.g:7249:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:7250:2: ( RULE_ID )
             {
-            // InternalBSharp.g:7102:2: ( RULE_ID )
-            // InternalBSharp.g:7103:3: RULE_ID
+            // InternalBSharp.g:7250:2: ( RULE_ID )
+            // InternalBSharp.g:7251:3: RULE_ID
             {
              before(grammarAccess.getPolyTypeAccess().getNameIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -22066,21 +22557,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__SuperTypesAssignment_1_1"
-    // InternalBSharp.g:7112:1: rule__PolyType__SuperTypesAssignment_1_1 : ( ( ruleQualifiedName ) ) ;
+    // InternalBSharp.g:7260:1: rule__PolyType__SuperTypesAssignment_1_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__PolyType__SuperTypesAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7116:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalBSharp.g:7117:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:7264:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalBSharp.g:7265:2: ( ( ruleQualifiedName ) )
             {
-            // InternalBSharp.g:7117:2: ( ( ruleQualifiedName ) )
-            // InternalBSharp.g:7118:3: ( ruleQualifiedName )
+            // InternalBSharp.g:7265:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:7266:3: ( ruleQualifiedName )
             {
              before(grammarAccess.getPolyTypeAccess().getSuperTypesClassDeclCrossReference_1_1_0()); 
-            // InternalBSharp.g:7119:3: ( ruleQualifiedName )
-            // InternalBSharp.g:7120:4: ruleQualifiedName
+            // InternalBSharp.g:7267:3: ( ruleQualifiedName )
+            // InternalBSharp.g:7268:4: ruleQualifiedName
             {
              before(grammarAccess.getPolyTypeAccess().getSuperTypesClassDeclQualifiedNameParserRuleCall_1_1_0_1()); 
             pushFollow(FOLLOW_2);
@@ -22115,21 +22606,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PolyType__SuperTypesAssignment_1_2_1"
-    // InternalBSharp.g:7131:1: rule__PolyType__SuperTypesAssignment_1_2_1 : ( ( ruleQualifiedName ) ) ;
+    // InternalBSharp.g:7279:1: rule__PolyType__SuperTypesAssignment_1_2_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__PolyType__SuperTypesAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7135:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalBSharp.g:7136:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:7283:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalBSharp.g:7284:2: ( ( ruleQualifiedName ) )
             {
-            // InternalBSharp.g:7136:2: ( ( ruleQualifiedName ) )
-            // InternalBSharp.g:7137:3: ( ruleQualifiedName )
+            // InternalBSharp.g:7284:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:7285:3: ( ruleQualifiedName )
             {
              before(grammarAccess.getPolyTypeAccess().getSuperTypesClassDeclCrossReference_1_2_1_0()); 
-            // InternalBSharp.g:7138:3: ( ruleQualifiedName )
-            // InternalBSharp.g:7139:4: ruleQualifiedName
+            // InternalBSharp.g:7286:3: ( ruleQualifiedName )
+            // InternalBSharp.g:7287:4: ruleQualifiedName
             {
              before(grammarAccess.getPolyTypeAccess().getSuperTypesClassDeclQualifiedNameParserRuleCall_1_2_1_0_1()); 
             pushFollow(FOLLOW_2);
@@ -22164,17 +22655,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__SuperTypesAssignment_1"
-    // InternalBSharp.g:7150:1: rule__SuperTypeList__SuperTypesAssignment_1 : ( ruleConstructedType ) ;
+    // InternalBSharp.g:7298:1: rule__SuperTypeList__SuperTypesAssignment_1 : ( ruleConstructedType ) ;
     public final void rule__SuperTypeList__SuperTypesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7154:1: ( ( ruleConstructedType ) )
-            // InternalBSharp.g:7155:2: ( ruleConstructedType )
+            // InternalBSharp.g:7302:1: ( ( ruleConstructedType ) )
+            // InternalBSharp.g:7303:2: ( ruleConstructedType )
             {
-            // InternalBSharp.g:7155:2: ( ruleConstructedType )
-            // InternalBSharp.g:7156:3: ruleConstructedType
+            // InternalBSharp.g:7303:2: ( ruleConstructedType )
+            // InternalBSharp.g:7304:3: ruleConstructedType
             {
              before(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22205,17 +22696,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SuperTypeList__SuperTypesAssignment_2_1"
-    // InternalBSharp.g:7165:1: rule__SuperTypeList__SuperTypesAssignment_2_1 : ( ruleConstructedType ) ;
+    // InternalBSharp.g:7313:1: rule__SuperTypeList__SuperTypesAssignment_2_1 : ( ruleConstructedType ) ;
     public final void rule__SuperTypeList__SuperTypesAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7169:1: ( ( ruleConstructedType ) )
-            // InternalBSharp.g:7170:2: ( ruleConstructedType )
+            // InternalBSharp.g:7317:1: ( ( ruleConstructedType ) )
+            // InternalBSharp.g:7318:2: ( ruleConstructedType )
             {
-            // InternalBSharp.g:7170:2: ( ruleConstructedType )
-            // InternalBSharp.g:7171:3: ruleConstructedType
+            // InternalBSharp.g:7318:2: ( ruleConstructedType )
+            // InternalBSharp.g:7319:3: ruleConstructedType
             {
              before(grammarAccess.getSuperTypeListAccess().getSuperTypesConstructedTypeParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22246,17 +22737,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__ConstructorAssignment_1_1"
-    // InternalBSharp.g:7180:1: rule__ConstructedType__ConstructorAssignment_1_1 : ( ruleBuiltinTypeInfixOp ) ;
+    // InternalBSharp.g:7328:1: rule__ConstructedType__ConstructorAssignment_1_1 : ( ruleBuiltinTypeInfixOp ) ;
     public final void rule__ConstructedType__ConstructorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7184:1: ( ( ruleBuiltinTypeInfixOp ) )
-            // InternalBSharp.g:7185:2: ( ruleBuiltinTypeInfixOp )
+            // InternalBSharp.g:7332:1: ( ( ruleBuiltinTypeInfixOp ) )
+            // InternalBSharp.g:7333:2: ( ruleBuiltinTypeInfixOp )
             {
-            // InternalBSharp.g:7185:2: ( ruleBuiltinTypeInfixOp )
-            // InternalBSharp.g:7186:3: ruleBuiltinTypeInfixOp
+            // InternalBSharp.g:7333:2: ( ruleBuiltinTypeInfixOp )
+            // InternalBSharp.g:7334:3: ruleBuiltinTypeInfixOp
             {
              before(grammarAccess.getConstructedTypeAccess().getConstructorBuiltinTypeInfixOpParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22287,17 +22778,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConstructedType__RightAssignment_1_2"
-    // InternalBSharp.g:7195:1: rule__ConstructedType__RightAssignment_1_2 : ( ruleBuilderElem ) ;
+    // InternalBSharp.g:7343:1: rule__ConstructedType__RightAssignment_1_2 : ( ruleBuilderElem ) ;
     public final void rule__ConstructedType__RightAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7199:1: ( ( ruleBuilderElem ) )
-            // InternalBSharp.g:7200:2: ( ruleBuilderElem )
+            // InternalBSharp.g:7347:1: ( ( ruleBuilderElem ) )
+            // InternalBSharp.g:7348:2: ( ruleBuilderElem )
             {
-            // InternalBSharp.g:7200:2: ( ruleBuilderElem )
-            // InternalBSharp.g:7201:3: ruleBuilderElem
+            // InternalBSharp.g:7348:2: ( ruleBuilderElem )
+            // InternalBSharp.g:7349:3: ruleBuilderElem
             {
              before(grammarAccess.getConstructedTypeAccess().getRightBuilderElemParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -22328,21 +22819,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstructor__TypeNameAssignment_0"
-    // InternalBSharp.g:7210:1: rule__TypeConstructor__TypeNameAssignment_0 : ( ( ruleQualifiedName ) ) ;
+    // InternalBSharp.g:7358:1: rule__TypeConstructor__TypeNameAssignment_0 : ( ( ruleQualifiedName ) ) ;
     public final void rule__TypeConstructor__TypeNameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7214:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalBSharp.g:7215:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:7362:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalBSharp.g:7363:2: ( ( ruleQualifiedName ) )
             {
-            // InternalBSharp.g:7215:2: ( ( ruleQualifiedName ) )
-            // InternalBSharp.g:7216:3: ( ruleQualifiedName )
+            // InternalBSharp.g:7363:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:7364:3: ( ruleQualifiedName )
             {
              before(grammarAccess.getTypeConstructorAccess().getTypeNameGenNameCrossReference_0_0()); 
-            // InternalBSharp.g:7217:3: ( ruleQualifiedName )
-            // InternalBSharp.g:7218:4: ruleQualifiedName
+            // InternalBSharp.g:7365:3: ( ruleQualifiedName )
+            // InternalBSharp.g:7366:4: ruleQualifiedName
             {
              before(grammarAccess.getTypeConstructorAccess().getTypeNameGenNameQualifiedNameParserRuleCall_0_0_1()); 
             pushFollow(FOLLOW_2);
@@ -22377,17 +22868,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstructor__ContextAssignment_1"
-    // InternalBSharp.g:7229:1: rule__TypeConstructor__ContextAssignment_1 : ( ruleTypeDeclContext ) ;
+    // InternalBSharp.g:7377:1: rule__TypeConstructor__ContextAssignment_1 : ( ruleTypeDeclContext ) ;
     public final void rule__TypeConstructor__ContextAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7233:1: ( ( ruleTypeDeclContext ) )
-            // InternalBSharp.g:7234:2: ( ruleTypeDeclContext )
+            // InternalBSharp.g:7381:1: ( ( ruleTypeDeclContext ) )
+            // InternalBSharp.g:7382:2: ( ruleTypeDeclContext )
             {
-            // InternalBSharp.g:7234:2: ( ruleTypeDeclContext )
-            // InternalBSharp.g:7235:3: ruleTypeDeclContext
+            // InternalBSharp.g:7382:2: ( ruleTypeDeclContext )
+            // InternalBSharp.g:7383:3: ruleTypeDeclContext
             {
              before(grammarAccess.getTypeConstructorAccess().getContextTypeDeclContextParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22418,17 +22909,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypePowerSet__ChildAssignment_2"
-    // InternalBSharp.g:7244:1: rule__TypePowerSet__ChildAssignment_2 : ( ruleConstructedType ) ;
+    // InternalBSharp.g:7392:1: rule__TypePowerSet__ChildAssignment_2 : ( ruleConstructedType ) ;
     public final void rule__TypePowerSet__ChildAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7248:1: ( ( ruleConstructedType ) )
-            // InternalBSharp.g:7249:2: ( ruleConstructedType )
+            // InternalBSharp.g:7396:1: ( ( ruleConstructedType ) )
+            // InternalBSharp.g:7397:2: ( ruleConstructedType )
             {
-            // InternalBSharp.g:7249:2: ( ruleConstructedType )
-            // InternalBSharp.g:7250:3: ruleConstructedType
+            // InternalBSharp.g:7397:2: ( ruleConstructedType )
+            // InternalBSharp.g:7398:3: ruleConstructedType
             {
              before(grammarAccess.getTypePowerSetAccess().getChildConstructedTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -22459,17 +22950,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeConstrBracket__ChildAssignment_1"
-    // InternalBSharp.g:7259:1: rule__TypeConstrBracket__ChildAssignment_1 : ( ruleConstructedType ) ;
+    // InternalBSharp.g:7407:1: rule__TypeConstrBracket__ChildAssignment_1 : ( ruleConstructedType ) ;
     public final void rule__TypeConstrBracket__ChildAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7263:1: ( ( ruleConstructedType ) )
-            // InternalBSharp.g:7264:2: ( ruleConstructedType )
+            // InternalBSharp.g:7411:1: ( ( ruleConstructedType ) )
+            // InternalBSharp.g:7412:2: ( ruleConstructedType )
             {
-            // InternalBSharp.g:7264:2: ( ruleConstructedType )
-            // InternalBSharp.g:7265:3: ruleConstructedType
+            // InternalBSharp.g:7412:2: ( ruleConstructedType )
+            // InternalBSharp.g:7413:3: ruleConstructedType
             {
              before(grammarAccess.getTypeConstrBracketAccess().getChildConstructedTypeParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22500,17 +22991,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__TypeNameAssignment_1"
-    // InternalBSharp.g:7274:1: rule__TypeDeclContext__TypeNameAssignment_1 : ( ruleConstructedType ) ;
+    // InternalBSharp.g:7422:1: rule__TypeDeclContext__TypeNameAssignment_1 : ( ruleConstructedType ) ;
     public final void rule__TypeDeclContext__TypeNameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7278:1: ( ( ruleConstructedType ) )
-            // InternalBSharp.g:7279:2: ( ruleConstructedType )
+            // InternalBSharp.g:7426:1: ( ( ruleConstructedType ) )
+            // InternalBSharp.g:7427:2: ( ruleConstructedType )
             {
-            // InternalBSharp.g:7279:2: ( ruleConstructedType )
-            // InternalBSharp.g:7280:3: ruleConstructedType
+            // InternalBSharp.g:7427:2: ( ruleConstructedType )
+            // InternalBSharp.g:7428:3: ruleConstructedType
             {
              before(grammarAccess.getTypeDeclContextAccess().getTypeNameConstructedTypeParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22541,17 +23032,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclContext__TypeNameAssignment_2_1"
-    // InternalBSharp.g:7289:1: rule__TypeDeclContext__TypeNameAssignment_2_1 : ( ruleConstructedType ) ;
+    // InternalBSharp.g:7437:1: rule__TypeDeclContext__TypeNameAssignment_2_1 : ( ruleConstructedType ) ;
     public final void rule__TypeDeclContext__TypeNameAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7293:1: ( ( ruleConstructedType ) )
-            // InternalBSharp.g:7294:2: ( ruleConstructedType )
+            // InternalBSharp.g:7441:1: ( ( ruleConstructedType ) )
+            // InternalBSharp.g:7442:2: ( ruleConstructedType )
             {
-            // InternalBSharp.g:7294:2: ( ruleConstructedType )
-            // InternalBSharp.g:7295:3: ruleConstructedType
+            // InternalBSharp.g:7442:2: ( ruleConstructedType )
+            // InternalBSharp.g:7443:3: ruleConstructedType
             {
              before(grammarAccess.getTypeDeclContextAccess().getTypeNameConstructedTypeParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22582,17 +23073,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__ExpressionsAssignment_1"
-    // InternalBSharp.g:7304:1: rule__Where__ExpressionsAssignment_1 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:7452:1: rule__Where__ExpressionsAssignment_1 : ( ruleRootExpression ) ;
     public final void rule__Where__ExpressionsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7308:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:7309:2: ( ruleRootExpression )
+            // InternalBSharp.g:7456:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:7457:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:7309:2: ( ruleRootExpression )
-            // InternalBSharp.g:7310:3: ruleRootExpression
+            // InternalBSharp.g:7457:2: ( ruleRootExpression )
+            // InternalBSharp.g:7458:3: ruleRootExpression
             {
              before(grammarAccess.getWhereAccess().getExpressionsRootExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22623,17 +23114,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Where__ExpressionsAssignment_2_1"
-    // InternalBSharp.g:7319:1: rule__Where__ExpressionsAssignment_2_1 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:7467:1: rule__Where__ExpressionsAssignment_2_1 : ( ruleRootExpression ) ;
     public final void rule__Where__ExpressionsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7323:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:7324:2: ( ruleRootExpression )
+            // InternalBSharp.g:7471:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:7472:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:7324:2: ( ruleRootExpression )
-            // InternalBSharp.g:7325:3: ruleRootExpression
+            // InternalBSharp.g:7472:2: ( ruleRootExpression )
+            // InternalBSharp.g:7473:3: ruleRootExpression
             {
              before(grammarAccess.getWhereAccess().getExpressionsRootExpressionParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22664,17 +23155,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__NameAssignment_1"
-    // InternalBSharp.g:7334:1: rule__Datatype__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalBSharp.g:7482:1: rule__Datatype__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Datatype__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7338:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:7339:2: ( RULE_ID )
+            // InternalBSharp.g:7486:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:7487:2: ( RULE_ID )
             {
-            // InternalBSharp.g:7339:2: ( RULE_ID )
-            // InternalBSharp.g:7340:3: RULE_ID
+            // InternalBSharp.g:7487:2: ( RULE_ID )
+            // InternalBSharp.g:7488:3: RULE_ID
             {
              before(grammarAccess.getDatatypeAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -22701,17 +23192,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__ContextAssignment_2"
-    // InternalBSharp.g:7349:1: rule__Datatype__ContextAssignment_2 : ( rulePolyContext ) ;
+    // InternalBSharp.g:7497:1: rule__Datatype__ContextAssignment_2 : ( rulePolyContext ) ;
     public final void rule__Datatype__ContextAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7353:1: ( ( rulePolyContext ) )
-            // InternalBSharp.g:7354:2: ( rulePolyContext )
+            // InternalBSharp.g:7501:1: ( ( rulePolyContext ) )
+            // InternalBSharp.g:7502:2: ( rulePolyContext )
             {
-            // InternalBSharp.g:7354:2: ( rulePolyContext )
-            // InternalBSharp.g:7355:3: rulePolyContext
+            // InternalBSharp.g:7502:2: ( rulePolyContext )
+            // InternalBSharp.g:7503:3: rulePolyContext
             {
              before(grammarAccess.getDatatypeAccess().getContextPolyContextParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -22742,17 +23233,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__ConstructorsAssignment_3_1"
-    // InternalBSharp.g:7364:1: rule__Datatype__ConstructorsAssignment_3_1 : ( ruleDatatypeConstructor ) ;
+    // InternalBSharp.g:7512:1: rule__Datatype__ConstructorsAssignment_3_1 : ( ruleDatatypeConstructor ) ;
     public final void rule__Datatype__ConstructorsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7368:1: ( ( ruleDatatypeConstructor ) )
-            // InternalBSharp.g:7369:2: ( ruleDatatypeConstructor )
+            // InternalBSharp.g:7516:1: ( ( ruleDatatypeConstructor ) )
+            // InternalBSharp.g:7517:2: ( ruleDatatypeConstructor )
             {
-            // InternalBSharp.g:7369:2: ( ruleDatatypeConstructor )
-            // InternalBSharp.g:7370:3: ruleDatatypeConstructor
+            // InternalBSharp.g:7517:2: ( ruleDatatypeConstructor )
+            // InternalBSharp.g:7518:3: ruleDatatypeConstructor
             {
              before(grammarAccess.getDatatypeAccess().getConstructorsDatatypeConstructorParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22783,17 +23274,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__BlockAssignment_4"
-    // InternalBSharp.g:7379:1: rule__Datatype__BlockAssignment_4 : ( ruleBSharpBlock ) ;
+    // InternalBSharp.g:7527:1: rule__Datatype__BlockAssignment_4 : ( ruleBSharpBlock ) ;
     public final void rule__Datatype__BlockAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7383:1: ( ( ruleBSharpBlock ) )
-            // InternalBSharp.g:7384:2: ( ruleBSharpBlock )
+            // InternalBSharp.g:7531:1: ( ( ruleBSharpBlock ) )
+            // InternalBSharp.g:7532:2: ( ruleBSharpBlock )
             {
-            // InternalBSharp.g:7384:2: ( ruleBSharpBlock )
-            // InternalBSharp.g:7385:3: ruleBSharpBlock
+            // InternalBSharp.g:7532:2: ( ruleBSharpBlock )
+            // InternalBSharp.g:7533:3: ruleBSharpBlock
             {
              before(grammarAccess.getDatatypeAccess().getBlockBSharpBlockParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -22824,17 +23315,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__NameAssignment_0"
-    // InternalBSharp.g:7394:1: rule__DatatypeConstructor__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalBSharp.g:7542:1: rule__DatatypeConstructor__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__DatatypeConstructor__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7398:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:7399:2: ( RULE_ID )
+            // InternalBSharp.g:7546:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:7547:2: ( RULE_ID )
             {
-            // InternalBSharp.g:7399:2: ( RULE_ID )
-            // InternalBSharp.g:7400:3: RULE_ID
+            // InternalBSharp.g:7547:2: ( RULE_ID )
+            // InternalBSharp.g:7548:3: RULE_ID
             {
              before(grammarAccess.getDatatypeConstructorAccess().getNameIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -22861,17 +23352,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DatatypeConstructor__DeconsAssignment_1_1"
-    // InternalBSharp.g:7409:1: rule__DatatypeConstructor__DeconsAssignment_1_1 : ( ruleTypedVariableList ) ;
+    // InternalBSharp.g:7557:1: rule__DatatypeConstructor__DeconsAssignment_1_1 : ( ruleTypedVariableList ) ;
     public final void rule__DatatypeConstructor__DeconsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7413:1: ( ( ruleTypedVariableList ) )
-            // InternalBSharp.g:7414:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:7561:1: ( ( ruleTypedVariableList ) )
+            // InternalBSharp.g:7562:2: ( ruleTypedVariableList )
             {
-            // InternalBSharp.g:7414:2: ( ruleTypedVariableList )
-            // InternalBSharp.g:7415:3: ruleTypedVariableList
+            // InternalBSharp.g:7562:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:7563:3: ruleTypedVariableList
             {
              before(grammarAccess.getDatatypeConstructorAccess().getDeconsTypedVariableListParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22902,21 +23393,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__ExtendedClassAssignment_1"
-    // InternalBSharp.g:7424:1: rule__Extend__ExtendedClassAssignment_1 : ( ( ruleQualifiedName ) ) ;
+    // InternalBSharp.g:7572:1: rule__Extend__ExtendedClassAssignment_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__Extend__ExtendedClassAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7428:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalBSharp.g:7429:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:7576:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalBSharp.g:7577:2: ( ( ruleQualifiedName ) )
             {
-            // InternalBSharp.g:7429:2: ( ( ruleQualifiedName ) )
-            // InternalBSharp.g:7430:3: ( ruleQualifiedName )
+            // InternalBSharp.g:7577:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:7578:3: ( ruleQualifiedName )
             {
              before(grammarAccess.getExtendAccess().getExtendedClassClassDeclCrossReference_1_0()); 
-            // InternalBSharp.g:7431:3: ( ruleQualifiedName )
-            // InternalBSharp.g:7432:4: ruleQualifiedName
+            // InternalBSharp.g:7579:3: ( ruleQualifiedName )
+            // InternalBSharp.g:7580:4: ruleQualifiedName
             {
              before(grammarAccess.getExtendAccess().getExtendedClassClassDeclQualifiedNameParserRuleCall_1_0_1()); 
             pushFollow(FOLLOW_2);
@@ -22951,17 +23442,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__NameAssignment_3"
-    // InternalBSharp.g:7443:1: rule__Extend__NameAssignment_3 : ( RULE_ID ) ;
+    // InternalBSharp.g:7591:1: rule__Extend__NameAssignment_3 : ( RULE_ID ) ;
     public final void rule__Extend__NameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7447:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:7448:2: ( RULE_ID )
+            // InternalBSharp.g:7595:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:7596:2: ( RULE_ID )
             {
-            // InternalBSharp.g:7448:2: ( RULE_ID )
-            // InternalBSharp.g:7449:3: RULE_ID
+            // InternalBSharp.g:7596:2: ( RULE_ID )
+            // InternalBSharp.g:7597:3: RULE_ID
             {
              before(grammarAccess.getExtendAccess().getNameIDTerminalRuleCall_3_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -22988,17 +23479,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Extend__BlockAssignment_5"
-    // InternalBSharp.g:7458:1: rule__Extend__BlockAssignment_5 : ( ruleBSharpBlock ) ;
+    // InternalBSharp.g:7606:1: rule__Extend__BlockAssignment_5 : ( ruleBSharpBlock ) ;
     public final void rule__Extend__BlockAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7462:1: ( ( ruleBSharpBlock ) )
-            // InternalBSharp.g:7463:2: ( ruleBSharpBlock )
+            // InternalBSharp.g:7610:1: ( ( ruleBSharpBlock ) )
+            // InternalBSharp.g:7611:2: ( ruleBSharpBlock )
             {
-            // InternalBSharp.g:7463:2: ( ruleBSharpBlock )
-            // InternalBSharp.g:7464:3: ruleBSharpBlock
+            // InternalBSharp.g:7611:2: ( ruleBSharpBlock )
+            // InternalBSharp.g:7612:3: ruleBSharpBlock
             {
              before(grammarAccess.getExtendAccess().getBlockBSharpBlockParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -23029,17 +23520,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__FunctionsAssignment_2_0"
-    // InternalBSharp.g:7473:1: rule__BSharpBlock__FunctionsAssignment_2_0 : ( ruleFunctionDecl ) ;
+    // InternalBSharp.g:7621:1: rule__BSharpBlock__FunctionsAssignment_2_0 : ( ruleFunctionDecl ) ;
     public final void rule__BSharpBlock__FunctionsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7477:1: ( ( ruleFunctionDecl ) )
-            // InternalBSharp.g:7478:2: ( ruleFunctionDecl )
+            // InternalBSharp.g:7625:1: ( ( ruleFunctionDecl ) )
+            // InternalBSharp.g:7626:2: ( ruleFunctionDecl )
             {
-            // InternalBSharp.g:7478:2: ( ruleFunctionDecl )
-            // InternalBSharp.g:7479:3: ruleFunctionDecl
+            // InternalBSharp.g:7626:2: ( ruleFunctionDecl )
+            // InternalBSharp.g:7627:3: ruleFunctionDecl
             {
              before(grammarAccess.getBSharpBlockAccess().getFunctionsFunctionDeclParserRuleCall_2_0_0()); 
             pushFollow(FOLLOW_2);
@@ -23070,17 +23561,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__TheoremsAssignment_2_1"
-    // InternalBSharp.g:7488:1: rule__BSharpBlock__TheoremsAssignment_2_1 : ( ruleTheoremBody ) ;
+    // InternalBSharp.g:7636:1: rule__BSharpBlock__TheoremsAssignment_2_1 : ( ruleTheoremBody ) ;
     public final void rule__BSharpBlock__TheoremsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7492:1: ( ( ruleTheoremBody ) )
-            // InternalBSharp.g:7493:2: ( ruleTheoremBody )
+            // InternalBSharp.g:7640:1: ( ( ruleTheoremBody ) )
+            // InternalBSharp.g:7641:2: ( ruleTheoremBody )
             {
-            // InternalBSharp.g:7493:2: ( ruleTheoremBody )
-            // InternalBSharp.g:7494:3: ruleTheoremBody
+            // InternalBSharp.g:7641:2: ( ruleTheoremBody )
+            // InternalBSharp.g:7642:3: ruleTheoremBody
             {
              before(grammarAccess.getBSharpBlockAccess().getTheoremsTheoremBodyParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -23111,17 +23602,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BSharpBlock__InstancesAssignment_2_2"
-    // InternalBSharp.g:7503:1: rule__BSharpBlock__InstancesAssignment_2_2 : ( ruleInstance ) ;
+    // InternalBSharp.g:7651:1: rule__BSharpBlock__InstancesAssignment_2_2 : ( ruleInstance ) ;
     public final void rule__BSharpBlock__InstancesAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7507:1: ( ( ruleInstance ) )
-            // InternalBSharp.g:7508:2: ( ruleInstance )
+            // InternalBSharp.g:7655:1: ( ( ruleInstance ) )
+            // InternalBSharp.g:7656:2: ( ruleInstance )
             {
-            // InternalBSharp.g:7508:2: ( ruleInstance )
-            // InternalBSharp.g:7509:3: ruleInstance
+            // InternalBSharp.g:7656:2: ( ruleInstance )
+            // InternalBSharp.g:7657:3: ruleInstance
             {
              before(grammarAccess.getBSharpBlockAccess().getInstancesInstanceParserRuleCall_2_2_0()); 
             pushFollow(FOLLOW_2);
@@ -23152,17 +23643,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__NameAssignment_0"
-    // InternalBSharp.g:7518:1: rule__FunctionDecl__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalBSharp.g:7666:1: rule__FunctionDecl__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__FunctionDecl__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7522:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:7523:2: ( RULE_ID )
+            // InternalBSharp.g:7670:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:7671:2: ( RULE_ID )
             {
-            // InternalBSharp.g:7523:2: ( RULE_ID )
-            // InternalBSharp.g:7524:3: RULE_ID
+            // InternalBSharp.g:7671:2: ( RULE_ID )
+            // InternalBSharp.g:7672:3: RULE_ID
             {
              before(grammarAccess.getFunctionDeclAccess().getNameIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -23189,17 +23680,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__ContextAssignment_1"
-    // InternalBSharp.g:7533:1: rule__FunctionDecl__ContextAssignment_1 : ( rulePolyContext ) ;
+    // InternalBSharp.g:7681:1: rule__FunctionDecl__ContextAssignment_1 : ( rulePolyContext ) ;
     public final void rule__FunctionDecl__ContextAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7537:1: ( ( rulePolyContext ) )
-            // InternalBSharp.g:7538:2: ( rulePolyContext )
+            // InternalBSharp.g:7685:1: ( ( rulePolyContext ) )
+            // InternalBSharp.g:7686:2: ( rulePolyContext )
             {
-            // InternalBSharp.g:7538:2: ( rulePolyContext )
-            // InternalBSharp.g:7539:3: rulePolyContext
+            // InternalBSharp.g:7686:2: ( rulePolyContext )
+            // InternalBSharp.g:7687:3: rulePolyContext
             {
              before(grammarAccess.getFunctionDeclAccess().getContextPolyContextParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -23230,17 +23721,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__VarListAssignment_3"
-    // InternalBSharp.g:7548:1: rule__FunctionDecl__VarListAssignment_3 : ( ruleTypedVariableList ) ;
+    // InternalBSharp.g:7696:1: rule__FunctionDecl__VarListAssignment_3 : ( ruleTypedVariableList ) ;
     public final void rule__FunctionDecl__VarListAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7552:1: ( ( ruleTypedVariableList ) )
-            // InternalBSharp.g:7553:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:7700:1: ( ( ruleTypedVariableList ) )
+            // InternalBSharp.g:7701:2: ( ruleTypedVariableList )
             {
-            // InternalBSharp.g:7553:2: ( ruleTypedVariableList )
-            // InternalBSharp.g:7554:3: ruleTypedVariableList
+            // InternalBSharp.g:7701:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:7702:3: ruleTypedVariableList
             {
              before(grammarAccess.getFunctionDeclAccess().getVarListTypedVariableListParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -23271,17 +23762,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__ReturnTypeAssignment_6"
-    // InternalBSharp.g:7563:1: rule__FunctionDecl__ReturnTypeAssignment_6 : ( ruleTypeConstructor ) ;
+    // InternalBSharp.g:7711:1: rule__FunctionDecl__ReturnTypeAssignment_6 : ( ruleTypeConstructor ) ;
     public final void rule__FunctionDecl__ReturnTypeAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7567:1: ( ( ruleTypeConstructor ) )
-            // InternalBSharp.g:7568:2: ( ruleTypeConstructor )
+            // InternalBSharp.g:7715:1: ( ( ruleTypeConstructor ) )
+            // InternalBSharp.g:7716:2: ( ruleTypeConstructor )
             {
-            // InternalBSharp.g:7568:2: ( ruleTypeConstructor )
-            // InternalBSharp.g:7569:3: ruleTypeConstructor
+            // InternalBSharp.g:7716:2: ( ruleTypeConstructor )
+            // InternalBSharp.g:7717:3: ruleTypeConstructor
             {
              before(grammarAccess.getFunctionDeclAccess().getReturnTypeTypeConstructorParserRuleCall_6_0()); 
             pushFollow(FOLLOW_2);
@@ -23312,21 +23803,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__InfixAssignment_7"
-    // InternalBSharp.g:7578:1: rule__FunctionDecl__InfixAssignment_7 : ( ( 'INFIX' ) ) ;
+    // InternalBSharp.g:7726:1: rule__FunctionDecl__InfixAssignment_7 : ( ( 'INFIX' ) ) ;
     public final void rule__FunctionDecl__InfixAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7582:1: ( ( ( 'INFIX' ) ) )
-            // InternalBSharp.g:7583:2: ( ( 'INFIX' ) )
+            // InternalBSharp.g:7730:1: ( ( ( 'INFIX' ) ) )
+            // InternalBSharp.g:7731:2: ( ( 'INFIX' ) )
             {
-            // InternalBSharp.g:7583:2: ( ( 'INFIX' ) )
-            // InternalBSharp.g:7584:3: ( 'INFIX' )
+            // InternalBSharp.g:7731:2: ( ( 'INFIX' ) )
+            // InternalBSharp.g:7732:3: ( 'INFIX' )
             {
              before(grammarAccess.getFunctionDeclAccess().getInfixINFIXKeyword_7_0()); 
-            // InternalBSharp.g:7585:3: ( 'INFIX' )
-            // InternalBSharp.g:7586:4: 'INFIX'
+            // InternalBSharp.g:7733:3: ( 'INFIX' )
+            // InternalBSharp.g:7734:4: 'INFIX'
             {
              before(grammarAccess.getFunctionDeclAccess().getInfixINFIXKeyword_7_0()); 
             match(input,56,FOLLOW_2); 
@@ -23357,17 +23848,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__PrecedenceAssignment_8"
-    // InternalBSharp.g:7597:1: rule__FunctionDecl__PrecedenceAssignment_8 : ( RULE_INT ) ;
+    // InternalBSharp.g:7745:1: rule__FunctionDecl__PrecedenceAssignment_8 : ( RULE_INT ) ;
     public final void rule__FunctionDecl__PrecedenceAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7601:1: ( ( RULE_INT ) )
-            // InternalBSharp.g:7602:2: ( RULE_INT )
+            // InternalBSharp.g:7749:1: ( ( RULE_INT ) )
+            // InternalBSharp.g:7750:2: ( RULE_INT )
             {
-            // InternalBSharp.g:7602:2: ( RULE_INT )
-            // InternalBSharp.g:7603:3: RULE_INT
+            // InternalBSharp.g:7750:2: ( RULE_INT )
+            // InternalBSharp.g:7751:3: RULE_INT
             {
              before(grammarAccess.getFunctionDeclAccess().getPrecedenceINTTerminalRuleCall_8_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -23394,17 +23885,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDecl__ExprAssignment_9"
-    // InternalBSharp.g:7612:1: rule__FunctionDecl__ExprAssignment_9 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:7760:1: rule__FunctionDecl__ExprAssignment_9 : ( ruleRootExpression ) ;
     public final void rule__FunctionDecl__ExprAssignment_9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7616:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:7617:2: ( ruleRootExpression )
+            // InternalBSharp.g:7764:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:7765:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:7617:2: ( ruleRootExpression )
-            // InternalBSharp.g:7618:3: ruleRootExpression
+            // InternalBSharp.g:7765:2: ( ruleRootExpression )
+            // InternalBSharp.g:7766:3: ruleRootExpression
             {
              before(grammarAccess.getFunctionDeclAccess().getExprRootExpressionParserRuleCall_9_0()); 
             pushFollow(FOLLOW_2);
@@ -23435,17 +23926,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__MatchAssignment_1"
-    // InternalBSharp.g:7627:1: rule__MatchStatement__MatchAssignment_1 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:7775:1: rule__MatchStatement__MatchAssignment_1 : ( ruleRootExpression ) ;
     public final void rule__MatchStatement__MatchAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7631:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:7632:2: ( ruleRootExpression )
+            // InternalBSharp.g:7779:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:7780:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:7632:2: ( ruleRootExpression )
-            // InternalBSharp.g:7633:3: ruleRootExpression
+            // InternalBSharp.g:7780:2: ( ruleRootExpression )
+            // InternalBSharp.g:7781:3: ruleRootExpression
             {
              before(grammarAccess.getMatchStatementAccess().getMatchRootExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -23476,17 +23967,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__InductCaseAssignment_3"
-    // InternalBSharp.g:7642:1: rule__MatchStatement__InductCaseAssignment_3 : ( ruleMatchCase ) ;
+    // InternalBSharp.g:7790:1: rule__MatchStatement__InductCaseAssignment_3 : ( ruleMatchCase ) ;
     public final void rule__MatchStatement__InductCaseAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7646:1: ( ( ruleMatchCase ) )
-            // InternalBSharp.g:7647:2: ( ruleMatchCase )
+            // InternalBSharp.g:7794:1: ( ( ruleMatchCase ) )
+            // InternalBSharp.g:7795:2: ( ruleMatchCase )
             {
-            // InternalBSharp.g:7647:2: ( ruleMatchCase )
-            // InternalBSharp.g:7648:3: ruleMatchCase
+            // InternalBSharp.g:7795:2: ( ruleMatchCase )
+            // InternalBSharp.g:7796:3: ruleMatchCase
             {
              before(grammarAccess.getMatchStatementAccess().getInductCaseMatchCaseParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -23517,17 +24008,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchStatement__InductCaseAssignment_4"
-    // InternalBSharp.g:7657:1: rule__MatchStatement__InductCaseAssignment_4 : ( ruleMatchCase ) ;
+    // InternalBSharp.g:7805:1: rule__MatchStatement__InductCaseAssignment_4 : ( ruleMatchCase ) ;
     public final void rule__MatchStatement__InductCaseAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7661:1: ( ( ruleMatchCase ) )
-            // InternalBSharp.g:7662:2: ( ruleMatchCase )
+            // InternalBSharp.g:7809:1: ( ( ruleMatchCase ) )
+            // InternalBSharp.g:7810:2: ( ruleMatchCase )
             {
-            // InternalBSharp.g:7662:2: ( ruleMatchCase )
-            // InternalBSharp.g:7663:3: ruleMatchCase
+            // InternalBSharp.g:7810:2: ( ruleMatchCase )
+            // InternalBSharp.g:7811:3: ruleMatchCase
             {
              before(grammarAccess.getMatchStatementAccess().getInductCaseMatchCaseParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -23558,21 +24049,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__DeconNameAssignment_1"
-    // InternalBSharp.g:7672:1: rule__MatchCase__DeconNameAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalBSharp.g:7820:1: rule__MatchCase__DeconNameAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__MatchCase__DeconNameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7676:1: ( ( ( RULE_ID ) ) )
-            // InternalBSharp.g:7677:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:7824:1: ( ( ( RULE_ID ) ) )
+            // InternalBSharp.g:7825:2: ( ( RULE_ID ) )
             {
-            // InternalBSharp.g:7677:2: ( ( RULE_ID ) )
-            // InternalBSharp.g:7678:3: ( RULE_ID )
+            // InternalBSharp.g:7825:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:7826:3: ( RULE_ID )
             {
              before(grammarAccess.getMatchCaseAccess().getDeconNameDatatypeConstructorCrossReference_1_0()); 
-            // InternalBSharp.g:7679:3: ( RULE_ID )
-            // InternalBSharp.g:7680:4: RULE_ID
+            // InternalBSharp.g:7827:3: ( RULE_ID )
+            // InternalBSharp.g:7828:4: RULE_ID
             {
              before(grammarAccess.getMatchCaseAccess().getDeconNameDatatypeConstructorIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -23603,17 +24094,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__VariablesAssignment_2_1"
-    // InternalBSharp.g:7691:1: rule__MatchCase__VariablesAssignment_2_1 : ( ruleTypedVariable ) ;
+    // InternalBSharp.g:7839:1: rule__MatchCase__VariablesAssignment_2_1 : ( ruleTypedVariable ) ;
     public final void rule__MatchCase__VariablesAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7695:1: ( ( ruleTypedVariable ) )
-            // InternalBSharp.g:7696:2: ( ruleTypedVariable )
+            // InternalBSharp.g:7843:1: ( ( ruleTypedVariable ) )
+            // InternalBSharp.g:7844:2: ( ruleTypedVariable )
             {
-            // InternalBSharp.g:7696:2: ( ruleTypedVariable )
-            // InternalBSharp.g:7697:3: ruleTypedVariable
+            // InternalBSharp.g:7844:2: ( ruleTypedVariable )
+            // InternalBSharp.g:7845:3: ruleTypedVariable
             {
              before(grammarAccess.getMatchCaseAccess().getVariablesTypedVariableParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -23644,17 +24135,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__VariablesAssignment_2_2_1"
-    // InternalBSharp.g:7706:1: rule__MatchCase__VariablesAssignment_2_2_1 : ( ruleTypedVariable ) ;
+    // InternalBSharp.g:7854:1: rule__MatchCase__VariablesAssignment_2_2_1 : ( ruleTypedVariable ) ;
     public final void rule__MatchCase__VariablesAssignment_2_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7710:1: ( ( ruleTypedVariable ) )
-            // InternalBSharp.g:7711:2: ( ruleTypedVariable )
+            // InternalBSharp.g:7858:1: ( ( ruleTypedVariable ) )
+            // InternalBSharp.g:7859:2: ( ruleTypedVariable )
             {
-            // InternalBSharp.g:7711:2: ( ruleTypedVariable )
-            // InternalBSharp.g:7712:3: ruleTypedVariable
+            // InternalBSharp.g:7859:2: ( ruleTypedVariable )
+            // InternalBSharp.g:7860:3: ruleTypedVariable
             {
              before(grammarAccess.getMatchCaseAccess().getVariablesTypedVariableParserRuleCall_2_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -23685,17 +24176,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MatchCase__ExprAssignment_4"
-    // InternalBSharp.g:7721:1: rule__MatchCase__ExprAssignment_4 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:7869:1: rule__MatchCase__ExprAssignment_4 : ( ruleRootExpression ) ;
     public final void rule__MatchCase__ExprAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7725:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:7726:2: ( ruleRootExpression )
+            // InternalBSharp.g:7873:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:7874:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:7726:2: ( ruleRootExpression )
-            // InternalBSharp.g:7727:3: ruleRootExpression
+            // InternalBSharp.g:7874:2: ( ruleRootExpression )
+            // InternalBSharp.g:7875:3: ruleRootExpression
             {
              before(grammarAccess.getMatchCaseAccess().getExprRootExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -23726,17 +24217,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremBody__TheoremDeclAssignment_2"
-    // InternalBSharp.g:7736:1: rule__TheoremBody__TheoremDeclAssignment_2 : ( ruleTheoremDecl ) ;
+    // InternalBSharp.g:7884:1: rule__TheoremBody__TheoremDeclAssignment_2 : ( ruleTheoremDecl ) ;
     public final void rule__TheoremBody__TheoremDeclAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7740:1: ( ( ruleTheoremDecl ) )
-            // InternalBSharp.g:7741:2: ( ruleTheoremDecl )
+            // InternalBSharp.g:7888:1: ( ( ruleTheoremDecl ) )
+            // InternalBSharp.g:7889:2: ( ruleTheoremDecl )
             {
-            // InternalBSharp.g:7741:2: ( ruleTheoremDecl )
-            // InternalBSharp.g:7742:3: ruleTheoremDecl
+            // InternalBSharp.g:7889:2: ( ruleTheoremDecl )
+            // InternalBSharp.g:7890:3: ruleTheoremDecl
             {
              before(grammarAccess.getTheoremBodyAccess().getTheoremDeclTheoremDeclParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -23767,17 +24258,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremDecl__NameAssignment_0"
-    // InternalBSharp.g:7751:1: rule__TheoremDecl__NameAssignment_0 : ( ruleTHM_NAME ) ;
+    // InternalBSharp.g:7899:1: rule__TheoremDecl__NameAssignment_0 : ( ruleTHM_NAME ) ;
     public final void rule__TheoremDecl__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7755:1: ( ( ruleTHM_NAME ) )
-            // InternalBSharp.g:7756:2: ( ruleTHM_NAME )
+            // InternalBSharp.g:7903:1: ( ( ruleTHM_NAME ) )
+            // InternalBSharp.g:7904:2: ( ruleTHM_NAME )
             {
-            // InternalBSharp.g:7756:2: ( ruleTHM_NAME )
-            // InternalBSharp.g:7757:3: ruleTHM_NAME
+            // InternalBSharp.g:7904:2: ( ruleTHM_NAME )
+            // InternalBSharp.g:7905:3: ruleTHM_NAME
             {
              before(grammarAccess.getTheoremDeclAccess().getNameTHM_NAMEParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -23808,17 +24299,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TheoremDecl__ExprAssignment_1"
-    // InternalBSharp.g:7766:1: rule__TheoremDecl__ExprAssignment_1 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:7914:1: rule__TheoremDecl__ExprAssignment_1 : ( ruleRootExpression ) ;
     public final void rule__TheoremDecl__ExprAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7770:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:7771:2: ( ruleRootExpression )
+            // InternalBSharp.g:7918:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:7919:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:7771:2: ( ruleRootExpression )
-            // InternalBSharp.g:7772:3: ruleRootExpression
+            // InternalBSharp.g:7919:2: ( ruleRootExpression )
+            // InternalBSharp.g:7920:3: ruleRootExpression
             {
              before(grammarAccess.getTheoremDeclAccess().getExprRootExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -23849,17 +24340,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__VariablesOfTypeAssignment_0"
-    // InternalBSharp.g:7781:1: rule__TypedVariableList__VariablesOfTypeAssignment_0 : ( ruleVariableTyping ) ;
+    // InternalBSharp.g:7929:1: rule__TypedVariableList__VariablesOfTypeAssignment_0 : ( ruleVariableTyping ) ;
     public final void rule__TypedVariableList__VariablesOfTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7785:1: ( ( ruleVariableTyping ) )
-            // InternalBSharp.g:7786:2: ( ruleVariableTyping )
+            // InternalBSharp.g:7933:1: ( ( ruleVariableTyping ) )
+            // InternalBSharp.g:7934:2: ( ruleVariableTyping )
             {
-            // InternalBSharp.g:7786:2: ( ruleVariableTyping )
-            // InternalBSharp.g:7787:3: ruleVariableTyping
+            // InternalBSharp.g:7934:2: ( ruleVariableTyping )
+            // InternalBSharp.g:7935:3: ruleVariableTyping
             {
              before(grammarAccess.getTypedVariableListAccess().getVariablesOfTypeVariableTypingParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -23890,17 +24381,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariableList__VariablesOfTypeAssignment_1_1"
-    // InternalBSharp.g:7796:1: rule__TypedVariableList__VariablesOfTypeAssignment_1_1 : ( ruleVariableTyping ) ;
+    // InternalBSharp.g:7944:1: rule__TypedVariableList__VariablesOfTypeAssignment_1_1 : ( ruleVariableTyping ) ;
     public final void rule__TypedVariableList__VariablesOfTypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7800:1: ( ( ruleVariableTyping ) )
-            // InternalBSharp.g:7801:2: ( ruleVariableTyping )
+            // InternalBSharp.g:7948:1: ( ( ruleVariableTyping ) )
+            // InternalBSharp.g:7949:2: ( ruleVariableTyping )
             {
-            // InternalBSharp.g:7801:2: ( ruleVariableTyping )
-            // InternalBSharp.g:7802:3: ruleVariableTyping
+            // InternalBSharp.g:7949:2: ( ruleVariableTyping )
+            // InternalBSharp.g:7950:3: ruleVariableTyping
             {
              before(grammarAccess.getTypedVariableListAccess().getVariablesOfTypeVariableTypingParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -23931,17 +24422,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__TypeVarAssignment_0"
-    // InternalBSharp.g:7811:1: rule__VariableTyping__TypeVarAssignment_0 : ( ruleTypedVariable ) ;
+    // InternalBSharp.g:7959:1: rule__VariableTyping__TypeVarAssignment_0 : ( ruleTypedVariable ) ;
     public final void rule__VariableTyping__TypeVarAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7815:1: ( ( ruleTypedVariable ) )
-            // InternalBSharp.g:7816:2: ( ruleTypedVariable )
+            // InternalBSharp.g:7963:1: ( ( ruleTypedVariable ) )
+            // InternalBSharp.g:7964:2: ( ruleTypedVariable )
             {
-            // InternalBSharp.g:7816:2: ( ruleTypedVariable )
-            // InternalBSharp.g:7817:3: ruleTypedVariable
+            // InternalBSharp.g:7964:2: ( ruleTypedVariable )
+            // InternalBSharp.g:7965:3: ruleTypedVariable
             {
              before(grammarAccess.getVariableTypingAccess().getTypeVarTypedVariableParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -23972,17 +24463,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__TypeVarAssignment_1_1"
-    // InternalBSharp.g:7826:1: rule__VariableTyping__TypeVarAssignment_1_1 : ( ruleTypedVariable ) ;
+    // InternalBSharp.g:7974:1: rule__VariableTyping__TypeVarAssignment_1_1 : ( ruleTypedVariable ) ;
     public final void rule__VariableTyping__TypeVarAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7830:1: ( ( ruleTypedVariable ) )
-            // InternalBSharp.g:7831:2: ( ruleTypedVariable )
+            // InternalBSharp.g:7978:1: ( ( ruleTypedVariable ) )
+            // InternalBSharp.g:7979:2: ( ruleTypedVariable )
             {
-            // InternalBSharp.g:7831:2: ( ruleTypedVariable )
-            // InternalBSharp.g:7832:3: ruleTypedVariable
+            // InternalBSharp.g:7979:2: ( ruleTypedVariable )
+            // InternalBSharp.g:7980:3: ruleTypedVariable
             {
              before(grammarAccess.getVariableTypingAccess().getTypeVarTypedVariableParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -24013,17 +24504,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableTyping__TypeAssignment_3"
-    // InternalBSharp.g:7841:1: rule__VariableTyping__TypeAssignment_3 : ( ruleConstructedType ) ;
+    // InternalBSharp.g:7989:1: rule__VariableTyping__TypeAssignment_3 : ( ruleConstructedType ) ;
     public final void rule__VariableTyping__TypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7845:1: ( ( ruleConstructedType ) )
-            // InternalBSharp.g:7846:2: ( ruleConstructedType )
+            // InternalBSharp.g:7993:1: ( ( ruleConstructedType ) )
+            // InternalBSharp.g:7994:2: ( ruleConstructedType )
             {
-            // InternalBSharp.g:7846:2: ( ruleConstructedType )
-            // InternalBSharp.g:7847:3: ruleConstructedType
+            // InternalBSharp.g:7994:2: ( ruleConstructedType )
+            // InternalBSharp.g:7995:3: ruleConstructedType
             {
              before(grammarAccess.getVariableTypingAccess().getTypeConstructedTypeParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -24054,17 +24545,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedVariable__NameAssignment"
-    // InternalBSharp.g:7856:1: rule__TypedVariable__NameAssignment : ( RULE_ID ) ;
+    // InternalBSharp.g:8004:1: rule__TypedVariable__NameAssignment : ( RULE_ID ) ;
     public final void rule__TypedVariable__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7860:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:7861:2: ( RULE_ID )
+            // InternalBSharp.g:8008:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:8009:2: ( RULE_ID )
             {
-            // InternalBSharp.g:7861:2: ( RULE_ID )
-            // InternalBSharp.g:7862:3: RULE_ID
+            // InternalBSharp.g:8009:2: ( RULE_ID )
+            // InternalBSharp.g:8010:3: RULE_ID
             {
              before(grammarAccess.getTypedVariableAccess().getNameIDTerminalRuleCall_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -24091,21 +24582,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__QTypeAssignment_0"
-    // InternalBSharp.g:7871:1: rule__Lambda__QTypeAssignment_0 : ( ( '\\u03BB' ) ) ;
+    // InternalBSharp.g:8019:1: rule__Lambda__QTypeAssignment_0 : ( ( '\\u03BB' ) ) ;
     public final void rule__Lambda__QTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7875:1: ( ( ( '\\u03BB' ) ) )
-            // InternalBSharp.g:7876:2: ( ( '\\u03BB' ) )
+            // InternalBSharp.g:8023:1: ( ( ( '\\u03BB' ) ) )
+            // InternalBSharp.g:8024:2: ( ( '\\u03BB' ) )
             {
-            // InternalBSharp.g:7876:2: ( ( '\\u03BB' ) )
-            // InternalBSharp.g:7877:3: ( '\\u03BB' )
+            // InternalBSharp.g:8024:2: ( ( '\\u03BB' ) )
+            // InternalBSharp.g:8025:3: ( '\\u03BB' )
             {
              before(grammarAccess.getLambdaAccess().getQTypeGreekSmallLetterLamdaKeyword_0_0()); 
-            // InternalBSharp.g:7878:3: ( '\\u03BB' )
-            // InternalBSharp.g:7879:4: '\\u03BB'
+            // InternalBSharp.g:8026:3: ( '\\u03BB' )
+            // InternalBSharp.g:8027:4: '\\u03BB'
             {
              before(grammarAccess.getLambdaAccess().getQTypeGreekSmallLetterLamdaKeyword_0_0()); 
             match(input,57,FOLLOW_2); 
@@ -24136,17 +24627,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__ContextAssignment_1"
-    // InternalBSharp.g:7890:1: rule__Lambda__ContextAssignment_1 : ( rulePolyContext ) ;
+    // InternalBSharp.g:8038:1: rule__Lambda__ContextAssignment_1 : ( rulePolyContext ) ;
     public final void rule__Lambda__ContextAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7894:1: ( ( rulePolyContext ) )
-            // InternalBSharp.g:7895:2: ( rulePolyContext )
+            // InternalBSharp.g:8042:1: ( ( rulePolyContext ) )
+            // InternalBSharp.g:8043:2: ( rulePolyContext )
             {
-            // InternalBSharp.g:7895:2: ( rulePolyContext )
-            // InternalBSharp.g:7896:3: rulePolyContext
+            // InternalBSharp.g:8043:2: ( rulePolyContext )
+            // InternalBSharp.g:8044:3: rulePolyContext
             {
              before(grammarAccess.getLambdaAccess().getContextPolyContextParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -24177,17 +24668,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__VarListAssignment_2"
-    // InternalBSharp.g:7905:1: rule__Lambda__VarListAssignment_2 : ( ruleTypedVariableList ) ;
+    // InternalBSharp.g:8053:1: rule__Lambda__VarListAssignment_2 : ( ruleTypedVariableList ) ;
     public final void rule__Lambda__VarListAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7909:1: ( ( ruleTypedVariableList ) )
-            // InternalBSharp.g:7910:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:8057:1: ( ( ruleTypedVariableList ) )
+            // InternalBSharp.g:8058:2: ( ruleTypedVariableList )
             {
-            // InternalBSharp.g:7910:2: ( ruleTypedVariableList )
-            // InternalBSharp.g:7911:3: ruleTypedVariableList
+            // InternalBSharp.g:8058:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:8059:3: ruleTypedVariableList
             {
              before(grammarAccess.getLambdaAccess().getVarListTypedVariableListParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -24218,17 +24709,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Lambda__ExprAssignment_4"
-    // InternalBSharp.g:7920:1: rule__Lambda__ExprAssignment_4 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:8068:1: rule__Lambda__ExprAssignment_4 : ( ruleRootExpression ) ;
     public final void rule__Lambda__ExprAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7924:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:7925:2: ( ruleRootExpression )
+            // InternalBSharp.g:8072:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:8073:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:7925:2: ( ruleRootExpression )
-            // InternalBSharp.g:7926:3: ruleRootExpression
+            // InternalBSharp.g:8073:2: ( ruleRootExpression )
+            // InternalBSharp.g:8074:3: ruleRootExpression
             {
              before(grammarAccess.getLambdaAccess().getExprRootExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -24259,21 +24750,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__QTypeAssignment_0"
-    // InternalBSharp.g:7935:1: rule__Quantifier__QTypeAssignment_0 : ( ( rule__Quantifier__QTypeAlternatives_0_0 ) ) ;
+    // InternalBSharp.g:8083:1: rule__Quantifier__QTypeAssignment_0 : ( ( rule__Quantifier__QTypeAlternatives_0_0 ) ) ;
     public final void rule__Quantifier__QTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7939:1: ( ( ( rule__Quantifier__QTypeAlternatives_0_0 ) ) )
-            // InternalBSharp.g:7940:2: ( ( rule__Quantifier__QTypeAlternatives_0_0 ) )
+            // InternalBSharp.g:8087:1: ( ( ( rule__Quantifier__QTypeAlternatives_0_0 ) ) )
+            // InternalBSharp.g:8088:2: ( ( rule__Quantifier__QTypeAlternatives_0_0 ) )
             {
-            // InternalBSharp.g:7940:2: ( ( rule__Quantifier__QTypeAlternatives_0_0 ) )
-            // InternalBSharp.g:7941:3: ( rule__Quantifier__QTypeAlternatives_0_0 )
+            // InternalBSharp.g:8088:2: ( ( rule__Quantifier__QTypeAlternatives_0_0 ) )
+            // InternalBSharp.g:8089:3: ( rule__Quantifier__QTypeAlternatives_0_0 )
             {
              before(grammarAccess.getQuantifierAccess().getQTypeAlternatives_0_0()); 
-            // InternalBSharp.g:7942:3: ( rule__Quantifier__QTypeAlternatives_0_0 )
-            // InternalBSharp.g:7942:4: rule__Quantifier__QTypeAlternatives_0_0
+            // InternalBSharp.g:8090:3: ( rule__Quantifier__QTypeAlternatives_0_0 )
+            // InternalBSharp.g:8090:4: rule__Quantifier__QTypeAlternatives_0_0
             {
             pushFollow(FOLLOW_2);
             rule__Quantifier__QTypeAlternatives_0_0();
@@ -24306,17 +24797,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__ContextAssignment_1"
-    // InternalBSharp.g:7950:1: rule__Quantifier__ContextAssignment_1 : ( rulePolyContext ) ;
+    // InternalBSharp.g:8098:1: rule__Quantifier__ContextAssignment_1 : ( rulePolyContext ) ;
     public final void rule__Quantifier__ContextAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7954:1: ( ( rulePolyContext ) )
-            // InternalBSharp.g:7955:2: ( rulePolyContext )
+            // InternalBSharp.g:8102:1: ( ( rulePolyContext ) )
+            // InternalBSharp.g:8103:2: ( rulePolyContext )
             {
-            // InternalBSharp.g:7955:2: ( rulePolyContext )
-            // InternalBSharp.g:7956:3: rulePolyContext
+            // InternalBSharp.g:8103:2: ( rulePolyContext )
+            // InternalBSharp.g:8104:3: rulePolyContext
             {
              before(grammarAccess.getQuantifierAccess().getContextPolyContextParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -24347,17 +24838,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__VarListAssignment_2"
-    // InternalBSharp.g:7965:1: rule__Quantifier__VarListAssignment_2 : ( ruleTypedVariableList ) ;
+    // InternalBSharp.g:8113:1: rule__Quantifier__VarListAssignment_2 : ( ruleTypedVariableList ) ;
     public final void rule__Quantifier__VarListAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7969:1: ( ( ruleTypedVariableList ) )
-            // InternalBSharp.g:7970:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:8117:1: ( ( ruleTypedVariableList ) )
+            // InternalBSharp.g:8118:2: ( ruleTypedVariableList )
             {
-            // InternalBSharp.g:7970:2: ( ruleTypedVariableList )
-            // InternalBSharp.g:7971:3: ruleTypedVariableList
+            // InternalBSharp.g:8118:2: ( ruleTypedVariableList )
+            // InternalBSharp.g:8119:3: ruleTypedVariableList
             {
              before(grammarAccess.getQuantifierAccess().getVarListTypedVariableListParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -24388,17 +24879,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Quantifier__ExprAssignment_4"
-    // InternalBSharp.g:7980:1: rule__Quantifier__ExprAssignment_4 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:8128:1: rule__Quantifier__ExprAssignment_4 : ( ruleRootExpression ) ;
     public final void rule__Quantifier__ExprAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7984:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:7985:2: ( ruleRootExpression )
+            // InternalBSharp.g:8132:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:8133:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:7985:2: ( ruleRootExpression )
-            // InternalBSharp.g:7986:3: ruleRootExpression
+            // InternalBSharp.g:8133:2: ( ruleRootExpression )
+            // InternalBSharp.g:8134:3: ruleRootExpression
             {
              before(grammarAccess.getQuantifierAccess().getExprRootExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -24429,17 +24920,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Prefix__NameAssignment_0"
-    // InternalBSharp.g:7995:1: rule__Prefix__NameAssignment_0 : ( rulePrefixBuiltIn ) ;
+    // InternalBSharp.g:8143:1: rule__Prefix__NameAssignment_0 : ( rulePrefixBuiltIn ) ;
     public final void rule__Prefix__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:7999:1: ( ( rulePrefixBuiltIn ) )
-            // InternalBSharp.g:8000:2: ( rulePrefixBuiltIn )
+            // InternalBSharp.g:8147:1: ( ( rulePrefixBuiltIn ) )
+            // InternalBSharp.g:8148:2: ( rulePrefixBuiltIn )
             {
-            // InternalBSharp.g:8000:2: ( rulePrefixBuiltIn )
-            // InternalBSharp.g:8001:3: rulePrefixBuiltIn
+            // InternalBSharp.g:8148:2: ( rulePrefixBuiltIn )
+            // InternalBSharp.g:8149:3: rulePrefixBuiltIn
             {
              before(grammarAccess.getPrefixAccess().getNamePrefixBuiltInParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -24470,17 +24961,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Prefix__ElemAssignment_1"
-    // InternalBSharp.g:8010:1: rule__Prefix__ElemAssignment_1 : ( ruleElement ) ;
+    // InternalBSharp.g:8158:1: rule__Prefix__ElemAssignment_1 : ( ruleElement ) ;
     public final void rule__Prefix__ElemAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8014:1: ( ( ruleElement ) )
-            // InternalBSharp.g:8015:2: ( ruleElement )
+            // InternalBSharp.g:8162:1: ( ( ruleElement ) )
+            // InternalBSharp.g:8163:2: ( ruleElement )
             {
-            // InternalBSharp.g:8015:2: ( ruleElement )
-            // InternalBSharp.g:8016:3: ruleElement
+            // InternalBSharp.g:8163:2: ( ruleElement )
+            // InternalBSharp.g:8164:3: ruleElement
             {
              before(grammarAccess.getPrefixAccess().getElemElementParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -24511,21 +25002,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__FuncNameAssignment_1_1_0"
-    // InternalBSharp.g:8025:1: rule__Infix__FuncNameAssignment_1_1_0 : ( ( RULE_ID ) ) ;
+    // InternalBSharp.g:8173:1: rule__Infix__FuncNameAssignment_1_1_0 : ( ( RULE_ID ) ) ;
     public final void rule__Infix__FuncNameAssignment_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8029:1: ( ( ( RULE_ID ) ) )
-            // InternalBSharp.g:8030:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:8177:1: ( ( ( RULE_ID ) ) )
+            // InternalBSharp.g:8178:2: ( ( RULE_ID ) )
             {
-            // InternalBSharp.g:8030:2: ( ( RULE_ID ) )
-            // InternalBSharp.g:8031:3: ( RULE_ID )
+            // InternalBSharp.g:8178:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:8179:3: ( RULE_ID )
             {
              before(grammarAccess.getInfixAccess().getFuncNameFunctionDeclCrossReference_1_1_0_0()); 
-            // InternalBSharp.g:8032:3: ( RULE_ID )
-            // InternalBSharp.g:8033:4: RULE_ID
+            // InternalBSharp.g:8180:3: ( RULE_ID )
+            // InternalBSharp.g:8181:4: RULE_ID
             {
              before(grammarAccess.getInfixAccess().getFuncNameFunctionDeclIDTerminalRuleCall_1_1_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -24556,17 +25047,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__OpNameAssignment_1_1_1"
-    // InternalBSharp.g:8044:1: rule__Infix__OpNameAssignment_1_1_1 : ( ruleInbuiltInfix ) ;
+    // InternalBSharp.g:8192:1: rule__Infix__OpNameAssignment_1_1_1 : ( ruleInbuiltInfix ) ;
     public final void rule__Infix__OpNameAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8048:1: ( ( ruleInbuiltInfix ) )
-            // InternalBSharp.g:8049:2: ( ruleInbuiltInfix )
+            // InternalBSharp.g:8196:1: ( ( ruleInbuiltInfix ) )
+            // InternalBSharp.g:8197:2: ( ruleInbuiltInfix )
             {
-            // InternalBSharp.g:8049:2: ( ruleInbuiltInfix )
-            // InternalBSharp.g:8050:3: ruleInbuiltInfix
+            // InternalBSharp.g:8197:2: ( ruleInbuiltInfix )
+            // InternalBSharp.g:8198:3: ruleInbuiltInfix
             {
              before(grammarAccess.getInfixAccess().getOpNameInbuiltInfixParserRuleCall_1_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -24597,17 +25088,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Infix__RightAssignment_1_2"
-    // InternalBSharp.g:8059:1: rule__Infix__RightAssignment_1_2 : ( ruleElement ) ;
+    // InternalBSharp.g:8207:1: rule__Infix__RightAssignment_1_2 : ( ruleElement ) ;
     public final void rule__Infix__RightAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8063:1: ( ( ruleElement ) )
-            // InternalBSharp.g:8064:2: ( ruleElement )
+            // InternalBSharp.g:8211:1: ( ( ruleElement ) )
+            // InternalBSharp.g:8212:2: ( ruleElement )
             {
-            // InternalBSharp.g:8064:2: ( ruleElement )
-            // InternalBSharp.g:8065:3: ruleElement
+            // InternalBSharp.g:8212:2: ( ruleElement )
+            // InternalBSharp.g:8213:3: ruleElement
             {
              before(grammarAccess.getInfixAccess().getRightElementParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -24638,17 +25129,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Bracket__ChildAssignment_1"
-    // InternalBSharp.g:8074:1: rule__Bracket__ChildAssignment_1 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:8222:1: rule__Bracket__ChildAssignment_1 : ( ruleRootExpression ) ;
     public final void rule__Bracket__ChildAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8078:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:8079:2: ( ruleRootExpression )
+            // InternalBSharp.g:8226:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:8227:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:8079:2: ( ruleRootExpression )
-            // InternalBSharp.g:8080:3: ruleRootExpression
+            // InternalBSharp.g:8227:2: ( ruleRootExpression )
+            // InternalBSharp.g:8228:3: ruleRootExpression
             {
              before(grammarAccess.getBracketAccess().getChildRootExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -24678,30 +25169,26 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Bracket__ChildAssignment_1"
 
 
-    // $ANTLR start "rule__FunctionCall__TypeInstAssignment_0_0"
-    // InternalBSharp.g:8089:1: rule__FunctionCall__TypeInstAssignment_0_0 : ( ( RULE_ID ) ) ;
-    public final void rule__FunctionCall__TypeInstAssignment_0_0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__WrappedAssignment_0"
+    // InternalBSharp.g:8237:1: rule__FunctionCall__WrappedAssignment_0 : ( ruleWrappedInfix ) ;
+    public final void rule__FunctionCall__WrappedAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8093:1: ( ( ( RULE_ID ) ) )
-            // InternalBSharp.g:8094:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:8241:1: ( ( ruleWrappedInfix ) )
+            // InternalBSharp.g:8242:2: ( ruleWrappedInfix )
             {
-            // InternalBSharp.g:8094:2: ( ( RULE_ID ) )
-            // InternalBSharp.g:8095:3: ( RULE_ID )
+            // InternalBSharp.g:8242:2: ( ruleWrappedInfix )
+            // InternalBSharp.g:8243:3: ruleWrappedInfix
             {
-             before(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_0_0_0()); 
-            // InternalBSharp.g:8096:3: ( RULE_ID )
-            // InternalBSharp.g:8097:4: RULE_ID
-            {
-             before(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableIDTerminalRuleCall_0_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableIDTerminalRuleCall_0_0_0_1()); 
+             before(grammarAccess.getFunctionCallAccess().getWrappedWrappedInfixParserRuleCall_0_0()); 
+            pushFollow(FOLLOW_2);
+            ruleWrappedInfix();
 
-            }
+            state._fsp--;
 
-             after(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_0_0_0()); 
+             after(grammarAccess.getFunctionCallAccess().getWrappedWrappedInfixParserRuleCall_0_0()); 
 
             }
 
@@ -24720,29 +25207,74 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__TypeInstAssignment_0_0"
+    // $ANTLR end "rule__FunctionCall__WrappedAssignment_0"
 
 
-    // $ANTLR start "rule__FunctionCall__ClassVarDeclAssignment_0_1"
-    // InternalBSharp.g:8108:1: rule__FunctionCall__ClassVarDeclAssignment_0_1 : ( ruleClassVarDecl ) ;
-    public final void rule__FunctionCall__ClassVarDeclAssignment_0_1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__TypeInstAssignment_1_0_0"
+    // InternalBSharp.g:8252:1: rule__FunctionCall__TypeInstAssignment_1_0_0 : ( ( RULE_ID ) ) ;
+    public final void rule__FunctionCall__TypeInstAssignment_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8112:1: ( ( ruleClassVarDecl ) )
-            // InternalBSharp.g:8113:2: ( ruleClassVarDecl )
+            // InternalBSharp.g:8256:1: ( ( ( RULE_ID ) ) )
+            // InternalBSharp.g:8257:2: ( ( RULE_ID ) )
             {
-            // InternalBSharp.g:8113:2: ( ruleClassVarDecl )
-            // InternalBSharp.g:8114:3: ruleClassVarDecl
+            // InternalBSharp.g:8257:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:8258:3: ( RULE_ID )
             {
-             before(grammarAccess.getFunctionCallAccess().getClassVarDeclClassVarDeclParserRuleCall_0_1_0()); 
+             before(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_1_0_0_0()); 
+            // InternalBSharp.g:8259:3: ( RULE_ID )
+            // InternalBSharp.g:8260:4: RULE_ID
+            {
+             before(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableIDTerminalRuleCall_1_0_0_0_1()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableIDTerminalRuleCall_1_0_0_0_1()); 
+
+            }
+
+             after(grammarAccess.getFunctionCallAccess().getTypeInstExpressionVariableCrossReference_1_0_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FunctionCall__TypeInstAssignment_1_0_0"
+
+
+    // $ANTLR start "rule__FunctionCall__ClassVarDeclAssignment_1_0_1"
+    // InternalBSharp.g:8271:1: rule__FunctionCall__ClassVarDeclAssignment_1_0_1 : ( ruleClassVarDecl ) ;
+    public final void rule__FunctionCall__ClassVarDeclAssignment_1_0_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:8275:1: ( ( ruleClassVarDecl ) )
+            // InternalBSharp.g:8276:2: ( ruleClassVarDecl )
+            {
+            // InternalBSharp.g:8276:2: ( ruleClassVarDecl )
+            // InternalBSharp.g:8277:3: ruleClassVarDecl
+            {
+             before(grammarAccess.getFunctionCallAccess().getClassVarDeclClassVarDeclParserRuleCall_1_0_1_0()); 
             pushFollow(FOLLOW_2);
             ruleClassVarDecl();
 
             state._fsp--;
 
-             after(grammarAccess.getFunctionCallAccess().getClassVarDeclClassVarDeclParserRuleCall_0_1_0()); 
+             after(grammarAccess.getFunctionCallAccess().getClassVarDeclClassVarDeclParserRuleCall_1_0_1_0()); 
 
             }
 
@@ -24761,29 +25293,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__ClassVarDeclAssignment_0_1"
+    // $ANTLR end "rule__FunctionCall__ClassVarDeclAssignment_1_0_1"
 
 
-    // $ANTLR start "rule__FunctionCall__ContextAssignment_1_0"
-    // InternalBSharp.g:8123:1: rule__FunctionCall__ContextAssignment_1_0 : ( ruleTypeDeclContext ) ;
-    public final void rule__FunctionCall__ContextAssignment_1_0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__ContextAssignment_1_1_0"
+    // InternalBSharp.g:8286:1: rule__FunctionCall__ContextAssignment_1_1_0 : ( ruleTypeDeclContext ) ;
+    public final void rule__FunctionCall__ContextAssignment_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8127:1: ( ( ruleTypeDeclContext ) )
-            // InternalBSharp.g:8128:2: ( ruleTypeDeclContext )
+            // InternalBSharp.g:8290:1: ( ( ruleTypeDeclContext ) )
+            // InternalBSharp.g:8291:2: ( ruleTypeDeclContext )
             {
-            // InternalBSharp.g:8128:2: ( ruleTypeDeclContext )
-            // InternalBSharp.g:8129:3: ruleTypeDeclContext
+            // InternalBSharp.g:8291:2: ( ruleTypeDeclContext )
+            // InternalBSharp.g:8292:3: ruleTypeDeclContext
             {
-             before(grammarAccess.getFunctionCallAccess().getContextTypeDeclContextParserRuleCall_1_0_0()); 
+             before(grammarAccess.getFunctionCallAccess().getContextTypeDeclContextParserRuleCall_1_1_0_0()); 
             pushFollow(FOLLOW_2);
             ruleTypeDeclContext();
 
             state._fsp--;
 
-             after(grammarAccess.getFunctionCallAccess().getContextTypeDeclContextParserRuleCall_1_0_0()); 
+             after(grammarAccess.getFunctionCallAccess().getContextTypeDeclContextParserRuleCall_1_1_0_0()); 
 
             }
 
@@ -24802,29 +25334,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__ContextAssignment_1_0"
+    // $ANTLR end "rule__FunctionCall__ContextAssignment_1_1_0"
 
 
-    // $ANTLR start "rule__FunctionCall__ArgumentsAssignment_1_2"
-    // InternalBSharp.g:8138:1: rule__FunctionCall__ArgumentsAssignment_1_2 : ( ruleRootExpression ) ;
-    public final void rule__FunctionCall__ArgumentsAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__ArgumentsAssignment_1_1_2"
+    // InternalBSharp.g:8301:1: rule__FunctionCall__ArgumentsAssignment_1_1_2 : ( ruleRootExpression ) ;
+    public final void rule__FunctionCall__ArgumentsAssignment_1_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8142:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:8143:2: ( ruleRootExpression )
+            // InternalBSharp.g:8305:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:8306:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:8143:2: ( ruleRootExpression )
-            // InternalBSharp.g:8144:3: ruleRootExpression
+            // InternalBSharp.g:8306:2: ( ruleRootExpression )
+            // InternalBSharp.g:8307:3: ruleRootExpression
             {
-             before(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_0()); 
+             before(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_1_2_0()); 
             pushFollow(FOLLOW_2);
             ruleRootExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_0()); 
+             after(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_1_2_0()); 
 
             }
 
@@ -24843,29 +25375,29 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__ArgumentsAssignment_1_2"
+    // $ANTLR end "rule__FunctionCall__ArgumentsAssignment_1_1_2"
 
 
-    // $ANTLR start "rule__FunctionCall__ArgumentsAssignment_1_3_1"
-    // InternalBSharp.g:8153:1: rule__FunctionCall__ArgumentsAssignment_1_3_1 : ( ruleRootExpression ) ;
-    public final void rule__FunctionCall__ArgumentsAssignment_1_3_1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionCall__ArgumentsAssignment_1_1_3_1"
+    // InternalBSharp.g:8316:1: rule__FunctionCall__ArgumentsAssignment_1_1_3_1 : ( ruleRootExpression ) ;
+    public final void rule__FunctionCall__ArgumentsAssignment_1_1_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8157:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:8158:2: ( ruleRootExpression )
+            // InternalBSharp.g:8320:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:8321:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:8158:2: ( ruleRootExpression )
-            // InternalBSharp.g:8159:3: ruleRootExpression
+            // InternalBSharp.g:8321:2: ( ruleRootExpression )
+            // InternalBSharp.g:8322:3: ruleRootExpression
             {
-             before(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_3_1_0()); 
+             before(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_1_3_1_0()); 
             pushFollow(FOLLOW_2);
             ruleRootExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_3_1_0()); 
+             after(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_1_3_1_0()); 
 
             }
 
@@ -24884,25 +25416,25 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionCall__ArgumentsAssignment_1_3_1"
+    // $ANTLR end "rule__FunctionCall__ArgumentsAssignment_1_1_3_1"
 
 
     // $ANTLR start "rule__ClassVarDecl__OwnerTypeAssignment_0"
-    // InternalBSharp.g:8168:1: rule__ClassVarDecl__OwnerTypeAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalBSharp.g:8331:1: rule__ClassVarDecl__OwnerTypeAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__ClassVarDecl__OwnerTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8172:1: ( ( ( RULE_ID ) ) )
-            // InternalBSharp.g:8173:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:8335:1: ( ( ( RULE_ID ) ) )
+            // InternalBSharp.g:8336:2: ( ( RULE_ID ) )
             {
-            // InternalBSharp.g:8173:2: ( ( RULE_ID ) )
-            // InternalBSharp.g:8174:3: ( RULE_ID )
+            // InternalBSharp.g:8336:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:8337:3: ( RULE_ID )
             {
              before(grammarAccess.getClassVarDeclAccess().getOwnerTypeGenNameCrossReference_0_0()); 
-            // InternalBSharp.g:8175:3: ( RULE_ID )
-            // InternalBSharp.g:8176:4: RULE_ID
+            // InternalBSharp.g:8338:3: ( RULE_ID )
+            // InternalBSharp.g:8339:4: RULE_ID
             {
              before(grammarAccess.getClassVarDeclAccess().getOwnerTypeGenNameIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -24933,21 +25465,21 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassVarDecl__TypeInstAssignment_2"
-    // InternalBSharp.g:8187:1: rule__ClassVarDecl__TypeInstAssignment_2 : ( ( RULE_ID ) ) ;
+    // InternalBSharp.g:8350:1: rule__ClassVarDecl__TypeInstAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__ClassVarDecl__TypeInstAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8191:1: ( ( ( RULE_ID ) ) )
-            // InternalBSharp.g:8192:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:8354:1: ( ( ( RULE_ID ) ) )
+            // InternalBSharp.g:8355:2: ( ( RULE_ID ) )
             {
-            // InternalBSharp.g:8192:2: ( ( RULE_ID ) )
-            // InternalBSharp.g:8193:3: ( RULE_ID )
+            // InternalBSharp.g:8355:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:8356:3: ( RULE_ID )
             {
              before(grammarAccess.getClassVarDeclAccess().getTypeInstExpressionVariableCrossReference_2_0()); 
-            // InternalBSharp.g:8194:3: ( RULE_ID )
-            // InternalBSharp.g:8195:4: RULE_ID
+            // InternalBSharp.g:8357:3: ( RULE_ID )
+            // InternalBSharp.g:8358:4: RULE_ID
             {
              before(grammarAccess.getClassVarDeclAccess().getTypeInstExpressionVariableIDTerminalRuleCall_2_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -24977,22 +25509,108 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ClassVarDecl__TypeInstAssignment_2"
 
 
+    // $ANTLR start "rule__WrappedInfix__InbuiltAssignment_1_0"
+    // InternalBSharp.g:8369:1: rule__WrappedInfix__InbuiltAssignment_1_0 : ( ruleInbuiltInfix ) ;
+    public final void rule__WrappedInfix__InbuiltAssignment_1_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:8373:1: ( ( ruleInbuiltInfix ) )
+            // InternalBSharp.g:8374:2: ( ruleInbuiltInfix )
+            {
+            // InternalBSharp.g:8374:2: ( ruleInbuiltInfix )
+            // InternalBSharp.g:8375:3: ruleInbuiltInfix
+            {
+             before(grammarAccess.getWrappedInfixAccess().getInbuiltInbuiltInfixParserRuleCall_1_0_0()); 
+            pushFollow(FOLLOW_2);
+            ruleInbuiltInfix();
+
+            state._fsp--;
+
+             after(grammarAccess.getWrappedInfixAccess().getInbuiltInbuiltInfixParserRuleCall_1_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__WrappedInfix__InbuiltAssignment_1_0"
+
+
+    // $ANTLR start "rule__WrappedInfix__FuncNameAssignment_1_1"
+    // InternalBSharp.g:8384:1: rule__WrappedInfix__FuncNameAssignment_1_1 : ( ( RULE_ID ) ) ;
+    public final void rule__WrappedInfix__FuncNameAssignment_1_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalBSharp.g:8388:1: ( ( ( RULE_ID ) ) )
+            // InternalBSharp.g:8389:2: ( ( RULE_ID ) )
+            {
+            // InternalBSharp.g:8389:2: ( ( RULE_ID ) )
+            // InternalBSharp.g:8390:3: ( RULE_ID )
+            {
+             before(grammarAccess.getWrappedInfixAccess().getFuncNameExpressionVariableCrossReference_1_1_0()); 
+            // InternalBSharp.g:8391:3: ( RULE_ID )
+            // InternalBSharp.g:8392:4: RULE_ID
+            {
+             before(grammarAccess.getWrappedInfixAccess().getFuncNameExpressionVariableIDTerminalRuleCall_1_1_0_1()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getWrappedInfixAccess().getFuncNameExpressionVariableIDTerminalRuleCall_1_1_0_1()); 
+
+            }
+
+             after(grammarAccess.getWrappedInfixAccess().getFuncNameExpressionVariableCrossReference_1_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__WrappedInfix__FuncNameAssignment_1_1"
+
+
     // $ANTLR start "rule__Instance__ClassNameAssignment_1"
-    // InternalBSharp.g:8206:1: rule__Instance__ClassNameAssignment_1 : ( ( ruleQualifiedName ) ) ;
+    // InternalBSharp.g:8403:1: rule__Instance__ClassNameAssignment_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__Instance__ClassNameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8210:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalBSharp.g:8211:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:8407:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalBSharp.g:8408:2: ( ( ruleQualifiedName ) )
             {
-            // InternalBSharp.g:8211:2: ( ( ruleQualifiedName ) )
-            // InternalBSharp.g:8212:3: ( ruleQualifiedName )
+            // InternalBSharp.g:8408:2: ( ( ruleQualifiedName ) )
+            // InternalBSharp.g:8409:3: ( ruleQualifiedName )
             {
              before(grammarAccess.getInstanceAccess().getClassNameClassDeclCrossReference_1_0()); 
-            // InternalBSharp.g:8213:3: ( ruleQualifiedName )
-            // InternalBSharp.g:8214:4: ruleQualifiedName
+            // InternalBSharp.g:8410:3: ( ruleQualifiedName )
+            // InternalBSharp.g:8411:4: ruleQualifiedName
             {
              before(grammarAccess.getInstanceAccess().getClassNameClassDeclQualifiedNameParserRuleCall_1_0_1()); 
             pushFollow(FOLLOW_2);
@@ -25027,17 +25645,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__ContextAssignment_2"
-    // InternalBSharp.g:8225:1: rule__Instance__ContextAssignment_2 : ( ruleTypeDeclContext ) ;
+    // InternalBSharp.g:8422:1: rule__Instance__ContextAssignment_2 : ( ruleTypeDeclContext ) ;
     public final void rule__Instance__ContextAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8229:1: ( ( ruleTypeDeclContext ) )
-            // InternalBSharp.g:8230:2: ( ruleTypeDeclContext )
+            // InternalBSharp.g:8426:1: ( ( ruleTypeDeclContext ) )
+            // InternalBSharp.g:8427:2: ( ruleTypeDeclContext )
             {
-            // InternalBSharp.g:8230:2: ( ruleTypeDeclContext )
-            // InternalBSharp.g:8231:3: ruleTypeDeclContext
+            // InternalBSharp.g:8427:2: ( ruleTypeDeclContext )
+            // InternalBSharp.g:8428:3: ruleTypeDeclContext
             {
              before(grammarAccess.getInstanceAccess().getContextTypeDeclContextParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -25068,17 +25686,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__ArgumentsAssignment_4"
-    // InternalBSharp.g:8240:1: rule__Instance__ArgumentsAssignment_4 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:8437:1: rule__Instance__ArgumentsAssignment_4 : ( ruleRootExpression ) ;
     public final void rule__Instance__ArgumentsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8244:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:8245:2: ( ruleRootExpression )
+            // InternalBSharp.g:8441:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:8442:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:8245:2: ( ruleRootExpression )
-            // InternalBSharp.g:8246:3: ruleRootExpression
+            // InternalBSharp.g:8442:2: ( ruleRootExpression )
+            // InternalBSharp.g:8443:3: ruleRootExpression
             {
              before(grammarAccess.getInstanceAccess().getArgumentsRootExpressionParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -25109,17 +25727,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__ArgumentsAssignment_5_1"
-    // InternalBSharp.g:8255:1: rule__Instance__ArgumentsAssignment_5_1 : ( ruleRootExpression ) ;
+    // InternalBSharp.g:8452:1: rule__Instance__ArgumentsAssignment_5_1 : ( ruleRootExpression ) ;
     public final void rule__Instance__ArgumentsAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8259:1: ( ( ruleRootExpression ) )
-            // InternalBSharp.g:8260:2: ( ruleRootExpression )
+            // InternalBSharp.g:8456:1: ( ( ruleRootExpression ) )
+            // InternalBSharp.g:8457:2: ( ruleRootExpression )
             {
-            // InternalBSharp.g:8260:2: ( ruleRootExpression )
-            // InternalBSharp.g:8261:3: ruleRootExpression
+            // InternalBSharp.g:8457:2: ( ruleRootExpression )
+            // InternalBSharp.g:8458:3: ruleRootExpression
             {
              before(grammarAccess.getInstanceAccess().getArgumentsRootExpressionParserRuleCall_5_1_0()); 
             pushFollow(FOLLOW_2);
@@ -25150,17 +25768,17 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Instance__NameAssignment_7"
-    // InternalBSharp.g:8270:1: rule__Instance__NameAssignment_7 : ( RULE_ID ) ;
+    // InternalBSharp.g:8467:1: rule__Instance__NameAssignment_7 : ( RULE_ID ) ;
     public final void rule__Instance__NameAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:8274:1: ( ( RULE_ID ) )
-            // InternalBSharp.g:8275:2: ( RULE_ID )
+            // InternalBSharp.g:8471:1: ( ( RULE_ID ) )
+            // InternalBSharp.g:8472:2: ( RULE_ID )
             {
-            // InternalBSharp.g:8275:2: ( RULE_ID )
-            // InternalBSharp.g:8276:3: RULE_ID
+            // InternalBSharp.g:8472:2: ( RULE_ID )
+            // InternalBSharp.g:8473:3: RULE_ID
             {
              before(grammarAccess.getInstanceAccess().getNameIDTerminalRuleCall_7_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -25217,7 +25835,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000040000000000L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000010000000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000180000000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0210010001800820L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0210014001800820L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000002000000002L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0001040000000000L});
@@ -25226,7 +25844,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x00A0000000000022L});
     public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000050000000000L});
     public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000020000000020L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0310010001800830L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0310014001800830L});
     public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0004000000000000L});
     public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0001000000000000L});
     public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0009000000000000L});
@@ -25238,9 +25856,9 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000100100000000L});
     public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000040000000020L});
     public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000010000000820L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000014000000820L});
     public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x000000007E000020L});
     public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x000000007E000022L});
-    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0210130001800820L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0210134001800820L});
 
 }

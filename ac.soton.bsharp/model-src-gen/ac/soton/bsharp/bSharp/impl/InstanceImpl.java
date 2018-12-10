@@ -3,11 +3,17 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpBlock;
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.ConcreteTypeInstance;
+import ac.soton.bsharp.bSharp.util.ITypeInstance;
 
 import java.util.Collection;
 
@@ -17,6 +23,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -24,6 +32,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.linking.LinkingScopeProviderBinding;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.IScopeProvider;
+
+import com.google.inject.Inject;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +55,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class InstanceImpl extends MinimalEObjectImpl.Container implements Instance {
+public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	/**
 	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -50,7 +64,7 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	 * @generated
 	 * @ordered
 	 */
-	protected ClassDecl className;
+	protected BSClass className;
 
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
@@ -116,10 +130,10 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassDecl getClassName() {
+	public BSClass getClassName() {
 		if (className != null && className.eIsProxy()) {
 			InternalEObject oldClassName = (InternalEObject)className;
-			className = (ClassDecl)eResolveProxy(oldClassName);
+			className = (BSClass)eResolveProxy(oldClassName);
 			if (className != oldClassName) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.INSTANCE__CLASS_NAME, oldClassName, className));
@@ -133,7 +147,7 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassDecl basicGetClassName() {
+	public BSClass basicGetClassName() {
 		return className;
 	}
 
@@ -142,8 +156,8 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClassName(ClassDecl newClassName) {
-		ClassDecl oldClassName = className;
+	public void setClassName(BSClass newClassName) {
+		BSClass oldClassName = className;
 		className = newClassName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__CLASS_NAME, oldClassName, className));
@@ -272,7 +286,7 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BSharpPackage.INSTANCE__CLASS_NAME:
-				setClassName((ClassDecl)newValue);
+				setClassName((BSClass)newValue);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
 				setContext((TypeDeclContext)newValue);
@@ -297,7 +311,7 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BSharpPackage.INSTANCE__CLASS_NAME:
-				setClassName((ClassDecl)null);
+				setClassName((BSClass)null);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
 				setContext((TypeDeclContext)null);
@@ -346,6 +360,41 @@ public class InstanceImpl extends MinimalEObjectImpl.Container implements Instan
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+	
+	protected ITypeInstance typeInst = null;
+	
+	@Inject
+	LinkingScopeProviderBinding scopeProvider;
+	
+	/* If we have Instance Setoid<pNat>([=]) this compiles to an operator with the direct definition
+	 *  pNat |-> = \in Setoid(pNat)
+	 */
+	void compileMembershipOperatorExpr() {
+		BSClass targetType = getClassName();
+		
+		ClassDecl superT = targetType.getFirstSupertypeTypeClass();
+		BSharpBlock emptyBlock = BSharpFactory.eINSTANCE.createBSharpBlock();
+		EReference ref = EcoreFactory.eINSTANCE.createEReference();
+		ref.setName("BSharpBlock");
+		ref.setEType(emptyBlock.eClass());
+		
+		IScope scope = ((IScopeProvider)scopeProvider).getScope(this, ref);
+		
+		
+	}
+	
+	@Override 
+	public void compile() {
+		typeInst = new ConcreteTypeInstance(getClassName());
+		//TODO: Some compiling!
+		
+		typeInst = null;
+	}
+
+	@Override
+	public ITypeInstance getTypeInstance() {
+		return typeInst;
 	}
 
 } //InstanceImpl
