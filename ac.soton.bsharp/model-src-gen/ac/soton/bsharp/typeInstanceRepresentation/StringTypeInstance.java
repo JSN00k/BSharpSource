@@ -1,10 +1,12 @@
-package ac.soton.bsharp.bSharp.util;
+package ac.soton.bsharp.typeInstanceRepresentation;
 
 import java.util.ArrayList;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 public class StringTypeInstance implements ITypeInstanceOpArgs {
 	

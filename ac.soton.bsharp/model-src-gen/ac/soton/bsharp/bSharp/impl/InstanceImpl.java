@@ -12,8 +12,8 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariableList;
-import ac.soton.bsharp.bSharp.util.ConcreteTypeInstance;
-import ac.soton.bsharp.bSharp.util.ITypeInstance;
+import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 import java.util.Collection;
 import java.util.List;

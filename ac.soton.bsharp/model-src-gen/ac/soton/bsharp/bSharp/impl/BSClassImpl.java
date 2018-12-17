@@ -26,16 +26,16 @@ import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.Where;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
-import ac.soton.bsharp.bSharp.util.IMapletNode;
-import ac.soton.bsharp.bSharp.util.ITypeInstance;
-import ac.soton.bsharp.bSharp.util.ITypeInstanceOpArgs;
-import ac.soton.bsharp.bSharp.util.MapletStringLeaf;
-import ac.soton.bsharp.bSharp.util.MapletTree;
-import ac.soton.bsharp.bSharp.util.MapletTypeInstance;
-import ac.soton.bsharp.bSharp.util.StringTypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.mapletTree.IMapletNode;
+import ac.soton.bsharp.mapletTree.MapletStringLeaf;
+import ac.soton.bsharp.mapletTree.MapletTree;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
+import ac.soton.bsharp.typeInstanceRepresentation.MapletTypeInstance;
+import ac.soton.bsharp.typeInstanceRepresentation.StringTypeInstance;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -681,7 +681,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return null;
 		}
 
-		IMapletNode mappedVariables = mappedVariables();
+		IMapletNode mappedVariables = mappedVariables(typeConstructors.get(typeConstructors.size() - 1).x);
 		if (mappedVariables == null) {
 			String argsForConstructor = "("
 					+ CompilationUtil.compileTypedVariablesToNameListWithSeparator(typeConstructors, ", ", true) + ")";
@@ -719,12 +719,12 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return c;
 	}
 
-	public IMapletNode mappedVariables() {
+	public IMapletNode mappedVariables(String superTypeString) {
 		BSClass superT = supertypes.getFirst().getTypeClass();
 		IMapletNode superVars = null;
 
 		if (superT != null)
-			superVars = ((BSClassImpl) superT).mappedVariables();
+			superVars = ((BSClassImpl) superT).mappedVariables(superTypeString);
 
 		IMapletNode myVars = localMappedVars();
 
@@ -739,8 +739,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		if (myVars == null)
 			return superVars;
 
-		if (superVars == null)
-			return myVars;
+		if (superVars == null) {
+			superVars = new MapletStringLeaf(superTypeString);
+		}
 
 		return new MapletTree(superVars, myVars);
 	}
@@ -762,7 +763,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return null;
 		}
 
-		IMapletNode mappedVariables = mappedVariables();
+		IMapletNode mappedVariables = mappedVariables((typeConstructors.get(typeConstructors.size() -1).x));
 
 		if (mappedVariables == null) {
 			String argsForConstructor = "("

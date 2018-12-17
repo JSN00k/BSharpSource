@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
 
-import ac.soton.bsharp.bSharp.util.ITypeInstance;
-import ac.soton.bsharp.bSharp.util.ITypeInstanceOpArgs;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
 
 /**
  * <!-- begin-user-doc -->

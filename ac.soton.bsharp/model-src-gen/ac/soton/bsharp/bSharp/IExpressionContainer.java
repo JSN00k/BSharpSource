@@ -5,7 +5,7 @@ package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.ecore.EObject;
 
-import ac.soton.bsharp.bSharp.util.ITypeInstance;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 /**
  * <!-- begin-user-doc -->

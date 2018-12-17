@@ -10,9 +10,9 @@ import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
-import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;

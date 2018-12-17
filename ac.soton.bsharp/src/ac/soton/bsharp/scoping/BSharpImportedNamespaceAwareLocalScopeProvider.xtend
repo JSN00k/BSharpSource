@@ -31,8 +31,6 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		 * and I need to return a list.
 		 */
 		 
-		
-		 
 		var List<ImportNormalizer> importedNamespaceResolvers = Lists.newArrayList()
 
 		/* Add the package to the fully qualified domain names */

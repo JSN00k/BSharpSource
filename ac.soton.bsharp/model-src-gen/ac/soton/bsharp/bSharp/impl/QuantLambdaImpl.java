@@ -21,9 +21,9 @@ import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
-import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 import java.util.ArrayList;
 import java.util.Collection;

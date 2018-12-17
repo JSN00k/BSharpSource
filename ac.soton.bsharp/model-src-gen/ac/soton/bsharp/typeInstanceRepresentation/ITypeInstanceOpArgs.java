@@ -1,6 +1,8 @@
-package ac.soton.bsharp.bSharp.util;
+package ac.soton.bsharp.typeInstanceRepresentation;
 
 import java.util.ArrayList;
+
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 public interface ITypeInstanceOpArgs extends ITypeInstance {
 	/* This statement won't return anything of the form op |-> ident : Monoid, instead it would 

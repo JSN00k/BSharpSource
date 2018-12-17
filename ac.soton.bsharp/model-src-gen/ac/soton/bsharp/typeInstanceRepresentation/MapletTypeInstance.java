@@ -1,10 +1,14 @@
-package ac.soton.bsharp.bSharp.util;
+package ac.soton.bsharp.typeInstanceRepresentation;
 
 import java.util.ArrayList;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.mapletTree.IMapletNode;
+import ac.soton.bsharp.mapletTree.MapletTree;
 
 public class MapletTypeInstance implements ITypeInstance {
 	
@@ -85,8 +89,16 @@ public class MapletTypeInstance implements ITypeInstance {
 			result.add(typedType.x);
 		}
 		
-		if (tree != null)
-			result.addAll(tree.varNames());
+		if (tree != null) {
+			/* The maptet tree includes the constructed type (base type) as its leftmost element, 
+			 * when the tree.varNames() is called this becomes the first element in the array.
+			 * This needs to be removed as it is also included in the typing information. 
+			 */
+			ArrayList<String> varNames = tree.varNames();
+			if (varNames.size() > 1) {
+				result.addAll(varNames.subList(1, varNames.size()));
+			}
+		}
 		
 		return result;
 	}

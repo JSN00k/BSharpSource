@@ -1,10 +1,10 @@
-package ac.soton.bsharp.bSharp.util;
+package ac.soton.bsharp.mapletTree;
 
 import java.util.ArrayList;
 
 public class MapletTree implements IMapletNode {
-	protected IMapletNode left;
-	protected IMapletNode right;
+	public IMapletNode left;
+	public IMapletNode right;
 	
 	public MapletTree(IMapletNode l, IMapletNode r) {
 		left = l;

@@ -1,8 +1,9 @@
-package ac.soton.bsharp.bSharp.util;
+package ac.soton.bsharp.typeInstanceRepresentation;
 
 import java.util.ArrayList;
 
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
 /* When creating ClassDecl, Theorems, or functions, the type (or supertypes) in which each of these is 
  * declared can be implicitly referenced. When they are implicitly referenced an instance of the type

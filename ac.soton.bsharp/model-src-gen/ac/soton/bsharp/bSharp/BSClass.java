@@ -5,9 +5,9 @@ package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
 
-import ac.soton.bsharp.bSharp.util.ITypeInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 /**
  * <!-- begin-user-doc -->
