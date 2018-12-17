@@ -555,19 +555,14 @@ ruleFileImport returns [EObject current=null]
 	(
 		(
 			(
-				lv_fileName_0_0=RULE_ID
-				{
-					newLeafNode(lv_fileName_0_0, grammarAccess.getFileImportAccess().getFileNameIDTerminalRuleCall_0_0());
-				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getFileImportRule());
 					}
-					setWithLastConsumed(
-						$current,
-						"fileName",
-						lv_fileName_0_0,
-						"ac.soton.bsharp.BSharp.ID");
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getFileImportAccess().getFileReferenceTopLevelFileCrossReference_0_0());
 				}
 			)
 		)
@@ -1867,17 +1862,17 @@ ruleBSharpBlock returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getBSharpBlockAccess().getInstancesInstanceParserRuleCall_2_2_0());
+						newCompositeNode(grammarAccess.getBSharpBlockAccess().getTheoremsInstanceParserRuleCall_2_2_0());
 					}
-					lv_instances_4_0=ruleInstance
+					lv_theorems_4_0=ruleInstance
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getBSharpBlockRule());
 						}
 						add(
 							$current,
-							"instances",
-							lv_instances_4_0,
+							"theorems",
+							lv_theorems_4_0,
 							"ac.soton.bsharp.BSharp.Instance");
 						afterParserOrEnumRuleCall();
 					}
@@ -3401,7 +3396,7 @@ ruleInstance returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getInstanceAccess().getClassNameClassDeclCrossReference_1_0());
+					newCompositeNode(grammarAccess.getInstanceAccess().getClassNameBSClassCrossReference_1_0());
 				}
 				ruleQualifiedName
 				{

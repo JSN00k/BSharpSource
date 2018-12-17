@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevel#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevel#getTopLevelFile <em>Top Level File</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.TopLevel#getImportedFiles <em>Imported Files</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevel()
@@ -76,4 +77,20 @@ public interface TopLevel extends EObject {
 	 * @generated
 	 */
 	void setTopLevelFile(TopLevelFile value);
+
+	/**
+	 * Returns the value of the '<em><b>Imported Files</b></em>' reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TopLevelFile}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Imported Files</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Imported Files</em>' reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevel_ImportedFiles()
+	 * @model
+	 * @generated
+	 */
+	EList<TopLevelFile> getImportedFiles();
 } // TopLevel

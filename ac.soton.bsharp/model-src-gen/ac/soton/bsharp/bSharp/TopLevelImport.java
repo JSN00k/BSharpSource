@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevelImport#getGlobalImports <em>Global Imports</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevelImport#getLocalImports <em>Local Imports</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevelImport#getBodyElements <em>Body Elements</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.TopLevelImport#getImportRefs <em>Import Refs</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelImport()
@@ -83,5 +84,21 @@ public interface TopLevelImport extends ITheoryImportCacheProvider {
 	 * @generated
 	 */
 	void setBodyElements(BodyElements value);
+
+	/**
+	 * Returns the value of the '<em><b>Import Refs</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TopLevelFile}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Import Refs</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Import Refs</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelImport_ImportRefs()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<TopLevelFile> getImportRefs();
 
 } // TopLevelImport

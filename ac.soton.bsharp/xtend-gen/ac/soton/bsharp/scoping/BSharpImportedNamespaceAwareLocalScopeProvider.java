@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelImport;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.inject.Inject;
@@ -39,6 +40,8 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
   public List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
     List<ImportNormalizer> importedNamespaceResolvers = Lists.<ImportNormalizer>newArrayList();
     if ((context instanceof TopLevelImport)) {
+      ArrayList<String> _arrayList = new ArrayList<String>();
+      BSharpImportedNamespaceAwareLocalScopeProvider.importedFiles = _arrayList;
       TopLevelImport topLevelImport = ((TopLevelImport) context);
       final TopLevel topLevel = EcoreUtil2.<TopLevel>getContainerOfType(topLevelImport, TopLevel.class);
       final QualifiedName packageName = this._iQualifiedNameProvider.getFullyQualifiedName(topLevel);
@@ -61,27 +64,8 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
     if ((localImports != null)) {
       for (final LocalImport localImport : localImports) {
         EList<FileImport> _fileImports = localImport.getFileImports();
-        for (final FileImport imports : _fileImports) {
-          {
-            String importfileName = imports.getFileName();
-            String _plus = (packageName + ".");
-            String _plus_1 = (_plus + importfileName);
-            String importString = (_plus_1 + ".");
-            String _type = imports.getType();
-            boolean _tripleNotEquals = (_type != null);
-            if (_tripleNotEquals) {
-              String _importString = importString;
-              String _type_1 = imports.getType();
-              importString = (_importString + _type_1);
-            } else {
-              String _importString_1 = importString;
-              importString = (_importString_1 + "*");
-            }
-            final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, (ignoreCase).booleanValue());
-            if ((resolver != null)) {
-              importedNamespaceResolvers.add(resolver);
-            }
-          }
+        for (final FileImport import_ : _fileImports) {
+          this.importFileImportForPackage(packageName.toString(), import_, importedNamespaceResolvers, ignoreCase);
         }
       }
     }
@@ -90,17 +74,53 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
         {
           final String projName = globalImport.getProject();
           EList<FileImport> _fileImports_1 = globalImport.getFileImports();
-          for (final FileImport file : _fileImports_1) {
-            {
-              final String importString = ((projName + ".") + file);
-              final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, (ignoreCase).booleanValue());
-              if ((resolver != null)) {
-                importedNamespaceResolvers.add(resolver);
-              }
-            }
+          for (final FileImport fileImport : _fileImports_1) {
+            this.importFileImportForPackage(projName, fileImport, importedNamespaceResolvers, ignoreCase);
           }
         }
       }
+    }
+  }
+  
+  public boolean importFileImportForPackage(final String pack, final FileImport fileImport, final List<ImportNormalizer> importedNamespaceResolvers, final Boolean ignoreCase) {
+    boolean _xblockexpression = false;
+    {
+      this.addFileImport(pack, fileImport.getFileName(), importedNamespaceResolvers, ignoreCase);
+      String importfileName = fileImport.getFileName();
+      this.addFileImport(pack, importfileName, importedNamespaceResolvers, ignoreCase);
+      String importString = (((pack + ".") + importfileName) + ".");
+      String _type = fileImport.getType();
+      boolean _tripleNotEquals = (_type != null);
+      if (_tripleNotEquals) {
+        String _importString = importString;
+        String _type_1 = fileImport.getType();
+        importString = (_importString + _type_1);
+      } else {
+        String _importString_1 = importString;
+        importString = (_importString_1 + "*");
+      }
+      final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, (ignoreCase).booleanValue());
+      boolean _xifexpression = false;
+      if ((resolver != null)) {
+        _xifexpression = importedNamespaceResolvers.add(resolver);
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
+  }
+  
+  protected static ArrayList<String> importedFiles = null;
+  
+  public void addFileImport(final String pack, final String fileName, final List<ImportNormalizer> importedNamespaceResolvers, final Boolean ignoreCase) {
+    final String importName = ((pack + ".") + fileName);
+    boolean _contains = BSharpImportedNamespaceAwareLocalScopeProvider.importedFiles.contains(importName);
+    if (_contains) {
+      return;
+    }
+    BSharpImportedNamespaceAwareLocalScopeProvider.importedFiles.add(importName);
+    final ImportNormalizer resolver = this.createImportedNamespaceResolver(importName, (ignoreCase).booleanValue());
+    if ((resolver != null)) {
+      importedNamespaceResolvers.add(resolver);
     }
   }
   

@@ -37,7 +37,7 @@ public interface TopLevelFile extends ITheoryImportCacheProvider {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelFile_Name()
-	 * @model id="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();

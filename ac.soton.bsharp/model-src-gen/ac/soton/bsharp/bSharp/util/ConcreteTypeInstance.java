@@ -25,14 +25,6 @@ public class ConcreteTypeInstance implements ITypeInstance {
 	}
 
 	@Override
-	public ArrayList<Tuple2<String, String>> typeConstructionTypesTyped() {
-		/* Not sure that this is ever used in this instance. As I'm not currently
-		 * supporting methods on concrete types.
-		 */
-		return null;
-	}
-
-	@Override
 	public String eventBTypeInstance() {
 		return type.getName();
 	}
@@ -44,6 +36,22 @@ public class ConcreteTypeInstance implements ITypeInstance {
 		}
 		
 		return type.getName() + "_" + otherType.getName();
+	}
+
+	@Override
+	public ArrayList<Tuple2<String, String>> typingStatementForInstance() {
+		/* Not sure that this is ever used in this instance. As I'm not currently
+		 * supporting methods on concrete types.
+		 */
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> typeAndVariableNames() {
+		/* Not currently sure what to do here. Hopefully it will become clear when I start 
+		 * compiling these things!
+		 */
+		return null;
 	}
 
 }

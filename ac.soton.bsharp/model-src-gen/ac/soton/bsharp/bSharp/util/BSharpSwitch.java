@@ -103,6 +103,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.ITHEOREM_CONTAINER: {
+				ITheoremContainer iTheoremContainer = (ITheoremContainer)theEObject;
+				T result = caseITheoremContainer(iTheoremContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.IVAR_TYPE: {
 				IVarType iVarType = (IVarType)theEObject;
 				T result = caseIVarType(iVarType);
@@ -299,6 +305,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				Instance instance = (Instance)theEObject;
 				T result = caseInstance(instance);
 				if (result == null) result = caseIExpressionContainer(instance);
+				if (result == null) result = caseITheoremContainer(instance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -367,6 +374,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 			case BSharpPackage.THEOREM_BODY: {
 				TheoremBody theoremBody = (TheoremBody)theEObject;
 				T result = caseTheoremBody(theoremBody);
+				if (result == null) result = caseITheoremContainer(theoremBody);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1109,6 +1117,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseITheoryImportCacheProvider(ITheoryImportCacheProvider object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ITheorem Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ITheorem Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseITheoremContainer(ITheoremContainer object) {
 		return null;
 	}
 

@@ -120,7 +120,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBodyElementsAccess().getExtendsAssignment_1(), "rule__BodyElements__ExtendsAssignment_1");
 			builder.put(grammarAccess.getGlobalImportAccess().getProjectAssignment_1(), "rule__GlobalImport__ProjectAssignment_1");
 			builder.put(grammarAccess.getGlobalImportAccess().getFileImportsAssignment_3(), "rule__GlobalImport__FileImportsAssignment_3");
-			builder.put(grammarAccess.getFileImportAccess().getFileNameAssignment_0(), "rule__FileImport__FileNameAssignment_0");
+			builder.put(grammarAccess.getFileImportAccess().getFileReferenceAssignment_0(), "rule__FileImport__FileReferenceAssignment_0");
 			builder.put(grammarAccess.getFileImportAccess().getTypeAssignment_1_1_1(), "rule__FileImport__TypeAssignment_1_1_1");
 			builder.put(grammarAccess.getLocalImportAccess().getFileImportsAssignment_1(), "rule__LocalImport__FileImportsAssignment_1");
 			builder.put(grammarAccess.getClassAccess().getNameAssignment_1(), "rule__Class__NameAssignment_1");
@@ -158,7 +158,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExtendAccess().getBlockAssignment_5(), "rule__Extend__BlockAssignment_5");
 			builder.put(grammarAccess.getBSharpBlockAccess().getFunctionsAssignment_2_0(), "rule__BSharpBlock__FunctionsAssignment_2_0");
 			builder.put(grammarAccess.getBSharpBlockAccess().getTheoremsAssignment_2_1(), "rule__BSharpBlock__TheoremsAssignment_2_1");
-			builder.put(grammarAccess.getBSharpBlockAccess().getInstancesAssignment_2_2(), "rule__BSharpBlock__InstancesAssignment_2_2");
+			builder.put(grammarAccess.getBSharpBlockAccess().getTheoremsAssignment_2_2(), "rule__BSharpBlock__TheoremsAssignment_2_2");
 			builder.put(grammarAccess.getFunctionDeclAccess().getNameAssignment_0(), "rule__FunctionDecl__NameAssignment_0");
 			builder.put(grammarAccess.getFunctionDeclAccess().getContextAssignment_1(), "rule__FunctionDecl__ContextAssignment_1");
 			builder.put(grammarAccess.getFunctionDeclAccess().getVarListAssignment_3(), "rule__FunctionDecl__VarListAssignment_3");

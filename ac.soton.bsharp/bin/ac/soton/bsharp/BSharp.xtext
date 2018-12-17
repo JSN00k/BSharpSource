@@ -68,7 +68,7 @@ GlobalImport:
 /* Imports other files from the current project. The optional type ID allows the importing
  * of a specific type from the file. */
 FileImport:
-	fileName=ID ('.' ('*' | type=ID))?
+ 	fileReference=[TopLevelFile] ('.' ('*' | type=ID))?
 ;
 
 LocalImport:
@@ -180,9 +180,12 @@ Extend:
 
 /* ------------------------ TypeBodyElements ------------------------------- */
 
+/* The ordering of theorem bodies and instances is imported so they need to go into
+ * a joint list to maintain the order.
+ */
 BSharpBlock:
 	{BSharpBlock}
-	'{' ((functions+=FunctionDecl) | (theorems+=TheoremBody) | instances+=Instance)* '}'
+	'{' ((functions+=FunctionDecl) | (theorems+=TheoremBody) | theorems+=Instance)* '}'
 ;
 
 /*------------------------- Functions --------------------------------- */
@@ -309,7 +312,7 @@ ClassVarDecl:
 ;
 
 ExpressionVariable:
-	 FunctionDecl | TypedVariable | InstName
+	 FunctionDecl | TypedVariable | InstName | DatatypeConstructor
 ;
 
 /* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 

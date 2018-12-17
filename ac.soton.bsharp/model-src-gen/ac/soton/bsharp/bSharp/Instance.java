@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Instance extends IExpressionContainer {
+public interface Instance extends IExpressionContainer, ITheoremContainer {
 	/**
 	 * Returns the value of the '<em><b>Class Name</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 
 import ac.soton.bsharp.bSharp.util.ITypeInstance;
+import ac.soton.bsharp.bSharp.util.ITypeInstanceOpArgs;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 
@@ -93,6 +94,6 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	/* Given an expression such as pNat.times this will expand to the call pNat_times in EventB */
 	String appyMemberOrFunc(ExpressionVariable typeInst, FunctionCall fc, Boolean asPred);
 
-	ITypeInstance genericTypeInstance(TheoryImportCache thyCache);
+	ITypeInstanceOpArgs genericTypeInstance(TheoryImportCache thyCache);
 
 } // ClassDecl

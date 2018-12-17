@@ -14,6 +14,8 @@ import javax.inject.Inject
 import ac.soton.bsharp.bSharp.TopLevel
 import ac.soton.bsharp.bSharp.TopLevelImport
 import org.eclipse.xtext.EcoreUtil2
+import java.util.ArrayList
+import ac.soton.bsharp.bSharp.FileImport
 
 /**
  * This class contains custom scoping description.
@@ -29,10 +31,13 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		 * and I need to return a list.
 		 */
 		 
+		
+		 
 		var List<ImportNormalizer> importedNamespaceResolvers = Lists.newArrayList()
 
 		/* Add the package to the fully qualified domain names */
 		if (context instanceof TopLevelImport) {
+			importedFiles = new ArrayList()
 			var topLevelImport = context as TopLevelImport
 			val topLevel = EcoreUtil2.getContainerOfType(topLevelImport, TopLevel)
 			val packageName = topLevel.fullyQualifiedName
@@ -43,6 +48,7 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 			val importBlocks = topLevel.topLevelFile.topLevelImports
 			val iterator = importBlocks.iterator
 			var TopLevelImport current
+			
 			do {
 				current = iterator.next
 				addImportsForTopLevelImport(current, importedNamespaceResolvers, packageName, ignoreCase)
@@ -60,20 +66,8 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 
 			if (localImports !== null) {
 				for (localImport : localImports) {
-					for (imports : localImport.fileImports) {
-						var importfileName = imports.fileName
-						var importString = packageName + '.' + importfileName + '.'
-						if (imports.type !== null) {
-							importString += imports.type
-						} else {
-							importString += '*'
-						}
-						
-						val resolver = createImportedNamespaceResolver(importString, ignoreCase)
-						
-						if (resolver !== null)
-							importedNamespaceResolvers += resolver
-						
+					for (import : localImport.fileImports) {
+						importFileImportForPackage(packageName.toString, import, importedNamespaceResolvers, ignoreCase)
 					}
 				}
 			}
@@ -85,16 +79,51 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 					/* I don't currently handle globalproj.* as I'd need to work out
 					 * how to iterate over all the files in the global proj.
 					 */
-					for (file : globalImport.fileImports) {
-						val importString = projName + '.' + file
-						val resolver = createImportedNamespaceResolver(importString, ignoreCase)
-						
-						if (resolver !== null) {
-							importedNamespaceResolvers += resolver
-						}
+					for (fileImport : globalImport.fileImports) {
+						importFileImportForPackage(projName, fileImport, importedNamespaceResolvers, ignoreCase)
 					}
 				}
 			}
+	}
+	
+	def importFileImportForPackage(
+		String pack,
+		FileImport fileImport,
+		List<ImportNormalizer> importedNamespaceResolvers,
+		Boolean ignoreCase) {
+		addFileImport(pack, fileImport.fileName, importedNamespaceResolvers, ignoreCase)
+
+		var importfileName = fileImport.fileName
+		addFileImport(pack, importfileName, importedNamespaceResolvers, ignoreCase)
+		var importString = pack + '.' + importfileName + '.'
+		if (fileImport.type !== null) {
+			importString += fileImport.type
+		} else {
+			importString += '*'
+		}
+
+		val resolver = createImportedNamespaceResolver(importString, ignoreCase)
+
+		if (resolver !== null)
+			importedNamespaceResolvers += resolver
+	}
+	
+	protected static var ArrayList<String> importedFiles = null
+	
+	def addFileImport(String pack, String fileName, List<ImportNormalizer> importedNamespaceResolvers, 
+		Boolean ignoreCase
+	) {
+		val importName = pack + "." + fileName
+		if (importedFiles.contains(importName)) {
+			return
+		}
+		
+		importedFiles += importName
+		
+		val resolver = createImportedNamespaceResolver(importName, ignoreCase)
+		if (resolver !== null) {
+			importedNamespaceResolvers += resolver
+		}
 	}
 	
 	override getImplicitImports(boolean ignoreCase) {

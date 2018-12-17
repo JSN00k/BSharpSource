@@ -462,9 +462,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		boolean isFirst = true;
 		if (classTypeInst != null) {
-			@SuppressWarnings("unchecked")
-			ArrayList<String> typedVars = (ArrayList<String>) classTypeInst.typeConstructionTypes().clone();
-			result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(typedVars, sep, true);
+			result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(classTypeInst.typeAndVariableNames(), sep, true);
 			isFirst = false;
 		}
 		
@@ -475,7 +473,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		isFirst = true;
 		if (classTypeInst != null) {
-			result += CompilationUtil.compileTypedVaribalesToTypedList(classTypeInst.typeConstructionTypesTyped(), true);
+			result += CompilationUtil.compileTypedVaribalesToTypedList(classTypeInst.typingStatementForInstance(), true);
 			isFirst = false;
 		}
 		

@@ -93,6 +93,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createITheoryImportCacheProviderAdapter();
 			}
 			@Override
+			public Adapter caseITheoremContainer(ITheoremContainer object) {
+				return createITheoremContainerAdapter();
+			}
+			@Override
 			public Adapter caseIVarType(IVarType object) {
 				return createIVarTypeAdapter();
 			}
@@ -899,6 +903,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createITheoryImportCacheProviderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.ITheoremContainer <em>ITheorem Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.ITheoremContainer
+	 * @generated
+	 */
+	public Adapter createITheoremContainerAdapter() {
 		return null;
 	}
 

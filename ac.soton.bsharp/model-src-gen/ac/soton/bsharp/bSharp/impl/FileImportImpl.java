@@ -6,10 +6,12 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.FileImport;
 
+import ac.soton.bsharp.bSharp.TopLevelFile;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -21,13 +23,34 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FileImportImpl#getFileName <em>File Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FileImportImpl#getType <em>Type</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FileImportImpl#getFileName <em>File Name</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FileImportImpl#getFileReference <em>File Reference</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FileImportImpl extends MinimalEObjectImpl.Container implements FileImport {
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,24 +72,14 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	protected String fileName = FILE_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * The cached value of the '{@link #getFileReference() <em>File Reference</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getFileReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected String type = TYPE_EDEFAULT;
+	protected TopLevelFile fileReference;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -113,6 +126,44 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TopLevelFile getFileReference() {
+		if (fileReference != null && fileReference.eIsProxy()) {
+			InternalEObject oldFileReference = (InternalEObject)fileReference;
+			fileReference = (TopLevelFile)eResolveProxy(oldFileReference);
+			if (fileReference != oldFileReference) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.FILE_IMPORT__FILE_REFERENCE, oldFileReference, fileReference));
+			}
+		}
+		return fileReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TopLevelFile basicGetFileReference() {
+		return fileReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFileReference(TopLevelFile newFileReference) {
+		TopLevelFile oldFileReference = fileReference;
+		fileReference = newFileReference;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FILE_IMPORT__FILE_REFERENCE, oldFileReference, fileReference));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getType() {
 		return type;
 	}
@@ -137,10 +188,13 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.FILE_IMPORT__FILE_NAME:
-				return getFileName();
 			case BSharpPackage.FILE_IMPORT__TYPE:
 				return getType();
+			case BSharpPackage.FILE_IMPORT__FILE_NAME:
+				return getFileName();
+			case BSharpPackage.FILE_IMPORT__FILE_REFERENCE:
+				if (resolve) return getFileReference();
+				return basicGetFileReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -153,11 +207,14 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case BSharpPackage.FILE_IMPORT__TYPE:
+				setType((String)newValue);
+				return;
 			case BSharpPackage.FILE_IMPORT__FILE_NAME:
 				setFileName((String)newValue);
 				return;
-			case BSharpPackage.FILE_IMPORT__TYPE:
-				setType((String)newValue);
+			case BSharpPackage.FILE_IMPORT__FILE_REFERENCE:
+				setFileReference((TopLevelFile)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -171,11 +228,14 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.FILE_IMPORT__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 			case BSharpPackage.FILE_IMPORT__FILE_NAME:
 				setFileName(FILE_NAME_EDEFAULT);
 				return;
-			case BSharpPackage.FILE_IMPORT__TYPE:
-				setType(TYPE_EDEFAULT);
+			case BSharpPackage.FILE_IMPORT__FILE_REFERENCE:
+				setFileReference((TopLevelFile)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -189,10 +249,12 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.FILE_IMPORT__FILE_NAME:
-				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
 			case BSharpPackage.FILE_IMPORT__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			case BSharpPackage.FILE_IMPORT__FILE_NAME:
+				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
+			case BSharpPackage.FILE_IMPORT__FILE_REFERENCE:
+				return fileReference != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -207,10 +269,10 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (fileName: ");
-		result.append(fileName);
-		result.append(", type: ");
+		result.append(" (type: ");
 		result.append(type);
+		result.append(", fileName: ");
+		result.append(fileName);
 		result.append(')');
 		return result.toString();
 	}

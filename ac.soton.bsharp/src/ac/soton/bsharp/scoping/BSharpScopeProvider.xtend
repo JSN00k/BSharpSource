@@ -28,8 +28,16 @@ import ac.soton.bsharp.bSharp.Extend
 import ac.soton.bsharp.bSharp.TypedVariableList
 import ac.soton.bsharp.bSharp.VariableTyping
 import ac.soton.bsharp.bSharp.TypeConstructor
+import ac.soton.bsharp.bSharp.ExpressionVariable
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
+	
+	def IScope scope_TopLevelFile(EObject context, EReference reference) {
+		/* We only want objects from the global scope. */
+		var scope = delegateGetScope(context, reference)
+		
+		return scope
+	}
 	
 	def IScope scope_GenName(EObject context, EReference reference) {		
 		var parent = delegateGetScope(context, reference)
@@ -117,26 +125,28 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 
 		var parent = delegateGetScope(context, reference)
 
-		var bppClass = EcoreUtil2.getContainerOfType(context, BSClass)
+		var classDecl = EcoreUtil2.getContainerOfType(context, ClassDecl)
 		
-		if (bppClass === null) {
+		if (classDecl === null) {
 			var extend = EcoreUtil2.getContainerOfType(context, Extend)
-			
-			if (extend.extendedClass instanceof BSClass)
-				bppClass = extend.extendedClass as BSClass
+			classDecl = extend.extendedClass
 		}
 
-		var ArrayList<TypedVariable> variables = new ArrayList
+		var ArrayList<ExpressionVariable> variables = new ArrayList
 
-		if (bppClass !== null) {
-			for (sc : BSharpUtil.superClasses(bppClass)) {
-				if (sc instanceof BSClass) {
-					val superClass = sc as BSClass
-					if (superClass.getVarList !== null)
-						variables += EcoreUtil2.getAllContentsOfType(superClass.getVarList, TypedVariable)
+		if (classDecl !== null) {
+			if (classDecl instanceof BSClass) {
+				for (sc : BSharpUtil.superClasses(classDecl)) {
+					if (sc instanceof BSClass) {
+						val superClass = sc as BSClass
+						if (superClass.getVarList !== null)
+							variables += EcoreUtil2.getAllContentsOfType(superClass.getVarList, TypedVariable)
+					}
 				}
+			} else {
+				// classDecl is an instance of Datatype
+				variables += (classDecl as Datatype).constructors
 			}
-
 			parent = Scopes.scopeFor(variables, parent)
 		}
 

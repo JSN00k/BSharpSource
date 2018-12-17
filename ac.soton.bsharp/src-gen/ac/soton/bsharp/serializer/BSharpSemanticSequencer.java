@@ -204,7 +204,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     BSharpBlock returns BSharpBlock
 	 *
 	 * Constraint:
-	 *     (functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)*
+	 *     (functions+=FunctionDecl | theorems+=TheoremBody | theorems+=Instance)*
 	 */
 	protected void sequence_BSharpBlock(ISerializationContext context, BSharpBlock semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -318,6 +318,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * Contexts:
 	 *     DatatypeConstructor returns DatatypeConstructor
+	 *     ExpressionVariable returns DatatypeConstructor
 	 *
 	 * Constraint:
 	 *     (name=ID decons=TypedVariableList?)
@@ -371,7 +372,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FileImport returns FileImport
 	 *
 	 * Constraint:
-	 *     (fileName=ID type=ID?)
+	 *     (fileReference=[TopLevelFile|ID] type=ID?)
 	 */
 	protected void sequence_FileImport(ISerializationContext context, FileImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -469,7 +470,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
-	 *     (className=[ClassDecl|QualifiedName] context=TypeDeclContext arguments+=RootExpression? arguments+=RootExpression* name=ID?)
+	 *     (className=[BSClass|QualifiedName] context=TypeDeclContext arguments+=RootExpression? arguments+=RootExpression* name=ID?)
 	 */
 	protected void sequence_Instance(ISerializationContext context, Instance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

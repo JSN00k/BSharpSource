@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TheoremBody extends EObject {
+public interface TheoremBody extends ITheoremContainer {
 	/**
 	 * Returns the value of the '<em><b>Theorem Decl</b></em>' containment reference list.
 	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TheoremDecl}.

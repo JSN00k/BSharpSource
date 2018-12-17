@@ -8,6 +8,9 @@ import ac.soton.bsharp.scoping.BSharpImportedNamespaceAwareLocalScopeProvider
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy
 import ac.soton.bsharp.scoping.BSharpResourceDescriptionStrategy
 import ac.soton.bsharp.scoping.BSharpResource
+import ac.soton.bsharp.parser.antlr.BSharpParser
+import org.eclipse.xtext.parser.IParser
+import ac.soton.bsharp.parsing.BSharpExtendedParser
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -27,6 +30,11 @@ class BSharpRuntimeModule extends AbstractBSharpRuntimeModule {
 	
 	override bindXtextResource() {
 		return BSharpResource;
+	}
+	
+		// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	override bindIParser() {
+		return BSharpExtendedParser;
 	}
 }
 

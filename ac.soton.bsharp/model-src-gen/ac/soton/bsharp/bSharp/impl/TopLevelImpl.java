@@ -4,16 +4,20 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.TopLevel;
 
 import ac.soton.bsharp.bSharp.TopLevelFile;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +29,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelImpl#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelImpl#getTopLevelFile <em>Top Level File</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelImpl#getImportedFiles <em>Imported Files</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,6 +62,15 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 	 * @ordered
 	 */
 	protected TopLevelFile topLevelFile;
+	/**
+	 * The cached value of the '{@link #getImportedFiles() <em>Imported Files</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImportedFiles()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TopLevelFile> importedFiles;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,6 +159,18 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<TopLevelFile> getImportedFiles() {
+		if (importedFiles == null) {
+			importedFiles = new EObjectResolvingEList<TopLevelFile>(TopLevelFile.class, this, BSharpPackage.TOP_LEVEL__IMPORTED_FILES);
+		}
+		return importedFiles;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -166,6 +192,8 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 				return getName();
 			case BSharpPackage.TOP_LEVEL__TOP_LEVEL_FILE:
 				return getTopLevelFile();
+			case BSharpPackage.TOP_LEVEL__IMPORTED_FILES:
+				return getImportedFiles();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -175,6 +203,7 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -183,6 +212,10 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 				return;
 			case BSharpPackage.TOP_LEVEL__TOP_LEVEL_FILE:
 				setTopLevelFile((TopLevelFile)newValue);
+				return;
+			case BSharpPackage.TOP_LEVEL__IMPORTED_FILES:
+				getImportedFiles().clear();
+				getImportedFiles().addAll((Collection<? extends TopLevelFile>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -202,6 +235,9 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 			case BSharpPackage.TOP_LEVEL__TOP_LEVEL_FILE:
 				setTopLevelFile((TopLevelFile)null);
 				return;
+			case BSharpPackage.TOP_LEVEL__IMPORTED_FILES:
+				getImportedFiles().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -218,6 +254,8 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.TOP_LEVEL__TOP_LEVEL_FILE:
 				return topLevelFile != null;
+			case BSharpPackage.TOP_LEVEL__IMPORTED_FILES:
+				return importedFiles != null && !importedFiles.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

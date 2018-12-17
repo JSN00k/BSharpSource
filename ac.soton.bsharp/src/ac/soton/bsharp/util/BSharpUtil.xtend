@@ -10,7 +10,7 @@ import java.util.Collection
 import ac.soton.bsharp.bSharp.BSClass
 import ac.soton.bsharp.bSharp.TypeConstrBracket
 import ac.soton.bsharp.bSharp.TypeBuilder
-import java.lang.reflect.Constructor
+
 
 class BSharpUtil {	
 	/* This function simply finds all of the supertypes. It doesn't do any work to 
@@ -96,4 +96,6 @@ class BSharpUtil {
 		
 		return reverseLeftHandedConstructedType(left)
 	}
+	
+
 }

@@ -37,10 +37,18 @@ public class MapletTypeInstance implements ITypeInstance {
 		
 		return untypedTypes;
 	}
-
+	
 	@Override
-	public ArrayList<Tuple2<String, String>> typeConstructionTypesTyped() {
-		return typedVariableConstructorsTyped;
+	public ArrayList<Tuple2<String, String>> typingStatementForInstance() {
+		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>(typedVariableConstructorsTyped);
+		
+		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVariableConstructorsTyped, ", ", true) + ")";
+		
+		if (tree != null) {
+			result.add(new Tuple2<String, String>(tree.compileToString(), classDecl.eventBPolymorphicTypeConstructorName() + argsForConstructor));
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -67,6 +75,20 @@ public class MapletTypeInstance implements ITypeInstance {
 		}
 		
 		return t.compileToString();
+	}
+
+	@Override
+	public ArrayList<String> typeAndVariableNames() {
+		ArrayList<String> result = new ArrayList<String>();
+		
+		for (Tuple2<String, String> typedType : typedVariableConstructorsTyped) {
+			result.add(typedType.x);
+		}
+		
+		if (tree != null)
+			result.addAll(tree.varNames());
+		
+		return result;
 	}
 
 }

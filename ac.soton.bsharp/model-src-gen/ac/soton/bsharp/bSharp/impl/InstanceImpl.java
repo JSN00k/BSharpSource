@@ -16,13 +16,17 @@ import ac.soton.bsharp.bSharp.util.ConcreteTypeInstance;
 import ac.soton.bsharp.bSharp.util.ITypeInstance;
 
 import java.util.Collection;
+import java.util.List;
 
+import org.eclipse.core.resources.mapping.RemoteResourceMappingContext;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -34,9 +38,19 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.linking.LinkingScopeProviderBinding;
+import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
+import org.eclipse.xtext.linking.lazy.LazyURIEncoder;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.util.EcoreGenericsUtil;
+import org.eclipse.xtext.util.SimpleCache;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 
+import com.google.common.base.Function;
 import com.google.inject.Inject;
 
 /**
@@ -221,9 +235,14 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public String getName() {
+		if (name == null) {
+			name = defaultName();
+			if (eNotificationRequired())
+				eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__NAME, null, name));
+		}
+		
 		return name;
 	}
 
@@ -364,29 +383,48 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	
 	protected ITypeInstance typeInst = null;
 	
-	@Inject
-	LinkingScopeProviderBinding scopeProvider;
+	String defaultName() {
+		ClassDecl cd = EcoreUtil2.getContainerOfType(this.eContainer(), ClassDecl.class);
+		
+		return cd.eventBPrefix() + "_" + className.getName();
+	}
+	
+	Instance getSuperInstance() {
+		/* The approach is to generate a reference for the supertype, get the scope for 
+		 * the reference, and then manually search the scope to try and find the description
+		 * This avoids the need to have the information about nodes that the validator uses.
+		 * It also means that we only find in scope instances of extends (If we used the 
+		 * index then out of scope objects would als be found). */
+		BSClass targetType = getClassName();
+		ClassDecl superT = targetType.getFirstSupertypeTypeClass();
+		if (superT == null)
+			return null;
+		
+		BSharpBlock emptyBlock = BSharpFactory.eINSTANCE.createBSharpBlock();
+		EReference ref = EcoreFactory.eINSTANCE.createEReference();
+		ref.setName(className.eventBPrefix() + "_" + superT.getName());
+		ref.setEType(emptyBlock.eClass());
+		
+		LazyLinkingResource res = new LazyLinkingResource();
+		res.addLazyProxyInformation(this, ref, null);
+		
+		EcoreUtil2.resolveLazyCrossReferences(res, null);
+		
+		return null;
+	}
 	
 	/* If we have Instance Setoid<pNat>([=]) this compiles to an operator with the direct definition
 	 *  pNat |-> = \in Setoid(pNat)
 	 */
 	void compileMembershipOperatorExpr() {
-		BSClass targetType = getClassName();
-		
-		ClassDecl superT = targetType.getFirstSupertypeTypeClass();
-		BSharpBlock emptyBlock = BSharpFactory.eINSTANCE.createBSharpBlock();
-		EReference ref = EcoreFactory.eINSTANCE.createEReference();
-		ref.setName("BSharpBlock");
-		ref.setEType(emptyBlock.eClass());
-		
-		IScope scope = ((IScopeProvider)scopeProvider).getScope(this, ref);
-		
-		
+		Instance superInst = getSuperInstance();
 	}
 	
 	@Override 
 	public void compile() {
 		typeInst = new ConcreteTypeInstance(getClassName());
+		compileMembershipOperatorExpr();
+		
 		//TODO: Some compiling!
 		
 		typeInst = null;

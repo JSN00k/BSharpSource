@@ -74,7 +74,7 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('.' '*')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     fileName=ID (ambiguity) (rule end)
+	 *     fileReference=[TopLevelFile|ID] (ambiguity) (rule end)
 	 */
 	protected void emit_FileImport___FullStopKeyword_1_0_AsteriskKeyword_1_1_0__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

@@ -18,6 +18,7 @@ import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypePowerSet;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.ITypeInstance;
+import ac.soton.bsharp.bSharp.util.ITypeInstanceOpArgs;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -307,7 +308,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public ITypeInstance genericTypeInstance(TheoryImportCache thyCache) {
+	public ITypeInstanceOpArgs genericTypeInstance(TheoryImportCache thyCache) {
 		// TODO Auto-generated method stub
 		return null;
 	}

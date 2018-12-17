@@ -332,8 +332,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	public class FileImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FileImport");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cFileNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cFileNameIDTerminalRuleCall_0_0 = (RuleCall)cFileNameAssignment_0.eContents().get(0);
+		private final Assignment cFileReferenceAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cFileReferenceTopLevelFileCrossReference_0_0 = (CrossReference)cFileReferenceAssignment_0.eContents().get(0);
+		private final RuleCall cFileReferenceTopLevelFileIDTerminalRuleCall_0_0_1 = (RuleCall)cFileReferenceTopLevelFileCrossReference_0_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
@@ -343,17 +344,20 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		///* Imports other files from the current project. The optional type ID allows the importing
 		// * of a specific type from the file. */ FileImport:
-		//	fileName=ID ('.' ('*' | type=ID))?;
+		//	fileReference=[TopLevelFile] ('.' ('*' | type=ID))?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//fileName=ID ('.' ('*' | type=ID))?
+		//fileReference=[TopLevelFile] ('.' ('*' | type=ID))?
 		public Group getGroup() { return cGroup; }
 		
-		//fileName=ID
-		public Assignment getFileNameAssignment_0() { return cFileNameAssignment_0; }
+		//fileReference=[TopLevelFile]
+		public Assignment getFileReferenceAssignment_0() { return cFileReferenceAssignment_0; }
+		
+		//[TopLevelFile]
+		public CrossReference getFileReferenceTopLevelFileCrossReference_0_0() { return cFileReferenceTopLevelFileCrossReference_0_0; }
 		
 		//ID
-		public RuleCall getFileNameIDTerminalRuleCall_0_0() { return cFileNameIDTerminalRuleCall_0_0; }
+		public RuleCall getFileReferenceTopLevelFileIDTerminalRuleCall_0_0_1() { return cFileReferenceTopLevelFileIDTerminalRuleCall_0_0_1; }
 		
 		//('.' ('*' | type=ID))?
 		public Group getGroup_1() { return cGroup_1; }
@@ -1118,16 +1122,18 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionsFunctionDeclParserRuleCall_2_0_0 = (RuleCall)cFunctionsAssignment_2_0.eContents().get(0);
 		private final Assignment cTheoremsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final RuleCall cTheoremsTheoremBodyParserRuleCall_2_1_0 = (RuleCall)cTheoremsAssignment_2_1.eContents().get(0);
-		private final Assignment cInstancesAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
-		private final RuleCall cInstancesInstanceParserRuleCall_2_2_0 = (RuleCall)cInstancesAssignment_2_2.eContents().get(0);
+		private final Assignment cTheoremsAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cTheoremsInstanceParserRuleCall_2_2_0 = (RuleCall)cTheoremsAssignment_2_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		///* ------------------------ TypeBodyElements ------------------------------- */ BSharpBlock:
+		///* ------------------------ TypeBodyElements ------------------------------- */ /* The ordering of theorem bodies and instances is imported so they need to go into
+		// * a joint list to maintain the order.
+		// */ BSharpBlock:
 		//	{BSharpBlock}
-		//	'{' (functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)* '}';
+		//	'{' (functions+=FunctionDecl | theorems+=TheoremBody | theorems+=Instance)* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{BSharpBlock} '{' (functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)* '}'
+		//{BSharpBlock} '{' (functions+=FunctionDecl | theorems+=TheoremBody | theorems+=Instance)* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//{BSharpBlock}
@@ -1136,7 +1142,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//(functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)*
+		//(functions+=FunctionDecl | theorems+=TheoremBody | theorems+=Instance)*
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//functions+=FunctionDecl
@@ -1151,11 +1157,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//TheoremBody
 		public RuleCall getTheoremsTheoremBodyParserRuleCall_2_1_0() { return cTheoremsTheoremBodyParserRuleCall_2_1_0; }
 		
-		//instances+=Instance
-		public Assignment getInstancesAssignment_2_2() { return cInstancesAssignment_2_2; }
+		//theorems+=Instance
+		public Assignment getTheoremsAssignment_2_2() { return cTheoremsAssignment_2_2; }
 		
 		//Instance
-		public RuleCall getInstancesInstanceParserRuleCall_2_2_0() { return cInstancesInstanceParserRuleCall_2_2_0; }
+		public RuleCall getTheoremsInstanceParserRuleCall_2_2_0() { return cTheoremsInstanceParserRuleCall_2_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
@@ -1969,12 +1975,13 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionDeclParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTypedVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cInstNameParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cDatatypeConstructorParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//ExpressionVariable:
-		//	FunctionDecl | TypedVariable | InstName;
+		//	FunctionDecl | TypedVariable | InstName | DatatypeConstructor;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FunctionDecl | TypedVariable | InstName
+		//FunctionDecl | TypedVariable | InstName | DatatypeConstructor
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//FunctionDecl
@@ -1985,6 +1992,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//InstName
 		public RuleCall getInstNameParserRuleCall_2() { return cInstNameParserRuleCall_2; }
+		
+		//DatatypeConstructor
+		public RuleCall getDatatypeConstructorParserRuleCall_3() { return cDatatypeConstructorParserRuleCall_3; }
 	}
 	public class InbuiltInfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltInfix");
@@ -2071,8 +2081,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cInstanceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cClassNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cClassNameClassDeclCrossReference_1_0 = (CrossReference)cClassNameAssignment_1.eContents().get(0);
-		private final RuleCall cClassNameClassDeclQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cClassNameClassDeclCrossReference_1_0.eContents().get(1);
+		private final CrossReference cClassNameBSClassCrossReference_1_0 = (CrossReference)cClassNameAssignment_1.eContents().get(0);
+		private final RuleCall cClassNameBSClassQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cClassNameBSClassCrossReference_1_0.eContents().get(1);
 		private final Assignment cContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cContextTypeDeclContextParserRuleCall_2_0 = (RuleCall)cContextAssignment_2.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -2087,25 +2097,25 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_7_0 = (RuleCall)cNameAssignment_7.eContents().get(0);
 		
 		///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-		//	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
+		//	'Instance' className=[BSClass|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
 		//	arguments+=RootExpression)* ')' name=ID?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
+		//'Instance' className=[BSClass|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
 		//arguments+=RootExpression)* ')' name=ID?
 		public Group getGroup() { return cGroup; }
 		
 		//'Instance'
 		public Keyword getInstanceKeyword_0() { return cInstanceKeyword_0; }
 		
-		//className=[ClassDecl|QualifiedName]
+		//className=[BSClass|QualifiedName]
 		public Assignment getClassNameAssignment_1() { return cClassNameAssignment_1; }
 		
-		//[ClassDecl|QualifiedName]
-		public CrossReference getClassNameClassDeclCrossReference_1_0() { return cClassNameClassDeclCrossReference_1_0; }
+		//[BSClass|QualifiedName]
+		public CrossReference getClassNameBSClassCrossReference_1_0() { return cClassNameBSClassCrossReference_1_0; }
 		
 		//QualifiedName
-		public RuleCall getClassNameClassDeclQualifiedNameParserRuleCall_1_0_1() { return cClassNameClassDeclQualifiedNameParserRuleCall_1_0_1; }
+		public RuleCall getClassNameBSClassQualifiedNameParserRuleCall_1_0_1() { return cClassNameBSClassQualifiedNameParserRuleCall_1_0_1; }
 		
 		//context=TypeDeclContext
 		public Assignment getContextAssignment_2() { return cContextAssignment_2; }
@@ -2423,7 +2433,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	///* Imports other files from the current project. The optional type ID allows the importing
 	// * of a specific type from the file. */ FileImport:
-	//	fileName=ID ('.' ('*' | type=ID))?;
+	//	fileReference=[TopLevelFile] ('.' ('*' | type=ID))?;
 	public FileImportElements getFileImportAccess() {
 		return pFileImport;
 	}
@@ -2628,9 +2638,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getExtendAccess().getRule();
 	}
 	
-	///* ------------------------ TypeBodyElements ------------------------------- */ BSharpBlock:
+	///* ------------------------ TypeBodyElements ------------------------------- */ /* The ordering of theorem bodies and instances is imported so they need to go into
+	// * a joint list to maintain the order.
+	// */ BSharpBlock:
 	//	{BSharpBlock}
-	//	'{' (functions+=FunctionDecl | theorems+=TheoremBody | instances+=Instance)* '}';
+	//	'{' (functions+=FunctionDecl | theorems+=TheoremBody | theorems+=Instance)* '}';
 	public BSharpBlockElements getBSharpBlockAccess() {
 		return pBSharpBlock;
 	}
@@ -2857,7 +2869,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ExpressionVariable:
-	//	FunctionDecl | TypedVariable | InstName;
+	//	FunctionDecl | TypedVariable | InstName | DatatypeConstructor;
 	public ExpressionVariableElements getExpressionVariableAccess() {
 		return pExpressionVariable;
 	}
@@ -2889,7 +2901,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-	//	'Instance' className=[ClassDecl|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
+	//	'Instance' className=[BSClass|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
 	//	arguments+=RootExpression)* ')' name=ID?;
 	public InstanceElements getInstanceAccess() {
 		return pInstance;

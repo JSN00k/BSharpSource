@@ -4,11 +4,13 @@
 package ac.soton.bsharp;
 
 import ac.soton.bsharp.AbstractBSharpRuntimeModule;
+import ac.soton.bsharp.parsing.BSharpExtendedParser;
 import ac.soton.bsharp.scoping.BSharpImportedNamespaceAwareLocalScopeProvider;
 import ac.soton.bsharp.scoping.BSharpResource;
 import ac.soton.bsharp.scoping.BSharpResourceDescriptionStrategy;
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
+import org.eclipse.xtext.parser.IParser;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
@@ -32,5 +34,10 @@ public class BSharpRuntimeModule extends AbstractBSharpRuntimeModule {
   @Override
   public Class<? extends XtextResource> bindXtextResource() {
     return BSharpResource.class;
+  }
+  
+  @Override
+  public Class<? extends IParser> bindIParser() {
+    return BSharpExtendedParser.class;
   }
 }

@@ -1,5 +1,7 @@
 package ac.soton.bsharp.bSharp.util;
 
+import java.util.ArrayList;
+
 public class MapletTree implements IMapletNode {
 	protected IMapletNode left;
 	protected IMapletNode right;
@@ -18,5 +20,18 @@ public class MapletTree implements IMapletNode {
 		}
 		
 		return result + right.compileToString();
+	}
+	
+	@Override
+	public void varNamesIntoArray(ArrayList<String> al) {
+		left.varNamesIntoArray(al);
+		right.varNamesIntoArray(al);
+	}
+
+	@Override
+	public ArrayList<String> varNames() {
+		ArrayList<String> result = new ArrayList<String>();
+		varNamesIntoArray(result);
+		return result;
 	}
 }

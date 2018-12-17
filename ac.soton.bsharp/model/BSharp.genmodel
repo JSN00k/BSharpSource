@@ -12,6 +12,7 @@
     <genClasses image="false" ecoreClass="BSharp.ecore#//IClassDeclExtend"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IExpressionContainer"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//ITheoryImportCacheProvider"/>
+    <genClasses image="false" ecoreClass="BSharp.ecore#//ITheoremContainer"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVarType"/>
     <genClasses ecoreClass="BSharp.ecore#//Type"/>
     <genClasses ecoreClass="BSharp.ecore#//TopLevelInstance"/>
@@ -32,7 +33,6 @@
     <genClasses ecoreClass="BSharp.ecore#//BSharpBlock">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSharpBlock/functions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSharpBlock/theorems"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSharpBlock/instances"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ClassDecl">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/context"/>
@@ -63,8 +63,9 @@
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ExpressionVariable"/>
     <genClasses ecoreClass="BSharp.ecore#//FileImport">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FileImport/fileName"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute BSharp.ecore#//FileImport/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FileImport/fileName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FileImport/fileReference"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FunctionCall">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/arguments"/>
@@ -149,11 +150,13 @@
     <genClasses ecoreClass="BSharp.ecore#//TopLevel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//TopLevel/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevel/topLevelFile"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevel/importedFiles"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//TopLevelImport">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/globalImports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/localImports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/bodyElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/importRefs"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BSharp.ecore#//TypeBuilder"/>
     <genClasses ecoreClass="BSharp.ecore#//TypeConstructor">

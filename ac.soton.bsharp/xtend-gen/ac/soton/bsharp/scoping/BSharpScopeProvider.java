@@ -5,6 +5,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
@@ -35,6 +36,11 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 
 @SuppressWarnings("all")
 public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
+  public IScope scope_TopLevelFile(final EObject context, final EReference reference) {
+    IScope scope = this.delegateGetScope(context, reference);
+    return scope;
+  }
+  
   public IScope scope_GenName(final EObject context, final EReference reference) {
     IScope parent = this.delegateGetScope(context, reference);
     IScope polyScope = this.getPolyScopeFor(context, parent);
@@ -102,28 +108,29 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   
   public IScope scope_ExpressionVariable(final EObject context, final EReference reference) {
     IScope parent = this.delegateGetScope(context, reference);
-    BSClass bppClass = EcoreUtil2.<BSClass>getContainerOfType(context, BSClass.class);
-    if ((bppClass == null)) {
+    ClassDecl classDecl = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
+    if ((classDecl == null)) {
       Extend extend = EcoreUtil2.<Extend>getContainerOfType(context, Extend.class);
-      ClassDecl _extendedClass = extend.getExtendedClass();
-      if ((_extendedClass instanceof BSClass)) {
-        ClassDecl _extendedClass_1 = extend.getExtendedClass();
-        bppClass = ((BSClass) _extendedClass_1);
-      }
+      classDecl = extend.getExtendedClass();
     }
-    ArrayList<TypedVariable> variables = new ArrayList<TypedVariable>();
-    if ((bppClass != null)) {
-      ArrayList<EObject> _superClasses = BSharpUtil.superClasses(bppClass);
-      for (final EObject sc : _superClasses) {
-        if ((sc instanceof BSClass)) {
-          final BSClass superClass = ((BSClass) sc);
-          TypedVariableList _varList = superClass.getVarList();
-          boolean _tripleNotEquals = (_varList != null);
-          if (_tripleNotEquals) {
-            List<TypedVariable> _allContentsOfType = EcoreUtil2.<TypedVariable>getAllContentsOfType(superClass.getVarList(), TypedVariable.class);
-            Iterables.<TypedVariable>addAll(variables, _allContentsOfType);
+    ArrayList<ExpressionVariable> variables = new ArrayList<ExpressionVariable>();
+    if ((classDecl != null)) {
+      if ((classDecl instanceof BSClass)) {
+        ArrayList<EObject> _superClasses = BSharpUtil.superClasses(((BSClass)classDecl));
+        for (final EObject sc : _superClasses) {
+          if ((sc instanceof BSClass)) {
+            final BSClass superClass = ((BSClass) sc);
+            TypedVariableList _varList = superClass.getVarList();
+            boolean _tripleNotEquals = (_varList != null);
+            if (_tripleNotEquals) {
+              List<TypedVariable> _allContentsOfType = EcoreUtil2.<TypedVariable>getAllContentsOfType(superClass.getVarList(), TypedVariable.class);
+              Iterables.<ExpressionVariable>addAll(variables, _allContentsOfType);
+            }
           }
         }
+      } else {
+        EList<DatatypeConstructor> _constructors = ((Datatype) classDecl).getConstructors();
+        Iterables.<ExpressionVariable>addAll(variables, _constructors);
       }
       parent = Scopes.scopeFor(variables, parent);
     }

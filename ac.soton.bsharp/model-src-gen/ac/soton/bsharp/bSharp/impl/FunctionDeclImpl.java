@@ -29,6 +29,7 @@ import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.ITypeInstance;
+import ac.soton.bsharp.bSharp.util.ITypeInstanceOpArgs;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -760,11 +761,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	protected Integer compiledMatchStatements = 0;
-	protected ITypeInstance evBTypeInstance = null;
+	protected ITypeInstanceOpArgs evBTypeInstance = null;
 
 	protected ArrayList<String> inferredBSClassConstructors = null;
 	
-	@SuppressWarnings("unchecked")
 	ArrayList<Tuple2<String, String>> compiledPolyContext() {
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		boolean hasInferredContext = expr.hasInferredContext();
@@ -786,7 +786,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			}
 			
 			evBTypeInstance = classDecl.genericTypeInstance(thyCache);
-			compiledContext = (ArrayList<Tuple2<String, String>>) evBTypeInstance.typeConstructionTypesTyped().clone();
+			compiledContext = evBTypeInstance.individuallyTypedConstructionArgs();
 		}
 		
 		if (context == null) {

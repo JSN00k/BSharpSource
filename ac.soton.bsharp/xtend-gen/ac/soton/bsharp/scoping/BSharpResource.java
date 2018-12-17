@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
 import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
@@ -25,10 +27,17 @@ public class BSharpResource extends LazyLinkingResource {
     } else {
       result = this.getParser().parse(this.getEntryPoint(), this.createReader(inputStream));
     }
-    final String fileNameFull = IterableExtensions.<String>last(((Iterable<String>)Conversions.doWrapArray(this.uri.segments()))).toString();
-    EObject _rootASTElement = result.getRootASTElement();
-    TopLevelFile _topLevelFile = ((TopLevel) _rootASTElement).getTopLevelFile();
-    _topLevelFile.setName(fileNameFull.substring(0, fileNameFull.lastIndexOf(".")));
+    final EObject rootAST = result.getRootASTElement();
+    if ((rootAST != null)) {
+      final String fileNameFull = IterableExtensions.<String>last(((Iterable<String>)Conversions.doWrapArray(this.uri.segments()))).toString();
+      final TopLevelFile topLevelFile = ((TopLevel) rootAST).getTopLevelFile();
+      if ((topLevelFile != null)) {
+        topLevelFile.setName(fileNameFull.substring(0, fileNameFull.lastIndexOf(".")));
+      }
+    }
     this.updateInternalState(this.getParseResult(), result);
+    if (((options != null) && Boolean.TRUE.equals(options.get(XtextResource.OPTION_RESOLVE_ALL)))) {
+      EcoreUtil.resolveAll(this);
+    }
   }
 }

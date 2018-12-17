@@ -6,32 +6,51 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 
-public class StringTypeInstance implements ITypeInstance {
+public class StringTypeInstance implements ITypeInstanceOpArgs {
 	
 	protected ClassDecl classDecl;
 	protected ArrayList<Tuple2<String, String>> constructingTypesTyped;
-	protected ArrayList<String> constructingTypes = null;
+	protected ArrayList<String> constructingTypesAndVariables = null;
+	protected ArrayList<String> constructingTypesNames = null;
+	protected String instanceName;
 	
-	public StringTypeInstance(ClassDecl decl, ArrayList<Tuple2<String, String>> constrTypes) {
+	public StringTypeInstance(ClassDecl decl, ArrayList<Tuple2<String, String>> constrTypes, String instName) {
 		classDecl = decl;
 		constructingTypesTyped = constrTypes;
+		instanceName = instName;
 	}
 
 	@Override
 	public ClassDecl bSharpType() {
 		return classDecl;
 	}
+	
+	@Override
+	public ArrayList<String> typeAndVariableNames() {
+		if (constructingTypesAndVariables == null) {
+			constructingTypesAndVariables = new ArrayList<String>();
+			for (Tuple2<String, String> typedArg : constructingTypesTyped) {
+				constructingTypesAndVariables.add(typedArg.x);
+			}
+			
+			constructingTypesAndVariables.add(instanceName);
+		}
+		
+		return constructingTypesAndVariables;
+	}
 
 	@Override
 	public ArrayList<String> typeConstructionTypes() {
-		if (constructingTypes == null) {
-			constructingTypes = new ArrayList<String>();
+		if (constructingTypesNames == null) {
+			constructingTypesNames = new ArrayList<String>();
 			for (Tuple2<String, String> typedArg : constructingTypesTyped) {
-				constructingTypes.add(typedArg.x);
+				constructingTypesNames.add(typedArg.x);
 			}
+			
+			constructingTypesNames.add(instanceName);
 		}
 		
-		return constructingTypes;
+		return constructingTypesNames;
 	}
 
 	@Override
@@ -56,9 +75,18 @@ public class StringTypeInstance implements ITypeInstance {
 	}
 
 	@Override
-	public ArrayList<Tuple2<String, String>> typeConstructionTypesTyped() {
-		// TODO Auto-generated method stub
-		return constructingTypesTyped;
+	public ArrayList<Tuple2<String, String>> typingStatementForInstance() {
+		ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>(constructingTypesTyped);
+		String argsForConstructor = "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(constructingTypesTyped, ", ", true) + ")";
+		
+		result.add(new Tuple2<String, String>(instanceName, classDecl.eventBPolymorphicTypeConstructorName() + argsForConstructor));
+		return result;
 	}
+
+	@Override
+	public ArrayList<Tuple2<String, String>> individuallyTypedConstructionArgs() {
+		return typingStatementForInstance();
+	}
+
 
 }
