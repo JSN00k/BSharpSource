@@ -470,7 +470,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
-	 *     (className=[BSClass|QualifiedName] context=TypeDeclContext arguments+=RootExpression? arguments+=RootExpression* name=ID?)
+	 *     (className=[BSClass|QualifiedName] context=[BodyElements|ID] arguments+=RootExpression? arguments+=RootExpression* name=ID?)
 	 */
 	protected void sequence_Instance(ISerializationContext context, Instance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

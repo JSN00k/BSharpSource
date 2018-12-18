@@ -53,30 +53,30 @@ public interface Instance extends IExpressionContainer, ITheoremContainer {
 	void setClassName(BSClass value);
 
 	/**
-	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Context</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context</em>' containment reference.
-	 * @see #setContext(TypeDeclContext)
+	 * @return the value of the '<em>Context</em>' reference.
+	 * @see #setContext(BodyElements)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance_Context()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	TypeDeclContext getContext();
+	BodyElements getContext();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Instance#getContext <em>Context</em>}' containment reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Instance#getContext <em>Context</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context</em>' containment reference.
+	 * @param value the new value of the '<em>Context</em>' reference.
 	 * @see #getContext()
 	 * @generated
 	 */
-	void setContext(TypeDeclContext value);
+	void setContext(BodyElements value);
 
 	/**
 	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.

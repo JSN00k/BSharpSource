@@ -69,4 +69,7 @@ public interface TypedVariableList extends EObject {
 
 
 	Collection<TypeBuilder> getTypes();
+
+
+	int count();
 } // TypedVariableList

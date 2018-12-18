@@ -7,11 +7,13 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.mapletTree.IMapletNode;
 import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
@@ -81,14 +83,14 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	protected BSClass className;
 
 	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContext()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeDeclContext context;
+	protected BodyElements context;
 
 	/**
 	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
@@ -182,7 +184,15 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeDeclContext getContext() {
+	public BodyElements getContext() {
+		if (context != null && context.eIsProxy()) {
+			InternalEObject oldContext = (InternalEObject)context;
+			context = (BodyElements)eResolveProxy(oldContext);
+			if (context != oldContext) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.INSTANCE__CONTEXT, oldContext, context));
+			}
+		}
 		return context;
 	}
 
@@ -191,14 +201,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContext(TypeDeclContext newContext, NotificationChain msgs) {
-		TypeDeclContext oldContext = context;
-		context = newContext;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__CONTEXT, oldContext, newContext);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public BodyElements basicGetContext() {
+		return context;
 	}
 
 	/**
@@ -206,18 +210,11 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContext(TypeDeclContext newContext) {
-		if (newContext != context) {
-			NotificationChain msgs = null;
-			if (context != null)
-				msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.INSTANCE__CONTEXT, null, msgs);
-			if (newContext != null)
-				msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.INSTANCE__CONTEXT, null, msgs);
-			msgs = basicSetContext(newContext, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__CONTEXT, newContext, newContext));
+	public void setContext(BodyElements newContext) {
+		BodyElements oldContext = context;
+		context = newContext;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__CONTEXT, oldContext, context));
 	}
 
 	/**
@@ -266,8 +263,6 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.INSTANCE__CONTEXT:
-				return basicSetContext(null, msgs);
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
 		}
@@ -286,7 +281,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				if (resolve) return getClassName();
 				return basicGetClassName();
 			case BSharpPackage.INSTANCE__CONTEXT:
-				return getContext();
+				if (resolve) return getContext();
+				return basicGetContext();
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return getArguments();
 			case BSharpPackage.INSTANCE__NAME:
@@ -308,7 +304,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				setClassName((BSClass)newValue);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
-				setContext((TypeDeclContext)newValue);
+				setContext((BodyElements)newValue);
 				return;
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				getArguments().clear();
@@ -333,7 +329,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				setClassName((BSClass)null);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
-				setContext((TypeDeclContext)null);
+				setContext((BodyElements)null);
 				return;
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				getArguments().clear();
@@ -413,8 +409,30 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		return null;
 	}
 	
+	IMapletNode mapletTreeForArguments(List<Expression> args) {
+		int argsCount = args.size();
+		int typeClassArgsCount = className.getVarList().count();
+		
+		if (argsCount < typeClassArgsCount) {
+			// TODO: Validate
+			try {
+				throw new Exception("Too few arguments to create an instance. This should have been"
+						+ "validated against.");
+			} catch (Exception e) {
+				System.err.println("Too few arguments to create an instance. This should have been"
+						+ "validated against.");
+				return null;
+			}
+		}
+		
+		return null;
+	}
+	
 	/* If we have Instance Setoid<pNat>([=]) this compiles to an operator with the direct definition
 	 *  pNat |-> = \in Setoid(pNat)
+	 *  Given a more compilcated statement such as Instance Monoid<pNat>(op, ident) we need to recognize that
+	 *  the Monoid type class only adds the "ident" variable, so a semi-group is also being created, but the
+	 *  setoid part is inferred and the default setoid is to be used.
 	 */
 	void compileMembershipOperatorExpr() {
 		Instance superInst = getSuperInstance();

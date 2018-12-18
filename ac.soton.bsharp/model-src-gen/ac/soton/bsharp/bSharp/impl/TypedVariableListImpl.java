@@ -242,6 +242,15 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 		return result;
 	}
 	
-	
+	@Override
+	public int count() {
+		int result = 0;
+		
+		for (VariableTyping varTyping : variablesOfType) {
+			result += varTyping.varCount();
+		}
+		
+		return result;
+	}
 
 } //TypedVariableListImpl

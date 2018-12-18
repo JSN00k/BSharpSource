@@ -2083,25 +2083,28 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cClassNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cClassNameBSClassCrossReference_1_0 = (CrossReference)cClassNameAssignment_1.eContents().get(0);
 		private final RuleCall cClassNameBSClassQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cClassNameBSClassCrossReference_1_0.eContents().get(1);
-		private final Assignment cContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cContextTypeDeclContextParserRuleCall_2_0 = (RuleCall)cContextAssignment_2.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cArgumentsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cArgumentsRootExpressionParserRuleCall_4_0 = (RuleCall)cArgumentsAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cArgumentsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cArgumentsRootExpressionParserRuleCall_5_1_0 = (RuleCall)cArgumentsAssignment_5_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cNameAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cNameIDTerminalRuleCall_7_0 = (RuleCall)cNameAssignment_7.eContents().get(0);
+		private final Keyword cLessThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cContextAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cContextBodyElementsCrossReference_3_0 = (CrossReference)cContextAssignment_3.eContents().get(0);
+		private final RuleCall cContextBodyElementsIDTerminalRuleCall_3_0_1 = (RuleCall)cContextBodyElementsCrossReference_3_0.eContents().get(1);
+		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cLeftParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cArgumentsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cArgumentsRootExpressionParserRuleCall_6_0 = (RuleCall)cArgumentsAssignment_6.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cArgumentsAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cArgumentsRootExpressionParserRuleCall_7_1_0 = (RuleCall)cArgumentsAssignment_7_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cNameAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cNameIDTerminalRuleCall_9_0 = (RuleCall)cNameAssignment_9.eContents().get(0);
 		
 		///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-		//	'Instance' className=[BSClass|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
+		//	'Instance' className=[BSClass|QualifiedName] '<' context=[BodyElements] '>' '(' arguments+=RootExpression? (','
 		//	arguments+=RootExpression)* ')' name=ID?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Instance' className=[BSClass|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
+		//'Instance' className=[BSClass|QualifiedName] '<' context=[BodyElements] '>' '(' arguments+=RootExpression? (','
 		//arguments+=RootExpression)* ')' name=ID?
 		public Group getGroup() { return cGroup; }
 		
@@ -2117,41 +2120,50 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getClassNameBSClassQualifiedNameParserRuleCall_1_0_1() { return cClassNameBSClassQualifiedNameParserRuleCall_1_0_1; }
 		
-		//context=TypeDeclContext
-		public Assignment getContextAssignment_2() { return cContextAssignment_2; }
+		//'<'
+		public Keyword getLessThanSignKeyword_2() { return cLessThanSignKeyword_2; }
 		
-		//TypeDeclContext
-		public RuleCall getContextTypeDeclContextParserRuleCall_2_0() { return cContextTypeDeclContextParserRuleCall_2_0; }
+		//context=[BodyElements]
+		public Assignment getContextAssignment_3() { return cContextAssignment_3; }
 		
-		//'('
-		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
-		
-		//arguments+=RootExpression?
-		public Assignment getArgumentsAssignment_4() { return cArgumentsAssignment_4; }
-		
-		//RootExpression
-		public RuleCall getArgumentsRootExpressionParserRuleCall_4_0() { return cArgumentsRootExpressionParserRuleCall_4_0; }
-		
-		//(',' arguments+=RootExpression)*
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//','
-		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
-		
-		//arguments+=RootExpression
-		public Assignment getArgumentsAssignment_5_1() { return cArgumentsAssignment_5_1; }
-		
-		//RootExpression
-		public RuleCall getArgumentsRootExpressionParserRuleCall_5_1_0() { return cArgumentsRootExpressionParserRuleCall_5_1_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
-		
-		//name=ID?
-		public Assignment getNameAssignment_7() { return cNameAssignment_7; }
+		//[BodyElements]
+		public CrossReference getContextBodyElementsCrossReference_3_0() { return cContextBodyElementsCrossReference_3_0; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_7_0() { return cNameIDTerminalRuleCall_7_0; }
+		public RuleCall getContextBodyElementsIDTerminalRuleCall_3_0_1() { return cContextBodyElementsIDTerminalRuleCall_3_0_1; }
+		
+		//'>'
+		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_5() { return cLeftParenthesisKeyword_5; }
+		
+		//arguments+=RootExpression?
+		public Assignment getArgumentsAssignment_6() { return cArgumentsAssignment_6; }
+		
+		//RootExpression
+		public RuleCall getArgumentsRootExpressionParserRuleCall_6_0() { return cArgumentsRootExpressionParserRuleCall_6_0; }
+		
+		//(',' arguments+=RootExpression)*
+		public Group getGroup_7() { return cGroup_7; }
+		
+		//','
+		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
+		
+		//arguments+=RootExpression
+		public Assignment getArgumentsAssignment_7_1() { return cArgumentsAssignment_7_1; }
+		
+		//RootExpression
+		public RuleCall getArgumentsRootExpressionParserRuleCall_7_1_0() { return cArgumentsRootExpressionParserRuleCall_7_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_8() { return cRightParenthesisKeyword_8; }
+		
+		//name=ID?
+		public Assignment getNameAssignment_9() { return cNameAssignment_9; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_9_0() { return cNameIDTerminalRuleCall_9_0; }
 	}
 	
 	
@@ -2901,7 +2913,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-	//	'Instance' className=[BSClass|QualifiedName] context=TypeDeclContext '(' arguments+=RootExpression? (','
+	//	'Instance' className=[BSClass|QualifiedName] '<' context=[BodyElements] '>' '(' arguments+=RootExpression? (','
 	//	arguments+=RootExpression)* ')' name=ID?;
 	public InstanceElements getInstanceAccess() {
 		return pInstance;

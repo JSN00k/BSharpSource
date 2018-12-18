@@ -74,9 +74,8 @@ import org.eventb.theory.core.INewOperatorDefinition;
  */
 public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	/**
-	 * The cached value of the '{@link #getSupertypes() <em>Supertypes</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getSupertypes() <em>Supertypes</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSupertypes()
 	 * @generated
 	 * @ordered
@@ -84,9 +83,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	protected SuperTypeList supertypes;
 
 	/**
-	 * The cached value of the '{@link #getVarList() <em>Var List</em>}' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getVarList() <em>Var List</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getVarList()
 	 * @generated
 	 * @ordered
@@ -94,9 +92,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	protected TypedVariableList varList;
 
 	/**
-	 * The cached value of the '{@link #getWhere() <em>Where</em>}' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getWhere() <em>Where</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getWhere()
 	 * @generated
 	 * @ordered
@@ -104,9 +101,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	protected Where where;
 
 	/**
-	 * The cached value of the '{@link #getInstName() <em>Inst Name</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getInstName() <em>Inst Name</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getInstName()
 	 * @generated
 	 * @ordered
@@ -115,7 +111,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BSClassImpl() {
@@ -124,7 +119,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,7 +128,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SuperTypeList getSupertypes() {
@@ -143,48 +136,38 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSupertypes(SuperTypeList newSupertypes, NotificationChain msgs) {
 		SuperTypeList oldSupertypes = supertypes;
 		supertypes = newSupertypes;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					BSharpPackage.BS_CLASS__SUPERTYPES, oldSupertypes, newSupertypes);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__SUPERTYPES, oldSupertypes, newSupertypes);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSupertypes(SuperTypeList newSupertypes) {
 		if (newSupertypes != supertypes) {
 			NotificationChain msgs = null;
 			if (supertypes != null)
-				msgs = ((InternalEObject) supertypes).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__SUPERTYPES, null, msgs);
+				msgs = ((InternalEObject)supertypes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__SUPERTYPES, null, msgs);
 			if (newSupertypes != null)
-				msgs = ((InternalEObject) newSupertypes).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__SUPERTYPES, null, msgs);
+				msgs = ((InternalEObject)newSupertypes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__SUPERTYPES, null, msgs);
 			msgs = basicSetSupertypes(newSupertypes, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__SUPERTYPES, newSupertypes,
-					newSupertypes));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__SUPERTYPES, newSupertypes, newSupertypes));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TypedVariableList getVarList() {
@@ -193,48 +176,38 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetVarList(TypedVariableList newVarList, NotificationChain msgs) {
 		TypedVariableList oldVarList = varList;
 		varList = newVarList;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					BSharpPackage.BS_CLASS__VAR_LIST, oldVarList, newVarList);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__VAR_LIST, oldVarList, newVarList);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVarList(TypedVariableList newVarList) {
 		if (newVarList != varList) {
 			NotificationChain msgs = null;
 			if (varList != null)
-				msgs = ((InternalEObject) varList).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__VAR_LIST, null, msgs);
+				msgs = ((InternalEObject)varList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__VAR_LIST, null, msgs);
 			if (newVarList != null)
-				msgs = ((InternalEObject) newVarList).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__VAR_LIST, null, msgs);
+				msgs = ((InternalEObject)newVarList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__VAR_LIST, null, msgs);
 			msgs = basicSetVarList(newVarList, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__VAR_LIST, newVarList,
-					newVarList));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__VAR_LIST, newVarList, newVarList));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Where getWhere() {
@@ -243,47 +216,38 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetWhere(Where newWhere, NotificationChain msgs) {
 		Where oldWhere = where;
 		where = newWhere;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					BSharpPackage.BS_CLASS__WHERE, oldWhere, newWhere);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__WHERE, oldWhere, newWhere);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setWhere(Where newWhere) {
 		if (newWhere != where) {
 			NotificationChain msgs = null;
 			if (where != null)
-				msgs = ((InternalEObject) where).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__WHERE, null, msgs);
+				msgs = ((InternalEObject)where).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__WHERE, null, msgs);
 			if (newWhere != null)
-				msgs = ((InternalEObject) newWhere).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__WHERE, null, msgs);
+				msgs = ((InternalEObject)newWhere).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__WHERE, null, msgs);
 			msgs = basicSetWhere(newWhere, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__WHERE, newWhere, newWhere));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public InstName getInstName() {
@@ -292,149 +256,135 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInstName(InstName newInstName, NotificationChain msgs) {
 		InstName oldInstName = instName;
 		instName = newInstName;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					BSharpPackage.BS_CLASS__INST_NAME, oldInstName, newInstName);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__INST_NAME, oldInstName, newInstName);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setInstName(InstName newInstName) {
 		if (newInstName != instName) {
 			NotificationChain msgs = null;
 			if (instName != null)
-				msgs = ((InternalEObject) instName).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__INST_NAME, null, msgs);
+				msgs = ((InternalEObject)instName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__INST_NAME, null, msgs);
 			if (newInstName != null)
-				msgs = ((InternalEObject) newInstName).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__INST_NAME, null, msgs);
+				msgs = ((InternalEObject)newInstName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.BS_CLASS__INST_NAME, null, msgs);
 			msgs = basicSetInstName(newInstName, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__INST_NAME, newInstName,
-					newInstName));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.BS_CLASS__INST_NAME, newInstName, newInstName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case BSharpPackage.BS_CLASS__SUPERTYPES:
-			return basicSetSupertypes(null, msgs);
-		case BSharpPackage.BS_CLASS__VAR_LIST:
-			return basicSetVarList(null, msgs);
-		case BSharpPackage.BS_CLASS__WHERE:
-			return basicSetWhere(null, msgs);
-		case BSharpPackage.BS_CLASS__INST_NAME:
-			return basicSetInstName(null, msgs);
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
+				return basicSetSupertypes(null, msgs);
+			case BSharpPackage.BS_CLASS__VAR_LIST:
+				return basicSetVarList(null, msgs);
+			case BSharpPackage.BS_CLASS__WHERE:
+				return basicSetWhere(null, msgs);
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				return basicSetInstName(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case BSharpPackage.BS_CLASS__SUPERTYPES:
-			return getSupertypes();
-		case BSharpPackage.BS_CLASS__VAR_LIST:
-			return getVarList();
-		case BSharpPackage.BS_CLASS__WHERE:
-			return getWhere();
-		case BSharpPackage.BS_CLASS__INST_NAME:
-			return getInstName();
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
+				return getSupertypes();
+			case BSharpPackage.BS_CLASS__VAR_LIST:
+				return getVarList();
+			case BSharpPackage.BS_CLASS__WHERE:
+				return getWhere();
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				return getInstName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case BSharpPackage.BS_CLASS__SUPERTYPES:
-			setSupertypes((SuperTypeList) newValue);
-			return;
-		case BSharpPackage.BS_CLASS__VAR_LIST:
-			setVarList((TypedVariableList) newValue);
-			return;
-		case BSharpPackage.BS_CLASS__WHERE:
-			setWhere((Where) newValue);
-			return;
-		case BSharpPackage.BS_CLASS__INST_NAME:
-			setInstName((InstName) newValue);
-			return;
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
+				setSupertypes((SuperTypeList)newValue);
+				return;
+			case BSharpPackage.BS_CLASS__VAR_LIST:
+				setVarList((TypedVariableList)newValue);
+				return;
+			case BSharpPackage.BS_CLASS__WHERE:
+				setWhere((Where)newValue);
+				return;
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				setInstName((InstName)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case BSharpPackage.BS_CLASS__SUPERTYPES:
-			setSupertypes((SuperTypeList) null);
-			return;
-		case BSharpPackage.BS_CLASS__VAR_LIST:
-			setVarList((TypedVariableList) null);
-			return;
-		case BSharpPackage.BS_CLASS__WHERE:
-			setWhere((Where) null);
-			return;
-		case BSharpPackage.BS_CLASS__INST_NAME:
-			setInstName((InstName) null);
-			return;
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
+				setSupertypes((SuperTypeList)null);
+				return;
+			case BSharpPackage.BS_CLASS__VAR_LIST:
+				setVarList((TypedVariableList)null);
+				return;
+			case BSharpPackage.BS_CLASS__WHERE:
+				setWhere((Where)null);
+				return;
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				setInstName((InstName)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case BSharpPackage.BS_CLASS__SUPERTYPES:
-			return supertypes != null;
-		case BSharpPackage.BS_CLASS__VAR_LIST:
-			return varList != null;
-		case BSharpPackage.BS_CLASS__WHERE:
-			return where != null;
-		case BSharpPackage.BS_CLASS__INST_NAME:
-			return instName != null;
+			case BSharpPackage.BS_CLASS__SUPERTYPES:
+				return supertypes != null;
+			case BSharpPackage.BS_CLASS__VAR_LIST:
+				return varList != null;
+			case BSharpPackage.BS_CLASS__WHERE:
+				return where != null;
+			case BSharpPackage.BS_CLASS__INST_NAME:
+				return instName != null;
 		}
 		return super.eIsSet(featureID);
 	}

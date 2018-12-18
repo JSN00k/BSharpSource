@@ -108,7 +108,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getClassVarDeclAccess().getGroup(), "rule__ClassVarDecl__Group__0");
 			builder.put(grammarAccess.getWrappedInfixAccess().getGroup(), "rule__WrappedInfix__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup(), "rule__Instance__Group__0");
-			builder.put(grammarAccess.getInstanceAccess().getGroup_5(), "rule__Instance__Group_5__0");
+			builder.put(grammarAccess.getInstanceAccess().getGroup_7(), "rule__Instance__Group_7__0");
 			builder.put(grammarAccess.getTopLevelAccess().getNameAssignment_1(), "rule__TopLevel__NameAssignment_1");
 			builder.put(grammarAccess.getTopLevelAccess().getTopLevelFileAssignment_2(), "rule__TopLevel__TopLevelFileAssignment_2");
 			builder.put(grammarAccess.getTopLevelFileAccess().getNoImportElementsAssignment_1(), "rule__TopLevelFile__NoImportElementsAssignment_1");
@@ -207,10 +207,10 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getWrappedInfixAccess().getInbuiltAssignment_1_0(), "rule__WrappedInfix__InbuiltAssignment_1_0");
 			builder.put(grammarAccess.getWrappedInfixAccess().getFuncNameAssignment_1_1(), "rule__WrappedInfix__FuncNameAssignment_1_1");
 			builder.put(grammarAccess.getInstanceAccess().getClassNameAssignment_1(), "rule__Instance__ClassNameAssignment_1");
-			builder.put(grammarAccess.getInstanceAccess().getContextAssignment_2(), "rule__Instance__ContextAssignment_2");
-			builder.put(grammarAccess.getInstanceAccess().getArgumentsAssignment_4(), "rule__Instance__ArgumentsAssignment_4");
-			builder.put(grammarAccess.getInstanceAccess().getArgumentsAssignment_5_1(), "rule__Instance__ArgumentsAssignment_5_1");
-			builder.put(grammarAccess.getInstanceAccess().getNameAssignment_7(), "rule__Instance__NameAssignment_7");
+			builder.put(grammarAccess.getInstanceAccess().getContextAssignment_3(), "rule__Instance__ContextAssignment_3");
+			builder.put(grammarAccess.getInstanceAccess().getArgumentsAssignment_6(), "rule__Instance__ArgumentsAssignment_6");
+			builder.put(grammarAccess.getInstanceAccess().getArgumentsAssignment_7_1(), "rule__Instance__ArgumentsAssignment_7_1");
+			builder.put(grammarAccess.getInstanceAccess().getNameAssignment_9(), "rule__Instance__NameAssignment_9");
 		}
 	}
 	

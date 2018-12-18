@@ -330,5 +330,5 @@ WrappedInfix:
 /* ------------------------------ Instance ---------------------------------------------*/
 
 Instance:
-	'Instance' className=[BSClass|QualifiedName] context=TypeDeclContext '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')' (name=ID)?
+	'Instance' className=[BSClass|QualifiedName] '<' context=[BodyElements] '>' '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')' (name=ID)?
 ;

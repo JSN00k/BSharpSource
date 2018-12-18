@@ -124,8 +124,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="InstName" eSuperTypes="#//ExpressionVariable #//GenName"/>
   <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//IExpressionContainer #//ITheoremContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="className" eType="#//BSClass"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//TypeDeclContext"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//BodyElements"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
