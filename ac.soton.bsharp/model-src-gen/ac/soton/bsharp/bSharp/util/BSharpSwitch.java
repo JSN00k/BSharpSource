@@ -264,8 +264,9 @@ public class BSharpSwitch<T> extends Switch<T> {
 				T result = caseFunctionDecl(functionDecl);
 				if (result == null) result = caseIVariableProvider(functionDecl);
 				if (result == null) result = caseIPolyTypeProvider(functionDecl);
-				if (result == null) result = caseExpressionVariable(functionDecl);
 				if (result == null) result = caseIExpressionContainer(functionDecl);
+				if (result == null) result = caseInfixFunc(functionDecl);
+				if (result == null) result = caseExpressionVariable(functionDecl);
 				if (result == null) result = caseNamedObject(functionDecl);
 				if (result == null) result = caseIVarType(functionDecl);
 				if (result == null) result = defaultCase(theEObject);
@@ -284,10 +285,29 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.INBUILT_INFIX: {
+				InbuiltInfix inbuiltInfix = (InbuiltInfix)theEObject;
+				T result = caseInbuiltInfix(inbuiltInfix);
+				if (result == null) result = caseInfixFunc(inbuiltInfix);
+				if (result == null) result = caseExpressionVariable(inbuiltInfix);
+				if (result == null) result = caseNamedObject(inbuiltInfix);
+				if (result == null) result = caseIVarType(inbuiltInfix);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.INFIX: {
 				Infix infix = (Infix)theEObject;
 				T result = caseInfix(infix);
 				if (result == null) result = caseExpression(infix);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.INFIX_FUNC: {
+				InfixFunc infixFunc = (InfixFunc)theEObject;
+				T result = caseInfixFunc(infixFunc);
+				if (result == null) result = caseExpressionVariable(infixFunc);
+				if (result == null) result = caseNamedObject(infixFunc);
+				if (result == null) result = caseIVarType(infixFunc);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1046,6 +1066,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Infix Func</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Infix Func</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInfixFunc(InfixFunc object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IVariable Provider</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1237,6 +1272,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGlobalImport(GlobalImport object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inbuilt Infix</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inbuilt Infix</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInbuiltInfix(InbuiltInfix object) {
 		return null;
 	}
 

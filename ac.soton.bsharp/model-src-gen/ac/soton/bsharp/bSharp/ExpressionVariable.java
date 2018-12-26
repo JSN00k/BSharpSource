@@ -22,4 +22,5 @@ public interface ExpressionVariable extends NamedObject, IVarType {
 	TypeBuilder calculateReturnType();
 
 	TypeBuilder calculateType();
+
 } // ExpressionVariable

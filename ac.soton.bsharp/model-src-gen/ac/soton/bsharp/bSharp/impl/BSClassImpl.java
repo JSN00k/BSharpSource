@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
@@ -12,6 +13,7 @@ import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.InstName;
+import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.BSClass;
@@ -28,10 +30,12 @@ import ac.soton.bsharp.bSharp.Where;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.mapletTree.IMapletNode;
+import ac.soton.bsharp.mapletTree.MapletExpressionVariableLeaf;
 import ac.soton.bsharp.mapletTree.MapletStringLeaf;
 import ac.soton.bsharp.mapletTree.MapletTree;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
 import ac.soton.bsharp.typeInstanceRepresentation.MapletTypeInstance;
@@ -39,6 +43,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.StringTypeInstance;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -615,10 +620,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return result;
 	}
 
-	/*
-	 * returns all the typed arguments needed to construct a fully polymorphic
-	 * version of this typeclass, including the argument for the type class itself.
-	 */
 	@Override
 	public ITypeInstanceOpArgs genericTypeInstance(TheoryImportCache thyCache) {
 		ArrayList<Tuple2<String, String>> typeConstructors;
@@ -1301,6 +1302,120 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	@Override
 	public ClassDecl getFirstSupertypeTypeClass() {
 		return supertypes.getFirst().getTypeClass();
+	}
+
+	@Override
+	public IMapletNode concreteTypeMapletTree(BodyElements type, List<ExpressionVariable> args, Instance declInst) {
+		int argsCount = args.size();
+		int newVarsCount = getVarList().count();
+		
+		SuperTypeList supers = getSupertypes();
+		
+		if (argsCount == newVarsCount) {
+			if (supers == null || supers.isEmpty()) {
+				/* We're at the end of the process. Just need to create the ITypeInstance
+				 * with the variables that have been passed.
+				 */
+				ClassDecl baseType = null;
+				if (type instanceof Instance) {
+					baseType = ((Instance)type).getBaseType();
+				} else {
+					baseType = (ClassDecl)type;
+				}
+				
+				IMapletNode result = CompilationUtil.mapletNodeFromVariableArray(args);
+				result.appendNodeToLeft(new MapletExpressionVariableLeaf(baseType));
+				
+				return result;
+			}
+		} else if (argsCount > newVarsCount) {
+			List<ExpressionVariable> myVars = args.subList(argsCount - newVarsCount, argsCount);
+			List<ExpressionVariable> otherVars = args.subList(0, argsCount - newVarsCount);
+			
+			BSClass superT = supers.getFirst().getTypeClass();
+			if (superT == null) {
+				try {
+					throw new Exception("Too many args for creating a type class");
+				} catch (Exception e) {
+					return null;
+				}
+			}
+				
+			IMapletNode left = superT.concreteTypeMapletTree(type, otherVars, declInst);
+			IMapletNode result = null;
+			if (!myVars.isEmpty()) {
+				result = CompilationUtil.mapletNodeFromVariableArray(myVars);
+				result.appendNodeToLeft(left);
+			} else {
+				result = left;
+				return result;
+			}
+		} else if (argsCount == 0) {
+			BSClass superT = supers.getFirst().getTypeClass();
+			if (newVarsCount == 0 && superT == null) {
+				return new MapletExpressionVariableLeaf((ClassDecl)type);
+			} else if (newVarsCount == 0) {
+				return superT.concreteTypeMapletTree(type, args, declInst);
+			} else if (superT != null) {
+				/* Ther is additional type information in an other instance variable. This cans either
+				 * be reached directly if type is an instance variable declaration, or it is necessary
+				 * to search the type and its extensions for for an unnamed instance of one of the supertypes.
+				 */
+				if (type instanceof Instance) {
+					return ((Instance)type).concreteInstanceMapletTree();
+				} else {
+					/* It is necessary to find a default super instance of the current instance.
+					 * Any one will do, there should be validation to check that there aren't contradictory 
+					 * super instances.
+					 */
+					Instance superInst = declInst.findDirectSuperInstance();
+					
+					if (superInst == null) {
+						try {
+							throw new Exception("Insufficient variables for Instance method."
+									+ "This should have been validated against");
+						} catch (Exception e) {
+							System.err.println("Insufficient variables for Instance method."
+									+ "This should have been validated against");
+							return null;
+						}
+					}
+					
+					return superInst.concreteInstanceMapletTree();
+				}
+			}
+		} else {
+			try {
+				throw new Exception("Wrong number of arguments to create an instance of this"
+						+ "type class. This should have been validated against.");
+			} catch (Exception e) {
+				System.err.println("Wrong number of arguments to create an instance of this"
+						+ "type class. This should have been validated against.");
+				return null;
+			}
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public boolean isSuperType(ClassDecl possibleSType) {
+		SuperTypeList st = getSupertypes();
+		
+		if (st == null || st.isEmpty())
+			return false;
+		
+		return st.containsTypeRecursive(possibleSType);
+	}
+	
+	@Override
+	public boolean isDirectSuperType(ClassDecl possibleSType) {
+		SuperTypeList st = getSupertypes();
+		
+		if (st == null || st.isEmpty())
+			return false;
+		
+		return st.containsType(possibleSType);
 	}
 
 } // BppClassImpl

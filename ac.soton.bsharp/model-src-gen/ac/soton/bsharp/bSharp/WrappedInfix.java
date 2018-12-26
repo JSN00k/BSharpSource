@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.WrappedInfix#getFuncName <em>Func Name</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.WrappedInfix#getInbuilt <em>Inbuilt</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getWrappedInfix()
@@ -48,31 +47,5 @@ public interface WrappedInfix extends EObject {
 	 * @generated
 	 */
 	void setFuncName(ExpressionVariable value);
-
-	/**
-	 * Returns the value of the '<em><b>Inbuilt</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Inbuilt</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Inbuilt</em>' attribute.
-	 * @see #setInbuilt(String)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getWrappedInfix_Inbuilt()
-	 * @model
-	 * @generated
-	 */
-	String getInbuilt();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.WrappedInfix#getInbuilt <em>Inbuilt</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Inbuilt</em>' attribute.
-	 * @see #getInbuilt()
-	 * @generated
-	 */
-	void setInbuilt(String value);
 
 } // WrappedInfix

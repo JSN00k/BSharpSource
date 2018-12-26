@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.WrappedInfixImpl#getFuncName <em>Func Name</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.WrappedInfixImpl#getInbuilt <em>Inbuilt</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,26 +38,6 @@ public class WrappedInfixImpl extends MinimalEObjectImpl.Container implements Wr
 	 * @ordered
 	 */
 	protected ExpressionVariable funcName;
-
-	/**
-	 * The default value of the '{@link #getInbuilt() <em>Inbuilt</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInbuilt()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String INBUILT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getInbuilt() <em>Inbuilt</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInbuilt()
-	 * @generated
-	 * @ordered
-	 */
-	protected String inbuilt = INBUILT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,35 +101,12 @@ public class WrappedInfixImpl extends MinimalEObjectImpl.Container implements Wr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getInbuilt() {
-		return inbuilt;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInbuilt(String newInbuilt) {
-		String oldInbuilt = inbuilt;
-		inbuilt = newInbuilt;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.WRAPPED_INFIX__INBUILT, oldInbuilt, inbuilt));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BSharpPackage.WRAPPED_INFIX__FUNC_NAME:
 				if (resolve) return getFuncName();
 				return basicGetFuncName();
-			case BSharpPackage.WRAPPED_INFIX__INBUILT:
-				return getInbuilt();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,9 +121,6 @@ public class WrappedInfixImpl extends MinimalEObjectImpl.Container implements Wr
 		switch (featureID) {
 			case BSharpPackage.WRAPPED_INFIX__FUNC_NAME:
 				setFuncName((ExpressionVariable)newValue);
-				return;
-			case BSharpPackage.WRAPPED_INFIX__INBUILT:
-				setInbuilt((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -184,9 +137,6 @@ public class WrappedInfixImpl extends MinimalEObjectImpl.Container implements Wr
 			case BSharpPackage.WRAPPED_INFIX__FUNC_NAME:
 				setFuncName((ExpressionVariable)null);
 				return;
-			case BSharpPackage.WRAPPED_INFIX__INBUILT:
-				setInbuilt(INBUILT_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -201,26 +151,8 @@ public class WrappedInfixImpl extends MinimalEObjectImpl.Container implements Wr
 		switch (featureID) {
 			case BSharpPackage.WRAPPED_INFIX__FUNC_NAME:
 				return funcName != null;
-			case BSharpPackage.WRAPPED_INFIX__INBUILT:
-				return INBUILT_EDEFAULT == null ? inbuilt != null : !INBUILT_EDEFAULT.equals(inbuilt);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (inbuilt: ");
-		result.append(inbuilt);
-		result.append(')');
-		return result.toString();
 	}
 
 } //WrappedInfixImpl

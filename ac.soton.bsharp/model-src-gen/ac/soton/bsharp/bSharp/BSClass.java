@@ -4,8 +4,10 @@
 package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.mapletTree.IMapletNode;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
@@ -181,4 +183,10 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 	
 	/* If the current typeclasses supertype is a typeclass this type class is returned. */
 	ClassDecl getFirstSupertypeTypeClass();
+
+	IMapletNode concreteTypeMapletTree(BodyElements type, List<ExpressionVariable> args, Instance declInst);
+
+	boolean isDirectSuperType(ClassDecl possibleSType);
+
+	boolean isSuperType(ClassDecl possibleSType);
 } // BppClass

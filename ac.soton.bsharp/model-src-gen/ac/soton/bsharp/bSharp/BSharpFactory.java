@@ -365,6 +365,15 @@ public interface BSharpFactory extends EFactory {
 	GlobalImport createGlobalImport();
 
 	/**
+	 * Returns a new object of class '<em>Inbuilt Infix</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inbuilt Infix</em>'.
+	 * @generated
+	 */
+	InbuiltInfix createInbuiltInfix();
+
+	/**
 	 * Returns a new object of class '<em>File Import</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

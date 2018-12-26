@@ -15,7 +15,6 @@ package ac.soton.bsharp.bSharp;
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.Infix#getLeft <em>Left</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Infix#getFuncName <em>Func Name</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.Infix#getOpName <em>Op Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Infix#getRight <em>Right</em>}</li>
  * </ul>
  *
@@ -59,12 +58,12 @@ public interface Infix extends Expression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Func Name</em>' reference.
-	 * @see #setFuncName(FunctionDecl)
+	 * @see #setFuncName(InfixFunc)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInfix_FuncName()
 	 * @model
 	 * @generated
 	 */
-	FunctionDecl getFuncName();
+	InfixFunc getFuncName();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Infix#getFuncName <em>Func Name</em>}' reference.
@@ -74,33 +73,7 @@ public interface Infix extends Expression {
 	 * @see #getFuncName()
 	 * @generated
 	 */
-	void setFuncName(FunctionDecl value);
-
-	/**
-	 * Returns the value of the '<em><b>Op Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Op Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Op Name</em>' attribute.
-	 * @see #setOpName(String)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInfix_OpName()
-	 * @model
-	 * @generated
-	 */
-	String getOpName();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Infix#getOpName <em>Op Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Op Name</em>' attribute.
-	 * @see #getOpName()
-	 * @generated
-	 */
-	void setOpName(String value);
+	void setFuncName(InfixFunc value);
 
 	/**
 	 * Returns the value of the '<em><b>Right</b></em>' containment reference.
@@ -127,11 +100,5 @@ public interface Infix extends Expression {
 	 * @generated
 	 */
 	void setRight(Expression value);
-	
-	/**
-	 * 
-	 * @return Returns the name regardless of whether it is a built in op or a named function/
-	 */
-	String getInfixName();
 
 } // Infix

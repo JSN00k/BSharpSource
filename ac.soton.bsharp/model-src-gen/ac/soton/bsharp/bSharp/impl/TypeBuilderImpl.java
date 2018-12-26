@@ -5,6 +5,7 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 
@@ -72,6 +73,11 @@ public abstract class TypeBuilderImpl extends MinimalEObjectImpl.Container imple
 	
 	@Override
 	public Datatype getDatatype() {
+		return null;
+	}
+	
+	@Override
+	public ClassDecl getClassDecl() {
 		return null;
 	}
 	

@@ -32,7 +32,9 @@ import ac.soton.bsharp.bSharp.ITheoremContainer;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
 import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.IVariableProvider;
+import ac.soton.bsharp.bSharp.InbuiltInfix;
 import ac.soton.bsharp.bSharp.Infix;
+import ac.soton.bsharp.bSharp.InfixFunc;
 import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.LocalImport;
@@ -346,6 +348,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass infixFuncEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass iVariableProviderEClass = null;
 
 	/**
@@ -431,6 +440,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass globalImportEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inbuiltInfixEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -951,15 +967,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getWrappedInfix_Inbuilt() {
-		return (EAttribute)wrappedInfixEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getDatatype() {
 		return datatypeEClass;
 	}
@@ -1077,17 +1084,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFunctionDecl_Precedence() {
-		return (EAttribute)functionDeclEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFunctionDecl_Expr() {
-		return (EReference)functionDeclEClass.getEStructuralFeatures().get(5);
+		return (EReference)functionDeclEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1096,7 +1094,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	public EReference getFunctionDecl_GeneratedLambdas() {
-		return (EReference)functionDeclEClass.getEStructuralFeatures().get(6);
+		return (EReference)functionDeclEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1536,8 +1534,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getInfix_OpName() {
-		return (EAttribute)infixEClass.getEStructuralFeatures().get(2);
+	public EReference getInfix_Right() {
+		return (EReference)infixEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1545,8 +1543,17 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInfix_Right() {
-		return (EReference)infixEClass.getEStructuralFeatures().get(3);
+	public EClass getInfixFunc() {
+		return infixFuncEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getInfixFunc_Precedence() {
+		return (EAttribute)infixFuncEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1700,6 +1707,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 */
 	public EAttribute getGlobalImport_Project() {
 		return (EAttribute)globalImportEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInbuiltInfix() {
+		return inbuiltInfixEClass;
 	}
 
 	/**
@@ -1904,7 +1920,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(functionDeclEClass, FUNCTION_DECL__VAR_LIST);
 		createEReference(functionDeclEClass, FUNCTION_DECL__RETURN_TYPE);
 		createEAttribute(functionDeclEClass, FUNCTION_DECL__INFIX);
-		createEAttribute(functionDeclEClass, FUNCTION_DECL__PRECEDENCE);
 		createEReference(functionDeclEClass, FUNCTION_DECL__EXPR);
 		createEReference(functionDeclEClass, FUNCTION_DECL__GENERATED_LAMBDAS);
 
@@ -1914,11 +1929,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(globalImportEClass, GLOBAL_IMPORT__FILE_IMPORTS);
 		createEAttribute(globalImportEClass, GLOBAL_IMPORT__PROJECT);
 
+		inbuiltInfixEClass = createEClass(INBUILT_INFIX);
+
 		infixEClass = createEClass(INFIX);
 		createEReference(infixEClass, INFIX__LEFT);
 		createEReference(infixEClass, INFIX__FUNC_NAME);
-		createEAttribute(infixEClass, INFIX__OP_NAME);
 		createEReference(infixEClass, INFIX__RIGHT);
+
+		infixFuncEClass = createEClass(INFIX_FUNC);
+		createEAttribute(infixFuncEClass, INFIX_FUNC__PRECEDENCE);
 
 		instNameEClass = createEClass(INST_NAME);
 
@@ -2014,7 +2033,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		wrappedInfixEClass = createEClass(WRAPPED_INFIX);
 		createEReference(wrappedInfixEClass, WRAPPED_INFIX__FUNC_NAME);
-		createEAttribute(wrappedInfixEClass, WRAPPED_INFIX__INBUILT);
 	}
 
 	/**
@@ -2071,10 +2089,12 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		functionCallEClass.getESuperTypes().add(this.getExpression());
 		functionDeclEClass.getESuperTypes().add(this.getIVariableProvider());
 		functionDeclEClass.getESuperTypes().add(this.getIPolyTypeProvider());
-		functionDeclEClass.getESuperTypes().add(this.getExpressionVariable());
 		functionDeclEClass.getESuperTypes().add(this.getIExpressionContainer());
+		functionDeclEClass.getESuperTypes().add(this.getInfixFunc());
 		genNameEClass.getESuperTypes().add(this.getNamedObject());
+		inbuiltInfixEClass.getESuperTypes().add(this.getInfixFunc());
 		infixEClass.getESuperTypes().add(this.getExpression());
+		infixFuncEClass.getESuperTypes().add(this.getExpressionVariable());
 		instNameEClass.getESuperTypes().add(this.getExpressionVariable());
 		instNameEClass.getESuperTypes().add(this.getGenName());
 		instanceEClass.getESuperTypes().add(this.getIExpressionContainer());
@@ -2180,7 +2200,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getFunctionDecl_VarList(), this.getTypedVariableList(), null, "varList", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDecl_ReturnType(), this.getTypeConstructor(), null, "returnType", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionDecl_Infix(), ecorePackage.getEString(), "infix", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFunctionDecl_Precedence(), ecorePackage.getEInt(), "precedence", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDecl_Expr(), this.getExpression(), null, "expr", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDecl_GeneratedLambdas(), this.getExpression(), null, "generatedLambdas", null, 0, -1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2190,11 +2209,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getGlobalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGlobalImport_Project(), ecorePackage.getEString(), "project", null, 0, 1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(inbuiltInfixEClass, InbuiltInfix.class, "InbuiltInfix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(infixEClass, Infix.class, "Infix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInfix_Left(), this.getExpression(), null, "left", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInfix_FuncName(), this.getFunctionDecl(), null, "funcName", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getInfix_OpName(), ecorePackage.getEString(), "opName", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfix_FuncName(), this.getInfixFunc(), null, "funcName", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInfix_Right(), this.getExpression(), null, "right", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(infixFuncEClass, InfixFunc.class, "InfixFunc", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getInfixFunc_Precedence(), ecorePackage.getEInt(), "precedence", null, 0, 1, InfixFunc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(instNameEClass, InstName.class, "InstName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2290,7 +2313,6 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		initEClass(wrappedInfixEClass, WrappedInfix.class, "WrappedInfix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWrappedInfix_FuncName(), this.getExpressionVariable(), null, "funcName", null, 0, 1, WrappedInfix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWrappedInfix_Inbuilt(), ecorePackage.getEString(), "inbuilt", null, 0, 1, WrappedInfix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

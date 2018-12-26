@@ -16,6 +16,7 @@ import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVarType;
+import ac.soton.bsharp.bSharp.InfixFunc;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
@@ -28,6 +29,7 @@ import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.ExprPredEnum;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -66,11 +68,11 @@ import org.rodinp.core.IInternalElement;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getName <em>Name</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getVarList <em>Var List</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getReturnType <em>Return Type</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getInfix <em>Infix</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getExpr <em>Expr</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getGeneratedLambdas <em>Generated Lambdas</em>}</li>
  * </ul>
@@ -97,6 +99,26 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPrecedence() <em>Precedence</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrecedence()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int PRECEDENCE_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrecedence()
+	 * @generated
+	 * @ordered
+	 */
+	protected int precedence = PRECEDENCE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
@@ -147,26 +169,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * @ordered
 	 */
 	protected String infix = INFIX_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getPrecedence() <em>Precedence</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrecedence()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int PRECEDENCE_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrecedence()
-	 * @generated
-	 * @ordered
-	 */
-	protected int precedence = PRECEDENCE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
@@ -486,6 +488,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		switch (featureID) {
 			case BSharpPackage.FUNCTION_DECL__NAME:
 				return getName();
+			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+				return getPrecedence();
 			case BSharpPackage.FUNCTION_DECL__CONTEXT:
 				return getContext();
 			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
@@ -494,8 +498,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return getReturnType();
 			case BSharpPackage.FUNCTION_DECL__INFIX:
 				return getInfix();
-			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
-				return getPrecedence();
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				return getExpr();
 			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
@@ -516,6 +518,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			case BSharpPackage.FUNCTION_DECL__NAME:
 				setName((String)newValue);
 				return;
+			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+				setPrecedence((Integer)newValue);
+				return;
 			case BSharpPackage.FUNCTION_DECL__CONTEXT:
 				setContext((PolyContext)newValue);
 				return;
@@ -527,9 +532,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return;
 			case BSharpPackage.FUNCTION_DECL__INFIX:
 				setInfix((String)newValue);
-				return;
-			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
-				setPrecedence((Integer)newValue);
 				return;
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				setExpr((Expression)newValue);
@@ -553,6 +555,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			case BSharpPackage.FUNCTION_DECL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+				setPrecedence(PRECEDENCE_EDEFAULT);
+				return;
 			case BSharpPackage.FUNCTION_DECL__CONTEXT:
 				setContext((PolyContext)null);
 				return;
@@ -564,9 +569,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return;
 			case BSharpPackage.FUNCTION_DECL__INFIX:
 				setInfix(INFIX_EDEFAULT);
-				return;
-			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
-				setPrecedence(PRECEDENCE_EDEFAULT);
 				return;
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				setExpr((Expression)null);
@@ -588,6 +590,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		switch (featureID) {
 			case BSharpPackage.FUNCTION_DECL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+				return precedence != PRECEDENCE_EDEFAULT;
 			case BSharpPackage.FUNCTION_DECL__CONTEXT:
 				return context != null;
 			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
@@ -596,8 +600,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return returnType != null;
 			case BSharpPackage.FUNCTION_DECL__INFIX:
 				return INFIX_EDEFAULT == null ? infix != null : !INFIX_EDEFAULT.equals(infix);
-			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
-				return precedence != PRECEDENCE_EDEFAULT;
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 				return expr != null;
 			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
@@ -618,6 +620,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				default: return -1;
 			}
 		}
+		if (baseClass == IExpressionContainer.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == NamedObject.class) {
 			switch (derivedFeatureID) {
 				case BSharpPackage.FUNCTION_DECL__NAME: return BSharpPackage.NAMED_OBJECT__NAME;
@@ -634,8 +641,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				default: return -1;
 			}
 		}
-		if (baseClass == IExpressionContainer.class) {
+		if (baseClass == InfixFunc.class) {
 			switch (derivedFeatureID) {
+				case BSharpPackage.FUNCTION_DECL__PRECEDENCE: return BSharpPackage.INFIX_FUNC__PRECEDENCE;
 				default: return -1;
 			}
 		}
@@ -650,6 +658,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == IPolyTypeProvider.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IExpressionContainer.class) {
 			switch (baseFeatureID) {
 				default: return -1;
 			}
@@ -670,8 +683,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				default: return -1;
 			}
 		}
-		if (baseClass == IExpressionContainer.class) {
+		if (baseClass == InfixFunc.class) {
 			switch (baseFeatureID) {
+				case BSharpPackage.INFIX_FUNC__PRECEDENCE: return BSharpPackage.FUNCTION_DECL__PRECEDENCE;
 				default: return -1;
 			}
 		}
@@ -690,10 +704,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", infix: ");
-		result.append(infix);
 		result.append(", precedence: ");
 		result.append(precedence);
+		result.append(", infix: ");
+		result.append(infix);
 		result.append(')');
 		return result.toString();
 	}
@@ -1160,5 +1174,40 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			
 			return null;
 		}
+	}
+
+	@Override
+	public String eventBName(ExprPredEnum exprPred) throws Exception {
+		switch (exprPred) {
+		case PREDICATE:
+			return eventBPredName();
+		case EXPRESSION:
+			return eventBExprName();
+		default:
+			return null;
+		}
+	}
+
+	@Override
+	public ExprPredEnum compilationResultType(ExprPredEnum desiredType) {
+		return desiredType;
+	}
+
+	@Override
+	public String latexName() {
+		return name;
+	}
+
+	@Override
+	public boolean hasEventBInfixOp() {
+		return true;
+	}
+
+	@Override
+	public Tuple2<ExprPredEnum, ExprPredEnum> infixArgumentExprPredTypes() {
+		ArrayList<Tuple2<TypedVariable, TypeBuilder>> typedVars =  getVarList().getVariablesWithBSharpTypes();
+		
+		return new Tuple2<ExprPredEnum, ExprPredEnum>(typedVars.get(0).y.isBoolType() ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION,
+				typedVars.get(1).y.isBoolType() ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION);
 	}
 } //FunctionDeclImpl

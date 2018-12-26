@@ -29,7 +29,7 @@ import org.rodinp.core.IInternalElement;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl()
  * @model
  */
-public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, ExpressionVariable, IExpressionContainer {
+public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, IExpressionContainer, InfixFunc {
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -133,32 +133,6 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, Expr
 	 * @generated
 	 */
 	void setInfix(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Precedence</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Precedence</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Precedence</em>' attribute.
-	 * @see #setPrecedence(int)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl_Precedence()
-	 * @model
-	 * @generated
-	 */
-	int getPrecedence();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionDecl#getPrecedence <em>Precedence</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Precedence</em>' attribute.
-	 * @see #getPrecedence()
-	 * @generated
-	 */
-	void setPrecedence(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Expr</b></em>' containment reference.

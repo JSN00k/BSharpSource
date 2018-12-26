@@ -427,5 +427,13 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 		
 		return (Datatype)getTypeName();
 	}
+	
+	@Override
+	public ClassDecl getClassDecl() {
+		if (typeName instanceof ClassDecl)
+			return (ClassDecl)getTypeName();
+		
+		return null;
+	}
 
 } //TypeConstructorImpl

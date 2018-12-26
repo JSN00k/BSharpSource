@@ -50,4 +50,10 @@ public interface SuperTypeList extends EObject {
 	String supertypeType(ArrayList<Tuple2<String, String>> bsOpPolyTypes);
 
 	boolean isPowerSet();
+
+	boolean isEmpty();
+
+	boolean containsType(ClassDecl type);
+
+	boolean containsTypeRecursive(ClassDecl type);
 } // SuperTypeList

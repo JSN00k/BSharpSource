@@ -191,6 +191,10 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		
 		return Scopes.scopeFor(elements, IScope.NULLSCOPE)
 	}
+	
+	override getScope(EObject context, EReference reference) {
+		return super.getScope(context, reference)
+	}
 
 	def IScope getPolyScopeFor(EObject context, IScope parent) {
 		val polyProvider = EcoreUtilJ.eContainerMatchingLambda(context, 

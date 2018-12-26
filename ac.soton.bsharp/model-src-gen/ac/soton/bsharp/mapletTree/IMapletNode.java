@@ -8,4 +8,6 @@ public interface IMapletNode {
 	public ArrayList<String> varNames();
 
 	void varNamesIntoArray(ArrayList<String> al);
+	
+	IMapletNode appendNodeToLeft(IMapletNode node);
 }

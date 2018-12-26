@@ -177,8 +177,16 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createGlobalImportAdapter();
 			}
 			@Override
+			public Adapter caseInbuiltInfix(InbuiltInfix object) {
+				return createInbuiltInfixAdapter();
+			}
+			@Override
 			public Adapter caseInfix(Infix object) {
 				return createInfixAdapter();
+			}
+			@Override
+			public Adapter caseInfixFunc(InfixFunc object) {
+				return createInfixFuncAdapter();
 			}
 			@Override
 			public Adapter caseInstName(InstName object) {
@@ -837,6 +845,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.InfixFunc <em>Infix Func</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.InfixFunc
+	 * @generated
+	 */
+	public Adapter createInfixFuncAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IVariableProvider <em>IVariable Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1015,6 +1037,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGlobalImportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.InbuiltInfix <em>Inbuilt Infix</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.InbuiltInfix
+	 * @generated
+	 */
+	public Adapter createInbuiltInfixAdapter() {
 		return null;
 	}
 

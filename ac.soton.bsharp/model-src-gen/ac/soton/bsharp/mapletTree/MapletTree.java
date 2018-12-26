@@ -34,4 +34,10 @@ public class MapletTree implements IMapletNode {
 		varNamesIntoArray(result);
 		return result;
 	}
+
+	@Override
+	public IMapletNode appendNodeToLeft(IMapletNode node) {
+		left = left.appendNodeToLeft(node);
+		return this;
+	}
 }

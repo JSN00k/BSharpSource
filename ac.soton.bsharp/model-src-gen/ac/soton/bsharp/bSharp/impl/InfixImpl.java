@@ -3,18 +3,15 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
-import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
-import ac.soton.bsharp.bSharp.FunctionDecl;
+import ac.soton.bsharp.bSharp.InbuiltInfix;
 import ac.soton.bsharp.bSharp.Infix;
-import ac.soton.bsharp.bSharp.QuantLambda;
+import ac.soton.bsharp.bSharp.InfixFunc;
 import ac.soton.bsharp.bSharp.TypeBuilder;
-import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.util.ExprPredEnum;
+import ac.soton.bsharp.bSharp.util.Tuple2;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -34,7 +31,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InfixImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InfixImpl#getFuncName <em>Func Name</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.InfixImpl#getOpName <em>Op Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InfixImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
@@ -59,27 +55,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * @generated
 	 * @ordered
 	 */
-	protected FunctionDecl funcName;
-
-	/**
-	 * The default value of the '{@link #getOpName() <em>Op Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOpName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String OP_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getOpName() <em>Op Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOpName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String opName = OP_NAME_EDEFAULT;
+	protected InfixFunc funcName;
 
 	/**
 	 * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
@@ -158,10 +134,10 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDecl getFuncName() {
+	public InfixFunc getFuncName() {
 		if (funcName != null && funcName.eIsProxy()) {
 			InternalEObject oldFuncName = (InternalEObject)funcName;
-			funcName = (FunctionDecl)eResolveProxy(oldFuncName);
+			funcName = (InfixFunc)eResolveProxy(oldFuncName);
 			if (funcName != oldFuncName) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.INFIX__FUNC_NAME, oldFuncName, funcName));
@@ -175,7 +151,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDecl basicGetFuncName() {
+	public InfixFunc basicGetFuncName() {
 		return funcName;
 	}
 
@@ -184,32 +160,11 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFuncName(FunctionDecl newFuncName) {
-		FunctionDecl oldFuncName = funcName;
+	public void setFuncName(InfixFunc newFuncName) {
+		InfixFunc oldFuncName = funcName;
 		funcName = newFuncName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INFIX__FUNC_NAME, oldFuncName, funcName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getOpName() {
-		return opName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOpName(String newOpName) {
-		String oldOpName = opName;
-		opName = newOpName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INFIX__OP_NAME, oldOpName, opName));
 	}
 
 	/**
@@ -284,8 +239,6 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 			case BSharpPackage.INFIX__FUNC_NAME:
 				if (resolve) return getFuncName();
 				return basicGetFuncName();
-			case BSharpPackage.INFIX__OP_NAME:
-				return getOpName();
 			case BSharpPackage.INFIX__RIGHT:
 				return getRight();
 		}
@@ -304,10 +257,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 				setLeft((Expression)newValue);
 				return;
 			case BSharpPackage.INFIX__FUNC_NAME:
-				setFuncName((FunctionDecl)newValue);
-				return;
-			case BSharpPackage.INFIX__OP_NAME:
-				setOpName((String)newValue);
+				setFuncName((InfixFunc)newValue);
 				return;
 			case BSharpPackage.INFIX__RIGHT:
 				setRight((Expression)newValue);
@@ -328,10 +278,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 				setLeft((Expression)null);
 				return;
 			case BSharpPackage.INFIX__FUNC_NAME:
-				setFuncName((FunctionDecl)null);
-				return;
-			case BSharpPackage.INFIX__OP_NAME:
-				setOpName(OP_NAME_EDEFAULT);
+				setFuncName((InfixFunc)null);
 				return;
 			case BSharpPackage.INFIX__RIGHT:
 				setRight((Expression)null);
@@ -352,56 +299,16 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 				return left != null;
 			case BSharpPackage.INFIX__FUNC_NAME:
 				return funcName != null;
-			case BSharpPackage.INFIX__OP_NAME:
-				return OP_NAME_EDEFAULT == null ? opName != null : !OP_NAME_EDEFAULT.equals(opName);
 			case BSharpPackage.INFIX__RIGHT:
 				return right != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (opName: ");
-		result.append(opName);
-		result.append(')');
-		return result.toString();
-	}
-
-	@Override
-	public String getInfixName() {
-		String opName = getOpName();
-		
-		if (opName != null)
-			return opName;
-					
-		return getFuncName().getName();
-	}
 
 	@Override
 	public String constructLatexExpressionTree(String indent) {
-		String infixString = getInfixName();
-		
-		if (infixString.equals("⇔")) {
-			infixString = "\\Leftrightarrow";
-		} else if (infixString.equals("⇒")) {
-			infixString = "\\implies";
-		} else if (infixString.equals("≠")) {
-			infixString = "\\neq";
-		} else if (infixString.equals("∧")) {
-			infixString = "\\land";
-		} else if (infixString.equals("∨")) {
-			infixString = "\\lor";
-		}
-		
+		String infixString = funcName.latexName();
 		String result = indent + "[.$" + infixString + "$\n";
 		
 		result += left.constructLatexExpressionTree("  " + indent) + "\n";
@@ -413,71 +320,45 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
-		if (opName != null && !opName.isEmpty()) {
-			boolean opTakesPreds = !opName.equals("=") && !opName.equals("≠");
-			
-			String leftStr = left.compileToEventBString(opTakesPreds);
-			String rightStr = right.compileToEventBString(opTakesPreds);
-			if (left.eventBPrecedence(true) <= eventBPrecedence(opTakesPreds)) {
-				leftStr = "(" + leftStr + ")";
-			}
-			
-			if (right.eventBPrecedence(true) <= eventBPrecedence(opTakesPreds)) {
-				rightStr = "(" + rightStr + ")";
-			}
-			
-			
-			String result = leftStr + opName + rightStr;
-			
-			if (asPredicate)
-				return result;
-			else
-				return "bool(" + result + ")";
+		Tuple2<ExprPredEnum, ExprPredEnum> argTypes = funcName.infixArgumentExprPredTypes();
+		boolean leftIsPred = argTypes.x == ExprPredEnum.PREDICATE;
+		boolean rightIsPred = argTypes.y == ExprPredEnum.PREDICATE;
+		
+		String leftStr = left.compileToEventBString(leftIsPred);
+		String rightStr = right.compileToEventBString(rightIsPred);
+		
+		if (left.eventBPrecedence(true) <= eventBPrecedence(leftIsPred)) {
+			leftStr = "(" + leftStr + ")";
 		}
 		
-		/* This may need to be changed substantially to allow other elements to be infix. Current I believe
-		 * that there's always an EventB operator */
+		if (right.eventBPrecedence(true) <= eventBPrecedence(rightIsPred)) {
+			rightStr = "(" + rightStr + ")";
+		}
 		
-		String fName;
-		if (asPredicate) {
-			fName = funcName.eventBPredName();
+		ExprPredEnum compType = asPredicate ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION;
+		ExprPredEnum compAvailable = funcName.compilationResultType(compType);
+		
+		String fName = funcName.eventBName(compType);
+		String result = null;
+		
+		if (funcName.hasEventBInfixOp()) {
+			result = leftStr + " "  + fName + " " + rightStr;
 		} else {
-			fName = funcName.eventBExprName();
-		}
+			result = fName + "(" + leftStr + ", " + rightStr + ")";
+		} 
 		
-		if (funcName.hasEventBInfix()) {
-			String leftStr = left.compileToEventBString(false);
-			String rightStr = right.compileToEventBString(false);
-			
-			if (left.eventBPrecedence(false) <= eventBPrecedence(false)) {
-				leftStr = "(" + leftStr + ")";
-			}
-			
-			if (right.eventBPrecedence(false) <= eventBPrecedence(false)) {
-				rightStr = "(" + rightStr + ")";
-			}
-			
-			return leftStr + " " + fName + " " + rightStr;
+		if (compAvailable == compType) {
+			return result;
+		} else if (compType == ExprPredEnum.PREDICATE) {
+			return result + " = TRUE";
 		} else {
-			return fName + "(" + left.compileToEventBString(false) + ", " + right.compileToEventBString(false) + ")";
+			return "pred(" + result + ")";
 		}
-	}
-	
-	protected final Map<String, Integer> inbuiltPrecedence = createMap();
-	static HashMap<String, Integer> createMap() {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("⇔", 50);
-	 	map.put("⇒", 50);
-	 	map.put("=", 70);
-	 	map.put("≠", 70);
-	 	map.put("∧", 60);
-	 	map.put("∨", 60);
-	 	return map;
 	}
 
 	@Override
 	public Integer eventBPrecedence(Boolean whenPredicate) {
-		if (opName != null && !opName.isEmpty()) {
+		if (funcName instanceof InbuiltInfix) {
 			return 0;
 		} else {
 			return 1;
@@ -487,15 +368,6 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	@Override
 	public Boolean hasInferredContext() {
 		return (left.hasInferredContext() || right.hasInferredContext());
-	}
-	
-	@Override
-	public Integer precedence() {
-		if (opName != null) {
-			return inbuiltPrecedence.get(opName);
-		}
-		
-		return funcName.getPrecedence();
 	}
 
 	@Override
@@ -525,16 +397,8 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	}
 
 	@Override
-	public TypeBuilder calculateType() {
-		if (opName != null) {
-			Datatype dt = BSharpFactory.eINSTANCE.createDatatype();
-			dt.setName("Bool");
-			TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
-			tc.setTypeName(dt);
-			return tc;
-		}
-		
-		return funcName.getReturnType();
+	public TypeBuilder calculateType() {		
+		return funcName.calculateReturnType();
 	}
 
 } //InfixImpl

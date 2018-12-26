@@ -4,12 +4,48 @@ import org.eclipse.xtext.EcoreUtil2
 import java.util.ArrayList
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.xbase.lib.Functions.Function1
+import java.util.EventObject
 
 class EcoreUtilJ extends EcoreUtil2 {
 		/* Finds the root of the current context and filters up to the current context using the filter */
 	static def ArrayList<? extends EObject> eFilterUpToCurrentWith(EObject context, Function1<EObject, Boolean> filter) {
 		val root = EcoreUtil2.getRootContainer(context)
 		return eFilterUpToWith(root, [object | object == context], filter)
+	}
+	
+	static def EObject eFindFirstWithRoot(EObject root, Function1<EObject, Boolean> filter) {
+		val iterable = root.eAllContents
+		
+		while (iterable.hasNext) {
+			var EObject next = iterable.next
+			if (filter.apply(next))
+				return next
+
+		}
+		
+		return null;
+	}
+	
+	static def EObject eFindFirstBeforeCurrent(EObject context, Function1<EObject, Boolean> filter) {
+		val root = EcoreUtil2.getRootContainer(context)
+		
+		val iterable = root.eAllContents
+		
+		if (iterable.hasNext)
+			return null
+			
+		var EObject next = iterable.next
+		
+		while (next != context) {
+			if (filter.apply(next))
+				return next
+				
+			if (!iterable.hasNext)
+				return null
+			
+			next = iterable.next
+		}
+		
 	}
 	
 	static def ArrayList<? extends EObject> eFilterUpToIncludingCurrentWith(EObject context, Function1<EObject, Boolean> filter) {

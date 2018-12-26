@@ -272,7 +272,7 @@ PrefixBuiltIn:
  * TODO: Programmatically check that the function is an infix function.
  */
 Infix returns Expression:
-	Element ({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*
+	Element ({Infix.left=current} funcName=[InfixFunc] right=Element)*
 ;
 
 /* currently it will not build because the quantifier is causing recursion I think. 
@@ -312,19 +312,28 @@ ClassVarDecl:
 ;
 
 ExpressionVariable:
-	 FunctionDecl | TypedVariable | InstName | DatatypeConstructor
+	 FunctionDecl | TypedVariable | InstName | DatatypeConstructor | InfixFunc
+;
+
+InfixFunc:
+	FunctionDecl | InbuiltInfix
 ;
 
 /* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 
  * therefore assumes this is the case. If a new inbuilt operator is included that isn't a predicate
  * operator the code in InfixImpl needs to be changed to check for this. */
+//InbuiltInfix:
+//	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
+//;
+
+/* I want the inbuilt infix type to be an expression variable very similar to the way the function declaration is. */
 InbuiltInfix:
-	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
+	name=ID
 ;
 
 /* Todo scope/validate this. */
 WrappedInfix:
-	'[' (inbuilt=InbuiltInfix | funcName=[ExpressionVariable]) ']'
+	'[' funcName=[ExpressionVariable] ']'
 ;
 
 /* ------------------------------ Instance ---------------------------------------------*/

@@ -19,10 +19,10 @@ public class MapletTypeInstance implements ITypeInstance {
 	/* Contains the list of non-eventB type names e.g., T : POW(EVB_T) this will contain T without the type. */
 	protected ArrayList<String> untypedTypes = null;
 	
-	public MapletTypeInstance(ClassDecl c, ArrayList<Tuple2<String, String>> typedTypes, IMapletNode t) {
-		classDecl = c;
+	public MapletTypeInstance(ClassDecl classDecl, ArrayList<Tuple2<String, String>> typedTypes, IMapletNode tree) {
+		this.classDecl = classDecl;
 		typedVariableConstructorsTyped = typedTypes;
-		tree = t;
+		this.tree = tree;
 	}
 
 	@Override

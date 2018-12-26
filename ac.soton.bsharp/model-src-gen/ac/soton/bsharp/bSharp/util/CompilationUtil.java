@@ -3,6 +3,7 @@ package ac.soton.bsharp.bSharp.util;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -10,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.linking.LinkingScopeProviderBinding;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eventb.core.ast.extension.IOperator;
 import org.eventb.core.ast.extension.IOperatorProperties;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
@@ -19,14 +21,26 @@ import org.rodinp.core.IInternalElement;
 
 import com.google.inject.Inject;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpBlock;
+import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
+import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
+import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.mapletTree.IMapletNode;
+import ac.soton.bsharp.mapletTree.MapletExpressionVariableLeaf;
+import ac.soton.bsharp.mapletTree.MapletStringLeaf;
+import ac.soton.bsharp.mapletTree.MapletTree;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.util.EcoreUtilJ;
 
 public class CompilationUtil {
 	
@@ -193,5 +207,24 @@ public class CompilationUtil {
 			return (ClassDecl)tl;
 		
 		return ((Extend)tl).getExtendedClass();
+	}
+	
+	public static IMapletNode mapletNodeFromVariableArray(List<ExpressionVariable> vars) {
+		if (vars == null || vars.isEmpty())
+			return null;
+		
+		boolean first = true;
+		IMapletNode c = null;
+		for (ExpressionVariable expr : vars) {
+			if (first) {
+				c = new MapletExpressionVariableLeaf(expr);
+				first = false;
+				continue;
+			}
+			
+			c = new MapletTree(c, new MapletExpressionVariableLeaf(expr));
+		}
+		
+		return c;
 	}
 }

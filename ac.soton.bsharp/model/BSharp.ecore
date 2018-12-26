@@ -93,7 +93,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="wrapped" eType="#//WrappedInfix"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionDecl" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//ExpressionVariable #//IExpressionContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionDecl" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//IExpressionContainer #//InfixFunc">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypedVariableList"
@@ -101,7 +101,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//TypeConstructor"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="infix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precedence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generatedLambdas" upperBound="-1"
@@ -113,13 +112,16 @@
         eType="#//FileImport" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="project" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InbuiltInfix" eSuperTypes="#//InfixFunc"/>
   <eClassifiers xsi:type="ecore:EClass" name="Infix" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="funcName" eType="#//FunctionDecl"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="opName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funcName" eType="#//InfixFunc"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Expression"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InfixFunc" abstract="true" eSuperTypes="#//ExpressionVariable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precedence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InstName" eSuperTypes="#//ExpressionVariable #//GenName"/>
   <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//IExpressionContainer #//ITheoremContainer">
@@ -244,6 +246,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WrappedInfix">
     <eStructuralFeatures xsi:type="ecore:EReference" name="funcName" eType="#//ExpressionVariable"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inbuilt" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

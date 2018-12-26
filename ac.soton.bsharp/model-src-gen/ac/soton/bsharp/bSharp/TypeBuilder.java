@@ -33,6 +33,9 @@ public interface TypeBuilder extends EObject {
 	/* This method will return null if the Constructed type is not wrapping a type class. */
 	BSClass getTypeClass();
 	boolean isBoolType();
+	
+	/* Returns null if the constructed type is not wrapping a ClassDecl */
+	ClassDecl getClassDecl();
 
 	TypeBuilder reorderTypeTree();
 	

@@ -6,6 +6,8 @@ package ac.soton.bsharp.bSharp;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import ac.soton.bsharp.mapletTree.IMapletNode;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Instance</b></em>'.
@@ -121,5 +123,11 @@ public interface Instance extends IExpressionContainer, ITheoremContainer {
 	void setName(String value);
 
 	void compile();
+
+	ClassDecl getBaseType();
+	
+	IMapletNode concreteInstanceMapletTree();
+
+	Instance findDirectSuperInstance();
 
 } // Instance

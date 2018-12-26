@@ -172,6 +172,11 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     return Scopes.scopeFor(elements, IScope.NULLSCOPE);
   }
   
+  @Override
+  public IScope getScope(final EObject context, final EReference reference) {
+    return super.getScope(context, reference);
+  }
+  
   public IScope getPolyScopeFor(final EObject context, final IScope parent) {
     final Function1<EObject, Boolean> _function = (EObject obj) -> {
       return Boolean.valueOf((obj instanceof IPolyTypeProvider));

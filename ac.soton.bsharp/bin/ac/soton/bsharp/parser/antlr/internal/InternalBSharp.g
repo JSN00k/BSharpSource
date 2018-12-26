@@ -2907,37 +2907,15 @@ ruleInfix returns [EObject current=null]
 			)
 			(
 				(
-					(
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getInfixRule());
-							}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getInfixRule());
 						}
-						otherlv_2=RULE_ID
-						{
-							newLeafNode(otherlv_2, grammarAccess.getInfixAccess().getFuncNameFunctionDeclCrossReference_1_1_0_0());
-						}
-					)
-				)
-				    |
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getInfixAccess().getOpNameInbuiltInfixParserRuleCall_1_1_1_0());
-						}
-						lv_opName_3_0=ruleInbuiltInfix
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getInfixRule());
-							}
-							set(
-								$current,
-								"opName",
-								lv_opName_3_0,
-								"ac.soton.bsharp.BSharp.InbuiltInfix");
-							afterParserOrEnumRuleCall();
-						}
-					)
+					}
+					otherlv_2=RULE_ID
+					{
+						newLeafNode(otherlv_2, grammarAccess.getInfixAccess().getFuncNameInfixFuncCrossReference_1_1_0());
+					}
 				)
 			)
 			(
@@ -2945,7 +2923,7 @@ ruleInfix returns [EObject current=null]
 					{
 						newCompositeNode(grammarAccess.getInfixAccess().getRightElementParserRuleCall_1_2_0());
 					}
-					lv_right_4_0=ruleElement
+					lv_right_3_0=ruleElement
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInfixRule());
@@ -2953,7 +2931,7 @@ ruleInfix returns [EObject current=null]
 						set(
 							$current,
 							"right",
-							lv_right_4_0,
+							lv_right_3_0,
 							"ac.soton.bsharp.BSharp.Element");
 						afterParserOrEnumRuleCall();
 					}
@@ -3252,15 +3230,15 @@ ruleClassVarDecl returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleInbuiltInfix
-entryRuleInbuiltInfix returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getInbuiltInfixRule()); }
-	iv_ruleInbuiltInfix=ruleInbuiltInfix
-	{ $current=$iv_ruleInbuiltInfix.current.getText(); }
+// Entry rule entryRuleInfixFunc
+entryRuleInfixFunc returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getInfixFuncRule()); }
+	iv_ruleInfixFunc=ruleInfixFunc
+	{ $current=$iv_ruleInfixFunc.current; }
 	EOF;
 
-// Rule InbuiltInfix
-ruleInbuiltInfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+// Rule InfixFunc
+ruleInfixFunc returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -3268,41 +3246,58 @@ ruleInbuiltInfix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
 	leaveRule();
 }:
 	(
-		kw='\u21D4'
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getInbuiltInfixAccess().getLeftRightDoubleArrowKeyword_0());
+			newCompositeNode(grammarAccess.getInfixFuncAccess().getFunctionDeclParserRuleCall_0());
+		}
+		this_FunctionDecl_0=ruleFunctionDecl
+		{
+			$current = $this_FunctionDecl_0.current;
+			afterParserOrEnumRuleCall();
 		}
 		    |
-		kw='\u21D2'
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getInbuiltInfixAccess().getRightwardsDoubleArrowKeyword_1());
+			newCompositeNode(grammarAccess.getInfixFuncAccess().getInbuiltInfixParserRuleCall_1());
 		}
-		    |
-		kw='='
+		this_InbuiltInfix_1=ruleInbuiltInfix
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getInbuiltInfixAccess().getEqualsSignKeyword_2());
+			$current = $this_InbuiltInfix_1.current;
+			afterParserOrEnumRuleCall();
 		}
-		    |
-		kw='\u2260'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getInbuiltInfixAccess().getNotEqualToKeyword_3());
-		}
-		    |
-		kw='\u2227'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getInbuiltInfixAccess().getLogicalAndKeyword_4());
-		}
-		    |
-		kw='\u2228'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getInbuiltInfixAccess().getLogicalOrKeyword_5());
-		}
+	)
+;
+
+// Entry rule entryRuleInbuiltInfix
+entryRuleInbuiltInfix returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getInbuiltInfixRule()); }
+	iv_ruleInbuiltInfix=ruleInbuiltInfix
+	{ $current=$iv_ruleInbuiltInfix.current; }
+	EOF;
+
+// Rule InbuiltInfix
+ruleInbuiltInfix returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_name_0_0=RULE_ID
+			{
+				newLeafNode(lv_name_0_0, grammarAccess.getInbuiltInfixAccess().getNameIDTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getInbuiltInfixRule());
+				}
+				setWithLastConsumed(
+					$current,
+					"name",
+					lv_name_0_0,
+					"ac.soton.bsharp.BSharp.ID");
+			}
+		)
 	)
 ;
 
@@ -3328,42 +3323,20 @@ ruleWrappedInfix returns [EObject current=null]
 		}
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getWrappedInfixAccess().getInbuiltInbuiltInfixParserRuleCall_1_0_0());
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getWrappedInfixRule());
 					}
-					lv_inbuilt_1_0=ruleInbuiltInfix
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getWrappedInfixRule());
-						}
-						set(
-							$current,
-							"inbuilt",
-							lv_inbuilt_1_0,
-							"ac.soton.bsharp.BSharp.InbuiltInfix");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			    |
-			(
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getWrappedInfixRule());
-						}
-					}
-					otherlv_2=RULE_ID
-					{
-						newLeafNode(otherlv_2, grammarAccess.getWrappedInfixAccess().getFuncNameExpressionVariableCrossReference_1_1_0());
-					}
-				)
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getWrappedInfixAccess().getFuncNameExpressionVariableCrossReference_1_0());
+				}
 			)
 		)
-		otherlv_3=']'
+		otherlv_2=']'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getWrappedInfixAccess().getRightSquareBracketKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getWrappedInfixAccess().getRightSquareBracketKeyword_2());
 		}
 	)
 ;

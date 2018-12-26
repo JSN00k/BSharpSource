@@ -2,27 +2,31 @@ package ac.soton.bsharp.mapletTree;
 
 import java.util.ArrayList;
 
-public class MapletStringLeaf extends AbstractLeaf {
-	String name;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
+
+public class MapletExpressionVariableLeaf extends AbstractLeaf {
 	
-	public MapletStringLeaf(String n) {
-		name = n;
+	ExpressionVariable exprVar;
+	
+	public MapletExpressionVariableLeaf(ExpressionVariable e) {
+		exprVar = e;
 	}
-	
+
 	@Override
 	public String compileToString() {
-		return name;
+		return exprVar.getName();
 	}
 
 	@Override
 	public ArrayList<String> varNames() {
 		ArrayList<String> result = new ArrayList<String>();
-		result.add(name);
+		result.add(compileToString());
 		return result;
 	}
 
 	@Override
 	public void varNamesIntoArray(ArrayList<String> al) {
-		al.add(name);
+		al.add(compileToString());
 	}
+
 }

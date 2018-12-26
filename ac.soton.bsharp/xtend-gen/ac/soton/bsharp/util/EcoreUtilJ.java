@@ -22,6 +22,45 @@ public class EcoreUtilJ extends EcoreUtil2 {
     return EcoreUtilJ.eFilterUpToWith(root, _function, filter);
   }
   
+  public static EObject eFindFirstWithRoot(final EObject root, final Function1<EObject, Boolean> filter) {
+    final TreeIterator<EObject> iterable = root.eAllContents();
+    while (iterable.hasNext()) {
+      {
+        EObject next = iterable.next();
+        Boolean _apply = filter.apply(next);
+        if ((_apply).booleanValue()) {
+          return next;
+        }
+      }
+    }
+    return null;
+  }
+  
+  public static EObject eFindFirstBeforeCurrent(final EObject context, final Function1<EObject, Boolean> filter) {
+    final EObject root = EcoreUtil2.getRootContainer(context);
+    final TreeIterator<EObject> iterable = root.eAllContents();
+    boolean _hasNext = iterable.hasNext();
+    if (_hasNext) {
+      return null;
+    }
+    EObject next = iterable.next();
+    while ((!Objects.equal(next, context))) {
+      {
+        Boolean _apply = filter.apply(next);
+        if ((_apply).booleanValue()) {
+          return next;
+        }
+        boolean _hasNext_1 = iterable.hasNext();
+        boolean _not = (!_hasNext_1);
+        if (_not) {
+          return null;
+        }
+        next = iterable.next();
+      }
+    }
+    return null;
+  }
+  
   public static ArrayList<? extends EObject> eFilterUpToIncludingCurrentWith(final EObject context, final Function1<EObject, Boolean> filter) {
     final EObject root = EcoreUtil2.getRootContainer(context);
     final Function1<EObject, Boolean> _function = (EObject object) -> {

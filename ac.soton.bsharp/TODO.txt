@@ -14,10 +14,12 @@ These TODOs are requirements that have been put off due to time constraints, The
 1)  In FileCompiler compileTypeConstructor(TypeConstructor constr) currently only handles simple types
 	it needs to be able to handle constructed types, this can be done after I implement generating 
 	type constructors.
-2)	Imports and scoping. When a file is imported it doesn't scope from the files that the import imports.
+2)	Make an abstract class to handle infix functions both inbuilt and declared, this separates the
+	code for handling function calls from the code for handling infix calls.
 3) Change the way the Type classes work so they are also constructive rather than destructive.
 4) Infix implementations to pass them as a function, wrap them in brackets. when found in an expression
 	tree without brackets set the arguments to left and right.
+	
 -------------- Validation -----------------
 Due to time constraints insufficient work has been done on validation, allowing invalid statements
 to get through to the compilation stage, this potentially allows impossible statements to be compiled.

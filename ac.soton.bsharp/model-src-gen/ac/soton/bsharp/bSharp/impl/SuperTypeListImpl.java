@@ -3,7 +3,9 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 
@@ -15,6 +17,7 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -207,5 +210,47 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		List<TypeBuilder> superTs = getSuperTypes();
+		if (superTs == null || superTs.isEmpty())
+			return true;
+		
+		return false;
+	}
+	
+	@Override 
+	public boolean containsTypeRecursive(ClassDecl type) {
+		for (TypeBuilder tb : getSuperTypes()) {
+			ClassDecl cd = tb.getClassDecl();
+			if (cd != null && cd == type)
+				return true;
+			
+		}
+		
+		for (TypeBuilder tb : getSuperTypes()) {
+			BSClass c = tb.getTypeClass();
+			
+			if (c != null && c.isSuperType(c)) {
+				return true;
+			}
+			
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public boolean containsType(ClassDecl type) {
+		for (TypeBuilder tb : getSuperTypes()) {
+			ClassDecl cd = tb.getClassDecl();
+			if (cd != null && cd == type)
+				return true;
+			
+		}
+		
+		return false;
 	}
 } //SuperTypeListImpl

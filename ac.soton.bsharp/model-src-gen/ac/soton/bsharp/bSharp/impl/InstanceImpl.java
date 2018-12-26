@@ -10,12 +10,14 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.mapletTree.IMapletNode;
 import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
+import ac.soton.bsharp.util.EcoreUtilJ;
 
 import java.util.Collection;
 import java.util.List;
@@ -49,6 +51,7 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.util.EcoreGenericsUtil;
 import org.eclipse.xtext.util.SimpleCache;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -451,6 +454,60 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	@Override
 	public ITypeInstance getTypeInstance() {
 		return typeInst;
+	}
+
+	@Override
+	public ClassDecl getBaseType() {
+		if (context instanceof ClassDecl)
+			return (ClassDecl)context;
+		else {
+			return ((Instance)context).getBaseType();
+		}
+	}
+
+	@Override
+	public IMapletNode concreteInstanceMapletTree() {
+		//return getClassName().concreteTypeMapletTree(getContext(), arguments, this);
+		return null;
+	}
+	
+	@Override
+	public Instance findDirectSuperInstance() {
+		/* First search the current file for extensions of the correct type, or the correct
+		 * type. If we find the correct type there is no need to search any further. Then 
+		 * search imported files for extensions of the correct types. */
+		
+		BSClass instClass = getClassName();
+		
+		Function1<EObject, Boolean> instFinder = new Function1<EObject, Boolean>() {
+			@Override
+			public Boolean apply(EObject p) {
+				if (p instanceof Instance) {
+					return instClass.isDirectSuperType(((Instance) p).getClassName());
+				} else {
+					return false;
+				}
+			}
+		};
+		
+		Instance instance = (Instance)EcoreUtilJ.eFindFirstBeforeCurrent(this, instFinder);
+		
+		if (instance != null) {
+			return instance;
+		}
+		
+		EObject root = EcoreUtil2.getRootContainer(this);
+		List<FileImport> imports = EcoreUtil2.getAllContentsOfType(root, FileImport.class);
+		
+		for (FileImport imp : imports) {
+			instance = (Instance)EcoreUtilJ.eFindFirstWithRoot(imp, instFinder);
+			
+			if (instance != null)
+				return instance;
+			
+		}
+		
+		return null;
 	}
 
 } //InstanceImpl
