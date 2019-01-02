@@ -85,9 +85,9 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BSharpPackage.ICLASS_DECL_EXTEND: {
-				IClassDeclExtend iClassDeclExtend = (IClassDeclExtend)theEObject;
-				T result = caseIClassDeclExtend(iClassDeclExtend);
+			case BSharpPackage.ICLASS_INSTANCE: {
+				IClassInstance iClassInstance = (IClassInstance)theEObject;
+				T result = caseIClassInstance(iClassInstance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -153,6 +153,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(bsClass);
 				if (result == null) result = caseTopLevelInstance(bsClass);
 				if (result == null) result = caseIEventBPrefixProvider(bsClass);
+				if (result == null) result = caseIClassInstance(bsClass);
 				if (result == null) result = caseGenName(bsClass);
 				if (result == null) result = caseNamedObject(bsClass);
 				if (result == null) result = caseIVarType(bsClass);
@@ -174,6 +175,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(classDecl);
 				if (result == null) result = caseTopLevelInstance(classDecl);
 				if (result == null) result = caseIEventBPrefixProvider(classDecl);
+				if (result == null) result = caseIClassInstance(classDecl);
 				if (result == null) result = caseGenName(classDecl);
 				if (result == null) result = caseNamedObject(classDecl);
 				if (result == null) result = caseIVarType(classDecl);
@@ -205,6 +207,7 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(datatype);
 				if (result == null) result = caseTopLevelInstance(datatype);
 				if (result == null) result = caseIEventBPrefixProvider(datatype);
+				if (result == null) result = caseIClassInstance(datatype);
 				if (result == null) result = caseGenName(datatype);
 				if (result == null) result = caseNamedObject(datatype);
 				if (result == null) result = caseIVarType(datatype);
@@ -326,6 +329,8 @@ public class BSharpSwitch<T> extends Switch<T> {
 				T result = caseInstance(instance);
 				if (result == null) result = caseIExpressionContainer(instance);
 				if (result == null) result = caseITheoremContainer(instance);
+				if (result == null) result = caseIClassInstance(instance);
+				if (result == null) result = caseNamedObject(instance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1111,17 +1116,17 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IClass Decl Extend</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>IClass Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IClass Decl Extend</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>IClass Instance</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIClassDeclExtend(IClassDeclExtend object) {
+	public T caseIClassInstance(IClassInstance object) {
 		return null;
 	}
 

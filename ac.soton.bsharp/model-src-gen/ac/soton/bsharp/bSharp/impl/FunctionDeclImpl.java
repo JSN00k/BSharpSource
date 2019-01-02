@@ -1210,4 +1210,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		return new Tuple2<ExprPredEnum, ExprPredEnum>(typedVars.get(0).y.isBoolType() ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION,
 				typedVars.get(1).y.isBoolType() ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION);
 	}
+
+	@Override
+	public Integer bSharpPrecedence() {
+		return getPrecedence();
+	}
 } //FunctionDeclImpl

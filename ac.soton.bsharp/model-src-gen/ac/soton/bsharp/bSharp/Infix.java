@@ -16,6 +16,7 @@ package ac.soton.bsharp.bSharp;
  *   <li>{@link ac.soton.bsharp.bSharp.Infix#getLeft <em>Left</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Infix#getFuncName <em>Func Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Infix#getRight <em>Right</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.Infix#getOpName <em>Op Name</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getInfix()
@@ -100,5 +101,31 @@ public interface Infix extends Expression {
 	 * @generated
 	 */
 	void setRight(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Op Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Op Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Op Name</em>' attribute.
+	 * @see #setOpName(String)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInfix_OpName()
+	 * @model
+	 * @generated
+	 */
+	String getOpName();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Infix#getOpName <em>Op Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Op Name</em>' attribute.
+	 * @see #getOpName()
+	 * @generated
+	 */
+	void setOpName(String value);
 
 } // Infix

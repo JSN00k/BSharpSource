@@ -81,8 +81,8 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createIPolyTypeProviderAdapter();
 			}
 			@Override
-			public Adapter caseIClassDeclExtend(IClassDeclExtend object) {
-				return createIClassDeclExtendAdapter();
+			public Adapter caseIClassInstance(IClassInstance object) {
+				return createIClassInstanceAdapter();
 			}
 			@Override
 			public Adapter caseIExpressionContainer(IExpressionContainer object) {
@@ -887,16 +887,16 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IClassDeclExtend <em>IClass Decl Extend</em>}'.
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IClassInstance <em>IClass Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.IClassDeclExtend
+	 * @see ac.soton.bsharp.bSharp.IClassInstance
 	 * @generated
 	 */
-	public Adapter createIClassDeclExtendAdapter() {
+	public Adapter createIClassInstanceAdapter() {
 		return null;
 	}
 

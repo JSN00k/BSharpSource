@@ -1709,9 +1709,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cElementParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cInfixLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cFuncNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final CrossReference cFuncNameInfixFuncCrossReference_1_1_0 = (CrossReference)cFuncNameAssignment_1_1.eContents().get(0);
-		private final RuleCall cFuncNameInfixFuncIDTerminalRuleCall_1_1_0_1 = (RuleCall)cFuncNameInfixFuncCrossReference_1_1_0.eContents().get(1);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Assignment cFuncNameAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
+		private final CrossReference cFuncNameFunctionDeclCrossReference_1_1_0_0 = (CrossReference)cFuncNameAssignment_1_1_0.eContents().get(0);
+		private final RuleCall cFuncNameFunctionDeclIDTerminalRuleCall_1_1_0_0_1 = (RuleCall)cFuncNameFunctionDeclCrossReference_1_1_0_0.eContents().get(1);
+		private final Assignment cOpNameAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
+		private final RuleCall cOpNameInbuiltInfixParserRuleCall_1_1_1_0 = (RuleCall)cOpNameAssignment_1_1_1.eContents().get(0);
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightElementParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
@@ -1728,29 +1731,38 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * 
 		// * TODO: Programmatically check that the function is an infix function.
 		// */ Infix Expression:
-		//	Element ({Infix.left=current} funcName=[InfixFunc] right=Element)*;
+		//	Element ({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Element ({Infix.left=current} funcName=[InfixFunc] right=Element)*
+		//Element ({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*
 		public Group getGroup() { return cGroup; }
 		
 		//Element
 		public RuleCall getElementParserRuleCall_0() { return cElementParserRuleCall_0; }
 		
-		//({Infix.left=current} funcName=[InfixFunc] right=Element)*
+		//({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{Infix.left=current}
 		public Action getInfixLeftAction_1_0() { return cInfixLeftAction_1_0; }
 		
-		//funcName=[InfixFunc]
-		public Assignment getFuncNameAssignment_1_1() { return cFuncNameAssignment_1_1; }
+		//funcName=[FunctionDecl] | opName=InbuiltInfix
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
-		//[InfixFunc]
-		public CrossReference getFuncNameInfixFuncCrossReference_1_1_0() { return cFuncNameInfixFuncCrossReference_1_1_0; }
+		//funcName=[FunctionDecl]
+		public Assignment getFuncNameAssignment_1_1_0() { return cFuncNameAssignment_1_1_0; }
+		
+		//[FunctionDecl]
+		public CrossReference getFuncNameFunctionDeclCrossReference_1_1_0_0() { return cFuncNameFunctionDeclCrossReference_1_1_0_0; }
 		
 		//ID
-		public RuleCall getFuncNameInfixFuncIDTerminalRuleCall_1_1_0_1() { return cFuncNameInfixFuncIDTerminalRuleCall_1_1_0_1; }
+		public RuleCall getFuncNameFunctionDeclIDTerminalRuleCall_1_1_0_0_1() { return cFuncNameFunctionDeclIDTerminalRuleCall_1_1_0_0_1; }
+		
+		//opName=InbuiltInfix
+		public Assignment getOpNameAssignment_1_1_1() { return cOpNameAssignment_1_1_1; }
+		
+		//InbuiltInfix
+		public RuleCall getOpNameInbuiltInfixParserRuleCall_1_1_1_0() { return cOpNameInbuiltInfixParserRuleCall_1_1_1_0; }
 		
 		//right=Element
 		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
@@ -1964,13 +1976,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypedVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cInstNameParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cDatatypeConstructorParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cInfixFuncParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//ExpressionVariable:
-		//	FunctionDecl | TypedVariable | InstName | DatatypeConstructor | InfixFunc;
+		//	FunctionDecl | TypedVariable | InstName | DatatypeConstructor;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FunctionDecl | TypedVariable | InstName | DatatypeConstructor | InfixFunc
+		//FunctionDecl | TypedVariable | InstName | DatatypeConstructor
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//FunctionDecl
@@ -1984,80 +1995,90 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//DatatypeConstructor
 		public RuleCall getDatatypeConstructorParserRuleCall_3() { return cDatatypeConstructorParserRuleCall_3; }
-		
-		//InfixFunc
-		public RuleCall getInfixFuncParserRuleCall_4() { return cInfixFuncParserRuleCall_4; }
-	}
-	public class InfixFuncElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InfixFunc");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cFunctionDeclParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cInbuiltInfixParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//InfixFunc:
-		//	FunctionDecl | InbuiltInfix;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//FunctionDecl | InbuiltInfix
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//FunctionDecl
-		public RuleCall getFunctionDeclParserRuleCall_0() { return cFunctionDeclParserRuleCall_0; }
-		
-		//InbuiltInfix
-		public RuleCall getInbuiltInfixParserRuleCall_1() { return cInbuiltInfixParserRuleCall_1; }
 	}
 	public class InbuiltInfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltInfix");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cLeftRightDoubleArrowKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cRightwardsDoubleArrowKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cEqualsSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cNotEqualToKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cLogicalAndKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cLogicalOrKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		
 		///* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 
 		// * therefore assumes this is the case. If a new inbuilt operator is included that isn't a predicate
-		// * operator the code in InfixImpl needs to be changed to check for this. */ //InbuiltInfix:
-		////	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
-		////;
-		///* I want the inbuilt infix type to be an expression variable very similar to the way the function declaration is. */
-		//InbuiltInfix:
-		//	name=ID;
+		// * operator the code in InfixImpl needs to be changed to check for this. */ InbuiltInfix:
+		//	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID
-		public Assignment getNameAssignment() { return cNameAssignment; }
+		//'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
+		//'⇔'
+		public Keyword getLeftRightDoubleArrowKeyword_0() { return cLeftRightDoubleArrowKeyword_0; }
+		
+		//'⇒'
+		public Keyword getRightwardsDoubleArrowKeyword_1() { return cRightwardsDoubleArrowKeyword_1; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		
+		//'≠'
+		public Keyword getNotEqualToKeyword_3() { return cNotEqualToKeyword_3; }
+		
+		//'∧'
+		public Keyword getLogicalAndKeyword_4() { return cLogicalAndKeyword_4; }
+		
+		//'∨'
+		public Keyword getLogicalOrKeyword_5() { return cLogicalOrKeyword_5; }
 	}
 	public class WrappedInfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.WrappedInfix");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cFuncNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cFuncNameExpressionVariableCrossReference_1_0 = (CrossReference)cFuncNameAssignment_1.eContents().get(0);
-		private final RuleCall cFuncNameExpressionVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cFuncNameExpressionVariableCrossReference_1_0.eContents().get(1);
-		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cInbuiltAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cInbuiltInbuiltInfixParserRuleCall_0_1_0 = (RuleCall)cInbuiltAssignment_0_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cFuncNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final CrossReference cFuncNameExpressionVariableCrossReference_1_0_0 = (CrossReference)cFuncNameAssignment_1_0.eContents().get(0);
+		private final RuleCall cFuncNameExpressionVariableIDTerminalRuleCall_1_0_0_1 = (RuleCall)cFuncNameExpressionVariableCrossReference_1_0_0.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		
 		///* Todo scope/validate this. */ WrappedInfix:
-		//	'[' funcName=[ExpressionVariable] ']';
+		//	'[' inbuilt=InbuiltInfix | funcName=[ExpressionVariable] ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'[' funcName=[ExpressionVariable] ']'
-		public Group getGroup() { return cGroup; }
+		//'[' inbuilt=InbuiltInfix | funcName=[ExpressionVariable] ']'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'[' inbuilt=InbuiltInfix
+		public Group getGroup_0() { return cGroup_0; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		public Keyword getLeftSquareBracketKeyword_0_0() { return cLeftSquareBracketKeyword_0_0; }
+		
+		//inbuilt=InbuiltInfix
+		public Assignment getInbuiltAssignment_0_1() { return cInbuiltAssignment_0_1; }
+		
+		//InbuiltInfix
+		public RuleCall getInbuiltInbuiltInfixParserRuleCall_0_1_0() { return cInbuiltInbuiltInfixParserRuleCall_0_1_0; }
+		
+		//funcName=[ExpressionVariable] ']'
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//funcName=[ExpressionVariable]
-		public Assignment getFuncNameAssignment_1() { return cFuncNameAssignment_1; }
+		public Assignment getFuncNameAssignment_1_0() { return cFuncNameAssignment_1_0; }
 		
 		//[ExpressionVariable]
-		public CrossReference getFuncNameExpressionVariableCrossReference_1_0() { return cFuncNameExpressionVariableCrossReference_1_0; }
+		public CrossReference getFuncNameExpressionVariableCrossReference_1_0_0() { return cFuncNameExpressionVariableCrossReference_1_0_0; }
 		
 		//ID
-		public RuleCall getFuncNameExpressionVariableIDTerminalRuleCall_1_0_1() { return cFuncNameExpressionVariableIDTerminalRuleCall_1_0_1; }
+		public RuleCall getFuncNameExpressionVariableIDTerminalRuleCall_1_0_0_1() { return cFuncNameExpressionVariableIDTerminalRuleCall_1_0_0_1; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+		public Keyword getRightSquareBracketKeyword_1_1() { return cRightSquareBracketKeyword_1_1; }
 	}
 	public class InstanceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Instance");
@@ -2068,8 +2089,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassNameBSClassQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cClassNameBSClassCrossReference_1_0.eContents().get(1);
 		private final Keyword cLessThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cContextAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cContextBodyElementsCrossReference_3_0 = (CrossReference)cContextAssignment_3.eContents().get(0);
-		private final RuleCall cContextBodyElementsIDTerminalRuleCall_3_0_1 = (RuleCall)cContextBodyElementsCrossReference_3_0.eContents().get(1);
+		private final CrossReference cContextIClassInstanceCrossReference_3_0 = (CrossReference)cContextAssignment_3.eContents().get(0);
+		private final RuleCall cContextIClassInstanceIDTerminalRuleCall_3_0_1 = (RuleCall)cContextIClassInstanceCrossReference_3_0.eContents().get(1);
 		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cLeftParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cArgumentsAssignment_6 = (Assignment)cGroup.eContents().get(6);
@@ -2083,11 +2104,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_9_0 = (RuleCall)cNameAssignment_9.eContents().get(0);
 		
 		///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-		//	'Instance' className=[BSClass|QualifiedName] '<' context=[BodyElements] '>' '(' arguments+=RootExpression? (','
+		//	'Instance' className=[BSClass|QualifiedName] '<' context=[IClassInstance] '>' '(' arguments+=RootExpression? (','
 		//	arguments+=RootExpression)* ')' name=ID?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Instance' className=[BSClass|QualifiedName] '<' context=[BodyElements] '>' '(' arguments+=RootExpression? (','
+		//'Instance' className=[BSClass|QualifiedName] '<' context=[IClassInstance] '>' '(' arguments+=RootExpression? (','
 		//arguments+=RootExpression)* ')' name=ID?
 		public Group getGroup() { return cGroup; }
 		
@@ -2106,14 +2127,14 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//'<'
 		public Keyword getLessThanSignKeyword_2() { return cLessThanSignKeyword_2; }
 		
-		//context=[BodyElements]
+		//context=[IClassInstance]
 		public Assignment getContextAssignment_3() { return cContextAssignment_3; }
 		
-		//[BodyElements]
-		public CrossReference getContextBodyElementsCrossReference_3_0() { return cContextBodyElementsCrossReference_3_0; }
+		//[IClassInstance]
+		public CrossReference getContextIClassInstanceCrossReference_3_0() { return cContextIClassInstanceCrossReference_3_0; }
 		
 		//ID
-		public RuleCall getContextBodyElementsIDTerminalRuleCall_3_0_1() { return cContextBodyElementsIDTerminalRuleCall_3_0_1; }
+		public RuleCall getContextIClassInstanceIDTerminalRuleCall_3_0_1() { return cContextIClassInstanceIDTerminalRuleCall_3_0_1; }
 		
 		//'>'
 		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
@@ -2201,7 +2222,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final FunctionCallElements pFunctionCall;
 	private final ClassVarDeclElements pClassVarDecl;
 	private final ExpressionVariableElements pExpressionVariable;
-	private final InfixFuncElements pInfixFunc;
 	private final InbuiltInfixElements pInbuiltInfix;
 	private final WrappedInfixElements pWrappedInfix;
 	private final InstanceElements pInstance;
@@ -2266,7 +2286,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pFunctionCall = new FunctionCallElements();
 		this.pClassVarDecl = new ClassVarDeclElements();
 		this.pExpressionVariable = new ExpressionVariableElements();
-		this.pInfixFunc = new InfixFuncElements();
 		this.pInbuiltInfix = new InbuiltInfixElements();
 		this.pWrappedInfix = new WrappedInfixElements();
 		this.pInstance = new InstanceElements();
@@ -2799,7 +2818,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * 
 	// * TODO: Programmatically check that the function is an infix function.
 	// */ Infix Expression:
-	//	Element ({Infix.left=current} funcName=[InfixFunc] right=Element)*;
+	//	Element ({Infix.left=current} (funcName=[FunctionDecl] | opName=InbuiltInfix) right=Element)*;
 	public InfixElements getInfixAccess() {
 		return pInfix;
 	}
@@ -2866,7 +2885,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ExpressionVariable:
-	//	FunctionDecl | TypedVariable | InstName | DatatypeConstructor | InfixFunc;
+	//	FunctionDecl | TypedVariable | InstName | DatatypeConstructor;
 	public ExpressionVariableElements getExpressionVariableAccess() {
 		return pExpressionVariable;
 	}
@@ -2875,24 +2894,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionVariableAccess().getRule();
 	}
 	
-	//InfixFunc:
-	//	FunctionDecl | InbuiltInfix;
-	public InfixFuncElements getInfixFuncAccess() {
-		return pInfixFunc;
-	}
-	
-	public ParserRule getInfixFuncRule() {
-		return getInfixFuncAccess().getRule();
-	}
-	
 	///* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 
 	// * therefore assumes this is the case. If a new inbuilt operator is included that isn't a predicate
-	// * operator the code in InfixImpl needs to be changed to check for this. */ //InbuiltInfix:
-	////	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
-	////;
-	///* I want the inbuilt infix type to be an expression variable very similar to the way the function declaration is. */
-	//InbuiltInfix:
-	//	name=ID;
+	// * operator the code in InfixImpl needs to be changed to check for this. */ InbuiltInfix:
+	//	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨';
 	public InbuiltInfixElements getInbuiltInfixAccess() {
 		return pInbuiltInfix;
 	}
@@ -2902,7 +2907,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* Todo scope/validate this. */ WrappedInfix:
-	//	'[' funcName=[ExpressionVariable] ']';
+	//	'[' inbuilt=InbuiltInfix | funcName=[ExpressionVariable] ']';
 	public WrappedInfixElements getWrappedInfixAccess() {
 		return pWrappedInfix;
 	}
@@ -2912,7 +2917,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-	//	'Instance' className=[BSClass|QualifiedName] '<' context=[BodyElements] '>' '(' arguments+=RootExpression? (','
+	//	'Instance' className=[BSClass|QualifiedName] '<' context=[IClassInstance] '>' '(' arguments+=RootExpression? (','
 	//	arguments+=RootExpression)* ')' name=ID?;
 	public InstanceElements getInstanceAccess() {
 		return pInstance;

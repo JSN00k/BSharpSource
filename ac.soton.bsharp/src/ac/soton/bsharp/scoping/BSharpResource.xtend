@@ -53,22 +53,4 @@ class BSharpResource extends LazyLinkingResource {
 			EcoreUtil.resolveAll(this);
 
 	}
-	
-	private var ArrayList<InbuiltInfix> addedInbuilts = null;
-	
-	override doLinking() {
-		addedInbuilts = new ArrayList<InbuiltInfix>
-		val inbuiltPrecMap = InbuiltInfix.infixPrecedenceMap as Map<String, Integer>
-
-		for (ib : inbuiltPrecMap.entrySet) {
-			var inbuilt = BSharpFactory.eINSTANCE.createInbuiltInfix
-			inbuilt.name = ib.key
-			inbuilt.precedence = ib.value
-
-			addedInbuilts.add(inbuilt);
-			getContents.add(inbuilt);
-		}
-
-		super.doLinking
-	}
 }

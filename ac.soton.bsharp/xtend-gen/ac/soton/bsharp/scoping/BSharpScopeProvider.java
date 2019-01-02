@@ -9,8 +9,10 @@ import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
+import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyType;
@@ -172,9 +174,12 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     return Scopes.scopeFor(elements, IScope.NULLSCOPE);
   }
   
-  @Override
-  public IScope getScope(final EObject context, final EReference reference) {
-    return super.getScope(context, reference);
+  public IScope scope_IClassInstance(final Instance context, final EReference ref) {
+    IScope parent = IScope.NULLSCOPE;
+    ArrayList<IClassInstance> classInstances = new ArrayList<IClassInstance>();
+    final BSClass instanceClassName = context.getClassName();
+    classInstances.add(instanceClassName);
+    return parent;
   }
   
   public IScope getPolyScopeFor(final EObject context, final IScope parent) {

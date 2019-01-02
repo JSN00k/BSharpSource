@@ -414,23 +414,23 @@ public interface BSharpPackage extends EPackage {
 	int IPOLY_TYPE_PROVIDER_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IClassDeclExtend <em>IClass Decl Extend</em>}' class.
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IClassInstance <em>IClass Instance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.IClassDeclExtend
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIClassDeclExtend()
+	 * @see ac.soton.bsharp.bSharp.IClassInstance
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIClassInstance()
 	 * @generated
 	 */
-	int ICLASS_DECL_EXTEND = 3;
+	int ICLASS_INSTANCE = 3;
 
 	/**
-	 * The number of structural features of the '<em>IClass Decl Extend</em>' class.
+	 * The number of structural features of the '<em>IClass Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ICLASS_DECL_EXTEND_FEATURE_COUNT = 0;
+	int ICLASS_INSTANCE_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.IExpressionContainerImpl <em>IExpression Container</em>}' class.
@@ -1443,13 +1443,22 @@ public interface BSharpPackage extends EPackage {
 	int INFIX__RIGHT = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Op Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX__OP_NAME = EXPRESSION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Infix</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+	int INFIX_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1470,13 +1479,22 @@ public interface BSharpPackage extends EPackage {
 	int INST_NAME_FEATURE_COUNT = EXPRESSION_VARIABLE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE__NAME = IEXPRESSION_CONTAINER_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__CLASS_NAME = IEXPRESSION_CONTAINER_FEATURE_COUNT + 0;
+	int INSTANCE__CLASS_NAME = IEXPRESSION_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1485,7 +1503,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__CONTEXT = IEXPRESSION_CONTAINER_FEATURE_COUNT + 1;
+	int INSTANCE__CONTEXT = IEXPRESSION_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -1494,16 +1512,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__ARGUMENTS = IEXPRESSION_CONTAINER_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE__NAME = IEXPRESSION_CONTAINER_FEATURE_COUNT + 3;
+	int INSTANCE__ARGUMENTS = IEXPRESSION_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Instance</em>' class.
@@ -2113,13 +2122,22 @@ public interface BSharpPackage extends EPackage {
 	int WRAPPED_INFIX__FUNC_NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Inbuilt</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WRAPPED_INFIX__INBUILT = 1;
+
+	/**
 	 * The number of structural features of the '<em>Wrapped Infix</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WRAPPED_INFIX_FEATURE_COUNT = 1;
+	int WRAPPED_INFIX_FEATURE_COUNT = 2;
 
 
 	/**
@@ -2631,6 +2649,17 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getWrappedInfix_FuncName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.WrappedInfix#getInbuilt <em>Inbuilt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Inbuilt</em>'.
+	 * @see ac.soton.bsharp.bSharp.WrappedInfix#getInbuilt()
+	 * @see #getWrappedInfix()
+	 * @generated
+	 */
+	EAttribute getWrappedInfix_Inbuilt();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Datatype <em>Datatype</em>}'.
@@ -3263,17 +3292,6 @@ public interface BSharpPackage extends EPackage {
 	EReference getInstance_Arguments();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.Instance#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see ac.soton.bsharp.bSharp.Instance#getName()
-	 * @see #getInstance()
-	 * @generated
-	 */
-	EAttribute getInstance_Name();
-
-	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Infix <em>Infix</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3317,6 +3335,17 @@ public interface BSharpPackage extends EPackage {
 	EReference getInfix_Right();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.Infix#getOpName <em>Op Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Op Name</em>'.
+	 * @see ac.soton.bsharp.bSharp.Infix#getOpName()
+	 * @see #getInfix()
+	 * @generated
+	 */
+	EAttribute getInfix_OpName();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.InfixFunc <em>Infix Func</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3358,14 +3387,14 @@ public interface BSharpPackage extends EPackage {
 	EClass getIPolyTypeProvider();
 
 	/**
-	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.IClassDeclExtend <em>IClass Decl Extend</em>}'.
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.IClassInstance <em>IClass Instance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IClass Decl Extend</em>'.
-	 * @see ac.soton.bsharp.bSharp.IClassDeclExtend
+	 * @return the meta object for class '<em>IClass Instance</em>'.
+	 * @see ac.soton.bsharp.bSharp.IClassInstance
 	 * @generated
 	 */
-	EClass getIClassDeclExtend();
+	EClass getIClassInstance();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.IExpressionContainer <em>IExpression Container</em>}'.
@@ -4071,6 +4100,14 @@ public interface BSharpPackage extends EPackage {
 		EReference WRAPPED_INFIX__FUNC_NAME = eINSTANCE.getWrappedInfix_FuncName();
 
 		/**
+		 * The meta object literal for the '<em><b>Inbuilt</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WRAPPED_INFIX__INBUILT = eINSTANCE.getWrappedInfix_Inbuilt();
+
+		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.DatatypeImpl <em>Datatype</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4581,14 +4618,6 @@ public interface BSharpPackage extends EPackage {
 		EReference INSTANCE__ARGUMENTS = eINSTANCE.getInstance_Arguments();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INSTANCE__NAME = eINSTANCE.getInstance_Name();
-
-		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.InfixImpl <em>Infix</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4621,6 +4650,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INFIX__RIGHT = eINSTANCE.getInfix_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Op Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INFIX__OP_NAME = eINSTANCE.getInfix_OpName();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.InfixFuncImpl <em>Infix Func</em>}' class.
@@ -4661,14 +4698,14 @@ public interface BSharpPackage extends EPackage {
 		EClass IPOLY_TYPE_PROVIDER = eINSTANCE.getIPolyTypeProvider();
 
 		/**
-		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.IClassDeclExtend <em>IClass Decl Extend</em>}' class.
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.IClassInstance <em>IClass Instance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ac.soton.bsharp.bSharp.IClassDeclExtend
-		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIClassDeclExtend()
+		 * @see ac.soton.bsharp.bSharp.IClassInstance
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIClassInstance()
 		 * @generated
 		 */
-		EClass ICLASS_DECL_EXTEND = eINSTANCE.getIClassDeclExtend();
+		EClass ICLASS_INSTANCE = eINSTANCE.getIClassInstance();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.IExpressionContainerImpl <em>IExpression Container</em>}' class.

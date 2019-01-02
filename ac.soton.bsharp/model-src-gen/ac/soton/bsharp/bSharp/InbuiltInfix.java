@@ -18,15 +18,4 @@ import java.util.Map;
  */
 public interface InbuiltInfix extends InfixFunc {
 
-	static Map<String, Integer> getInfixPrecedenceMap() {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("⇔", 50);
-	 	map.put("⇒", 50);
-	 	map.put("=", 70);
-	 	map.put("≠", 70);
-	 	map.put("∧", 60);
-	 	map.put("∨", 60);
-	 	return map;
-	}
-
 } // InbuiltInfix

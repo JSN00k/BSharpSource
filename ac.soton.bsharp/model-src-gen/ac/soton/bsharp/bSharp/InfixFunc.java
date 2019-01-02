@@ -58,5 +58,7 @@ public interface InfixFunc extends ExpressionVariable {
 	boolean hasEventBInfixOp();
 
 	Tuple2<ExprPredEnum, ExprPredEnum> infixArgumentExprPredTypes();
+
+	Integer bSharpPrecedence();
 	
 } // InfixFunc

@@ -17,7 +17,6 @@ import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GlobalImport;
-import ac.soton.bsharp.bSharp.InbuiltInfix;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.Instance;
@@ -108,9 +107,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case BSharpPackage.GLOBAL_IMPORT:
 				sequence_GlobalImport(context, (GlobalImport) semanticObject); 
-				return; 
-			case BSharpPackage.INBUILT_INFIX:
-				sequence_InbuiltInfix(context, (InbuiltInfix) semanticObject); 
 				return; 
 			case BSharpPackage.INFIX:
 				sequence_Infix(context, (Infix) semanticObject); 
@@ -406,7 +402,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     FunctionDecl returns FunctionDecl
 	 *     ExpressionVariable returns FunctionDecl
-	 *     InfixFunc returns FunctionDecl
 	 *
 	 * Constraint:
 	 *     (
@@ -438,47 +433,15 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     ExpressionVariable returns InbuiltInfix
-	 *     InfixFunc returns InbuiltInfix
-	 *     InbuiltInfix returns InbuiltInfix
-	 *
-	 * Constraint:
-	 *     name=ID
-	 */
-	protected void sequence_InbuiltInfix(ISerializationContext context, InbuiltInfix semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getInbuiltInfixAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     RootExpression returns Infix
 	 *     Infix returns Infix
 	 *     Infix.Infix_1_0 returns Infix
 	 *
 	 * Constraint:
-	 *     (left=Infix_Infix_1_0 funcName=[InfixFunc|ID] right=Element)
+	 *     (left=Infix_Infix_1_0 (funcName=[FunctionDecl|ID] | opName=InbuiltInfix) right=Element)
 	 */
 	protected void sequence_Infix(ISerializationContext context, Infix semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.INFIX__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.INFIX__LEFT));
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.INFIX__FUNC_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.INFIX__FUNC_NAME));
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.INFIX__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.INFIX__RIGHT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getInfixAccess().getInfixLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getInfixAccess().getFuncNameInfixFuncIDTerminalRuleCall_1_1_0_1(), semanticObject.eGet(BSharpPackage.Literals.INFIX__FUNC_NAME, false));
-		feeder.accept(grammarAccess.getInfixAccess().getRightElementParserRuleCall_1_2_0(), semanticObject.getRight());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -507,7 +470,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
-	 *     (className=[BSClass|QualifiedName] context=[BodyElements|ID] arguments+=RootExpression? arguments+=RootExpression* name=ID?)
+	 *     (className=[BSClass|QualifiedName] context=[IClassInstance|ID] arguments+=RootExpression? arguments+=RootExpression* name=ID?)
 	 */
 	protected void sequence_Instance(ISerializationContext context, Instance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -862,16 +825,10 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     WrappedInfix returns WrappedInfix
 	 *
 	 * Constraint:
-	 *     funcName=[ExpressionVariable|ID]
+	 *     (inbuilt=InbuiltInfix | funcName=[ExpressionVariable|ID])
 	 */
 	protected void sequence_WrappedInfix(ISerializationContext context, WrappedInfix semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.WRAPPED_INFIX__FUNC_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.WRAPPED_INFIX__FUNC_NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getWrappedInfixAccess().getFuncNameExpressionVariableIDTerminalRuleCall_1_0_1(), semanticObject.eGet(BSharpPackage.Literals.WRAPPED_INFIX__FUNC_NAME, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

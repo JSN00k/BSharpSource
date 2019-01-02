@@ -29,6 +29,8 @@ import ac.soton.bsharp.bSharp.TypedVariableList
 import ac.soton.bsharp.bSharp.VariableTyping
 import ac.soton.bsharp.bSharp.TypeConstructor
 import ac.soton.bsharp.bSharp.ExpressionVariable
+import ac.soton.bsharp.bSharp.Instance
+import ac.soton.bsharp.bSharp.IClassInstance
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -192,8 +194,23 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		return Scopes.scopeFor(elements, IScope.NULLSCOPE)
 	}
 	
-	override getScope(EObject context, EReference reference) {
-		return super.getScope(context, reference)
+	def IScope scope_IClassInstance(Instance context, EReference ref) {
+		/* It's either got to be an instance variable declared above the current location in an extension
+		 * of the same type, we're currently in, or it has to be the type that we're currently in.
+		 */
+		var parent = IScope.NULLSCOPE
+		
+		var ArrayList<IClassInstance> classInstances  = new ArrayList()
+		
+		val instanceClassName = context.className
+		
+		classInstances.add(instanceClassName)
+		
+		/* Make an array of all of the BSharpBlocks that may contain an Instance declaration that 
+		 * the ref may reference.
+		 */
+			
+		return parent
 	}
 
 	def IScope getPolyScopeFor(EObject context, IScope parent) {

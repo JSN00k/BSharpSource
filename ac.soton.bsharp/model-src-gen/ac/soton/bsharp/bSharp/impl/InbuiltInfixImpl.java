@@ -59,7 +59,18 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 		return tc;
 	}
 	
-	protected final Map<String, Integer> inbuiltPrecedence = InbuiltInfix.getInfixPrecedenceMap();
+	static Map<String, Integer> getInfixPrecedenceMap() {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("⇔", 50);
+	 	map.put("⇒", 50);
+	 	map.put("=", 70);
+	 	map.put("≠", 70);
+	 	map.put("∧", 60);
+	 	map.put("∨", 60);
+	 	return map;
+	}
+	
+	protected final Map<String, Integer> inbuiltPrecedence = getInfixPrecedenceMap();
 
 	@Override
 	public String eventBName(ExprPredEnum exprPred) {
@@ -101,6 +112,9 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 		return new Tuple2<ExprPredEnum, ExprPredEnum>(ExprPredEnum.PREDICATE, ExprPredEnum.PREDICATE);
 	}
 	
+	@Override
+	public Integer bSharpPrecedence() {
+		return inbuiltPrecedence.get(getName());
+	}
 	
-
 } //InbuiltInfixImpl

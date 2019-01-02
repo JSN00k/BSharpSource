@@ -11,7 +11,11 @@ import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FileImport;
+import ac.soton.bsharp.bSharp.GenName;
+import ac.soton.bsharp.bSharp.IClassInstance;
+import ac.soton.bsharp.bSharp.ITheoremContainer;
 import ac.soton.bsharp.bSharp.Instance;
+import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.mapletTree.IMapletNode;
@@ -66,45 +70,15 @@ import com.google.inject.Inject;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getArguments <em>Arguments</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class InstanceImpl extends IExpressionContainerImpl implements Instance {
-	/**
-	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClassName()
-	 * @generated
-	 * @ordered
-	 */
-	protected BSClass className;
-
-	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContext()
-	 * @generated
-	 * @ordered
-	 */
-	protected BodyElements context;
-
-	/**
-	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getArguments()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Expression> arguments;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -124,6 +98,36 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected BSClass className;
+
+	/**
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContext()
+	 * @generated
+	 * @ordered
+	 */
+	protected IClassInstance context;
+
+	/**
+	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArguments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Expression> arguments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -187,10 +191,10 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BodyElements getContext() {
+	public IClassInstance getContext() {
 		if (context != null && context.eIsProxy()) {
 			InternalEObject oldContext = (InternalEObject)context;
-			context = (BodyElements)eResolveProxy(oldContext);
+			context = (IClassInstance)eResolveProxy(oldContext);
 			if (context != oldContext) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.INSTANCE__CONTEXT, oldContext, context));
@@ -204,7 +208,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BodyElements basicGetContext() {
+	public IClassInstance basicGetContext() {
 		return context;
 	}
 
@@ -213,8 +217,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContext(BodyElements newContext) {
-		BodyElements oldContext = context;
+	public void setContext(IClassInstance newContext) {
+		IClassInstance oldContext = context;
 		context = newContext;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__CONTEXT, oldContext, context));
@@ -280,6 +284,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case BSharpPackage.INSTANCE__NAME:
+				return getName();
 			case BSharpPackage.INSTANCE__CLASS_NAME:
 				if (resolve) return getClassName();
 				return basicGetClassName();
@@ -288,8 +294,6 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				return basicGetContext();
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return getArguments();
-			case BSharpPackage.INSTANCE__NAME:
-				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -303,18 +307,18 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case BSharpPackage.INSTANCE__NAME:
+				setName((String)newValue);
+				return;
 			case BSharpPackage.INSTANCE__CLASS_NAME:
 				setClassName((BSClass)newValue);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
-				setContext((BodyElements)newValue);
+				setContext((IClassInstance)newValue);
 				return;
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				getArguments().clear();
 				getArguments().addAll((Collection<? extends Expression>)newValue);
-				return;
-			case BSharpPackage.INSTANCE__NAME:
-				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -328,17 +332,17 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.INSTANCE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case BSharpPackage.INSTANCE__CLASS_NAME:
 				setClassName((BSClass)null);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
-				setContext((BodyElements)null);
+				setContext((IClassInstance)null);
 				return;
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				getArguments().clear();
-				return;
-			case BSharpPackage.INSTANCE__NAME:
-				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -352,16 +356,68 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.INSTANCE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.INSTANCE__CLASS_NAME:
 				return className != null;
 			case BSharpPackage.INSTANCE__CONTEXT:
 				return context != null;
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
-			case BSharpPackage.INSTANCE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ITheoremContainer.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IClassInstance.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedObject.class) {
+			switch (derivedFeatureID) {
+				case BSharpPackage.INSTANCE__NAME: return BSharpPackage.NAMED_OBJECT__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ITheoremContainer.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IClassInstance.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedObject.class) {
+			switch (baseFeatureID) {
+				case BSharpPackage.NAMED_OBJECT__NAME: return BSharpPackage.INSTANCE__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
