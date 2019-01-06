@@ -16,17 +16,4 @@ public class MapletExpressionVariableLeaf extends AbstractLeaf {
 	public String compileToString() {
 		return exprVar.getName();
 	}
-
-	@Override
-	public ArrayList<String> varNames() {
-		ArrayList<String> result = new ArrayList<String>();
-		result.add(compileToString());
-		return result;
-	}
-
-	@Override
-	public void varNamesIntoArray(ArrayList<String> al) {
-		al.add(compileToString());
-	}
-
 }

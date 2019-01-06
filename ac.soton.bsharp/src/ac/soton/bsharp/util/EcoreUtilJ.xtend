@@ -5,6 +5,7 @@ import java.util.ArrayList
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.xbase.lib.Functions.Function1
 import java.util.EventObject
+import java.util.List
 
 class EcoreUtilJ extends EcoreUtil2 {
 		/* Finds the root of the current context and filters up to the current context using the filter */
@@ -31,7 +32,7 @@ class EcoreUtilJ extends EcoreUtil2 {
 		
 		val iterable = root.eAllContents
 		
-		if (iterable.hasNext)
+		if (!iterable.hasNext)
 			return null
 			
 		var EObject next = iterable.next
@@ -75,17 +76,32 @@ class EcoreUtilJ extends EcoreUtil2 {
 		return result
 	}
 	
+	static def ArrayList<? extends EObject> eFilter(EObject tree, Function1<EObject, Boolean> filter) {
+		val iterable = tree.eAllContents
+		var result = new ArrayList<EObject>
+		
+		while (iterable.hasNext) {
+			val next = iterable.next
+			
+			if (filter.apply(next)) {
+				result += next
+			}
+		}
+		
+		return result;
+	}
+	
 	/* This function iterates over the tree from left to right, and depth first. It will stop after
 	 * scanning the children of the deepest object that matches the stop filter even if a shallower match has been 
 	 * found.
 	 */
-	static def ArrayList<? extends EObject> eFilterUpToIncludingWith(EObject tree, Function1<EObject, Boolean> stopFilter,
-		Function1<EObject, Boolean> objectFilter) {
-			var resultArray = new ArrayList<EObject>
-			eFilterUpToIncludingWithInternal(tree, stopFilter, objectFilter, resultArray)
-			
-			return resultArray
-		}
+	static def ArrayList<? extends EObject> eFilterUpToIncludingWith(EObject tree,
+		Function1<EObject, Boolean> stopFilter, Function1<EObject, Boolean> objectFilter) {
+		var resultArray = new ArrayList<EObject>
+		eFilterUpToIncludingWithInternal(tree, stopFilter, objectFilter, resultArray)
+
+		return resultArray
+	}
 	
 	private static def Boolean eFilterUpToIncludingWithInternal(EObject tree, Function1<EObject, Boolean> stopFilter,
 		Function1<EObject, Boolean> objectFilter, ArrayList<EObject> result) {
@@ -114,6 +130,10 @@ class EcoreUtilJ extends EcoreUtil2 {
 		} while (!stopFilter.apply(next))
 
 		return false
+	}
+	
+	static def <T extends EObject> ArrayList<T> eFindAllInstancesBefore(EObject context, Class<T> clazz) {
+		return eFilterUpToCurrentWith(context, [e | clazz.isInstance(e)]) as ArrayList<T>
 	}
 	
 	/* Does not scan the current object. */

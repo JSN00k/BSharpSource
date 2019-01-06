@@ -184,9 +184,9 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 	/* If the current typeclasses supertype is a typeclass this type class is returned. */
 	ClassDecl getFirstSupertypeTypeClass();
 
-	IMapletNode concreteTypeMapletTree(BodyElements type, List<ExpressionVariable> args, Instance declInst);
-
 	boolean isDirectSuperType(ClassDecl possibleSType);
 
 	boolean isSuperType(ClassDecl possibleSType);
+
+	IMapletNode concreteTypeMapletTree(IClassInstance type, List<Expression> args, Instance declInst);
 } // BppClass

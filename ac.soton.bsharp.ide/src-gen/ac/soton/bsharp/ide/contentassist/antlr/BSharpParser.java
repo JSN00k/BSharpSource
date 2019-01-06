@@ -35,7 +35,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getClassDeclAccess().getAlternatives(), "rule__ClassDecl__Alternatives");
 			builder.put(grammarAccess.getGenNameAccess().getAlternatives(), "rule__GenName__Alternatives");
 			builder.put(grammarAccess.getTopLevelImportAccess().getAlternatives_0(), "rule__TopLevelImport__Alternatives_0");
-			builder.put(grammarAccess.getBodyElementsAccess().getAlternatives(), "rule__BodyElements__Alternatives");
+			builder.put(grammarAccess.getTopLevelInstanceAccess().getAlternatives(), "rule__TopLevelInstance__Alternatives");
 			builder.put(grammarAccess.getFileImportAccess().getAlternatives_1_1(), "rule__FileImport__Alternatives_1_1");
 			builder.put(grammarAccess.getTypeBuilderAccess().getAlternatives(), "rule__TypeBuilder__Alternatives");
 			builder.put(grammarAccess.getBuiltinTypeInfixOpAccess().getAlternatives(), "rule__BuiltinTypeInfixOp__Alternatives");
@@ -49,7 +49,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionCallAccess().getAlternatives_1_0(), "rule__FunctionCall__Alternatives_1_0");
 			builder.put(grammarAccess.getExpressionVariableAccess().getAlternatives(), "rule__ExpressionVariable__Alternatives");
 			builder.put(grammarAccess.getInbuiltInfixAccess().getAlternatives(), "rule__InbuiltInfix__Alternatives");
-			builder.put(grammarAccess.getWrappedInfixAccess().getAlternatives(), "rule__WrappedInfix__Alternatives");
+			builder.put(grammarAccess.getWrappedInfixAccess().getAlternatives_1(), "rule__WrappedInfix__Alternatives_1");
 			builder.put(grammarAccess.getTopLevelAccess().getGroup(), "rule__TopLevel__Group__0");
 			builder.put(grammarAccess.getTHM_NAMEAccess().getGroup(), "rule__THM_NAME__Group__0");
 			builder.put(grammarAccess.getTopLevelFileAccess().getGroup(), "rule__TopLevelFile__Group__0");
@@ -106,8 +106,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1_1(), "rule__FunctionCall__Group_1_1__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1_1_3(), "rule__FunctionCall__Group_1_1_3__0");
 			builder.put(grammarAccess.getClassVarDeclAccess().getGroup(), "rule__ClassVarDecl__Group__0");
-			builder.put(grammarAccess.getWrappedInfixAccess().getGroup_0(), "rule__WrappedInfix__Group_0__0");
-			builder.put(grammarAccess.getWrappedInfixAccess().getGroup_1(), "rule__WrappedInfix__Group_1__0");
+			builder.put(grammarAccess.getWrappedInfixAccess().getGroup(), "rule__WrappedInfix__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup(), "rule__Instance__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup_7(), "rule__Instance__Group_7__0");
 			builder.put(grammarAccess.getTopLevelAccess().getNameAssignment_1(), "rule__TopLevel__NameAssignment_1");
@@ -117,8 +116,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTopLevelImportAccess().getGlobalImportsAssignment_0_0(), "rule__TopLevelImport__GlobalImportsAssignment_0_0");
 			builder.put(grammarAccess.getTopLevelImportAccess().getLocalImportsAssignment_0_1(), "rule__TopLevelImport__LocalImportsAssignment_0_1");
 			builder.put(grammarAccess.getTopLevelImportAccess().getBodyElementsAssignment_1(), "rule__TopLevelImport__BodyElementsAssignment_1");
-			builder.put(grammarAccess.getBodyElementsAccess().getClassesAssignment_0(), "rule__BodyElements__ClassesAssignment_0");
-			builder.put(grammarAccess.getBodyElementsAccess().getExtendsAssignment_1(), "rule__BodyElements__ExtendsAssignment_1");
 			builder.put(grammarAccess.getGlobalImportAccess().getProjectAssignment_1(), "rule__GlobalImport__ProjectAssignment_1");
 			builder.put(grammarAccess.getGlobalImportAccess().getFileImportsAssignment_3(), "rule__GlobalImport__FileImportsAssignment_3");
 			builder.put(grammarAccess.getFileImportAccess().getFileReferenceAssignment_0(), "rule__FileImport__FileReferenceAssignment_0");
@@ -205,8 +202,8 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_1_1_3_1(), "rule__FunctionCall__ArgumentsAssignment_1_1_3_1");
 			builder.put(grammarAccess.getClassVarDeclAccess().getOwnerTypeAssignment_0(), "rule__ClassVarDecl__OwnerTypeAssignment_0");
 			builder.put(grammarAccess.getClassVarDeclAccess().getTypeInstAssignment_2(), "rule__ClassVarDecl__TypeInstAssignment_2");
-			builder.put(grammarAccess.getWrappedInfixAccess().getInbuiltAssignment_0_1(), "rule__WrappedInfix__InbuiltAssignment_0_1");
-			builder.put(grammarAccess.getWrappedInfixAccess().getFuncNameAssignment_1_0(), "rule__WrappedInfix__FuncNameAssignment_1_0");
+			builder.put(grammarAccess.getWrappedInfixAccess().getInbuiltAssignment_1_0(), "rule__WrappedInfix__InbuiltAssignment_1_0");
+			builder.put(grammarAccess.getWrappedInfixAccess().getFuncNameAssignment_1_1(), "rule__WrappedInfix__FuncNameAssignment_1_1");
 			builder.put(grammarAccess.getInstanceAccess().getClassNameAssignment_1(), "rule__Instance__ClassNameAssignment_1");
 			builder.put(grammarAccess.getInstanceAccess().getContextAssignment_3(), "rule__Instance__ContextAssignment_3");
 			builder.put(grammarAccess.getInstanceAccess().getArgumentsAssignment_6(), "rule__Instance__ArgumentsAssignment_6");

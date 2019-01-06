@@ -139,7 +139,7 @@ class TheoryImportCache {
 			fileName = bSharpFileName
 		} else {
 			var fileNdx = 0;
-			if (topLevelFile.getNoImportElements() !== null) {
+			if (topLevelFile.getNoImportElements() !== null && !topLevelFile.getNoImportElements().isEmpty) {
 				fileNdx = 1;
 			}
 			

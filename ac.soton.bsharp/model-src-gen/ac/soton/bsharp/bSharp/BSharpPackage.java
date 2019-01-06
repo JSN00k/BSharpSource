@@ -490,6 +490,25 @@ public interface BSharpPackage extends EPackage {
 	int ITHEOREM_CONTAINER_FEATURE_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IBodyElementsContainer <em>IBody Elements Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.IBodyElementsContainer
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIBodyElementsContainer()
+	 * @generated
+	 */
+	int IBODY_ELEMENTS_CONTAINER = 7;
+
+	/**
+	 * The number of structural features of the '<em>IBody Elements Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IBODY_ELEMENTS_CONTAINER_FEATURE_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IVarType <em>IVar Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -497,7 +516,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIVarType()
 	 * @generated
 	 */
-	int IVAR_TYPE = 7;
+	int IVAR_TYPE = 8;
 
 	/**
 	 * The number of structural features of the '<em>IVar Type</em>' class.
@@ -552,7 +571,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 8;
+	int TYPE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -580,7 +599,16 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelInstance()
 	 * @generated
 	 */
-	int TOP_LEVEL_INSTANCE = 9;
+	int TOP_LEVEL_INSTANCE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Block</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LEVEL_INSTANCE__BLOCK = 0;
 
 	/**
 	 * The number of structural features of the '<em>Top Level Instance</em>' class.
@@ -589,7 +617,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LEVEL_INSTANCE_FEATURE_COUNT = 0;
+	int TOP_LEVEL_INSTANCE_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TopLevelFileImpl <em>Top Level File</em>}' class.
@@ -660,52 +688,6 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	int LOCAL_IMPORT = 32;
-
-	/**
-	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BodyElementsImpl <em>Body Elements</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.bsharp.bSharp.impl.BodyElementsImpl
-	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBodyElements()
-	 * @generated
-	 */
-	int BODY_ELEMENTS = 10;
-
-	/**
-	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BODY_ELEMENTS__CLASSES = 0;
-
-	/**
-	 * The feature id for the '<em><b>Extends</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BODY_ELEMENTS__EXTENDS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Instances</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BODY_ELEMENTS__INSTANCES = 2;
-
-	/**
-	 * The number of structural features of the '<em>Body Elements</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BODY_ELEMENTS_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BSClassImpl <em>BS Class</em>}' class.
@@ -802,22 +784,22 @@ public interface BSharpPackage extends EPackage {
 	int CLASS_DECL__NAME = GEN_NAME__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_DECL__CONTEXT = GEN_NAME_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Block</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DECL__BLOCK = GEN_NAME_FEATURE_COUNT + 1;
+	int CLASS_DECL__BLOCK = GEN_NAME_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DECL__CONTEXT = GEN_NAME_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Class Decl</em>' class.
@@ -838,15 +820,6 @@ public interface BSharpPackage extends EPackage {
 	int BS_CLASS__NAME = CLASS_DECL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BS_CLASS__CONTEXT = CLASS_DECL__CONTEXT;
-
-	/**
 	 * The feature id for the '<em><b>Block</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -854,6 +827,15 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int BS_CLASS__BLOCK = CLASS_DECL__BLOCK;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BS_CLASS__CONTEXT = CLASS_DECL__CONTEXT;
 
 	/**
 	 * The feature id for the '<em><b>Supertypes</b></em>' containment reference.
@@ -1009,15 +991,6 @@ public interface BSharpPackage extends EPackage {
 	int DATATYPE__NAME = CLASS_DECL__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATATYPE__CONTEXT = CLASS_DECL__CONTEXT;
-
-	/**
 	 * The feature id for the '<em><b>Block</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1025,6 +998,15 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATATYPE__BLOCK = CLASS_DECL__BLOCK;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATATYPE__CONTEXT = CLASS_DECL__CONTEXT;
 
 	/**
 	 * The feature id for the '<em><b>Constructors</b></em>' containment reference list.
@@ -1072,13 +1054,22 @@ public interface BSharpPackage extends EPackage {
 	int DATATYPE_CONSTRUCTOR_FEATURE_COUNT = IVARIABLE_PROVIDER_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Block</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTEND__BLOCK = IVARIABLE_PROVIDER_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Extended Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTEND__EXTENDED_CLASS = IVARIABLE_PROVIDER_FEATURE_COUNT + 0;
+	int EXTEND__EXTENDED_CLASS = IVARIABLE_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1087,16 +1078,7 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTEND__NAME = IVARIABLE_PROVIDER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Block</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTEND__BLOCK = IVARIABLE_PROVIDER_FEATURE_COUNT + 2;
+	int EXTEND__NAME = IVARIABLE_PROVIDER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Extend</em>' class.
@@ -1830,7 +1812,7 @@ public interface BSharpPackage extends EPackage {
 	int TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>No Import Elements</b></em>' containment reference.
+	 * The feature id for the '<em><b>No Import Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1902,7 +1884,7 @@ public interface BSharpPackage extends EPackage {
 	int TOP_LEVEL_IMPORT__LOCAL_IMPORTS = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Body Elements</b></em>' containment reference.
+	 * The feature id for the '<em><b>Body Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2226,10 +2208,10 @@ public interface BSharpPackage extends EPackage {
 	EReference getTopLevelFile_TopLevelImports();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.TopLevelFile#getNoImportElements <em>No Import Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.TopLevelFile#getNoImportElements <em>No Import Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>No Import Elements</em>'.
+	 * @return the meta object for the containment reference list '<em>No Import Elements</em>'.
 	 * @see ac.soton.bsharp.bSharp.TopLevelFile#getNoImportElements()
 	 * @see #getTopLevelFile()
 	 * @generated
@@ -2269,10 +2251,10 @@ public interface BSharpPackage extends EPackage {
 	EReference getTopLevelImport_LocalImports();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.TopLevelImport#getBodyElements <em>Body Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.TopLevelImport#getBodyElements <em>Body Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Body Elements</em>'.
+	 * @return the meta object for the containment reference list '<em>Body Elements</em>'.
 	 * @see ac.soton.bsharp.bSharp.TopLevelImport#getBodyElements()
 	 * @see #getTopLevelImport()
 	 * @generated
@@ -2310,17 +2292,6 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClassDecl_Context();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.ClassDecl#getBlock <em>Block</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Block</em>'.
-	 * @see ac.soton.bsharp.bSharp.ClassDecl#getBlock()
-	 * @see #getClassDecl()
-	 * @generated
-	 */
-	EReference getClassDecl_Block();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.BSClass <em>BS Class</em>}'.
@@ -2734,17 +2705,6 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExtend_Name();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.Extend#getBlock <em>Block</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Block</em>'.
-	 * @see ac.soton.bsharp.bSharp.Extend#getBlock()
-	 * @see #getExtend()
-	 * @generated
-	 */
-	EReference getExtend_Block();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.FunctionDecl <em>Function Decl</em>}'.
@@ -3427,6 +3387,16 @@ public interface BSharpPackage extends EPackage {
 	EClass getITheoremContainer();
 
 	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.IBodyElementsContainer <em>IBody Elements Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>IBody Elements Container</em>'.
+	 * @see ac.soton.bsharp.bSharp.IBodyElementsContainer
+	 * @generated
+	 */
+	EClass getIBodyElementsContainer();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.IVarType <em>IVar Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3455,6 +3425,17 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTopLevelInstance();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.TopLevelInstance#getBlock <em>Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Block</em>'.
+	 * @see ac.soton.bsharp.bSharp.TopLevelInstance#getBlock()
+	 * @see #getTopLevelInstance()
+	 * @generated
+	 */
+	EReference getTopLevelInstance_Block();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.NamedObject <em>Named Object</em>}'.
@@ -3615,49 +3596,6 @@ public interface BSharpPackage extends EPackage {
 	EReference getLocalImport_FileImports();
 
 	/**
-	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.BodyElements <em>Body Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Body Elements</em>'.
-	 * @see ac.soton.bsharp.bSharp.BodyElements
-	 * @generated
-	 */
-	EClass getBodyElements();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.BodyElements#getClasses <em>Classes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Classes</em>'.
-	 * @see ac.soton.bsharp.bSharp.BodyElements#getClasses()
-	 * @see #getBodyElements()
-	 * @generated
-	 */
-	EReference getBodyElements_Classes();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.BodyElements#getExtends <em>Extends</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Extends</em>'.
-	 * @see ac.soton.bsharp.bSharp.BodyElements#getExtends()
-	 * @see #getBodyElements()
-	 * @generated
-	 */
-	EReference getBodyElements_Extends();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.BodyElements#getInstances <em>Instances</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Instances</em>'.
-	 * @see ac.soton.bsharp.bSharp.BodyElements#getInstances()
-	 * @see #getBodyElements()
-	 * @generated
-	 */
-	EReference getBodyElements_Instances();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3750,7 +3688,7 @@ public interface BSharpPackage extends EPackage {
 		EReference TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS = eINSTANCE.getTopLevelFile_TopLevelImports();
 
 		/**
-		 * The meta object literal for the '<em><b>No Import Elements</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>No Import Elements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3784,7 +3722,7 @@ public interface BSharpPackage extends EPackage {
 		EReference TOP_LEVEL_IMPORT__LOCAL_IMPORTS = eINSTANCE.getTopLevelImport_LocalImports();
 
 		/**
-		 * The meta object literal for the '<em><b>Body Elements</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Body Elements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -3816,14 +3754,6 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS_DECL__CONTEXT = eINSTANCE.getClassDecl_Context();
-
-		/**
-		 * The meta object literal for the '<em><b>Block</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS_DECL__BLOCK = eINSTANCE.getClassDecl_Block();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.BSClassImpl <em>BS Class</em>}' class.
@@ -4168,14 +4098,6 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTEND__NAME = eINSTANCE.getExtend_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Block</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXTEND__BLOCK = eINSTANCE.getExtend_Block();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl <em>Function Decl</em>}' class.
@@ -4738,6 +4660,16 @@ public interface BSharpPackage extends EPackage {
 		EClass ITHEOREM_CONTAINER = eINSTANCE.getITheoremContainer();
 
 		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.IBodyElementsContainer <em>IBody Elements Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.IBodyElementsContainer
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIBodyElementsContainer()
+		 * @generated
+		 */
+		EClass IBODY_ELEMENTS_CONTAINER = eINSTANCE.getIBodyElementsContainer();
+
+		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.IVarType <em>IVar Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4766,6 +4698,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TOP_LEVEL_INSTANCE = eINSTANCE.getTopLevelInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Block</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOP_LEVEL_INSTANCE__BLOCK = eINSTANCE.getTopLevelInstance_Block();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.NamedObjectImpl <em>Named Object</em>}' class.
@@ -4900,40 +4840,6 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LOCAL_IMPORT__FILE_IMPORTS = eINSTANCE.getLocalImport_FileImports();
-
-		/**
-		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.BodyElementsImpl <em>Body Elements</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see ac.soton.bsharp.bSharp.impl.BodyElementsImpl
-		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getBodyElements()
-		 * @generated
-		 */
-		EClass BODY_ELEMENTS = eINSTANCE.getBodyElements();
-
-		/**
-		 * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BODY_ELEMENTS__CLASSES = eINSTANCE.getBodyElements_Classes();
-
-		/**
-		 * The meta object literal for the '<em><b>Extends</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BODY_ELEMENTS__EXTENDS = eINSTANCE.getBodyElements_Extends();
-
-		/**
-		 * The meta object literal for the '<em><b>Instances</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BODY_ELEMENTS__INSTANCES = eINSTANCE.getBodyElements_Instances();
 
 	}
 

@@ -3,21 +3,42 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Top Level Instance</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelInstanceImpl#getBlock <em>Block</em>}</li>
+ * </ul>
  *
  * @generated
  */
-public class TopLevelInstanceImpl extends MinimalEObjectImpl.Container implements TopLevelInstance {
+public abstract class TopLevelInstanceImpl extends MinimalEObjectImpl.Container implements TopLevelInstance {
+	/**
+	 * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlock()
+	 * @generated
+	 * @ordered
+	 */
+	protected BSharpBlock block;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35,6 +56,121 @@ public class TopLevelInstanceImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	protected EClass eStaticClass() {
 		return BSharpPackage.Literals.TOP_LEVEL_INSTANCE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BSharpBlock getBlock() {
+		return block;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBlock(BSharpBlock newBlock, NotificationChain msgs) {
+		BSharpBlock oldBlock = block;
+		block = newBlock;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK, oldBlock, newBlock);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBlock(BSharpBlock newBlock) {
+		if (newBlock != block) {
+			NotificationChain msgs = null;
+			if (block != null)
+				msgs = ((InternalEObject)block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK, null, msgs);
+			if (newBlock != null)
+				msgs = ((InternalEObject)newBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK, null, msgs);
+			msgs = basicSetBlock(newBlock, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK, newBlock, newBlock));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK:
+				return basicSetBlock(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK:
+				return getBlock();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK:
+				setBlock((BSharpBlock)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK:
+				setBlock((BSharpBlock)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK:
+				return block != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //TopLevelInstanceImpl

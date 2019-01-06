@@ -19,9 +19,10 @@ import org.eclipse.xtext.generator.IGeneratorContext
 import org.rodinp.core.IRodinProject
 import ac.soton.bsharp.theory.util.TheoryImportCache
 import java.util.List
-import ac.soton.bsharp.bSharp.BodyElements
 import ac.soton.bsharp.bSharp.util.CompilationUtil
 import org.eclipse.emf.ecore.EObject
+import ac.soton.bsharp.bSharp.TopLevelInstance
+import org.eclipse.emf.common.util.EList
 
 /**
  * Generates code from your model files on save.
@@ -36,7 +37,8 @@ class BSharpGenerator extends AbstractGenerator {
 	var IRodinProject proj
 	var String fileName
 	
-	var ArrayList<BodyElements> mainElements
+	/* An array of arrays, each Array contains the elements that need to be compiled for the current import block */
+	var ArrayList<EList<TopLevelInstance>> elementsForImport
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		/* When we come into this we're expecting the resource to be at the very top level
@@ -47,7 +49,7 @@ class BSharpGenerator extends AbstractGenerator {
 		
 		val topLevel = resource.contents.get(0) as TopLevel
 		projName = topLevel.name + "-gen"
-		mainElements = newArrayList
+		elementsForImport = newArrayList
 		
 		var eventBproj = EventBUtils.getEventBProject(projName)
 		if (!eventBproj.rodinProject.exists) {
@@ -68,10 +70,10 @@ class BSharpGenerator extends AbstractGenerator {
 		 */
 		generateTheories(topLevelFile)
 		
-		for (bodyElements : mainElements) {
-			val fileCompiler = new FileCompiler(bodyElements)
+		for (importElems : elementsForImport) {
+			val fileCompiler = new FileCompiler(importElems)
 			fileCompiler.compile
-			CompilationUtil.getTheoryCacheForElement(bodyElements).save();
+			CompilationUtil.getTheoryCacheForElement(importElems.get(0)).save();
 		}
 		
 	}
@@ -90,8 +92,8 @@ class BSharpGenerator extends AbstractGenerator {
 		 	val theoryCache = new TheoryImportCache(thy, projName, null)
 		 	top.theoryImportCache = theoryCache
 		 	
-		 	if (top.noImportElements !== null) {
-		 		mainElements += top.noImportElements
+		 	if (top.noImportElements !== null && !top.noImportElements.isEmpty) {
+		 		elementsForImport += top.noImportElements
 		 	}
 		 	
 		 	return
@@ -100,11 +102,11 @@ class BSharpGenerator extends AbstractGenerator {
 		 var adder = 0
 		 var TheoryImportCache prevTheoryCache
 		 
-		 if (top.getNoImportElements() !== null) {
+		 if (top.getNoImportElements() !== null && !top.noImportElements.isEmpty) {
 		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(0), null)
 		 	val theoryCache = new TheoryImportCache(thy, projName, null)
 		 	top.theoryImportCache = theoryCache
-		 	mainElements += top.noImportElements
+		 	elementsForImport += top.noImportElements
 		 	top.theoryImportCache = theoryCache
 		 	prevTheoryCache = theoryCache
 		 	adder++
@@ -127,7 +129,7 @@ class BSharpGenerator extends AbstractGenerator {
 		 	}
 		 	
 		 	topLevelImport.theoryImportCache = theoryCache
-		 	mainElements += topLevelImport.bodyElements
+		 	elementsForImport += topLevelImport.bodyElements
 		 	prevTheoryCache = theoryCache
 		 }
 		 
@@ -143,7 +145,7 @@ class BSharpGenerator extends AbstractGenerator {
 		 }
 		 
 		 topLevelImport.theoryImportCache = theoryCache
-		 mainElements += imports.last.bodyElements
+		 elementsForImport += imports.last.bodyElements
 	}
 	
 	

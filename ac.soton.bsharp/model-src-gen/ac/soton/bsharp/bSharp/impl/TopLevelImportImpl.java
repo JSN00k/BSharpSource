@@ -4,11 +4,11 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
+import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 import java.util.Collection;
@@ -65,14 +65,14 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	protected EList<LocalImport> localImports;
 
 	/**
-	 * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference.
+	 * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getBodyElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected BodyElements bodyElements;
+	protected EList<TopLevelInstance> bodyElements;
 
 	/**
 	 * The cached value of the '{@link #getImportRefs() <em>Import Refs</em>}' containment reference list.
@@ -132,42 +132,11 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BodyElements getBodyElements() {
+	public EList<TopLevelInstance> getBodyElements() {
+		if (bodyElements == null) {
+			bodyElements = new EObjectContainmentEList<TopLevelInstance>(TopLevelInstance.class, this, BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS);
+		}
 		return bodyElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetBodyElements(BodyElements newBodyElements, NotificationChain msgs) {
-		BodyElements oldBodyElements = bodyElements;
-		bodyElements = newBodyElements;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS, oldBodyElements, newBodyElements);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBodyElements(BodyElements newBodyElements) {
-		if (newBodyElements != bodyElements) {
-			NotificationChain msgs = null;
-			if (bodyElements != null)
-				msgs = ((InternalEObject)bodyElements).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS, null, msgs);
-			if (newBodyElements != null)
-				msgs = ((InternalEObject)newBodyElements).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS, null, msgs);
-			msgs = basicSetBodyElements(newBodyElements, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS, newBodyElements, newBodyElements));
 	}
 
 	/**
@@ -195,7 +164,7 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 			case BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS:
 				return ((InternalEList<?>)getLocalImports()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
-				return basicSetBodyElements(null, msgs);
+				return ((InternalEList<?>)getBodyElements()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS:
 				return ((InternalEList<?>)getImportRefs()).basicRemove(otherEnd, msgs);
 		}
@@ -240,7 +209,8 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 				getLocalImports().addAll((Collection<? extends LocalImport>)newValue);
 				return;
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
-				setBodyElements((BodyElements)newValue);
+				getBodyElements().clear();
+				getBodyElements().addAll((Collection<? extends TopLevelInstance>)newValue);
 				return;
 			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS:
 				getImportRefs().clear();
@@ -265,7 +235,7 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 				getLocalImports().clear();
 				return;
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
-				setBodyElements((BodyElements)null);
+				getBodyElements().clear();
 				return;
 			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS:
 				getImportRefs().clear();
@@ -287,7 +257,7 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 			case BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS:
 				return localImports != null && !localImports.isEmpty();
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
-				return bodyElements != null;
+				return bodyElements != null && !bodyElements.isEmpty();
 			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS:
 				return importRefs != null && !importRefs.isEmpty();
 		}

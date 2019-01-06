@@ -4,7 +4,6 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
@@ -12,6 +11,7 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
+import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.PolyContext;
@@ -20,6 +20,7 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TheoremDecl;
+import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -874,6 +875,18 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 		return result;
 	}
+	
+	@Override
+	public String constructWithTypeInstances(List<ITypeInstance> instList) {
+		generateInferredContext();
+		if (context == null) {
+			return eventBPolymorphicTypeConstructorName() + "()";
+		}
+		
+		String result = eventBPolymorphicTypeConstructorName();
+		
+		
+	}
 
 	@Override
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
@@ -1303,16 +1316,16 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	public ClassDecl getFirstSupertypeTypeClass() {
 		return supertypes.getFirst().getTypeClass();
 	}
-
+	
 	@Override
-	public IMapletNode concreteTypeMapletTree(BodyElements type, List<ExpressionVariable> args, Instance declInst) {
+	public IMapletNode concreteTypeMapletTree(IClassInstance type, List<Expression> args, Instance declInst) {
 		int argsCount = args.size();
 		int newVarsCount = getVarList().count();
 		
 		SuperTypeList supers = getSupertypes();
 		
 		if (argsCount == newVarsCount) {
-			if (supers == null || supers.isEmpty()) {
+			if (!supers.getFirst().isAbstractTypeClass()) {
 				/* We're at the end of the process. Just need to create the ITypeInstance
 				 * with the variables that have been passed.
 				 */
@@ -1323,14 +1336,14 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					baseType = (ClassDecl)type;
 				}
 				
-				IMapletNode result = CompilationUtil.mapletNodeFromVariableArray(args);
-				result.appendNodeToLeft(new MapletExpressionVariableLeaf(baseType));
+				IMapletNode result = CompilationUtil.mapletNodeFromExpressionArray(args);
+				result = result.appendNodeToLeft(new MapletExpressionVariableLeaf(baseType));
 				
 				return result;
 			}
 		} else if (argsCount > newVarsCount) {
-			List<ExpressionVariable> myVars = args.subList(argsCount - newVarsCount, argsCount);
-			List<ExpressionVariable> otherVars = args.subList(0, argsCount - newVarsCount);
+			List<Expression> myVars = args.subList(argsCount - newVarsCount, argsCount);
+			List<Expression> otherVars = args.subList(0, argsCount - newVarsCount);
 			
 			BSClass superT = supers.getFirst().getTypeClass();
 			if (superT == null) {
@@ -1344,7 +1357,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			IMapletNode left = superT.concreteTypeMapletTree(type, otherVars, declInst);
 			IMapletNode result = null;
 			if (!myVars.isEmpty()) {
-				result = CompilationUtil.mapletNodeFromVariableArray(myVars);
+				result = CompilationUtil.mapletNodeFromExpressionArray(myVars);
 				result.appendNodeToLeft(left);
 			} else {
 				result = left;

@@ -7,7 +7,6 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FileImport;
@@ -18,9 +17,13 @@ import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.mapletTree.IMapletNode;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.theory.util.TheoryUtils;
 import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
+import ac.soton.bsharp.typeInstanceRepresentation.MapletTypeInstance;
 import ac.soton.bsharp.util.EcoreUtilJ;
 
 import java.util.Collection;
@@ -494,17 +497,32 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 *  setoid part is inferred and the default setoid is to be used.
 	 */
 	void compileMembershipOperatorExpr() {
-		Instance superInst = getSuperInstance();
+		String membershipThmName = getName() + "in" + className.getName();
+		
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		
+		/* To do the constructWithIClassInstance it is necessary to have already constructed super instances
+		 * before I get to this point. This is something that I need to put some consideration into. Special note
+		 * needs to be given to the naming scheme.
+		 */
+		String ebPred = typeInst.eventBTypeInstance() + " ∈ " + className.constructWithIClassInstance(context);
+		
+		try {
+			TheoryUtils.createTheorem(thyCache.theory, membershipThmName, predStr, monitor)
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	@Override 
 	public void compile() {
-		typeInst = new ConcreteTypeInstance(getClassName());
-		compileMembershipOperatorExpr();
+		IMapletNode mapletTree = concreteInstanceMapletTree();
+		//typeInst = new ConcreteTypeInstance(getClassName());
+		//compileMembershipOperatorExpr();
 		
 		//TODO: Some compiling!
 		
-		typeInst = null;
+		typeInst = new MapletTypeInstance(getClassName(), null, mapletTree);
 	}
 
 	@Override
@@ -523,8 +541,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 
 	@Override
 	public IMapletNode concreteInstanceMapletTree() {
-		//return getClassName().concreteTypeMapletTree(getContext(), arguments, this);
-		return null;
+		return getClassName().concreteTypeMapletTree(getContext(), arguments, this);
 	}
 	
 	@Override

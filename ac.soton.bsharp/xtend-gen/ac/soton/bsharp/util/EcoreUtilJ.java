@@ -40,7 +40,8 @@ public class EcoreUtilJ extends EcoreUtil2 {
     final EObject root = EcoreUtil2.getRootContainer(context);
     final TreeIterator<EObject> iterable = root.eAllContents();
     boolean _hasNext = iterable.hasNext();
-    if (_hasNext) {
+    boolean _not = (!_hasNext);
+    if (_not) {
       return null;
     }
     EObject next = iterable.next();
@@ -51,8 +52,8 @@ public class EcoreUtilJ extends EcoreUtil2 {
           return next;
         }
         boolean _hasNext_1 = iterable.hasNext();
-        boolean _not = (!_hasNext_1);
-        if (_not) {
+        boolean _not_1 = (!_hasNext_1);
+        if (_not_1) {
           return null;
         }
         next = iterable.next();
@@ -95,6 +96,21 @@ public class EcoreUtilJ extends EcoreUtil2 {
     return result;
   }
   
+  public static ArrayList<? extends EObject> eFilter(final EObject tree, final Function1<EObject, Boolean> filter) {
+    final TreeIterator<EObject> iterable = tree.eAllContents();
+    ArrayList<EObject> result = new ArrayList<EObject>();
+    while (iterable.hasNext()) {
+      {
+        final EObject next = iterable.next();
+        Boolean _apply = filter.apply(next);
+        if ((_apply).booleanValue()) {
+          result.add(next);
+        }
+      }
+    }
+    return result;
+  }
+  
   /**
    * This function iterates over the tree from left to right, and depth first. It will stop after
    * scanning the children of the deepest object that matches the stop filter even if a shallower match has been
@@ -132,6 +148,14 @@ public class EcoreUtilJ extends EcoreUtil2 {
       }
     } while((!(stopFilter.apply(next)).booleanValue()));
     return Boolean.valueOf(false);
+  }
+  
+  public static <T extends EObject> ArrayList<T> eFindAllInstancesBefore(final EObject context, final Class<T> clazz) {
+    final Function1<EObject, Boolean> _function = (EObject e) -> {
+      return Boolean.valueOf(clazz.isInstance(e));
+    };
+    ArrayList<? extends EObject> _eFilterUpToCurrentWith = EcoreUtilJ.eFilterUpToCurrentWith(context, _function);
+    return ((ArrayList<T>) _eFilterUpToCurrentWith);
   }
   
   /**

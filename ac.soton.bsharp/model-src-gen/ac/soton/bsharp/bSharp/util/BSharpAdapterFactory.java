@@ -97,6 +97,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createITheoremContainerAdapter();
 			}
 			@Override
+			public Adapter caseIBodyElementsContainer(IBodyElementsContainer object) {
+				return createIBodyElementsContainerAdapter();
+			}
+			@Override
 			public Adapter caseIVarType(IVarType object) {
 				return createIVarTypeAdapter();
 			}
@@ -107,10 +111,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTopLevelInstance(TopLevelInstance object) {
 				return createTopLevelInstanceAdapter();
-			}
-			@Override
-			public Adapter caseBodyElements(BodyElements object) {
-				return createBodyElementsAdapter();
 			}
 			@Override
 			public Adapter caseBracket(Bracket object) {
@@ -943,6 +943,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IBodyElementsContainer <em>IBody Elements Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.IBodyElementsContainer
+	 * @generated
+	 */
+	public Adapter createIBodyElementsContainerAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IVarType <em>IVar Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1079,20 +1093,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLocalImportAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.BodyElements <em>Body Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.BodyElements
-	 * @generated
-	 */
-	public Adapter createBodyElementsAdapter() {
 		return null;
 	}
 

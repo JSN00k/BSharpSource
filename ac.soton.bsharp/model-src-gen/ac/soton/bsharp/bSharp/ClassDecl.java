@@ -56,35 +56,8 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	 */
 	void setContext(PolyContext value);
 
-	/**
-	 * Returns the value of the '<em><b>Block</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Block</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Block</em>' containment reference.
-	 * @see #setBlock(BSharpBlock)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl_Block()
-	 * @model containment="true"
-	 * @generated
-	 */
-	BSharpBlock getBlock();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ClassDecl#getBlock <em>Block</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Block</em>' containment reference.
-	 * @see #getBlock()
-	 * @generated
-	 */
-	void setBlock(BSharpBlock value);
-
 	String eventBPolymorphicTypeConstructorName();
 	String constructWithTypeContext(TypeDeclContext context, ClassDecl containingClass);
-	void compile() throws Exception;
 
 	/* Given a polytype T : Setoid this deals with a call like T.equ(a, b) 
 	 * ownerType would be T, typeInst would be equ, function call contains a polytype and 

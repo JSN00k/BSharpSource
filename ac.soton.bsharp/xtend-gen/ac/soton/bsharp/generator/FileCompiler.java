@@ -1,9 +1,6 @@
 package ac.soton.bsharp.generator;
 
-import ac.soton.bsharp.bSharp.BSClass;
-import ac.soton.bsharp.bSharp.BodyElements;
-import ac.soton.bsharp.bSharp.Datatype;
-import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import org.eclipse.core.resources.IWorkspaceRunnable;
@@ -11,7 +8,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.rodinp.core.RodinCore;
 
@@ -21,38 +17,37 @@ import org.rodinp.core.RodinCore;
  */
 @SuppressWarnings("all")
 public class FileCompiler {
-  private final BodyElements elements;
+  private final EList<TopLevelInstance> elements;
   
-  public FileCompiler(final BodyElements elem) {
+  public FileCompiler(final EList<TopLevelInstance> elem) {
     this.elements = elem;
   }
   
   public void compile() {
     try {
+      boolean _isEmpty = this.elements.isEmpty();
+      if (_isEmpty) {
+        return;
+      }
       final IWorkspaceRunnable wsRunnable = new IWorkspaceRunnable() {
         @Override
         public void run(final IProgressMonitor monitor) throws CoreException {
-          try {
-            TheoryImportCache theoryCache = CompilationUtil.getTheoryCacheForElement(FileCompiler.this.elements);
-            EList<EObject> _eContents = FileCompiler.this.elements.eContents();
-            for (final EObject element : _eContents) {
-              if ((element instanceof BSClass)) {
-                final BSClass bsClass = ((BSClass) element);
-                bsClass.compile();
+          TheoryImportCache theoryCache = CompilationUtil.getTheoryCacheForElement(FileCompiler.this.elements.get(0));
+          for (final TopLevelInstance element : FileCompiler.this.elements) {
+            try {
+              element.compile();
+            } catch (final Throwable _t) {
+              if (_t instanceof Exception) {
+                final Exception exception = (Exception)_t;
+                String _message = exception.getMessage();
+                String _plus = ("Compilation failed with error: " + _message);
+                System.err.println(_plus);
               } else {
-                if ((element instanceof Datatype)) {
-                  final Datatype datatype = ((Datatype) element);
-                  datatype.compile();
-                } else {
-                  final Extend extend = ((Extend) element);
-                  extend.compile();
-                }
+                throw Exceptions.sneakyThrow(_t);
               }
             }
-            theoryCache.save();
-          } catch (Throwable _e) {
-            throw Exceptions.sneakyThrow(_e);
           }
+          theoryCache.save();
         }
       };
       NullProgressMonitor _nullProgressMonitor = new NullProgressMonitor();

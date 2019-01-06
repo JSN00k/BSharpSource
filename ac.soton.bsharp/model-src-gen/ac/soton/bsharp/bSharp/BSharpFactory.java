@@ -329,15 +329,6 @@ public interface BSharpFactory extends EFactory {
 	Type createType();
 
 	/**
-	 * Returns a new object of class '<em>Top Level Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Top Level Instance</em>'.
-	 * @generated
-	 */
-	TopLevelInstance createTopLevelInstance();
-
-	/**
 	 * Returns a new object of class '<em>Named Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -390,15 +381,6 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	LocalImport createLocalImport();
-
-	/**
-	 * Returns a new object of class '<em>Body Elements</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Body Elements</em>'.
-	 * @generated
-	 */
-	BodyElements createBodyElements();
 
 	/**
 	 * Returns a new object of class '<em>BS Class</em>'.

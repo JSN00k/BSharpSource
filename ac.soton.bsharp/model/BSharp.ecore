@@ -9,16 +9,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="IExpressionContainer" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ITheoryImportCacheProvider" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ITheoremContainer" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IBodyElementsContainer" abstract="true"
+      interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IVarType" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//GenName"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TopLevelInstance"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BodyElements">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
-        eType="#//ClassDecl" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="extends" upperBound="-1"
-        eType="#//Extend" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
-        eType="#//Instance" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelInstance" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Bracket" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="child" eType="#//Expression"
@@ -42,8 +39,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" abstract="true" eSuperTypes="#//GenName #//ExpressionVariable #//IVariableProvider #//IPolyTypeProvider #//Type #//TopLevelInstance #//IEventBPrefixProvider #//IClassInstance">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassVarDecl" eSuperTypes="#//IVarType">
@@ -69,8 +64,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedClass" eType="#//ClassDecl"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//BSharpBlock"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeInst" eType="#//ExpressionVariable"/>
@@ -187,12 +180,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TopLevelFile" eSuperTypes="#//ITheoryImportCacheProvider">
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelFile" eSuperTypes="#//ITheoryImportCacheProvider #//IBodyElementsContainer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelImports" upperBound="-1"
         eType="#//TopLevelImport" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="noImportElements" eType="#//BodyElements"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="noImportElements" upperBound="-1"
+        eType="#//TopLevelInstance" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TopLevel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -201,13 +194,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="importedFiles" upperBound="-1"
         eType="#//TopLevelFile"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TopLevelImport" eSuperTypes="#//ITheoryImportCacheProvider">
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevelImport" eSuperTypes="#//ITheoryImportCacheProvider #//IBodyElementsContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalImports" upperBound="-1"
         eType="#//GlobalImport" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localImports" upperBound="-1"
         eType="#//LocalImport" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bodyElements" lowerBound="1"
-        eType="#//BodyElements" containment="true"/>
+        upperBound="-1" eType="#//TopLevelInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importRefs" upperBound="-1"
         eType="#//TopLevelFile" containment="true"/>
   </eClassifiers>

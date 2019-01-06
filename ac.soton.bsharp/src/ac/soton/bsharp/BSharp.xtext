@@ -14,6 +14,15 @@ TopLevel:
 // Theorem names can include white space. Work out how to change this to any string without a ':'
 THM_NAME: (INT | ID | WS)* ":";
 
+/* Currently this interface is only used for searching. I should change the interface
+ * to include an elements field for the body elements, however, I'll need to fix some 
+ * code to do this, so this task is being deferred. It should also be combined with
+ * ITheoryImportCacheProvider ('ITheoryImportCacheProvider' should be removed).
+ */
+IBodyElementsContainer:
+	TopLevelFile | TopLevelImport
+;
+
 /* TopLevelFile has a hidden name tag which is the file name, this gets the filename into the
  * fully qualified domain names allowing multiple classes per file nicely. TopLevelImport allows
  * the easy splitting of the file based on import locations. It also makes it easy to scope imports
@@ -21,7 +30,7 @@ THM_NAME: (INT | ID | WS)* ":";
  */
 TopLevelFile:
 	{TopLevelFile}
-	(noImportElements=BodyElements)? topLevelImports+=TopLevelImport*
+	(noImportElements+=TopLevelInstance)* topLevelImports+=TopLevelImport*
 ;
 
 ClassDecl returns ClassDecl:
@@ -54,11 +63,11 @@ QualifiedNameWithWildcard:
 ;
 
 TopLevelImport:
-	(globalImports+=GlobalImport | localImports += LocalImport)+ bodyElements=BodyElements
+	(globalImports+=GlobalImport | localImports += LocalImport)+ (bodyElements+=TopLevelInstance)+
 ;
 
-BodyElements:
-	(classes+=ClassDecl | extends+=Extend)+
+TopLevelInstance:
+	ClassDecl | Extend
 ;
 
 GlobalImport:
@@ -324,7 +333,7 @@ InbuiltInfix:
 
 /* Todo scope/validate this. */
 WrappedInfix:
-	'[' inbuilt=InbuiltInfix | funcName=[ExpressionVariable] ']'
+	'[' (inbuilt=InbuiltInfix | funcName=[ExpressionVariable]) ']'
 ;
 
 /* ------------------------------ Instance ---------------------------------------------*/

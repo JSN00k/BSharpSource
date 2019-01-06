@@ -58,8 +58,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case BSharpPackage.TYPE: return createType();
-			case BSharpPackage.TOP_LEVEL_INSTANCE: return createTopLevelInstance();
-			case BSharpPackage.BODY_ELEMENTS: return createBodyElements();
 			case BSharpPackage.BRACKET: return createBracket();
 			case BSharpPackage.BS_CLASS: return createBSClass();
 			case BSharpPackage.BSHARP_BLOCK: return createBSharpBlock();
@@ -452,16 +450,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TopLevelInstance createTopLevelInstance() {
-		TopLevelInstanceImpl topLevelInstance = new TopLevelInstanceImpl();
-		return topLevelInstance;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NamedObject createNamedObject() {
 		NamedObjectImpl namedObject = new NamedObjectImpl();
 		return namedObject;
@@ -515,16 +503,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public LocalImport createLocalImport() {
 		LocalImportImpl localImport = new LocalImportImpl();
 		return localImport;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BodyElements createBodyElements() {
-		BodyElementsImpl bodyElements = new BodyElementsImpl();
-		return bodyElements;
 	}
 
 	/**

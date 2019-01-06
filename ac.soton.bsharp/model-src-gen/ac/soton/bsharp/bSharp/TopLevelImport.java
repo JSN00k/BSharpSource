@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TopLevelImport extends ITheoryImportCacheProvider {
+public interface TopLevelImport extends ITheoryImportCacheProvider, IBodyElementsContainer {
 	/**
 	 * Returns the value of the '<em><b>Global Imports</b></em>' containment reference list.
 	 * The list contents are of type {@link ac.soton.bsharp.bSharp.GlobalImport}.
@@ -60,30 +60,20 @@ public interface TopLevelImport extends ITheoryImportCacheProvider {
 	EList<LocalImport> getLocalImports();
 
 	/**
-	 * Returns the value of the '<em><b>Body Elements</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Body Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TopLevelInstance}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Body Elements</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Body Elements</em>' containment reference.
-	 * @see #setBodyElements(BodyElements)
+	 * @return the value of the '<em>Body Elements</em>' containment reference list.
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelImport_BodyElements()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	BodyElements getBodyElements();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.TopLevelImport#getBodyElements <em>Body Elements</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Body Elements</em>' containment reference.
-	 * @see #getBodyElements()
-	 * @generated
-	 */
-	void setBodyElements(BodyElements value);
+	EList<TopLevelInstance> getBodyElements();
 
 	/**
 	 * Returns the value of the '<em><b>Import Refs</b></em>' containment reference list.

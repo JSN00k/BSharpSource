@@ -6,7 +6,6 @@ package ac.soton.bsharp.serializer;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.Bracket;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
@@ -74,9 +73,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case BSharpPackage.BSHARP_BLOCK:
 				sequence_BSharpBlock(context, (BSharpBlock) semanticObject); 
-				return; 
-			case BSharpPackage.BODY_ELEMENTS:
-				sequence_BodyElements(context, (BodyElements) semanticObject); 
 				return; 
 			case BSharpPackage.BRACKET:
 				sequence_Bracket(context, (Bracket) semanticObject); 
@@ -213,18 +209,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     BodyElements returns BodyElements
-	 *
-	 * Constraint:
-	 *     (classes+=ClassDecl | extends+=Extend)+
-	 */
-	protected void sequence_BodyElements(ISerializationContext context, BodyElements semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     RootExpression returns Bracket
 	 *     Infix returns Bracket
 	 *     Infix.Infix_1_0 returns Bracket
@@ -271,6 +255,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ClassDecl returns BSClass
 	 *     Type returns BSClass
 	 *     GenName returns BSClass
+	 *     TopLevelInstance returns BSClass
 	 *     Class returns BSClass
 	 *
 	 * Constraint:
@@ -333,6 +318,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ClassDecl returns Datatype
 	 *     Type returns Datatype
 	 *     GenName returns Datatype
+	 *     TopLevelInstance returns Datatype
 	 *     Datatype returns Datatype
 	 *
 	 * Constraint:
@@ -345,6 +331,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     TopLevelInstance returns Extend
 	 *     Extend returns Extend
 	 *
 	 * Constraint:
@@ -356,8 +343,8 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.EXTEND__EXTENDED_CLASS));
 			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.EXTEND__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.EXTEND__NAME));
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.EXTEND__BLOCK) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.EXTEND__BLOCK));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExtendAccess().getExtendedClassClassDeclQualifiedNameParserRuleCall_1_0_1(), semanticObject.eGet(BSharpPackage.Literals.EXTEND__EXTENDED_CLASS, false));
@@ -653,7 +640,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TopLevelFile returns TopLevelFile
 	 *
 	 * Constraint:
-	 *     (noImportElements=BodyElements? topLevelImports+=TopLevelImport*)
+	 *     (noImportElements+=TopLevelInstance* topLevelImports+=TopLevelImport*)
 	 */
 	protected void sequence_TopLevelFile(ISerializationContext context, TopLevelFile semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -665,7 +652,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TopLevelImport returns TopLevelImport
 	 *
 	 * Constraint:
-	 *     ((globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements=BodyElements)
+	 *     ((globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements+=TopLevelInstance+)
 	 */
 	protected void sequence_TopLevelImport(ISerializationContext context, TopLevelImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

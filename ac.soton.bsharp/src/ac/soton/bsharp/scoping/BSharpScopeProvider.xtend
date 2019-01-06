@@ -31,6 +31,11 @@ import ac.soton.bsharp.bSharp.TypeConstructor
 import ac.soton.bsharp.bSharp.ExpressionVariable
 import ac.soton.bsharp.bSharp.Instance
 import ac.soton.bsharp.bSharp.IClassInstance
+import ac.soton.bsharp.bSharp.TopLevelInstance
+import org.eclipse.xtext.parser.packrat.tokens.AssignmentToken.End
+import ac.soton.bsharp.bSharp.FileImport
+import ac.soton.bsharp.bSharp.util.CompilationUtil
+import java.util.List
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -198,19 +203,31 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		/* It's either got to be an instance variable declared above the current location in an extension
 		 * of the same type, we're currently in, or it has to be the type that we're currently in.
 		 */
-		var parent = IScope.NULLSCOPE
 		
-		var ArrayList<IClassInstance> classInstances  = new ArrayList()
+		var ArrayList<EObject> classInstances  = new ArrayList()
 		
-		val instanceClassName = context.className
+		/* find the class name */
+		var ClassDecl associatedClassTmp;
+		val container = EcoreUtil2.getContainerOfType(context, TopLevelInstance)
+		if (container instanceof ClassDecl) {
+			associatedClassTmp = container as ClassDecl
+		} else {
+			associatedClassTmp = (container as Extend).extendedClass
+		}
 		
-		classInstances.add(instanceClassName)
+		val associatedClass = associatedClassTmp
 		
-		/* Make an array of all of the BSharpBlocks that may contain an Instance declaration that 
-		 * the ref may reference.
-		 */
-			
-		return parent
+		classInstances.add(associatedClass)
+		
+		classInstances.addAll(CompilationUtil.filterInscopeBSharpBlocks(context, [EObject e | 
+		 	if (e instanceof Extend) {
+		 		return (e as Extend).extendedClass.equals(associatedClass)
+		 	}
+		 	
+		 	return false
+		 ]))
+		 
+		return Scopes.scopeFor(classInstances)
 	}
 
 	def IScope getPolyScopeFor(EObject context, IScope parent) {

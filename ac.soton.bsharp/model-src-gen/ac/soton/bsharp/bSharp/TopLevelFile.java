@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TopLevelFile extends ITheoryImportCacheProvider {
+public interface TopLevelFile extends ITheoryImportCacheProvider, IBodyElementsContainer {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -69,29 +69,19 @@ public interface TopLevelFile extends ITheoryImportCacheProvider {
 	EList<TopLevelImport> getTopLevelImports();
 
 	/**
-	 * Returns the value of the '<em><b>No Import Elements</b></em>' containment reference.
+	 * Returns the value of the '<em><b>No Import Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.TopLevelInstance}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>No Import Elements</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>No Import Elements</em>' containment reference.
-	 * @see #setNoImportElements(BodyElements)
+	 * @return the value of the '<em>No Import Elements</em>' containment reference list.
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelFile_NoImportElements()
 	 * @model containment="true"
 	 * @generated
 	 */
-	BodyElements getNoImportElements();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.TopLevelFile#getNoImportElements <em>No Import Elements</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>No Import Elements</em>' containment reference.
-	 * @see #getNoImportElements()
-	 * @generated
-	 */
-	void setNoImportElements(BodyElements value);
+	EList<TopLevelInstance> getNoImportElements();
 
 } // TopLevelFile

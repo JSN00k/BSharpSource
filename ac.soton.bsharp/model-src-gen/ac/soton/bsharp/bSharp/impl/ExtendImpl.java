@@ -8,7 +8,10 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
+import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.Collection;
@@ -38,6 +41,16 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class ExtendImpl extends NamedObjectImpl implements Extend {
 	/**
+	 * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBlock()
+	 * @generated
+	 * @ordered
+	 */
+	protected BSharpBlock block;
+
+	/**
 	 * The cached value of the '{@link #getExtendedClass() <em>Extended Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,16 +79,6 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBlock()
-	 * @generated
-	 * @ordered
-	 */
-	protected BSharpBlock block;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,13 +223,13 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case BSharpPackage.EXTEND__BLOCK:
+				return getBlock();
 			case BSharpPackage.EXTEND__EXTENDED_CLASS:
 				if (resolve) return getExtendedClass();
 				return basicGetExtendedClass();
 			case BSharpPackage.EXTEND__NAME:
 				return getName();
-			case BSharpPackage.EXTEND__BLOCK:
-				return getBlock();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -240,14 +243,14 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case BSharpPackage.EXTEND__BLOCK:
+				setBlock((BSharpBlock)newValue);
+				return;
 			case BSharpPackage.EXTEND__EXTENDED_CLASS:
 				setExtendedClass((ClassDecl)newValue);
 				return;
 			case BSharpPackage.EXTEND__NAME:
 				setName((String)newValue);
-				return;
-			case BSharpPackage.EXTEND__BLOCK:
-				setBlock((BSharpBlock)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -261,14 +264,14 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.EXTEND__BLOCK:
+				setBlock((BSharpBlock)null);
+				return;
 			case BSharpPackage.EXTEND__EXTENDED_CLASS:
 				setExtendedClass((ClassDecl)null);
 				return;
 			case BSharpPackage.EXTEND__NAME:
 				setName(NAME_EDEFAULT);
-				return;
-			case BSharpPackage.EXTEND__BLOCK:
-				setBlock((BSharpBlock)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -282,14 +285,66 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case BSharpPackage.EXTEND__BLOCK:
+				return block != null;
 			case BSharpPackage.EXTEND__EXTENDED_CLASS:
 				return extendedClass != null;
 			case BSharpPackage.EXTEND__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BSharpPackage.EXTEND__BLOCK:
-				return block != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == IPolyTypeProvider.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IEventBPrefixProvider.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == TopLevelInstance.class) {
+			switch (derivedFeatureID) {
+				case BSharpPackage.EXTEND__BLOCK: return BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == IPolyTypeProvider.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == IEventBPrefixProvider.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == TopLevelInstance.class) {
+			switch (baseFeatureID) {
+				case BSharpPackage.TOP_LEVEL_INSTANCE__BLOCK: return BSharpPackage.EXTEND__BLOCK;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

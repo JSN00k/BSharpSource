@@ -148,6 +148,9 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 	
+	/* The call type may not be exactly the type that is required by the polymorphic context that is 
+	 * being called. This function applies prj1s to the call type until the correct super type is found
+	 */
 	String deconstructionType(TypeBuilder callType, ClassDecl containerType) {
 		callType.reorderTypeTree();
 		
@@ -211,6 +214,11 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		}
 
 		BSClass sType = (BSClass)superTypes.get(0);
+		
+		/* DeconstructEventBTypeToArguments takes an Event-B string as an argument,
+		 * and applies prjs and doms to build the EventB type constructor. This job is
+		 * going to be taken over by the ITypeInstance interface.
+		 */
 		return sType.deconstructEventBTypeToArguments(deconstructionType(callType, containerType));
 	}
 	

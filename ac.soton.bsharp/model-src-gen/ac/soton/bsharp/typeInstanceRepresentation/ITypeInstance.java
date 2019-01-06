@@ -2,6 +2,8 @@ package ac.soton.bsharp.typeInstanceRepresentation;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EObject;
+
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
@@ -29,11 +31,11 @@ public interface ITypeInstance {
 	/* returns the EventB version of the instance as a String. */
 	String eventBTypeInstance();
 	
-	/* ClassDecl has to be a supertype of the TypeInstance type, this returns 
-	 * an eventB expression which represents the supertype
-	 */
-	String eventBTypeInstanceForType(ClassDecl type);
-	
 	/* Returns all the names for the type variables, and all the names of the variables used to construct the type */
 	ArrayList<String> typeAndVariableNames();
+
+	/* A context needs to be passed about so that it's possible to work out which objects are in scope.
+	 * This has come up when searching for default instances in concrete types.
+	 */
+	String eventBTypeInstanceForType(ClassDecl type, EObject context);
 }

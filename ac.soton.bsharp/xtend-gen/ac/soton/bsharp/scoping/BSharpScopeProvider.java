@@ -9,7 +9,6 @@ import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
-import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.Instance;
@@ -17,9 +16,11 @@ import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TopLevel;
+import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.util.BSharpUtil;
 import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
@@ -175,11 +176,24 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   }
   
   public IScope scope_IClassInstance(final Instance context, final EReference ref) {
-    IScope parent = IScope.NULLSCOPE;
-    ArrayList<IClassInstance> classInstances = new ArrayList<IClassInstance>();
-    final BSClass instanceClassName = context.getClassName();
-    classInstances.add(instanceClassName);
-    return parent;
+    ArrayList<EObject> classInstances = new ArrayList<EObject>();
+    ClassDecl associatedClassTmp = null;
+    final TopLevelInstance container = EcoreUtil2.<TopLevelInstance>getContainerOfType(context, TopLevelInstance.class);
+    if ((container instanceof ClassDecl)) {
+      associatedClassTmp = ((ClassDecl) container);
+    } else {
+      associatedClassTmp = ((Extend) container).getExtendedClass();
+    }
+    final ClassDecl associatedClass = associatedClassTmp;
+    classInstances.add(associatedClass);
+    final Function1<EObject, Boolean> _function = (EObject e) -> {
+      if ((e instanceof Extend)) {
+        return Boolean.valueOf(((Extend) e).getExtendedClass().equals(associatedClass));
+      }
+      return Boolean.valueOf(false);
+    };
+    classInstances.addAll(CompilationUtil.filterInscopeBSharpBlocks(context, _function));
+    return Scopes.scopeFor(classInstances);
   }
   
   public IScope getPolyScopeFor(final EObject context, final IScope parent) {

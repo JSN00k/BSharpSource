@@ -93,7 +93,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cTopLevelFileAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNoImportElementsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNoImportElementsBodyElementsParserRuleCall_1_0 = (RuleCall)cNoImportElementsAssignment_1.eContents().get(0);
+		private final RuleCall cNoImportElementsTopLevelInstanceParserRuleCall_1_0 = (RuleCall)cNoImportElementsAssignment_1.eContents().get(0);
 		private final Assignment cTopLevelImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTopLevelImportsTopLevelImportParserRuleCall_2_0 = (RuleCall)cTopLevelImportsAssignment_2.eContents().get(0);
 		
@@ -102,20 +102,20 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * the easy splitting of the file based on import locations. It also makes it easy to scope imports
 		// * so only imports above the current location are scoped.
 		// */ TopLevelFile:
-		//	{TopLevelFile} noImportElements=BodyElements? topLevelImports+=TopLevelImport*;
+		//	{TopLevelFile} noImportElements+=TopLevelInstance* topLevelImports+=TopLevelImport*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{TopLevelFile} noImportElements=BodyElements? topLevelImports+=TopLevelImport*
+		//{TopLevelFile} noImportElements+=TopLevelInstance* topLevelImports+=TopLevelImport*
 		public Group getGroup() { return cGroup; }
 		
 		//{TopLevelFile}
 		public Action getTopLevelFileAction_0() { return cTopLevelFileAction_0; }
 		
-		//noImportElements=BodyElements?
+		//noImportElements+=TopLevelInstance*
 		public Assignment getNoImportElementsAssignment_1() { return cNoImportElementsAssignment_1; }
 		
-		//BodyElements
-		public RuleCall getNoImportElementsBodyElementsParserRuleCall_1_0() { return cNoImportElementsBodyElementsParserRuleCall_1_0; }
+		//TopLevelInstance
+		public RuleCall getNoImportElementsTopLevelInstanceParserRuleCall_1_0() { return cNoImportElementsTopLevelInstanceParserRuleCall_1_0; }
 		
 		//topLevelImports+=TopLevelImport*
 		public Assignment getTopLevelImportsAssignment_2() { return cTopLevelImportsAssignment_2; }
@@ -237,13 +237,13 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cLocalImportsAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
 		private final RuleCall cLocalImportsLocalImportParserRuleCall_0_1_0 = (RuleCall)cLocalImportsAssignment_0_1.eContents().get(0);
 		private final Assignment cBodyElementsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBodyElementsBodyElementsParserRuleCall_1_0 = (RuleCall)cBodyElementsAssignment_1.eContents().get(0);
+		private final RuleCall cBodyElementsTopLevelInstanceParserRuleCall_1_0 = (RuleCall)cBodyElementsAssignment_1.eContents().get(0);
 		
 		//TopLevelImport:
-		//	(globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements=BodyElements;
+		//	(globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements+=TopLevelInstance+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements=BodyElements
+		//(globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements+=TopLevelInstance+
 		public Group getGroup() { return cGroup; }
 		
 		//(globalImports+=GlobalImport | localImports+=LocalImport)+
@@ -261,38 +261,30 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//LocalImport
 		public RuleCall getLocalImportsLocalImportParserRuleCall_0_1_0() { return cLocalImportsLocalImportParserRuleCall_0_1_0; }
 		
-		//bodyElements=BodyElements
+		//bodyElements+=TopLevelInstance+
 		public Assignment getBodyElementsAssignment_1() { return cBodyElementsAssignment_1; }
 		
-		//BodyElements
-		public RuleCall getBodyElementsBodyElementsParserRuleCall_1_0() { return cBodyElementsBodyElementsParserRuleCall_1_0; }
+		//TopLevelInstance
+		public RuleCall getBodyElementsTopLevelInstanceParserRuleCall_1_0() { return cBodyElementsTopLevelInstanceParserRuleCall_1_0; }
 	}
-	public class BodyElementsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.BodyElements");
+	public class TopLevelInstanceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TopLevelInstance");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cClassesAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cClassesClassDeclParserRuleCall_0_0 = (RuleCall)cClassesAssignment_0.eContents().get(0);
-		private final Assignment cExtendsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cExtendsExtendParserRuleCall_1_0 = (RuleCall)cExtendsAssignment_1.eContents().get(0);
+		private final RuleCall cClassDeclParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cExtendParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//BodyElements:
-		//	(classes+=ClassDecl | extends+=Extend)+;
+		//TopLevelInstance:
+		//	ClassDecl | Extend;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(classes+=ClassDecl | extends+=Extend)+
+		//ClassDecl | Extend
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//classes+=ClassDecl
-		public Assignment getClassesAssignment_0() { return cClassesAssignment_0; }
-		
 		//ClassDecl
-		public RuleCall getClassesClassDeclParserRuleCall_0_0() { return cClassesClassDeclParserRuleCall_0_0; }
-		
-		//extends+=Extend
-		public Assignment getExtendsAssignment_1() { return cExtendsAssignment_1; }
+		public RuleCall getClassDeclParserRuleCall_0() { return cClassDeclParserRuleCall_0; }
 		
 		//Extend
-		public RuleCall getExtendsExtendParserRuleCall_1_0() { return cExtendsExtendParserRuleCall_1_0; }
+		public RuleCall getExtendParserRuleCall_1() { return cExtendParserRuleCall_1; }
 	}
 	public class GlobalImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.GlobalImport");
@@ -2035,50 +2027,46 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class WrappedInfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.WrappedInfix");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cInbuiltAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cInbuiltInbuiltInfixParserRuleCall_0_1_0 = (RuleCall)cInbuiltAssignment_0_1.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Assignment cFuncNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final CrossReference cFuncNameExpressionVariableCrossReference_1_0_0 = (CrossReference)cFuncNameAssignment_1_0.eContents().get(0);
-		private final RuleCall cFuncNameExpressionVariableIDTerminalRuleCall_1_0_0_1 = (RuleCall)cFuncNameExpressionVariableCrossReference_1_0_0.eContents().get(1);
-		private final Keyword cRightSquareBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cInbuiltAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cInbuiltInbuiltInfixParserRuleCall_1_0_0 = (RuleCall)cInbuiltAssignment_1_0.eContents().get(0);
+		private final Assignment cFuncNameAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final CrossReference cFuncNameExpressionVariableCrossReference_1_1_0 = (CrossReference)cFuncNameAssignment_1_1.eContents().get(0);
+		private final RuleCall cFuncNameExpressionVariableIDTerminalRuleCall_1_1_0_1 = (RuleCall)cFuncNameExpressionVariableCrossReference_1_1_0.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		///* Todo scope/validate this. */ WrappedInfix:
-		//	'[' inbuilt=InbuiltInfix | funcName=[ExpressionVariable] ']';
+		//	'[' (inbuilt=InbuiltInfix | funcName=[ExpressionVariable]) ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'[' inbuilt=InbuiltInfix | funcName=[ExpressionVariable] ']'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'[' inbuilt=InbuiltInfix
-		public Group getGroup_0() { return cGroup_0; }
+		//'[' (inbuilt=InbuiltInfix | funcName=[ExpressionVariable]) ']'
+		public Group getGroup() { return cGroup; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_0_0() { return cLeftSquareBracketKeyword_0_0; }
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//inbuilt=InbuiltInfix | funcName=[ExpressionVariable]
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//inbuilt=InbuiltInfix
-		public Assignment getInbuiltAssignment_0_1() { return cInbuiltAssignment_0_1; }
+		public Assignment getInbuiltAssignment_1_0() { return cInbuiltAssignment_1_0; }
 		
 		//InbuiltInfix
-		public RuleCall getInbuiltInbuiltInfixParserRuleCall_0_1_0() { return cInbuiltInbuiltInfixParserRuleCall_0_1_0; }
-		
-		//funcName=[ExpressionVariable] ']'
-		public Group getGroup_1() { return cGroup_1; }
+		public RuleCall getInbuiltInbuiltInfixParserRuleCall_1_0_0() { return cInbuiltInbuiltInfixParserRuleCall_1_0_0; }
 		
 		//funcName=[ExpressionVariable]
-		public Assignment getFuncNameAssignment_1_0() { return cFuncNameAssignment_1_0; }
+		public Assignment getFuncNameAssignment_1_1() { return cFuncNameAssignment_1_1; }
 		
 		//[ExpressionVariable]
-		public CrossReference getFuncNameExpressionVariableCrossReference_1_0_0() { return cFuncNameExpressionVariableCrossReference_1_0_0; }
+		public CrossReference getFuncNameExpressionVariableCrossReference_1_1_0() { return cFuncNameExpressionVariableCrossReference_1_1_0; }
 		
 		//ID
-		public RuleCall getFuncNameExpressionVariableIDTerminalRuleCall_1_0_0_1() { return cFuncNameExpressionVariableIDTerminalRuleCall_1_0_0_1; }
+		public RuleCall getFuncNameExpressionVariableIDTerminalRuleCall_1_1_0_1() { return cFuncNameExpressionVariableIDTerminalRuleCall_1_1_0_1; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_1_1() { return cRightSquareBracketKeyword_1_1; }
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
 	}
 	public class InstanceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Instance");
@@ -2181,7 +2169,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final QualifiedNameElements pQualifiedName;
 	private final QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
 	private final TopLevelImportElements pTopLevelImport;
-	private final BodyElementsElements pBodyElements;
+	private final TopLevelInstanceElements pTopLevelInstance;
 	private final GlobalImportElements pGlobalImport;
 	private final FileImportElements pFileImport;
 	private final LocalImportElements pLocalImport;
@@ -2245,7 +2233,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pQualifiedName = new QualifiedNameElements();
 		this.pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements();
 		this.pTopLevelImport = new TopLevelImportElements();
-		this.pBodyElements = new BodyElementsElements();
+		this.pTopLevelInstance = new TopLevelInstanceElements();
 		this.pGlobalImport = new GlobalImportElements();
 		this.pFileImport = new FileImportElements();
 		this.pLocalImport = new LocalImportElements();
@@ -2352,7 +2340,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * the easy splitting of the file based on import locations. It also makes it easy to scope imports
 	// * so only imports above the current location are scoped.
 	// */ TopLevelFile:
-	//	{TopLevelFile} noImportElements=BodyElements? topLevelImports+=TopLevelImport*;
+	//	{TopLevelFile} noImportElements+=TopLevelInstance* topLevelImports+=TopLevelImport*;
 	public TopLevelFileElements getTopLevelFileAccess() {
 		return pTopLevelFile;
 	}
@@ -2418,7 +2406,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//TopLevelImport:
-	//	(globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements=BodyElements;
+	//	(globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements+=TopLevelInstance+;
 	public TopLevelImportElements getTopLevelImportAccess() {
 		return pTopLevelImport;
 	}
@@ -2427,14 +2415,14 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getTopLevelImportAccess().getRule();
 	}
 	
-	//BodyElements:
-	//	(classes+=ClassDecl | extends+=Extend)+;
-	public BodyElementsElements getBodyElementsAccess() {
-		return pBodyElements;
+	//TopLevelInstance:
+	//	ClassDecl | Extend;
+	public TopLevelInstanceElements getTopLevelInstanceAccess() {
+		return pTopLevelInstance;
 	}
 	
-	public ParserRule getBodyElementsRule() {
-		return getBodyElementsAccess().getRule();
+	public ParserRule getTopLevelInstanceRule() {
+		return getTopLevelInstanceAccess().getRule();
 	}
 	
 	//GlobalImport:
@@ -2907,7 +2895,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* Todo scope/validate this. */ WrappedInfix:
-	//	'[' inbuilt=InbuiltInfix | funcName=[ExpressionVariable] ']';
+	//	'[' (inbuilt=InbuiltInfix | funcName=[ExpressionVariable]) ']';
 	public WrappedInfixElements getWrappedInfixAccess() {
 		return pWrappedInfix;
 	}

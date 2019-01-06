@@ -1,6 +1,5 @@
 package ac.soton.bsharp.theory.util;
 
-import ac.soton.bsharp.bSharp.BodyElements;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
@@ -172,9 +171,7 @@ public class TheoryImportCache {
       fileName = bSharpFileName;
     } else {
       int fileNdx = 0;
-      BodyElements _noImportElements = topLevelFile.getNoImportElements();
-      boolean _tripleNotEquals = (_noImportElements != null);
-      if (_tripleNotEquals) {
+      if (((topLevelFile.getNoImportElements() != null) && (!topLevelFile.getNoImportElements().isEmpty()))) {
         fileNdx = 1;
       }
       final TopLevelImport topLevelImport = EcoreUtil2.<TopLevelImport>getContainerOfType(classDecl, TopLevelImport.class);

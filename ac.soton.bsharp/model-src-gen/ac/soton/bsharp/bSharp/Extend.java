@@ -75,32 +75,6 @@ public interface Extend extends IVariableProvider, IPolyTypeProvider, IEventBPre
 	 */
 	void setName(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Block</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Block</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Block</em>' containment reference.
-	 * @see #setBlock(BSharpBlock)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend_Block()
-	 * @model containment="true"
-	 * @generated
-	 */
-	BSharpBlock getBlock();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Extend#getBlock <em>Block</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Block</em>' containment reference.
-	 * @see #getBlock()
-	 * @generated
-	 */
-	void setBlock(BSharpBlock value);
-
 	void compile();
 
 } // Extend
