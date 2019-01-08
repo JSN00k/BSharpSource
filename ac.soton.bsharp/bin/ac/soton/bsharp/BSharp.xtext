@@ -7,7 +7,7 @@ TopLevel:
 	'package' name=QualifiedName
 	topLevelFile=TopLevelFile
 ;
-	
+
 @Override 
 	terminal ID: ('a'..'z'|'A'..'Z'|'_'| 'i'..'ￜ') ('a'..'z'|'A'..'Z'|'_'| 'i'..'ￜ'|'0'..'9')*;
 	
@@ -339,5 +339,5 @@ WrappedInfix:
 /* ------------------------------ Instance ---------------------------------------------*/
 
 Instance:
-	'Instance' className=[BSClass|QualifiedName] '<' context=[IClassInstance] '>' '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')' (name=ID)?
+	'Instance' className=[BSClass|QualifiedName] '<' (context+=[IClassInstance])+ '>' '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')' (name=ID)?
 ;

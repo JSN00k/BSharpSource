@@ -20,11 +20,13 @@ import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -195,7 +197,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public void compile() throws Exception {
+	public void compile(IProgressMonitor monitor) throws Exception {
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		ITheoryRoot thyRoot = thyCache.theory;
 		
@@ -218,7 +220,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 			constr.compileInto(datatype, nullMonitor);
 		}
 		
-		block.compile();
+		block.compile(monitor);
 	}
 
 	@Override
@@ -314,9 +316,22 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public ITypeInstance getTypeInstance() {
+	public ITypeInstance getTypeInstance(EObject context) {
+		return new ConcreteTypeInstance(this, context);
+	}
+
+	@Override
+	public String constructorArgsForTypeInstance(ITypeInstance typeInst) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String constructWithTypeInstances(List<ITypeInstance> instList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 } //DatatypeImpl

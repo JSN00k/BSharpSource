@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -49,5 +50,5 @@ public interface TopLevelInstance extends EObject {
 	 */
 	void setBlock(BSharpBlock value);
 
-	void compile() throws Exception;
+	void compile(IProgressMonitor monitor) throws Exception;
 } // TopLevelInstance

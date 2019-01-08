@@ -19,6 +19,8 @@ class FileCompiler {
 		elements = elem
 	}
 	
+	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+	
 	def compile() {
 		/* The file needs to be compiled in the order that it was written */
 		if (elements.isEmpty) {
@@ -32,7 +34,7 @@ class FileCompiler {
 				var theoryCache = CompilationUtil.getTheoryCacheForElement(elements.get(0));
 				for (element : elements) {
 					try {
-						element.compile();
+						element.compile(nullMonitor);
 					} catch (Exception exception) {
 						System.err.println("Compilation failed with error: " + exception.message);
 					}

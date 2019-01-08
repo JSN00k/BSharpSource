@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,5 +17,5 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ITheoremContainer extends EObject {
-	void compile();
+	void compile(IProgressMonitor monitor);
 } // ITheoremContainer

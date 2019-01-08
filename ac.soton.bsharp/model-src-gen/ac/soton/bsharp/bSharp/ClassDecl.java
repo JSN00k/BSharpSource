@@ -4,8 +4,10 @@
 package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
@@ -68,5 +70,9 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	String appyMemberOrFunc(ExpressionVariable typeInst, FunctionCall fc, Boolean asPred);
 
 	ITypeInstanceOpArgs genericTypeInstance(TheoryImportCache thyCache);
+
+	String constructorArgsForTypeInstance(ITypeInstance typeInst);
+
+	String constructWithTypeInstances(List<ITypeInstance> instList);
 
 } // ClassDecl

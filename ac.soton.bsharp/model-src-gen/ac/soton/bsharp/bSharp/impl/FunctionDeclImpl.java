@@ -825,7 +825,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	@Override
-	public ITypeInstance getTypeInstance() {
+	public ITypeInstance getTypeInstance(EObject context) {
 		return evBTypeInstance;
 	}
 	
@@ -1002,7 +1002,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * call, so this is a reference and not suitable for finding the ExpressionContainer
 		 * */
 		IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
-		ITypeInstance typeInst =  container.getTypeInstance();
+		ITypeInstance typeInst =  container.getTypeInstance(fc);
 		
 		ClassDecl containType = CompilationUtil.getClassDecl(this);
 		

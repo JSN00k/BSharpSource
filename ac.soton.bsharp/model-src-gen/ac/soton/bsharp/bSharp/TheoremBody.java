@@ -40,6 +40,4 @@ public interface TheoremBody extends ITheoremContainer {
 	 */
 	EList<TheoremDecl> getTheoremDecl();
 
-	void compile();
-
 } // TheoremBody

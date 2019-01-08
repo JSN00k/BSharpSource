@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.eclipse.emf.ecore.EObject;
 
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
 /* When creating ClassDecl, Theorems, or functions, the type (or supertypes) in which each of these is 
@@ -15,7 +16,7 @@ public interface ITypeInstance {
 	ClassDecl bSharpType();
 	
 	/* Returns a list of the polymophic types used to construct the instance. This only 
-	 * includes teh polymophic context, it does not include the constructed type.*/
+	 * includes the polymophic context, it does not include the constructed type.*/
 	ArrayList<String> typeConstructionTypes();
 	
 	/* Returns a statement with enough information to type the type and variable names
@@ -37,5 +38,15 @@ public interface ITypeInstance {
 	/* A context needs to be passed about so that it's possible to work out which objects are in scope.
 	 * This has come up when searching for default instances in concrete types.
 	 */
-	String eventBTypeInstanceForType(ClassDecl type, EObject context);
+	String eventBTypeInstanceForType(ClassDecl type);
+	
+	/* A later implementation may maintain base types in a different way, and it may be good to get this
+	 * more general base type with a 'baseType()' function. 
+	 */
+	String baseTypeString();
+	
+	/* In the base implementation TypeInstanceAbstract this just calls baseTypeOfPoly.getPrimativeTypesListByDeconstruction() on the
+	 * baseTypeString. In a better implementation 
+	 */
+	String baseTypeDeconstructedToPrimativeTypes(TypeBuilder baseTypeOfPoly);
 }

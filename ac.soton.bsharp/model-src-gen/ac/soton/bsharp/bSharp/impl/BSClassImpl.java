@@ -433,10 +433,10 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	@Override
-	public void compile() throws Exception {
+	public void compile(IProgressMonitor monitor) throws Exception {
 		compileOp();
 		compileGetterOperators();
-		block.compile();
+		block.compile(monitor);
 	}
 
 	public boolean isNewTypeClass() {
@@ -463,7 +463,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * a result it actually contains an instance representing the supertype.
 	 */
 	@Override
-	public ITypeInstance getTypeInstance() {
+	public ITypeInstance getTypeInstance(EObject context) {
 		/*
 		 * Changing the way that this works could allow the creation of a constructed
 		 * type rather than a destructed type. For now this is a big change, and needs
@@ -885,7 +885,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		String result = eventBPolymorphicTypeConstructorName();
 		
-		
+		result += context.compileEventBTypeConstructorArguments(instList);
+		return result;
 	}
 
 	@Override
@@ -1121,6 +1122,16 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			result += ", " + deconstructionType;
 		}
 
+		return result;
+	}
+	
+	/* Uses the type constructor to construct the type from the type instance. The context
+	 * needs to be passed about to determine which objects are in scope. */
+	@Override
+	public String constructorArgsForTypeInstance(ITypeInstance typeInst) {
+		String result = typeInst.baseTypeDeconstructedToPrimativeTypes(baseType());
+		result += ", " + typeInst.eventBTypeInstanceForType(this);
+		
 		return result;
 	}
 

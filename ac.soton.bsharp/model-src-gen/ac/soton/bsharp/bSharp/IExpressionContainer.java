@@ -19,5 +19,5 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
  */
 public interface IExpressionContainer extends EObject {
 
-	ITypeInstance getTypeInstance();
+	ITypeInstance getTypeInstance(EObject context);
 } // IExpressionContainer

@@ -1479,7 +1479,7 @@ public interface BSharpPackage extends EPackage {
 	int INSTANCE__CLASS_NAME = IEXPRESSION_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * The feature id for the '<em><b>Context</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3230,10 +3230,10 @@ public interface BSharpPackage extends EPackage {
 	EReference getInstance_ClassName();
 
 	/**
-	 * Returns the meta object for the reference '{@link ac.soton.bsharp.bSharp.Instance#getContext <em>Context</em>}'.
+	 * Returns the meta object for the reference list '{@link ac.soton.bsharp.bSharp.Instance#getContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Context</em>'.
+	 * @return the meta object for the reference list '<em>Context</em>'.
 	 * @see ac.soton.bsharp.bSharp.Instance#getContext()
 	 * @see #getInstance()
 	 * @generated
@@ -4524,7 +4524,7 @@ public interface BSharpPackage extends EPackage {
 		EReference INSTANCE__CLASS_NAME = eINSTANCE.getInstance_ClassName();
 
 		/**
-		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Context</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

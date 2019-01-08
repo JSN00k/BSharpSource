@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.TheoremDecl;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -151,7 +152,7 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
 	}
 
 	@Override
-	public void compile() {
+	public void compile(IProgressMonitor monitor) {
 		
 		for (TheoremDecl theorem : theoremDecl) {
 			theorem.compile();

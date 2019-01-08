@@ -5,6 +5,8 @@ package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.ecore.EObject;
 
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IClass Instance</b></em>'.
@@ -16,4 +18,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface IClassInstance extends EObject {
+
+	ITypeInstance getTypeInstance(EObject context);
 } // IClassInstance

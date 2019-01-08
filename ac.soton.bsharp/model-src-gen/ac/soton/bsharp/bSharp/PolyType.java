@@ -11,6 +11,7 @@ import org.eventb.theory.core.INewOperatorDefinition;
 
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,5 +59,7 @@ public interface PolyType extends GenName {
 	 * 
 	 */
 	ArrayList<Tuple2<String, String>> eBNamesAndTypes(TheoryImportCache thyCache);
+
+	String getTypeConstructorArgumentsFromTypeInstance(ITypeInstance instance);
 
 } // PolyContextTypes

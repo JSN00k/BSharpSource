@@ -2,6 +2,8 @@ package ac.soton.bsharp.typeInstanceRepresentation;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EObject;
+
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
@@ -10,7 +12,7 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.mapletTree.IMapletNode;
 import ac.soton.bsharp.mapletTree.MapletTree;
 
-public class MapletTypeInstance implements ITypeInstance {
+public class MapletTypeInstance extends TypeInstanceAbstract implements ITypeInstance {
 	
 	protected IMapletNode tree;
 	protected ArrayList<Tuple2<String, String>> typedVariableConstructorsTyped;
@@ -101,6 +103,24 @@ public class MapletTypeInstance implements ITypeInstance {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public String baseTypeString() {
+		ClassDecl classDecl = bSharpType();
+		
+		if (classDecl instanceof Datatype) {
+			return eventBTypeInstance();
+		}
+		
+		int prjsRequired = ((BSClass)classDecl).prjsRequiredForBaseType();
+		
+		IMapletNode currentNode = tree;
+		for (int i = 0; i < prjsRequired; ++i) {
+			currentNode = ((MapletTree)currentNode).left;
+		}
+		
+		return currentNode.compileToString();
 	}
 
 }

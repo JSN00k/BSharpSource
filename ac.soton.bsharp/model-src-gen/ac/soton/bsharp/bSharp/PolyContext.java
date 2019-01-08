@@ -4,12 +4,15 @@
 package ac.soton.bsharp.bSharp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,6 +66,8 @@ public interface PolyContext extends EObject {
 	ArrayList<String> namesForPolyContextTypes();
 	
 	boolean isEmpty();
+
+	String compileEventBTypeConstructorArguments(List<ITypeInstance> instList);
 
 	
 } // PolyContext

@@ -6,6 +6,8 @@ package ac.soton.bsharp.bSharp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.mapletTree.IMapletNode;
 import ac.soton.bsharp.theory.util.TheoryImportCache;

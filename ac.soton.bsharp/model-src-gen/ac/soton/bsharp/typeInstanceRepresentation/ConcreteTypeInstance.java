@@ -15,12 +15,15 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 /* This could be changed into a Concrete type instance that contains a type, and a concrete type instance that contains
  * an Instance.
  */
-public class ConcreteTypeInstance implements ITypeInstance {
+public class ConcreteTypeInstance extends TypeInstanceAbstract implements ITypeInstance {
 	
 	protected IClassInstance type;
+	/* the context is used to know what was in scope when this type variable was created. */
+	protected EObject context;
 	
-	public ConcreteTypeInstance(IClassInstance t) {
+	public ConcreteTypeInstance(IClassInstance t, EObject context) {
 		type = t;
+		this.context = context;
 	}
 
 	@Override
@@ -44,7 +47,7 @@ public class ConcreteTypeInstance implements ITypeInstance {
 	}
 
 	@Override
-	public String eventBTypeInstanceForType(ClassDecl otherType, EObject context) {
+	public String eventBTypeInstanceForType(ClassDecl otherType) {
 		/* If the IClassInstance is a Instance then the first thing to do is check the hierarchy 
 		 * of the Instance before checking if there is a possible default type instance that could be used.
 		 */
@@ -52,8 +55,8 @@ public class ConcreteTypeInstance implements ITypeInstance {
 			BSClass bsClass = ((Instance)type).getClassName();
 			
 			if (bsClass.isSuperType(otherType)) {
-				ITypeInstance typeInst = ((Instance)type).getTypeInstance();
-				return typeInst.eventBTypeInstanceForType(otherType, context);
+				ITypeInstance typeInst = ((Instance)type).getTypeInstance(context);
+				return typeInst.eventBTypeInstanceForType(otherType);
 			}
 		}
 		
@@ -73,7 +76,7 @@ public class ConcreteTypeInstance implements ITypeInstance {
 			}
 		});
 		
-		return defaultInst.getTypeInstance().eventBTypeInstanceForType(otherType, context);
+		return defaultInst.getTypeInstance(context).eventBTypeInstanceForType(otherType);
 	}
 
 	@Override

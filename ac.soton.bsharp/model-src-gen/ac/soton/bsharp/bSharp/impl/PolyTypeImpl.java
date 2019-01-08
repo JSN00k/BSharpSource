@@ -18,6 +18,7 @@ import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -220,6 +221,16 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		 * going to be taken over by the ITypeInstance interface.
 		 */
 		return sType.deconstructEventBTypeToArguments(deconstructionType(callType, containerType));
+	}
+	
+	@Override
+	public String getTypeConstructorArgumentsFromTypeInstance(ITypeInstance instance) {
+		if (superTypes == null || superTypes.isEmpty()) {
+			return instance.eventBTypeInstance();
+		}
+		
+		BSClass sType = (BSClass)superTypes.get(0);
+		return sType.constructorArgsForTypeInstance(instance);
 	}
 	
 	@Override

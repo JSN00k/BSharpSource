@@ -23,6 +23,8 @@ public class FileCompiler {
     this.elements = elem;
   }
   
+  protected IProgressMonitor nullMonitor = new NullProgressMonitor();
+  
   public void compile() {
     try {
       boolean _isEmpty = this.elements.isEmpty();
@@ -35,7 +37,7 @@ public class FileCompiler {
           TheoryImportCache theoryCache = CompilationUtil.getTheoryCacheForElement(FileCompiler.this.elements.get(0));
           for (final TopLevelInstance element : FileCompiler.this.elements) {
             try {
-              element.compile();
+              element.compile(FileCompiler.this.nullMonitor);
             } catch (final Throwable _t) {
               if (_t instanceof Exception) {
                 final Exception exception = (Exception)_t;

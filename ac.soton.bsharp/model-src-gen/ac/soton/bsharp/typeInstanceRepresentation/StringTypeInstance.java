@@ -2,13 +2,15 @@ package ac.soton.bsharp.typeInstanceRepresentation;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EObject;
+
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
-public class StringTypeInstance implements ITypeInstanceOpArgs {
+public class StringTypeInstance extends TypeInstanceAbstract implements ITypeInstanceOpArgs {
 	
 	protected ClassDecl classDecl;
 	protected ArrayList<Tuple2<String, String>> constructingTypesTyped;
@@ -68,9 +70,9 @@ public class StringTypeInstance implements ITypeInstanceOpArgs {
 		}
 		
 		if (type instanceof Datatype) {
-			prjsRequired = ((BSClass)type).prjsRequiredForBaseType();
+			prjsRequired = ((BSClass)classDecl).prjsRequiredForBaseType();
 		} else {
-			prjsRequired = ((BSClass)type).prjsRequiredForSupertype((BSClass)classDecl);
+			prjsRequired = ((BSClass)classDecl).prjsRequiredForSupertype((BSClass)type);
 		}
 		
 		return CompilationUtil.wrapNameInPrj1s(eventBTypeInstance(), prjsRequired);
@@ -89,6 +91,4 @@ public class StringTypeInstance implements ITypeInstanceOpArgs {
 	public ArrayList<Tuple2<String, String>> individuallyTypedConstructionArgs() {
 		return typingStatementForInstance();
 	}
-
-
 }

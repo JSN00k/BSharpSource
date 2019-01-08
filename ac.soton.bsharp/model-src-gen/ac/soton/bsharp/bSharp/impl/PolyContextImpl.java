@@ -3,18 +3,18 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
-import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
-import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -227,9 +227,34 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 
 		String result = "(";
 		for (int i = 0; i < polyTypes.size(); ++i) {
-			PolyType pType = polyTypes.get(0);
+			PolyType pType = polyTypes.get(i);
 			
 			result += pType.deconstructTypeToArguments(ctx.getTypeName().get(i), containerType);
+		}
+		
+		result += ")";
+		
+		return result;
+	}
+	
+	/* A type constructor needs the polymorphic types compiled. For instance there may be a type constructor
+	 * of the form Homomorphism<S : Monoid, T : Monoid> ... The arguments for the EventB type constructor 
+	 * would be Monoid_T(S1 : P(S_EvB), S : Monoid_T(S), T1 : P(T_EvB), T : Monoid(T)). Given the statement
+	 * Homomophism<pNat_AddMon, pNat_TimesMon> this will compile to the correct EventB statement:
+	 * 
+	 * Homomorphisc(pNat, pNat |-> = |-> add |-> zero, ...)
+	 */
+	@Override
+	public String compileEventBTypeConstructorArguments(List<ITypeInstance> instList) {
+		if (polyTypes == null || polyTypes.isEmpty()) {
+			return "()";
+		}
+		
+		String result = "(";
+		for (int i = 0; i < polyTypes.size(); ++i) {
+			PolyType pType = polyTypes.get(i);
+			
+			result += pType.getTypeConstructorArgumentsFromTypeInstance(instList.get(i));
 		}
 		
 		result += ")";

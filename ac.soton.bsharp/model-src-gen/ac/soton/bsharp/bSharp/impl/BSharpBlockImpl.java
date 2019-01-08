@@ -12,6 +12,7 @@ import ac.soton.bsharp.bSharp.TheoremBody;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -188,7 +189,7 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 	}
 
 	@Override
-	public void compile() {
+	public void compile(IProgressMonitor monitor) {
 		if (functions != null && !functions.isEmpty()) {
 			for (FunctionDecl func : functions) {
 				func.compile();
@@ -197,7 +198,7 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 		
 		if (theorems != null && !theorems.isEmpty()) {
 			for (ITheoremContainer theormContainer : theorems) {
-				theormContainer.compile();
+				theormContainer.compile(monitor);
 			}
 		}
 	}

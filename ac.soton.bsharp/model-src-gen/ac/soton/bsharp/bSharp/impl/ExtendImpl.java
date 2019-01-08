@@ -16,6 +16,7 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -396,8 +397,8 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	
 	
 	@Override
-	public void compile() {
-		block.compile();
+	public void compile(IProgressMonitor monitor) {
+		block.compile(monitor);
 	}
 
 	@Override

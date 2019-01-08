@@ -75,6 +75,4 @@ public interface Extend extends IVariableProvider, IPolyTypeProvider, IEventBPre
 	 */
 	void setName(String value);
 
-	void compile();
-
 } // Extend

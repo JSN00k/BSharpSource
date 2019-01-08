@@ -26,10 +26,12 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.MapletTypeInstance;
 import ac.soton.bsharp.util.EcoreUtilJ;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.resources.mapping.RemoteResourceMappingContext;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -46,6 +48,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.linking.LinkingScopeProviderBinding;
@@ -113,14 +116,14 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	protected BSClass className;
 
 	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContext()
 	 * @generated
 	 * @ordered
 	 */
-	protected IClassInstance context;
+	protected EList<IClassInstance> context;
 
 	/**
 	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
@@ -189,42 +192,18 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__CLASS_NAME, oldClassName, className));
 	}
 
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IClassInstance getContext() {
-		if (context != null && context.eIsProxy()) {
-			InternalEObject oldContext = (InternalEObject)context;
-			context = (IClassInstance)eResolveProxy(oldContext);
-			if (context != oldContext) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.INSTANCE__CONTEXT, oldContext, context));
-			}
+	public EList<IClassInstance> getContext() {
+		if (context == null) {
+			context = new EObjectResolvingEList<IClassInstance>(IClassInstance.class, this, BSharpPackage.INSTANCE__CONTEXT);
 		}
 		return context;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IClassInstance basicGetContext() {
-		return context;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContext(IClassInstance newContext) {
-		IClassInstance oldContext = context;
-		context = newContext;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__CONTEXT, oldContext, context));
 	}
 
 	/**
@@ -293,8 +272,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				if (resolve) return getClassName();
 				return basicGetClassName();
 			case BSharpPackage.INSTANCE__CONTEXT:
-				if (resolve) return getContext();
-				return basicGetContext();
+				return getContext();
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return getArguments();
 		}
@@ -317,7 +295,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				setClassName((BSClass)newValue);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
-				setContext((IClassInstance)newValue);
+				getContext().clear();
+				getContext().addAll((Collection<? extends IClassInstance>)newValue);
 				return;
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				getArguments().clear();
@@ -342,7 +321,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				setClassName((BSClass)null);
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
-				setContext((IClassInstance)null);
+				getContext().clear();
 				return;
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				getArguments().clear();
@@ -364,7 +343,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 			case BSharpPackage.INSTANCE__CLASS_NAME:
 				return className != null;
 			case BSharpPackage.INSTANCE__CONTEXT:
-				return context != null;
+				return context != null && !context.isEmpty();
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
 		}
@@ -496,7 +475,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 *  the Monoid type class only adds the "ident" variable, so a semi-group is also being created, but the
 	 *  setoid part is inferred and the default setoid is to be used.
 	 */
-	void compileMembershipOperatorExpr() {
+	void compileMembershipOperatorExpr(IProgressMonitor monitor) {
 		String membershipThmName = getName() + "in" + className.getName();
 		
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
@@ -505,20 +484,27 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		 * before I get to this point. This is something that I need to put some consideration into. Special note
 		 * needs to be given to the naming scheme.
 		 */
-		String ebPred = typeInst.eventBTypeInstance() + " ∈ " + className.constructWithIClassInstance(context);
+		List<IClassInstance> ctx = getContext();
+		ArrayList<ITypeInstance> typeInstList = new ArrayList<ITypeInstance>();
+		
+		for (IClassInstance ci : ctx) {
+			typeInstList.add(ci.getTypeInstance(this));
+		}
+		
+		String ebPred = typeInst.eventBTypeInstance() + " ∈ " + className.constructWithTypeInstances(typeInstList);
 		
 		try {
-			TheoryUtils.createTheorem(thyCache.theory, membershipThmName, predStr, monitor)
+			TheoryUtils.createTheorem(thyCache.theory, membershipThmName, ebPred, monitor);
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.err.println("Failed to compile Instance theorem with error: " + e.getMessage());
 		}
 	}
 	
 	@Override 
-	public void compile() {
+	public void compile(IProgressMonitor monitor) {
 		IMapletNode mapletTree = concreteInstanceMapletTree();
-		//typeInst = new ConcreteTypeInstance(getClassName());
-		//compileMembershipOperatorExpr();
+		typeInst = new ConcreteTypeInstance(getClassName(), this);
+		compileMembershipOperatorExpr(monitor);
 		
 		//TODO: Some compiling!
 		
@@ -526,7 +512,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	}
 
 	@Override
-	public ITypeInstance getTypeInstance() {
+	public ITypeInstance getTypeInstance(EObject context) {
 		return typeInst;
 	}
 
@@ -541,7 +527,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 
 	@Override
 	public IMapletNode concreteInstanceMapletTree() {
-		return getClassName().concreteTypeMapletTree(getContext(), arguments, this);
+		//return getClassName().concreteTypeMapletTree(getContext(), arguments, this);
+		return null;
 	}
 	
 	@Override
@@ -582,5 +569,4 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		
 		return null;
 	}
-
 } //InstanceImpl

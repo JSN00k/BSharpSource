@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -291,7 +292,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	}
 
 	@Override
-	public ITypeInstance getTypeInstance() {
+	public ITypeInstance getTypeInstance(EObject context) {
 		if (expr instanceof QuantLambda) {
 			return ((QuantLambda)expr).getClassTypeInst();
 		}

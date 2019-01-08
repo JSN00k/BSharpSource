@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -54,30 +55,20 @@ public interface Instance extends IExpressionContainer, ITheoremContainer, IClas
 	void setClassName(BSClass value);
 
 	/**
-	 * Returns the value of the '<em><b>Context</b></em>' reference.
+	 * Returns the value of the '<em><b>Context</b></em>' reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.IClassInstance}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Context</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context</em>' reference.
-	 * @see #setContext(IClassInstance)
+	 * @return the value of the '<em>Context</em>' reference list.
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance_Context()
 	 * @model
 	 * @generated
 	 */
-	IClassInstance getContext();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Instance#getContext <em>Context</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context</em>' reference.
-	 * @see #getContext()
-	 * @generated
-	 */
-	void setContext(IClassInstance value);
+	EList<IClassInstance> getContext();
 
 	/**
 	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
@@ -95,7 +86,7 @@ public interface Instance extends IExpressionContainer, ITheoremContainer, IClas
 	 */
 	EList<Expression> getArguments();
 
-	void compile();
+	void compile(IProgressMonitor monitor);
 
 	ClassDecl getBaseType();
 	
