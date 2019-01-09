@@ -4,9 +4,8 @@
 package ac.soton.bsharp.bSharp.provider;
 
 
-import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.BodyElements;
+import ac.soton.bsharp.bSharp.WrappedInfix;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,24 +15,24 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link ac.soton.bsharp.bSharp.BodyElements} object.
+ * This is the item provider adapter for a {@link ac.soton.bsharp.bSharp.WrappedInfix} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BodyElementsItemProvider 
+public class WrappedInfixItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -47,7 +46,7 @@ public class BodyElementsItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BodyElementsItemProvider(AdapterFactory adapterFactory) {
+	public WrappedInfixItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,51 +61,65 @@ public class BodyElementsItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addFuncNamePropertyDescriptor(object);
+			addInbuiltPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Func Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(BSharpPackage.Literals.BODY_ELEMENTS__CLASSES);
-			childrenFeatures.add(BSharpPackage.Literals.BODY_ELEMENTS__EXTENDS);
-			childrenFeatures.add(BSharpPackage.Literals.BODY_ELEMENTS__INSTANCES);
-		}
-		return childrenFeatures;
+	protected void addFuncNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WrappedInfix_funcName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WrappedInfix_funcName_feature", "_UI_WrappedInfix_type"),
+				 BSharpPackage.Literals.WRAPPED_INFIX__FUNC_NAME,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Inbuilt feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addInbuiltPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WrappedInfix_inbuilt_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WrappedInfix_inbuilt_feature", "_UI_WrappedInfix_type"),
+				 BSharpPackage.Literals.WRAPPED_INFIX__INBUILT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns BodyElements.gif.
+	 * This returns WrappedInfix.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BodyElements"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WrappedInfix"));
 	}
 
 	/**
@@ -117,7 +130,10 @@ public class BodyElementsItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_BodyElements_type");
+		String label = ((WrappedInfix)object).getInbuilt();
+		return label == null || label.length() == 0 ?
+			getString("_UI_WrappedInfix_type") :
+			getString("_UI_WrappedInfix_type") + " " + label;
 	}
 
 
@@ -132,11 +148,9 @@ public class BodyElementsItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BodyElements.class)) {
-			case BSharpPackage.BODY_ELEMENTS__CLASSES:
-			case BSharpPackage.BODY_ELEMENTS__EXTENDS:
-			case BSharpPackage.BODY_ELEMENTS__INSTANCES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(WrappedInfix.class)) {
+			case BSharpPackage.WRAPPED_INFIX__INBUILT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -152,26 +166,6 @@ public class BodyElementsItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.BODY_ELEMENTS__CLASSES,
-				 BSharpFactory.eINSTANCE.createBSClass()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.BODY_ELEMENTS__CLASSES,
-				 BSharpFactory.eINSTANCE.createDatatype()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.BODY_ELEMENTS__EXTENDS,
-				 BSharpFactory.eINSTANCE.createExtend()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.BODY_ELEMENTS__INSTANCES,
-				 BSharpFactory.eINSTANCE.createInstance()));
 	}
 
 	/**

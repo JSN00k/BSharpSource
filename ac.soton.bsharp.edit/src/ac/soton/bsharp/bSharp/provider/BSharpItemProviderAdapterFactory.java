@@ -96,29 +96,6 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.TopLevelInstance} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TopLevelInstanceItemProvider topLevelInstanceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.TopLevelInstance}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTopLevelInstanceAdapter() {
-		if (topLevelInstanceItemProvider == null) {
-			topLevelInstanceItemProvider = new TopLevelInstanceItemProvider(this);
-		}
-
-		return topLevelInstanceItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.TopLevel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -211,6 +188,29 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.InbuiltInfix} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InbuiltInfixItemProvider inbuiltInfixItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.InbuiltInfix}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInbuiltInfixAdapter() {
+		if (inbuiltInfixItemProvider == null) {
+			inbuiltInfixItemProvider = new InbuiltInfixItemProvider(this);
+		}
+
+		return inbuiltInfixItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.FileImport} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -254,29 +254,6 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 		}
 
 		return localImportItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.BodyElements} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BodyElementsItemProvider bodyElementsItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.BodyElements}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBodyElementsAdapter() {
-		if (bodyElementsItemProvider == null) {
-			bodyElementsItemProvider = new BodyElementsItemProvider(this);
-		}
-
-		return bodyElementsItemProvider;
 	}
 
 	/**
@@ -553,6 +530,29 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 		}
 
 		return whereItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.WrappedInfix} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WrappedInfixItemProvider wrappedInfixItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.WrappedInfix}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWrappedInfixAdapter() {
+		if (wrappedInfixItemProvider == null) {
+			wrappedInfixItemProvider = new WrappedInfixItemProvider(this);
+		}
+
+		return wrappedInfixItemProvider;
 	}
 
 	/**
@@ -1138,47 +1138,47 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	 */
 	public void dispose() {
 		if (typeItemProvider != null) typeItemProvider.dispose();
-		if (topLevelInstanceItemProvider != null) topLevelInstanceItemProvider.dispose();
-		if (topLevelItemProvider != null) topLevelItemProvider.dispose();
-		if (topLevelFileItemProvider != null) topLevelFileItemProvider.dispose();
-		if (topLevelImportItemProvider != null) topLevelImportItemProvider.dispose();
-		if (globalImportItemProvider != null) globalImportItemProvider.dispose();
-		if (fileImportItemProvider != null) fileImportItemProvider.dispose();
-		if (localImportItemProvider != null) localImportItemProvider.dispose();
-		if (bodyElementsItemProvider != null) bodyElementsItemProvider.dispose();
+		if (bracketItemProvider != null) bracketItemProvider.dispose();
 		if (bsClassItemProvider != null) bsClassItemProvider.dispose();
-		if (instNameItemProvider != null) instNameItemProvider.dispose();
 		if (bSharpBlockItemProvider != null) bSharpBlockItemProvider.dispose();
-		if (genNameItemProvider != null) genNameItemProvider.dispose();
-		if (polyContextItemProvider != null) polyContextItemProvider.dispose();
-		if (polyTypeItemProvider != null) polyTypeItemProvider.dispose();
-		if (superTypeListItemProvider != null) superTypeListItemProvider.dispose();
-		if (typeConstructorItemProvider != null) typeConstructorItemProvider.dispose();
-		if (typeConstrBracketItemProvider != null) typeConstrBracketItemProvider.dispose();
+		if (classVarDeclItemProvider != null) classVarDeclItemProvider.dispose();
 		if (constructedTypeItemProvider != null) constructedTypeItemProvider.dispose();
-		if (typeDeclContextItemProvider != null) typeDeclContextItemProvider.dispose();
-		if (whereItemProvider != null) whereItemProvider.dispose();
 		if (datatypeItemProvider != null) datatypeItemProvider.dispose();
 		if (datatypeConstructorItemProvider != null) datatypeConstructorItemProvider.dispose();
 		if (extendItemProvider != null) extendItemProvider.dispose();
+		if (expressionItemProvider != null) expressionItemProvider.dispose();
+		if (fileImportItemProvider != null) fileImportItemProvider.dispose();
+		if (functionCallItemProvider != null) functionCallItemProvider.dispose();
 		if (functionDeclItemProvider != null) functionDeclItemProvider.dispose();
-		if (matchStatementItemProvider != null) matchStatementItemProvider.dispose();
+		if (genNameItemProvider != null) genNameItemProvider.dispose();
+		if (globalImportItemProvider != null) globalImportItemProvider.dispose();
+		if (inbuiltInfixItemProvider != null) inbuiltInfixItemProvider.dispose();
+		if (infixItemProvider != null) infixItemProvider.dispose();
+		if (instNameItemProvider != null) instNameItemProvider.dispose();
+		if (instanceItemProvider != null) instanceItemProvider.dispose();
+		if (localImportItemProvider != null) localImportItemProvider.dispose();
 		if (matchCaseItemProvider != null) matchCaseItemProvider.dispose();
+		if (matchStatementItemProvider != null) matchStatementItemProvider.dispose();
+		if (namedObjectItemProvider != null) namedObjectItemProvider.dispose();
+		if (polyContextItemProvider != null) polyContextItemProvider.dispose();
+		if (polyTypeItemProvider != null) polyTypeItemProvider.dispose();
+		if (prefixItemProvider != null) prefixItemProvider.dispose();
+		if (quantLambdaItemProvider != null) quantLambdaItemProvider.dispose();
+		if (superTypeListItemProvider != null) superTypeListItemProvider.dispose();
 		if (theoremBodyItemProvider != null) theoremBodyItemProvider.dispose();
 		if (theoremDeclItemProvider != null) theoremDeclItemProvider.dispose();
+		if (topLevelFileItemProvider != null) topLevelFileItemProvider.dispose();
+		if (topLevelItemProvider != null) topLevelItemProvider.dispose();
+		if (topLevelImportItemProvider != null) topLevelImportItemProvider.dispose();
+		if (typeConstructorItemProvider != null) typeConstructorItemProvider.dispose();
+		if (typeConstrBracketItemProvider != null) typeConstrBracketItemProvider.dispose();
+		if (typeDeclContextItemProvider != null) typeDeclContextItemProvider.dispose();
+		if (typePowerSetItemProvider != null) typePowerSetItemProvider.dispose();
+		if (typedVariableItemProvider != null) typedVariableItemProvider.dispose();
 		if (typedVariableListItemProvider != null) typedVariableListItemProvider.dispose();
 		if (variableTypingItemProvider != null) variableTypingItemProvider.dispose();
-		if (typedVariableItemProvider != null) typedVariableItemProvider.dispose();
-		if (quantLambdaItemProvider != null) quantLambdaItemProvider.dispose();
-		if (expressionItemProvider != null) expressionItemProvider.dispose();
-		if (functionCallItemProvider != null) functionCallItemProvider.dispose();
-		if (classVarDeclItemProvider != null) classVarDeclItemProvider.dispose();
-		if (prefixItemProvider != null) prefixItemProvider.dispose();
-		if (bracketItemProvider != null) bracketItemProvider.dispose();
-		if (instanceItemProvider != null) instanceItemProvider.dispose();
-		if (infixItemProvider != null) infixItemProvider.dispose();
-		if (namedObjectItemProvider != null) namedObjectItemProvider.dispose();
-		if (typePowerSetItemProvider != null) typePowerSetItemProvider.dispose();
+		if (whereItemProvider != null) whereItemProvider.dispose();
+		if (wrappedInfixItemProvider != null) wrappedInfixItemProvider.dispose();
 	}
 
 }

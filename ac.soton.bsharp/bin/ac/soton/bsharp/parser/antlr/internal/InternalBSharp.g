@@ -3398,7 +3398,7 @@ ruleInstance returns [EObject current=null]
 					newLeafNode(otherlv_3, grammarAccess.getInstanceAccess().getContextIClassInstanceCrossReference_3_0());
 				}
 			)
-		)
+		)+
 		otherlv_4='>'
 		{
 			newLeafNode(otherlv_4, grammarAccess.getInstanceAccess().getGreaterThanSignKeyword_4());

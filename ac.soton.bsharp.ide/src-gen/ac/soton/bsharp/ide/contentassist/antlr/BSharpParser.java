@@ -32,6 +32,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, BSharpGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getTHM_NAMEAccess().getAlternatives_0(), "rule__THM_NAME__Alternatives_0");
+			builder.put(grammarAccess.getIBodyElementsContainerAccess().getAlternatives(), "rule__IBodyElementsContainer__Alternatives");
 			builder.put(grammarAccess.getClassDeclAccess().getAlternatives(), "rule__ClassDecl__Alternatives");
 			builder.put(grammarAccess.getGenNameAccess().getAlternatives(), "rule__GenName__Alternatives");
 			builder.put(grammarAccess.getTopLevelImportAccess().getAlternatives_0(), "rule__TopLevelImport__Alternatives_0");

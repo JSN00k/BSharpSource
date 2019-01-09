@@ -36,13 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class TheoremDeclItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends IExpressionContainerItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -188,12 +182,7 @@ public class TheoremDeclItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
-				 BSharpFactory.eINSTANCE.createMatchStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
-				 BSharpFactory.eINSTANCE.createQuantLambda()));
+				 BSharpFactory.eINSTANCE.createBracket()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -203,28 +192,22 @@ public class TheoremDeclItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createInfix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createMatchStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
 				 BSharpFactory.eINSTANCE.createPrefix()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
-				 BSharpFactory.eINSTANCE.createBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
-				 BSharpFactory.eINSTANCE.createInfix()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return BSharpEditPlugin.INSTANCE;
+				 BSharpFactory.eINSTANCE.createQuantLambda()));
 	}
 
 }

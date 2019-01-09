@@ -142,12 +142,7 @@ public class BracketItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.BRACKET__CHILD,
-				 BSharpFactory.eINSTANCE.createMatchStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.BRACKET__CHILD,
-				 BSharpFactory.eINSTANCE.createQuantLambda()));
+				 BSharpFactory.eINSTANCE.createBracket()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -157,17 +152,22 @@ public class BracketItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.BRACKET__CHILD,
+				 BSharpFactory.eINSTANCE.createInfix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.BRACKET__CHILD,
+				 BSharpFactory.eINSTANCE.createMatchStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.BRACKET__CHILD,
 				 BSharpFactory.eINSTANCE.createPrefix()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.BRACKET__CHILD,
-				 BSharpFactory.eINSTANCE.createBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.BRACKET__CHILD,
-				 BSharpFactory.eINSTANCE.createInfix()));
+				 BSharpFactory.eINSTANCE.createQuantLambda()));
 	}
 
 }

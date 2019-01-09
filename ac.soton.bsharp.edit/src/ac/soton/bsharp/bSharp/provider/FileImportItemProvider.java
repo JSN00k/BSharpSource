@@ -61,8 +61,9 @@ public class FileImportItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFileNamePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
+			addFileNamePropertyDescriptor(object);
+			addFileReferencePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -85,6 +86,28 @@ public class FileImportItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the File Reference feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFileReferencePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FileImport_fileReference_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FileImport_fileReference_feature", "_UI_FileImport_type"),
+				 BSharpPackage.Literals.FILE_IMPORT__FILE_REFERENCE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

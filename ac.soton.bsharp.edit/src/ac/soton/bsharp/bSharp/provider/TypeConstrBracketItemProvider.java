@@ -137,17 +137,17 @@ public class TypeConstrBracketItemProvider extends TypeBuilderItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.TYPE_CONSTR_BRACKET__CHILD,
+				 BSharpFactory.eINSTANCE.createConstructedType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.TYPE_CONSTR_BRACKET__CHILD,
 				 BSharpFactory.eINSTANCE.createTypeConstructor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.TYPE_CONSTR_BRACKET__CHILD,
 				 BSharpFactory.eINSTANCE.createTypeConstrBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.TYPE_CONSTR_BRACKET__CHILD,
-				 BSharpFactory.eINSTANCE.createConstructedType()));
 
 		newChildDescriptors.add
 			(createChildParameter

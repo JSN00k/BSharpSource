@@ -63,8 +63,8 @@ public class ClassDeclItemProvider extends GenNameItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK);
 			childrenFeatures.add(BSharpPackage.Literals.CLASS_DECL__CONTEXT);
-			childrenFeatures.add(BSharpPackage.Literals.CLASS_DECL__BLOCK);
 		}
 		return childrenFeatures;
 	}
@@ -120,8 +120,8 @@ public class ClassDeclItemProvider extends GenNameItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ClassDecl.class)) {
-			case BSharpPackage.CLASS_DECL__CONTEXT:
 			case BSharpPackage.CLASS_DECL__BLOCK:
+			case BSharpPackage.CLASS_DECL__CONTEXT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -141,13 +141,13 @@ public class ClassDeclItemProvider extends GenNameItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BSharpPackage.Literals.CLASS_DECL__CONTEXT,
-				 BSharpFactory.eINSTANCE.createPolyContext()));
+				(BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK,
+				 BSharpFactory.eINSTANCE.createBSharpBlock()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BSharpPackage.Literals.CLASS_DECL__BLOCK,
-				 BSharpFactory.eINSTANCE.createBSharpBlock()));
+				(BSharpPackage.Literals.CLASS_DECL__CONTEXT,
+				 BSharpFactory.eINSTANCE.createPolyContext()));
 	}
 
 }

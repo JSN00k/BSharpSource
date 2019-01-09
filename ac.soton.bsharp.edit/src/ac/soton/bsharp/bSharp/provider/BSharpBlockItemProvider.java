@@ -159,6 +159,11 @@ public class BSharpBlockItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.BSHARP_BLOCK__THEOREMS,
+				 BSharpFactory.eINSTANCE.createInstance()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.BSHARP_BLOCK__THEOREMS,
 				 BSharpFactory.eINSTANCE.createTheoremBody()));
 	}
 

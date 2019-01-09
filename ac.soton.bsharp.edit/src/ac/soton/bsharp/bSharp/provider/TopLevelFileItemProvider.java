@@ -175,7 +175,17 @@ public class TopLevelFileItemProvider extends ITheoryImportCacheProviderItemProv
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS,
-				 BSharpFactory.eINSTANCE.createBodyElements()));
+				 BSharpFactory.eINSTANCE.createBSClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS,
+				 BSharpFactory.eINSTANCE.createDatatype()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS,
+				 BSharpFactory.eINSTANCE.createExtend()));
 	}
 
 }

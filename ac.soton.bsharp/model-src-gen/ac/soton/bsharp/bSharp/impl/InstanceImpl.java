@@ -10,11 +10,13 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FileImport;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.ITheoremContainer;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.NamedObject;
+import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
@@ -32,6 +34,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.mapping.RemoteResourceMappingContext;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -62,6 +65,9 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.util.EcoreGenericsUtil;
 import org.eclipse.xtext.util.SimpleCache;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
+import org.eventb.core.ast.extension.IOperatorProperties.Notation;
+import org.eventb.theory.core.INewOperatorDefinition;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -80,6 +86,7 @@ import com.google.inject.Inject;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getClassNameName <em>Class Name Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -134,6 +141,26 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * @ordered
 	 */
 	protected EList<Expression> arguments;
+
+	/**
+	 * The default value of the '{@link #getClassNameName() <em>Class Name Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClassNameName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CLASS_NAME_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getClassNameName() <em>Class Name Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClassNameName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String classNameName = CLASS_NAME_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,6 +248,27 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getClassNameName() {
+		return classNameName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClassNameName(String newClassNameName) {
+		String oldClassNameName = classNameName;
+		classNameName = newClassNameName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__CLASS_NAME_NAME, oldClassNameName, classNameName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 */
 	public String getName() {
 		if (name == null) {
@@ -275,6 +323,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				return getContext();
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return getArguments();
+			case BSharpPackage.INSTANCE__CLASS_NAME_NAME:
+				return getClassNameName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -302,6 +352,9 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				getArguments().clear();
 				getArguments().addAll((Collection<? extends Expression>)newValue);
 				return;
+			case BSharpPackage.INSTANCE__CLASS_NAME_NAME:
+				setClassNameName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -326,6 +379,9 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				getArguments().clear();
 				return;
+			case BSharpPackage.INSTANCE__CLASS_NAME_NAME:
+				setClassNameName(CLASS_NAME_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -346,6 +402,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				return context != null && !context.isEmpty();
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return arguments != null && !arguments.isEmpty();
+			case BSharpPackage.INSTANCE__CLASS_NAME_NAME:
+				return CLASS_NAME_NAME_EDEFAULT == null ? classNameName != null : !CLASS_NAME_NAME_EDEFAULT.equals(classNameName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -414,6 +472,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", classNameName: ");
+		result.append(classNameName);
 		result.append(')');
 		return result.toString();
 	}
@@ -422,8 +482,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	
 	String defaultName() {
 		ClassDecl cd = EcoreUtil2.getContainerOfType(this.eContainer(), ClassDecl.class);
-		
-		return cd.eventBPrefix() + "_" + className.getName();
+		return cd.eventBPrefix() + "_" + getClassNameName();
 	}
 	
 	Instance getSuperInstance() {
@@ -469,14 +528,30 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		return null;
 	}
 	
+	void compileEventBOperator(IProgressMonitor monitor) {
+		String operatorName = getName();
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+
+		INewOperatorDefinition op;
+		
+		try {
+			op = TheoryUtils.createOperator(thyCache.theory, operatorName, false, false, 
+					FormulaType.EXPRESSION, Notation.PREFIX, null, monitor);
+			TheoryUtils.createDirectDefinition(op, typeInst.eventBTypeInstance(), null, monitor);
+		} catch (Exception e) {
+			System.err.println("Failed to create new operator definition for Instance with error: " + e.getMessage());
+			return;
+		}	
+	}
+	
 	/* If we have Instance Setoid<pNat>([=]) this compiles to an operator with the direct definition
 	 *  pNat |-> = \in Setoid(pNat)
 	 *  Given a more compilcated statement such as Instance Monoid<pNat>(op, ident) we need to recognize that
 	 *  the Monoid type class only adds the "ident" variable, so a semi-group is also being created, but the
 	 *  setoid part is inferred and the default setoid is to be used.
 	 */
-	void compileMembershipOperatorExpr(IProgressMonitor monitor) {
-		String membershipThmName = getName() + "in" + className.getName();
+	void compileMembershipTheoremExpr(IProgressMonitor monitor) {
+		String membershipThmName = getName() + " in " + className.getName();
 		
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		
@@ -503,12 +578,40 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	@Override 
 	public void compile(IProgressMonitor monitor) {
 		IMapletNode mapletTree = concreteInstanceMapletTree();
-		typeInst = new ConcreteTypeInstance(getClassName(), this);
-		compileMembershipOperatorExpr(monitor);
-		
-		//TODO: Some compiling!
-		
 		typeInst = new MapletTypeInstance(getClassName(), null, mapletTree);
+		SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+		compileMembershipTheoremExpr(subMonitor.newChild(50));
+		//compileEventBOperator(subMonitor.newChild(50)); Left out due to typing difficulty.
+		
+		//TODO: Some compiling of functions and theorems
+		
+		
+	}
+	
+	List<FunctionDecl> allMethods() {
+		@SuppressWarnings("unchecked")
+		List<FunctionDecl> result =  (List<FunctionDecl>) CompilationUtil.filterInscopeBSharpBlocksForClass(this, getClassName(), new Function1<EObject, Boolean>() {
+
+			@Override
+			public Boolean apply(EObject p) {
+				return p instanceof FunctionDecl && ((FunctionDecl)p).isMethod(); 
+			}
+		});
+		
+		return result;
+	}
+	
+	List<TheoremDecl> allTheorems() {
+		@SuppressWarnings("unchecked")
+		List<TheoremDecl> result = (List<TheoremDecl>) CompilationUtil.filterInscopeBSharpBlocksForClass(this, getClassName(), new Function1<EObject, Boolean>() {
+
+			@Override
+			public Boolean apply(EObject p) {
+				return p instanceof TheoremDecl && ((TheoremDecl)p).getExpr().hasInferredContext();
+			}
+		});
+		
+		return result;
 	}
 
 	@Override
@@ -527,8 +630,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 
 	@Override
 	public IMapletNode concreteInstanceMapletTree() {
-		//return getClassName().concreteTypeMapletTree(getContext(), arguments, this);
-		return null;
+		return getClassName().concreteTypeMapletTree(getContext(), arguments, this);
 	}
 	
 	@Override

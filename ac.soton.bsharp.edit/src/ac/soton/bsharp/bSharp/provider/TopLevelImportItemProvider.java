@@ -66,6 +66,7 @@ public class TopLevelImportItemProvider extends ITheoryImportCacheProviderItemPr
 			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS);
 			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_IMPORT__LOCAL_IMPORTS);
 			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_IMPORT__BODY_ELEMENTS);
+			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_IMPORT__IMPORT_REFS);
 		}
 		return childrenFeatures;
 	}
@@ -121,6 +122,7 @@ public class TopLevelImportItemProvider extends ITheoryImportCacheProviderItemPr
 			case BSharpPackage.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS:
 			case BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS:
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
+			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,7 +153,22 @@ public class TopLevelImportItemProvider extends ITheoryImportCacheProviderItemPr
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.TOP_LEVEL_IMPORT__BODY_ELEMENTS,
-				 BSharpFactory.eINSTANCE.createBodyElements()));
+				 BSharpFactory.eINSTANCE.createBSClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.TOP_LEVEL_IMPORT__BODY_ELEMENTS,
+				 BSharpFactory.eINSTANCE.createDatatype()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.TOP_LEVEL_IMPORT__BODY_ELEMENTS,
+				 BSharpFactory.eINSTANCE.createExtend()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.TOP_LEVEL_IMPORT__IMPORT_REFS,
+				 BSharpFactory.eINSTANCE.createTopLevelFile()));
 	}
 
 }

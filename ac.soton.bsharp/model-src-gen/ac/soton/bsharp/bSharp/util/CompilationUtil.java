@@ -442,7 +442,7 @@ public class CompilationUtil {
 	/* This finds the type that the context object is currently in, and then finds all the blocks relevent to 
 	 * that type. It filters those blocks and the block that the context is in up to the context.
 	 */
-	public static List<EObject> filterInscopeBSharpBlocks(EObject context, Function1<EObject, Boolean> filter) {
+	public static List<? extends EObject> filterInscopeBSharpBlocks(EObject context, Function1<EObject, Boolean> filter) {
 		Tuple2<List<BSharpBlock>, BSharpBlock> blocks = findBlocksForContext(context);
 		
 		ArrayList<EObject> result = new ArrayList<EObject>();
@@ -455,6 +455,28 @@ public class CompilationUtil {
 		
 		if (blocks.y != null) {
 			result.addAll(EcoreUtilJ.eFilterUpToCurrentWith(context, filter));
+		}
+		
+		return result;
+	}
+	
+	public static List<? extends EObject> filterInscopeBSharpBlocksForClass(EObject context, ClassDecl tc, Function1<EObject, Boolean> filter) {
+		/* need to be a bit careful, if context is in a block of the ClassDecl type then we don't want
+		 * to filter the entire block that the context is part of (only up to the context object).
+		 */
+		
+		TopLevelInstance topLevel = EcoreUtil2.getContainerOfType(context, TopLevelInstance.class);
+		if (topLevel != null) {
+			if (topLevel instanceof ClassDecl && topLevel == tc || ((Extend)topLevel).getExtendedClass() == tc) {
+				return filterInscopeBSharpBlocks(context, filter);
+			}
+		}
+		
+		List<BSharpBlock> blocks = findBlocksForType(context, tc);
+		ArrayList<EObject> result = new ArrayList<EObject>();
+		
+		for (BSharpBlock block : blocks) {
+			result.addAll(EcoreUtilJ.eFilter(block, filter));
 		}
 		
 		return result;

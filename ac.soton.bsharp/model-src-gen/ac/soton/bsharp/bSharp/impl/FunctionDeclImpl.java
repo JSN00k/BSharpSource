@@ -60,30 +60,37 @@ import org.eventb.theory.core.INewOperatorDefinition;
 import org.rodinp.core.IInternalElement;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Function Decl</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Function Decl</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getName <em>Name</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getPrecedence <em>Precedence</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getContext <em>Context</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getVarList <em>Var List</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getInfix <em>Infix</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getExpr <em>Expr</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getGeneratedLambdas <em>Generated Lambdas</em>}</li>
+ * <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getName
+ * <em>Name</em>}</li>
+ * <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getPrecedence
+ * <em>Precedence</em>}</li>
+ * <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getContext
+ * <em>Context</em>}</li>
+ * <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getVarList <em>Var
+ * List</em>}</li>
+ * <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getReturnType
+ * <em>Return Type</em>}</li>
+ * <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getInfix
+ * <em>Infix</em>}</li>
+ * <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getExpr
+ * <em>Expr</em>}</li>
+ * <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getGeneratedLambdas
+ * <em>Generated Lambdas</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements FunctionDecl {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -91,9 +98,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -101,9 +108,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPrecedence() <em>Precedence</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getPrecedence() <em>Precedence</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPrecedence()
 	 * @generated
 	 * @ordered
@@ -111,9 +118,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected static final int PRECEDENCE_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getPrecedence() <em>Precedence</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPrecedence()
 	 * @generated
 	 * @ordered
@@ -121,9 +128,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected int precedence = PRECEDENCE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getContext()
 	 * @generated
 	 * @ordered
@@ -131,9 +138,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected PolyContext context;
 
 	/**
-	 * The cached value of the '{@link #getVarList() <em>Var List</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVarList() <em>Var List</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVarList()
 	 * @generated
 	 * @ordered
@@ -141,9 +148,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected TypedVariableList varList;
 
 	/**
-	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getReturnType()
 	 * @generated
 	 * @ordered
@@ -151,9 +158,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected TypeConstructor returnType;
 
 	/**
-	 * The default value of the '{@link #getInfix() <em>Infix</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getInfix() <em>Infix</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getInfix()
 	 * @generated
 	 * @ordered
@@ -161,9 +168,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected static final String INFIX_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getInfix() <em>Infix</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getInfix() <em>Infix</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getInfix()
 	 * @generated
 	 * @ordered
@@ -171,9 +178,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected String infix = INFIX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getExpr()
 	 * @generated
 	 * @ordered
@@ -181,9 +188,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected Expression expr;
 
 	/**
-	 * The cached value of the '{@link #getGeneratedLambdas() <em>Generated Lambdas</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getGeneratedLambdas() <em>Generated
+	 * Lambdas</em>}' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getGeneratedLambdas()
 	 * @generated
 	 * @ordered
@@ -191,8 +199,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected EList<Expression> generatedLambdas;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionDeclImpl() {
@@ -200,8 +208,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,8 +218,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PolyContext getContext() {
@@ -219,42 +227,49 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContext(PolyContext newContext, NotificationChain msgs) {
 		PolyContext oldContext = context;
 		context = newContext;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__CONTEXT, oldContext, newContext);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					BSharpPackage.FUNCTION_DECL__CONTEXT, oldContext, newContext);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setContext(PolyContext newContext) {
 		if (newContext != context) {
 			NotificationChain msgs = null;
 			if (context != null)
-				msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__CONTEXT, null, msgs);
+				msgs = ((InternalEObject) context).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__CONTEXT, null, msgs);
 			if (newContext != null)
-				msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__CONTEXT, null, msgs);
+				msgs = ((InternalEObject) newContext).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__CONTEXT, null, msgs);
 			msgs = basicSetContext(newContext, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__CONTEXT, newContext, newContext));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__CONTEXT, newContext,
+					newContext));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TypedVariableList getVarList() {
@@ -262,42 +277,49 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetVarList(TypedVariableList newVarList, NotificationChain msgs) {
 		TypedVariableList oldVarList = varList;
 		varList = newVarList;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__VAR_LIST, oldVarList, newVarList);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					BSharpPackage.FUNCTION_DECL__VAR_LIST, oldVarList, newVarList);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVarList(TypedVariableList newVarList) {
 		if (newVarList != varList) {
 			NotificationChain msgs = null;
 			if (varList != null)
-				msgs = ((InternalEObject)varList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__VAR_LIST, null, msgs);
+				msgs = ((InternalEObject) varList).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__VAR_LIST, null, msgs);
 			if (newVarList != null)
-				msgs = ((InternalEObject)newVarList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__VAR_LIST, null, msgs);
+				msgs = ((InternalEObject) newVarList).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__VAR_LIST, null, msgs);
 			msgs = basicSetVarList(newVarList, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__VAR_LIST, newVarList, newVarList));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__VAR_LIST, newVarList,
+					newVarList));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TypeConstructor getReturnType() {
@@ -305,42 +327,49 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetReturnType(TypeConstructor newReturnType, NotificationChain msgs) {
 		TypeConstructor oldReturnType = returnType;
 		returnType = newReturnType;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__RETURN_TYPE, oldReturnType, newReturnType);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					BSharpPackage.FUNCTION_DECL__RETURN_TYPE, oldReturnType, newReturnType);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setReturnType(TypeConstructor newReturnType) {
 		if (newReturnType != returnType) {
 			NotificationChain msgs = null;
 			if (returnType != null)
-				msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__RETURN_TYPE, null, msgs);
+				msgs = ((InternalEObject) returnType).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__RETURN_TYPE, null, msgs);
 			if (newReturnType != null)
-				msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__RETURN_TYPE, null, msgs);
+				msgs = ((InternalEObject) newReturnType).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__RETURN_TYPE, null, msgs);
 			msgs = basicSetReturnType(newReturnType, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__RETURN_TYPE, newReturnType, newReturnType));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__RETURN_TYPE,
+					newReturnType, newReturnType));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getInfix() {
@@ -348,8 +377,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInfix(String newInfix) {
@@ -360,8 +389,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getPrecedence() {
@@ -369,20 +398,21 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPrecedence(int newPrecedence) {
 		int oldPrecedence = precedence;
 		precedence = newPrecedence;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__PRECEDENCE, oldPrecedence, precedence));
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__PRECEDENCE,
+					oldPrecedence, precedence));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Expression getExpr() {
@@ -390,54 +420,61 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetExpr(Expression newExpr, NotificationChain msgs) {
 		Expression oldExpr = expr;
 		expr = newExpr;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__EXPR, oldExpr, newExpr);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					BSharpPackage.FUNCTION_DECL__EXPR, oldExpr, newExpr);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setExpr(Expression newExpr) {
 		if (newExpr != expr) {
 			NotificationChain msgs = null;
 			if (expr != null)
-				msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__EXPR, null, msgs);
+				msgs = ((InternalEObject) expr).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__EXPR, null, msgs);
 			if (newExpr != null)
-				msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__EXPR, null, msgs);
+				msgs = ((InternalEObject) newExpr).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__EXPR, null, msgs);
 			msgs = basicSetExpr(newExpr, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__EXPR, newExpr, newExpr));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Expression> getGeneratedLambdas() {
 		if (generatedLambdas == null) {
-			generatedLambdas = new EObjectContainmentEList<Expression>(Expression.class, this, BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS);
+			generatedLambdas = new EObjectContainmentEList<Expression>(Expression.class, this,
+					BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS);
 		}
 		return generatedLambdas;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -445,8 +482,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -457,249 +494,266 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_DECL__CONTEXT:
-				return basicSetContext(null, msgs);
-			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
-				return basicSetVarList(null, msgs);
-			case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
-				return basicSetReturnType(null, msgs);
-			case BSharpPackage.FUNCTION_DECL__EXPR:
-				return basicSetExpr(null, msgs);
-			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
-				return ((InternalEList<?>)getGeneratedLambdas()).basicRemove(otherEnd, msgs);
+		case BSharpPackage.FUNCTION_DECL__CONTEXT:
+			return basicSetContext(null, msgs);
+		case BSharpPackage.FUNCTION_DECL__VAR_LIST:
+			return basicSetVarList(null, msgs);
+		case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
+			return basicSetReturnType(null, msgs);
+		case BSharpPackage.FUNCTION_DECL__EXPR:
+			return basicSetExpr(null, msgs);
+		case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+			return ((InternalEList<?>) getGeneratedLambdas()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_DECL__NAME:
-				return getName();
-			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
-				return getPrecedence();
-			case BSharpPackage.FUNCTION_DECL__CONTEXT:
-				return getContext();
-			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
-				return getVarList();
-			case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
-				return getReturnType();
-			case BSharpPackage.FUNCTION_DECL__INFIX:
-				return getInfix();
-			case BSharpPackage.FUNCTION_DECL__EXPR:
-				return getExpr();
-			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
-				return getGeneratedLambdas();
+		case BSharpPackage.FUNCTION_DECL__NAME:
+			return getName();
+		case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+			return getPrecedence();
+		case BSharpPackage.FUNCTION_DECL__CONTEXT:
+			return getContext();
+		case BSharpPackage.FUNCTION_DECL__VAR_LIST:
+			return getVarList();
+		case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
+			return getReturnType();
+		case BSharpPackage.FUNCTION_DECL__INFIX:
+			return getInfix();
+		case BSharpPackage.FUNCTION_DECL__EXPR:
+			return getExpr();
+		case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+			return getGeneratedLambdas();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_DECL__NAME:
-				setName((String)newValue);
-				return;
-			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
-				setPrecedence((Integer)newValue);
-				return;
-			case BSharpPackage.FUNCTION_DECL__CONTEXT:
-				setContext((PolyContext)newValue);
-				return;
-			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
-				setVarList((TypedVariableList)newValue);
-				return;
-			case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
-				setReturnType((TypeConstructor)newValue);
-				return;
-			case BSharpPackage.FUNCTION_DECL__INFIX:
-				setInfix((String)newValue);
-				return;
-			case BSharpPackage.FUNCTION_DECL__EXPR:
-				setExpr((Expression)newValue);
-				return;
-			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
-				getGeneratedLambdas().clear();
-				getGeneratedLambdas().addAll((Collection<? extends Expression>)newValue);
-				return;
+		case BSharpPackage.FUNCTION_DECL__NAME:
+			setName((String) newValue);
+			return;
+		case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+			setPrecedence((Integer) newValue);
+			return;
+		case BSharpPackage.FUNCTION_DECL__CONTEXT:
+			setContext((PolyContext) newValue);
+			return;
+		case BSharpPackage.FUNCTION_DECL__VAR_LIST:
+			setVarList((TypedVariableList) newValue);
+			return;
+		case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
+			setReturnType((TypeConstructor) newValue);
+			return;
+		case BSharpPackage.FUNCTION_DECL__INFIX:
+			setInfix((String) newValue);
+			return;
+		case BSharpPackage.FUNCTION_DECL__EXPR:
+			setExpr((Expression) newValue);
+			return;
+		case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+			getGeneratedLambdas().clear();
+			getGeneratedLambdas().addAll((Collection<? extends Expression>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_DECL__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
-				setPrecedence(PRECEDENCE_EDEFAULT);
-				return;
-			case BSharpPackage.FUNCTION_DECL__CONTEXT:
-				setContext((PolyContext)null);
-				return;
-			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
-				setVarList((TypedVariableList)null);
-				return;
-			case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
-				setReturnType((TypeConstructor)null);
-				return;
-			case BSharpPackage.FUNCTION_DECL__INFIX:
-				setInfix(INFIX_EDEFAULT);
-				return;
-			case BSharpPackage.FUNCTION_DECL__EXPR:
-				setExpr((Expression)null);
-				return;
-			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
-				getGeneratedLambdas().clear();
-				return;
+		case BSharpPackage.FUNCTION_DECL__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+			setPrecedence(PRECEDENCE_EDEFAULT);
+			return;
+		case BSharpPackage.FUNCTION_DECL__CONTEXT:
+			setContext((PolyContext) null);
+			return;
+		case BSharpPackage.FUNCTION_DECL__VAR_LIST:
+			setVarList((TypedVariableList) null);
+			return;
+		case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
+			setReturnType((TypeConstructor) null);
+			return;
+		case BSharpPackage.FUNCTION_DECL__INFIX:
+			setInfix(INFIX_EDEFAULT);
+			return;
+		case BSharpPackage.FUNCTION_DECL__EXPR:
+			setExpr((Expression) null);
+			return;
+		case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+			getGeneratedLambdas().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_DECL__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
-				return precedence != PRECEDENCE_EDEFAULT;
-			case BSharpPackage.FUNCTION_DECL__CONTEXT:
-				return context != null;
-			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
-				return varList != null;
-			case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
-				return returnType != null;
-			case BSharpPackage.FUNCTION_DECL__INFIX:
-				return INFIX_EDEFAULT == null ? infix != null : !INFIX_EDEFAULT.equals(infix);
-			case BSharpPackage.FUNCTION_DECL__EXPR:
-				return expr != null;
-			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
-				return generatedLambdas != null && !generatedLambdas.isEmpty();
+		case BSharpPackage.FUNCTION_DECL__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+			return precedence != PRECEDENCE_EDEFAULT;
+		case BSharpPackage.FUNCTION_DECL__CONTEXT:
+			return context != null;
+		case BSharpPackage.FUNCTION_DECL__VAR_LIST:
+			return varList != null;
+		case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
+			return returnType != null;
+		case BSharpPackage.FUNCTION_DECL__INFIX:
+			return INFIX_EDEFAULT == null ? infix != null : !INFIX_EDEFAULT.equals(infix);
+		case BSharpPackage.FUNCTION_DECL__EXPR:
+			return expr != null;
+		case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+			return generatedLambdas != null && !generatedLambdas.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == IPolyTypeProvider.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IExpressionContainer.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == NamedObject.class) {
 			switch (derivedFeatureID) {
-				case BSharpPackage.FUNCTION_DECL__NAME: return BSharpPackage.NAMED_OBJECT__NAME;
-				default: return -1;
+			case BSharpPackage.FUNCTION_DECL__NAME:
+				return BSharpPackage.NAMED_OBJECT__NAME;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IVarType.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == ExpressionVariable.class) {
 			switch (derivedFeatureID) {
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == InfixFunc.class) {
 			switch (derivedFeatureID) {
-				case BSharpPackage.FUNCTION_DECL__PRECEDENCE: return BSharpPackage.INFIX_FUNC__PRECEDENCE;
-				default: return -1;
+			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+				return BSharpPackage.INFIX_FUNC__PRECEDENCE;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == IPolyTypeProvider.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IExpressionContainer.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == NamedObject.class) {
 			switch (baseFeatureID) {
-				case BSharpPackage.NAMED_OBJECT__NAME: return BSharpPackage.FUNCTION_DECL__NAME;
-				default: return -1;
+			case BSharpPackage.NAMED_OBJECT__NAME:
+				return BSharpPackage.FUNCTION_DECL__NAME;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == IVarType.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == ExpressionVariable.class) {
 			switch (baseFeatureID) {
-				default: return -1;
+			default:
+				return -1;
 			}
 		}
 		if (baseClass == InfixFunc.class) {
 			switch (baseFeatureID) {
-				case BSharpPackage.INFIX_FUNC__PRECEDENCE: return BSharpPackage.FUNCTION_DECL__PRECEDENCE;
-				default: return -1;
+			case BSharpPackage.INFIX_FUNC__PRECEDENCE:
+				return BSharpPackage.FUNCTION_DECL__PRECEDENCE;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
@@ -711,9 +765,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		result.append(')');
 		return result.toString();
 	}
-	
+
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
-	
+
 	@Override
 	public Collection<EObject> getVariablesNames() {
 		ArrayList<EObject> result = new ArrayList<EObject>();
@@ -738,10 +792,12 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public String eventBPredName() throws Exception {
-		if (context != null || !(returnType instanceof TypeConstructor) || !((TypeConstructor)returnType).getTypeName().getName().equals("Bool")) {
-			throw new Exception("In FunctionDeclImpl tried to get a EventB predicate function for non-boolean function type");
+		if (context != null || !(returnType instanceof TypeConstructor)
+				|| !((TypeConstructor) returnType).getTypeName().getName().equals("Bool")) {
+			throw new Exception(
+					"In FunctionDeclImpl tried to get a EventB predicate function for non-boolean function type");
 		}
-		
+
 		return eventBExprName() + "_Pred";
 	}
 
@@ -749,14 +805,15 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	public boolean hasEventBInfix() throws Exception {
 		if (!infix.isEmpty()) {
 			if (varList.varCount() != 2) {
-				//TODO: validation.
-				throw new Exception("In FunctionDeclImpl when compiling got infix operator with more than 2 variables. This"
-						+ " should be validated against.");
+				// TODO: validation.
+				throw new Exception(
+						"In FunctionDeclImpl when compiling got infix operator with more than 2 variables. This"
+								+ " should be validated against.");
 			}
-			
+
 			return context == null;
 		}
-		
+
 		return false;
 	}
 
@@ -773,41 +830,40 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		System.err.print("In FunctionDeclImpl callWithTypeContext(TypeDeclContext context) is unimplemented\n");
 		return null;
 	}
-	
+
 	protected Integer compiledMatchStatements = 0;
 	protected ITypeInstanceOpArgs evBTypeInstance = null;
 
 	protected ArrayList<String> inferredBSClassConstructors = null;
-	
+
 	ArrayList<Tuple2<String, String>> compiledPolyContext() {
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		boolean hasInferredContext = expr.hasInferredContext();
 		if (context == null && !hasInferredContext) {
 			return null;
 		}
-		
+
 		ArrayList<Tuple2<String, String>> compiledContext = null;
-		
+
 		if (hasInferredContext) {
 			inferredBSClassConstructors = new ArrayList<String>();
-			
+
 			TopLevelInstance containerClass = EcoreUtil2.getContainerOfType(this, TopLevelInstance.class);
 			ClassDecl classDecl = null;
 			if (containerClass instanceof Extend) {
-				classDecl = ((Extend)containerClass).getExtendedClass();
+				classDecl = ((Extend) containerClass).getExtendedClass();
 			} else {
-				classDecl = (ClassDecl)containerClass;
+				classDecl = (ClassDecl) containerClass;
 			}
-			
+
 			evBTypeInstance = classDecl.genericTypeInstance(thyCache);
 			compiledContext = evBTypeInstance.individuallyTypedConstructionArgs();
 		}
-		
+
 		if (context == null) {
 			return compiledContext;
 		} else {
-			
-			
+
 			if (compiledContext != null) {
 				compiledContext.addAll(context.namesAndTypesForPolyContext(thyCache));
 				return compiledContext;
@@ -816,82 +872,85 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			}
 		}
 	}
-	
+
 	protected INewOperatorDefinition op = null;
-	
+
 	@Override
 	public IInternalElement getCurrentCompilingOp() {
 		return op;
 	}
-	
+
 	@Override
 	public ITypeInstance getTypeInstance(EObject context) {
 		return evBTypeInstance;
 	}
-	
+
 	@Override
 	public void compile() {
-		/* There are functions with polymorphic contexts, functions with inferred polymorphic contexts,
-		 * (They use types from the class that they are declared in), and functions which only work on 
-		 * the passed variables. Functions that have polymorphic contexts inferred or otherwise will 
-		 * work by having an eventB operator that takes the polymorphic context as the argument, and 
-		 * generates a lambda which is then called with the function arguments.
+		/*
+		 * There are functions with polymorphic contexts, functions with inferred
+		 * polymorphic contexts, (They use types from the class that they are declared
+		 * in), and functions which only work on the passed variables. Functions that
+		 * have polymorphic contexts inferred or otherwise will work by having an eventB
+		 * operator that takes the polymorphic context as the argument, and generates a
+		 * lambda which is then called with the function arguments.
 		 */
 		compiledMatchStatements = 0;
 		ArrayList<Tuple2<String, String>> polyContext = compiledPolyContext();
-		
-		if (polyContext != null ) {
+
+		if (polyContext != null) {
 			compileWithPolyContext(polyContext);
 		} else {
 			compileWithoutPolyContext();
 		}
-		
+
 		evBTypeInstance = null;
 	}
-	
+
 	void compileWithPolyContext(ArrayList<Tuple2<String, String>> pContext) {
 		expr = expr.reorderExpresionTree();
-		
+
 		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
 		lambda.setQType("λ");
 		lambda.setVarList(EcoreUtil2.copy(varList));
 		lambda.setExpr(EcoreUtil2.copy(expr));
-		
+
 		getGeneratedLambdas().add(lambda);
-		
+
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		try {
 			op = CompilationUtil.createOpWithArguments(thyCache, name, pContext, Notation.PREFIX);
 		} catch (Exception e) {
-			System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
+			System.err.println(
+					"Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
 			return;
 		}
-		
+
 		try {
 			TheoryUtils.createDirectDefinition(op, lambda.compileToEventBString(false), null, nullMonitor);
 		} catch (Exception e) {
 			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
 		}
-		
+
 		op = null;
-		
+
 		return;
 	}
-	
+
 	String passableName() {
 		return eventBExprName() + "_P";
 	}
-	
+
 	void compileMatchNoPoly(INewOperatorDefinition op) {
-		MatchStatement ms = (MatchStatement)expr;
-		
+		MatchStatement ms = (MatchStatement) expr;
+
 		try {
 			ms.compileToRecursiveDefs(op, nullMonitor);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.err.println("Unable to compile match instance with error: " + e.getLocalizedMessage());
 		}
 	}
-	
+
 	void compileDirectDefNoPoly(INewOperatorDefinition op) {
 		try {
 			TheoryUtils.createDirectDefinition(op, expr.compileToEventBString(false), null, nullMonitor);
@@ -899,63 +958,68 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
 		}
 	}
-	
+
 	void compileWithoutPolyContext() {
 		expr = expr.reorderExpresionTree();
 		String opName = eventBExprName();
-		
+
 		ArrayList<Tuple2<String, String>> args = varList.getCompiledVariablesAndTypes();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-		
+
 		IOperatorProperties.Notation notation = Notation.PREFIX;
 		if (infix != null && !infix.isEmpty()) {
 			notation = Notation.INFIX;
 		}
-		
+
 		try {
 			op = CompilationUtil.createOpWithArguments(thyCache, opName, args, notation);
 		} catch (Exception e) {
-			System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
+			System.err.println(
+					"Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
 			return;
 		}
-		
+
 		if (expr instanceof MatchStatement) {
 			compileMatchNoPoly(op);
 		} else {
 			compileDirectDefNoPoly(op);
 		}
-		
+
 		op = null;
-		
+
 		if (returnType.isBoolType()) {
 			/* Create a predicate version of the function. */
 			try {
 				op = CompilationUtil.createPredOpWithArguments(thyCache, opName, args, notation);
 			} catch (Exception e) {
-				System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
+				System.err.println(
+						"Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
 				return;
 			}
-			
+
 			try {
 				TheoryUtils.createDirectDefinition(op, expr.compileToEventBString(true), null, nullMonitor);
 			} catch (Exception e) {
 				System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
 			}
 		}
-		
+
 		op = null;
-		
+
 		/* Build the passable form of the function. */
 		try {
 			op = TheoryUtils.createOperator(thyCache.theory, passableName(), false, false, FormulaType.EXPRESSION,
 					Notation.PREFIX, null, nullMonitor);
 		} catch (Exception e) {
-			System.err.println("Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
+			System.err.println(
+					"Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
 			return;
 		}
-		
-		/* There's already code to compile a lambda to EventB therefore it's easier to generate
-		 * a BSharp lambda and compile it, then it is to re-write code to generate a EventB lambda.
+
+		/*
+		 * There's already code to compile a lambda to EventB therefore it's easier to
+		 * generate a BSharp lambda and compile it, then it is to re-write code to
+		 * generate a EventB lambda.
 		 */
 		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
 		lambda.setQType("λ");
@@ -963,22 +1027,22 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		FunctionCall func = BSharpFactory.eINSTANCE.createFunctionCall();
 		func.setTypeInst(this);
 		EList<Expression> callArgs = func.getArguments();
-		
+
 		ArrayList<TypedVariable> variables = varList.getTypedVariableNames();
 		for (TypedVariable var : variables) {
 			FunctionCall wrappedVar = BSharpFactory.eINSTANCE.createFunctionCall();
 			wrappedVar.setTypeInst(var);
 			callArgs.add(wrappedVar);
 		}
-		
+
 		lambda.setExpr(func);
-		
+
 		try {
 			TheoryUtils.createDirectDefinition(op, lambda.compileToEventBString(false), null, nullMonitor);
 		} catch (Exception e) {
 			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
-		}	
-		
+		}
+
 		op = null;
 	}
 
@@ -991,90 +1055,98 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		}
 
 	}
-	
+
 	String getInferredContextCallString(FunctionCall fc) {
-		/* The context required by this function may be a supertype of the 
-		 * context supplied by the theorem/function/ClassDecl in which the 
-		 * function was called from.
+		/*
+		 * The context required by this function may be a supertype of the context
+		 * supplied by the theorem/function/ClassDecl in which the function was called
+		 * from.
 		 */
-		
-		/* Get expression container in which this is being called. (Note we're in a function
-		 * call, so this is a reference and not suitable for finding the ExpressionContainer
-		 * */
+
+		/*
+		 * Get expression container in which this is being called. (Note we're in a
+		 * function call, so this is a reference and not suitable for finding the
+		 * ExpressionContainer
+		 */
 		IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
-		ITypeInstance typeInst =  container.getTypeInstance(fc);
-		
+		ITypeInstance typeInst = container.getTypeInstance(fc);
+
 		ClassDecl containType = CompilationUtil.getClassDecl(this);
-		
+
 		ArrayList<String> polyTypes = typeInst.typeConstructionTypes();
 		String result = CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(polyTypes, ", ", true);
-		
+
 		result += ",  " + typeInst.eventBTypeInstanceForType(containType);
 		return result;
 	}
-	
+
 	String compileRecursiveCallWithContext(FunctionCall fc, boolean asPred) throws Exception {
 		String result = eventBExprName() + "_M0(";
-		result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(evBTypeInstance.typeConstructionTypes(), ", ", true);
+		result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(evBTypeInstance.typeConstructionTypes(),
+				", ", true);
 		if (context != null) {
 			ClassDecl clContainer = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
 			result += ", " + context.compileCallWithTypeContext(fc.getContext(), clContainer);
 		}
-		
+
 		EList<Expression> exprs = fc.getArguments();
-		
+
 		if (exprs != null && !exprs.isEmpty()) {
 			result += ", " + CompilationUtil.compileExpressionListWithSeperator(exprs, ", ");
 		}
-		
+
 		result += ")";
-		
+
 		return result;
 	}
 
 	String compileFunctionCallWithContext(FunctionCall fc, boolean asPred) throws Exception {
-		/* There are two additional things that I need to consider here. 1) The function can have an inferred 
-		 * polyContext, which needs to be got from the current function that is being compiled. Functions
-		 * with contexts have a different call structure.
-		 * 2) If this is a recursive function with a polycontext then it generates a new operator to handle
-		 * the match statement, in this case the new operator needs to be called instead of the current op. 
+		/*
+		 * There are two additional things that I need to consider here. 1) The function
+		 * can have an inferred polyContext, which needs to be got from the current
+		 * function that is being compiled. Functions with contexts have a different
+		 * call structure. 2) If this is a recursive function with a polycontext then it
+		 * generates a new operator to handle the match statement, in this case the new
+		 * operator needs to be called instead of the current op.
 		 */
-		
+
 		TypeDeclContext ctx = fc.getContext();
 		if ((ctx == null || ctx.isEmpty()) && !expr.referencesContainingType()) {
-			/* Having a context called with the wrong number of arguments should be validated
-			 * against.
+			/*
+			 * Having a context called with the wrong number of arguments should be
+			 * validated against.
 			 */
 			throw new Exception("Function with context called with wrong number of arguments");
 		}
-		
+
 		/* Check to see if I'm recursive. */
 		IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
 		if (container == this) {
 			return compileRecursiveCallWithContext(fc, asPred);
 		}
-		
+
 		String result = eventBExprName() + "(";
-		/* TODO: it is unclear to me why I would need the container type in this context, see if the code
-		 * can be re-written to avoid this.
+		/*
+		 * TODO: it is unclear to me why I would need the container type in this
+		 * context, see if the code can be re-written to avoid this.
 		 */
 		ClassDecl clContainer = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
 		result += context.compileCallWithTypeContext(ctx, clContainer);
 		result += ")";
-		
+
 		EList<Expression> exprs = fc.getArguments();
-		
+
 		if (exprs != null && !exprs.isEmpty()) {
 			result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
 		}
-		
+
 		if (asPred) {
 			result += "= TRUE";
 		}
-		
+
 		return result;
 	}
-	
+
 	String comipileFunctionCallNoContext(FunctionCall fc, boolean asPred) throws Exception {
 		EList<Expression> exprs = fc.getArguments();
 		if (exprs == null || exprs.isEmpty()) {
@@ -1089,21 +1161,22 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			/* TODO: Validate. */
 			throw new Exception("Tried to call non-predicate as a predicate");
 		}
-		
+
 		String result = null;
 		if (asPred) {
 			result = eventBPredName();
 		} else {
 			result = eventBExprName();
 		}
-		
+
 		if (infix != null && infix.equals("INFIX")) {
 			/* TODO: validate there are only two arguments. */
-			return exprs.get(0).compileToEventBString(false) + " " + result + " " + exprs.get(1).compileToEventBString(false);
+			return exprs.get(0).compileToEventBString(false) + " " + result + " "
+					+ exprs.get(1).compileToEventBString(false);
 		}
-		
+
 		result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, ", ") + ")";
-		
+
 		return result;
 	}
 
@@ -1131,17 +1204,18 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public TypeBuilder calculateType() {
-		/* Cross product of the argsType -> returntype
+		/*
+		 * Cross product of the argsType -> returntype
 		 */
 		if (varList == null || varList.isEmpty()) {
 			return returnType;
 		}
-		
+
 		Collection<TypeBuilder> types = varList.getTypes();
-		
+
 		TypeBuilder left = null;
 		for (TypeBuilder type : types) {
-			if (left == null ) {
+			if (left == null) {
 				left = type;
 			} else {
 				ConstructedType ct = BSharpFactory.eINSTANCE.createConstructedType();
@@ -1151,7 +1225,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				left = ct;
 			}
 		}
-		
+
 		ConstructedType ct = BSharpFactory.eINSTANCE.createConstructedType();
 		ct.setConstructor("→");
 		ct.setLeft(left);
@@ -1162,16 +1236,16 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
 		ArrayList<Tuple2<String, String>> pContext = compiledPolyContext();
-		
+
 		if (pContext != null) {
 			if (varList != null)
 				pContext.addAll(varList.getCompiledVariablesAndTypes());
-			
+
 			return pContext;
 		} else {
 			if (varList != null)
 				return varList.getCompiledVariablesAndTypes();
-			
+
 			return null;
 		}
 	}
@@ -1205,9 +1279,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public Tuple2<ExprPredEnum, ExprPredEnum> infixArgumentExprPredTypes() {
-		ArrayList<Tuple2<TypedVariable, TypeBuilder>> typedVars =  getVarList().getVariablesWithBSharpTypes();
-		
-		return new Tuple2<ExprPredEnum, ExprPredEnum>(typedVars.get(0).y.isBoolType() ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION,
+		ArrayList<Tuple2<TypedVariable, TypeBuilder>> typedVars = getVarList().getVariablesWithBSharpTypes();
+
+		return new Tuple2<ExprPredEnum, ExprPredEnum>(
+				typedVars.get(0).y.isBoolType() ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION,
 				typedVars.get(1).y.isBoolType() ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION);
 	}
 
@@ -1215,4 +1290,4 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	public Integer bSharpPrecedence() {
 		return getPrecedence();
 	}
-} //FunctionDeclImpl
+} // FunctionDeclImpl

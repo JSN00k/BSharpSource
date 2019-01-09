@@ -90,6 +90,7 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__CLASS_VAR_DECL);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__CONTEXT);
+			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__WRAPPED);
 		}
 		return childrenFeatures;
 	}
@@ -145,6 +146,7 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 			case BSharpPackage.FUNCTION_CALL__ARGUMENTS:
 			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
 			case BSharpPackage.FUNCTION_CALL__CONTEXT:
+			case BSharpPackage.FUNCTION_CALL__WRAPPED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -170,12 +172,7 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createMatchStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createQuantLambda()));
+				 BSharpFactory.eINSTANCE.createBracket()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -185,17 +182,22 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
+				 BSharpFactory.eINSTANCE.createInfix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
+				 BSharpFactory.eINSTANCE.createMatchStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
 				 BSharpFactory.eINSTANCE.createPrefix()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createInfix()));
+				 BSharpFactory.eINSTANCE.createQuantLambda()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -206,6 +208,11 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_CALL__CONTEXT,
 				 BSharpFactory.eINSTANCE.createTypeDeclContext()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_CALL__WRAPPED,
+				 BSharpFactory.eINSTANCE.createWrappedInfix()));
 	}
 
 }

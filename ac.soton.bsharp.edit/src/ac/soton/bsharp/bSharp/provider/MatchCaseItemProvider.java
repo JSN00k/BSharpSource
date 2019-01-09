@@ -193,12 +193,7 @@ public class MatchCaseItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.MATCH_CASE__EXPR,
-				 BSharpFactory.eINSTANCE.createMatchStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.MATCH_CASE__EXPR,
-				 BSharpFactory.eINSTANCE.createQuantLambda()));
+				 BSharpFactory.eINSTANCE.createBracket()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -208,17 +203,22 @@ public class MatchCaseItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.MATCH_CASE__EXPR,
+				 BSharpFactory.eINSTANCE.createInfix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.MATCH_CASE__EXPR,
+				 BSharpFactory.eINSTANCE.createMatchStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.MATCH_CASE__EXPR,
 				 BSharpFactory.eINSTANCE.createPrefix()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.MATCH_CASE__EXPR,
-				 BSharpFactory.eINSTANCE.createBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.MATCH_CASE__EXPR,
-				 BSharpFactory.eINSTANCE.createInfix()));
+				 BSharpFactory.eINSTANCE.createQuantLambda()));
 	}
 
 	/**

@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -35,13 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class InstanceItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends IExpressionContainerItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -63,9 +58,32 @@ public class InstanceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 			addClassNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NamedObject_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedObject_name_feature", "_UI_NamedObject_type"),
+				 BSharpPackage.Literals.NAMED_OBJECT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -140,7 +158,10 @@ public class InstanceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Instance_type");
+		String label = ((Instance)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Instance_type") :
+			getString("_UI_Instance_type") + " " + label;
 	}
 
 
@@ -156,6 +177,9 @@ public class InstanceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Instance.class)) {
+			case BSharpPackage.INSTANCE__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -178,7 +202,17 @@ public class InstanceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.INSTANCE__CONTEXT,
-				 BSharpFactory.eINSTANCE.createTypeDeclContext()));
+				 BSharpFactory.eINSTANCE.createBSClass()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INSTANCE__CONTEXT,
+				 BSharpFactory.eINSTANCE.createDatatype()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INSTANCE__CONTEXT,
+				 BSharpFactory.eINSTANCE.createInstance()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -188,12 +222,7 @@ public class InstanceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createMatchStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createQuantLambda()));
+				 BSharpFactory.eINSTANCE.createBracket()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -203,28 +232,22 @@ public class InstanceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
+				 BSharpFactory.eINSTANCE.createInfix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
+				 BSharpFactory.eINSTANCE.createMatchStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
 				 BSharpFactory.eINSTANCE.createPrefix()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createInfix()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return BSharpEditPlugin.INSTANCE;
+				 BSharpFactory.eINSTANCE.createQuantLambda()));
 	}
 
 }

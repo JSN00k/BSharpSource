@@ -1490,6 +1490,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getInstance_ClassNameName() {
+		return (EAttribute)instanceEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInfix() {
 		return infixEClass;
 	}
@@ -1916,6 +1925,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(instanceEClass, INSTANCE__CLASS_NAME);
 		createEReference(instanceEClass, INSTANCE__CONTEXT);
 		createEReference(instanceEClass, INSTANCE__ARGUMENTS);
+		createEAttribute(instanceEClass, INSTANCE__CLASS_NAME_NAME);
 
 		localImportEClass = createEClass(LOCAL_IMPORT);
 		createEReference(localImportEClass, LOCAL_IMPORT__FILE_IMPORTS);
@@ -2198,6 +2208,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getInstance_ClassName(), this.getBSClass(), null, "className", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstance_Context(), this.getIClassInstance(), null, "context", null, 0, -1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstance_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInstance_ClassNameName(), ecorePackage.getEString(), "classNameName", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(localImportEClass, LocalImport.class, "LocalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLocalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, LocalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

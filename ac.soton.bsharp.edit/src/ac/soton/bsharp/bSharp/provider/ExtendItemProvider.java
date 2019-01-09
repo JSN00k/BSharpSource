@@ -126,7 +126,7 @@ public class ExtendItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BSharpPackage.Literals.EXTEND__BLOCK);
+			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK);
 		}
 		return childrenFeatures;
 	}
@@ -202,7 +202,7 @@ public class ExtendItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BSharpPackage.Literals.EXTEND__BLOCK,
+				(BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK,
 				 BSharpFactory.eINSTANCE.createBSharpBlock()));
 	}
 

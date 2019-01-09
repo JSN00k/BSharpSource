@@ -428,7 +428,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		} else if (compType == ExprPredEnum.PREDICATE) {
 			return result + " = TRUE";
 		} else {
-			return "pred(" + result + ")";
+			return "bool(" + result + ")";
 		}
 	}
 

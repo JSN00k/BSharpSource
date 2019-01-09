@@ -21,6 +21,7 @@ import ac.soton.bsharp.mapletTree.IMapletNode;
  *   <li>{@link ac.soton.bsharp.bSharp.Instance#getClassName <em>Class Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Instance#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Instance#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.Instance#getClassNameName <em>Class Name Name</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance()
@@ -85,6 +86,32 @@ public interface Instance extends IExpressionContainer, ITheoremContainer, IClas
 	 * @generated
 	 */
 	EList<Expression> getArguments();
+
+	/**
+	 * Returns the value of the '<em><b>Class Name Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Class Name Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Class Name Name</em>' attribute.
+	 * @see #setClassNameName(String)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance_ClassNameName()
+	 * @model
+	 * @generated
+	 */
+	String getClassNameName();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Instance#getClassNameName <em>Class Name Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Class Name Name</em>' attribute.
+	 * @see #getClassNameName()
+	 * @generated
+	 */
+	void setClassNameName(String value);
 
 	void compile(IProgressMonitor monitor);
 

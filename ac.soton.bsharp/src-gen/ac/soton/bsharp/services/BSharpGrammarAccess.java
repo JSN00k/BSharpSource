@@ -88,6 +88,29 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 	}
+	public class IBodyElementsContainerElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.IBodyElementsContainer");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cTopLevelFileParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTopLevelImportParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		///* Currently this interface is only used for searching. I should change the interface
+		// * to include an elements field for the body elements, however, I'll need to fix some 
+		// * code to do this, so this task is being deferred. It should also be combined with
+		// * ITheoryImportCacheProvider ('ITheoryImportCacheProvider' should be removed).
+		// */ IBodyElementsContainer:
+		//	TopLevelFile | TopLevelImport;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//TopLevelFile | TopLevelImport
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//TopLevelFile
+		public RuleCall getTopLevelFileParserRuleCall_0() { return cTopLevelFileParserRuleCall_0; }
+		
+		//TopLevelImport
+		public RuleCall getTopLevelImportParserRuleCall_1() { return cTopLevelImportParserRuleCall_1; }
+	}
 	public class TopLevelFileElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.TopLevelFile");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -2092,11 +2115,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_9_0 = (RuleCall)cNameAssignment_9.eContents().get(0);
 		
 		///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-		//	'Instance' className=[BSClass|QualifiedName] '<' context=[IClassInstance] '>' '(' arguments+=RootExpression? (','
+		//	'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>' '(' arguments+=RootExpression? (','
 		//	arguments+=RootExpression)* ')' name=ID?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Instance' className=[BSClass|QualifiedName] '<' context=[IClassInstance] '>' '(' arguments+=RootExpression? (','
+		//'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>' '(' arguments+=RootExpression? (','
 		//arguments+=RootExpression)* ')' name=ID?
 		public Group getGroup() { return cGroup; }
 		
@@ -2115,7 +2138,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//'<'
 		public Keyword getLessThanSignKeyword_2() { return cLessThanSignKeyword_2; }
 		
-		//context=[IClassInstance]
+		//context+=[IClassInstance]+
 		public Assignment getContextAssignment_3() { return cContextAssignment_3; }
 		
 		//[IClassInstance]
@@ -2162,6 +2185,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final TopLevelElements pTopLevel;
 	private final TerminalRule tID;
 	private final THM_NAMEElements pTHM_NAME;
+	private final IBodyElementsContainerElements pIBodyElementsContainer;
 	private final TopLevelFileElements pTopLevelFile;
 	private final ClassDeclElements pClassDecl;
 	private final TypeElements pType;
@@ -2226,6 +2250,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTopLevel = new TopLevelElements();
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ID");
 		this.pTHM_NAME = new THM_NAMEElements();
+		this.pIBodyElementsContainer = new IBodyElementsContainerElements();
 		this.pTopLevelFile = new TopLevelFileElements();
 		this.pClassDecl = new ClassDeclElements();
 		this.pType = new TypeElements();
@@ -2333,6 +2358,20 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTHM_NAMERule() {
 		return getTHM_NAMEAccess().getRule();
+	}
+	
+	///* Currently this interface is only used for searching. I should change the interface
+	// * to include an elements field for the body elements, however, I'll need to fix some 
+	// * code to do this, so this task is being deferred. It should also be combined with
+	// * ITheoryImportCacheProvider ('ITheoryImportCacheProvider' should be removed).
+	// */ IBodyElementsContainer:
+	//	TopLevelFile | TopLevelImport;
+	public IBodyElementsContainerElements getIBodyElementsContainerAccess() {
+		return pIBodyElementsContainer;
+	}
+	
+	public ParserRule getIBodyElementsContainerRule() {
+		return getIBodyElementsContainerAccess().getRule();
 	}
 	
 	///* TopLevelFile has a hidden name tag which is the file name, this gets the filename into the
@@ -2905,7 +2944,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-	//	'Instance' className=[BSClass|QualifiedName] '<' context=[IClassInstance] '>' '(' arguments+=RootExpression? (','
+	//	'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>' '(' arguments+=RootExpression? (','
 	//	arguments+=RootExpression)* ')' name=ID?;
 	public InstanceElements getInstanceAccess() {
 		return pInstance;

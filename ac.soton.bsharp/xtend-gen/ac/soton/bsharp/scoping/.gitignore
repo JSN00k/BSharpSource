@@ -17,3 +17,7 @@
 /.BSharpResourceDescriptionStrategy.xtendbin
 /BSharpResourceDescriptionStrategy.java
 /.BSharpResource.java._trace
+/.BSharpImportedNamespaceAwareLocalScopeProvider.xtendbin
+/.BSharpResource.xtendbin
+/BSharpImportedNamespaceAwareLocalScopeProvider.java
+/BSharpResource.java

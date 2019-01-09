@@ -152,17 +152,17 @@ public class SuperTypeListItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.SUPER_TYPE_LIST__SUPER_TYPES,
+				 BSharpFactory.eINSTANCE.createConstructedType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.SUPER_TYPE_LIST__SUPER_TYPES,
 				 BSharpFactory.eINSTANCE.createTypeConstructor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.SUPER_TYPE_LIST__SUPER_TYPES,
 				 BSharpFactory.eINSTANCE.createTypeConstrBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.SUPER_TYPE_LIST__SUPER_TYPES,
-				 BSharpFactory.eINSTANCE.createConstructedType()));
 
 		newChildDescriptors.add
 			(createChildParameter

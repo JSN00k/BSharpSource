@@ -152,17 +152,17 @@ public class TypeDeclContextItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.TYPE_DECL_CONTEXT__TYPE_NAME,
+				 BSharpFactory.eINSTANCE.createConstructedType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.TYPE_DECL_CONTEXT__TYPE_NAME,
 				 BSharpFactory.eINSTANCE.createTypeConstructor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.TYPE_DECL_CONTEXT__TYPE_NAME,
 				 BSharpFactory.eINSTANCE.createTypeConstrBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.TYPE_DECL_CONTEXT__TYPE_NAME,
-				 BSharpFactory.eINSTANCE.createConstructedType()));
 
 		newChildDescriptors.add
 			(createChildParameter

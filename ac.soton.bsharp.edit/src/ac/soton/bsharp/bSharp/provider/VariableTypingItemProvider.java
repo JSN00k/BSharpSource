@@ -164,17 +164,17 @@ public class VariableTypingItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.VARIABLE_TYPING__TYPE,
+				 BSharpFactory.eINSTANCE.createConstructedType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.VARIABLE_TYPING__TYPE,
 				 BSharpFactory.eINSTANCE.createTypeConstructor()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.VARIABLE_TYPING__TYPE,
 				 BSharpFactory.eINSTANCE.createTypeConstrBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.VARIABLE_TYPING__TYPE,
-				 BSharpFactory.eINSTANCE.createConstructedType()));
 
 		newChildDescriptors.add
 			(createChildParameter

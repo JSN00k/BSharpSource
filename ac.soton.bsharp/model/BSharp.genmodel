@@ -98,6 +98,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/className"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/arguments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//Instance/classNameName"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//LocalImport">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//LocalImport/fileImports"/>

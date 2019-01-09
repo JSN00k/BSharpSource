@@ -65,8 +65,8 @@ public class FunctionDeclItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addInfixPropertyDescriptor(object);
 			addPrecedencePropertyDescriptor(object);
+			addInfixPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -126,9 +126,9 @@ public class FunctionDeclItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FunctionDecl_precedence_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionDecl_precedence_feature", "_UI_FunctionDecl_type"),
-				 BSharpPackage.Literals.FUNCTION_DECL__PRECEDENCE,
+				 getString("_UI_InfixFunc_precedence_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InfixFunc_precedence_feature", "_UI_InfixFunc_type"),
+				 BSharpPackage.Literals.INFIX_FUNC__PRECEDENCE,
 				 true,
 				 false,
 				 false,
@@ -153,6 +153,7 @@ public class FunctionDeclItemProvider
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_DECL__VAR_LIST);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_DECL__RETURN_TYPE);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_DECL__EXPR);
+			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS);
 		}
 		return childrenFeatures;
 	}
@@ -209,14 +210,15 @@ public class FunctionDeclItemProvider
 
 		switch (notification.getFeatureID(FunctionDecl.class)) {
 			case BSharpPackage.FUNCTION_DECL__NAME:
-			case BSharpPackage.FUNCTION_DECL__INFIX:
 			case BSharpPackage.FUNCTION_DECL__PRECEDENCE:
+			case BSharpPackage.FUNCTION_DECL__INFIX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case BSharpPackage.FUNCTION_DECL__CONTEXT:
 			case BSharpPackage.FUNCTION_DECL__VAR_LIST:
 			case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
 			case BSharpPackage.FUNCTION_DECL__EXPR:
+			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -257,12 +259,7 @@ public class FunctionDeclItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
-				 BSharpFactory.eINSTANCE.createMatchStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
-				 BSharpFactory.eINSTANCE.createQuantLambda()));
+				 BSharpFactory.eINSTANCE.createBracket()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -272,17 +269,80 @@ public class FunctionDeclItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createInfix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createMatchStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
 				 BSharpFactory.eINSTANCE.createPrefix()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
+				 BSharpFactory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
 				 BSharpFactory.eINSTANCE.createBracket()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
+				 BSharpFactory.eINSTANCE.createFunctionCall()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
 				 BSharpFactory.eINSTANCE.createInfix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
+				 BSharpFactory.eINSTANCE.createMatchStatement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
+				 BSharpFactory.eINSTANCE.createPrefix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
+				 BSharpFactory.eINSTANCE.createQuantLambda()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == BSharpPackage.Literals.FUNCTION_DECL__EXPR ||
+			childFeature == BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

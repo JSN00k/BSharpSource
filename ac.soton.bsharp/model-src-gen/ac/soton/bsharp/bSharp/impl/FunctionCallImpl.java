@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
@@ -418,9 +419,23 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		}
 		return super.eIsSet(featureID);
 	}
+	
+	@Override
+	public ExpressionVariable getTypeInst() {
+		ExpressionVariable t = super.getTypeInst();
+		if (t == null) {
+			WrappedInfix wrapped = getWrapped();
+			if (wrapped != null) {
+				return wrapped.getFuncName();
+			}
+		}
+		
+		return t;
+	}
 
 	@Override
 	public String constructLatexExpressionTree(String indent) {
+		ExpressionVariable typeInst = getTypeInst();
 		if (arguments == null || arguments.isEmpty()) {
 			String name = typeInst.getName();
 			if (name == null)
@@ -442,6 +457,7 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
+		ExpressionVariable typeInst = getTypeInst();
 		if (typeInst != null) {
 			return typeInst.compileToStringWithContextAndArguments(this, asPredicate);
 		} else {
@@ -458,7 +474,7 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		 * appending '= TRUE' is necessary. This changes the precedence to 0 as 
 		 * we're really compiling an EventB equality operator.
 		 */
-		if (typeInst instanceof FunctionDecl) {
+		if (getTypeInst() instanceof FunctionDecl) {
 			return 2;
 		} else {
 			return 0;
@@ -467,6 +483,7 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 
 	@Override
 	public Boolean hasInferredContext() {
+		ExpressionVariable typeInst = getTypeInst();
 		if (typeInst instanceof TypedVariable) {
 			IVariableProvider varProv = EcoreUtil2.getContainerOfType(typeInst, IVariableProvider.class);
 			if (varProv instanceof BSClass)
@@ -502,6 +519,7 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 
 	@Override
 	public boolean referencesContainingType() {
+		ExpressionVariable typeInst = getTypeInst();
 		if (typeInst instanceof InstName) {
 			return true;
 		}
@@ -548,11 +566,13 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	
 	@Override
 	public boolean isInstanceVariable() {
+		ExpressionVariable typeInst = getTypeInst();
 		return typeInst != null && typeInst instanceof TypedVariable && (arguments == null || arguments.isEmpty());
 	}
 
 	@Override
 	public TypeBuilder calculateType() {
+		ExpressionVariable typeInst = getTypeInst();
 		if (arguments != null && !arguments.isEmpty()) {
 			if (typeInst != null) {
 				return typeInst.calculateReturnType();

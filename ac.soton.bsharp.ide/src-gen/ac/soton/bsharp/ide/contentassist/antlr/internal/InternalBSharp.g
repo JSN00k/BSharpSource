@@ -6726,9 +6726,16 @@ rule__Instance__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getInstanceAccess().getContextAssignment_3()); }
-	(rule__Instance__ContextAssignment_3)
-	{ after(grammarAccess.getInstanceAccess().getContextAssignment_3()); }
+	(
+		{ before(grammarAccess.getInstanceAccess().getContextAssignment_3()); }
+		(rule__Instance__ContextAssignment_3)
+		{ after(grammarAccess.getInstanceAccess().getContextAssignment_3()); }
+	)
+	(
+		{ before(grammarAccess.getInstanceAccess().getContextAssignment_3()); }
+		(rule__Instance__ContextAssignment_3)*
+		{ after(grammarAccess.getInstanceAccess().getContextAssignment_3()); }
+	)
 )
 ;
 finally {

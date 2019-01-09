@@ -6,15 +6,20 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.InbuiltInfix;
+import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.util.ExprPredEnum;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -115,6 +120,38 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 	@Override
 	public Integer bSharpPrecedence() {
 		return inbuiltPrecedence.get(getName());
+	}
+	
+	@Override
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
+		TypeDeclContext ctx = fc.getContext();
+		
+		if (ctx != null) {
+			/* I don't believe that there is any way that an inbuiltInfix can have a context */
+			throw new Exception("Validate against this, a type variable shouldn't be able to have" +
+			" a poly context applied to it.");
+		}
+		
+		EList<Expression> exprs = fc.getArguments();
+		if (exprs != null && !exprs.isEmpty()) {
+			/* wouldn't function currying be fun at this point! Anyhow I'm not doing that yet, although it could be achieved
+			 * by making an some sort of instance of the function that remembers the arguments already sent to 
+			 * it then only calling the function when all of the arguments had been given.
+			 */
+			if (exprs.size() != 2) {
+				throw new Exception("inbuilt infix called with incorrect number of arguments");
+			}
+			
+			/* An infix object already has all of the code to compile this. */
+			Infix infix = BSharpFactory.eINSTANCE.createInfix();
+			infix.setOpName(getName());
+			infix.setRight(exprs.get(0));
+			infix.setLeft(exprs.get(1));
+			return infix.compileToEventBString(asPred);
+		}
+		
+		return "(λx ↦ y·⊤ ∣ bool(x " + getName() + " y))";
+
 	}
 	
 } //InbuiltInfixImpl

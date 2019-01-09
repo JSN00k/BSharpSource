@@ -1329,7 +1329,22 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 	
 	@Override
-	public IMapletNode concreteTypeMapletTree(IClassInstance type, List<Expression> args, Instance declInst) {
+	public IMapletNode concreteTypeMapletTree(List<IClassInstance> types, List<Expression> args, Instance declInst) {
+		if (types.size() != 1) {
+			/* This shouldn't be too dificult to fix, it simply requires compiling the type class 
+			 * with the types. This would result in a stringNode, it would be nicer to store the
+			 * type with a datastructure until it needs to be compiled.
+			 */
+			try {
+				throw new Exception("Type classes with mulitple polymorphic types are not yet handled");
+			} catch (Exception e) {
+				System.err.println("Type classes with mulitple polymorphic types are not yet handled");
+				return null;
+			}
+		}
+		
+		IClassInstance type = types.get(0);
+		
 		int argsCount = args.size();
 		int newVarsCount = getVarList().count();
 		
@@ -1341,7 +1356,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				 * with the variables that have been passed.
 				 */
 				ClassDecl baseType = null;
-				if (type instanceof Instance) {
+				if (types instanceof Instance) {
 					baseType = ((Instance)type).getBaseType();
 				} else {
 					baseType = (ClassDecl)type;
@@ -1365,7 +1380,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				}
 			}
 				
-			IMapletNode left = superT.concreteTypeMapletTree(type, otherVars, declInst);
+			IMapletNode left = superT.concreteTypeMapletTree(types, otherVars, declInst);
 			IMapletNode result = null;
 			if (!myVars.isEmpty()) {
 				result = CompilationUtil.mapletNodeFromExpressionArray(myVars);
@@ -1379,7 +1394,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			if (newVarsCount == 0 && superT == null) {
 				return new MapletExpressionVariableLeaf((ClassDecl)type);
 			} else if (newVarsCount == 0) {
-				return superT.concreteTypeMapletTree(type, args, declInst);
+				return superT.concreteTypeMapletTree(types, args, declInst);
 			} else if (superT != null) {
 				/* Ther is additional type information in an other instance variable. This cans either
 				 * be reached directly if type is an instance variable declaration, or it is necessary
