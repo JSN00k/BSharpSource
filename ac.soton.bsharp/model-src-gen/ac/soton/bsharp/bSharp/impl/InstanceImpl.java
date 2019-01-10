@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.FunctionDecl;
@@ -273,6 +274,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	public String getName() {
 		if (name == null) {
 			name = defaultName();
+			isDefault = true;
 			if (eNotificationRequired())
 				eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__NAME, null, name));
 		}
@@ -288,6 +290,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
+		isDefault = false;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__NAME, oldName, name));
 	}
@@ -478,6 +481,18 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		return result.toString();
 	}
 	
+	protected Boolean isDefault = null;
+	
+	@Override
+	public
+	boolean isDefault() {
+		if (isDefault == null) {
+			getName();
+		}
+		
+		return isDefault;
+	}
+	
 	protected ITypeInstance typeInst = null;
 	
 	String defaultName() {
@@ -566,7 +581,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 			typeInstList.add(ci.getTypeInstance(this));
 		}
 		
-		String ebPred = typeInst.eventBTypeInstance() + " ∈ " + className.constructWithTypeInstances(typeInstList);
+		String ebPred = typeInst.eventBTypeInstanceForType(getClassName()) + " ∈ " + className.constructWithTypeInstances(typeInstList);
 		
 		try {
 			TheoryUtils.createTheorem(thyCache.theory, membershipThmName, ebPred, monitor);
@@ -577,15 +592,27 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	
 	@Override 
 	public void compile(IProgressMonitor monitor) {
-		IMapletNode mapletTree = concreteInstanceMapletTree();
-		typeInst = new MapletTypeInstance(getClassName(), null, mapletTree);
+		//IMapletNode mapletTree = concreteInstanceMapletTree();
+		typeInst = new ConcreteTypeInstance(this, this);
 		SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
 		compileMembershipTheoremExpr(subMonitor.newChild(50));
-		//compileEventBOperator(subMonitor.newChild(50)); Left out due to typing difficulty.
+		/*compileEventBOperator(subMonitor.newChild(50)); Left out due to typing difficulty, The problem
+		 * is that polymorphic functions such as equality cannot infer the polymorphic type. The type information
+		 * for this is in the type class that they are a member of, so a future implementation can use this 
+		 * information to resolve the type issue.
+		 */
 		
 		//TODO: Some compiling of functions and theorems
-		
-		
+//		List<FunctionDecl> methods = allMethods();
+//		for (FunctionDecl meth : methods) {
+//			meth.compileWithTypeInstancesForInferredType(typeInst);
+//		}
+//		
+//		List<TheoremDecl> theorems = allTheorems();
+//		
+//		for (TheoremDecl theorem : theorems) {
+//			theorem.compileWithTypeInstancesForInferredType(typeInst);
+//		}
 	}
 	
 	List<FunctionDecl> allMethods() {
@@ -615,60 +642,85 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	}
 
 	@Override
-	public ITypeInstance getTypeInstance(EObject context) {
-		return typeInst;
+	public ConcreteTypeInstance getTypeInstance(EObject context) {
+		return new ConcreteTypeInstance(this, context);
 	}
 
 	@Override
 	public ClassDecl getBaseType() {
-		if (context instanceof ClassDecl)
-			return (ClassDecl)context;
+		if (context.size() != 1) {
+			/* If the context has more than one type within it I should construct
+			 *  the base type from the type class baseType and the types in the context.
+			 */
+			return null;
+		}
+		
+		IClassInstance classInst = context.get(0);
+		
+		if (classInst instanceof ClassDecl)
+			return (ClassDecl)classInst;
 		else {
-			return ((Instance)context).getBaseType();
+			return ((Instance)classInst).getBaseType();
 		}
 	}
 
 	@Override
 	public IMapletNode concreteInstanceMapletTree() {
-		return getClassName().concreteTypeMapletTree(getContext(), arguments, this);
+		return getClassName().concreteTypeMapletTree(getContext(), arguments, this, this);
 	}
 	
 	@Override
-	public Instance findDirectSuperInstance() {
-		/* First search the current file for extensions of the correct type, or the correct
-		 * type. If we find the correct type there is no need to search any further. Then 
-		 * search imported files for extensions of the correct types. */
+	public ConcreteTypeInstance findSuperTypeInstanceOfType(ClassDecl type, EObject context) {
+		/* Again, I'm going to assume that the context only has a single variable within it. */
+		if (type instanceof Datatype) {
+			return ((Datatype)type).getTypeInstance(context);
+		}
 		
-		BSClass instClass = getClassName();
+		List<IClassInstance> ctx = getContext();
+		if (ctx != null && ctx.size() == 1) {
+			IClassInstance ctxType = ctx.get(0);
+			
+			if (ctxType instanceof Instance) {
+				if (((Instance)ctxType).getClassName() != type) {
+					try {
+						throw new Exception("This would require some sort of mixing of default types and "
+								+ "supplied types. I do not currently support this.");
+					} catch (Exception e) {
+						System.err.println("Instance.findSuperTypeInstanceOfType(): an attempt to mix "
+								+ "default types and supplied types was made, and this is not currently"
+								+ "supported.");
+						return null;
+					}
+				}
+				
+				return ((Instance)ctxType).getTypeInstance(context);
+			}
+		}
 		
-		Function1<EObject, Boolean> instFinder = new Function1<EObject, Boolean>() {
+		/* We need to search for a Instance of the supertype within the default instances. 
+		 * Basically we find the first non-named Instance that is the searched for type, 
+		 * or any subtype of the searched for type.
+		 */
+		Instance inst = (Instance)CompilationUtil.findFirstInSupertypeScope(context, new Function1<EObject, Boolean>() {
+
 			@Override
 			public Boolean apply(EObject p) {
 				if (p instanceof Instance) {
-					return instClass.isDirectSuperType(((Instance) p).getClassName());
-				} else {
-					return false;
+					Instance pInst = (Instance)p;
+					if (pInst.isDefault()) {
+						return type == pInst.getClassName() || pInst.getClassName().isSuperType(type);
+					}
 				}
+				
+				return false;
 			}
-		};
+		});
 		
-		Instance instance = (Instance)EcoreUtilJ.eFindFirstBeforeCurrent(this, instFinder);
-		
-		if (instance != null) {
-			return instance;
-		}
-		
-		EObject root = EcoreUtil2.getRootContainer(this);
-		List<FileImport> imports = EcoreUtil2.getAllContentsOfType(root, FileImport.class);
-		
-		for (FileImport imp : imports) {
-			instance = (Instance)EcoreUtilJ.eFindFirstWithRoot(imp, instFinder);
-			
-			if (instance != null)
-				return instance;
-			
-		}
-		
-		return null;
+		return inst.getTypeInstance(context);
+	}
+
+	@Override
+	public ConcreteTypeInstance getInferredTypeInstance(EObject context) {
+		return getTypeInstance(context);
 	}
 } //InstanceImpl

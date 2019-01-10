@@ -18,6 +18,10 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
  * @generated
  */
 public interface IExpressionContainer extends EObject {
-
-	ITypeInstance getTypeInstance(EObject context);
+	/* When we're within a  BSharp block within a type class type variables from the 
+	 * type class can be referenced. This call gets a TypeInstance that represents that
+	 * inferred type. When re-compiling with concrete types the type instance can 
+	 * represent with a concrete type instance instead.
+	 */
+	ITypeInstance getInferredTypeInstance(EObject context);
 } // IExpressionContainer

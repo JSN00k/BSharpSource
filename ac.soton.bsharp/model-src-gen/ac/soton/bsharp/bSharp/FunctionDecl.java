@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 import org.rodinp.core.IInternalElement;
 
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Function Decl</b></em>'.
@@ -189,5 +191,7 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, IExp
 	boolean isMethod();
 
 	IInternalElement getCurrentCompilingOp();
+
+	void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance);
 
 } // FunctionDecl

@@ -463,7 +463,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * a result it actually contains an instance representing the supertype.
 	 */
 	@Override
-	public ITypeInstance getTypeInstance(EObject context) {
+	public ITypeInstance getInferredTypeInstance(EObject context) {
 		/*
 		 * Changing the way that this works could allow the creation of a constructed
 		 * type rather than a destructed type. For now this is a big change, and needs
@@ -1329,7 +1329,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 	
 	@Override
-	public IMapletNode concreteTypeMapletTree(List<IClassInstance> types, List<Expression> args, Instance declInst) {
+	public IMapletNode concreteTypeMapletTree(List<IClassInstance> types, List<Expression> arguments, Instance declInst,
+			EObject context) {
 		if (types.size() != 1) {
 			/* This shouldn't be too dificult to fix, it simply requires compiling the type class 
 			 * with the types. This would result in a stringNode, it would be nicer to store the
@@ -1343,14 +1344,52 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			}
 		}
 		
+		List<Expression> args = arguments;
+		
 		IClassInstance type = types.get(0);
 		
 		int argsCount = args.size();
-		int newVarsCount = getVarList().count();
+		int requiredArgsCount = getVarList().count();
+		
+		if (requiredArgsCount > argsCount && argsCount != 0) {
+			try {
+				throw new Exception("Wrong number of arguments to create an instance of this"
+						+ "type class. This should have been validated against.");
+			} catch (Exception e) {
+				System.err.println("Wrong number of arguments to create an instance of this"
+						+ "type class. This should have been validated against.");
+				return null;
+			}
+		}
 		
 		SuperTypeList supers = getSupertypes();
+		IMapletNode result = null;
 		
-		if (argsCount == newVarsCount) {
+		if (argsCount > requiredArgsCount) {
+			List<Expression> myVars = args.subList(argsCount - requiredArgsCount, argsCount);
+			List<Expression> otherVars = args.subList(0, argsCount - requiredArgsCount);
+			
+			BSClass superT = supers.getFirst().getTypeClass();
+			if (superT == null) {
+				try {
+					throw new Exception("Too many args for creating a type class");
+				} catch (Exception e) {
+					return null;
+				}
+			}
+				
+			IMapletNode left = superT.concreteTypeMapletTree(types, otherVars, declInst, context);
+			if (!myVars.isEmpty()) {
+				result = CompilationUtil.mapletNodeFromExpressionArray(myVars);
+				result = result.appendNodeToLeft(left);
+			} else {
+				result = left;
+			}
+			
+			return result;
+		}
+		
+		if (argsCount == requiredArgsCount) {
 			if (!supers.getFirst().isAbstractTypeClass()) {
 				/* We're at the end of the process. Just need to create the ITypeInstance
 				 * with the variables that have been passed.
@@ -1362,79 +1401,58 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					baseType = (ClassDecl)type;
 				}
 				
-				IMapletNode result = CompilationUtil.mapletNodeFromExpressionArray(args);
-				result = result.appendNodeToLeft(new MapletExpressionVariableLeaf(baseType));
-				
-				return result;
+				result = CompilationUtil.mapletNodeFromExpressionArray(args);
 			}
-		} else if (argsCount > newVarsCount) {
-			List<Expression> myVars = args.subList(argsCount - newVarsCount, argsCount);
-			List<Expression> otherVars = args.subList(0, argsCount - newVarsCount);
 			
-			BSClass superT = supers.getFirst().getTypeClass();
-			if (superT == null) {
-				try {
-					throw new Exception("Too many args for creating a type class");
-				} catch (Exception e) {
-					return null;
-				}
-			}
-				
-			IMapletNode left = superT.concreteTypeMapletTree(types, otherVars, declInst);
-			IMapletNode result = null;
-			if (!myVars.isEmpty()) {
-				result = CompilationUtil.mapletNodeFromExpressionArray(myVars);
-				result.appendNodeToLeft(left);
+			/* We've used all of the args. */
+			args = new ArrayList<Expression>();
+			argsCount = 0;
+		}
+		
+		IMapletNode superTypeNode = null;
+		BSClass superT = supers.getFirst().getTypeClass();
+		if (argsCount == 0 && superT == null) {
+			superTypeNode = new MapletExpressionVariableLeaf((ClassDecl) type);
+		} else if (argsCount != 0) {
+			superTypeNode = superT.concreteTypeMapletTree(types, args, declInst, context);
+		} else if (superT != null) {
+			/*
+			 * There is additional type information in an other instance variable. This cans
+			 * either be reached directly if type is an instance variable declaration, or it
+			 * is necessary to search the type and its extensions for for an unnamed
+			 * instance of one of the supertypes.
+			 */
+			if (type instanceof Instance) {
+				superTypeNode = ((Instance) type).concreteInstanceMapletTree();
 			} else {
-				result = left;
-				return result;
-			}
-		} else if (argsCount == 0) {
-			BSClass superT = supers.getFirst().getTypeClass();
-			if (newVarsCount == 0 && superT == null) {
-				return new MapletExpressionVariableLeaf((ClassDecl)type);
-			} else if (newVarsCount == 0) {
-				return superT.concreteTypeMapletTree(types, args, declInst);
-			} else if (superT != null) {
-				/* Ther is additional type information in an other instance variable. This cans either
-				 * be reached directly if type is an instance variable declaration, or it is necessary
-				 * to search the type and its extensions for for an unnamed instance of one of the supertypes.
+				/*
+				 * It is necessary to find a default super instance of the current instance. Any
+				 * one will do, there should be validation to check that there aren't
+				 * contradictory super instances.
 				 */
-				if (type instanceof Instance) {
-					return ((Instance)type).concreteInstanceMapletTree();
-				} else {
-					/* It is necessary to find a default super instance of the current instance.
-					 * Any one will do, there should be validation to check that there aren't contradictory 
-					 * super instances.
-					 */
-					Instance superInst = declInst.findDirectSuperInstance();
-					
-					if (superInst == null) {
-						try {
-							throw new Exception("Insufficient variables for Instance method."
-									+ "This should have been validated against");
-						} catch (Exception e) {
-							System.err.println("Insufficient variables for Instance method."
-									+ "This should have been validated against");
-							return null;
-						}
+				ConcreteTypeInstance superInst = declInst.findSuperTypeInstanceOfType(superT, context);
+
+				if (superInst == null) {
+					try {
+						throw new Exception("Insufficient variables for Instance method."
+								+ "This should have been validated against");
+					} catch (Exception e) {
+						System.err.println("Insufficient variables for Instance method."
+								+ "This should have been validated against");
+						return null;
 					}
-					
-					return superInst.concreteInstanceMapletTree();
 				}
-			}
-		} else {
-			try {
-				throw new Exception("Wrong number of arguments to create an instance of this"
-						+ "type class. This should have been validated against.");
-			} catch (Exception e) {
-				System.err.println("Wrong number of arguments to create an instance of this"
-						+ "type class. This should have been validated against.");
-				return null;
+
+				superTypeNode = superInst.getTree();
 			}
 		}
 		
-		return null;
+		if (result != null && superTypeNode != null)
+			return result.appendNodeToLeft(superTypeNode);
+		else if (result != null)
+			return result;
+		else
+			return superTypeNode;
 	}
 	
 	@Override
@@ -1455,6 +1473,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return false;
 		
 		return st.containsType(possibleSType);
+	}
+
+	@Override
+	public ITypeInstance getTypeInstance(EObject context) {
+		return getInferredTypeInstance(context);
 	}
 
 } // BppClassImpl

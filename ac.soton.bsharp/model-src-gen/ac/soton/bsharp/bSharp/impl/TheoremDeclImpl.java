@@ -4,11 +4,14 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.impl.QuantLambdaImpl.QuantLambdaType;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
@@ -25,6 +28,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -253,16 +257,49 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	}
 	
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
-
+	
+	protected ITypeInstance typeInst = null;
+	
 	@Override
-	public void compile() {
+	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance) {
 		expr = expr.reorderExpresionTree();
 		String ebPred = null;
-		try {
-			ebPred = expr.compileToEventBString(true, true);
-		} catch (Exception e) {
-			System.err.println("Unable to compile expression with error: " + e.getLocalizedMessage());
-			return;
+		
+		if (!expr.referencesContainingType()) {
+			/* I don't need to worry about the type instance the expr won't use it anyway. */
+			try {
+				ebPred = expr.compileToEventBString(true, true);
+			} catch (Exception e) {
+				System.err.println("Unable to compile expression with error: " + e.getLocalizedMessage());
+				return;
+			}
+		} else {
+			if (typeInstance == null) {
+				ClassDecl containingType = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+				TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+				this.typeInst = ((BSClass)containingType).deconstructedTypeInstance(thyCache);
+			} else {
+				this.typeInst = typeInstance;
+			}
+			
+			/* Change the expression into a lambda which can add a type instance to its polycontext. */
+			QuantLambda lambda;
+			if (expr instanceof QuantLambda && ((QuantLambda)expr).quantLambdaType() == QuantLambdaType.LAMBDA) {
+				lambda = (QuantLambda)expr;
+			} else {
+				lambda = BSharpFactory.eINSTANCE.createQuantLambda();
+				lambda.setQuantLambdaType(QuantLambdaType.LAMBDA);
+				lambda.setExpr(EcoreUtil2.copy(expr));
+			}
+			
+			try {
+				ebPred = lambda.compileToEventBString(true, true);
+			} catch (Exception e) {
+				System.err.println("Unable to compile expression with error: " + e.getLocalizedMessage());
+				return;
+			}
+			
+			this.typeInst = null;
 		}
 		
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
@@ -271,6 +308,11 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 		} catch (Exception e) {
 			System.err.println("Unable to create EventB theorem with error: " + e.getLocalizedMessage());
 		}
+	}
+	
+	@Override
+	public void compile() {
+		compileWithTypeInstancesForInferredType(null);
 	}
 	
 	@Override
@@ -292,12 +334,8 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	}
 
 	@Override
-	public ITypeInstance getTypeInstance(EObject context) {
-		if (expr instanceof QuantLambda) {
-			return ((QuantLambda)expr).getClassTypeInst();
-		}
-		
-		return null;
+	public ITypeInstance getInferredTypeInstance(EObject context) {		
+		return typeInst;
 	}
 
 } //TheoremDeclImpl

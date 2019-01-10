@@ -4,6 +4,9 @@
 package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+
+import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,5 +41,7 @@ public interface Datatype extends ClassDecl, IExpressionContainer {
 	EList<DatatypeConstructor> getConstructors();
 
 	String typeStringWithContext(TypeDeclContext ctx);
+	
+	ConcreteTypeInstance getTypeInstance(EObject context);
 
 } // Datatype

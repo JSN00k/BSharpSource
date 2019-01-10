@@ -7,19 +7,20 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.mapletTree.IMapletNode;
+import ac.soton.bsharp.mapletTree.MapletTree;
 
-/* This could be changed into a Concrete type instance that contains a type, and a concrete type instance that contains
- * an Instance.
- */
 public class ConcreteTypeInstance extends TypeInstanceAbstract implements ITypeInstance {
 	
 	protected IClassInstance type;
 	/* the context is used to know what was in scope when this type variable was created. */
 	protected EObject context;
+	protected IMapletNode tree = null;
 	
 	public ConcreteTypeInstance(IClassInstance t, EObject context) {
 		type = t;
@@ -41,9 +42,22 @@ public class ConcreteTypeInstance extends TypeInstanceAbstract implements ITypeI
 		return result;
 	}
 
+	/* Slightly unsure what this should mean in this case, it is unclear without knowing what type 
+	 * of class is wanted.
+	 */
 	@Override
 	public String eventBTypeInstance() {
+		if (type instanceof ClassDecl)
+			return bSharpType().getName();
+		
 		return bSharpType().getName();
+	}
+	
+	public IMapletNode getTree() {
+		if (tree == null)
+			tree = ((Instance)type).concreteInstanceMapletTree();
+		
+		return tree;
 	}
 
 	@Override
@@ -54,9 +68,24 @@ public class ConcreteTypeInstance extends TypeInstanceAbstract implements ITypeI
 		if (type instanceof Instance) {
 			BSClass bsClass = ((Instance)type).getClassName();
 			
+			if (bsClass == otherType) {
+				return getTree().compileToString();
+			}
+			
 			if (bsClass.isSuperType(otherType)) {
-				ITypeInstance typeInst = ((Instance)type).getTypeInstance(context);
-				return typeInst.eventBTypeInstanceForType(otherType);
+				IMapletNode tree = getTree();
+				int prjsRequired;
+				if (otherType instanceof Datatype) {
+					prjsRequired = bsClass.prjsRequiredForBaseType();
+				} else {
+					prjsRequired = bsClass.prjsRequiredForSupertype((BSClass)otherType);
+				}
+				
+				for (int i = 0; i < prjsRequired; ++i) {
+					tree = ((MapletTree)tree).left;
+				}
+				
+				return tree.compileToString();
 			}
 		}
 		
@@ -76,7 +105,7 @@ public class ConcreteTypeInstance extends TypeInstanceAbstract implements ITypeI
 			}
 		});
 		
-		return defaultInst.getTypeInstance(context).eventBTypeInstanceForType(otherType);
+		return defaultInst.getInferredTypeInstance(context).eventBTypeInstanceForType(otherType);
 	}
 
 	@Override

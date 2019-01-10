@@ -11,6 +11,7 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionDecl;
+import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.PolyContext;
@@ -394,17 +395,52 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		result.append(')');
 		return result.toString();
 	}
+	
+	public enum QuantLambdaType {
+		FORALL, EXISTS, LAMBDA
+	}
+	
+	@Override
+	public QuantLambdaType quantLambdaType() {
+		if (qType.equals("∀")) {
+			return QuantLambdaType.FORALL;
+		} else if (qType.equals("∃")) {
+			return QuantLambdaType.EXISTS;
+		} else {
+			return QuantLambdaType.LAMBDA;
+		}
+	}
+	
+	@Override
+	public void setQuantLambdaType(QuantLambdaType type) {
+		switch (type) {
+		case FORALL:
+			setQType("∀");
+			break;
+		case EXISTS:
+			setQType("∃");;
+			break;
+		case LAMBDA:
+			setQType("λ");;
+			break;
+		}
+	}
 
 	@Override
 	public String constructLatexExpressionTree(String indent) {
 		String qString = null;
+		QuantLambdaType type = quantLambdaType();
 		
-		if (qType.equals("∀")) {
+		switch (type) {
+		case FORALL:
 			qString = "\\forall";
-		} else if (qType.contentEquals("∃")) {
+			break;
+		case EXISTS:
 			qString = "\\exists";
-		} else {
+			break;
+		case LAMBDA:
 			qString = "\\lambda";
+			break;
 		}
 		
 		String result = "[.$" + qString + "$\n";
@@ -440,6 +476,14 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		 * to eventB equivalents.
 		 */
 		String result = qType;
+		QuantLambdaType type = quantLambdaType();
+		
+		ITypeInstance classTypeInst = null;
+		if (expr.referencesContainingType()) {
+			IExpressionContainer exprContainer = EcoreUtil2.getContainerOfType(this, IExpressionContainer.class);
+			classTypeInst = exprContainer.getInferredTypeInstance(this);
+		}
+		
 		ArrayList<Tuple2<String, String>> typedVariables = null;
 		if (context != null) {
 			typedVariables = context.namesAndTypesForPolyContext(null);
@@ -458,7 +502,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 			throw new Exception("QuantLambdaImpl tried to compile without any arguments.");
 		}
 		
-		String sep = qType.equals("λ") ? " ↦ " : ", ";
+		String sep = type == QuantLambdaType.LAMBDA ? " ↦ " : ", ";
 		
 		boolean isFirst = true;
 		if (classTypeInst != null) {
@@ -479,21 +523,26 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		result += CompilationUtil.compileTypedVaribalesToTypedList(typedVariables, isFirst);
 		
-		if (qType.equals("λ")) {
-			result += " ∣ ";
-		} else if (qType.equals("∀")){
+		switch (type) {
+		case FORALL:
 			result += " ⇒ ";
-		} else {
+			break;
+		case EXISTS:
 			result += " ∧ ";
+			break;
+		case LAMBDA:
+			result += " ∣ ";
+			break;
 		}
 		
 		/* TODO: Consult EventB precedence to reduce number of brackets */
-		boolean resultRequiresParens = expr instanceof Infix || (qType.equals("∀") && expr instanceof QuantLambda && ((QuantLambda)expr).getQType().equals("∀"));
+		boolean resultRequiresParens = expr instanceof Infix 
+				|| (type == QuantLambdaType.FORALL && expr instanceof QuantLambda && ((QuantLambda)expr).quantLambdaType() == QuantLambdaType.FORALL);
 		if (resultRequiresParens) {
 			result += "(";
 		}
 		
-		boolean quantLambdaAsPred = !qType.equals("λ");
+		boolean quantLambdaAsPred = type != QuantLambdaType.LAMBDA;
 		result += expr.compileToEventBString(quantLambdaAsPred);
 		
 		if (resultRequiresParens) {
@@ -512,43 +561,10 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 				return result;
 		}
 	}
-	
-	/* If this is a lambda created at the top of a method, with a match statment
-	 *  it can have an inferred type instance. */
-	ITypeInstance classTypeInst = null;
-	
-	@Override
-	public ITypeInstance getClassTypeInst() {
-		return classTypeInst;
-	}
-	
-	@Override
-	public String compileToEventBString(boolean asPredicate, boolean asTopLevel) throws Exception {
-		if (!asTopLevel) {
-			return compileToEventBString(asPredicate);
-		}
-		
-		/* In this case the exprepression is an expr in a theorem. It's possible that this expression
-		 * references the type class in which the theorem is defined. In this case the referenced type 
-		 * needs to be added to the arguments of the expression.
-		 */
-		if (!expr.referencesContainingType()) {
-			return compileToEventBString(asPredicate);
-		}
-		
-		ClassDecl containingType = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-		classTypeInst = ((BSClass)containingType).deconstructedTypeInstance(thyCache);
-		
-		String result = compileToEventBString(asPredicate);
-		classTypeInst = null;
-		return result;
-	}
 
 	@Override
 	public Integer eventBPrecedence(Boolean whenPredicate) {
-		if (qType.contentEquals("∀")) {
-			
+		if (quantLambdaType() == QuantLambdaType.FORALL) {
 			return 0;
 		}
 		return 2;
@@ -637,5 +653,11 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public ITypeInstance getClassTypeInst() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 } //QuantLambdaImpl

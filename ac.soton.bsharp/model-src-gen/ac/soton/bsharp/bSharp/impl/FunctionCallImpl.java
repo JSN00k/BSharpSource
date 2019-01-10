@@ -556,9 +556,11 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			return true;
 		}
 		
-		for (Expression expr : arguments) {
-			if (expr.referencesContainingType())
-				return true;
+		if (arguments != null) {
+			for (Expression expr : arguments) {
+				if (expr.referencesContainingType())
+					return true;
+			}
 		}
 		
 		return false;

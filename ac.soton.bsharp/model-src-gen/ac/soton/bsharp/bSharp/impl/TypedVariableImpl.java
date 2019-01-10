@@ -106,7 +106,7 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 				if (varProv instanceof Datatype) {
 					result = getName();
 				} else {
-					ArrayList<String> bsClassVar = func.getTypeInstance(fc).typeConstructionTypes(); 
+					ArrayList<String> bsClassVar = func.getInferredTypeInstance(fc).typeConstructionTypes(); 
 					
 					result = ((BSClass)bsClass).getterForOpName(getName()) + "(";
 					result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(bsClassVar, ", ", true) + ")";

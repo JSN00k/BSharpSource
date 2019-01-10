@@ -28,6 +28,7 @@ import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.impl.QuantLambdaImpl.QuantLambdaType;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.ExprPredEnum;
 import ac.soton.bsharp.bSharp.util.Tuple2;
@@ -38,6 +39,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -832,11 +834,17 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	protected Integer compiledMatchStatements = 0;
-	protected ITypeInstanceOpArgs evBTypeInstance = null;
+	protected ITypeInstance evBTypeInstance = null;
 
 	protected ArrayList<String> inferredBSClassConstructors = null;
 
-	ArrayList<Tuple2<String, String>> compiledPolyContext() {
+	protected List<Tuple2<String, String>> typedPolyVariables = null;
+	
+	/* TODO: The PolyContext should be made up of a dictionary of type instances, then 
+	 * when a polytype is found within an expression the functionDecl can be asked for
+	 * the appropiate typeInstance.
+	 */
+	ArrayList<Tuple2<String, String>> compiledPolyContextWithInferredContext() {
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		boolean hasInferredContext = expr.hasInferredContext();
 		if (context == null && !hasInferredContext) {
@@ -856,8 +864,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				classDecl = (ClassDecl) containerClass;
 			}
 
-			evBTypeInstance = classDecl.genericTypeInstance(thyCache);
-			compiledContext = evBTypeInstance.individuallyTypedConstructionArgs();
+			ITypeInstanceOpArgs typeInst = classDecl.genericTypeInstance(thyCache);
+			evBTypeInstance = typeInst;
+			compiledContext = typeInst.individuallyTypedConstructionArgs();
 		}
 
 		if (context == null) {
@@ -872,6 +881,14 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			}
 		}
 	}
+	
+	List<Tuple2<String, String>> compiledPolyContext() {
+		if (context == null)
+			return null;
+					
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		return context.namesAndTypesForPolyContext(thyCache);
+	}
 
 	protected INewOperatorDefinition op = null;
 
@@ -881,7 +898,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	@Override
-	public ITypeInstance getTypeInstance(EObject context) {
+	public ITypeInstance getInferredTypeInstance(EObject context) {
 		return evBTypeInstance;
 	}
 
@@ -896,7 +913,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * lambda which is then called with the function arguments.
 		 */
 		compiledMatchStatements = 0;
-		ArrayList<Tuple2<String, String>> polyContext = compiledPolyContext();
+		
+		ArrayList<Tuple2<String, String>> polyContext = compiledPolyContextWithInferredContext();
+		typedPolyVariables = polyContext;
 
 		if (polyContext != null) {
 			compileWithPolyContext(polyContext);
@@ -905,9 +924,26 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		}
 
 		evBTypeInstance = null;
+		typedPolyVariables = null;
+	}
+	
+	@Override
+	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance) {
+		evBTypeInstance = typeInstance;
+		compiledMatchStatements = 0;
+		List<Tuple2<String, String>> polyContext = compiledPolyContext();
+		typedPolyVariables = polyContext;
+		
+		if (polyContext != null && !polyContext.isEmpty())
+			compileWithPolyContext(polyContext);
+		else 
+			compileWithoutPolyContext();
+		
+		evBTypeInstance = null;
+		typedPolyVariables = null;
 	}
 
-	void compileWithPolyContext(ArrayList<Tuple2<String, String>> pContext) {
+	void compileWithPolyContext(List<Tuple2<String, String>> pContext) {
 		expr = expr.reorderExpresionTree();
 
 		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
@@ -1022,7 +1058,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * generate a EventB lambda.
 		 */
 		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
-		lambda.setQType("λ");
+		lambda.setQuantLambdaType(QuantLambdaType.LAMBDA);
 		lambda.setVarList(EcoreUtil2.copy(varList));
 		FunctionCall func = BSharpFactory.eINSTANCE.createFunctionCall();
 		func.setTypeInst(this);
@@ -1069,7 +1105,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * ExpressionContainer
 		 */
 		IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
-		ITypeInstance typeInst = container.getTypeInstance(fc);
+		ITypeInstance typeInst = container.getInferredTypeInstance(fc);
 
 		ClassDecl containType = CompilationUtil.getClassDecl(this);
 
@@ -1235,13 +1271,13 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
-		ArrayList<Tuple2<String, String>> pContext = compiledPolyContext();
-
-		if (pContext != null) {
+		if (typedPolyVariables != null) {
+			ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>(typedPolyVariables);
+			
 			if (varList != null)
-				pContext.addAll(varList.getCompiledVariablesAndTypes());
+				result.addAll(varList.getCompiledVariablesAndTypes());
 
-			return pContext;
+			return result;
 		} else {
 			if (varList != null)
 				return varList.getCompiledVariablesAndTypes();

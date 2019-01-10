@@ -18,6 +18,8 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
  * @generated
  */
 public interface IClassInstance extends EObject {
-
+	/* When compiling items within a BSharpBlock the type class that the block
+	 * is a member of can be referenced (either as a type, or its variables)
+	 */
 	ITypeInstance getTypeInstance(EObject context);
 } // IClassInstance

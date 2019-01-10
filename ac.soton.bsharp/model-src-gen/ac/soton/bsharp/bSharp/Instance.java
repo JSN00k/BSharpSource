@@ -8,6 +8,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import ac.soton.bsharp.mapletTree.IMapletNode;
+import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -117,8 +118,13 @@ public interface Instance extends IExpressionContainer, ITheoremContainer, IClas
 
 	ClassDecl getBaseType();
 	
-	IMapletNode concreteInstanceMapletTree();
+	IMapletNode concreteInstanceMapletTree(); 
+	
+	ConcreteTypeInstance getTypeInstance(EObject context);
+	ConcreteTypeInstance getInferredTypeInstance(EObject context);
 
-	Instance findDirectSuperInstance();
+	boolean isDefault();
+
+	ConcreteTypeInstance findSuperTypeInstanceOfType(ClassDecl type, EObject context);
 
 } // Instance

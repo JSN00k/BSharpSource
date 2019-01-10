@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp;
 import org.eclipse.emf.ecore.EObject;
 
 import ac.soton.bsharp.bSharp.impl.TypedVariableImpl;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,4 +83,6 @@ public interface TheoremDecl extends IExpressionContainer {
 	String baseTypeForBSClass(BSClass typeName);
 
 	String getNameExpressionForVariable(TypedVariable typedVariableImpl);
+
+	void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance);
 } // TheoremDecl

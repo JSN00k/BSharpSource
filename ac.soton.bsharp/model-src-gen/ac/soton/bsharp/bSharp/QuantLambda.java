@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import ac.soton.bsharp.bSharp.impl.QuantLambdaImpl.QuantLambdaType;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 /**
@@ -133,5 +134,9 @@ public interface QuantLambda extends Expression, IVariableProvider, IPolyTypePro
 	String getNameExpressionForVariable(TypedVariable typedVariable);
 
 	ITypeInstance getClassTypeInst();
+
+	QuantLambdaType quantLambdaType();
+
+	void setQuantLambdaType(QuantLambdaType type);
 
 } // QuantLambda

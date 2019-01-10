@@ -190,5 +190,6 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 
 	boolean isSuperType(ClassDecl possibleSType);
 
-	IMapletNode concreteTypeMapletTree(List<IClassInstance> type, List<Expression> args, Instance declInst);
+	IMapletNode concreteTypeMapletTree(List<IClassInstance> types, List<Expression> args, Instance declInst,
+			EObject context);
 } // BppClass

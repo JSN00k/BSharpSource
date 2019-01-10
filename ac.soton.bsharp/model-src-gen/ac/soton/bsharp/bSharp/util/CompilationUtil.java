@@ -127,7 +127,7 @@ public class CompilationUtil {
 		return EcoreUtil2.getContainerOfType(elem, ITheoryImportCacheProvider.class).getTheoryImportCache();
 	}
 	
-	public static void compileTypedVariablesToOperatorArgs(ArrayList<Tuple2<String, String>> typedVars,
+	public static void compileTypedVariablesToOperatorArgs(List<Tuple2<String, String>> typedVars,
 			INewOperatorDefinition op) throws Exception {
 		for (Tuple2<String, String> typedArg : typedVars) {
 			TheoryUtils.createArgument(op, typedArg.x, typedArg.y, null, nullMonitor);
@@ -135,7 +135,7 @@ public class CompilationUtil {
 	}
 	
 	public static INewOperatorDefinition createOpWithArgumentsAsPred(TheoryImportCache thyCache,
-			String name, ArrayList<Tuple2<String, String>> args, Notation notation, Boolean asPred) throws Exception {
+			String name, List<Tuple2<String, String>> args, Notation notation, Boolean asPred) throws Exception {
 		INewOperatorDefinition op = TheoryUtils.createOperator(thyCache.theory, name, false, false, 
 				asPred ? FormulaType.PREDICATE : FormulaType.EXPRESSION, notation, null, nullMonitor);
 		
@@ -154,7 +154,7 @@ public class CompilationUtil {
 	}
 	
 	public static INewOperatorDefinition createOpWithArguments(TheoryImportCache thyCache,
-			String name, ArrayList<Tuple2<String, String>> args, IOperatorProperties.Notation notation) throws Exception {
+			String name, List<Tuple2<String, String>> args, IOperatorProperties.Notation notation) throws Exception {
 		return createOpWithArgumentsAsPred(thyCache, name, args, notation, false);
 	}
 	
