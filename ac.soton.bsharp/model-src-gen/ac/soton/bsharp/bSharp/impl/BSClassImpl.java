@@ -572,10 +572,10 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 
 		if (varList != null) {
-			ArrayList<Tuple2<String, String>> typedVars = varList.getCompiledVariablesAndTypes();
+			List<String> typedVars = varList.getVariableNames();
 
-			for (Tuple2<String, String> typedVar : typedVars) {
-				result.add("_" + typedVar.x);
+			for (String typedVar : typedVars) {
+				result.add("_" + typedVar);
 			}
 		}
 
@@ -657,7 +657,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		if (vl == null || vl.isEmpty())
 			return null;
 
-		ArrayList<TypedVariable> typedVars = vl.getTypedVariableNames();
+		ArrayList<TypedVariable> typedVars = vl.getTypedVariables();
 		boolean first = true;
 		IMapletNode c = null;
 		for (TypedVariable tv : typedVars) {
@@ -831,7 +831,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	
 	@Override
 	public List<Integer> prjsForTypedVariable(TypedVariable typedVariable) {
-		List<TypedVariable> typedVars = getVarList().getTypedVariableNames();
+		List<TypedVariable> typedVars = getVarList().getTypedVariables();
 		int totalVarsCount = typedVars.size();
 		int varIndex = typedVars.indexOf(typedVariable);
 		

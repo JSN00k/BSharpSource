@@ -13,6 +13,7 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -194,7 +195,7 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	@Override
-	public ArrayList<TypedVariable> getTypedVariableNames() {
+	public ArrayList<TypedVariable> getTypedVariables() {
 		ArrayList<TypedVariable> result = new ArrayList<TypedVariable>();
 		if (variablesOfType == null) {
 			return result;
@@ -204,6 +205,18 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 			Collection<TypedVariable> vars = varsOfType.getTypeVar();
 			if (vars != null)
 				result.addAll(vars);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public List<String> getVariableNames() {
+		List<TypedVariable> typdeVariableNames = getTypedVariables();
+		ArrayList<String> result = new ArrayList<String>();
+		
+		for (TypedVariable var : typdeVariableNames) {
+			result.add(var.getName());
 		}
 		
 		return result;

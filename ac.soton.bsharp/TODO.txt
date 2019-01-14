@@ -1,6 +1,5 @@
 ---------- Scoping ---------------
 
-1)	When inside a subtype fix the scoping so elements from the super type can be used without errors. 
 2) 	Deal With Constructed types in some meaningful way.
 3) 	Check that when a constructed type is passed as a supertype that it is the only supertype (I think), 
 	either way more needs to be thought out on this concept.
@@ -14,11 +13,10 @@ These TODOs are requirements that have been put off due to time constraints, The
 1)  In FileCompiler compileTypeConstructor(TypeConstructor constr) currently only handles simple types
 	it needs to be able to handle constructed types, this can be done after I implement generating 
 	type constructors.
-2)	Make an abstract class to handle infix functions both inbuilt and declared, this separates the
-	code for handling function calls from the code for handling infix calls.
-3) Change the way the Type classes work so they are also constructive rather than destructive.
-4) Infix implementations to pass them as a function, wrap them in brackets. when found in an expression
-	tree without brackets set the arguments to left and right.
+2) Change the way the Type classes work so they are also constructive rather than destructive.
+3) Change all of the TypedVariable code so lists of TypedVariables are passed around and the
+   TypedVariable is capable of looking up its type when that is required.
+	
 	
 -------------- Validation -----------------
 Due to time constraints insufficient work has been done on validation, allowing invalid statements

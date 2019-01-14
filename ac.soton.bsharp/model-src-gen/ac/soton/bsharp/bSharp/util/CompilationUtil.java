@@ -24,6 +24,7 @@ import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.IBodyElementsContainer;
+import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
 import ac.soton.bsharp.bSharp.SuperTypeList;
@@ -509,5 +510,19 @@ public class CompilationUtil {
 	public static ITypeInstance getTypeInstance(EObject context) {
 		IExpressionContainer exprContainer = EcoreUtil2.getContainerOfType(context, IExpressionContainer.class);
 		return exprContainer.getInferredTypeInstance();
+	}
+	
+	public static IClassInstance getClassInstance(EObject context) {
+		IClassInstance result = EcoreUtil2.getContainerOfType(context, IClassInstance.class);
+		if (result != null)
+			return result;
+		
+		/* It's possible we're in an Extend. */
+		Extend extend = EcoreUtil2.getContainerOfType(context, Extend.class);
+		if (extend != null) {
+			return extend.getExtendedClass();
+		}
+		
+		return null;
 	}
 }

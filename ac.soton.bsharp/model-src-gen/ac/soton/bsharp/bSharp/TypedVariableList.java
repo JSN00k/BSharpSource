@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -60,7 +61,7 @@ public interface TypedVariableList extends EObject {
 	 * in fact have type information immediately associated with it (to find this you'd need to look
 	 * in its container, and should probably be renamed.
 	 */
-	ArrayList<TypedVariable> getTypedVariableNames();
+	ArrayList<TypedVariable> getTypedVariables();
 	
 	ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesWithBSharpTypes();
 
@@ -72,4 +73,7 @@ public interface TypedVariableList extends EObject {
 
 
 	int count();
+
+
+	List<String> getVariableNames();
 } // TypedVariableList

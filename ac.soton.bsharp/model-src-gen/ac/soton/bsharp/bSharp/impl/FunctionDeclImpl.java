@@ -918,7 +918,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * operator that takes the polymorphic context as the argument, and generates a
 		 * lambda which is then called with the function arguments.
 		 */
-		IClassInstance typeInstProvidor =  EcoreUtil2.getContainerOfType(this, IClassInstance.class);
+		IClassInstance typeInstProvidor =  CompilationUtil.getClassInstance(this);
 		evBTypeInstance = typeInstProvidor.typeInstanceForContext(this);
 		compiledMatchStatements = 0;
 		
@@ -1074,7 +1074,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		func.setTypeInst(this);
 		EList<Expression> callArgs = func.getArguments();
 
-		ArrayList<TypedVariable> variables = varList.getTypedVariableNames();
+		ArrayList<TypedVariable> variables = varList.getTypedVariables();
 		for (TypedVariable var : variables) {
 			FunctionCall wrappedVar = BSharpFactory.eINSTANCE.createFunctionCall();
 			wrappedVar.setTypeInst(var);

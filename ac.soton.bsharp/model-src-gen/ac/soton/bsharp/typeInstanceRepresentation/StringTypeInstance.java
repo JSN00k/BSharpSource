@@ -37,7 +37,7 @@ public class StringTypeInstance extends TypeInstanceAbstract implements ITypeIns
 	@Override
 	public String baseTypeString() {
 		if (baseTypeString == null) {
-			baseTypeString = super.baseTypeString();
+			baseTypeString = constructingTypesTyped.get(constructingTypesTyped.size() - 1).x;
 		}
 		
 		return baseTypeString;
