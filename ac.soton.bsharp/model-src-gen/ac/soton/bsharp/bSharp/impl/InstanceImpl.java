@@ -607,11 +607,11 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 			meth.compileWithTypeInstancesForInferredType(typeInst, getName() + "_");
 		}
 		
-//		List<TheoremDecl> theorems = allTheorems();
-//		
-//		for (TheoremDecl theorem : theorems) {
-//			theorem.compileWithTypeInstancesForInferredType(typeInst);
-//		}
+		List<TheoremDecl> theorems = allTheorems();
+		
+		for (TheoremDecl theorem : theorems) {
+			theorem.compileWithTypeInstancesForInferredType(typeInst);
+		}
 		
 		typeInst = null;
 	}

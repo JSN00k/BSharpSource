@@ -292,7 +292,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 			}
 			
 			try {
-				ebPred = forallLambda.compileToEventBStringWithInferredTypeArgs(true, true);
+				ebPred = forallLambda.compileToEventBStringWithInferredTypeArgs(true, this.typeInst.isInferredTypeInst());
 			} catch (Exception e) {
 				System.err.println("Unable to compile expression with error: " + e.getLocalizedMessage());
 				return;
@@ -301,7 +301,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 			this.typeInst = null;
 		}
 		
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(typeInstance.getContext());
 		try {
 			TheoryUtils.createTheorem(thyCache.theory, name, ebPred, nullMonitor);
 		} catch (Exception e) {
