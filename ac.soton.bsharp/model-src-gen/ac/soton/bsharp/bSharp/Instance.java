@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -120,11 +122,13 @@ public interface Instance extends IExpressionContainer, ITheoremContainer, IClas
 	
 	IMapletNode concreteInstanceMapletTree(); 
 	
-	ConcreteTypeInstance getTypeInstance(EObject context);
-	ConcreteTypeInstance getInferredTypeInstance(EObject context);
+	ConcreteTypeInstance getInferredTypeInstance();
+	ConcreteTypeInstance typeInstanceForContext(EObject context);
 
 	boolean isDefault();
 
 	ConcreteTypeInstance findSuperTypeInstanceOfType(ClassDecl type, EObject context);
+
+	List<BSClass> typeClassesRepresentedByInstance();
 
 } // Instance

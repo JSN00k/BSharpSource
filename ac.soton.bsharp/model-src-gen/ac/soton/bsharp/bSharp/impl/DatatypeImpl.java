@@ -310,7 +310,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public ITypeInstanceOpArgs genericTypeInstance(TheoryImportCache thyCache) {
+	public ITypeInstanceOpArgs genericTypeInstance(EObject context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -328,16 +328,12 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public ConcreteTypeInstance getTypeInstance(EObject context) {
-		// TODO Auto-generated method stub
+	public ConcreteTypeInstance typeInstanceForContext(EObject context) {
 		return new ConcreteTypeInstance(this, context);
 	}
 
 	@Override
-	public ConcreteTypeInstance getInferredTypeInstance(EObject context) {
-		return new ConcreteTypeInstance(this, context);
+	public ITypeInstance getInferredTypeInstance() {
+		return new ConcreteTypeInstance(this, this);
 	}
-
-	
-
 } //DatatypeImpl

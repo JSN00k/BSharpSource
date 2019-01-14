@@ -23,11 +23,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.xtext.EcoreUtil2;
 
 /**
@@ -268,7 +266,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 		if (!expr.referencesContainingType()) {
 			/* I don't need to worry about the type instance the expr won't use it anyway. */
 			try {
-				ebPred = expr.compileToEventBString(true, true);
+				ebPred = expr.compileToEventBString(true);
 			} catch (Exception e) {
 				System.err.println("Unable to compile expression with error: " + e.getLocalizedMessage());
 				return;
@@ -276,24 +274,25 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 		} else {
 			if (typeInstance == null) {
 				ClassDecl containingType = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
-				TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-				this.typeInst = ((BSClass)containingType).deconstructedTypeInstance(thyCache);
+				this.typeInst = ((BSClass)containingType).deconstructedTypeInstance(this, null);
 			} else {
 				this.typeInst = typeInstance;
 			}
 			
-			/* Change the expression into a lambda which can add a type instance to its polycontext. */
-			QuantLambda lambda;
-			if (expr instanceof QuantLambda && ((QuantLambda)expr).quantLambdaType() == QuantLambdaType.LAMBDA) {
-				lambda = (QuantLambda)expr;
+			/* Change the expression into a lambda which can add a type instance to its polycontext. If the
+			 * expression can't imeddiately */
+			QuantLambda forallLambda;
+			if (expr instanceof QuantLambda && (((QuantLambda)expr).quantLambdaType() == QuantLambdaType.LAMBDA
+					|| ((QuantLambda)expr).quantLambdaType() == QuantLambdaType.FORALL)) {
+				forallLambda = (QuantLambda)expr;
 			} else {
-				lambda = BSharpFactory.eINSTANCE.createQuantLambda();
-				lambda.setQuantLambdaType(QuantLambdaType.LAMBDA);
-				lambda.setExpr(EcoreUtil2.copy(expr));
+				forallLambda = BSharpFactory.eINSTANCE.createQuantLambda();
+				forallLambda.setQuantLambdaType(QuantLambdaType.FORALL);
+				forallLambda.setExpr(EcoreUtil2.copy(expr));
 			}
 			
 			try {
-				ebPred = lambda.compileToEventBString(true, true);
+				ebPred = forallLambda.compileToEventBStringWithInferredTypeArgs(true, true);
 			} catch (Exception e) {
 				System.err.println("Unable to compile expression with error: " + e.getLocalizedMessage());
 				return;
@@ -334,7 +333,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	}
 
 	@Override
-	public ITypeInstance getInferredTypeInstance(EObject context) {		
+	public ITypeInstance getInferredTypeInstance() {		
 		return typeInst;
 	}
 

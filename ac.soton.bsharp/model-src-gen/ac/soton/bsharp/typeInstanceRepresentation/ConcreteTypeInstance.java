@@ -15,11 +15,10 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.mapletTree.IMapletNode;
 import ac.soton.bsharp.mapletTree.MapletTree;
 
-public class ConcreteTypeInstance extends TypeInstanceAbstract implements ITypeInstance {
+public class ConcreteTypeInstance extends TypeInstanceTreeAbstract implements ITypeInstance {
 	
 	protected IClassInstance type;
 	/* the context is used to know what was in scope when this type variable was created. */
-	protected EObject context;
 	protected IMapletNode tree = null;
 	
 	public ConcreteTypeInstance(IClassInstance t, EObject context) {
@@ -32,7 +31,7 @@ public class ConcreteTypeInstance extends TypeInstanceAbstract implements ITypeI
 		if (type instanceof ClassDecl)
 			return (ClassDecl)type;
 		else 
-			return ((Instance)type).getBaseType();
+			return ((Instance)type).getClassName();
 	}
 
 	@Override
@@ -59,34 +58,13 @@ public class ConcreteTypeInstance extends TypeInstanceAbstract implements ITypeI
 		
 		return tree;
 	}
-
+	
 	@Override
-	public String eventBTypeInstanceForType(ClassDecl otherType) {
-		/* If the IClassInstance is a Instance then the first thing to do is check the hierarchy 
-		 * of the Instance before checking if there is a possible default type instance that could be used.
-		 */
+	public IMapletNode treeForType(ClassDecl otherType) {
 		if (type instanceof Instance) {
 			BSClass bsClass = ((Instance)type).getClassName();
-			
-			if (bsClass == otherType) {
-				return getTree().compileToString();
-			}
-			
-			if (bsClass.isSuperType(otherType)) {
-				IMapletNode tree = getTree();
-				int prjsRequired;
-				if (otherType instanceof Datatype) {
-					prjsRequired = bsClass.prjsRequiredForBaseType();
-				} else {
-					prjsRequired = bsClass.prjsRequiredForSupertype((BSClass)otherType);
-				}
-				
-				for (int i = 0; i < prjsRequired; ++i) {
-					tree = ((MapletTree)tree).left;
-				}
-				
-				return tree.compileToString();
-			}
+			if (bsClass == otherType || bsClass.isSuperType(otherType));
+				return super.treeForType(otherType);
 		}
 		
 		/* This isn't going to worry about finding an exact match for the other type instead it will
@@ -105,7 +83,11 @@ public class ConcreteTypeInstance extends TypeInstanceAbstract implements ITypeI
 			}
 		});
 		
-		return defaultInst.getInferredTypeInstance(context).eventBTypeInstanceForType(otherType);
+		if (defaultInst != null) {
+			defaultInst.typeInstanceForContext(context).treeForType(otherType);
+		}
+		
+		return null;
 	}
 
 	@Override

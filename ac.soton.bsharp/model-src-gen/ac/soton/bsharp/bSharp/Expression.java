@@ -55,7 +55,6 @@ public interface Expression extends EObject {
 	String constructLatexExpressionTree(String indent);
 
 	String compileToEventBString(Boolean asPredicate) throws Exception;
-	String compileToEventBString(boolean asPredicate, boolean asTopLevel) throws Exception;
 	
 	/* Event-B inbuilt predicate operators have a precedence of 0. User declared infix operators
 	 * have a precedence of 1. Everything else has a precedence of 2 (Everything else is a prefix function).

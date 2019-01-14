@@ -139,4 +139,6 @@ public interface QuantLambda extends Expression, IVariableProvider, IPolyTypePro
 
 	void setQuantLambdaType(QuantLambdaType type);
 
+	String compileToEventBStringWithInferredTypeArgs(Boolean asPredicate, Boolean addTypeInstArgs) throws Exception;
+
 } // QuantLambda

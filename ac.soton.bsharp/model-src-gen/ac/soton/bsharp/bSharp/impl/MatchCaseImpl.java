@@ -15,6 +15,7 @@ import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
@@ -317,7 +318,8 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	}
 	
 	String matchString() {
-		String result = deconName.getName();
+		String result = getDeconName().getName();
+		List<TypedVariable> variables = getVariables();
 		
 		if (variables == null || variables.isEmpty())
 			return result;

@@ -12,6 +12,7 @@ import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
+import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
@@ -818,9 +819,14 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 		return false;
 	}
+	
+	protected String funcPrefix = null;
 
 	@Override
 	public String eventBExprName() {
+		if (funcPrefix != null) {
+			return funcPrefix + getName();
+		}
 		/* Add a new type EventBPrefixProvider type. */
 		IEventBPrefixProvider provider = EcoreUtil2.getContainerOfType(this, IEventBPrefixProvider.class);
 		return provider.eventBPrefix() + "_" + name;
@@ -864,7 +870,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				classDecl = (ClassDecl) containerClass;
 			}
 
-			ITypeInstanceOpArgs typeInst = classDecl.genericTypeInstance(thyCache);
+			ITypeInstanceOpArgs typeInst = classDecl.genericTypeInstance(this);
 			evBTypeInstance = typeInst;
 			compiledContext = typeInst.individuallyTypedConstructionArgs();
 		}
@@ -898,7 +904,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	@Override
-	public ITypeInstance getInferredTypeInstance(EObject context) {
+	public ITypeInstance getInferredTypeInstance() {
 		return evBTypeInstance;
 	}
 
@@ -912,6 +918,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * operator that takes the polymorphic context as the argument, and generates a
 		 * lambda which is then called with the function arguments.
 		 */
+		IClassInstance typeInstProvidor =  EcoreUtil2.getContainerOfType(this, IClassInstance.class);
+		evBTypeInstance = typeInstProvidor.typeInstanceForContext(this);
 		compiledMatchStatements = 0;
 		
 		ArrayList<Tuple2<String, String>> polyContext = compiledPolyContextWithInferredContext();
@@ -928,7 +936,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	@Override
-	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance) {
+	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance, String funcPrefix) {
+		this.funcPrefix = funcPrefix;
 		evBTypeInstance = typeInstance;
 		compiledMatchStatements = 0;
 		List<Tuple2<String, String>> polyContext = compiledPolyContext();
@@ -939,6 +948,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		else 
 			compileWithoutPolyContext();
 		
+		this.funcPrefix = null;
 		evBTypeInstance = null;
 		typedPolyVariables = null;
 	}
@@ -1000,7 +1010,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		String opName = eventBExprName();
 
 		ArrayList<Tuple2<String, String>> args = varList.getCompiledVariablesAndTypes();
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(evBTypeInstance.getContext());
 
 		IOperatorProperties.Notation notation = Notation.PREFIX;
 		if (infix != null && !infix.isEmpty()) {
@@ -1072,6 +1082,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		}
 
 		lambda.setExpr(func);
+		
+		List<Expression> generatedLambdas = getGeneratedLambdas();
+		generatedLambdas.add(lambda);
 
 		try {
 			TheoryUtils.createDirectDefinition(op, lambda.compileToEventBString(false), null, nullMonitor);
@@ -1079,12 +1092,29 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
 		}
 
+		generatedLambdas.remove(lambda);
 		op = null;
+	}
+	
+	public boolean compilationRequiresContext(EObject ctx) {
+		/* The compilation requires a context if the function has an explicit context, or if the function
+		 * references an inferredType, and a concrete type isn't provided.
+		 */
+		if (context != null && !context.isEmpty()) {
+			return true;
+		}
+		
+		if (!expr.hasInferredContext()) {
+			return false;
+		}
+		
+		ITypeInstance inst = CompilationUtil.getTypeInstance(ctx);
+		return inst.isInferredTypeInst();
 	}
 
 	@Override
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
-		if (context != null && !context.isEmpty() || expr.hasInferredContext()) {
+		if (compilationRequiresContext(fc)) {
 			return compileFunctionCallWithContext(fc, asPred);
 		} else {
 			return comipileFunctionCallNoContext(fc, asPred);
@@ -1105,7 +1135,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * ExpressionContainer
 		 */
 		IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
-		ITypeInstance typeInst = container.getInferredTypeInstance(fc);
+		ITypeInstance typeInst = container.getInferredTypeInstance();
 
 		ClassDecl containType = CompilationUtil.getClassDecl(this);
 

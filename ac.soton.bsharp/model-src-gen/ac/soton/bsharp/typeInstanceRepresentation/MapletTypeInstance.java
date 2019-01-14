@@ -12,7 +12,7 @@ import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.mapletTree.IMapletNode;
 import ac.soton.bsharp.mapletTree.MapletTree;
 
-public class MapletTypeInstance extends TypeInstanceAbstract implements ITypeInstance {
+public class MapletTypeInstance extends TypeInstanceTreeAbstract implements ITypeInstance {
 	
 	protected IMapletNode tree;
 	protected ArrayList<Tuple2<String, String>> typedVariableConstructorsTyped;
@@ -21,10 +21,16 @@ public class MapletTypeInstance extends TypeInstanceAbstract implements ITypeIns
 	/* Contains the list of non-eventB type names e.g., T : POW(EVB_T) this will contain T without the type. */
 	protected ArrayList<String> untypedTypes = null;
 	
-	public MapletTypeInstance(ClassDecl classDecl, ArrayList<Tuple2<String, String>> typedTypes, IMapletNode tree) {
+	public MapletTypeInstance(ClassDecl classDecl, ArrayList<Tuple2<String, String>> typedTypes, IMapletNode tree, EObject context) {
+		this.context = context;
 		this.classDecl = classDecl;
 		typedVariableConstructorsTyped = typedTypes;
 		this.tree = tree;
+	}
+	
+	@Override
+	public IMapletNode getTree() {
+		return tree;
 	}
 
 	@Override

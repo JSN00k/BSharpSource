@@ -1,20 +1,48 @@
 package ac.soton.bsharp.typeInstanceRepresentation;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
 public abstract class TypeInstanceAbstract implements ITypeInstance {
+	
+	protected EObject context;
+	
+	boolean isInferredTypeInstance = false;
+	
+	@Override
+	public boolean isInferredTypeInst() {
+		return isInferredTypeInstance;
+	}
+	
+	@Override
+	public void setIsInferredTypeInst(boolean isInferred) {
+		isInferredTypeInstance = isInferred;
+	}
+	
+	@Override
+	public EObject getContext() {
+		// TODO Auto-generated method stub
+		return context;
+	}
 
 	@Override
 	public String eventBTypeInstanceForType(ClassDecl type) {
+		/* It's possible that the bsharpType returns null if there is an instance that 
+		 * represents a constructed type (this happens during compilation of type classes 
+		 * that don't have a super type.
+		 */
 		ClassDecl classDecl = bSharpType();
 		
-		if (type instanceof Datatype && classDecl instanceof Datatype) {
+		if (type instanceof Datatype && (classDecl == null || classDecl instanceof Datatype)) {
 			return eventBTypeInstance();
 		}
 		
@@ -39,12 +67,31 @@ public abstract class TypeInstanceAbstract implements ITypeInstance {
 		ClassDecl classDecl = bSharpType();
 		String instanceString = eventBTypeInstance();
 		
-		if (classDecl instanceof Datatype) {
+		
+		if (classDecl == null || classDecl instanceof Datatype) {
 			return instanceString;
 		}
 		
 		int prjsRequired = ((BSClass)classDecl).prjsRequiredForBaseType();
 		
 		return CompilationUtil.wrapNameInPrj1s(instanceString, prjsRequired);
+	}
+	
+	@Override
+	public String compiledTypeVariable(TypedVariable typedVariable) {
+		ClassDecl variableContainer = EcoreUtil2.getContainerOfType(typedVariable, ClassDecl.class);
+		
+		
+		if (variableContainer instanceof Datatype) {
+			return ((Datatype)variableContainer).eventBPrefix() + "_" + typedVariable.getName();
+		}
+		
+		ClassDecl bSharpType = bSharpType();
+		
+		String evBClass = eventBTypeInstanceForType(variableContainer);
+		
+		String getterOp = ((BSClass)bSharpType).getterForOpName(typedVariable.getName()) + "(";
+		getterOp += ((BSClass)bSharpType).deconstructEventBTypeToArguments(evBClass) + ")";
+		return getterOp;
 	}
 }

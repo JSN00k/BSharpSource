@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
@@ -18,15 +19,28 @@ public class StringTypeInstance extends TypeInstanceAbstract implements ITypeIns
 	protected ArrayList<String> constructingTypesNames = null;
 	protected String instanceName;
 	
-	public StringTypeInstance(ClassDecl decl, ArrayList<Tuple2<String, String>> constrTypes, String instName) {
+	protected String baseTypeString;
+	
+	public StringTypeInstance(ClassDecl decl, ArrayList<Tuple2<String, String>> constrTypes, String instName, EObject context) {
+		this.context = context;
 		classDecl = decl;
 		constructingTypesTyped = constrTypes;
 		instanceName = instName;
+		this.baseTypeString = baseTypeString;
 	}
 
 	@Override
 	public ClassDecl bSharpType() {
 		return classDecl;
+	}
+	
+	@Override
+	public String baseTypeString() {
+		if (baseTypeString == null) {
+			baseTypeString = super.baseTypeString();
+		}
+		
+		return baseTypeString;
 	}
 	
 	@Override
@@ -59,7 +73,7 @@ public class StringTypeInstance extends TypeInstanceAbstract implements ITypeIns
 
 	@Override
 	public String eventBTypeInstance() {
-		return constructingTypesTyped.get(0).x;
+		return constructingTypesTyped.get(constructingTypesTyped.size() - 1).x;
 	}
 
 	@Override
@@ -90,5 +104,14 @@ public class StringTypeInstance extends TypeInstanceAbstract implements ITypeIns
 	@Override
 	public ArrayList<Tuple2<String, String>> individuallyTypedConstructionArgs() {
 		return typingStatementForInstance();
+	}
+	
+	@Override
+	public String compiledTypeVariable(TypedVariable typedVariable) {
+		ClassDecl bSharpType = bSharpType();
+		String getterOp = ((BSClass)bSharpType).getterForOpName(typedVariable.getName()) + "(";
+		
+		getterOp += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typingStatementForInstance(), ", ", true) + ")";
+		return getterOp;
 	}
 }

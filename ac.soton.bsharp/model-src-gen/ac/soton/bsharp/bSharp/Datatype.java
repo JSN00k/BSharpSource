@@ -42,6 +42,5 @@ public interface Datatype extends ClassDecl, IExpressionContainer {
 
 	String typeStringWithContext(TypeDeclContext ctx);
 	
-	ConcreteTypeInstance getTypeInstance(EObject context);
-
+	ConcreteTypeInstance typeInstanceForContext(EObject context);
 } // Datatype

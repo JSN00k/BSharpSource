@@ -20,7 +20,6 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TheoremDecl;
-import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -36,6 +35,7 @@ import ac.soton.bsharp.mapletTree.MapletStringLeaf;
 import ac.soton.bsharp.mapletTree.MapletTree;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.typeInstanceRepresentation.BSCompTypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
@@ -45,6 +45,8 @@ import ac.soton.bsharp.typeInstanceRepresentation.StringTypeInstance;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.security.auth.Refreshable;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -56,9 +58,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.mwe2.language.mwe2.Import;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eventb.core.ast.extension.IOperatorProperties.FormulaType;
 import org.eventb.core.ast.extension.IOperatorProperties.Notation;
 import org.eventb.theory.core.INewOperatorDefinition;
@@ -463,7 +463,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * a result it actually contains an instance representing the supertype.
 	 */
 	@Override
-	public ITypeInstance getInferredTypeInstance(EObject context) {
+	public ITypeInstance getInferredTypeInstance() {
 		/*
 		 * Changing the way that this works could allow the creation of a constructed
 		 * type rather than a destructed type. For now this is a big change, and needs
@@ -512,6 +512,14 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 						+ e.getLocalizedMessage());
 			}
 		}
+		
+		BSClass superT = supertypes.getFirst().getTypeClass();
+		TypedVariableList varList = getVarList();
+		if (superT != null || (varList != null && ! varList.isEmpty())) {
+			typeInstance = new BSCompTypeInstance(this, polyTypedVars, instanceName(), this);
+		} else {
+			typeInstance = new StringTypeInstance(this, polyTypedVars, instanceName(), this);
+		}
 
 		String opString = "{ " + iName;
 		ArrayList<Tuple2<String, String>> typedVars = null;
@@ -528,14 +536,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			opString += iName + " ∈ ";
 
 		opString += supertypes.supertypeType(polyTypedVars);
-
-		polyTypedVars.add(new Tuple2<String, String>(iName, supertypes.supertypeType(polyTypedVars)));
-		BSClass superT = supertypes.getFirst().getTypeClass();
-		if (superT != null) {
-			typeInstance = new StringTypeInstance(superT, polyTypedVars, instanceName());
-		} else {
-			typeInstance = new StringTypeInstance(this, polyTypedVars, instanceName());
-		}
 
 		if (typedVars != null) {
 			opString += CompilationUtil.compileTypedVaribalesToTypedList(typedVars, false);
@@ -622,7 +622,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	@Override
-	public ITypeInstanceOpArgs genericTypeInstance(TheoryImportCache thyCache) {
+	public ITypeInstanceOpArgs genericTypeInstance(EObject context) {
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(context);
 		ArrayList<Tuple2<String, String>> typeConstructors;
 
 		try {
@@ -641,7 +642,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					eventBPolymorphicTypeConstructorName() + argsForConstructor));
 		}
 
-		StringTypeInstance res = new StringTypeInstance(this, typeConstructors, instanceName());
+		StringTypeInstance res = new StringTypeInstance(this, typeConstructors, instanceName(), context);
+		res.setIsInferredTypeInst(true);
 
 		return res;
 	}
@@ -704,7 +706,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * individually typed way.
 	 */
 	@Override
-	public ITypeInstance deconstructedTypeInstance(TheoryImportCache thyCache) {
+	public ITypeInstance deconstructedTypeInstance(EObject context, String instName) {
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(context);
 		ArrayList<Tuple2<String, String>> typeConstructors;
 
 		try {
@@ -715,7 +718,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return null;
 		}
 
-		IMapletNode mappedVariables = mappedVariables((typeConstructors.get(typeConstructors.size() -1).x));
+		IMapletNode mappedVariables = mappedVariables((typeConstructors.get(typeConstructors.size() - 1).x));
 
 		if (mappedVariables == null) {
 			String argsForConstructor = "("
@@ -724,7 +727,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					eventBPolymorphicTypeConstructorName() + argsForConstructor));
 		}
 
-		MapletTypeInstance res = new MapletTypeInstance(this, typeConstructors, mappedVariables);
+		MapletTypeInstance res = new MapletTypeInstance(this, typeConstructors, mappedVariables, context);
+		res.setIsInferredTypeInst(true);
 		return res;
 	}
 
@@ -740,7 +744,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return null;
 		}
 
-		ArrayList<Tuple2<String, String>> polyArgs = genericTypeInstance(null).individuallyTypedConstructionArgs();
+		ArrayList<Tuple2<String, String>> polyArgs = genericTypeInstance(this).individuallyTypedConstructionArgs();
 
 		for (Tuple2<String, String> typedVar : polyArgs) {
 			try {
@@ -823,6 +827,27 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public List<Integer> prjsForTypedVariable(TypedVariable typedVariable) {
+		List<TypedVariable> typedVars = getVarList().getTypedVariableNames();
+		int totalVarsCount = typedVars.size();
+		int varIndex = typedVars.indexOf(typedVariable);
+		
+		ArrayList<Integer> prjPath = new ArrayList<Integer>();
+		/* Always start with a prj2 because instances have the type as their first part. */
+		prjPath.add(2);
+		
+		for (int i = 0; i < totalVarsCount - varIndex - 1; ++i) {
+			prjPath.add(1);
+		}
+		
+		if (varIndex != 0) {
+			prjPath.add(2);
+		}
+		
+		return prjPath;
 	}
 
 	@Override
@@ -1455,6 +1480,35 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return superTypeNode;
 	}
 	
+	/* Fills the array with the type classes that can be built with the number of arguments */
+	@Override
+	public
+	void typeClassesConstructableFromArgCount(int argsCount, ArrayList<BSClass> result) {
+		int requiredArgsCount = getVarList().count();
+		
+		if (requiredArgsCount == argsCount) {
+			result.add(this);
+			return;
+		}
+		
+		if (argsCount > requiredArgsCount) {
+			SuperTypeList supers = getSupertypes();
+			BSClass superT = supers.getFirst().getTypeClass();
+			
+			superT.typeClassesConstructableFromArgCount(argsCount - requiredArgsCount, result);
+			result.add(this);
+			return;
+		}
+	}
+	
+	@Override
+	public
+	List<BSClass> typeClassesConstructableWithArgs(List<Expression> args) {
+		ArrayList<BSClass> result = new ArrayList<BSClass>();
+		typeClassesConstructableFromArgCount(args.size(), result);
+		return result;
+	}
+	
 	@Override
 	public boolean isSuperType(ClassDecl possibleSType) {
 		SuperTypeList st = getSupertypes();
@@ -1476,8 +1530,12 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	@Override
-	public ITypeInstance getTypeInstance(EObject context) {
-		return getInferredTypeInstance(context);
+	public ITypeInstance typeInstanceForContext(EObject context) {
+		/* The generic type instance is the one that will work most 
+		 * generically until I can sort out typing on tree based type
+		 * instances.
+		 */
+		return genericTypeInstance(context);
 	}
 
 } // BppClassImpl

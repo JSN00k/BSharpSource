@@ -6,6 +6,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.impl.TypedVariableImpl;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
 /* When creating ClassDecl, Theorems, or functions, the type (or supertypes) in which each of these is 
@@ -49,4 +51,15 @@ public interface ITypeInstance {
 	 * baseTypeString. In a better implementation 
 	 */
 	String baseTypeDeconstructedToPrimativeTypes(TypeBuilder baseTypeOfPoly);
+	
+	/* It is necessary to know where things are being compiled from to allow the correct theory cache to 
+	 * be accessed, and so that scoping can be done properly.
+	 */
+	EObject getContext();
+
+	/* If the type variable is part of the instance the representation of the type variable is returned. */
+	String compiledTypeVariable(TypedVariable typedVariable);
+
+	boolean isInferredTypeInst();
+	void setIsInferredTypeInst(boolean isInferred);
 }

@@ -69,7 +69,7 @@ public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvide
 	/* Given an expression such as pNat.times this will expand to the call pNat_times in EventB */
 	String appyMemberOrFunc(ExpressionVariable typeInst, FunctionCall fc, Boolean asPred);
 
-	ITypeInstanceOpArgs genericTypeInstance(TheoryImportCache thyCache);
+	ITypeInstanceOpArgs genericTypeInstance(EObject context);
 
 	String constructorArgsForTypeInstance(ITypeInstance typeInst);
 

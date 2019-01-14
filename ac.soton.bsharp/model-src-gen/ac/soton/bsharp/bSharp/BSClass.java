@@ -181,7 +181,7 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 	/* Used in the theorems, currently can't be used to create functions with deconstructed types because
 	 * not enough type information is stored.
 	 */
-	ITypeInstance deconstructedTypeInstance(TheoryImportCache thyCache);
+	ITypeInstance deconstructedTypeInstance(EObject context, String instName);
 	
 	/* If the current typeclasses supertype is a typeclass this type class is returned. */
 	ClassDecl getFirstSupertypeTypeClass();
@@ -192,4 +192,16 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 
 	IMapletNode concreteTypeMapletTree(List<IClassInstance> types, List<Expression> args, Instance declInst,
 			EObject context);
+
+	/* When a type instance is declared it will have a number of arguments, these arguments are 
+	 * consumed making instances of the type class. After this a default class is searched for
+	 * if this is necessary. This method works out all of the type classes that will be created
+	 * using the arguments. It is useful for the instance declaration to be able to get hold of
+	 * these classes as it allows it to get the theorems/methods for only these types and compile them 
+	 * appropriately.
+	 */
+	void typeClassesConstructableFromArgCount(int argsCount, ArrayList<BSClass> result);
+	List<BSClass> typeClassesConstructableWithArgs(List<Expression> args);
+
+	List<Integer> prjsForTypedVariable(TypedVariable typedVariable);
 } // BppClass

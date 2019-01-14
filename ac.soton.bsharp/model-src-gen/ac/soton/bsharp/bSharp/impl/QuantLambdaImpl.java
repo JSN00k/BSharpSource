@@ -464,9 +464,14 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
 	}
-
+	
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
+		return compileToEventBStringWithInferredTypeArgs(asPredicate, false);
+	}
+
+	@Override
+	public String compileToEventBStringWithInferredTypeArgs(Boolean asPredicate, Boolean addTypeInstArgs) throws Exception {
 		/* Polymorphic contexts make this a little more complex. There are two possibilities
 		 * either the polymorphic context can become direct arguments to an EventB Quantifier/Lambda
 		 * or an additional operator could be generated which given the polymorphic context
@@ -481,7 +486,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		ITypeInstance classTypeInst = null;
 		if (expr.referencesContainingType()) {
 			IExpressionContainer exprContainer = EcoreUtil2.getContainerOfType(this, IExpressionContainer.class);
-			classTypeInst = exprContainer.getInferredTypeInstance(this);
+			if (exprContainer != null)
+				classTypeInst = exprContainer.getInferredTypeInstance();
 		}
 		
 		ArrayList<Tuple2<String, String>> typedVariables = null;
@@ -505,7 +511,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		String sep = type == QuantLambdaType.LAMBDA ? " ↦ " : ", ";
 		
 		boolean isFirst = true;
-		if (classTypeInst != null) {
+		if (classTypeInst != null && addTypeInstArgs) {
 			result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(classTypeInst.typeAndVariableNames(), sep, true);
 			isFirst = false;
 		}
@@ -516,7 +522,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		result += "·";
 		
 		isFirst = true;
-		if (classTypeInst != null) {
+		if (classTypeInst != null && addTypeInstArgs) {
 			result += CompilationUtil.compileTypedVaribalesToTypedList(classTypeInst.typingStatementForInstance(), true);
 			isFirst = false;
 		}

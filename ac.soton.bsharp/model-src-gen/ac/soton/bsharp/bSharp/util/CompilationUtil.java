@@ -24,6 +24,7 @@ import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.IBodyElementsContainer;
+import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
@@ -34,6 +35,7 @@ import ac.soton.bsharp.mapletTree.MapletExpressionVariableLeaf;
 import ac.soton.bsharp.mapletTree.MapletTree;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 import ac.soton.bsharp.util.EcoreUtilJ;
 
 public class CompilationUtil {
@@ -338,21 +340,36 @@ public class CompilationUtil {
 			if (topLevel == t) {
 				return result;
 			} else {
+				/* This allows us to filter out the current block from the other blocks. 
+				 * This is desirable, because the current block should only be filtered up
+				 * to the location in the current block so needs to be ignored. */
 				currentBlock = topLevel.getBlock();
 			}
 		} else {
 			currentBlock = null;
 		}
 		
-		/* Also filters out the current block rather than just finding all instances before. */
-		@SuppressWarnings("unchecked")
-		ArrayList<BSharpBlock> blocksInCurrent = (ArrayList<BSharpBlock>)EcoreUtilJ.eFilterUpToCurrentWith(context, 
-				new Function1<EObject, Boolean>() {
+		Function1<EObject, Boolean> blockFinder = new Function1<EObject, Boolean>() {
 			@Override
 			public Boolean apply(EObject p) {
-				return p instanceof BSharpBlock && p != currentBlock;
+				if (p instanceof BSharpBlock) {
+					if (p == currentBlock)
+						return false;
+					
+					TopLevelInstance tL = (TopLevelInstance)p.eContainer();
+					if (tL instanceof ClassDecl)
+						return tL == t;
+					else
+						return ((Extend)tL).getExtendedClass() == t;
+				}
+				
+				return false;
 			}
-		});
+		};
+		
+		/* Also filters out the current block rather than just finding all instances before. */
+		@SuppressWarnings("unchecked")
+		ArrayList<BSharpBlock> blocksInCurrent = (ArrayList<BSharpBlock>)EcoreUtilJ.eFilterUpToCurrentWith(context, blockFinder);
 		
 		result.addAll(blocksInCurrent);
 		
@@ -361,22 +378,7 @@ public class CompilationUtil {
 		
 		for (FileImport imp : imports) {
 			@SuppressWarnings("unchecked")
-			ArrayList<BSharpBlock> impBlocks = (ArrayList<BSharpBlock>)EcoreUtilJ.eFilter(imp, new Function1<EObject, Boolean>() {
-
-				@Override
-				public Boolean apply(EObject p) {
-					if (p instanceof BSharpBlock) {
-						EObject container = p.eContainer();
-						if (container instanceof Extend && ((Extend)container).getExtendedClass() == t) {
-							return true;
-						} else {
-						return container == t;
-					}
-				}
-					
-				return false;
-				}
-			});
+			ArrayList<BSharpBlock> impBlocks = (ArrayList<BSharpBlock>)EcoreUtilJ.eFilter(imp.getFileReference(), blockFinder);
 			
 			result.addAll(impBlocks);
 		}
@@ -467,7 +469,8 @@ public class CompilationUtil {
 		
 		TopLevelInstance topLevel = EcoreUtil2.getContainerOfType(context, TopLevelInstance.class);
 		if (topLevel != null) {
-			if (topLevel instanceof ClassDecl && topLevel == tc || ((Extend)topLevel).getExtendedClass() == tc) {
+			ClassDecl classDecl = topLevel instanceof ClassDecl ? (ClassDecl)topLevel : ((Extend)topLevel).getExtendedClass();
+			if (classDecl == tc) {
 				return filterInscopeBSharpBlocks(context, filter);
 			}
 		}
@@ -501,5 +504,10 @@ public class CompilationUtil {
 		}
 		
 		return null;
+	}
+	
+	public static ITypeInstance getTypeInstance(EObject context) {
+		IExpressionContainer exprContainer = EcoreUtil2.getContainerOfType(context, IExpressionContainer.class);
+		return exprContainer.getInferredTypeInstance();
 	}
 }

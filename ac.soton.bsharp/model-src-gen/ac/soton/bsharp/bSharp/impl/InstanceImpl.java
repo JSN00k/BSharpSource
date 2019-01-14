@@ -493,7 +493,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		return isDefault;
 	}
 	
-	protected ITypeInstance typeInst = null;
+	protected ConcreteTypeInstance typeInst = null;
 	
 	String defaultName() {
 		ClassDecl cd = EcoreUtil2.getContainerOfType(this.eContainer(), ClassDecl.class);
@@ -578,7 +578,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		ArrayList<ITypeInstance> typeInstList = new ArrayList<ITypeInstance>();
 		
 		for (IClassInstance ci : ctx) {
-			typeInstList.add(ci.getTypeInstance(this));
+			typeInstList.add(ci.typeInstanceForContext(this));
 		}
 		
 		String ebPred = typeInst.eventBTypeInstanceForType(getClassName()) + " ∈ " + className.constructWithTypeInstances(typeInstList);
@@ -592,7 +592,6 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	
 	@Override 
 	public void compile(IProgressMonitor monitor) {
-		//IMapletNode mapletTree = concreteInstanceMapletTree();
 		typeInst = new ConcreteTypeInstance(this, this);
 		SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
 		compileMembershipTheoremExpr(subMonitor.newChild(50));
@@ -603,47 +602,58 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		 */
 		
 		//TODO: Some compiling of functions and theorems
-//		List<FunctionDecl> methods = allMethods();
-//		for (FunctionDecl meth : methods) {
-//			meth.compileWithTypeInstancesForInferredType(typeInst);
-//		}
-//		
+		List<FunctionDecl> methods = allMethods();
+		for (FunctionDecl meth : methods) {
+			meth.compileWithTypeInstancesForInferredType(typeInst, getName() + "_");
+		}
+		
 //		List<TheoremDecl> theorems = allTheorems();
 //		
 //		for (TheoremDecl theorem : theorems) {
 //			theorem.compileWithTypeInstancesForInferredType(typeInst);
 //		}
+		
+		typeInst = null;
 	}
 	
 	List<FunctionDecl> allMethods() {
-		@SuppressWarnings("unchecked")
-		List<FunctionDecl> result =  (List<FunctionDecl>) CompilationUtil.filterInscopeBSharpBlocksForClass(this, getClassName(), new Function1<EObject, Boolean>() {
+		List<BSClass> representedTypeClasses = typeClassesRepresentedByInstance();
+		ArrayList<FunctionDecl> result = new ArrayList<FunctionDecl>();
+		
+		for (BSClass tc : representedTypeClasses) {
+			@SuppressWarnings("unchecked")
+			List<FunctionDecl> functionDecls = (List<FunctionDecl>) CompilationUtil
+					.filterInscopeBSharpBlocksForClass(this, tc, new Function1<EObject, Boolean>() {
 
-			@Override
-			public Boolean apply(EObject p) {
-				return p instanceof FunctionDecl && ((FunctionDecl)p).isMethod(); 
-			}
-		});
+						@Override
+						public Boolean apply(EObject p) {
+							return p instanceof FunctionDecl && ((FunctionDecl) p).isMethod();
+						}
+					});
+			result.addAll(functionDecls);
+		}
 		
 		return result;
 	}
 	
 	List<TheoremDecl> allTheorems() {
-		@SuppressWarnings("unchecked")
-		List<TheoremDecl> result = (List<TheoremDecl>) CompilationUtil.filterInscopeBSharpBlocksForClass(this, getClassName(), new Function1<EObject, Boolean>() {
+		List<BSClass> representedTypeClasses = typeClassesRepresentedByInstance();
+		ArrayList<TheoremDecl> result = new ArrayList<TheoremDecl>();
+		
+		for (BSClass tc : representedTypeClasses) {
+			@SuppressWarnings("unchecked")
+			List<TheoremDecl> theoremDecl = (List<TheoremDecl>) CompilationUtil.filterInscopeBSharpBlocksForClass(this,
+					tc, new Function1<EObject, Boolean>() {
 
-			@Override
-			public Boolean apply(EObject p) {
-				return p instanceof TheoremDecl && ((TheoremDecl)p).getExpr().hasInferredContext();
-			}
-		});
+						@Override
+						public Boolean apply(EObject p) {
+							return p instanceof TheoremDecl && ((TheoremDecl) p).getExpr().hasInferredContext();
+						}
+					});
+			result.addAll(theoremDecl);
+		}
 		
 		return result;
-	}
-
-	@Override
-	public ConcreteTypeInstance getTypeInstance(EObject context) {
-		return new ConcreteTypeInstance(this, context);
 	}
 
 	@Override
@@ -673,7 +683,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	public ConcreteTypeInstance findSuperTypeInstanceOfType(ClassDecl type, EObject context) {
 		/* Again, I'm going to assume that the context only has a single variable within it. */
 		if (type instanceof Datatype) {
-			return ((Datatype)type).getTypeInstance(context);
+			return ((Datatype)type).typeInstanceForContext(context);
 		}
 		
 		List<IClassInstance> ctx = getContext();
@@ -693,7 +703,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 					}
 				}
 				
-				return ((Instance)ctxType).getTypeInstance(context);
+				return ((Instance)ctxType).typeInstanceForContext(context);
 			}
 		}
 		
@@ -716,11 +726,21 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 			}
 		});
 		
-		return inst.getTypeInstance(context);
+		return inst.typeInstanceForContext(context);
+	}
+	
+	@Override
+	public List<BSClass> typeClassesRepresentedByInstance() {
+		return getClassName().typeClassesConstructableWithArgs(getArguments());
 	}
 
 	@Override
-	public ConcreteTypeInstance getInferredTypeInstance(EObject context) {
-		return getTypeInstance(context);
+	public ConcreteTypeInstance getInferredTypeInstance() {
+		return typeInst;
+	}
+
+	@Override
+	public ConcreteTypeInstance typeInstanceForContext(EObject context) {
+		return new ConcreteTypeInstance(this, context);
 	}
 } //InstanceImpl

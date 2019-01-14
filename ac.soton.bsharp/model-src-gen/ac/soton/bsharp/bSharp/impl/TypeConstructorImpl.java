@@ -18,6 +18,8 @@ import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -266,18 +268,24 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	public String buildEventBType() {
 		GenName tn = getTypeName();
 		if (tn instanceof InstName) {
-			FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
-			TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
-			BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
-			if (func != null) {
-				return ((BSClass)((InstName)tn).eContainer()).baseTypeFromBSContext();
-			} else if (theorem != null) {
-				return theorem.baseTypeForBSClass((BSClass)tn.eContainer());
-			} else if (bsClass != null) {
-				return bsClass.baseTypeFromBSContext();
-			}
+			/* Find the current type instance, for the InstName, and get the base type from there. */
+			ITypeInstance typeInst = CompilationUtil.getTypeInstance(this);
+			String result =typeInst.baseTypeString();
 			
-			return "";
+			return result;
+			
+//			FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
+//			TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
+//			BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
+//			if (func != null) {
+//				return ((BSClass)((InstName)tn).eContainer()).baseTypeFromBSContext();
+//			} else if (theorem != null) {
+//				return theorem.baseTypeForBSClass((BSClass)tn.eContainer());
+//			} else if (bsClass != null) {
+//				return bsClass.baseTypeFromBSContext();
+//			}
+//			
+//			return "";
 		}
 		
 		if (tn instanceof ClassDecl) {
@@ -351,6 +359,11 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	
 	@Override
 	public boolean isBoolType() {
+		String name = getTypeName().getName();
+		
+		if (name == null || name.isEmpty())
+			return false;
+		
 		return typeName.getName().equals("Bool");
 	}
 
