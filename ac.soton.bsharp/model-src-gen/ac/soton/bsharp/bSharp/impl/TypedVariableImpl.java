@@ -83,68 +83,7 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 			return super.compileToStringWithContextAndArguments(fc, asPred);
 		
 		ITypeInstance typeInst = CompilationUtil.getTypeInstance(fc);
-		String result = typeInst.compiledTypeVariable(this);
-		
-//		/* A variable from the type class has been referenced. In a function/theorem this means that the function
-//		 * needs to infer a context which includes the type class. In the case of where statements a representation
-//		 * of the type class will already exist, it just needs to be referenced correctly.
-//		 */
-//		FunctionDecl func = EcoreUtil2.getContainerOfType(fc, FunctionDecl.class);
-//		TheoremDecl theorem = EcoreUtil2.getContainerOfType(fc, TheoremDecl.class);
-//		ClassDecl cld = CompilationUtil.getClassDecl(fc);
-//		BSClass bsClass = null;
-//		
-//		if (cld instanceof BSClass) {
-//			bsClass = (BSClass)cld;
-//		}
-//		
-//		String result = null;
-//		if (func != null) {
-//			IVariableProvider varProv = EcoreUtil2.getContainerOfType(this, IVariableProvider.class);
-//			if (varProv == fc) {
-//				/* Could be worth asking the func for the name of this variable on the off chance that
-//				 * it's done some name mangling, currently assuming that it hasn't. */
-//				result = getName();
-//			} else {
-//				/* The variable must be from a higher type. */
-//				if (varProv instanceof Datatype) {
-//					result = getName();
-//				} else {
-//					ArrayList<String> bsClassVar = func.getInferredTypeInstance().typeConstructionTypes(); 
-//					
-//					result = ((BSClass)bsClass).getterForOpName(getName()) + "(";
-//					result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(bsClassVar, ", ", true) + ")";
-//				}
-//			}
-//		} else if (theorem != null) {
-//			/* Ask the theorem for the appropiate variable name, then compile the arguments. 
-//			 * The theorem needs to be asked as if there is an implicit reference to the 
-//			 * containing type class the theorem assigns the name to this implicit reference. */
-//			result = theorem.getNameExpressionForVariable(this);
-//		} else if (bsClass != null) {
-//			if (EcoreUtil2.isAncestor(bsClass, this)) {
-//				// We only need to do something special if the TypedVar is from a supertype.
-//				return super.compileToStringWithContextAndArguments(fc, asPred);
-//			}
-//			
-//			result = bsClass.expandSupertypeMemberReferencedInWhere(this);
-//		}
-		
-		/*TODO: potentially need to do something about a polycontext here. */
-		EList<Expression> args = fc.getArguments();
-		if (args != null && !args.isEmpty()) {
-			try {
-				result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
-			} catch (Exception e) {
-				System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
-			}
-		}
-		
-		if (asPred) {
-			result += " = TRUE";
-		}
-		
-		return result;
+		return typeInst.compileFunctionCallOfTypeInstance(fc, asPred, this);
 	}
 
 	@Override

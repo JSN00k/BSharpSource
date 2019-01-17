@@ -3,12 +3,16 @@ package ac.soton.bsharp.typeInstanceRepresentation;
 import java.util.List;
 
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.xbase.typesystem.internal.NoExpectation;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.mapletTree.IMapletNode;
+import ac.soton.bsharp.mapletTree.MapletExpressionLeaf;
 import ac.soton.bsharp.mapletTree.MapletTree;
 
 public abstract class TypeInstanceTreeAbstract extends TypeInstanceAbstract implements ITypeInstanceTree {
@@ -89,5 +93,22 @@ public abstract class TypeInstanceTreeAbstract extends TypeInstanceAbstract impl
 	@Override
 	public String baseTypeString() {
 		return nodeForBaseType().compileToString();
+	}
+	
+	@Override 
+	public String compileFunctionCallOfTypeInstance(FunctionCall fc, Boolean asPred, TypedVariable typedVar) throws Exception {
+		IMapletNode node = nodeForTypedVariable(typedVar);
+		List<Expression> args = fc.getArguments();
+		
+		if (args == null || args.isEmpty() || !(node instanceof MapletExpressionLeaf)) {
+			return super.compileFunctionCallOfTypeInstance(fc, asPred, typedVar);
+		}
+		
+		Expression expr = ((MapletExpressionLeaf)node).expression();
+		if (expr instanceof FunctionCall) {
+			return ((FunctionCall)expr).compileToStringWithContextAndArguments(fc, asPred);
+		}
+		
+		return super.compileFunctionCallOfTypeInstance(fc, asPred, typedVar);
 	}
 }

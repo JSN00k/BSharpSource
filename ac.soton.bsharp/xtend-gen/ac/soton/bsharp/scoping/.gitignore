@@ -21,3 +21,5 @@
 /.BSharpResource.xtendbin
 /BSharpImportedNamespaceAwareLocalScopeProvider.java
 /BSharpResource.java
+/.BSharpIndex.java._trace
+/.BSharpQualifiedNameProvider.java._trace

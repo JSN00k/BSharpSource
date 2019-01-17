@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface IVarType extends EObject {
-	/* This interface is for classes that can appear in expressinos as veraibles or functions. */
+	/* This interface is for classes that can appear in expressions as variables or functions. */
 	
 	String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception;
 	

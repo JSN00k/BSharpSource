@@ -1081,13 +1081,22 @@ public interface BSharpPackage extends EPackage {
 	int EXTEND__NAME = IVARIABLE_PROVIDER_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Extended Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTEND__EXTENDED_CLASS_NAME = IVARIABLE_PROVIDER_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Extend</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTEND_FEATURE_COUNT = IVARIABLE_PROVIDER_FEATURE_COUNT + 3;
+	int EXTEND_FEATURE_COUNT = IVARIABLE_PROVIDER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1198,13 +1207,22 @@ public interface BSharpPackage extends EPackage {
 	int FUNCTION_CALL__WRAPPED = EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Compilation Object</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__COMPILATION_OBJECT = EXPRESSION_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Function Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 5;
+	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2716,6 +2734,17 @@ public interface BSharpPackage extends EPackage {
 	EAttribute getExtend_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.Extend#getExtendedClassName <em>Extended Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extended Class Name</em>'.
+	 * @see ac.soton.bsharp.bSharp.Extend#getExtendedClassName()
+	 * @see #getExtend()
+	 * @generated
+	 */
+	EAttribute getExtend_ExtendedClassName();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.FunctionDecl <em>Function Decl</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3121,6 +3150,17 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFunctionCall_Wrapped();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.FunctionCall#getCompilationObject <em>Compilation Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Compilation Object</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionCall#getCompilationObject()
+	 * @see #getFunctionCall()
+	 * @generated
+	 */
+	EReference getFunctionCall_CompilationObject();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ClassVarDecl <em>Class Var Decl</em>}'.
@@ -4120,6 +4160,14 @@ public interface BSharpPackage extends EPackage {
 		EAttribute EXTEND__NAME = eINSTANCE.getExtend_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Extended Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTEND__EXTENDED_CLASS_NAME = eINSTANCE.getExtend_ExtendedClassName();
+
+		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl <em>Function Decl</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4444,6 +4492,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTION_CALL__WRAPPED = eINSTANCE.getFunctionCall_Wrapped();
+
+		/**
+		 * The meta object literal for the '<em><b>Compilation Object</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_CALL__COMPILATION_OBJECT = eINSTANCE.getFunctionCall_CompilationObject();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ClassVarDeclImpl <em>Class Var Decl</em>}' class.

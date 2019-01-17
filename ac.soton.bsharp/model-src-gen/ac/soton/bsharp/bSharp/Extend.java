@@ -75,4 +75,30 @@ public interface Extend extends IVariableProvider, IPolyTypeProvider, IEventBPre
 	 */
 	void setName(String value);
 
+	/**
+	 * Returns the value of the '<em><b>Extended Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extended Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extended Class Name</em>' attribute.
+	 * @see #setExtendedClassName(String)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend_ExtendedClassName()
+	 * @model
+	 * @generated
+	 */
+	String getExtendedClassName();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Extend#getExtendedClassName <em>Extended Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extended Class Name</em>' attribute.
+	 * @see #getExtendedClassName()
+	 * @generated
+	 */
+	void setExtendedClassName(String value);
+
 } // Extend

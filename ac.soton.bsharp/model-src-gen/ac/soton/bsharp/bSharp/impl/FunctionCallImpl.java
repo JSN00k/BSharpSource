@@ -26,6 +26,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -46,6 +47,7 @@ import org.eclipse.xtext.EcoreUtil2;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getClassVarDecl <em>Class Var Decl</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getWrapped <em>Wrapped</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getCompilationObject <em>Compilation Object</em>}</li>
  * </ul>
  *
  * @generated
@@ -100,6 +102,16 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * @ordered
 	 */
 	protected WrappedInfix wrapped;
+
+	/**
+	 * The cached value of the '{@link #getCompilationObject() <em>Compilation Object</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompilationObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected EObject compilationObject;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -304,6 +316,49 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EObject getCompilationObject() {
+		return compilationObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCompilationObject(EObject newCompilationObject, NotificationChain msgs) {
+		EObject oldCompilationObject = compilationObject;
+		compilationObject = newCompilationObject;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__COMPILATION_OBJECT, oldCompilationObject, newCompilationObject);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCompilationObject(EObject newCompilationObject) {
+		if (newCompilationObject != compilationObject) {
+			NotificationChain msgs = null;
+			if (compilationObject != null)
+				msgs = ((InternalEObject)compilationObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__COMPILATION_OBJECT, null, msgs);
+			if (newCompilationObject != null)
+				msgs = ((InternalEObject)newCompilationObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__COMPILATION_OBJECT, null, msgs);
+			msgs = basicSetCompilationObject(newCompilationObject, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__COMPILATION_OBJECT, newCompilationObject, newCompilationObject));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -315,6 +370,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return basicSetContext(null, msgs);
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
 				return basicSetWrapped(null, msgs);
+			case BSharpPackage.FUNCTION_CALL__COMPILATION_OBJECT:
+				return basicSetCompilationObject(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -338,6 +395,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return getContext();
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
 				return getWrapped();
+			case BSharpPackage.FUNCTION_CALL__COMPILATION_OBJECT:
+				return getCompilationObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -367,6 +426,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
 				setWrapped((WrappedInfix)newValue);
 				return;
+			case BSharpPackage.FUNCTION_CALL__COMPILATION_OBJECT:
+				setCompilationObject((EObject)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -394,6 +456,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
 				setWrapped((WrappedInfix)null);
 				return;
+			case BSharpPackage.FUNCTION_CALL__COMPILATION_OBJECT:
+				setCompilationObject((EObject)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -416,6 +481,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return context != null;
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
 				return wrapped != null;
+			case BSharpPackage.FUNCTION_CALL__COMPILATION_OBJECT:
+				return compilationObject != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -457,11 +524,19 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
+		return compileToStringWithContextAndArguments(this, asPredicate);
+	}
+	
+	
+	/* Sometimes there are wrapped function calls that need the information from the original function call passed through
+	 * this function allows that. */
+	@Override
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPredicate) throws Exception {
 		ExpressionVariable typeInst = getTypeInst();
 		if (typeInst != null) {
-			return typeInst.compileToStringWithContextAndArguments(this, asPredicate);
+			return typeInst.compileToStringWithContextAndArguments(fc, asPredicate);
 		} else {
-			return classVarDecl.compileToStringWithContextAndArguments(this, asPredicate);
+			return classVarDecl.compileToStringWithContextAndArguments(fc, asPredicate);
 		}
 	}
 

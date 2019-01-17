@@ -1,6 +1,7 @@
 package ac.soton.bsharp.scoping;
 
 import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.Datatype;
@@ -28,17 +29,27 @@ import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
+  @Inject
+  @Extension
+  private IQualifiedNameProvider _iQualifiedNameProvider;
+  
   public IScope scope_TopLevelFile(final EObject context, final EReference reference) {
     IScope scope = this.delegateGetScope(context, reference);
     return scope;
@@ -139,6 +150,15 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     }
     final EObject rootObj = EcoreUtil2.getRootContainer(context);
     final ClassDecl currentClass = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
+    final Extend extend_1 = EcoreUtil2.<Extend>getContainerOfType(context, Extend.class);
+    if ((extend_1 != null)) {
+      ArrayList<String> segments = new ArrayList<String>();
+      segments.addAll(this._iQualifiedNameProvider.getFullyQualifiedName(extend_1.getExtendedClass()).getSegments());
+      segments.add("Extend");
+      final QualifiedName qualName = QualifiedName.create(segments);
+      final Iterable<IEObjectDescription> allExtends = parent.getElements(qualName);
+      InputOutput.<Iterable<IEObjectDescription>>print(allExtends);
+    }
     final Function1<EObject, Boolean> _function = (EObject object) -> {
       return Boolean.valueOf(Objects.equal(object, currentClass));
     };
@@ -149,6 +169,25 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     IScope scope = this.getVariableScopeFor(context, parent);
     scope = Scopes.scopeFor(functionNames, scope);
     return scope;
+  }
+  
+  public List<BSharpBlock> getBlocksForType(final BSClass type, final BSharpBlock currentBlock, final IScope currentScope) {
+    List<BSharpBlock> _xblockexpression = null;
+    {
+      ArrayList<String> segments = new ArrayList<String>();
+      segments.addAll(this._iQualifiedNameProvider.getFullyQualifiedName(type).getSegments());
+      segments.add("Extend");
+      final QualifiedName qualName = QualifiedName.create(segments);
+      Iterable<IEObjectDescription> _elements = currentScope.getElements(qualName);
+      final List<BSharpBlock> allExtends = ((List<BSharpBlock>) _elements);
+      _xblockexpression = InputOutput.<List<BSharpBlock>>print(allExtends);
+    }
+    return _xblockexpression;
+  }
+  
+  public ArrayList<BSharpBlock> inscopeBlocksForType(final BSClass type, final EObject context, final IScope currentScope) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from void to ArrayList<BSharpBlock>");
   }
   
   public IScope scope_TypedVariable(final MatchCase context, final EReference reference) {

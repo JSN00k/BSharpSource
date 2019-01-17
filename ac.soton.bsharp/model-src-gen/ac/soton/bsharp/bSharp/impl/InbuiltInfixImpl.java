@@ -21,6 +21,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -145,9 +146,17 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 			/* An infix object already has all of the code to compile this. */
 			Infix infix = BSharpFactory.eINSTANCE.createInfix();
 			infix.setOpName(getName());
-			infix.setRight(exprs.get(0));
-			infix.setLeft(exprs.get(1));
-			return infix.compileToEventBString(asPred);
+			infix.setLeft(EcoreUtil2.copy(exprs.get(0)));
+			infix.setRight(EcoreUtil2.copy(exprs.get(1)));
+			
+			/* When a new pbject is created for compilation it needs to be attached to the current tree so references can be resolved
+			 * by searching above the tree. The function call object is the object with the correct context for this as the inbuilt 
+			 * infix could potentially be a reference.
+			 */
+			fc.setCompilationObject(infix);
+			String result = infix.compileToEventBString(asPred);
+			fc.setCompilationObject(null);
+			return result;
 		}
 		
 		return "(λx ↦ y·⊤ ∣ bool(x " + getName() + " y))";

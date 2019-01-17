@@ -2,12 +2,15 @@ package ac.soton.bsharp.typeInstanceRepresentation;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
@@ -93,5 +96,25 @@ public abstract class TypeInstanceAbstract implements ITypeInstance {
 		String getterOp = ((BSClass)bSharpType).getterForOpName(typedVariable.getName()) + "(";
 		getterOp += ((BSClass)bSharpType).deconstructEventBTypeToArguments(evBClass) + ")";
 		return getterOp;
+	}
+	
+	@Override 
+	public String compileFunctionCallOfTypeInstance(FunctionCall fc, Boolean asPred, TypedVariable typedVar) throws Exception {
+		String result = compiledTypeVariable(typedVar);
+		
+		EList<Expression> args = fc.getArguments();
+		if (args != null && !args.isEmpty()) {
+			try {
+				result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
+			} catch (Exception e) {
+				System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
+			}
+		}
+		
+		if (asPred) {
+			result += " = TRUE";
+		}
+		
+		return result;
 	}
 }

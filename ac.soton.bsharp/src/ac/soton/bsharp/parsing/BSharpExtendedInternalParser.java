@@ -9,6 +9,7 @@ import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 
+import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.parser.antlr.internal.InternalBSharpParser;
@@ -53,6 +54,15 @@ public class BSharpExtendedInternalParser extends InternalBSharpParser {
 					}
 
 					inst.setClassNameName(node.getText().replaceAll("\\s+", ""));
+				} else if (semElem instanceof Extend) {
+					Extend extend = (Extend) semElem;
+					INode node = ((ICompositeNode) current).getFirstChild();
+					while(!(node.getGrammarElement() instanceof CrossReference)) {
+						node = node.getNextSibling();
+					}
+					
+					String name = node.getText().replaceAll("\\s+", "");
+					extend.setExtendedClassName(name);
 				}
 			}
 		}

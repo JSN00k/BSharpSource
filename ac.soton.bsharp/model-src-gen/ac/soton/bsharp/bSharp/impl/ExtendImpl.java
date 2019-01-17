@@ -82,6 +82,26 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	protected String name = NAME_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getExtendedClassName() <em>Extended Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXTENDED_CLASS_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getExtendedClassName() <em>Extended Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendedClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String extendedClassName = EXTENDED_CLASS_NAME_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -164,6 +184,27 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getExtendedClassName() {
+		return extendedClassName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtendedClassName(String newExtendedClassName) {
+		String oldExtendedClassName = extendedClassName;
+		extendedClassName = newExtendedClassName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.EXTEND__EXTENDED_CLASS_NAME, oldExtendedClassName, extendedClassName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public BSharpBlock getBlock() {
 		return block;
 	}
@@ -231,6 +272,8 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 				return basicGetExtendedClass();
 			case BSharpPackage.EXTEND__NAME:
 				return getName();
+			case BSharpPackage.EXTEND__EXTENDED_CLASS_NAME:
+				return getExtendedClassName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -253,6 +296,9 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 			case BSharpPackage.EXTEND__NAME:
 				setName((String)newValue);
 				return;
+			case BSharpPackage.EXTEND__EXTENDED_CLASS_NAME:
+				setExtendedClassName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -274,6 +320,9 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 			case BSharpPackage.EXTEND__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case BSharpPackage.EXTEND__EXTENDED_CLASS_NAME:
+				setExtendedClassName(EXTENDED_CLASS_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -292,6 +341,8 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 				return extendedClass != null;
 			case BSharpPackage.EXTEND__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case BSharpPackage.EXTEND__EXTENDED_CLASS_NAME:
+				return EXTENDED_CLASS_NAME_EDEFAULT == null ? extendedClassName != null : !EXTENDED_CLASS_NAME_EDEFAULT.equals(extendedClassName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -360,6 +411,8 @@ public class ExtendImpl extends NamedObjectImpl implements Extend {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", extendedClassName: ");
+		result.append(extendedClassName);
 		result.append(')');
 		return result.toString();
 	}

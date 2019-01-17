@@ -9,6 +9,10 @@ public class MapletExpressionLeaf extends AbstractLeaf {
 	public MapletExpressionLeaf(Expression expr) {
 		this.expr = expr;
 	}
+	
+	public Expression expression() {
+		return expr;
+	}
 
 	@Override
 	public String compileToString() {

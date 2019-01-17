@@ -290,7 +290,6 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		isDefault = false;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.INSTANCE__NAME, oldName, name));
 	}

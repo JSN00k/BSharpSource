@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getWrapped <em>Wrapped</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getCompilationObject <em>Compilation Object</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall()
@@ -146,5 +148,33 @@ public interface FunctionCall extends Expression {
 	 * @generated
 	 */
 	void setWrapped(WrappedInfix value);
+
+	/**
+	 * Returns the value of the '<em><b>Compilation Object</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Compilation Object</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Compilation Object</em>' containment reference.
+	 * @see #setCompilationObject(EObject)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_CompilationObject()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EObject getCompilationObject();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getCompilationObject <em>Compilation Object</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Compilation Object</em>' containment reference.
+	 * @see #getCompilationObject()
+	 * @generated
+	 */
+	void setCompilationObject(EObject value);
+
+	String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPredicate) throws Exception;
 
 } // FunctionCall

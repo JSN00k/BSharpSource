@@ -36,8 +36,14 @@ import org.eclipse.xtext.parser.packrat.tokens.AssignmentToken.End
 import ac.soton.bsharp.bSharp.FileImport
 import ac.soton.bsharp.bSharp.util.CompilationUtil
 import java.util.List
+import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import javax.inject.Inject
+import ac.soton.bsharp.bSharp.BSharpBlock
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
+	
+	@Inject extension IQualifiedNameProvider
 	
 	def IScope scope_TopLevelFile(EObject context, EReference reference) {
 		/* We only want objects from the global scope. */
@@ -160,6 +166,16 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		val rootObj = EcoreUtil2.getRootContainer(context)
 		val currentClass = EcoreUtil2.getContainerOfType(context, ClassDecl)
 
+		val extend = EcoreUtil2.getContainerOfType(context, Extend);
+		if (extend !== null) {
+			var ArrayList<String> segments = new ArrayList<String>()
+			segments.addAll(extend.extendedClass.fullyQualifiedName.segments)
+			segments += "Extend"
+			val qualName = QualifiedName.create(segments);
+			val allExtends = parent.getElements(qualName)
+			print(allExtends)
+		}
+
 		/* FunctionName can be any function within the current body, or any body above. */
 		var functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object|object == currentClass], [ object |
 			object instanceof FunctionDecl
@@ -169,6 +185,31 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		scope = Scopes.scopeFor(functionNames, scope)
 
 		return scope;
+	}
+	
+	def List<BSharpBlock> getBlocksForType(BSClass type, BSharpBlock currentBlock, IScope currentScope) {
+		var ArrayList<String> segments = new ArrayList<String>()
+			segments.addAll(type.fullyQualifiedName.segments)
+			segments += "Extend"
+			val qualName = QualifiedName.create(segments);
+			val allExtends = currentScope.getElements(qualName) as List<BSharpBlock>
+			print(allExtends)
+	}
+	
+	def ArrayList<BSharpBlock> inscopeBlocksForType(BSClass type, EObject context, IScope currentScope) {
+		/* Very experimental */
+		/* Don't include the BSharp block if the current context is within it, as 
+		 * this will have already been looked through.
+		 */
+		val currentBlock = EcoreUtil2.getContainerOfType(context, BSharpBlock)
+		var ArrayList<BSharpBlock> result = new ArrayList<BSharpBlock>();
+		
+		result += getBlocksForType(type, currentBlock, currentScope)
+		
+		val superTypeList = type.supertypes
+		val superTypes = superTypeList.superTypes
+		
+		
 	}
 	
 	def IScope scope_TypedVariable(MatchCase context, EReference reference) {
