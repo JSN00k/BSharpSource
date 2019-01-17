@@ -16,6 +16,7 @@ import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -172,22 +173,28 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   }
   
   public List<BSharpBlock> getBlocksForType(final BSClass type, final BSharpBlock currentBlock, final IScope currentScope) {
-    List<BSharpBlock> _xblockexpression = null;
-    {
-      ArrayList<String> segments = new ArrayList<String>();
-      segments.addAll(this._iQualifiedNameProvider.getFullyQualifiedName(type).getSegments());
-      segments.add("Extend");
-      final QualifiedName qualName = QualifiedName.create(segments);
-      Iterable<IEObjectDescription> _elements = currentScope.getElements(qualName);
-      final List<BSharpBlock> allExtends = ((List<BSharpBlock>) _elements);
-      _xblockexpression = InputOutput.<List<BSharpBlock>>print(allExtends);
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from Iterable<IEObjectDescription> to int"
+      + "\nType mismatch: cannot convert from Iterable<IEObjectDescription> to List<BSharpBlock>");
   }
   
   public ArrayList<BSharpBlock> inscopeBlocksForType(final BSClass type, final EObject context, final IScope currentScope) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from void to ArrayList<BSharpBlock>");
+    final BSharpBlock currentBlock = EcoreUtil2.<BSharpBlock>getContainerOfType(context, BSharpBlock.class);
+    ArrayList<BSharpBlock> result = new ArrayList<BSharpBlock>();
+    List<BSharpBlock> _blocksForType = this.getBlocksForType(type, currentBlock, currentScope);
+    Iterables.<BSharpBlock>addAll(result, _blocksForType);
+    final SuperTypeList superTypeList = type.getSupertypes();
+    final EList<TypeBuilder> superTypes = superTypeList.getSuperTypes();
+    for (final TypeBuilder superTypeTypeBuilder : superTypes) {
+      {
+        final BSClass superType = superTypeTypeBuilder.getTypeClass();
+        if ((superType != null)) {
+          List<BSharpBlock> _blocksForType_1 = this.getBlocksForType(superType, currentBlock, currentScope);
+          Iterables.<BSharpBlock>addAll(result, _blocksForType_1);
+        }
+      }
+    }
+    return result;
   }
   
   public IScope scope_TypedVariable(final MatchCase context, final EReference reference) {

@@ -192,7 +192,8 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 			segments.addAll(type.fullyQualifiedName.segments)
 			segments += "Extend"
 			val qualName = QualifiedName.create(segments);
-			val allExtends = currentScope.getElements(qualName) as List<BSharpBlock>
+			val allExtends = currentScope.getElements(qualName)
+			val ArrayList<BSharpBlock> result = new ArrayList(allExtends)
 			print(allExtends)
 	}
 	
@@ -209,7 +210,14 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		val superTypeList = type.supertypes
 		val superTypes = superTypeList.superTypes
 		
+		for (superTypeTypeBuilder : superTypes) {
+			val superType = superTypeTypeBuilder.getTypeClass()
+			if (superType !== null) {
+				result += getBlocksForType(superType, currentBlock, currentScope)
+			}
+		}
 		
+		return result
 	}
 	
 	def IScope scope_TypedVariable(MatchCase context, EReference reference) {
