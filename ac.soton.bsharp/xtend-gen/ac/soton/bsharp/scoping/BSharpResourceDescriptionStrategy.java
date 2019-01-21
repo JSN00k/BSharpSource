@@ -1,25 +1,20 @@
 package ac.soton.bsharp.scoping;
 
-import ac.soton.bsharp.bSharp.BSharpBlock;
-import com.google.inject.Inject;
+import ac.soton.bsharp.bSharp.TopLevelInstance;
 import com.google.inject.Singleton;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.impl.DefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.util.IAcceptor;
-import org.eclipse.xtext.xbase.lib.Extension;
 
 @Singleton
 @SuppressWarnings("all")
 public class BSharpResourceDescriptionStrategy extends DefaultResourceDescriptionStrategy {
-  @Inject
-  @Extension
-  private IQualifiedNameProvider _iQualifiedNameProvider;
-  
   @Override
   public boolean createEObjectDescriptions(final EObject object, final IAcceptor<IEObjectDescription> acceptor) {
-    if ((object instanceof BSharpBlock)) {
+    final TopLevelInstance topLevelInstance = EcoreUtil2.<TopLevelInstance>getContainerOfType(object.eContainer(), TopLevelInstance.class);
+    if ((topLevelInstance != null)) {
       return false;
     } else {
       return super.createEObjectDescriptions(object, acceptor);

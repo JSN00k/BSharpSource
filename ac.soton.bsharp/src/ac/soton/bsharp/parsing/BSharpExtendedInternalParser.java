@@ -3,8 +3,10 @@ package ac.soton.bsharp.parsing;
 import java.awt.List;
 
 import org.antlr.runtime.TokenStream;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;

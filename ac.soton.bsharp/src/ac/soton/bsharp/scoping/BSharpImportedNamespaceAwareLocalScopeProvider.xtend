@@ -89,6 +89,7 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		FileImport fileImport,
 		List<ImportNormalizer> importedNamespaceResolvers,
 		Boolean ignoreCase) {
+			
 		addFileImport(pack, fileImport.fileName, importedNamespaceResolvers, ignoreCase)
 
 		var importfileName = fileImport.fileName

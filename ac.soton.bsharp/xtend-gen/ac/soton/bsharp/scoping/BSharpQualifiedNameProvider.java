@@ -1,9 +1,9 @@
 package ac.soton.bsharp.scoping;
 
-import ac.soton.bsharp.bSharp.Extend;
-import java.util.ArrayList;
-import java.util.List;
+import ac.soton.bsharp.bSharp.TopLevelFile;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.Strings;
@@ -36,17 +36,16 @@ public class BSharpQualifiedNameProvider extends DefaultDeclarativeQualifiedName
   
   @Override
   public QualifiedName qualifiedName(final Object ele) {
-    if ((ele instanceof Extend)) {
-      QualifiedName qualName = this.defaultQualifiedName(((EObject)ele));
-      List<String> _segments = qualName.getSegments();
-      ArrayList<String> segments = new ArrayList<String>(_segments);
-      int _size = segments.size();
-      int _minus = (_size - 1);
-      segments.add(_minus, ((Extend)ele).getExtendedClassName());
-      int _size_1 = segments.size();
-      int _minus_1 = (_size_1 - 1);
-      segments.add(_minus_1, "Extend");
-      return QualifiedName.create(segments);
+    if ((ele instanceof TopLevelFile)) {
+      TopLevelFile topLevelFile = ((TopLevelFile) ele);
+      String _name = topLevelFile.getName();
+      boolean _tripleEquals = (_name == null);
+      if (_tripleEquals) {
+        final URI URI = EcoreUtil.getURI(topLevelFile);
+        final String fileName = URI.trimFileExtension().lastSegment();
+        topLevelFile.setName(fileName);
+      }
+      return super.qualifiedName(ele);
     }
     return super.qualifiedName(ele);
   }

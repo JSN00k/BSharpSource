@@ -123,12 +123,28 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   
   public IScope scope_ExpressionVariable(final EObject context, final EReference reference) {
     IScope parent = this.delegateGetScope(context, reference);
-    ClassDecl classDecl = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
-    if ((classDecl == null)) {
+    ClassDecl classDeclTmp = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
+    BSharpBlock currentBlock = null;
+    if ((classDeclTmp == null)) {
       Extend extend = EcoreUtil2.<Extend>getContainerOfType(context, Extend.class);
-      classDecl = extend.getExtendedClass();
+      currentBlock = extend.getBlock();
+      classDeclTmp = extend.getExtendedClass();
+    } else {
+      currentBlock = classDeclTmp.getBlock();
     }
+    final ClassDecl classDecl = classDeclTmp;
     ArrayList<ExpressionVariable> variables = new ArrayList<ExpressionVariable>();
+    List<BSharpBlock> blocks = null;
+    if ((classDecl instanceof Datatype)) {
+      blocks = this.getBlocksForType(classDecl, currentBlock, parent);
+    } else {
+      blocks = this.inscopeBlocksForType(((BSClass) classDecl), currentBlock, parent);
+    }
+    ArrayList<EObject> functionNames = new ArrayList<EObject>();
+    for (final BSharpBlock block : blocks) {
+      List<FunctionDecl> _allContentsOfType = EcoreUtil2.<FunctionDecl>getAllContentsOfType(block, FunctionDecl.class);
+      Iterables.<EObject>addAll(functionNames, _allContentsOfType);
+    }
     if ((classDecl != null)) {
       if ((classDecl instanceof BSClass)) {
         ArrayList<EObject> _superClasses = BSharpUtil.superClasses(((BSClass)classDecl));
@@ -138,8 +154,8 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
             TypedVariableList _varList = superClass.getVarList();
             boolean _tripleNotEquals = (_varList != null);
             if (_tripleNotEquals) {
-              List<TypedVariable> _allContentsOfType = EcoreUtil2.<TypedVariable>getAllContentsOfType(superClass.getVarList(), TypedVariable.class);
-              Iterables.<ExpressionVariable>addAll(variables, _allContentsOfType);
+              List<TypedVariable> _allContentsOfType_1 = EcoreUtil2.<TypedVariable>getAllContentsOfType(superClass.getVarList(), TypedVariable.class);
+              Iterables.<ExpressionVariable>addAll(variables, _allContentsOfType_1);
             }
           }
         }
@@ -150,32 +166,53 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
       parent = Scopes.scopeFor(variables, parent);
     }
     final EObject rootObj = EcoreUtil2.getRootContainer(context);
-    final ClassDecl currentClass = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
-    final Extend extend_1 = EcoreUtil2.<Extend>getContainerOfType(context, Extend.class);
-    if ((extend_1 != null)) {
-      ArrayList<String> segments = new ArrayList<String>();
-      segments.addAll(this._iQualifiedNameProvider.getFullyQualifiedName(extend_1.getExtendedClass()).getSegments());
-      segments.add("Extend");
-      final QualifiedName qualName = QualifiedName.create(segments);
-      final Iterable<IEObjectDescription> allExtends = parent.getElements(qualName);
-      InputOutput.<Iterable<IEObjectDescription>>print(allExtends);
-    }
     final Function1<EObject, Boolean> _function = (EObject object) -> {
-      return Boolean.valueOf(Objects.equal(object, currentClass));
+      return Boolean.valueOf(Objects.equal(object, classDecl));
     };
     final Function1<EObject, Boolean> _function_1 = (EObject object) -> {
       return Boolean.valueOf((object instanceof FunctionDecl));
     };
-    ArrayList<? extends EObject> functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, _function, _function_1);
+    ArrayList<? extends EObject> _eFilterUpToIncludingWith = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, _function, _function_1);
+    Iterables.<EObject>addAll(functionNames, _eFilterUpToIncludingWith);
     IScope scope = this.getVariableScopeFor(context, parent);
     scope = Scopes.scopeFor(functionNames, scope);
     return scope;
   }
   
-  public List<BSharpBlock> getBlocksForType(final BSClass type, final BSharpBlock currentBlock, final IScope currentScope) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Iterable<IEObjectDescription> to int"
-      + "\nType mismatch: cannot convert from Iterable<IEObjectDescription> to List<BSharpBlock>");
+  public List<BSharpBlock> getBlocksForType(final ClassDecl type, final BSharpBlock currentBlock, final IScope currentScope) {
+    ArrayList<String> segments = new ArrayList<String>();
+    segments.addAll(this._iQualifiedNameProvider.getFullyQualifiedName(type).getSegments());
+    int _size = segments.size();
+    int _minus = (_size - 1);
+    segments.remove(_minus);
+    segments.add("Extend");
+    final QualifiedName qualName = QualifiedName.create(segments);
+    final Iterable<IEObjectDescription> allObjs = currentScope.getAllElements();
+    String _name = type.getName();
+    boolean _equals = Objects.equal(_name, "CommMonoid");
+    if (_equals) {
+      InputOutput.<Iterable<IEObjectDescription>>print(allObjs);
+    }
+    final Iterable<IEObjectDescription> allExtends = currentScope.getElements(qualName);
+    ArrayList<BSharpBlock> result = new ArrayList<BSharpBlock>();
+    for (final IEObjectDescription objDescr : allExtends) {
+      {
+        final EObject newObj = objDescr.getEObjectOrProxy();
+        boolean _equals_1 = newObj.eContainer().equals(currentBlock.eContainer());
+        boolean _not = (!_equals_1);
+        if (_not) {
+          EObject _eObjectOrProxy = objDescr.getEObjectOrProxy();
+          result.add(((BSharpBlock) _eObjectOrProxy));
+        }
+      }
+    }
+    final BSharpBlock typeBlock = type.getBlock();
+    boolean _equals_1 = typeBlock.eContainer().equals(currentBlock.eContainer());
+    boolean _not = (!_equals_1);
+    if (_not) {
+      result.add(typeBlock);
+    }
+    return result;
   }
   
   public ArrayList<BSharpBlock> inscopeBlocksForType(final BSClass type, final EObject context, final IScope currentScope) {

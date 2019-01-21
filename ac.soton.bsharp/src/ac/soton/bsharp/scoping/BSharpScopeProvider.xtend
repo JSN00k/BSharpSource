@@ -40,6 +40,7 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import javax.inject.Inject
 import ac.soton.bsharp.bSharp.BSharpBlock
+import org.eclipse.xtext.resource.IEObjectDescription
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -138,14 +139,33 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 
 		var parent = delegateGetScope(context, reference)
 
-		var classDecl = EcoreUtil2.getContainerOfType(context, ClassDecl)
+		var classDeclTmp = EcoreUtil2.getContainerOfType(context, ClassDecl)
+		var BSharpBlock currentBlock
 		
-		if (classDecl === null) {
+		if (classDeclTmp === null) {
 			var extend = EcoreUtil2.getContainerOfType(context, Extend)
-			classDecl = extend.extendedClass
+			currentBlock = extend.block
+			classDeclTmp = extend.extendedClass
+		} else {
+			currentBlock = classDeclTmp.block
 		}
+		
+		val classDecl = classDeclTmp
 
 		var ArrayList<ExpressionVariable> variables = new ArrayList
+		var List<BSharpBlock> blocks
+		
+		
+		if (classDecl instanceof Datatype) {
+			blocks = getBlocksForType(classDecl, currentBlock, parent)
+		} else {
+			blocks = inscopeBlocksForType(classDecl as BSClass, currentBlock, parent)
+		}
+		
+		var ArrayList<EObject> functionNames = new ArrayList()
+		for (block : blocks) {
+			functionNames += EcoreUtil2.getAllContentsOfType(block, FunctionDecl)
+		}
 
 		if (classDecl !== null) {
 			if (classDecl instanceof BSClass) {
@@ -164,20 +184,9 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		}
 
 		val rootObj = EcoreUtil2.getRootContainer(context)
-		val currentClass = EcoreUtil2.getContainerOfType(context, ClassDecl)
-
-		val extend = EcoreUtil2.getContainerOfType(context, Extend);
-		if (extend !== null) {
-			var ArrayList<String> segments = new ArrayList<String>()
-			segments.addAll(extend.extendedClass.fullyQualifiedName.segments)
-			segments += "Extend"
-			val qualName = QualifiedName.create(segments);
-			val allExtends = parent.getElements(qualName)
-			print(allExtends)
-		}
 
 		/* FunctionName can be any function within the current body, or any body above. */
-		var functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object|object == currentClass], [ object |
+		functionNames += EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object|object == classDecl], [ object |
 			object instanceof FunctionDecl
 		])
 
@@ -187,14 +196,32 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		return scope;
 	}
 	
-	def List<BSharpBlock> getBlocksForType(BSClass type, BSharpBlock currentBlock, IScope currentScope) {
+	def List<BSharpBlock> getBlocksForType(ClassDecl type, BSharpBlock currentBlock, IScope currentScope) {
 		var ArrayList<String> segments = new ArrayList<String>()
 			segments.addAll(type.fullyQualifiedName.segments)
+			segments.remove(segments.size - 1)
 			segments += "Extend"
 			val qualName = QualifiedName.create(segments);
-			val allExtends = currentScope.getElements(qualName)
-			val ArrayList<BSharpBlock> result = new ArrayList(allExtends)
-			print(allExtends)
+			
+			val allObjs = currentScope.allElements
+			
+			if (type.name == "CommMonoid")
+				print(allObjs)
+			
+			val Iterable<IEObjectDescription> allExtends = currentScope.getElements(qualName)
+			
+			var ArrayList<BSharpBlock> result = new ArrayList()
+			for (objDescr : allExtends) {
+				val newObj = objDescr.EObjectOrProxy
+				if (!newObj.eContainer.equals(currentBlock.eContainer))
+					result += objDescr.EObjectOrProxy as BSharpBlock
+			}
+			
+			val typeBlock = type.block
+			if (!typeBlock.eContainer.equals(currentBlock.eContainer))
+				result += typeBlock
+			
+			return result
 	}
 	
 	def ArrayList<BSharpBlock> inscopeBlocksForType(BSClass type, EObject context, IScope currentScope) {

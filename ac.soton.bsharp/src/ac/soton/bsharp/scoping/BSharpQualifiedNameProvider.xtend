@@ -6,6 +6,9 @@ import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.util.Strings
 import java.util.ArrayList
+import ac.soton.bsharp.bSharp.FileImport
+import ac.soton.bsharp.bSharp.TopLevelFile
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class BSharpQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
 	
@@ -32,13 +35,24 @@ class BSharpQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvide
 	}
 	
 	override QualifiedName qualifiedName(Object ele) {
-		if (ele instanceof Extend) {
-			var qualName = defaultQualifiedName(ele)
-			var segments = new ArrayList(qualName.segments)
-			segments.add(segments.size - 1, ele.extendedClassName)
-			segments.add(segments.size - 1, "Extend")
-			
-			return QualifiedName.create(segments)
+//		if (ele instanceof Extend) {
+//			var qualName = defaultQualifiedName(ele)
+//			var segments = new ArrayList(qualName.segments)
+//			segments.remove(segments.size - 1)
+//			segments += "Extend"
+//			//segments += ele.extendedClassName
+//			
+//			return QualifiedName.create(segments)
+//		} else 
+		
+		if (ele instanceof TopLevelFile) {
+			var topLevelFile = ele as TopLevelFile
+			if (topLevelFile.name === null) {
+				val URI = EcoreUtil.getURI(topLevelFile)
+				val fileName = URI.trimFileExtension.lastSegment
+				topLevelFile.name = fileName
+			}
+			return super.qualifiedName(ele)
 		}
 		
 		return super.qualifiedName(ele)

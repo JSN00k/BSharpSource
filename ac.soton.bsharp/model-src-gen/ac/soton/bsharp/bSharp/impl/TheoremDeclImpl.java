@@ -298,15 +298,17 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				return;
 			}
 			
-			this.typeInst = null;
+			
 		}
 		
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(typeInstance.getContext());
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this.typeInst.getContext());
 		try {
 			TheoryUtils.createTheorem(thyCache.theory, name, ebPred, nullMonitor);
 		} catch (Exception e) {
 			System.err.println("Unable to create EventB theorem with error: " + e.getLocalizedMessage());
 		}
+		
+		this.typeInst = null;
 	}
 	
 	@Override
