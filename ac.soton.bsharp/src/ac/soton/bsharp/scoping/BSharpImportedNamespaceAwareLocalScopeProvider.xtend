@@ -16,6 +16,14 @@ import ac.soton.bsharp.bSharp.TopLevelImport
 import org.eclipse.xtext.EcoreUtil2
 import java.util.ArrayList
 import ac.soton.bsharp.bSharp.FileImport
+import ac.soton.bsharp.bSharp.Extend
+import ac.soton.bsharp.bSharp.ClassDecl
+import ac.soton.bsharp.bSharp.BSClass
+import ac.soton.bsharp.bSharp.TopLevelInstance
+import ac.soton.bsharp.util.EcoreUtilJ
+import ac.soton.bsharp.bSharp.LocalImport
+import ac.soton.bsharp.bSharp.GlobalImport
+import ac.soton.bsharp.bSharp.BSharpBlock
 
 /**
  * This class contains custom scoping description.
@@ -32,9 +40,24 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		 */
 		 
 		var List<ImportNormalizer> importedNamespaceResolvers = Lists.newArrayList()
-
-		/* Add the package to the fully qualified domain names */
-		if (context instanceof TopLevelImport) {
+		
+		if (context instanceof BSharpBlock) {
+			val topLevelInst = context.eContainer
+			var List<String> importStrings
+			if (topLevelInst instanceof Extend) {
+				importStrings = extendStringsForClass((topLevelInst as Extend).extendedClass, context)
+			} else {
+				importStrings = extendStringsForClass((topLevelInst as ClassDecl), context)
+			}
+			
+			for (importString : importStrings) {
+				val resolver = createImportedNamespaceResolver(importString, ignoreCase)
+				
+				if (resolver !== null)
+					importedNamespaceResolvers += resolver
+			}
+		} else if (context instanceof TopLevelImport) {
+			/* Add the package to the fully qualified domain names */
 			importedFiles = new ArrayList()
 			var topLevelImport = context as TopLevelImport
 			val topLevel = EcoreUtil2.getContainerOfType(topLevelImport, TopLevel)
@@ -82,6 +105,82 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 					}
 				}
 			}
+	}
+	
+	def extendStringsForClass(ClassDecl classDecl, EObject context) {
+		generateAllFileImportStrings(context)
+		var ArrayList<String> importStrings = new ArrayList
+		extendStringsForClassInternal(classDecl, importStrings)
+		fileImportStrings = null
+		return importStrings
+	}
+	
+	def void extendStringsForClassInternal(ClassDecl classDecl, ArrayList<String> result) {
+		
+		for (fileString : fileImportStrings) {
+			if (fileString.endsWith(".*")) {
+				val len = fileString.length
+				var resString = fileString.substring(0, len - 1)
+				resString += classDecl.name + ".Extend.*"
+				result += resString
+			}
+		}
+		
+		if (classDecl instanceof BSClass) {
+			val supertypeList = (classDecl as BSClass).supertypes
+			val supertypes = supertypeList.superTypes
+			
+			for (supertype : supertypes) {
+				var ClassDecl superT = supertype.typeClass
+				if (superT === null)
+					superT = supertype.getDatatype()
+				
+				if (superT !== null)
+					extendStringsForClassInternal(superT, result)
+			}
+		}
+	}
+	
+	var ArrayList<String> fileImportStrings;
+	
+	def void generateAllFileImportStrings(EObject currentObj) {
+		fileImportStrings = new ArrayList()
+		
+		val topLevel = EcoreUtil2.getContainerOfType(currentObj, TopLevel)
+		val packageName = topLevel.fullyQualifiedName
+		val List<LocalImport> localImports = EcoreUtilJ.eFilterUpToIncludingCurrentWith(currentObj, [obj | obj instanceof LocalImport]) as List<LocalImport>
+		val List<GlobalImport> globalImports = EcoreUtilJ.eFilterUpToIncludingCurrentWith(currentObj, [obj | obj instanceof GlobalImport]) as List<GlobalImport>
+		
+		if (localImports !== null) {
+			for (localImport : localImports) {
+				for (import : localImport.fileImports) {
+					fileImportStrings += stringForPackageFileImport(packageName.toString, import)
+				}
+			}
+		}
+		
+		if (globalImports !== null) {
+			for (globalImport : globalImports) {
+				val projName = globalImport.project
+				
+				for (fileImport : globalImport.fileImports) {
+					fileImportStrings += stringForPackageFileImport(projName, fileImport)
+				}
+			}
+		}
+	}
+	
+	def String stringForPackageFileImport(String pack, FileImport fileImport) {
+		var importFileName = fileImport.fileName
+		var importString = pack + "." + importFileName + "."
+		
+		if (fileImport.type !== null) {
+			importString += fileImport.type
+		} else {
+			importString += "*"
+		}
+		
+		return importString
 	}
 	
 	def importFileImportForPackage(

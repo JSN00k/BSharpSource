@@ -773,7 +773,13 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			 * type.
 			 */
 			ArrayList<String> polyVars = context.namesForPolyContextTypes();
-			polyVars.add("prj1(" + instanceName() + ")");
+			
+			TypedVariableList varList = getVarList();
+			if (varList != null && getVarList().count() != 0)
+				polyVars.add("prj1(" + instanceName() + ")");
+			else
+				polyVars.add(instanceName());
+				
 			String polyTypeArgs = "("
 					+ CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(polyVars, ", ", true) + ")";
 			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
@@ -1068,7 +1074,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			if (supT.isAbstractTypeClass()) {
 				BSClass s = supT.getTypeClass();
 				Integer prjs = s.prjsRequiredForSupertype(sType);
-				if (prjs != null)
+				/* If there are no new variables then the supertype doesn't require an extra prj. */
+				TypedVariableList varList = getVarList();
+				if (prjs != null && varList != null && getVarList().varCount() != 0)
 					return prjs + 1;
 			}
 		}

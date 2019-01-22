@@ -16,7 +16,6 @@ import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyType;
-import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -36,14 +35,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
@@ -134,17 +130,6 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     }
     final ClassDecl classDecl = classDeclTmp;
     ArrayList<ExpressionVariable> variables = new ArrayList<ExpressionVariable>();
-    List<BSharpBlock> blocks = null;
-    if ((classDecl instanceof Datatype)) {
-      blocks = this.getBlocksForType(classDecl, currentBlock, parent);
-    } else {
-      blocks = this.inscopeBlocksForType(((BSClass) classDecl), currentBlock, parent);
-    }
-    ArrayList<EObject> functionNames = new ArrayList<EObject>();
-    for (final BSharpBlock block : blocks) {
-      List<FunctionDecl> _allContentsOfType = EcoreUtil2.<FunctionDecl>getAllContentsOfType(block, FunctionDecl.class);
-      Iterables.<EObject>addAll(functionNames, _allContentsOfType);
-    }
     if ((classDecl != null)) {
       if ((classDecl instanceof BSClass)) {
         ArrayList<EObject> _superClasses = BSharpUtil.superClasses(((BSClass)classDecl));
@@ -154,8 +139,8 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
             TypedVariableList _varList = superClass.getVarList();
             boolean _tripleNotEquals = (_varList != null);
             if (_tripleNotEquals) {
-              List<TypedVariable> _allContentsOfType_1 = EcoreUtil2.<TypedVariable>getAllContentsOfType(superClass.getVarList(), TypedVariable.class);
-              Iterables.<ExpressionVariable>addAll(variables, _allContentsOfType_1);
+              List<TypedVariable> _allContentsOfType = EcoreUtil2.<TypedVariable>getAllContentsOfType(superClass.getVarList(), TypedVariable.class);
+              Iterables.<ExpressionVariable>addAll(variables, _allContentsOfType);
             }
           }
         }
@@ -172,66 +157,10 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     final Function1<EObject, Boolean> _function_1 = (EObject object) -> {
       return Boolean.valueOf((object instanceof FunctionDecl));
     };
-    ArrayList<? extends EObject> _eFilterUpToIncludingWith = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, _function, _function_1);
-    Iterables.<EObject>addAll(functionNames, _eFilterUpToIncludingWith);
+    final ArrayList<? extends EObject> functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, _function, _function_1);
     IScope scope = this.getVariableScopeFor(context, parent);
     scope = Scopes.scopeFor(functionNames, scope);
     return scope;
-  }
-  
-  public List<BSharpBlock> getBlocksForType(final ClassDecl type, final BSharpBlock currentBlock, final IScope currentScope) {
-    ArrayList<String> segments = new ArrayList<String>();
-    segments.addAll(this._iQualifiedNameProvider.getFullyQualifiedName(type).getSegments());
-    int _size = segments.size();
-    int _minus = (_size - 1);
-    segments.remove(_minus);
-    segments.add("Extend");
-    final QualifiedName qualName = QualifiedName.create(segments);
-    final Iterable<IEObjectDescription> allObjs = currentScope.getAllElements();
-    String _name = type.getName();
-    boolean _equals = Objects.equal(_name, "CommMonoid");
-    if (_equals) {
-      InputOutput.<Iterable<IEObjectDescription>>print(allObjs);
-    }
-    final Iterable<IEObjectDescription> allExtends = currentScope.getElements(qualName);
-    ArrayList<BSharpBlock> result = new ArrayList<BSharpBlock>();
-    for (final IEObjectDescription objDescr : allExtends) {
-      {
-        final EObject newObj = objDescr.getEObjectOrProxy();
-        boolean _equals_1 = newObj.eContainer().equals(currentBlock.eContainer());
-        boolean _not = (!_equals_1);
-        if (_not) {
-          EObject _eObjectOrProxy = objDescr.getEObjectOrProxy();
-          result.add(((BSharpBlock) _eObjectOrProxy));
-        }
-      }
-    }
-    final BSharpBlock typeBlock = type.getBlock();
-    boolean _equals_1 = typeBlock.eContainer().equals(currentBlock.eContainer());
-    boolean _not = (!_equals_1);
-    if (_not) {
-      result.add(typeBlock);
-    }
-    return result;
-  }
-  
-  public ArrayList<BSharpBlock> inscopeBlocksForType(final BSClass type, final EObject context, final IScope currentScope) {
-    final BSharpBlock currentBlock = EcoreUtil2.<BSharpBlock>getContainerOfType(context, BSharpBlock.class);
-    ArrayList<BSharpBlock> result = new ArrayList<BSharpBlock>();
-    List<BSharpBlock> _blocksForType = this.getBlocksForType(type, currentBlock, currentScope);
-    Iterables.<BSharpBlock>addAll(result, _blocksForType);
-    final SuperTypeList superTypeList = type.getSupertypes();
-    final EList<TypeBuilder> superTypes = superTypeList.getSuperTypes();
-    for (final TypeBuilder superTypeTypeBuilder : superTypes) {
-      {
-        final BSClass superType = superTypeTypeBuilder.getTypeClass();
-        if ((superType != null)) {
-          List<BSharpBlock> _blocksForType_1 = this.getBlocksForType(superType, currentBlock, currentScope);
-          Iterables.<BSharpBlock>addAll(result, _blocksForType_1);
-        }
-      }
-    }
-    return result;
   }
   
   public IScope scope_TypedVariable(final MatchCase context, final EReference reference) {

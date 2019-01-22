@@ -39,8 +39,8 @@ class BSharpQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvide
 			var qualName = defaultQualifiedName(ele)
 			var segments = new ArrayList(qualName.segments)
 			segments.remove(segments.size - 1)
+			segments += (ele as Extend).extendedClassName
 			segments += "Extend"
-			//segments += ele.extendedClassName
 			
 			return QualifiedName.create(segments)
 		} else if (ele instanceof TopLevelFile) {

@@ -46,6 +46,8 @@ public class BSharpQualifiedNameProvider extends DefaultDeclarativeQualifiedName
       int _size = segments.size();
       int _minus = (_size - 1);
       segments.remove(_minus);
+      String _extendedClassName = ((Extend) ele).getExtendedClassName();
+      segments.add(_extendedClassName);
       segments.add("Extend");
       return QualifiedName.create(segments);
     } else {

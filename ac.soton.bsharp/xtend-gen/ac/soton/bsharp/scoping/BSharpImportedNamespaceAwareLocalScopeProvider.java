@@ -3,11 +3,18 @@
  */
 package ac.soton.bsharp.scoping;
 
+import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpBlock;
+import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.LocalImport;
+import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelImport;
+import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
@@ -23,6 +30,7 @@ import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 
 /**
  * This class contains custom scoping description.
@@ -39,21 +47,39 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
   @Override
   public List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
     List<ImportNormalizer> importedNamespaceResolvers = Lists.<ImportNormalizer>newArrayList();
-    if ((context instanceof TopLevelImport)) {
-      ArrayList<String> _arrayList = new ArrayList<String>();
-      BSharpImportedNamespaceAwareLocalScopeProvider.importedFiles = _arrayList;
-      TopLevelImport topLevelImport = ((TopLevelImport) context);
-      final TopLevel topLevel = EcoreUtil2.<TopLevel>getContainerOfType(topLevelImport, TopLevel.class);
-      final QualifiedName packageName = this._iQualifiedNameProvider.getFullyQualifiedName(topLevel);
-      final EList<TopLevelImport> importBlocks = topLevel.getTopLevelFile().getTopLevelImports();
-      final Iterator<TopLevelImport> iterator = importBlocks.iterator();
-      TopLevelImport current = null;
-      do {
+    if ((context instanceof BSharpBlock)) {
+      final EObject topLevelInst = ((BSharpBlock)context).eContainer();
+      List<String> importStrings = null;
+      if ((topLevelInst instanceof Extend)) {
+        importStrings = this.extendStringsForClass(((Extend) topLevelInst).getExtendedClass(), context);
+      } else {
+        importStrings = this.extendStringsForClass(((ClassDecl) topLevelInst), context);
+      }
+      for (final String importString : importStrings) {
         {
-          current = iterator.next();
-          this.addImportsForTopLevelImport(current, importedNamespaceResolvers, packageName, Boolean.valueOf(ignoreCase));
+          final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, ignoreCase);
+          if ((resolver != null)) {
+            importedNamespaceResolvers.add(resolver);
+          }
         }
-      } while((!Objects.equal(current, context)));
+      }
+    } else {
+      if ((context instanceof TopLevelImport)) {
+        ArrayList<String> _arrayList = new ArrayList<String>();
+        BSharpImportedNamespaceAwareLocalScopeProvider.importedFiles = _arrayList;
+        TopLevelImport topLevelImport = ((TopLevelImport) context);
+        final TopLevel topLevel = EcoreUtil2.<TopLevel>getContainerOfType(topLevelImport, TopLevel.class);
+        final QualifiedName packageName = this._iQualifiedNameProvider.getFullyQualifiedName(topLevel);
+        final EList<TopLevelImport> importBlocks = topLevel.getTopLevelFile().getTopLevelImports();
+        final Iterator<TopLevelImport> iterator = importBlocks.iterator();
+        TopLevelImport current = null;
+        do {
+          {
+            current = iterator.next();
+            this.addImportsForTopLevelImport(current, importedNamespaceResolvers, packageName, Boolean.valueOf(ignoreCase));
+          }
+        } while((!Objects.equal(current, context)));
+      }
     }
     return importedNamespaceResolvers;
   }
@@ -80,6 +106,100 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
         }
       }
     }
+  }
+  
+  public ArrayList<String> extendStringsForClass(final ClassDecl classDecl, final EObject context) {
+    this.generateAllFileImportStrings(context);
+    ArrayList<String> importStrings = new ArrayList<String>();
+    this.extendStringsForClassInternal(classDecl, importStrings);
+    this.fileImportStrings = null;
+    return importStrings;
+  }
+  
+  public void extendStringsForClassInternal(final ClassDecl classDecl, final ArrayList<String> result) {
+    for (final String fileString : this.fileImportStrings) {
+      boolean _endsWith = fileString.endsWith(".*");
+      if (_endsWith) {
+        final int len = fileString.length();
+        String resString = fileString.substring(0, (len - 1));
+        String _resString = resString;
+        String _name = classDecl.getName();
+        String _plus = (_name + ".Extend.*");
+        resString = (_resString + _plus);
+        result.add(resString);
+      }
+    }
+    if ((classDecl instanceof BSClass)) {
+      final SuperTypeList supertypeList = ((BSClass) classDecl).getSupertypes();
+      final EList<TypeBuilder> supertypes = supertypeList.getSuperTypes();
+      for (final TypeBuilder supertype : supertypes) {
+        {
+          ClassDecl superT = supertype.getTypeClass();
+          if ((superT == null)) {
+            superT = supertype.getDatatype();
+          }
+          if ((superT != null)) {
+            this.extendStringsForClassInternal(superT, result);
+          }
+        }
+      }
+    }
+  }
+  
+  private ArrayList<String> fileImportStrings;
+  
+  public void generateAllFileImportStrings(final EObject currentObj) {
+    ArrayList<String> _arrayList = new ArrayList<String>();
+    this.fileImportStrings = _arrayList;
+    final TopLevel topLevel = EcoreUtil2.<TopLevel>getContainerOfType(currentObj, TopLevel.class);
+    final QualifiedName packageName = this._iQualifiedNameProvider.getFullyQualifiedName(topLevel);
+    final Function1<EObject, Boolean> _function = (EObject obj) -> {
+      return Boolean.valueOf((obj instanceof LocalImport));
+    };
+    ArrayList<? extends EObject> _eFilterUpToIncludingCurrentWith = EcoreUtilJ.eFilterUpToIncludingCurrentWith(currentObj, _function);
+    final List<LocalImport> localImports = ((List<LocalImport>) _eFilterUpToIncludingCurrentWith);
+    final Function1<EObject, Boolean> _function_1 = (EObject obj) -> {
+      return Boolean.valueOf((obj instanceof GlobalImport));
+    };
+    ArrayList<? extends EObject> _eFilterUpToIncludingCurrentWith_1 = EcoreUtilJ.eFilterUpToIncludingCurrentWith(currentObj, _function_1);
+    final List<GlobalImport> globalImports = ((List<GlobalImport>) _eFilterUpToIncludingCurrentWith_1);
+    if ((localImports != null)) {
+      for (final LocalImport localImport : localImports) {
+        EList<FileImport> _fileImports = localImport.getFileImports();
+        for (final FileImport import_ : _fileImports) {
+          String _stringForPackageFileImport = this.stringForPackageFileImport(packageName.toString(), import_);
+          this.fileImportStrings.add(_stringForPackageFileImport);
+        }
+      }
+    }
+    if ((globalImports != null)) {
+      for (final GlobalImport globalImport : globalImports) {
+        {
+          final String projName = globalImport.getProject();
+          EList<FileImport> _fileImports_1 = globalImport.getFileImports();
+          for (final FileImport fileImport : _fileImports_1) {
+            String _stringForPackageFileImport_1 = this.stringForPackageFileImport(projName, fileImport);
+            this.fileImportStrings.add(_stringForPackageFileImport_1);
+          }
+        }
+      }
+    }
+  }
+  
+  public String stringForPackageFileImport(final String pack, final FileImport fileImport) {
+    String importFileName = fileImport.getFileName();
+    String importString = (((pack + ".") + importFileName) + ".");
+    String _type = fileImport.getType();
+    boolean _tripleNotEquals = (_type != null);
+    if (_tripleNotEquals) {
+      String _importString = importString;
+      String _type_1 = fileImport.getType();
+      importString = (_importString + _type_1);
+    } else {
+      String _importString_1 = importString;
+      importString = (_importString_1 + "*");
+    }
+    return importString;
   }
   
   public boolean importFileImportForPackage(final String pack, final FileImport fileImport, final List<ImportNormalizer> importedNamespaceResolvers, final Boolean ignoreCase) {
