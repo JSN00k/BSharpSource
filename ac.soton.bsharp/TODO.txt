@@ -26,3 +26,10 @@ Fortunately these will probably give errors in Event-B, but it would be nice to 
  1) When there are multiple supertypes they should all have a shared common ancestor, and should not
  	have additional variables added to them. This needs to be checked in the verification stage which 
  	it currently isn't
+ 	
+-------------- Theory Plugin ---------------
+1) Work out why expanind a definition is sooooo slow Rodin is using 1.4 GB of memory to do this.
+ 	
+ ------------- Features __________________
+ 1) Add proof rules to deconstruct type classes e.g., 'Monoid_op(T |-> equ |-> op |-> ident)' should instantly 
+ give 'op' using the proof rule.

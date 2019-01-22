@@ -875,7 +875,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		try {
-			op = CompilationUtil.createOpWithArguments(thyCache, name, pContext, Notation.PREFIX);
+			op = CompilationUtil.createOpWithArguments(thyCache, eventBExprName(), pContext, Notation.PREFIX);
 		} catch (Exception e) {
 			System.err.println(
 					"Unable to create op in FunctionDeclImplementation with Error: " + e.getLocalizedMessage());
@@ -1107,7 +1107,21 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 * context, see if the code can be re-written to avoid this.
 		 */
 		ClassDecl clContainer = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
-		result += context.compileCallWithTypeContext(ctx, clContainer);
+		
+		boolean hasInferredContext = expr.hasInferredContext();
+		
+		if (hasInferredContext)
+			result += getInferredContextCallString(fc);
+		
+		PolyContext context = getContext();
+		
+		if (context != null && !context.isEmpty()) {
+			if (hasInferredContext)
+				result += ", ";
+				
+			result += context.compileCallWithTypeContext(ctx, clContainer);
+		}
+		
 		result += ")";
 
 		EList<Expression> exprs = fc.getArguments();

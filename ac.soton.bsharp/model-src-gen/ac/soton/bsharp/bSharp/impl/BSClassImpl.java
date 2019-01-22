@@ -1076,8 +1076,10 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				Integer prjs = s.prjsRequiredForSupertype(sType);
 				/* If there are no new variables then the supertype doesn't require an extra prj. */
 				TypedVariableList varList = getVarList();
-				if (prjs != null && varList != null && getVarList().varCount() != 0)
+				if (prjs != null && varList != null && varList.varCount() != 0)
 					return prjs + 1;
+				else 
+					return prjs;
 			}
 		}
 
