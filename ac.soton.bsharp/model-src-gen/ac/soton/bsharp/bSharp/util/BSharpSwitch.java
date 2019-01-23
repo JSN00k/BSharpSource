@@ -390,6 +390,20 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.REFERENCING_FUNC: {
+				ReferencingFunc referencingFunc = (ReferencingFunc)theEObject;
+				T result = caseReferencingFunc(referencingFunc);
+				if (result == null) result = caseFunctionDecl(referencingFunc);
+				if (result == null) result = caseIVariableProvider(referencingFunc);
+				if (result == null) result = caseIPolyTypeProvider(referencingFunc);
+				if (result == null) result = caseIExpressionContainer(referencingFunc);
+				if (result == null) result = caseInfixFunc(referencingFunc);
+				if (result == null) result = caseExpressionVariable(referencingFunc);
+				if (result == null) result = caseNamedObject(referencingFunc);
+				if (result == null) result = caseIVarType(referencingFunc);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.SUPER_TYPE_LIST: {
 				SuperTypeList superTypeList = (SuperTypeList)theEObject;
 				T result = caseSuperTypeList(superTypeList);
@@ -949,6 +963,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseQuantLambda(QuantLambda object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Referencing Func</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Referencing Func</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReferencingFunc(ReferencingFunc object) {
 		return null;
 	}
 

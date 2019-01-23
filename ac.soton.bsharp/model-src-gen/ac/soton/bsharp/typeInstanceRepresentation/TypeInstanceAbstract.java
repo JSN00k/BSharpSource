@@ -11,8 +11,10 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.impl.FunctionDeclImpl;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
 public abstract class TypeInstanceAbstract implements ITypeInstance {
@@ -116,5 +118,10 @@ public abstract class TypeInstanceAbstract implements ITypeInstance {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public String nameForFunctionDecl(FunctionDecl functionDecl) {
+		return null;
 	}
 }

@@ -110,6 +110,8 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getWrappedInfixAccess().getGroup(), "rule__WrappedInfix__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup(), "rule__Instance__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup_7(), "rule__Instance__Group_7__0");
+			builder.put(grammarAccess.getInstanceAccess().getGroup_10(), "rule__Instance__Group_10__0");
+			builder.put(grammarAccess.getReferencingFuncAccess().getGroup(), "rule__ReferencingFunc__Group__0");
 			builder.put(grammarAccess.getTopLevelAccess().getNameAssignment_1(), "rule__TopLevel__NameAssignment_1");
 			builder.put(grammarAccess.getTopLevelAccess().getTopLevelFileAssignment_2(), "rule__TopLevel__TopLevelFileAssignment_2");
 			builder.put(grammarAccess.getTopLevelFileAccess().getNoImportElementsAssignment_1(), "rule__TopLevelFile__NoImportElementsAssignment_1");
@@ -210,6 +212,9 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInstanceAccess().getArgumentsAssignment_6(), "rule__Instance__ArgumentsAssignment_6");
 			builder.put(grammarAccess.getInstanceAccess().getArgumentsAssignment_7_1(), "rule__Instance__ArgumentsAssignment_7_1");
 			builder.put(grammarAccess.getInstanceAccess().getNameAssignment_9(), "rule__Instance__NameAssignment_9");
+			builder.put(grammarAccess.getInstanceAccess().getReferencingFuncsAssignment_10_1(), "rule__Instance__ReferencingFuncsAssignment_10_1");
+			builder.put(grammarAccess.getReferencingFuncAccess().getNameAssignment_0(), "rule__ReferencingFunc__NameAssignment_0");
+			builder.put(grammarAccess.getReferencingFuncAccess().getReferencedFuncAssignment_2(), "rule__ReferencingFunc__ReferencedFuncAssignment_2");
 		}
 	}
 	

@@ -83,7 +83,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevel()
 	 * @generated
 	 */
-	int TOP_LEVEL = 44;
+	int TOP_LEVEL = 45;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl <em>Class Decl</em>}' class.
@@ -143,7 +143,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getSuperTypeList()
 	 * @generated
 	 */
-	int SUPER_TYPE_LIST = 40;
+	int SUPER_TYPE_LIST = 41;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ConstructedTypeImpl <em>Constructed Type</em>}' class.
@@ -163,7 +163,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeConstructor()
 	 * @generated
 	 */
-	int TYPE_CONSTRUCTOR = 47;
+	int TYPE_CONSTRUCTOR = 48;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeDeclContextImpl <em>Type Decl Context</em>}' class.
@@ -173,7 +173,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeDeclContext()
 	 * @generated
 	 */
-	int TYPE_DECL_CONTEXT = 49;
+	int TYPE_DECL_CONTEXT = 50;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.WhereImpl <em>Where</em>}' class.
@@ -183,7 +183,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getWhere()
 	 * @generated
 	 */
-	int WHERE = 54;
+	int WHERE = 55;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.DatatypeImpl <em>Datatype</em>}' class.
@@ -292,7 +292,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTheoremBody()
 	 * @generated
 	 */
-	int THEOREM_BODY = 41;
+	int THEOREM_BODY = 42;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl <em>Theorem Decl</em>}' class.
@@ -302,7 +302,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTheoremDecl()
 	 * @generated
 	 */
-	int THEOREM_DECL = 42;
+	int THEOREM_DECL = 43;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypedVariableListImpl <em>Typed Variable List</em>}' class.
@@ -312,7 +312,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypedVariableList()
 	 * @generated
 	 */
-	int TYPED_VARIABLE_LIST = 52;
+	int TYPED_VARIABLE_LIST = 53;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.VariableTypingImpl <em>Variable Typing</em>}' class.
@@ -322,7 +322,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getVariableTyping()
 	 * @generated
 	 */
-	int VARIABLE_TYPING = 53;
+	int VARIABLE_TYPING = 54;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypedVariableImpl <em>Typed Variable</em>}' class.
@@ -332,7 +332,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypedVariable()
 	 * @generated
 	 */
-	int TYPED_VARIABLE = 51;
+	int TYPED_VARIABLE = 52;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl <em>Quant Lambda</em>}' class.
@@ -627,7 +627,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelFile()
 	 * @generated
 	 */
-	int TOP_LEVEL_FILE = 43;
+	int TOP_LEVEL_FILE = 44;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TopLevelImportImpl <em>Top Level Import</em>}' class.
@@ -637,7 +637,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelImport()
 	 * @generated
 	 */
-	int TOP_LEVEL_IMPORT = 45;
+	int TOP_LEVEL_IMPORT = 46;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.PolyTypeImpl <em>Poly Type</em>}' class.
@@ -707,7 +707,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeBuilder()
 	 * @generated
 	 */
-	int TYPE_BUILDER = 46;
+	int TYPE_BUILDER = 47;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeConstrBracketImpl <em>Type Constr Bracket</em>}' class.
@@ -717,7 +717,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeConstrBracket()
 	 * @generated
 	 */
-	int TYPE_CONSTR_BRACKET = 48;
+	int TYPE_CONSTR_BRACKET = 49;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InstNameImpl <em>Inst Name</em>}' class.
@@ -1524,13 +1524,22 @@ public interface BSharpPackage extends EPackage {
 	int INSTANCE__CLASS_NAME_NAME = IEXPRESSION_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Referencing Funcs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE__REFERENCING_FUNCS = IEXPRESSION_CONTAINER_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FEATURE_COUNT = IEXPRESSION_CONTAINER_FEATURE_COUNT + 5;
+	int INSTANCE_FEATURE_COUNT = IEXPRESSION_CONTAINER_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
@@ -1756,6 +1765,106 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUANT_LAMBDA_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ReferencingFuncImpl <em>Referencing Func</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.ReferencingFuncImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getReferencingFunc()
+	 * @generated
+	 */
+	int REFERENCING_FUNC = 40;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__NAME = FUNCTION_DECL__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__PRECEDENCE = FUNCTION_DECL__PRECEDENCE;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__CONTEXT = FUNCTION_DECL__CONTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Var List</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__VAR_LIST = FUNCTION_DECL__VAR_LIST;
+
+	/**
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__RETURN_TYPE = FUNCTION_DECL__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Infix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__INFIX = FUNCTION_DECL__INFIX;
+
+	/**
+	 * The feature id for the '<em><b>Expr</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__EXPR = FUNCTION_DECL__EXPR;
+
+	/**
+	 * The feature id for the '<em><b>Generated Lambdas</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__GENERATED_LAMBDAS = FUNCTION_DECL__GENERATED_LAMBDAS;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Func</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__REFERENCED_FUNC = FUNCTION_DECL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Referencing Func</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC_FEATURE_COUNT = FUNCTION_DECL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
@@ -2009,7 +2118,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypePowerSet()
 	 * @generated
 	 */
-	int TYPE_POWER_SET = 50;
+	int TYPE_POWER_SET = 51;
 
 	/**
 	 * The feature id for the '<em><b>Child</b></em>' containment reference.
@@ -2119,7 +2228,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getWrappedInfix()
 	 * @generated
 	 */
-	int WRAPPED_INFIX = 55;
+	int WRAPPED_INFIX = 56;
 
 	/**
 	 * The feature id for the '<em><b>Func Name</b></em>' reference.
@@ -3066,6 +3175,27 @@ public interface BSharpPackage extends EPackage {
 	EReference getQuantLambda_Expr();
 
 	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ReferencingFunc <em>Referencing Func</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Referencing Func</em>'.
+	 * @see ac.soton.bsharp.bSharp.ReferencingFunc
+	 * @generated
+	 */
+	EClass getReferencingFunc();
+
+	/**
+	 * Returns the meta object for the reference '{@link ac.soton.bsharp.bSharp.ReferencingFunc#getReferencedFunc <em>Referenced Func</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referenced Func</em>'.
+	 * @see ac.soton.bsharp.bSharp.ReferencingFunc#getReferencedFunc()
+	 * @see #getReferencingFunc()
+	 * @generated
+	 */
+	EReference getReferencingFunc_ReferencedFunc();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Expression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3310,6 +3440,17 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getInstance_ClassNameName();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.Instance#getReferencingFuncs <em>Referencing Funcs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Referencing Funcs</em>'.
+	 * @see ac.soton.bsharp.bSharp.Instance#getReferencingFuncs()
+	 * @see #getInstance()
+	 * @generated
+	 */
+	EReference getInstance_ReferencingFuncs();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Infix <em>Infix</em>}'.
@@ -4426,6 +4567,24 @@ public interface BSharpPackage extends EPackage {
 		EReference QUANT_LAMBDA__EXPR = eINSTANCE.getQuantLambda_Expr();
 
 		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ReferencingFuncImpl <em>Referencing Func</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.ReferencingFuncImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getReferencingFunc()
+		 * @generated
+		 */
+		EClass REFERENCING_FUNC = eINSTANCE.getReferencingFunc();
+
+		/**
+		 * The meta object literal for the '<em><b>Referenced Func</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFERENCING_FUNC__REFERENCED_FUNC = eINSTANCE.getReferencingFunc_ReferencedFunc();
+
+		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionImpl <em>Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4622,6 +4781,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute INSTANCE__CLASS_NAME_NAME = eINSTANCE.getInstance_ClassNameName();
+
+		/**
+		 * The meta object literal for the '<em><b>Referencing Funcs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE__REFERENCING_FUNCS = eINSTANCE.getInstance_ReferencingFuncs();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.InfixImpl <em>Infix</em>}' class.

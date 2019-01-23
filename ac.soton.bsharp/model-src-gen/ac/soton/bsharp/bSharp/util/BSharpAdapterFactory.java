@@ -229,6 +229,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createQuantLambdaAdapter();
 			}
 			@Override
+			public Adapter caseReferencingFunc(ReferencingFunc object) {
+				return createReferencingFuncAdapter();
+			}
+			@Override
 			public Adapter caseSuperTypeList(SuperTypeList object) {
 				return createSuperTypeListAdapter();
 			}
@@ -729,6 +733,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createQuantLambdaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.ReferencingFunc <em>Referencing Func</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.ReferencingFunc
+	 * @generated
+	 */
+	public Adapter createReferencingFuncAdapter() {
 		return null;
 	}
 

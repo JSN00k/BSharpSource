@@ -16,6 +16,7 @@ import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.PolyType;
+import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -206,6 +207,10 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     };
     classInstances.addAll(CompilationUtil.filterInscopeBSharpBlocks(context, _function));
     return Scopes.scopeFor(classInstances);
+  }
+  
+  public IScope scope_FunctionDecl(final ReferencingFunc context, final EReference ref) {
+    return this.scope_ExpressionVariable(context, ref);
   }
   
   public IScope getPolyScopeFor(final EObject context, final IScope parent) {

@@ -340,4 +340,9 @@ WrappedInfix:
 
 Instance:
 	'Instance' className=[BSClass|QualifiedName] '<' (context+=[IClassInstance])+ '>' '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')' (name=ID)?
+	('(' referencingFuncs+=ReferencingFunc ')')*
+;
+
+ReferencingFunc:
+	name=ID '=' referencedFunc=[FunctionDecl]
 ;

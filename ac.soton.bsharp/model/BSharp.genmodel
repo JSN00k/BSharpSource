@@ -101,6 +101,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/arguments"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//Instance/classNameName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Instance/referencingFuncs"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//LocalImport">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//LocalImport/fileImports"/>
@@ -132,6 +133,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//QuantLambda/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//QuantLambda/varList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//QuantLambda/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//ReferencingFunc">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ReferencingFunc/referencedFunc"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//SuperTypeList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//SuperTypeList/superTypes"/>

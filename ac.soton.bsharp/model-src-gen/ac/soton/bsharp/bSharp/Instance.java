@@ -25,6 +25,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
  *   <li>{@link ac.soton.bsharp.bSharp.Instance#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Instance#getArguments <em>Arguments</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.Instance#getClassNameName <em>Class Name Name</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.Instance#getReferencingFuncs <em>Referencing Funcs</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance()
@@ -115,6 +116,22 @@ public interface Instance extends IExpressionContainer, ITheoremContainer, IClas
 	 * @generated
 	 */
 	void setClassNameName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Referencing Funcs</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.ReferencingFunc}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referencing Funcs</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Referencing Funcs</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getInstance_ReferencingFuncs()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ReferencingFunc> getReferencingFuncs();
 
 	void compile(IProgressMonitor monitor);
 

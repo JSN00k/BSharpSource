@@ -286,6 +286,15 @@ public abstract class AbstractBSharpProposalProvider extends TerminalsProposalPr
 	public void completeInstance_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
+	public void completeInstance_ReferencingFuncs(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeReferencingFunc_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeReferencingFunc_ReferencedFunc(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
+	}
 
 	public void complete_TopLevel(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
@@ -450,6 +459,9 @@ public abstract class AbstractBSharpProposalProvider extends TerminalsProposalPr
 		// subclasses may override
 	}
 	public void complete_Instance(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
+	public void complete_ReferencingFunc(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 }

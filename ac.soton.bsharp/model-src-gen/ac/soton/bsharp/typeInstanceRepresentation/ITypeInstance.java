@@ -6,8 +6,10 @@ import org.eclipse.emf.ecore.EObject;
 
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.impl.FunctionDeclImpl;
 import ac.soton.bsharp.bSharp.impl.TypedVariableImpl;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
@@ -65,4 +67,6 @@ public interface ITypeInstance {
 	void setIsInferredTypeInst(boolean isInferred);
 
 	String compileFunctionCallOfTypeInstance(FunctionCall fc, Boolean asPred, TypedVariable typedVar) throws Exception;
+
+	String nameForFunctionDecl(FunctionDecl functionDecl);
 }

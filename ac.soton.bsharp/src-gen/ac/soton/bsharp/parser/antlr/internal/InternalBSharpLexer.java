@@ -1037,8 +1037,8 @@ public class InternalBSharpLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalBSharp.g:3479:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' | '0' .. '9' )* )
-            // InternalBSharp.g:3479:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' | '0' .. '9' )*
+            // InternalBSharp.g:3562:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' | '0' .. '9' )* )
+            // InternalBSharp.g:3562:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' | '0' .. '9' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='\uFFDC') ) {
                 input.consume();
@@ -1049,7 +1049,7 @@ public class InternalBSharpLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalBSharp.g:3479:49: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' | '0' .. '9' )*
+            // InternalBSharp.g:3562:49: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | 'i' .. '\\uFFDC' | '0' .. '9' )*
             loop1:
             do {
                 int alt1=2;
@@ -1098,10 +1098,10 @@ public class InternalBSharpLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalBSharp.g:3481:10: ( ( '0' .. '9' )+ )
-            // InternalBSharp.g:3481:12: ( '0' .. '9' )+
+            // InternalBSharp.g:3564:10: ( ( '0' .. '9' )+ )
+            // InternalBSharp.g:3564:12: ( '0' .. '9' )+
             {
-            // InternalBSharp.g:3481:12: ( '0' .. '9' )+
+            // InternalBSharp.g:3564:12: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -1115,7 +1115,7 @@ public class InternalBSharpLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // InternalBSharp.g:3481:13: '0' .. '9'
+            	    // InternalBSharp.g:3564:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1147,10 +1147,10 @@ public class InternalBSharpLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalBSharp.g:3483:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalBSharp.g:3483:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalBSharp.g:3566:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalBSharp.g:3566:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalBSharp.g:3483:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalBSharp.g:3566:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1168,10 +1168,10 @@ public class InternalBSharpLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // InternalBSharp.g:3483:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalBSharp.g:3566:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalBSharp.g:3483:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalBSharp.g:3566:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop3:
                     do {
                         int alt3=3;
@@ -1187,7 +1187,7 @@ public class InternalBSharpLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // InternalBSharp.g:3483:21: '\\\\' .
+                    	    // InternalBSharp.g:3566:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1195,7 +1195,7 @@ public class InternalBSharpLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalBSharp.g:3483:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalBSharp.g:3566:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1220,10 +1220,10 @@ public class InternalBSharpLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalBSharp.g:3483:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalBSharp.g:3566:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalBSharp.g:3483:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalBSharp.g:3566:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -1239,7 +1239,7 @@ public class InternalBSharpLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalBSharp.g:3483:54: '\\\\' .
+                    	    // InternalBSharp.g:3566:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1247,7 +1247,7 @@ public class InternalBSharpLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalBSharp.g:3483:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalBSharp.g:3566:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1290,12 +1290,12 @@ public class InternalBSharpLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalBSharp.g:3485:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalBSharp.g:3485:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalBSharp.g:3568:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalBSharp.g:3568:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalBSharp.g:3485:24: ( options {greedy=false; } : . )*
+            // InternalBSharp.g:3568:24: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -1320,7 +1320,7 @@ public class InternalBSharpLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // InternalBSharp.g:3485:52: .
+            	    // InternalBSharp.g:3568:52: .
             	    {
             	    matchAny(); 
 
@@ -1350,12 +1350,12 @@ public class InternalBSharpLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalBSharp.g:3487:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalBSharp.g:3487:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalBSharp.g:3570:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalBSharp.g:3570:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalBSharp.g:3487:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalBSharp.g:3570:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -1368,7 +1368,7 @@ public class InternalBSharpLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalBSharp.g:3487:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalBSharp.g:3570:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1388,7 +1388,7 @@ public class InternalBSharpLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalBSharp.g:3487:40: ( ( '\\r' )? '\\n' )?
+            // InternalBSharp.g:3570:40: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1397,9 +1397,9 @@ public class InternalBSharpLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // InternalBSharp.g:3487:41: ( '\\r' )? '\\n'
+                    // InternalBSharp.g:3570:41: ( '\\r' )? '\\n'
                     {
-                    // InternalBSharp.g:3487:41: ( '\\r' )?
+                    // InternalBSharp.g:3570:41: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -1408,7 +1408,7 @@ public class InternalBSharpLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // InternalBSharp.g:3487:41: '\\r'
+                            // InternalBSharp.g:3570:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1440,10 +1440,10 @@ public class InternalBSharpLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalBSharp.g:3489:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalBSharp.g:3489:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalBSharp.g:3572:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalBSharp.g:3572:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalBSharp.g:3489:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalBSharp.g:3572:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -1497,8 +1497,8 @@ public class InternalBSharpLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalBSharp.g:3491:16: ( . )
-            // InternalBSharp.g:3491:18: .
+            // InternalBSharp.g:3574:16: ( . )
+            // InternalBSharp.g:3574:18: .
             {
             matchAny(); 
 

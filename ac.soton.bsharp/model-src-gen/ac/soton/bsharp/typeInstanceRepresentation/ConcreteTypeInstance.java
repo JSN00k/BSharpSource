@@ -1,19 +1,20 @@
 package ac.soton.bsharp.typeInstanceRepresentation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
-import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.Instance;
+import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.mapletTree.IMapletNode;
-import ac.soton.bsharp.mapletTree.MapletTree;
 
 public class ConcreteTypeInstance extends TypeInstanceTreeAbstract implements ITypeInstance {
 	
@@ -103,6 +104,21 @@ public class ConcreteTypeInstance extends TypeInstanceTreeAbstract implements IT
 		/* Not currently sure what to do here. Hopefully it will become clear when I start 
 		 * compiling these things!
 		 */
+		return null;
+	}
+	
+	@Override
+	public String nameForFunctionDecl(FunctionDecl functionDecl) {
+		if (type instanceof Instance) {
+			ClassDecl classDecl = CompilationUtil.getClassDecl(type);
+			List<ReferencingFunc> refedFuncs = ((Instance)type).getReferencingFuncs();
+			
+			for (ReferencingFunc refedFunc : refedFuncs) {
+				if (refedFunc.getReferencedFunc().equals(functionDecl))
+					return refedFunc.eventBExprName();
+			}
+		}
+		
 		return null;
 	}
 

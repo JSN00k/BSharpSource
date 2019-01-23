@@ -17,6 +17,7 @@ import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.ITheoremContainer;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.NamedObject;
+import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariableList;
@@ -88,6 +89,7 @@ import com.google.inject.Inject;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getArguments <em>Arguments</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getClassNameName <em>Class Name Name</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.InstanceImpl#getReferencingFuncs <em>Referencing Funcs</em>}</li>
  * </ul>
  *
  * @generated
@@ -162,6 +164,16 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * @ordered
 	 */
 	protected String classNameName = CLASS_NAME_NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getReferencingFuncs() <em>Referencing Funcs</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencingFuncs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ReferencingFunc> referencingFuncs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -270,6 +282,18 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ReferencingFunc> getReferencingFuncs() {
+		if (referencingFuncs == null) {
+			referencingFuncs = new EObjectContainmentEList<ReferencingFunc>(ReferencingFunc.class, this, BSharpPackage.INSTANCE__REFERENCING_FUNCS);
+		}
+		return referencingFuncs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 */
 	public String getName() {
 		if (name == null) {
@@ -304,6 +328,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		switch (featureID) {
 			case BSharpPackage.INSTANCE__ARGUMENTS:
 				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.INSTANCE__REFERENCING_FUNCS:
+				return ((InternalEList<?>)getReferencingFuncs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -327,6 +353,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				return getArguments();
 			case BSharpPackage.INSTANCE__CLASS_NAME_NAME:
 				return getClassNameName();
+			case BSharpPackage.INSTANCE__REFERENCING_FUNCS:
+				return getReferencingFuncs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -357,6 +385,10 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 			case BSharpPackage.INSTANCE__CLASS_NAME_NAME:
 				setClassNameName((String)newValue);
 				return;
+			case BSharpPackage.INSTANCE__REFERENCING_FUNCS:
+				getReferencingFuncs().clear();
+				getReferencingFuncs().addAll((Collection<? extends ReferencingFunc>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -384,6 +416,9 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 			case BSharpPackage.INSTANCE__CLASS_NAME_NAME:
 				setClassNameName(CLASS_NAME_NAME_EDEFAULT);
 				return;
+			case BSharpPackage.INSTANCE__REFERENCING_FUNCS:
+				getReferencingFuncs().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -406,6 +441,8 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				return arguments != null && !arguments.isEmpty();
 			case BSharpPackage.INSTANCE__CLASS_NAME_NAME:
 				return CLASS_NAME_NAME_EDEFAULT == null ? classNameName != null : !CLASS_NAME_NAME_EDEFAULT.equals(classNameName);
+			case BSharpPackage.INSTANCE__REFERENCING_FUNCS:
+				return referencingFuncs != null && !referencingFuncs.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -609,7 +646,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		List<TheoremDecl> theorems = allTheorems();
 		
 		for (TheoremDecl theorem : theorems) {
-			theorem.compileWithTypeInstancesForInferredType(typeInst);
+			theorem.compileWithTypeInstancesForInferredType(typeInst, getName());
 		}
 		
 		typeInst = null;

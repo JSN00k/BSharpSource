@@ -41,6 +41,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 import javax.inject.Inject
 import ac.soton.bsharp.bSharp.BSharpBlock
 import org.eclipse.xtext.resource.IEObjectDescription
+import ac.soton.bsharp.bSharp.ReferencingFunc
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -240,6 +241,10 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 ]))
 		 
 		return Scopes.scopeFor(classInstances)
+	}
+	
+	def IScope scope_FunctionDecl(ReferencingFunc context, EReference ref) {
+		return scope_ExpressionVariable(context,  ref)
 	}
 
 	def IScope getPolyScopeFor(EObject context, IScope parent) {

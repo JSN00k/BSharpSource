@@ -2113,14 +2113,19 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		private final Assignment cNameAssignment_9 = (Assignment)cGroup.eContents().get(9);
 		private final RuleCall cNameIDTerminalRuleCall_9_0 = (RuleCall)cNameAssignment_9.eContents().get(0);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Keyword cLeftParenthesisKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Assignment cReferencingFuncsAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final RuleCall cReferencingFuncsReferencingFuncParserRuleCall_10_1_0 = (RuleCall)cReferencingFuncsAssignment_10_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_10_2 = (Keyword)cGroup_10.eContents().get(2);
 		
 		///* ------------------------------ Instance ---------------------------------------------*/ Instance:
 		//	'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>' '(' arguments+=RootExpression? (','
-		//	arguments+=RootExpression)* ')' name=ID?;
+		//	arguments+=RootExpression)* ')' name=ID? ('(' referencingFuncs+=ReferencingFunc ')')*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>' '(' arguments+=RootExpression? (','
-		//arguments+=RootExpression)* ')' name=ID?
+		//arguments+=RootExpression)* ')' name=ID? ('(' referencingFuncs+=ReferencingFunc ')')*
 		public Group getGroup() { return cGroup; }
 		
 		//'Instance'
@@ -2179,6 +2184,56 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_9_0() { return cNameIDTerminalRuleCall_9_0; }
+		
+		//('(' referencingFuncs+=ReferencingFunc ')')*
+		public Group getGroup_10() { return cGroup_10; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_10_0() { return cLeftParenthesisKeyword_10_0; }
+		
+		//referencingFuncs+=ReferencingFunc
+		public Assignment getReferencingFuncsAssignment_10_1() { return cReferencingFuncsAssignment_10_1; }
+		
+		//ReferencingFunc
+		public RuleCall getReferencingFuncsReferencingFuncParserRuleCall_10_1_0() { return cReferencingFuncsReferencingFuncParserRuleCall_10_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_10_2() { return cRightParenthesisKeyword_10_2; }
+	}
+	public class ReferencingFuncElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ReferencingFunc");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cReferencedFuncAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cReferencedFuncFunctionDeclCrossReference_2_0 = (CrossReference)cReferencedFuncAssignment_2.eContents().get(0);
+		private final RuleCall cReferencedFuncFunctionDeclIDTerminalRuleCall_2_0_1 = (RuleCall)cReferencedFuncFunctionDeclCrossReference_2_0.eContents().get(1);
+		
+		//ReferencingFunc:
+		//	name=ID '=' referencedFunc=[FunctionDecl];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=ID '=' referencedFunc=[FunctionDecl]
+		public Group getGroup() { return cGroup; }
+		
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+		
+		//referencedFunc=[FunctionDecl]
+		public Assignment getReferencedFuncAssignment_2() { return cReferencedFuncAssignment_2; }
+		
+		//[FunctionDecl]
+		public CrossReference getReferencedFuncFunctionDeclCrossReference_2_0() { return cReferencedFuncFunctionDeclCrossReference_2_0; }
+		
+		//ID
+		public RuleCall getReferencedFuncFunctionDeclIDTerminalRuleCall_2_0_1() { return cReferencedFuncFunctionDeclIDTerminalRuleCall_2_0_1; }
 	}
 	
 	
@@ -2237,6 +2292,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final InbuiltInfixElements pInbuiltInfix;
 	private final WrappedInfixElements pWrappedInfix;
 	private final InstanceElements pInstance;
+	private final ReferencingFuncElements pReferencingFunc;
 	
 	private final Grammar grammar;
 	
@@ -2302,6 +2358,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pInbuiltInfix = new InbuiltInfixElements();
 		this.pWrappedInfix = new WrappedInfixElements();
 		this.pInstance = new InstanceElements();
+		this.pReferencingFunc = new ReferencingFuncElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -2945,13 +3002,23 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:
 	//	'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>' '(' arguments+=RootExpression? (','
-	//	arguments+=RootExpression)* ')' name=ID?;
+	//	arguments+=RootExpression)* ')' name=ID? ('(' referencingFuncs+=ReferencingFunc ')')*;
 	public InstanceElements getInstanceAccess() {
 		return pInstance;
 	}
 	
 	public ParserRule getInstanceRule() {
 		return getInstanceAccess().getRule();
+	}
+	
+	//ReferencingFunc:
+	//	name=ID '=' referencedFunc=[FunctionDecl];
+	public ReferencingFuncElements getReferencingFuncAccess() {
+		return pReferencingFunc;
+	}
+	
+	public ParserRule getReferencingFuncRule() {
+		return getReferencingFuncAccess().getRule();
 	}
 	
 	//terminal INT returns ecore::EInt:

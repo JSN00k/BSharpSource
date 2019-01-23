@@ -1,6 +1,8 @@
 package ac.soton.bsharp.scoping;
 
 import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.FunctionDecl;
+import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,16 @@ public class BSharpQualifiedNameProvider extends DefaultDeclarativeQualifiedName
           topLevelFile.setName(fileName);
         }
         return super.qualifiedName(ele);
+      } else {
+        if (((ele instanceof FunctionDecl) && (((FunctionDecl) ele).eContainer() instanceof Instance))) {
+          QualifiedName qualName_1 = this.defaultQualifiedName(((EObject) ele));
+          List<String> _segments_1 = qualName_1.getSegments();
+          ArrayList<String> segments_1 = new ArrayList<String>(_segments_1);
+          int _size_1 = segments_1.size();
+          int _minus_1 = (_size_1 - 2);
+          segments_1.remove(_minus_1);
+          return QualifiedName.create(segments_1);
+        }
       }
     }
     return super.qualifiedName(ele);

@@ -24,6 +24,8 @@ import ac.soton.bsharp.util.EcoreUtilJ
 import ac.soton.bsharp.bSharp.LocalImport
 import ac.soton.bsharp.bSharp.GlobalImport
 import ac.soton.bsharp.bSharp.BSharpBlock
+import ac.soton.bsharp.bSharp.ReferencingFunc
+import ac.soton.bsharp.bSharp.Instance
 
 /**
  * This class contains custom scoping description.
@@ -41,20 +43,15 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		 
 		var List<ImportNormalizer> importedNamespaceResolvers = Lists.newArrayList()
 		
-		if (context instanceof BSharpBlock) {
+		if (context instanceof ReferencingFunc) {
+			val instance = context.eContainer as Instance
+			addExtendNormalizers(instance.className, context, importedNamespaceResolvers, ignoreCase)
+		} else if (context instanceof BSharpBlock) {
 			val topLevelInst = context.eContainer
-			var List<String> importStrings
 			if (topLevelInst instanceof Extend) {
-				importStrings = extendStringsForClass((topLevelInst as Extend).extendedClass, context)
+				addExtendNormalizers((topLevelInst as Extend).extendedClass, context, importedNamespaceResolvers, ignoreCase)
 			} else {
-				importStrings = extendStringsForClass((topLevelInst as ClassDecl), context)
-			}
-			
-			for (importString : importStrings) {
-				val resolver = createImportedNamespaceResolver(importString, ignoreCase)
-				
-				if (resolver !== null)
-					importedNamespaceResolvers += resolver
+				addExtendNormalizers((topLevelInst as ClassDecl), context, importedNamespaceResolvers, ignoreCase)
 			}
 		} else if (context instanceof TopLevelImport) {
 			/* Add the package to the fully qualified domain names */
@@ -107,12 +104,20 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 			}
 	}
 	
-	def extendStringsForClass(ClassDecl classDecl, EObject context) {
+	def addExtendNormalizers(ClassDecl classDecl, EObject context, List<ImportNormalizer> importedNamespaceResolvers,
+		boolean ignoreCase
+	) {
 		generateAllFileImportStrings(context)
 		var ArrayList<String> importStrings = new ArrayList
 		extendStringsForClassInternal(classDecl, importStrings)
 		fileImportStrings = null
-		return importStrings
+		
+		for (importString : importStrings) {
+				val resolver = createImportedNamespaceResolver(importString, ignoreCase)
+				
+				if (resolver !== null)
+					importedNamespaceResolvers += resolver
+			}
 	}
 	
 	def void extendStringsForClassInternal(ClassDecl classDecl, ArrayList<String> result) {

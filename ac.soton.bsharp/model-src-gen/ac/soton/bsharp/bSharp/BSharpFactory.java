@@ -257,6 +257,15 @@ public interface BSharpFactory extends EFactory {
 	QuantLambda createQuantLambda();
 
 	/**
+	 * Returns a new object of class '<em>Referencing Func</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Referencing Func</em>'.
+	 * @generated
+	 */
+	ReferencingFunc createReferencingFunc();
+
+	/**
 	 * Returns a new object of class '<em>Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

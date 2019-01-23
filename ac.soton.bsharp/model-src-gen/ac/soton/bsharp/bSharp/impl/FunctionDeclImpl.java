@@ -683,6 +683,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public Collection<EObject> getVariablesNames() {
+		TypedVariableList varList = getVarList();
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		result.addAll(EcoreUtil2.getAllContentsOfType(varList, TypedVariable.class));
 		return result;
@@ -705,6 +706,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public String eventBPredName() throws Exception {
+		PolyContext context = getContext();
 		if (context != null || !(returnType instanceof TypeConstructor)
 				|| !((TypeConstructor) returnType).getTypeName().getName().equals("Bool")) {
 			throw new Exception(
@@ -716,6 +718,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public boolean hasEventBInfix() throws Exception {
+		TypedVariableList varList = getVarList();
+		PolyContext context = getContext();
 		if (!infix.isEmpty()) {
 			if (varList.varCount() != 2) {
 				// TODO: validation.
@@ -734,6 +738,14 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public String eventBExprName() {
+		/* Check whether the evBTypeInstance that this is compiling with wants a name for this method. */
+		if (evBTypeInstance != null) {
+			String result = evBTypeInstance.nameForFunctionDecl(this);
+			if (result != null)
+				return result;
+			
+		}
+		
 		if (funcPrefix != null) {
 			return funcPrefix + getName();
 		}
@@ -761,6 +773,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * the appropiate typeInstance.
 	 */
 	ArrayList<Tuple2<String, String>> compiledPolyContextWithInferredContext() {
+		PolyContext context = getContext();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		boolean hasInferredContext = expr.hasInferredContext();
 		if (context == null && !hasInferredContext) {
@@ -799,6 +812,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	List<Tuple2<String, String>> compiledPolyContext() {
+		PolyContext context = getContext();
 		if (context == null)
 			return null;
 					
@@ -864,6 +878,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	void compileWithPolyContext(List<Tuple2<String, String>> pContext) {
+		TypedVariableList varList = getVarList();
+		
 		expr = expr.reorderExpresionTree();
 
 		QuantLambda lambda = BSharpFactory.eINSTANCE.createQuantLambda();
@@ -916,6 +932,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	void compileWithoutPolyContext() {
+		TypedVariableList varList = getVarList();
 		expr = expr.reorderExpresionTree();
 		String opName = eventBExprName();
 
@@ -1010,6 +1027,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		/* The compilation requires a context if the function has an explicit context, or if the function
 		 * references an inferredType, and a concrete type isn't provided.
 		 */
+		PolyContext context = getContext();
 		if (context != null && !context.isEmpty()) {
 			return true;
 		}
@@ -1057,6 +1075,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	String compileRecursiveCallWithContext(FunctionCall fc, boolean asPred) throws Exception {
+		PolyContext context = getContext();
 		String result = eventBExprName() + "_M0(";
 		result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(evBTypeInstance.typeConstructionTypes(),
 				", ", true);
@@ -1138,6 +1157,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	String comipileFunctionCallNoContext(FunctionCall fc, boolean asPred) throws Exception {
+		TypedVariableList varList = getVarList();
 		EList<Expression> exprs = fc.getArguments();
 		if (exprs == null || exprs.isEmpty()) {
 			if (varList == null || varList.isEmpty()) {
@@ -1194,6 +1214,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public TypeBuilder calculateType() {
+		TypedVariableList varList = getVarList();
 		/*
 		 * Cross product of the argsType -> returntype
 		 */
@@ -1225,6 +1246,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables() {
+		TypedVariableList varList = getVarList();
 		if (typedPolyVariables != null) {
 			ArrayList<Tuple2<String, String>> result = new ArrayList<Tuple2<String,String>>(typedPolyVariables);
 			

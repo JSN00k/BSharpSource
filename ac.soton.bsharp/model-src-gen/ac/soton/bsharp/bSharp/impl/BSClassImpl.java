@@ -1440,8 +1440,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			}
 			
 			/* We've used all of the args. */
-			args = new ArrayList<Expression>();
-			argsCount = 0;
+			if (argsCount != 0) {
+				result = CompilationUtil.mapletNodeFromExpressionArray(args);
+				args = new ArrayList<Expression>();
+				argsCount = 0;
+			}
 		}
 		
 		IMapletNode superTypeNode = null;

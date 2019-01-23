@@ -9,7 +9,9 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.GlobalImport;
+import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.LocalImport;
+import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelImport;
@@ -47,38 +49,35 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
   @Override
   public List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
     List<ImportNormalizer> importedNamespaceResolvers = Lists.<ImportNormalizer>newArrayList();
-    if ((context instanceof BSharpBlock)) {
-      final EObject topLevelInst = ((BSharpBlock)context).eContainer();
-      List<String> importStrings = null;
-      if ((topLevelInst instanceof Extend)) {
-        importStrings = this.extendStringsForClass(((Extend) topLevelInst).getExtendedClass(), context);
-      } else {
-        importStrings = this.extendStringsForClass(((ClassDecl) topLevelInst), context);
-      }
-      for (final String importString : importStrings) {
-        {
-          final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, ignoreCase);
-          if ((resolver != null)) {
-            importedNamespaceResolvers.add(resolver);
-          }
-        }
-      }
+    if ((context instanceof ReferencingFunc)) {
+      EObject _eContainer = ((ReferencingFunc)context).eContainer();
+      final Instance instance = ((Instance) _eContainer);
+      this.addExtendNormalizers(instance.getClassName(), context, importedNamespaceResolvers, ignoreCase);
     } else {
-      if ((context instanceof TopLevelImport)) {
-        ArrayList<String> _arrayList = new ArrayList<String>();
-        BSharpImportedNamespaceAwareLocalScopeProvider.importedFiles = _arrayList;
-        TopLevelImport topLevelImport = ((TopLevelImport) context);
-        final TopLevel topLevel = EcoreUtil2.<TopLevel>getContainerOfType(topLevelImport, TopLevel.class);
-        final QualifiedName packageName = this._iQualifiedNameProvider.getFullyQualifiedName(topLevel);
-        final EList<TopLevelImport> importBlocks = topLevel.getTopLevelFile().getTopLevelImports();
-        final Iterator<TopLevelImport> iterator = importBlocks.iterator();
-        TopLevelImport current = null;
-        do {
-          {
-            current = iterator.next();
-            this.addImportsForTopLevelImport(current, importedNamespaceResolvers, packageName, Boolean.valueOf(ignoreCase));
-          }
-        } while((!Objects.equal(current, context)));
+      if ((context instanceof BSharpBlock)) {
+        final EObject topLevelInst = ((BSharpBlock)context).eContainer();
+        if ((topLevelInst instanceof Extend)) {
+          this.addExtendNormalizers(((Extend) topLevelInst).getExtendedClass(), context, importedNamespaceResolvers, ignoreCase);
+        } else {
+          this.addExtendNormalizers(((ClassDecl) topLevelInst), context, importedNamespaceResolvers, ignoreCase);
+        }
+      } else {
+        if ((context instanceof TopLevelImport)) {
+          ArrayList<String> _arrayList = new ArrayList<String>();
+          BSharpImportedNamespaceAwareLocalScopeProvider.importedFiles = _arrayList;
+          TopLevelImport topLevelImport = ((TopLevelImport) context);
+          final TopLevel topLevel = EcoreUtil2.<TopLevel>getContainerOfType(topLevelImport, TopLevel.class);
+          final QualifiedName packageName = this._iQualifiedNameProvider.getFullyQualifiedName(topLevel);
+          final EList<TopLevelImport> importBlocks = topLevel.getTopLevelFile().getTopLevelImports();
+          final Iterator<TopLevelImport> iterator = importBlocks.iterator();
+          TopLevelImport current = null;
+          do {
+            {
+              current = iterator.next();
+              this.addImportsForTopLevelImport(current, importedNamespaceResolvers, packageName, Boolean.valueOf(ignoreCase));
+            }
+          } while((!Objects.equal(current, context)));
+        }
       }
     }
     return importedNamespaceResolvers;
@@ -108,12 +107,19 @@ public class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedName
     }
   }
   
-  public ArrayList<String> extendStringsForClass(final ClassDecl classDecl, final EObject context) {
+  public void addExtendNormalizers(final ClassDecl classDecl, final EObject context, final List<ImportNormalizer> importedNamespaceResolvers, final boolean ignoreCase) {
     this.generateAllFileImportStrings(context);
     ArrayList<String> importStrings = new ArrayList<String>();
     this.extendStringsForClassInternal(classDecl, importStrings);
     this.fileImportStrings = null;
-    return importStrings;
+    for (final String importString : importStrings) {
+      {
+        final ImportNormalizer resolver = this.createImportedNamespaceResolver(importString, ignoreCase);
+        if ((resolver != null)) {
+          importedNamespaceResolvers.add(resolver);
+        }
+      }
+    }
   }
   
   public void extendStringsForClassInternal(final ClassDecl classDecl, final ArrayList<String> result) {

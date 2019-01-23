@@ -3473,6 +3473,89 @@ ruleInstance returns [EObject current=null]
 				}
 			)
 		)?
+		(
+			otherlv_11='('
+			{
+				newLeafNode(otherlv_11, grammarAccess.getInstanceAccess().getLeftParenthesisKeyword_10_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getInstanceAccess().getReferencingFuncsReferencingFuncParserRuleCall_10_1_0());
+					}
+					lv_referencingFuncs_12_0=ruleReferencingFunc
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstanceRule());
+						}
+						add(
+							$current,
+							"referencingFuncs",
+							lv_referencingFuncs_12_0,
+							"ac.soton.bsharp.BSharp.ReferencingFunc");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_13=')'
+			{
+				newLeafNode(otherlv_13, grammarAccess.getInstanceAccess().getRightParenthesisKeyword_10_2());
+			}
+		)*
+	)
+;
+
+// Entry rule entryRuleReferencingFunc
+entryRuleReferencingFunc returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReferencingFuncRule()); }
+	iv_ruleReferencingFunc=ruleReferencingFunc
+	{ $current=$iv_ruleReferencingFunc.current; }
+	EOF;
+
+// Rule ReferencingFunc
+ruleReferencingFunc returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_name_0_0=RULE_ID
+				{
+					newLeafNode(lv_name_0_0, grammarAccess.getReferencingFuncAccess().getNameIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getReferencingFuncRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_0_0,
+						"ac.soton.bsharp.BSharp.ID");
+				}
+			)
+		)
+		otherlv_1='='
+		{
+			newLeafNode(otherlv_1, grammarAccess.getReferencingFuncAccess().getEqualsSignKeyword_1());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getReferencingFuncRule());
+					}
+				}
+				otherlv_2=RULE_ID
+				{
+					newLeafNode(otherlv_2, grammarAccess.getReferencingFuncAccess().getReferencedFuncFunctionDeclCrossReference_2_0());
+				}
+			)
+		)
 	)
 ;
 

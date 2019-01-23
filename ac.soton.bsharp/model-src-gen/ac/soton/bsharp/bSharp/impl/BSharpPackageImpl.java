@@ -46,6 +46,7 @@ import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.Prefix;
 import ac.soton.bsharp.bSharp.QuantLambda;
+import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TheoremBody;
 import ac.soton.bsharp.bSharp.TheoremDecl;
@@ -287,6 +288,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass quantLambdaEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass referencingFuncEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1310,6 +1318,24 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getReferencingFunc() {
+		return referencingFuncEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReferencingFunc_ReferencedFunc() {
+		return (EReference)referencingFuncEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExpression() {
 		return expressionEClass;
 	}
@@ -1510,6 +1536,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 */
 	public EAttribute getInstance_ClassNameName() {
 		return (EAttribute)instanceEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInstance_ReferencingFuncs() {
+		return (EReference)instanceEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1946,6 +1981,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(instanceEClass, INSTANCE__CONTEXT);
 		createEReference(instanceEClass, INSTANCE__ARGUMENTS);
 		createEAttribute(instanceEClass, INSTANCE__CLASS_NAME_NAME);
+		createEReference(instanceEClass, INSTANCE__REFERENCING_FUNCS);
 
 		localImportEClass = createEClass(LOCAL_IMPORT);
 		createEReference(localImportEClass, LOCAL_IMPORT__FILE_IMPORTS);
@@ -1977,6 +2013,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(quantLambdaEClass, QUANT_LAMBDA__CONTEXT);
 		createEReference(quantLambdaEClass, QUANT_LAMBDA__VAR_LIST);
 		createEReference(quantLambdaEClass, QUANT_LAMBDA__EXPR);
+
+		referencingFuncEClass = createEClass(REFERENCING_FUNC);
+		createEReference(referencingFuncEClass, REFERENCING_FUNC__REFERENCED_FUNC);
 
 		superTypeListEClass = createEClass(SUPER_TYPE_LIST);
 		createEReference(superTypeListEClass, SUPER_TYPE_LIST__SUPER_TYPES);
@@ -2110,6 +2149,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		quantLambdaEClass.getESuperTypes().add(this.getExpression());
 		quantLambdaEClass.getESuperTypes().add(this.getIVariableProvider());
 		quantLambdaEClass.getESuperTypes().add(this.getIPolyTypeProvider());
+		referencingFuncEClass.getESuperTypes().add(this.getFunctionDecl());
 		theoremBodyEClass.getESuperTypes().add(this.getITheoremContainer());
 		theoremDeclEClass.getESuperTypes().add(this.getIExpressionContainer());
 		topLevelFileEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
@@ -2231,6 +2271,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getInstance_Context(), this.getIClassInstance(), null, "context", null, 0, -1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstance_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInstance_ClassNameName(), ecorePackage.getEString(), "classNameName", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstance_ReferencingFuncs(), this.getReferencingFunc(), null, "referencingFuncs", null, 0, -1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(localImportEClass, LocalImport.class, "LocalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLocalImport_FileImports(), this.getFileImport(), null, "fileImports", null, 0, -1, LocalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2262,6 +2303,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getQuantLambda_Context(), this.getPolyContext(), null, "context", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getQuantLambda_VarList(), this.getTypedVariableList(), null, "varList", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getQuantLambda_Expr(), this.getExpression(), null, "expr", null, 0, 1, QuantLambda.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(referencingFuncEClass, ReferencingFunc.class, "ReferencingFunc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReferencingFunc_ReferencedFunc(), this.getFunctionDecl(), null, "referencedFunc", null, 0, 1, ReferencingFunc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(superTypeListEClass, SuperTypeList.class, "SuperTypeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSuperTypeList_SuperTypes(), this.getTypeBuilder(), null, "superTypes", null, 0, -1, SuperTypeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

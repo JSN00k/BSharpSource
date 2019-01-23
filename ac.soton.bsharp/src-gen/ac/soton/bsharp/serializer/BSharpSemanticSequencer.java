@@ -26,6 +26,7 @@ import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.Prefix;
 import ac.soton.bsharp.bSharp.QuantLambda;
+import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TheoremBody;
 import ac.soton.bsharp.bSharp.TheoremDecl;
@@ -145,6 +146,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
+			case BSharpPackage.REFERENCING_FUNC:
+				sequence_ReferencingFunc(context, (ReferencingFunc) semanticObject); 
+				return; 
 			case BSharpPackage.SUPER_TYPE_LIST:
 				sequence_SuperTypeList(context, (SuperTypeList) semanticObject); 
 				return; 
@@ -457,7 +461,14 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
-	 *     (className=[BSClass|QualifiedName] context+=[IClassInstance|ID]+ arguments+=RootExpression? arguments+=RootExpression* name=ID?)
+	 *     (
+	 *         className=[BSClass|QualifiedName] 
+	 *         context+=[IClassInstance|ID]+ 
+	 *         arguments+=RootExpression? 
+	 *         arguments+=RootExpression* 
+	 *         name=ID? 
+	 *         referencingFuncs+=ReferencingFunc*
+	 *     )
 	 */
 	protected void sequence_Instance(ISerializationContext context, Instance semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -587,6 +598,27 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_Quantifier(ISerializationContext context, QuantLambda semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ReferencingFunc returns ReferencingFunc
+	 *
+	 * Constraint:
+	 *     (name=ID referencedFunc=[FunctionDecl|ID])
+	 */
+	protected void sequence_ReferencingFunc(ISerializationContext context, ReferencingFunc semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.REFERENCING_FUNC__REFERENCED_FUNC) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.REFERENCING_FUNC__REFERENCED_FUNC));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getReferencingFuncAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getReferencingFuncAccess().getReferencedFuncFunctionDeclIDTerminalRuleCall_2_0_1(), semanticObject.eGet(BSharpPackage.Literals.REFERENCING_FUNC__REFERENCED_FUNC, false));
+		feeder.finish();
 	}
 	
 	

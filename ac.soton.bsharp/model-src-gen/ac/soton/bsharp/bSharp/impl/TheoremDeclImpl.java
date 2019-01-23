@@ -258,6 +258,21 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	
 	protected ITypeInstance typeInst = null;
 	
+	private String theoremPrefix = null;
+	
+	public String getTheoremName() {
+		if (theoremPrefix != null)
+			return theoremPrefix + " " + getName();
+		
+		return getName();
+	}
+	
+	@Override public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance, String theoremPrefix) {
+		this.theoremPrefix = theoremPrefix;
+		compileWithTypeInstancesForInferredType(typeInstance);
+		this.theoremPrefix = null;
+	}
+	
 	@Override
 	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance) {
 		expr = expr.reorderExpresionTree();
@@ -303,7 +318,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 		
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this.typeInst.getContext());
 		try {
-			TheoryUtils.createTheorem(thyCache.theory, name, ebPred, nullMonitor);
+			TheoryUtils.createTheorem(thyCache.theory, getTheoremName(), ebPred, nullMonitor);
 		} catch (Exception e) {
 			System.err.println("Unable to create EventB theorem with error: " + e.getLocalizedMessage());
 		}

@@ -85,4 +85,6 @@ public interface TheoremDecl extends IExpressionContainer {
 	String getNameExpressionForVariable(TypedVariable typedVariableImpl);
 
 	void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance);
+
+	void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance, String theoremPrefix);
 } // TheoremDecl

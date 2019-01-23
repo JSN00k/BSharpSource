@@ -9,6 +9,8 @@ import java.util.ArrayList
 import ac.soton.bsharp.bSharp.FileImport
 import ac.soton.bsharp.bSharp.TopLevelFile
 import org.eclipse.emf.ecore.util.EcoreUtil
+import ac.soton.bsharp.bSharp.FunctionDecl
+import ac.soton.bsharp.bSharp.Instance
 
 class BSharpQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
 	
@@ -51,6 +53,12 @@ class BSharpQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvide
 				topLevelFile.name = fileName
 			}
 			return super.qualifiedName(ele)
+		} else if (ele instanceof FunctionDecl && (ele as FunctionDecl).eContainer instanceof Instance) {
+			var qualName = defaultQualifiedName(ele as EObject)
+			var segments = new ArrayList(qualName.segments)
+			/* Remove the instance from the naming. */
+			segments.remove(segments.size - 2)
+			return QualifiedName.create(segments)
 		}
 		
 		return super.qualifiedName(ele)

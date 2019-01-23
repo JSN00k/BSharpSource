@@ -84,6 +84,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.POLY_TYPE: return createPolyType();
 			case BSharpPackage.PREFIX: return createPrefix();
 			case BSharpPackage.QUANT_LAMBDA: return createQuantLambda();
+			case BSharpPackage.REFERENCING_FUNC: return createReferencingFunc();
 			case BSharpPackage.SUPER_TYPE_LIST: return createSuperTypeList();
 			case BSharpPackage.THEOREM_BODY: return createTheoremBody();
 			case BSharpPackage.THEOREM_DECL: return createTheoremDecl();
@@ -362,6 +363,16 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public QuantLambda createQuantLambda() {
 		QuantLambdaImpl quantLambda = new QuantLambdaImpl();
 		return quantLambda;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReferencingFunc createReferencingFunc() {
+		ReferencingFuncImpl referencingFunc = new ReferencingFuncImpl();
+		return referencingFunc;
 	}
 
 	/**
