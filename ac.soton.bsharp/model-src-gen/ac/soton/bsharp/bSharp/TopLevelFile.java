@@ -3,9 +3,15 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.Set;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.rodinp.core.IRodinProject;
+
+import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 
 /**
  * <!-- begin-user-doc -->
@@ -83,5 +89,10 @@ public interface TopLevelFile extends ITheoryImportCacheProvider, IBodyElementsC
 	 * @generated
 	 */
 	EList<TopLevelInstance> getNoImportElements();
+	
+	void compile(IProgressMonitor monitor, IRodinProject proj);
+
+	void appendFileImportsUpToAlreadyImported(TopLevelInstance upto, Set<EventBFQNImport> alreadyImported,
+			Set<EventBFQNImport> newImports);
 
 } // TopLevelFile

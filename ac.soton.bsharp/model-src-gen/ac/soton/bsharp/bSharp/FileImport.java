@@ -3,7 +3,12 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
+
+import ac.soton.bsharp.bSharp.util.ComparatorHashSet;
+import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,9 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.FileImport#getType <em>Type</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FileImport#getFileName <em>File Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FileImport#getFileReference <em>File Reference</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FileImport#getType <em>Type</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FileImport#getTypeName <em>Type Name</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFileImport()
@@ -77,29 +83,65 @@ public interface FileImport extends EObject {
 	void setFileReference(TopLevelFile value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(String)
+	 * @return the value of the '<em>Type</em>' reference.
+	 * @see #setType(TopLevelInstance)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFileImport_Type()
 	 * @model
 	 * @generated
 	 */
-	String getType();
+	TopLevelInstance getType();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FileImport#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FileImport#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @param value the new value of the '<em>Type</em>' reference.
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(String value);
+	void setType(TopLevelInstance value);
+
+	/**
+	 * Returns the value of the '<em><b>Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type Name</em>' attribute.
+	 * @see #setTypeName(String)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFileImport_TypeName()
+	 * @model
+	 * @generated
+	 */
+	String getTypeName();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FileImport#getTypeName <em>Type Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type Name</em>' attribute.
+	 * @see #getTypeName()
+	 * @generated
+	 */
+	void setTypeName(String value);
+
+	Object packageFileName();
+
+	String getPackageName();
+
+	EventBFQNImport eventBFqn();
+
+	void addImportFqnsRecursive(Set<EventBFQNImport> alreadyImported, Set<EventBFQNImport> newImports);
+
+	void addImportFqnsToAlreadyImportedRecursive(Set<EventBFQNImport> alreadyImported, Set<EventBFQNImport> newImports);
 
 } // FileImport

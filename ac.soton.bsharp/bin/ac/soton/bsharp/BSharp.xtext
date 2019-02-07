@@ -63,11 +63,15 @@ QualifiedNameWithWildcard:
 ;
 
 TopLevelImport:
-	(globalImports+=GlobalImport | localImports += LocalImport)+ (bodyElements+=TopLevelInstance)+
+	(imports+=Import)+ (bodyElements+=TopLevelInstance)+
 ;
 
 TopLevelInstance:
 	ClassDecl | Extend
+;
+
+Import:
+	GlobalImport | LocalImport
 ;
 
 GlobalImport:
@@ -77,7 +81,7 @@ GlobalImport:
 /* Imports other files from the current project. The optional type ID allows the importing
  * of a specific type from the file. */
 FileImport:
- 	fileReference=[TopLevelFile] ('.' ('*' | type=ID))?
+ 	fileReference=[TopLevelFile] ('.' ('*' | type=[TopLevelInstance]))?
 ;
 
 LocalImport:
@@ -311,7 +315,7 @@ Bracket returns Bracket:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns FunctionCall:
-	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) (context=TypeDeclContext? '(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
 ;
 
 /* This is used to get variables from a class I think that it may be only applicable for
@@ -321,14 +325,14 @@ ClassVarDecl:
 ;
 
 ExpressionVariable:
-	 FunctionDecl | TypedVariable | InstName | DatatypeConstructor
+	 FunctionDecl | TypedVariable | InstName | DatatypeConstructor | ConstructedType
 ;
 
 /* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 
  * therefore assumes this is the case. If a new inbuilt operator is included that isn't a predicate
  * operator the code in InfixImpl needs to be changed to check for this. */
 InbuiltInfix:
-	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨'
+	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨' | '∈'
 ;
 
 /* Todo scope/validate this. */

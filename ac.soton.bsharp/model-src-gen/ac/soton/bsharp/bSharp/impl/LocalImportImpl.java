@@ -6,6 +6,7 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.LocalImport;
+import ac.soton.bsharp.bSharp.TopLevel;
 
 import java.util.Collection;
 
@@ -19,30 +20,16 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Local Import</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.LocalImportImpl#getFileImports <em>File Imports</em>}</li>
- * </ul>
  *
  * @generated
  */
-public class LocalImportImpl extends MinimalEObjectImpl.Container implements LocalImport {
-	/**
-	 * The cached value of the '{@link #getFileImports() <em>File Imports</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFileImports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FileImport> fileImports;
+public class LocalImportImpl extends ImportImpl implements LocalImport {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,90 +49,9 @@ public class LocalImportImpl extends MinimalEObjectImpl.Container implements Loc
 		return BSharpPackage.Literals.LOCAL_IMPORT;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<FileImport> getFileImports() {
-		if (fileImports == null) {
-			fileImports = new EObjectContainmentEList<FileImport>(FileImport.class, this, BSharpPackage.LOCAL_IMPORT__FILE_IMPORTS);
-		}
-		return fileImports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BSharpPackage.LOCAL_IMPORT__FILE_IMPORTS:
-				return ((InternalEList<?>)getFileImports()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BSharpPackage.LOCAL_IMPORT__FILE_IMPORTS:
-				return getFileImports();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BSharpPackage.LOCAL_IMPORT__FILE_IMPORTS:
-				getFileImports().clear();
-				getFileImports().addAll((Collection<? extends FileImport>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BSharpPackage.LOCAL_IMPORT__FILE_IMPORTS:
-				getFileImports().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BSharpPackage.LOCAL_IMPORT__FILE_IMPORTS:
-				return fileImports != null && !fileImports.isEmpty();
-		}
-		return super.eIsSet(featureID);
+	public String getBSharpProjName() {
+		return EcoreUtil2.getContainerOfType(this, TopLevel.class).getName();
 	}
 
 } //LocalImportImpl

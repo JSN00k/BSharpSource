@@ -17,6 +17,9 @@ import ac.soton.bsharp.bSharp.ClassDecl
 import org.eclipse.xtext.EcoreUtil2
 import ac.soton.bsharp.bSharp.TopLevel
 import ac.soton.bsharp.bSharp.TopLevelImport
+import ac.soton.bsharp.bSharp.util.EventBFQNImport
+import ac.soton.bsharp.bSharp.util.ComparatorHashSet
+import org.eclipse.xtext.xbase.lib.Functions.Function2
 
 /* A subclass of the TheoryRoot that keeps various additional references in 
  * memory to easy the creation of Thy files without unnecessary additional 
@@ -30,7 +33,14 @@ class TheoryImportCache {
 	/* Stores the names of thys that have already been imported as 
 	 * fully qualified names proj.fileName
 	 */
-	var ArrayList<String> alreadyImported
+	var ComparatorHashSet<EventBFQNImport> alreadyImported
+	
+	val Function2<EventBFQNImport, Object, Boolean> comparator = [EventBFQNImport containedObj, Object other | 
+		if (!(other instanceof EventBFQNImport))
+			return false
+			
+		return containedObj.isInferredImporterOf(other as EventBFQNImport)
+	]
 	
 	/* Keeps references to the in memory import blocks (imports are blocked by
 	 * project) allowing them to be easily appended to.
@@ -38,7 +48,7 @@ class TheoryImportCache {
 	public var HashMap<String, IImportTheoryProject> thyImportBlocks
 	
 	public val ITheoryRoot theory
-	val String localProjName
+	public val EventBFQNImport evBFQN
 	
 	/* It is not necessary to create new eventB poly types for every new 
 	 * use of a polytypes. This dictionary keeps references to previously
@@ -52,116 +62,158 @@ class TheoryImportCache {
 	 * the later files need to import their previous file, this is what is contained
 	 * in prevTheory.
 	 */
-	new(ITheoryRoot thy, String projName, TheoryImportCache prevTheory) {
-		theory = thy
-		localProjName = projName
-		thyImportBlocks = new HashMap
-		alreadyImported = new ArrayList
+	new(IRodinProject proj, EventBFQNImport evBFqn, TheoryImportCache prevTheory) {	
+		this.evBFQN = evBFqn
+		theory = TheoryUtils.createTheory(proj, evBFqn.fileName, null)
 		
-		if (prevTheory !== null)
-			importLocalTheoryCache(prevTheory)
+		thyImportBlocks = new HashMap
+		if (prevTheory !== null) {
+			alreadyImported = prevTheory.alreadyImported.clone as ComparatorHashSet<EventBFQNImport>
+			importEventBFQNInternal(prevTheory.evBFQN)
+		} else {
+			alreadyImported = new ComparatorHashSet(comparator)
+		}
 			
 		/* Just in case let's make it so it is not possible for a file to import itself by
 		 * adding itself to the alreadyImported list
 		 */
-		 alreadyImported += projName + '.' + thy.componentName
+		 alreadyImported += evBFqn
 	}
 	
-	def importThyFromProjectWithName(ITheoryRoot thy, String projName) {
-		val fqn = projName + '.' + thy.componentName
-		if (alreadyImported.contains(fqn))
-			return
-			
-		val eventBProj = EventBUtils.getEventBProject(projName)
-		val rodinProj = eventBProj.rodinProject
-		/* Either get or create the porject import block */
-
-		val importBlock = getImportBlockForProj(projName, rodinProj)
-		TheoryUtils.createImportTheory(importBlock, thy, nullMonitor)
-	}
-	
-	def importLocalTheoryCache(TheoryImportCache thyCache) {
-		importThyFromProjectWithName(thyCache.theory, localProjName)
-		alreadyImported += thyCache.alreadyImported
-	}
-	
-	def importLocalTheoryWithName(String thyName) {
-		val localProjBlock = thyImportBlocks.get(localProjName)
-		if (localProjBlock === null) {
-			val localBlock = TheoryUtils.createImportTheoryProject(theory, theory.rodinProject, nullMonitor)
-			thyImportBlocks.put(localProjName, localBlock)
+	new(IRodinProject proj, TopLevelImport imports, EventBFQNImport fileFQN, TheoryImportCache prevTheory) {
+		this.evBFQN = fileFQN
+		theory = TheoryUtils.createTheory(proj, fileFQN.fileName, null)
+		
+		thyImportBlocks = new HashMap
+		if (prevTheory !== null) {
+			alreadyImported = prevTheory.alreadyImported.clone as ComparatorHashSet<EventBFQNImport>
+		} else {
+			alreadyImported = new ComparatorHashSet(comparator)
 		}
 		
-		importTheoryWithNameFromProjectWithName(thyName, localProjName)
+		var ComparatorHashSet<EventBFQNImport> newImports = new ComparatorHashSet(comparator)
+		
+		imports.addAllEventBImportsToNewImports(alreadyImported, newImports)
+		
+		if (prevTheory !== null && !alreadyImported.contains(prevTheory.evBFQN)) {
+			alreadyImported.add(prevTheory.evBFQN)
+			newImports.add(prevTheory.evBFQN)
+		}
+		
+		for (imp : newImports) {
+			importEventBFQNInternal(imp)
+		}
 	}
 	
-	def importTheoryWithNameFromProjectWithName(String thyName, String projName) {
-		val fqn = projName + '.' + thyName
-		if (alreadyImported.contains(fqn))
-			return
-			
-		val eventBProj = EventBUtils.getEventBProject(projName)
-		val rodinProj = eventBProj.rodinProject
-		
-		val importBlock = getImportBlockForProj(projName, rodinProj)
-		/* This may need to change to use rodinProj.getRodinFiles and search the result for 
-		 * the current file. This will happen if get theory requires an internal theory name
-		 * rather than the name that I give to the theory. I won't be able to test this until
-		 * I have got to the compilation point of deploying theories. */
-		val thyRoot = DatabaseUtilities.getTheory(thyName, rodinProj)
+	/* Only call if you're certain that this has not already been imported.
+	 * DOES NOT CHECK AGAINST ALREADY IMPORTED
+	 */
+	private def importEventBFQNInternal(EventBFQNImport fqn) {
+		val evBProj = EventBUtils.getEventBProject(fqn.projName)
+		val rodProj = evBProj.rodinProject;
+		val importBlock = getImportBlockForProj(fqn, rodProj)
+		val thyRoot = DatabaseUtilities.getTheory(fqn.fileName, rodProj)
 		
 		TheoryUtils.createImportTheory(importBlock, thyRoot, nullMonitor)
 	}
 	
-	/* Finds an instance of the type to be imported and imports the theory of that type */
-	def importTheoryForTypeNameInTree(String typeName, EObject tree) {
-		val container = EcoreUtilJ.getObjectMatchingLambda(tree, 
-			[eObj | for (crossRef : eObj.eCrossReferences) {
-				if (crossRef instanceof ClassDecl && (crossRef as ClassDecl).name == typeName)
-					return true;
-				}
-				
-				return false
-			])
-		
-		val classDecl = container.eCrossReferences.findFirst[obj | obj instanceof ClassDecl && (obj as ClassDecl).name == typeName]
-			
-		val topLevel = EcoreUtil2.getContainerOfType(classDecl, TopLevel)
-		val projName = topLevel.name + "-gen"
-		var String fileName = null
-		
-		val topLevelFile = topLevel.topLevelFile
-		val bSharpFileName = topLevelFile.name
-		
-		val imports = topLevelFile.getTopLevelImports()
-		
-		if (imports === null || imports.isEmpty) {
-			fileName = bSharpFileName
-		} else {
-			var fileNdx = 0;
-			if (topLevelFile.getNoImportElements() !== null && !topLevelFile.getNoImportElements().isEmpty) {
-				fileNdx = 1;
-			}
-			
-			val topLevelImport = EcoreUtil2.getContainerOfType(classDecl, TopLevelImport)
-			if (topLevelImport === null) {
-				/* If there's no TopLevelImport above the classDecl the classDecl must have 
-				 * been declared in the noImportElements section.
-				 */
-				fileName = bSharpFileName + 0.toString
-			} else {
-				if (imports.last === topLevelImport) {
-					fileName = bSharpFileName
-				} else {
-					fileName = bSharpFileName + (imports.indexOf(topLevelImport) + fileNdx).toString
-				}
-			}
-		}
-		
-		importTheoryWithNameFromProjectWithName(fileName, projName)
-	}
+//	def importThyFromProjectWithName(ITheoryRoot thy, String projName) {
+//		val fqn = projName + '.' + thy.componentName
+//		if (alreadyImported.contains(fqn))
+//			return
+//			
+//		val eventBProj = EventBUtils.getEventBProject(projName)
+//		val rodinProj = eventBProj.rodinProject
+//		/* Either get or create the porject import block */
+//
+//		val importBlock = getImportBlockForProj(projName, rodinProj)
+//		TheoryUtils.createImportTheory(importBlock, thy, nullMonitor)
+//	}
+//	
+//	def importLocalTheoryCache(TheoryImportCache thyCache) {
+//		importThyFromProjectWithName(thyCache.theory, evBFQN.projName)
+//		alreadyImported += thyCache.alreadyImported
+//	}
+//	
+//	def importLocalTheoryWithName(String thyName) {
+//		val localProjBlock = thyImportBlocks.get(evBFQN.projName)
+//		if (localProjBlock === null) {
+//			val localBlock = TheoryUtils.createImportTheoryProject(theory, theory.rodinProject, nullMonitor)
+//			thyImportBlocks.put(evBFQN.projName, localBlock)
+//		}
+//		
+//		importTheoryWithNameFromProjectWithName(thyName, evBFQN.projName)
+//	}
+//	
+//	def importTheoryWithNameFromProjectWithName(String thyName, String projName) {
+//		val fqn = projName + '.' + thyName
+//		if (alreadyImported.contains(fqn))
+//			return
+//			
+//		val eventBProj = EventBUtils.getEventBProject(projName + "-gen")
+//		val rodinProj = eventBProj.rodinProject
+//		
+//		val importBlock = getImportBlockForProj(projName, rodinProj)
+//		/* This may need to change to use rodinProj.getRodinFiles and search the result for 
+//		 * the current file. This will happen if get theory requires an internal theory name
+//		 * rather than the name that I give to the theory. I won't be able to test this until
+//		 * I have got to the compilation point of deploying theories. */
+//		val thyRoot = DatabaseUtilities.getTheory(thyName, rodinProj)
+//		
+//		TheoryUtils.createImportTheory(importBlock, thyRoot, nullMonitor)
+//	}
 	
-	def getImportBlockForProj(String projName, IRodinProject rodProj){
+	/* Finds an instance of the type to be imported and imports the theory of that type */
+//	def importTheoryForTypeNameInTree(String typeName, EObject tree) {
+//		val container = EcoreUtilJ.getObjectMatchingLambda(tree, 
+//			[eObj | for (crossRef : eObj.eCrossReferences) {
+//				if (crossRef instanceof ClassDecl && (crossRef as ClassDecl).name == typeName)
+//					return true;
+//				}
+//				
+//				return false
+//			])
+//		
+//		val classDecl = container.eCrossReferences.findFirst[obj | obj instanceof ClassDecl && (obj as ClassDecl).name == typeName]
+//			
+//		val topLevel = EcoreUtil2.getContainerOfType(classDecl, TopLevel)
+//		val projName = topLevel.name
+//		var String fileName = null
+//		
+//		val topLevelFile = topLevel.topLevelFile
+//		val bSharpFileName = topLevelFile.name
+//		
+//		val imports = topLevelFile.getTopLevelImports()
+//		
+//		if (imports === null || imports.isEmpty) {
+//			fileName = bSharpFileName
+//		} else {
+//			var fileNdx = 0;
+//			if (topLevelFile.getNoImportElements() !== null && !topLevelFile.getNoImportElements().isEmpty) {
+//				fileNdx = 1;
+//			}
+//			
+//			val topLevelImport = EcoreUtil2.getContainerOfType(classDecl, TopLevelImport)
+//			if (topLevelImport === null) {
+//				/* If there's no TopLevelImport above the classDecl the classDecl must have 
+//				 * been declared in the noImportElements section.
+//				 */
+//				fileName = bSharpFileName + 0.toString
+//			} else {
+//				if (imports.last === topLevelImport) {
+//					fileName = bSharpFileName
+//				} else {
+//					fileName = bSharpFileName + (imports.indexOf(topLevelImport) + fileNdx).toString
+//				}
+//			}
+//		}
+//		
+//		importTheoryWithNameFromProjectWithName(fileName, projName)
+//	}
+	
+	def getImportBlockForProj(EventBFQNImport fqn, IRodinProject rodProj){
+		val projName = fqn.projName
+
 		var importBlock = thyImportBlocks.get(projName)
 		if (importBlock !== null)
 			return importBlock

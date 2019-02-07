@@ -5,9 +5,11 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.FunctionDecl;
+import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.TypedVariableList;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -16,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -177,6 +180,17 @@ public class ReferencingFuncImpl extends FunctionDeclImpl implements Referencing
 		FunctionDecl refedFunc = getReferencedFunc();
 		PolyContext ctx = refedFunc.getContext();
 		return ctx != null && !ctx.isEmpty();
+	}
+	
+	@Override
+	public boolean hasInferredContext() {
+		return getReferencedFunc().hasInferredContext();
+	}
+	
+	@Override
+	public
+	String eventBExprName() {
+		return CompilationUtil.getClassDecl(this).getName() + "_" + getName();
 	}
 
 } //ReferencingFuncImpl

@@ -3,20 +3,13 @@
  */
 package ac.soton.bsharp.generator;
 
-import ac.soton.bsharp.bSharp.FileImport;
-import ac.soton.bsharp.bSharp.GlobalImport;
-import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
-import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
-import ac.soton.bsharp.bSharp.util.CompilationUtil;
-import ac.soton.bsharp.generator.FileCompiler;
-import ac.soton.bsharp.theory.util.TheoryImportCache;
-import ac.soton.bsharp.theory.util.TheoryUtils;
 import ch.ethz.eventb.utils.EventBUtils;
 import java.util.ArrayList;
-import java.util.List;
+import org.eclipse.core.resources.IWorkspaceRunnable;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
@@ -26,13 +19,10 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.ExclusiveRange;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eventb.core.IEventBProject;
-import org.eventb.theory.core.ITheoryRoot;
 import org.rodinp.core.IRodinProject;
+import org.rodinp.core.RodinCore;
 
 /**
  * Generates code from your model files on save.
@@ -46,8 +36,6 @@ public class BSharpGenerator extends AbstractGenerator {
   private String projName;
   
   private IRodinProject proj;
-  
-  private String fileName;
   
   /**
    * An array of arrays, each Array contains the elements that need to be compiled for the current import block
@@ -71,127 +59,16 @@ public class BSharpGenerator extends AbstractGenerator {
       }
       this.proj = eventBproj.getRodinProject();
       final TopLevelFile topLevelFile = topLevel.getTopLevelFile();
-      this.fileName = topLevelFile.getName();
-      this.generateTheories(topLevelFile);
-      for (final EList<TopLevelInstance> importElems : this.elementsForImport) {
-        {
-          final FileCompiler fileCompiler = new FileCompiler(importElems);
-          fileCompiler.compile();
-          CompilationUtil.getTheoryCacheForElement(importElems.get(0)).save();
+      final IWorkspaceRunnable wsRunnable = new IWorkspaceRunnable() {
+        @Override
+        public void run(final IProgressMonitor monitor) throws CoreException {
+          topLevelFile.compile(BSharpGenerator.this.nullMonitor, BSharpGenerator.this.proj);
         }
-      }
+      };
+      NullProgressMonitor _nullProgressMonitor = new NullProgressMonitor();
+      RodinCore.run(wsRunnable, _nullProgressMonitor);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  /**
-   * Builds the skeleton for the thy files represented by the BSharp file EMF in top, handles full
-   * file imports, and populates
-   */
-  public void generateTheories(final TopLevelFile top) {
-    try {
-      final EList<TopLevelImport> imports = top.getTopLevelImports();
-      if (((imports == null) || (((Object[])Conversions.unwrapArray(imports, Object.class)).length == 0))) {
-        final ITheoryRoot thy = TheoryUtils.createTheory(this.proj, this.fileName, null);
-        final TheoryImportCache theoryCache = new TheoryImportCache(thy, this.projName, null);
-        top.setTheoryImportCache(theoryCache);
-        if (((top.getNoImportElements() != null) && (!top.getNoImportElements().isEmpty()))) {
-          EList<TopLevelInstance> _noImportElements = top.getNoImportElements();
-          this.elementsForImport.add(_noImportElements);
-        }
-        return;
-      }
-      int adder = 0;
-      TheoryImportCache prevTheoryCache = null;
-      if (((top.getNoImportElements() != null) && (!top.getNoImportElements().isEmpty()))) {
-        String _string = Integer.toString(0);
-        String _plus = (this.fileName + _string);
-        final ITheoryRoot thy_1 = TheoryUtils.createTheory(this.proj, _plus, null);
-        final TheoryImportCache theoryCache_1 = new TheoryImportCache(thy_1, this.projName, null);
-        top.setTheoryImportCache(theoryCache_1);
-        EList<TopLevelInstance> _noImportElements_1 = top.getNoImportElements();
-        this.elementsForImport.add(_noImportElements_1);
-        top.setTheoryImportCache(theoryCache_1);
-        prevTheoryCache = theoryCache_1;
-        adder++;
-      }
-      final int importLen = ((Object[])Conversions.unwrapArray(imports, Object.class)).length;
-      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, (importLen - 1), true);
-      for (final Integer i : _doubleDotLessThan) {
-        {
-          final TopLevelImport topLevelImport = imports.get((i).intValue());
-          String _string_1 = Integer.toString(((i).intValue() + adder));
-          String _plus_1 = (this.fileName + _string_1);
-          final ITheoryRoot thy_2 = TheoryUtils.createTheory(this.proj, _plus_1, null);
-          final TheoryImportCache theoryCache_2 = new TheoryImportCache(thy_2, this.projName, prevTheoryCache);
-          EList<LocalImport> _localImports = topLevelImport.getLocalImports();
-          boolean _tripleNotEquals = (_localImports != null);
-          if (_tripleNotEquals) {
-            this.importLocalImports(topLevelImport.getLocalImports(), theoryCache_2, topLevelImport);
-          }
-          EList<GlobalImport> _globalImports = topLevelImport.getGlobalImports();
-          boolean _tripleNotEquals_1 = (_globalImports != null);
-          if (_tripleNotEquals_1) {
-            this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2, topLevelImport);
-          }
-          topLevelImport.setTheoryImportCache(theoryCache_2);
-          EList<TopLevelInstance> _bodyElements = topLevelImport.getBodyElements();
-          this.elementsForImport.add(_bodyElements);
-          prevTheoryCache = theoryCache_2;
-        }
-      }
-      final TopLevelImport topLevelImport = IterableExtensions.<TopLevelImport>last(imports);
-      final ITheoryRoot thy_2 = TheoryUtils.createTheory(this.proj, this.fileName, null);
-      final TheoryImportCache theoryCache_2 = new TheoryImportCache(thy_2, this.projName, prevTheoryCache);
-      EList<LocalImport> _localImports = topLevelImport.getLocalImports();
-      boolean _tripleNotEquals = (_localImports != null);
-      if (_tripleNotEquals) {
-        this.importLocalImports(topLevelImport.getLocalImports(), theoryCache_2, topLevelImport);
-      }
-      EList<GlobalImport> _globalImports = topLevelImport.getGlobalImports();
-      boolean _tripleNotEquals_1 = (_globalImports != null);
-      if (_tripleNotEquals_1) {
-        this.importGlobalImports(topLevelImport.getGlobalImports(), theoryCache_2, topLevelImport);
-      }
-      topLevelImport.setTheoryImportCache(theoryCache_2);
-      EList<TopLevelInstance> _bodyElements = IterableExtensions.<TopLevelImport>last(imports).getBodyElements();
-      this.elementsForImport.add(_bodyElements);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public void importLocalImports(final List<LocalImport> importBlock, final TheoryImportCache theoryCache, final EObject tree) {
-    for (final LocalImport localImport : importBlock) {
-      EList<FileImport> _fileImports = localImport.getFileImports();
-      for (final FileImport fileImport : _fileImports) {
-        String _type = fileImport.getType();
-        boolean _tripleEquals = (_type == null);
-        if (_tripleEquals) {
-          theoryCache.importLocalTheoryWithName(fileImport.getFileName());
-        } else {
-          theoryCache.importTheoryForTypeNameInTree(fileImport.getType(), tree);
-        }
-      }
-    }
-  }
-  
-  public void importGlobalImports(final List<GlobalImport> importBlock, final TheoryImportCache theoryCache, final EObject tree) {
-    for (final GlobalImport globalImport : importBlock) {
-      {
-        final String projectName = globalImport.getProject();
-        EList<FileImport> _fileImports = globalImport.getFileImports();
-        for (final FileImport fileImport : _fileImports) {
-          String _type = fileImport.getType();
-          boolean _tripleEquals = (_type == null);
-          if (_tripleEquals) {
-            theoryCache.importTheoryWithNameFromProjectWithName(fileImport.getFileName(), projectName);
-          } else {
-            theoryCache.importTheoryForTypeNameInTree(fileImport.getType(), tree);
-          }
-        }
-      }
     }
   }
 }

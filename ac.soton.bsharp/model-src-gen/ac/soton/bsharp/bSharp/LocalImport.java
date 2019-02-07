@@ -12,32 +12,11 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Local Import</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.LocalImport#getFileImports <em>File Imports</em>}</li>
- * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getLocalImport()
  * @model
  * @generated
  */
-public interface LocalImport extends EObject {
-	/**
-	 * Returns the value of the '<em><b>File Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.FileImport}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>File Imports</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>File Imports</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getLocalImport_FileImports()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<FileImport> getFileImports();
+public interface LocalImport extends Import {
 
 } // LocalImport

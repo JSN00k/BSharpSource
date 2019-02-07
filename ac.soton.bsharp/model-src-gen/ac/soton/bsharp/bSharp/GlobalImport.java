@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.GlobalImport#getFileImports <em>File Imports</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.GlobalImport#getProject <em>Project</em>}</li>
  * </ul>
  *
@@ -24,23 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface GlobalImport extends EObject {
-	/**
-	 * Returns the value of the '<em><b>File Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.FileImport}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>File Imports</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>File Imports</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getGlobalImport_FileImports()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<FileImport> getFileImports();
-
+public interface GlobalImport extends Import {
 	/**
 	 * Returns the value of the '<em><b>Project</b></em>' attribute.
 	 * <!-- begin-user-doc -->

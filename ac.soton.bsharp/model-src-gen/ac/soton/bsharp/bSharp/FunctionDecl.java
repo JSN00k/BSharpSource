@@ -192,6 +192,8 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, IExp
 
 	IInternalElement getCurrentCompilingOp();
 
-	void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance, String functionPrefix);
+	boolean hasInferredContext();
+
+	void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance);
 
 } // FunctionDecl

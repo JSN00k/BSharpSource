@@ -2,10 +2,13 @@ package ac.soton.bsharp.bSharp.util;
 
 import java.awt.Container;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
@@ -225,13 +228,23 @@ public class CompilationUtil {
 		return c;
 	}
 	
+	/* This only compares the package name and the file name to check if it is referring to the same file.
+	 * TODO: This should be updated to take into account partial imports. 
+	 */
+	static boolean fileImportsContainFileImport(List<FileImport> fileImports, FileImport fileImport) {
+		for (FileImport fi : fileImports) {
+			if (fi.packageFileName().equals(fileImport.packageFileName()))
+				return true;
+		}
+		
+		return false;
+	}
+	
 	static void getAllFileImportsForFileImportInternal(FileImport fileImport, ArrayList<FileImport> alreadyImported) {
 		/* When a file is imported every import within that file also needs to be added, if it's not already imported,
 		 * however, if there's a type in the file import then only the import section of the file related to and above 
 		 * that section should be imported.
 		 */
-		
-		String type = fileImport.getType();
 		
 		ArrayList<FileImport> newFileImports = null;
 		
@@ -241,27 +254,19 @@ public class CompilationUtil {
 
 			@Override
 			public Boolean apply(EObject p) {
-				return (p instanceof FileImport) && !finalAlreadyImported.contains(p);
+				return (p instanceof FileImport) && !fileImportsContainFileImport(finalAlreadyImported, (FileImport) p);
 			}
 		};
 		
 		
 		EObject root = EcoreUtil2.getRootContainer(fileImport.getFileReference());
-		if (type != null && !type.isEmpty()) {
-			/* Find the referenced type. */
-			EObject classDecl = EcoreUtilJ.getObjectMatchingLambda(root, new Function1<EObject, Boolean>() {
-
-				@Override
-				public Boolean apply(EObject p) {
-					return p instanceof ClassDecl && ((ClassDecl)p).getName().equals(type);
-				}
-			});
-			
-			if (classDecl != null) {
-				@SuppressWarnings("unchecked")
-				ArrayList<FileImport> newFileImportsTmp = (ArrayList<FileImport>)EcoreUtilJ.eFilterUpToCurrentWith(classDecl, fileImportFilter);
-				newFileImports = newFileImportsTmp;
-			}
+		
+		TopLevelInstance type = fileImport.getType();
+		if (type != null) {
+			@SuppressWarnings("unchecked")
+			ArrayList<FileImport> newFileImportsTmp = (ArrayList<FileImport>) EcoreUtilJ.eFilterUpToCurrentWith(type,
+					fileImportFilter);
+			newFileImports = newFileImportsTmp;
 		} else {
 			@SuppressWarnings("unchecked")
 			ArrayList<FileImport> newFileImportsTmp = (ArrayList<FileImport>)EcoreUtilJ.eFilter(root, fileImportFilter);
@@ -298,28 +303,16 @@ public class CompilationUtil {
 	}
 	
 	public static EList<EObject> filterFileImportReference(FileImport fileImport, Function1<EObject, Boolean> filter) {
-		String t = fileImport.getType();
+		TopLevelInstance type = fileImport.getType();
 		
 		EObject root = EcoreUtil2.getRootContainer(fileImport.getFileReference());
-		if (t != null && !t.isEmpty()) {
-			EObject classDecl = EcoreUtilJ.getObjectMatchingLambda(root, new Function1<EObject, Boolean>() {
+		if (type != null) {
+			/* Find the topLevelImport/TopLevelFile associated with the classDecl. */
+			IBodyElementsContainer container = EcoreUtil2.getContainerOfType(type, IBodyElementsContainer.class);
 
-				@Override
-				public Boolean apply(EObject p) {
-					return p instanceof ClassDecl && ((ClassDecl)p).getName().equals(t);
-				}
-			});
-			
-			if (classDecl != null) {
-				/* Find the topLevelImport/TopLevelFile associated with the classDecl. */
-				IBodyElementsContainer container = EcoreUtil2.getContainerOfType(classDecl, IBodyElementsContainer.class);
-				
-				@SuppressWarnings("unchecked")
-				EList<EObject> result = (EList<EObject>) EcoreUtilJ.eFilterUpToIncludingCurrentWith(container, filter);
-				return result;
-			}
-			
-			return null;
+			@SuppressWarnings("unchecked")
+			EList<EObject> result = (EList<EObject>) EcoreUtilJ.eFilterUpToIncludingCurrentWith(container, filter);
+			return result;
 		}
 		
 		@SuppressWarnings("unchecked")
@@ -524,5 +517,56 @@ public class CompilationUtil {
 		}
 		
 		return null;
+	}
+	
+	/* removes elements matching the filter. */
+	public static <T> void filterCollection(Collection<T> col, Function1<T, Boolean> filter) {
+		Iterator<T> iter = col.iterator();
+		T next;
+		while (iter.hasNext()) {
+			next = iter.next();
+			if (filter.apply(next))
+				iter.remove();
+					
+		}
+	}
+	
+	public static <T> boolean collectionContainsObjectMatching(Collection<T> col, Function1<T, Boolean> filter) {
+		Iterator<T> iter = col.iterator();
+		T next;
+		while (iter.hasNext()) {
+			next = iter.next();
+			if (filter.apply(next))
+				return true;
+					
+		}
+		
+		return false;
+	}
+	
+	public static <T> T collectionFirstObjectMatchingLambda(Collection<T> col, Function1<T, Boolean> filter) {
+		Iterator<T> iter = col.iterator();
+		T next;
+		while (iter.hasNext()) {
+			next = iter.next();
+			if (filter.apply(next))
+				return next;
+					
+		}
+		
+		return null;
+	}
+	
+	public static void compileTopLevelInstances(List<TopLevelInstance> instances, IProgressMonitor monitor) {
+		SubMonitor subMonitor = SubMonitor.convert(monitor, 20 * instances.size());
+		for (TopLevelInstance inst : instances) {
+			try {
+				inst.compile(subMonitor.newChild(20));
+			} catch (Exception e) {
+				System.err.println("Failed to compile TopLevelInstance: " + inst.getName());
+				e.printStackTrace();
+			}
+			
+		}
 	}
 }

@@ -259,6 +259,9 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 	public int count() {
 		int result = 0;
 		
+		if (isEmpty())
+			return 0;
+		
 		for (VariableTyping varTyping : variablesOfType) {
 			result += varTyping.varCount();
 		}

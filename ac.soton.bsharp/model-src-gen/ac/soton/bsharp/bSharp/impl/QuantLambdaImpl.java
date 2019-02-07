@@ -504,7 +504,7 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 			}
 		}
 		
-		if (typedVariables == null || typedVariables.isEmpty()) {
+		if ((typedVariables == null || typedVariables.isEmpty()) && (!addTypeInstArgs || classTypeInst == null)) {
 			throw new Exception("QuantLambdaImpl tried to compile without any arguments.");
 		}
 		
@@ -516,8 +516,9 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 			isFirst = false;
 		}
 		
-		result += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVariables,
-				sep, isFirst);
+		if (typedVariables != null) {
+			result += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVariables, sep, isFirst);
+		}
 		
 		result += "·";
 		
@@ -527,7 +528,9 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 			isFirst = false;
 		}
 		
-		result += CompilationUtil.compileTypedVaribalesToTypedList(typedVariables, isFirst);
+		if (typedVariables != null) {
+			result += CompilationUtil.compileTypedVaribalesToTypedList(typedVariables, isFirst);
+		}
 		
 		switch (type) {
 		case FORALL:

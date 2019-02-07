@@ -4,14 +4,21 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
+import ac.soton.bsharp.bSharp.util.ComparatorHashSet;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
-
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -25,6 +32,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.xbase.lib.Functions.Function2;
+import org.rodinp.core.IRodinProject;
 
 
 /**
@@ -270,6 +279,96 @@ public class TopLevelFileImpl extends ITheoryImportCacheProviderImpl implements 
 	@Override
 	public void setTheoryImportCache(TheoryImportCache thyCache) {
 		this.thyCache = thyCache;
+	}
+	
+	@Override 
+	public void appendFileImportsUpToAlreadyImported(TopLevelInstance upto, Set<EventBFQNImport> alreadyImported, Set<EventBFQNImport> newImports) {
+		List<TopLevelInstance> noImportElements = getNoImportElements();
+		if (upto != null && noImportElements.contains(upto)) {
+			return;
+		}
+		
+		List<TopLevelImport> topLevelImports = getTopLevelImports();
+		for (TopLevelImport imps : topLevelImports) {
+			imps.addAllElementsToAlreadyImported(alreadyImported, newImports);
+			if (upto != null && imps.getBodyElements().contains(upto))
+				return;
+		}
+	}
+	
+	Function2<EventBFQNImport, Object, Boolean> comparator = new Function2<EventBFQNImport, Object, Boolean>() {
+
+		@Override
+		public Boolean apply(EventBFQNImport containedObj, Object other) {
+			if (!(other instanceof EventBFQNImport))
+				return false;
+				
+			return containedObj.isInferredImporterOf((EventBFQNImport)other);
+		}
+	};
+	
+	@Override
+	public void compile(IProgressMonitor monitor, IRodinProject proj) {
+		String packageName = ((TopLevel)eContainer()).getName();
+		String fileName = getName();
+		List<TopLevelInstance> noImportElements = getNoImportElements();
+		List<TopLevelImport> imports = getTopLevelImports();
+		int importsSize = 0;
+		ComparatorHashSet<EventBFQNImport> alreadyImported = new ComparatorHashSet<EventBFQNImport>(comparator);
+		
+		int adder = 0;
+		TheoryImportCache currentCache = null;
+		
+		int createdFilesCount;
+		if (imports != null) {
+			importsSize = imports.size();
+			createdFilesCount = importsSize;
+		} else 
+			createdFilesCount = 0;
+		
+		SubMonitor subMonitor;
+		if (noImportElements != null && !noImportElements.isEmpty()) {
+			createdFilesCount++;
+			subMonitor = SubMonitor.convert(monitor, 20 * createdFilesCount);
+			adder = 1;
+			EventBFQNImport currentFqn = null;
+			
+			if (imports == null || imports.isEmpty()) { 
+				currentFqn = new EventBFQNImport(packageName, fileName);
+				thyCache = new TheoryImportCache(proj, currentFqn, currentCache);
+			} else {
+				currentFqn = new EventBFQNImport(packageName, fileName, 0);
+				thyCache = new TheoryImportCache(proj, currentFqn, currentCache);
+			}
+			
+			alreadyImported.add(currentFqn);
+			
+			currentCache = thyCache;
+			
+			CompilationUtil.compileTopLevelInstances(noImportElements, subMonitor.newChild(20));
+			currentCache.save();
+		} else {
+			subMonitor = SubMonitor.convert(monitor, 20 * createdFilesCount);
+		}
+		
+		if (importsSize == 0) {
+			return;
+		}
+		
+		for (int i = 0; i < importsSize - 1; ++i) {
+			TopLevelImport imp = imports.get(i);
+			currentCache = new TheoryImportCache(proj, imp, new EventBFQNImport(packageName, fileName, adder + i), currentCache);
+			imp.setTheoryImportCache(currentCache);
+			CompilationUtil.compileTopLevelInstances(imp.getBodyElements(), subMonitor);
+			currentCache.save();
+		}
+		
+		
+		TopLevelImport imp = imports.get(importsSize - 1);
+		currentCache = new TheoryImportCache(proj, imp, new EventBFQNImport(packageName, fileName), currentCache);
+		imp.setTheoryImportCache(currentCache);
+		CompilationUtil.compileTopLevelInstances(imp.getBodyElements(), subMonitor);
+		currentCache.save();
 	}
 
 } //TopLevelFileImpl

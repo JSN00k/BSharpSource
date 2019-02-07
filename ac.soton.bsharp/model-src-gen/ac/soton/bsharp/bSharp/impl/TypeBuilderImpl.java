@@ -4,10 +4,12 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypePowerSet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +19,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public abstract class TypeBuilderImpl extends MinimalEObjectImpl.Container implements TypeBuilder {
+public abstract class TypeBuilderImpl extends ExpressionVariableImpl implements TypeBuilder {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,6 +139,20 @@ public abstract class TypeBuilderImpl extends MinimalEObjectImpl.Container imple
 	String constructWithTypesInternal(ArrayList<String> requiredEBTypes, HashMap<String, String> typeNameMap) {
 		/* Implemented by sub-types. */
 		return null;
+	}
+	
+	@Override
+	public TypeBuilder calculateReturnType() {
+		/* Not sure about this. */
+		return this;
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		/* Think this is probably what is wanted. */
+		TypePowerSet powerSet = BSharpFactory.eINSTANCE.createTypePowerSet();
+		powerSet.setChild(EcoreUtil2.copy(this));
+		return powerSet;
 	}
 	
 } //TypeBuilderImpl

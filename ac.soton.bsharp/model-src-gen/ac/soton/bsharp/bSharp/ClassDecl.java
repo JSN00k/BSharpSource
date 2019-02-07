@@ -31,7 +31,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl()
  * @model
  */
-public interface ClassDecl extends GenName, ExpressionVariable, IVariableProvider, IPolyTypeProvider, Type, TopLevelInstance, IEventBPrefixProvider, IClassInstance {
+public interface ClassDecl extends TopLevelInstance, GenName, ExpressionVariable, IVariableProvider, IPolyTypeProvider, Type, IEventBPrefixProvider, IClassInstance {
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

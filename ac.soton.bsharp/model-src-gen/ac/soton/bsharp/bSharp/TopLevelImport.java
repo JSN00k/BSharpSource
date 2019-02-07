@@ -3,9 +3,13 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+
+import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,8 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.TopLevelImport#getGlobalImports <em>Global Imports</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.TopLevelImport#getLocalImports <em>Local Imports</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.TopLevelImport#getImports <em>Imports</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevelImport#getBodyElements <em>Body Elements</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TopLevelImport#getImportRefs <em>Import Refs</em>}</li>
  * </ul>
@@ -28,36 +31,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface TopLevelImport extends ITheoryImportCacheProvider, IBodyElementsContainer {
 	/**
-	 * Returns the value of the '<em><b>Global Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.GlobalImport}.
+	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.Import}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Global Imports</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Global Imports</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelImport_GlobalImports()
+	 * @return the value of the '<em>Imports</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelImport_Imports()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<GlobalImport> getGlobalImports();
-
-	/**
-	 * Returns the value of the '<em><b>Local Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.LocalImport}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Local Imports</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Local Imports</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTopLevelImport_LocalImports()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<LocalImport> getLocalImports();
+	EList<Import> getImports();
 
 	/**
 	 * Returns the value of the '<em><b>Body Elements</b></em>' containment reference list.
@@ -91,4 +78,8 @@ public interface TopLevelImport extends ITheoryImportCacheProvider, IBodyElement
 	 */
 	EList<TopLevelFile> getImportRefs();
 
+	void compileImports(Set<EventBFQNImport> alreadyImported, EventBFQNImport prevFile);
+
+	void addAllEventBImportsToNewImports(Set<EventBFQNImport> alreadyImported, Set<EventBFQNImport> newImports);
+	void addAllElementsToAlreadyImported(Set<EventBFQNImport> alreadyImported, Set<EventBFQNImport> newImports);
 } // TopLevelImport

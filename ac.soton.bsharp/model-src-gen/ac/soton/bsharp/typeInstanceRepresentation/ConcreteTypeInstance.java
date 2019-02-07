@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IClassInstance;
+import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
@@ -118,6 +119,9 @@ public class ConcreteTypeInstance extends TypeInstanceTreeAbstract implements IT
 					return refedFunc.eventBExprName();
 			}
 		}
+		
+		if (type instanceof IEventBPrefixProvider)
+			return ((IEventBPrefixProvider)type).eventBPrefix() + "_" + functionDecl.getName();
 		
 		return null;
 	}

@@ -6,8 +6,10 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.GlobalImport;
+import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -31,23 +33,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.GlobalImportImpl#getFileImports <em>File Imports</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.GlobalImportImpl#getProject <em>Project</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class GlobalImportImpl extends MinimalEObjectImpl.Container implements GlobalImport {
-	/**
-	 * The cached value of the '{@link #getFileImports() <em>File Imports</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFileImports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FileImport> fileImports;
-
+public class GlobalImportImpl extends ImportImpl implements GlobalImport {
 	/**
 	 * The default value of the '{@link #getProject() <em>Project</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -92,18 +83,6 @@ public class GlobalImportImpl extends MinimalEObjectImpl.Container implements Gl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FileImport> getFileImports() {
-		if (fileImports == null) {
-			fileImports = new EObjectContainmentEList<FileImport>(FileImport.class, this, BSharpPackage.GLOBAL_IMPORT__FILE_IMPORTS);
-		}
-		return fileImports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getProject() {
 		return project;
 	}
@@ -126,24 +105,8 @@ public class GlobalImportImpl extends MinimalEObjectImpl.Container implements Gl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BSharpPackage.GLOBAL_IMPORT__FILE_IMPORTS:
-				return ((InternalEList<?>)getFileImports()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.GLOBAL_IMPORT__FILE_IMPORTS:
-				return getFileImports();
 			case BSharpPackage.GLOBAL_IMPORT__PROJECT:
 				return getProject();
 		}
@@ -159,10 +122,6 @@ public class GlobalImportImpl extends MinimalEObjectImpl.Container implements Gl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.GLOBAL_IMPORT__FILE_IMPORTS:
-				getFileImports().clear();
-				getFileImports().addAll((Collection<? extends FileImport>)newValue);
-				return;
 			case BSharpPackage.GLOBAL_IMPORT__PROJECT:
 				setProject((String)newValue);
 				return;
@@ -178,9 +137,6 @@ public class GlobalImportImpl extends MinimalEObjectImpl.Container implements Gl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.GLOBAL_IMPORT__FILE_IMPORTS:
-				getFileImports().clear();
-				return;
 			case BSharpPackage.GLOBAL_IMPORT__PROJECT:
 				setProject(PROJECT_EDEFAULT);
 				return;
@@ -196,8 +152,6 @@ public class GlobalImportImpl extends MinimalEObjectImpl.Container implements Gl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.GLOBAL_IMPORT__FILE_IMPORTS:
-				return fileImports != null && !fileImports.isEmpty();
 			case BSharpPackage.GLOBAL_IMPORT__PROJECT:
 				return PROJECT_EDEFAULT == null ? project != null : !PROJECT_EDEFAULT.equals(project);
 		}
@@ -218,6 +172,11 @@ public class GlobalImportImpl extends MinimalEObjectImpl.Container implements Gl
 		result.append(project);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public String getBSharpProjName() {
+		return getProject();
 	}
 
 } //GlobalImportImpl

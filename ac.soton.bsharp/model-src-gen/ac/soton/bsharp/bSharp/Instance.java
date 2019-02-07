@@ -32,7 +32,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ConcreteTypeInstance;
  * @model
  * @generated
  */
-public interface Instance extends IExpressionContainer, ITheoremContainer, IClassInstance, NamedObject {
+public interface Instance extends IExpressionContainer, ITheoremContainer, IClassInstance, NamedObject, IEventBPrefixProvider {
 	/**
 	 * Returns the value of the '<em><b>Class Name</b></em>' reference.
 	 * <!-- begin-user-doc -->

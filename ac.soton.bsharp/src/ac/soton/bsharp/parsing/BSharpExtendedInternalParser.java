@@ -36,11 +36,21 @@ public class BSharpExtendedInternalParser extends InternalBSharpParser {
 			if (compNode.hasDirectSemanticElement()) {
 				EObject semElem = compNode.getSemanticElement();
 				if (semElem instanceof FileImport) {
-					/* Find the cross reference */
+					/* There may be two cross references, the first will always be to the file name
+					 * the second if it exists will be to the imported type. */
+					boolean first = true;
+					
+					
 					Iterable<ILeafNode> leafNodes = current.getLeafNodes();
 					for (ILeafNode node : leafNodes) {
 						if (!node.isHidden() && node.getGrammarElement() instanceof CrossReference) {
-							((FileImport) semElem).setFileName(node.getText());
+							String text = node.getText().replaceAll("\\s+", "");
+							if (first) {
+								((FileImport) semElem).setFileName(text);
+								first = false;
+							} else {
+								((FileImport) semElem).setTypeName(text);
+							}
 						}
 					}
 				} else if (semElem instanceof Instance) {

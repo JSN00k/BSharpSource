@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import ac.soton.bsharp.bSharp.impl.TypedVariableImpl;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +20,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.TheoremDecl#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.TheoremDecl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.TheoremDecl#getGeneratedQuants <em>Generated Quants</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getTheoremDecl()
@@ -77,6 +79,22 @@ public interface TheoremDecl extends IExpressionContainer {
 	 * @generated
 	 */
 	void setExpr(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Generated Quants</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.QuantLambda}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Generated Quants</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Generated Quants</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getTheoremDecl_GeneratedQuants()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<QuantLambda> getGeneratedQuants();
 
 	void compile();
 

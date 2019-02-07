@@ -23,6 +23,9 @@ import ac.soton.bsharp.bSharp.util.CompilationUtil
 import org.eclipse.emf.ecore.EObject
 import ac.soton.bsharp.bSharp.TopLevelInstance
 import org.eclipse.emf.common.util.EList
+import org.rodinp.core.RodinCore
+import org.eclipse.core.resources.IWorkspaceRunnable
+import org.eclipse.core.runtime.CoreException
 
 /**
  * Generates code from your model files on save.
@@ -35,7 +38,7 @@ class BSharpGenerator extends AbstractGenerator {
 	
 	var String projName
 	var IRodinProject proj
-	var String fileName
+//	var String fileName
 	
 	/* An array of arrays, each Array contains the elements that need to be compiled for the current import block */
 	var ArrayList<EList<TopLevelInstance>> elementsForImport
@@ -63,114 +66,126 @@ class BSharpGenerator extends AbstractGenerator {
 		 * (ClassDecl | Extend) which is then iterated over
 		 */
 		val topLevelFile = topLevel.topLevelFile
-		fileName = topLevelFile.name
+//		fileName = topLevelFile.name
 		
 		/* Generates all of the theories that this file will need and imports
 		 * as many files as possible.
 		 */
-		generateTheories(topLevelFile)
 		
-		for (importElems : elementsForImport) {
-			val fileCompiler = new FileCompiler(importElems)
-			fileCompiler.compile
-			CompilationUtil.getTheoryCacheForElement(importElems.get(0)).save();
-		}
-		
-	}
-	
-	/* Builds the skeleton for the thy files represented by the BSharp file EMF in top, handles full
-	 * file imports, and populates */
-	def generateTheories(TopLevelFile top) {
-		/* The final thy generated is the one that shares it's name with the BSharp files
-		 * previous generated thys have the same name have an increasing integer appended.
-		 * These are all put into an array for easy access */
-		 val imports = top.topLevelImports
-		 
-		 if (imports === null || imports.length == 0) {
-		 	/* There is only a top level file */
-		 	val thy = TheoryUtils.createTheory(proj, fileName, null)
-		 	val theoryCache = new TheoryImportCache(thy, projName, null)
-		 	top.theoryImportCache = theoryCache
-		 	
-		 	if (top.noImportElements !== null && !top.noImportElements.isEmpty) {
-		 		elementsForImport += top.noImportElements
-		 	}
-		 	
-		 	return
-		 }
-		 
-		 var adder = 0
-		 var TheoryImportCache prevTheoryCache
-		 
-		 if (top.getNoImportElements() !== null && !top.noImportElements.isEmpty) {
-		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(0), null)
-		 	val theoryCache = new TheoryImportCache(thy, projName, null)
-		 	top.theoryImportCache = theoryCache
-		 	elementsForImport += top.noImportElements
-		 	top.theoryImportCache = theoryCache
-		 	prevTheoryCache = theoryCache
-		 	adder++
-		 }
-		 
-		 val importLen = imports.length
-		 
-		 for (i : 0 ..< importLen - 1) {
-		 	val topLevelImport = imports.get(i)
-		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(i + adder), null)
-		 	
-		 	/* prevTheoryCache can be null without causing an issue. */
-		 	val theoryCache = new TheoryImportCache(thy, projName, prevTheoryCache)
-		 	if (topLevelImport.localImports !== null) {
-		 		importLocalImports(topLevelImport.localImports, theoryCache, topLevelImport)
-		 	}
-		 	
-		 	if (topLevelImport.globalImports !== null) {
-		 		importGlobalImports(topLevelImport.globalImports, theoryCache, topLevelImport)
-		 	}
-		 	
-		 	topLevelImport.theoryImportCache = theoryCache
-		 	elementsForImport += topLevelImport.bodyElements
-		 	prevTheoryCache = theoryCache
-		 }
-		 
-		 val topLevelImport = imports.last
-		 val thy = TheoryUtils.createTheory(proj, fileName, null)
-		 val theoryCache = new TheoryImportCache(thy, projName, prevTheoryCache)
-		 if (topLevelImport.localImports !== null) {
-		 	importLocalImports(topLevelImport.localImports, theoryCache, topLevelImport)
-		 }
-		 	
-		 if (topLevelImport.globalImports !== null) {
-		 	importGlobalImports(topLevelImport.globalImports, theoryCache, topLevelImport)
-		 }
-		 
-		 topLevelImport.theoryImportCache = theoryCache
-		 elementsForImport += imports.last.bodyElements
-	}
-	
-	
-	def importLocalImports(List<LocalImport> importBlock, TheoryImportCache theoryCache, EObject tree) {
-		for (localImport : importBlock) {
-			for (fileImport : localImport.fileImports) {
-				if (fileImport.type === null) {
-					theoryCache.importLocalTheoryWithName(fileImport.fileName)
-				} else {
-					theoryCache.importTheoryForTypeNameInTree(fileImport.type, tree)
-				}
+		val wsRunnable = new IWorkspaceRunnable {
+			override run(IProgressMonitor monitor) throws CoreException {
+
+				topLevelFile.compile(nullMonitor, proj);
 			}
 		}
+
+		RodinCore.run(wsRunnable, new NullProgressMonitor)
 	}
+//		for (importElems : elementsForImport) {
+//			val fileCompiler = new FileCompiler(importElems)
+//			fileCompiler.compile
+//			CompilationUtil.getTheoryCacheForElement(importElems.get(0)).save();
+//		}
+//	/* Builds the skeleton for the thy files represented by the BSharp file EMF in top, handles full
+//	 * file imports, and populates */
+//	def generateTheories(TopLevelFile top) {
+//		/* The final thy generated is the one that shares it's name with the BSharp files
+//		 * previous generated thys have the same name have an increasing integer appended.
+//		 * These are all put into an array for easy access */
+////		 
+//		 top.compile()
+//		 
+//		 val imports = top.topLevelImports
+//		 
+//		 if (imports === null || imports.length == 0) {
+//		 	/* There is only a top level file */
+//		 	val thy = TheoryUtils.createTheory(proj, fileName, null)
+//		 	val theoryCache = new TheoryImportCache(thy, projName, null)
+//		 	top.theoryImportCache = theoryCache
+//		 	
+//		 	if (top.noImportElements !== null && !top.noImportElements.isEmpty) {
+//		 		elementsForImport += top.noImportElements
+//		 	}
+//		 	
+//		 	return
+//		 }
+//		 
+//		 var adder = 0
+//		 var TheoryImportCache prevTheoryCache
+//		 
+//		 if (top.getNoImportElements() !== null && !top.noImportElements.isEmpty) {
+//		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(0), null)
+//		 	val theoryCache = new TheoryImportCache(thy, projName, null)
+//		 	top.theoryImportCache = theoryCache
+//		 	elementsForImport += top.noImportElements
+//		 	top.theoryImportCache = theoryCache
+//		 	prevTheoryCache = theoryCache
+//		 	adder++
+//		 }
+//		 
+//		 val importLen = imports.length
+//		 
+//		 for (i : 0 ..< importLen - 1) {
+//		 	val topLevelImport = imports.get(i)
+//		 	val thy = TheoryUtils.createTheory(proj, fileName + Integer.toString(i + adder), null)
+//		 	
+//		 	/* prevTheoryCache can be null without causing an issue. */
+//		 	val theoryCache = new TheoryImportCache(thy, projName, prevTheoryCache)
+//		 	
+//		 	
+//		 	topLevelImport.theoryImportCache = theoryCache
+		 	
+//		 	if (topLevelImport.localImports !== null) {
+//		 		importLocalImports(topLevelImport.localImports, theoryCache, topLevelImport)
+//		 	}
+//		 	
+//		 	if (topLevelImport.globalImports !== null) {
+//		 		importGlobalImports(topLevelImport.globalImports, theoryCache, topLevelImport)
+//		 	}
+//		 	
+//		 	
+//		 	elementsForImport += topLevelImport.bodyElements
+//		 	prevTheoryCache = theoryCache
+//		 }
+//		 
+//		 val topLevelImport = imports.last
+//		 val thy = TheoryUtils.createTheory(proj, fileName, null)
+//		 val theoryCache = new TheoryImportCache(thy, projName, prevTheoryCache)
+//		 if (topLevelImport.localImports !== null) {
+//		 	importLocalImports(topLevelImport.localImports, theoryCache, topLevelImport)
+//		 }
+//		 	
+//		 if (topLevelImport.globalImports !== null) {
+//		 	importGlobalImports(topLevelImport.globalImports, theoryCache, topLevelImport)
+//		 }
+//		 
+//		 topLevelImport.theoryImportCache = theoryCache
+//		 elementsForImport += imports.last.bodyElements
+//	}
 	
-	def importGlobalImports(List<GlobalImport> importBlock, TheoryImportCache theoryCache, EObject tree) {
-		for (globalImport : importBlock){
-			val projectName = globalImport.project
-			for (fileImport : globalImport.fileImports) {
-				if (fileImport.type === null) {
-					theoryCache.importTheoryWithNameFromProjectWithName(fileImport.fileName, projectName)
-				} else {
-					theoryCache.importTheoryForTypeNameInTree(fileImport.type, tree)
-				}
-			}
-		}
-	}
+//	def importLocalImports(List<LocalImport> importBlock, TheoryImportCache theoryCache, EObject tree) {
+//		for (localImport : importBlock) {
+//			for (fileImport : localImport.fileImports) {
+//				if (fileImport.type === null) {
+//					theoryCache.importLocalTheoryWithName(fileImport.fileName)
+//				} else {
+//					theoryCache.importTheoryForTypeNameInTree(fileImport.type, tree)
+//				}
+//			}
+//		}
+//	}
+//	
+//	def importGlobalImports(List<GlobalImport> importBlock, TheoryImportCache theoryCache, EObject tree) {
+//		for (globalImport : importBlock){
+//			val projectName = globalImport.project
+//			for (fileImport : globalImport.fileImports) {
+//				if (fileImport.type === null) {
+//					theoryCache.importTheoryWithNameFromProjectWithName(fileImport.fileName, projectName)
+//				} else {
+//					theoryCache.importTheoryForTypeNameInTree(fileImport.type, tree)
+//				}
+//			}
+//		}
+//	}
+
 }

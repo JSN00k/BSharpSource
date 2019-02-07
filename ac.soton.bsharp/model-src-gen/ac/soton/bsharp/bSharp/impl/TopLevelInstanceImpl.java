@@ -5,7 +5,12 @@ package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.Import;
+import ac.soton.bsharp.bSharp.TopLevelFile;
+import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
+
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +34,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public abstract class TopLevelInstanceImpl extends MinimalEObjectImpl.Container implements TopLevelInstance {
+public abstract class TopLevelInstanceImpl extends NamedObjectImpl implements TopLevelInstance {
 	/**
 	 * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -171,6 +177,42 @@ public abstract class TopLevelInstanceImpl extends MinimalEObjectImpl.Container 
 				return block != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	/* Returns null if there doesn't need to be an index suffix on the EventB file (i.e., the main file is
+	 * imported). */
+	@Override
+	public Integer eventBImportIndex() {
+		/* The index starts from zero, and is an enumberation of the bodyelements blocks. Body elements are
+		 * either contained in the TopLevelFile (if no imports are made), or in a TopLevelImports declaration. */
+		
+		TopLevelFile topLevelFile = EcoreUtil2.getContainerOfType(this, TopLevelFile.class);
+		
+		List<TopLevelImport> topLevelImports = topLevelFile.getTopLevelImports();
+		if (topLevelImports == null || topLevelImports.isEmpty()) {
+			/* If there are no topLevelImports then there must only be on set of import elements
+			 * so there is no need for an index.
+			 */
+			return null;
+		}
+		
+		Integer firstNdx = 0;
+		List<TopLevelInstance> noImportElements = topLevelFile.getNoImportElements();
+		if (noImportElements != null && !noImportElements.isEmpty()) {
+			if (noImportElements.contains(this))
+				return 0;
+			
+			firstNdx++;
+		}
+		
+		TopLevelImport myImport = EcoreUtil2.getContainerOfType(this, TopLevelImport.class);
+		Integer myIndex = topLevelImports.indexOf(myImport);
+		
+		if (myIndex == topLevelImports.size() - 1) {
+			return null;
+		}
+		
+		return myIndex + firstNdx;
 	}
 
 } //TopLevelInstanceImpl

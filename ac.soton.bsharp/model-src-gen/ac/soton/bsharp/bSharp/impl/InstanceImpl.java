@@ -14,6 +14,7 @@ import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IClassInstance;
+import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.ITheoremContainer;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.NamedObject;
@@ -470,6 +471,11 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 				default: return -1;
 			}
 		}
+		if (baseClass == IEventBPrefixProvider.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -493,6 +499,11 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		if (baseClass == NamedObject.class) {
 			switch (baseFeatureID) {
 				case BSharpPackage.NAMED_OBJECT__NAME: return BSharpPackage.INSTANCE__NAME;
+				default: return -1;
+			}
+		}
+		if (baseClass == IEventBPrefixProvider.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}
@@ -640,7 +651,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		//TODO: Some compiling of functions and theorems
 		List<FunctionDecl> methods = allMethods();
 		for (FunctionDecl meth : methods) {
-			meth.compileWithTypeInstancesForInferredType(typeInst, getName() + "_");
+			meth.compileWithTypeInstancesForInferredType(typeInst);
 		}
 		
 		List<TheoremDecl> theorems = allTheorems();
@@ -778,5 +789,10 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	@Override
 	public ConcreteTypeInstance typeInstanceForContext(EObject context) {
 		return new ConcreteTypeInstance(this, context);
+	}
+
+	@Override
+	public String eventBPrefix() {
+		return CompilationUtil.getClassDecl(this).getName() + "_" + getName();
 	}
 } //InstanceImpl

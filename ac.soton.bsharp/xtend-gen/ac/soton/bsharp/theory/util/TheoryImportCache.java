@@ -1,27 +1,19 @@
 package ac.soton.bsharp.theory.util;
 
-import ac.soton.bsharp.bSharp.ClassDecl;
-import ac.soton.bsharp.bSharp.TopLevel;
-import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
+import ac.soton.bsharp.bSharp.util.ComparatorHashSet;
+import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 import ac.soton.bsharp.theory.util.TheoryUtils;
-import ac.soton.bsharp.util.EcoreUtilJ;
 import ch.ethz.eventb.utils.EventBUtils;
-import com.google.common.base.Objects;
-import com.google.common.collect.Iterables;
-import java.util.ArrayList;
 import java.util.HashMap;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eventb.core.IEventBProject;
 import org.eventb.theory.core.DatabaseUtilities;
+import org.eventb.theory.core.IImportTheory;
 import org.eventb.theory.core.IImportTheoryProject;
 import org.eventb.theory.core.ITheoryRoot;
 import org.eventb.theory.core.ITypeParameter;
@@ -45,7 +37,14 @@ public class TheoryImportCache {
    * Stores the names of thys that have already been imported as
    * fully qualified names proj.fileName
    */
-  private ArrayList<String> alreadyImported;
+  private ComparatorHashSet<EventBFQNImport> alreadyImported;
+  
+  private final Function2<EventBFQNImport, Object, Boolean> comparator = ((Function2<EventBFQNImport, Object, Boolean>) (EventBFQNImport containedObj, Object other) -> {
+    if ((!(other instanceof EventBFQNImport))) {
+      return Boolean.valueOf(false);
+    }
+    return Boolean.valueOf(containedObj.isInferredImporterOf(((EventBFQNImport) other)));
+  });
   
   /**
    * Keeps references to the in memory import blocks (imports are blocked by
@@ -55,7 +54,7 @@ public class TheoryImportCache {
   
   public final ITheoryRoot theory;
   
-  private final String localProjName;
+  public final EventBFQNImport evBFQN;
   
   /**
    * It is not necessary to create new eventB poly types for every new
@@ -71,72 +70,68 @@ public class TheoryImportCache {
    * the later files need to import their previous file, this is what is contained
    * in prevTheory.
    */
-  public TheoryImportCache(final ITheoryRoot thy, final String projName, final TheoryImportCache prevTheory) {
-    this.theory = thy;
-    this.localProjName = projName;
-    HashMap<String, IImportTheoryProject> _hashMap = new HashMap<String, IImportTheoryProject>();
-    this.thyImportBlocks = _hashMap;
-    ArrayList<String> _arrayList = new ArrayList<String>();
-    this.alreadyImported = _arrayList;
-    if ((prevTheory != null)) {
-      this.importLocalTheoryCache(prevTheory);
-    }
-    String _componentName = thy.getComponentName();
-    String _plus = ((projName + ".") + _componentName);
-    this.alreadyImported.add(_plus);
-  }
-  
-  public void importThyFromProjectWithName(final ITheoryRoot thy, final String projName) {
+  public TheoryImportCache(final IRodinProject proj, final EventBFQNImport evBFqn, final TheoryImportCache prevTheory) {
     try {
-      String _componentName = thy.getComponentName();
-      final String fqn = ((projName + ".") + _componentName);
-      boolean _contains = this.alreadyImported.contains(fqn);
-      if (_contains) {
-        return;
+      this.evBFQN = evBFqn;
+      this.theory = TheoryUtils.createTheory(proj, evBFqn.fileName(), null);
+      HashMap<String, IImportTheoryProject> _hashMap = new HashMap<String, IImportTheoryProject>();
+      this.thyImportBlocks = _hashMap;
+      if ((prevTheory != null)) {
+        Object _clone = prevTheory.alreadyImported.clone();
+        this.alreadyImported = ((ComparatorHashSet<EventBFQNImport>) _clone);
+        this.importEventBFQNInternal(prevTheory.evBFQN);
+      } else {
+        ComparatorHashSet<EventBFQNImport> _comparatorHashSet = new ComparatorHashSet<EventBFQNImport>(this.comparator);
+        this.alreadyImported = _comparatorHashSet;
       }
-      final IEventBProject eventBProj = EventBUtils.getEventBProject(projName);
-      final IRodinProject rodinProj = eventBProj.getRodinProject();
-      final IImportTheoryProject importBlock = this.getImportBlockForProj(projName, rodinProj);
-      TheoryUtils.createImportTheory(importBlock, thy, this.nullMonitor);
+      this.alreadyImported.add(evBFqn);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public boolean importLocalTheoryCache(final TheoryImportCache thyCache) {
-    boolean _xblockexpression = false;
-    {
-      this.importThyFromProjectWithName(thyCache.theory, this.localProjName);
-      _xblockexpression = Iterables.<String>addAll(this.alreadyImported, thyCache.alreadyImported);
-    }
-    return _xblockexpression;
-  }
-  
-  public void importLocalTheoryWithName(final String thyName) {
+  public TheoryImportCache(final IRodinProject proj, final TopLevelImport imports, final EventBFQNImport fileFQN, final TheoryImportCache prevTheory) {
     try {
-      final IImportTheoryProject localProjBlock = this.thyImportBlocks.get(this.localProjName);
-      if ((localProjBlock == null)) {
-        final IImportTheoryProject localBlock = TheoryUtils.createImportTheoryProject(this.theory, this.theory.getRodinProject(), this.nullMonitor);
-        this.thyImportBlocks.put(this.localProjName, localBlock);
+      this.evBFQN = fileFQN;
+      this.theory = TheoryUtils.createTheory(proj, fileFQN.fileName(), null);
+      HashMap<String, IImportTheoryProject> _hashMap = new HashMap<String, IImportTheoryProject>();
+      this.thyImportBlocks = _hashMap;
+      if ((prevTheory != null)) {
+        Object _clone = prevTheory.alreadyImported.clone();
+        this.alreadyImported = ((ComparatorHashSet<EventBFQNImport>) _clone);
+      } else {
+        ComparatorHashSet<EventBFQNImport> _comparatorHashSet = new ComparatorHashSet<EventBFQNImport>(this.comparator);
+        this.alreadyImported = _comparatorHashSet;
       }
-      this.importTheoryWithNameFromProjectWithName(thyName, this.localProjName);
+      ComparatorHashSet<EventBFQNImport> newImports = new ComparatorHashSet<EventBFQNImport>(this.comparator);
+      imports.addAllEventBImportsToNewImports(this.alreadyImported, newImports);
+      if (((prevTheory != null) && (!this.alreadyImported.contains(prevTheory.evBFQN)))) {
+        this.alreadyImported.add(prevTheory.evBFQN);
+        newImports.add(prevTheory.evBFQN);
+      }
+      for (final EventBFQNImport imp : newImports) {
+        this.importEventBFQNInternal(imp);
+      }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public void importTheoryWithNameFromProjectWithName(final String thyName, final String projName) {
+  /**
+   * Only call if you're certain that this has not already been imported.
+   * DOES NOT CHECK AGAINST ALREADY IMPORTED
+   */
+  private IImportTheory importEventBFQNInternal(final EventBFQNImport fqn) {
     try {
-      final String fqn = ((projName + ".") + thyName);
-      boolean _contains = this.alreadyImported.contains(fqn);
-      if (_contains) {
-        return;
+      IImportTheory _xblockexpression = null;
+      {
+        final IEventBProject evBProj = EventBUtils.getEventBProject(fqn.getProjName());
+        final IRodinProject rodProj = evBProj.getRodinProject();
+        final IImportTheoryProject importBlock = this.getImportBlockForProj(fqn, rodProj);
+        final ITheoryRoot thyRoot = DatabaseUtilities.getTheory(fqn.fileName(), rodProj);
+        _xblockexpression = TheoryUtils.createImportTheory(importBlock, thyRoot, this.nullMonitor);
       }
-      final IEventBProject eventBProj = EventBUtils.getEventBProject(projName);
-      final IRodinProject rodinProj = eventBProj.getRodinProject();
-      final IImportTheoryProject importBlock = this.getImportBlockForProj(projName, rodinProj);
-      final ITheoryRoot thyRoot = DatabaseUtilities.getTheory(thyName, rodinProj);
-      TheoryUtils.createImportTheory(importBlock, thyRoot, this.nullMonitor);
+      return _xblockexpression;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -145,58 +140,9 @@ public class TheoryImportCache {
   /**
    * Finds an instance of the type to be imported and imports the theory of that type
    */
-  public void importTheoryForTypeNameInTree(final String typeName, final EObject tree) {
-    final Function1<EObject, Boolean> _function = (EObject eObj) -> {
-      EList<EObject> _eCrossReferences = eObj.eCrossReferences();
-      for (final EObject crossRef : _eCrossReferences) {
-        if (((crossRef instanceof ClassDecl) && Objects.equal(((ClassDecl) crossRef).getName(), typeName))) {
-          return Boolean.valueOf(true);
-        }
-      }
-      return Boolean.valueOf(false);
-    };
-    final EObject container = EcoreUtilJ.getObjectMatchingLambda(tree, _function);
-    final Function1<EObject, Boolean> _function_1 = (EObject obj) -> {
-      return Boolean.valueOf(((obj instanceof ClassDecl) && Objects.equal(((ClassDecl) obj).getName(), typeName)));
-    };
-    final EObject classDecl = IterableExtensions.<EObject>findFirst(container.eCrossReferences(), _function_1);
-    final TopLevel topLevel = EcoreUtil2.<TopLevel>getContainerOfType(classDecl, TopLevel.class);
-    String _name = topLevel.getName();
-    final String projName = (_name + "-gen");
-    String fileName = null;
-    final TopLevelFile topLevelFile = topLevel.getTopLevelFile();
-    final String bSharpFileName = topLevelFile.getName();
-    final EList<TopLevelImport> imports = topLevelFile.getTopLevelImports();
-    if (((imports == null) || imports.isEmpty())) {
-      fileName = bSharpFileName;
-    } else {
-      int fileNdx = 0;
-      if (((topLevelFile.getNoImportElements() != null) && (!topLevelFile.getNoImportElements().isEmpty()))) {
-        fileNdx = 1;
-      }
-      final TopLevelImport topLevelImport = EcoreUtil2.<TopLevelImport>getContainerOfType(classDecl, TopLevelImport.class);
-      if ((topLevelImport == null)) {
-        String _string = Integer.valueOf(0).toString();
-        String _plus = (bSharpFileName + _string);
-        fileName = _plus;
-      } else {
-        TopLevelImport _last = IterableExtensions.<TopLevelImport>last(imports);
-        boolean _tripleEquals = (_last == topLevelImport);
-        if (_tripleEquals) {
-          fileName = bSharpFileName;
-        } else {
-          int _indexOf = imports.indexOf(topLevelImport);
-          String _string_1 = Integer.valueOf((_indexOf + fileNdx)).toString();
-          String _plus_1 = (bSharpFileName + _string_1);
-          fileName = _plus_1;
-        }
-      }
-    }
-    this.importTheoryWithNameFromProjectWithName(fileName, projName);
-  }
-  
-  public IImportTheoryProject getImportBlockForProj(final String projName, final IRodinProject rodProj) {
+  public IImportTheoryProject getImportBlockForProj(final EventBFQNImport fqn, final IRodinProject rodProj) {
     try {
+      final String projName = fqn.getProjName();
       IImportTheoryProject importBlock = this.thyImportBlocks.get(projName);
       if ((importBlock != null)) {
         return importBlock;

@@ -283,6 +283,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TypeBuilder returns ConstructedType
 	 *     ConstructedType returns ConstructedType
 	 *     ConstructedType.ConstructedType_1_0 returns ConstructedType
+	 *     ExpressionVariable returns ConstructedType
 	 *
 	 * Constraint:
 	 *     (left=ConstructedType_ConstructedType_1_0 constructor=BuiltinTypeInfixOp right=BuilderElem)
@@ -345,8 +346,8 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.EXTEND__EXTENDED_CLASS) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.EXTEND__EXTENDED_CLASS));
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.EXTEND__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.EXTEND__NAME));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.NAMED_OBJECT__NAME));
 			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK));
 		}
@@ -363,7 +364,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FileImport returns FileImport
 	 *
 	 * Constraint:
-	 *     (fileReference=[TopLevelFile|ID] type=ID?)
+	 *     (fileReference=[TopLevelFile|ID] type=[TopLevelInstance|ID]?)
 	 */
 	protected void sequence_FileImport(ISerializationContext context, FileImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -412,6 +413,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Import returns GlobalImport
 	 *     GlobalImport returns GlobalImport
 	 *
 	 * Constraint:
@@ -504,6 +506,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Import returns LocalImport
 	 *     LocalImport returns LocalImport
 	 *
 	 * Constraint:
@@ -686,7 +689,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TopLevelImport returns TopLevelImport
 	 *
 	 * Constraint:
-	 *     ((globalImports+=GlobalImport | localImports+=LocalImport)+ bodyElements+=TopLevelInstance+)
+	 *     (imports+=Import+ bodyElements+=TopLevelInstance+)
 	 */
 	protected void sequence_TopLevelImport(ISerializationContext context, TopLevelImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -721,6 +724,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ConstructedType.ConstructedType_1_0 returns TypeConstrBracket
 	 *     BuilderElem returns TypeConstrBracket
 	 *     TypeConstrBracket returns TypeConstrBracket
+	 *     ExpressionVariable returns TypeConstrBracket
 	 *
 	 * Constraint:
 	 *     child=ConstructedType
@@ -743,6 +747,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ConstructedType.ConstructedType_1_0 returns TypeConstructor
 	 *     BuilderElem returns TypeConstructor
 	 *     TypeConstructor returns TypeConstructor
+	 *     ExpressionVariable returns TypeConstructor
 	 *
 	 * Constraint:
 	 *     (typeName=[GenName|QualifiedName] context=TypeDeclContext?)
@@ -771,6 +776,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     ConstructedType.ConstructedType_1_0 returns TypePowerSet
 	 *     BuilderElem returns TypePowerSet
 	 *     TypePowerSet returns TypePowerSet
+	 *     ExpressionVariable returns TypePowerSet
 	 *
 	 * Constraint:
 	 *     child=ConstructedType

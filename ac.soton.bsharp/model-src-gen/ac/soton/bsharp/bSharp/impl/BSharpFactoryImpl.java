@@ -70,7 +70,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.FILE_IMPORT: return createFileImport();
 			case BSharpPackage.FUNCTION_CALL: return createFunctionCall();
 			case BSharpPackage.FUNCTION_DECL: return createFunctionDecl();
-			case BSharpPackage.GEN_NAME: return createGenName();
 			case BSharpPackage.GLOBAL_IMPORT: return createGlobalImport();
 			case BSharpPackage.INBUILT_INFIX: return createInbuiltInfix();
 			case BSharpPackage.INFIX: return createInfix();
@@ -143,16 +142,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public BSharpBlock createBSharpBlock() {
 		BSharpBlockImpl bSharpBlock = new BSharpBlockImpl();
 		return bSharpBlock;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GenName createGenName() {
-		GenNameImpl genName = new GenNameImpl();
-		return genName;
 	}
 
 	/**

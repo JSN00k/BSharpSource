@@ -4,14 +4,25 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.GlobalImport;
+import ac.soton.bsharp.bSharp.Import;
 import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
+import ac.soton.bsharp.bSharp.util.ComparatorHashSet;
+import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
+import ch.ethz.eventb.utils.EventBUtils;
 
+import java.io.ObjectInputStream.GetField;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -26,6 +37,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.Functions.Function2;
+import org.eventb.theory.core.IImportTheoryProject;
+import org.rodinp.core.IRodinProject;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,8 +50,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelImportImpl#getGlobalImports <em>Global Imports</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelImportImpl#getLocalImports <em>Local Imports</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelImportImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelImportImpl#getBodyElements <em>Body Elements</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.TopLevelImportImpl#getImportRefs <em>Import Refs</em>}</li>
  * </ul>
@@ -45,24 +59,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implements TopLevelImport {
 	/**
-	 * The cached value of the '{@link #getGlobalImports() <em>Global Imports</em>}' containment reference list.
+	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGlobalImports()
+	 * @see #getImports()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GlobalImport> globalImports;
-
-	/**
-	 * The cached value of the '{@link #getLocalImports() <em>Local Imports</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLocalImports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<LocalImport> localImports;
+	protected EList<Import> imports;
 
 	/**
 	 * The cached value of the '{@link #getBodyElements() <em>Body Elements</em>}' containment reference list.
@@ -108,23 +112,11 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GlobalImport> getGlobalImports() {
-		if (globalImports == null) {
-			globalImports = new EObjectContainmentEList<GlobalImport>(GlobalImport.class, this, BSharpPackage.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS);
+	public EList<Import> getImports() {
+		if (imports == null) {
+			imports = new EObjectContainmentEList<Import>(Import.class, this, BSharpPackage.TOP_LEVEL_IMPORT__IMPORTS);
 		}
-		return globalImports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<LocalImport> getLocalImports() {
-		if (localImports == null) {
-			localImports = new EObjectContainmentEList<LocalImport>(LocalImport.class, this, BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS);
-		}
-		return localImports;
+		return imports;
 	}
 
 	/**
@@ -159,10 +151,8 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS:
-				return ((InternalEList<?>)getGlobalImports()).basicRemove(otherEnd, msgs);
-			case BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS:
-				return ((InternalEList<?>)getLocalImports()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORTS:
+				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
 				return ((InternalEList<?>)getBodyElements()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS:
@@ -179,10 +169,8 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS:
-				return getGlobalImports();
-			case BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS:
-				return getLocalImports();
+			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORTS:
+				return getImports();
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
 				return getBodyElements();
 			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS:
@@ -200,13 +188,9 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS:
-				getGlobalImports().clear();
-				getGlobalImports().addAll((Collection<? extends GlobalImport>)newValue);
-				return;
-			case BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS:
-				getLocalImports().clear();
-				getLocalImports().addAll((Collection<? extends LocalImport>)newValue);
+			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORTS:
+				getImports().clear();
+				getImports().addAll((Collection<? extends Import>)newValue);
 				return;
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
 				getBodyElements().clear();
@@ -228,11 +212,8 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS:
-				getGlobalImports().clear();
-				return;
-			case BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS:
-				getLocalImports().clear();
+			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORTS:
+				getImports().clear();
 				return;
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
 				getBodyElements().clear();
@@ -252,10 +233,8 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS:
-				return globalImports != null && !globalImports.isEmpty();
-			case BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS:
-				return localImports != null && !localImports.isEmpty();
+			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORTS:
+				return imports != null && !imports.isEmpty();
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
 				return bodyElements != null && !bodyElements.isEmpty();
 			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS:
@@ -274,6 +253,105 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	@Override
 	public void setTheoryImportCache(TheoryImportCache thyCache) {
 		this.thyCache = thyCache;
+	}
+	
+	@Override 
+	public void compileImports(Set<EventBFQNImport> alreadyImported, EventBFQNImport prevFile) {
+		
+	}
+	
+//	@Override
+//	public void compile() {
+//		/* For each import it is checked whether it already appears in the already imported
+//		 * if it does this import is ignored. If it doesn't the dependencies of the import
+//		 * are added to the already imported array (if the dependency isn't already in it) and 
+//		 * the import is added to the currentImports.
+//		 */
+//		
+//		Function2<EventBFQNImport, Object, Boolean> comparator = new Function2<EventBFQNImport, Object, Boolean>() {
+//
+//			@Override
+//			public Boolean apply(EventBFQNImport p1, Object p2) {
+//				if (!(p2 instanceof EventBFQNImport))
+//						return false;
+//				
+//				return p1.isInferredImporterOf((EventBFQNImport)p2);
+//			}
+//		};
+//		
+//		// I wish that sets had basic set operations such as '-' 'union' and 'intersection :-(
+//		ComparatorHashSet<EventBFQNImport> alreadyImported = new ComparatorHashSet<EventBFQNImport>(comparator);
+//		ComparatorHashSet<EventBFQNImport> currentImports = new ComparatorHashSet<EventBFQNImport>(comparator);
+//		
+//		List<Import> imports = getImports();
+//		if (imports == null)
+//			return;
+//		
+//		for (Import imp : imports) {
+//			final EventBFQNImport impFQN = imp.eventBFqn();
+//			if (CompilationUtil.collectionContainsObjectMatching(alreadyImported, new Function1<EventBFQNImport, Boolean>() {
+//				@Override
+//				public Boolean apply(EventBFQNImport p) {
+//					return p.isInferredImporterOf(impFQN);
+//				}
+//			})) {
+//				continue;
+//			}
+//			
+//			Set<EventBFQNImport> eventBImportfqns = imp.allInferredImportfqns();
+//			/* This could be redone to also return the set of objects that were added.
+//			 * This would shorten the next operation.
+//			 */
+//			alreadyImported.addAll(eventBImportfqns);
+//			currentImports.add(impFQN);
+//		}
+//		
+//		/* EventBFqns have the format projectName.fileName.fileNumer FileNumber is optional and 
+//		 * is a a string that is always an integer. We know there is a file number if the fqn
+//		 * contains 3 elements.
+//		 */
+//		for (EventBFQNImport importFQN : currentImports) {
+//			TheoryImportCache thyCache = getTheoryImportCache();
+//			String prjName = importFQN.getProjName();
+//			IRodinProject rodinProj = EventBUtils.getEventBProject(prjName).getRodinProject();
+//			IImportTheoryProject proj = thyCache.getImportBlockForProj(prjName, rodinProj);
+//			
+//			
+//		}
+//	}
+	
+	/* Also immediately adds the elements to already imported, so there is no chance of them getting 
+	 * imported again.
+	 */
+	@Override
+	public
+	void addAllEventBImportsToNewImports(Set<EventBFQNImport> alreadyImported, Set<EventBFQNImport> newImports) {
+		List<Import> fileImports = getImports();
+		
+		if (fileImports == null || fileImports.isEmpty()) {
+			return;
+		}
+		
+		for (Import imp : fileImports) {
+			imp.addAllImportFqnsToNewImports(alreadyImported, newImports);
+		}
+	}
+	
+	/* This is called when we're going to add an element to the newImports, it adds anything that it has already
+	 * imported to the alreadyImported set. If the element being added to the alreadyImported set is in the
+	 * newImports set it is removed from the newImports set.
+	 */
+	@Override
+	public void addAllElementsToAlreadyImported(Set<EventBFQNImport> alreadyImported, Set<EventBFQNImport> newImports) {
+		List<Import> fileImports = getImports();
+		
+		if (fileImports == null || fileImports.isEmpty()) {
+			return;
+		}
+		
+		for (Import imp : fileImports) {
+			imp.addAllElementsToAlreadyImported(alreadyImported, newImports);
+		}
 	}
 
 } //TopLevelImportImpl

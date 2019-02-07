@@ -204,4 +204,6 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 	List<BSClass> typeClassesConstructableWithArgs(List<Expression> args);
 
 	List<Integer> prjsForTypedVariable(TypedVariable typedVariable);
+
+	int variablesCount();
 } // BppClass

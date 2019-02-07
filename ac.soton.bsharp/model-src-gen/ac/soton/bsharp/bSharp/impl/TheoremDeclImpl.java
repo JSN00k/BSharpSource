@@ -17,15 +17,19 @@ import ac.soton.bsharp.theory.util.TheoryImportCache;
 import ac.soton.bsharp.theory.util.TheoryUtils;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
+import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.xtext.EcoreUtil2;
 
 /**
@@ -38,6 +42,7 @@ import org.eclipse.xtext.EcoreUtil2;
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl#getName <em>Name</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl#getGeneratedQuants <em>Generated Quants</em>}</li>
  * </ul>
  *
  * @generated
@@ -72,6 +77,16 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	 * @ordered
 	 */
 	protected Expression expr;
+
+	/**
+	 * The cached value of the '{@link #getGeneratedQuants() <em>Generated Quants</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGeneratedQuants()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<QuantLambda> generatedQuants;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,11 +176,25 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<QuantLambda> getGeneratedQuants() {
+		if (generatedQuants == null) {
+			generatedQuants = new EObjectContainmentEList<QuantLambda>(QuantLambda.class, this, BSharpPackage.THEOREM_DECL__GENERATED_QUANTS);
+		}
+		return generatedQuants;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BSharpPackage.THEOREM_DECL__EXPR:
 				return basicSetExpr(null, msgs);
+			case BSharpPackage.THEOREM_DECL__GENERATED_QUANTS:
+				return ((InternalEList<?>)getGeneratedQuants()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -182,6 +211,8 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				return getName();
 			case BSharpPackage.THEOREM_DECL__EXPR:
 				return getExpr();
+			case BSharpPackage.THEOREM_DECL__GENERATED_QUANTS:
+				return getGeneratedQuants();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -191,6 +222,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -199,6 +231,10 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				return;
 			case BSharpPackage.THEOREM_DECL__EXPR:
 				setExpr((Expression)newValue);
+				return;
+			case BSharpPackage.THEOREM_DECL__GENERATED_QUANTS:
+				getGeneratedQuants().clear();
+				getGeneratedQuants().addAll((Collection<? extends QuantLambda>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -218,6 +254,9 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 			case BSharpPackage.THEOREM_DECL__EXPR:
 				setExpr((Expression)null);
 				return;
+			case BSharpPackage.THEOREM_DECL__GENERATED_QUANTS:
+				getGeneratedQuants().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -234,6 +273,8 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BSharpPackage.THEOREM_DECL__EXPR:
 				return expr != null;
+			case BSharpPackage.THEOREM_DECL__GENERATED_QUANTS:
+				return generatedQuants != null && !generatedQuants.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -294,6 +335,8 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				this.typeInst = typeInstance;
 			}
 			
+			boolean addedToGeneratedLambdas = false;
+			
 			/* Change the expression into a lambda which can add a type instance to its polycontext. If the
 			 * expression can't imeddiately */
 			QuantLambda forallLambda;
@@ -304,6 +347,8 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				forallLambda = BSharpFactory.eINSTANCE.createQuantLambda();
 				forallLambda.setQuantLambdaType(QuantLambdaType.FORALL);
 				forallLambda.setExpr(EcoreUtil2.copy(expr));
+				getGeneratedQuants().add(forallLambda);
+				addedToGeneratedLambdas = true;
 			}
 			
 			try {
@@ -313,6 +358,9 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				return;
 			}
 			
+			if (addedToGeneratedLambdas) {
+				getGeneratedQuants().remove(forallLambda);
+			}
 			
 		}
 		

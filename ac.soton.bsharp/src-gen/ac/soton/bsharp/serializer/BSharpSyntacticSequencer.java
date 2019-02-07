@@ -23,14 +23,14 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected BSharpGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Class_SemicolonKeyword_7_q;
 	protected AbstractElementAlias match_FileImport___FullStopKeyword_1_0_AsteriskKeyword_1_1_0__q;
-	protected AbstractElementAlias match_FunctionCall___LeftParenthesisKeyword_1_1_1_RightParenthesisKeyword_1_1_4__q;
+	protected AbstractElementAlias match_FunctionCall___LeftParenthesisKeyword_1_2_0_RightParenthesisKeyword_1_2_3__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (BSharpGrammarAccess) access;
 		match_Class_SemicolonKeyword_7_q = new TokenAlias(false, true, grammarAccess.getClassAccess().getSemicolonKeyword_7());
 		match_FileImport___FullStopKeyword_1_0_AsteriskKeyword_1_1_0__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getFileImportAccess().getFullStopKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFileImportAccess().getAsteriskKeyword_1_1_0()));
-		match_FunctionCall___LeftParenthesisKeyword_1_1_1_RightParenthesisKeyword_1_1_4__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_1_1()), new TokenAlias(false, false, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_1_4()));
+		match_FunctionCall___LeftParenthesisKeyword_1_2_0_RightParenthesisKeyword_1_2_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_2_0()), new TokenAlias(false, false, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_2_3()));
 	}
 	
 	@Override
@@ -49,8 +49,8 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Class_SemicolonKeyword_7_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FileImport___FullStopKeyword_1_0_AsteriskKeyword_1_1_0__q.equals(syntax))
 				emit_FileImport___FullStopKeyword_1_0_AsteriskKeyword_1_1_0__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_FunctionCall___LeftParenthesisKeyword_1_1_1_RightParenthesisKeyword_1_1_4__q.equals(syntax))
-				emit_FunctionCall___LeftParenthesisKeyword_1_1_1_RightParenthesisKeyword_1_1_4__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FunctionCall___LeftParenthesisKeyword_1_2_0_RightParenthesisKeyword_1_2_3__q.equals(syntax))
+				emit_FunctionCall___LeftParenthesisKeyword_1_2_0_RightParenthesisKeyword_1_2_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -86,9 +86,10 @@ public class BSharpSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     classVarDecl=ClassVarDecl (ambiguity) (rule end)
+	 *     context=TypeDeclContext (ambiguity) (rule end)
 	 *     typeInst=[ExpressionVariable|ID] (ambiguity) (rule end)
 	 */
-	protected void emit_FunctionCall___LeftParenthesisKeyword_1_1_1_RightParenthesisKeyword_1_1_4__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_FunctionCall___LeftParenthesisKeyword_1_2_0_RightParenthesisKeyword_1_2_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

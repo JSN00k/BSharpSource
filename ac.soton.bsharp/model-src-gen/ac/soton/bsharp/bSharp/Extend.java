@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend()
  * @model
  */
-public interface Extend extends IVariableProvider, IPolyTypeProvider, IEventBPrefixProvider, TopLevelInstance {
+public interface Extend extends TopLevelInstance, IVariableProvider, IPolyTypeProvider, IEventBPrefixProvider {
 	/**
 	 * Returns the value of the '<em><b>Extended Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -48,32 +48,6 @@ public interface Extend extends IVariableProvider, IPolyTypeProvider, IEventBPre
 	 * @generated
 	 */
 	void setExtendedClass(ClassDecl value);
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getExtend_Name()
-	 * @model id="true"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.Extend#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Extended Class Name</b></em>' attribute.

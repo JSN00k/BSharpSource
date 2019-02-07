@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getGenName()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface GenName extends NamedObject {

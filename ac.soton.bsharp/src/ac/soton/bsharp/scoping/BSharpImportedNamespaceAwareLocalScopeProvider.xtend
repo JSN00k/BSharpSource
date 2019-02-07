@@ -58,7 +58,6 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 			importedFiles = new ArrayList()
 			var topLevelImport = context as TopLevelImport
 			val topLevel = EcoreUtil2.getContainerOfType(topLevelImport, TopLevel)
-			val packageName = topLevel.fullyQualifiedName
 			
 			/* Note that we know that the iterator contains at least one element as we only
 			 * enter here it there is a TopLevelImport.
@@ -69,8 +68,10 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 			
 			do {
 				current = iterator.next
-				addImportsForTopLevelImport(current, importedNamespaceResolvers, packageName, ignoreCase)
+				addImportsForTopLevelImport(current, importedNamespaceResolvers, ignoreCase)
 			} while (current != context)
+			
+		} else if (context instanceof TopLevelInstance) {
 			
 		}
 
@@ -78,30 +79,17 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 	}
 	
 	def addImportsForTopLevelImport(TopLevelImport topLevel, List<ImportNormalizer> importedNamespaceResolvers,
-		QualifiedName packageName, Boolean ignoreCase) {
-			val localImports = topLevel.localImports
-			val globalImports = topLevel.globalImports
+		Boolean ignoreCase) {
 
-			if (localImports !== null) {
-				for (localImport : localImports) {
-					for (import : localImport.fileImports) {
-						importFileImportForPackage(packageName.toString, import, importedNamespaceResolvers, ignoreCase)
-					}
-				}
+		val imports = topLevel.imports
+
+		for (imp : imports) {
+			val packageName = imp.BSharpProjName
+
+			for (import : imp.fileImports) {
+				importFileImportForPackage(packageName, import, importedNamespaceResolvers, ignoreCase)
 			}
-		
-			if (globalImports !== null) {
-				for (globalImport : globalImports) {
-					val projName = globalImport.project
-					
-					/* I don't currently handle globalproj.* as I'd need to work out
-					 * how to iterate over all the files in the global proj.
-					 */
-					for (fileImport : globalImport.fileImports) {
-						importFileImportForPackage(projName, fileImport, importedNamespaceResolvers, ignoreCase)
-					}
-				}
-			}
+		}
 	}
 	
 	def addExtendNormalizers(ClassDecl classDecl, EObject context, List<ImportNormalizer> importedNamespaceResolvers,
@@ -199,8 +187,8 @@ class BSharpImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAw
 		var importfileName = fileImport.fileName
 		addFileImport(pack, importfileName, importedNamespaceResolvers, ignoreCase)
 		var importString = pack + '.' + importfileName + '.'
-		if (fileImport.type !== null) {
-			importString += fileImport.type
+		if (fileImport.typeName !== null) {
+			importString += fileImport.typeName
 		} else {
 			importString += '*'
 		}

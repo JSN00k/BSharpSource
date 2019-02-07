@@ -733,8 +733,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 		return false;
 	}
-	
-	protected String funcPrefix = null;
 
 	@Override
 	public String eventBExprName() {
@@ -746,9 +744,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			
 		}
 		
-		if (funcPrefix != null) {
-			return funcPrefix + getName();
-		}
 		/* Add a new type EventBPrefixProvider type. */
 		IEventBPrefixProvider provider = EcoreUtil2.getContainerOfType(this, IEventBPrefixProvider.class);
 		return provider.eventBPrefix() + "_" + name;
@@ -768,6 +763,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	protected List<Tuple2<String, String>> typedPolyVariables = null;
 	
+	@Override
+	public boolean hasInferredContext() {
+		return expr.hasInferredContext();
+	}
+	
 	/* TODO: The PolyContext should be made up of a dictionary of type instances, then 
 	 * when a polytype is found within an expression the functionDecl can be asked for
 	 * the appropiate typeInstance.
@@ -775,7 +775,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	ArrayList<Tuple2<String, String>> compiledPolyContextWithInferredContext() {
 		PolyContext context = getContext();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
-		boolean hasInferredContext = expr.hasInferredContext();
+		boolean hasInferredContext = hasInferredContext();
 		if (context == null && !hasInferredContext) {
 			return null;
 		}
@@ -860,8 +860,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 	
 	@Override
-	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance, String funcPrefix) {
-		this.funcPrefix = funcPrefix;
+	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance) {
 		evBTypeInstance = typeInstance;
 		compiledMatchStatements = 0;
 		List<Tuple2<String, String>> polyContext = compiledPolyContext();
@@ -872,7 +871,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		else 
 			compileWithoutPolyContext();
 		
-		this.funcPrefix = null;
 		evBTypeInstance = null;
 		typedPolyVariables = null;
 	}
@@ -1016,7 +1014,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		try {
 			TheoryUtils.createDirectDefinition(op, lambda.compileToEventBString(false), null, nullMonitor);
 		} catch (Exception e) {
-			System.err.println("Unable to create operator definition for op: " + name + "in FunctionDecl");
+			System.err.println("Unable to create operator definition for op: " + name + " in FunctionDecl");
 		}
 
 		generatedLambdas.remove(lambda);
@@ -1032,7 +1030,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			return true;
 		}
 		
-		if (!expr.hasInferredContext()) {
+		if (!hasInferredContext()) {
 			return false;
 		}
 		
@@ -1042,12 +1040,25 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
+		
+		/* If this is in a recursive definition then there may already be a evBInstance, which should not be overwritten. */
+		boolean typeInstIsNull = evBTypeInstance == null;
+		if (typeInstIsNull && hasInferredContext())
+			evBTypeInstance = CompilationUtil.getTypeInstance(fc);
+		
+		String result;
+		
 		if (compilationRequiresContext(fc)) {
-			return compileFunctionCallWithContext(fc, asPred);
+			result =  compileFunctionCallWithContext(fc, asPred);
 		} else {
-			return comipileFunctionCallNoContext(fc, asPred);
+			result =  comipileFunctionCallNoContext(fc, asPred);
+		}
+		
+		if (typeInstIsNull) {
+			evBTypeInstance = null;
 		}
 
+		return result;
 	}
 
 	String getInferredContextCallString(FunctionCall fc) {
@@ -1127,7 +1138,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		 */
 		ClassDecl clContainer = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
 		
-		boolean hasInferredContext = expr.hasInferredContext();
+		boolean hasInferredContext = hasInferredContext();
 		
 		if (hasInferredContext)
 			result += getInferredContextCallString(fc);

@@ -1384,7 +1384,15 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		IClassInstance type = types.get(0);
 		
 		int argsCount = args.size();
-		int requiredArgsCount = getVarList().count();
+		
+		TypedVariableList varList = getVarList();
+		
+		int requiredArgsCount;
+		
+		if (varList == null)
+			requiredArgsCount = 0;
+		else 
+			requiredArgsCount = varList.count();
 		
 		if (requiredArgsCount > argsCount && argsCount != 0) {
 			try {
@@ -1493,11 +1501,21 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return superTypeNode;
 	}
 	
+	@Override
+	public int variablesCount() {
+		TypedVariableList varList = getVarList();
+		if (varList == null)
+			return 0;
+		
+		return varList.count();
+	}
+	
 	/* Fills the array with the type classes that can be built with the number of arguments */
 	@Override
 	public
 	void typeClassesConstructableFromArgCount(int argsCount, ArrayList<BSClass> result) {
-		int requiredArgsCount = getVarList().count();
+		
+		int requiredArgsCount = variablesCount();
 		
 		if (requiredArgsCount == argsCount) {
 			result.add(this);

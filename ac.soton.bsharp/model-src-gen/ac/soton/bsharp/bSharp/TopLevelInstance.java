@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface TopLevelInstance extends EObject {
+public interface TopLevelInstance extends NamedObject {
 	
 	/**
 	 * Returns the value of the '<em><b>Block</b></em>' containment reference.
@@ -51,4 +51,6 @@ public interface TopLevelInstance extends EObject {
 	void setBlock(BSharpBlock value);
 
 	void compile(IProgressMonitor monitor) throws Exception;
+
+	Integer eventBImportIndex();
 } // TopLevelInstance
