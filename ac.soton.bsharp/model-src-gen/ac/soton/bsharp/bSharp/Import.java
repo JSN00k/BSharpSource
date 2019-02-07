@@ -8,7 +8,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import ac.soton.bsharp.bSharp.util.ComparatorHashSet;
 import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 
 /**

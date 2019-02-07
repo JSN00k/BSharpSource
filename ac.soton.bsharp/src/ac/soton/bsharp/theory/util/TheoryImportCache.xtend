@@ -2,7 +2,6 @@ package ac.soton.bsharp.theory.util
 
 import java.util.HashMap
 import org.eventb.theory.core.ITheoryRoot
-import java.util.ArrayList
 import org.eventb.theory.core.IImportTheoryProject
 import org.rodinp.core.IRodinProject
 import ch.ethz.eventb.utils.EventBUtils
@@ -11,11 +10,6 @@ import org.eclipse.core.runtime.IProgressMonitor
 import org.eclipse.core.runtime.NullProgressMonitor
 import org.eventb.theory.core.DatabaseUtilities
 import org.eventb.theory.core.ITypeParameter
-import ac.soton.bsharp.util.EcoreUtilJ
-import org.eclipse.emf.ecore.EObject
-import ac.soton.bsharp.bSharp.ClassDecl
-import org.eclipse.xtext.EcoreUtil2
-import ac.soton.bsharp.bSharp.TopLevel
 import ac.soton.bsharp.bSharp.TopLevelImport
 import ac.soton.bsharp.bSharp.util.EventBFQNImport
 import ac.soton.bsharp.bSharp.util.ComparatorHashSet
@@ -116,100 +110,6 @@ class TheoryImportCache {
 		
 		TheoryUtils.createImportTheory(importBlock, thyRoot, nullMonitor)
 	}
-	
-//	def importThyFromProjectWithName(ITheoryRoot thy, String projName) {
-//		val fqn = projName + '.' + thy.componentName
-//		if (alreadyImported.contains(fqn))
-//			return
-//			
-//		val eventBProj = EventBUtils.getEventBProject(projName)
-//		val rodinProj = eventBProj.rodinProject
-//		/* Either get or create the porject import block */
-//
-//		val importBlock = getImportBlockForProj(projName, rodinProj)
-//		TheoryUtils.createImportTheory(importBlock, thy, nullMonitor)
-//	}
-//	
-//	def importLocalTheoryCache(TheoryImportCache thyCache) {
-//		importThyFromProjectWithName(thyCache.theory, evBFQN.projName)
-//		alreadyImported += thyCache.alreadyImported
-//	}
-//	
-//	def importLocalTheoryWithName(String thyName) {
-//		val localProjBlock = thyImportBlocks.get(evBFQN.projName)
-//		if (localProjBlock === null) {
-//			val localBlock = TheoryUtils.createImportTheoryProject(theory, theory.rodinProject, nullMonitor)
-//			thyImportBlocks.put(evBFQN.projName, localBlock)
-//		}
-//		
-//		importTheoryWithNameFromProjectWithName(thyName, evBFQN.projName)
-//	}
-//	
-//	def importTheoryWithNameFromProjectWithName(String thyName, String projName) {
-//		val fqn = projName + '.' + thyName
-//		if (alreadyImported.contains(fqn))
-//			return
-//			
-//		val eventBProj = EventBUtils.getEventBProject(projName + "-gen")
-//		val rodinProj = eventBProj.rodinProject
-//		
-//		val importBlock = getImportBlockForProj(projName, rodinProj)
-//		/* This may need to change to use rodinProj.getRodinFiles and search the result for 
-//		 * the current file. This will happen if get theory requires an internal theory name
-//		 * rather than the name that I give to the theory. I won't be able to test this until
-//		 * I have got to the compilation point of deploying theories. */
-//		val thyRoot = DatabaseUtilities.getTheory(thyName, rodinProj)
-//		
-//		TheoryUtils.createImportTheory(importBlock, thyRoot, nullMonitor)
-//	}
-	
-	/* Finds an instance of the type to be imported and imports the theory of that type */
-//	def importTheoryForTypeNameInTree(String typeName, EObject tree) {
-//		val container = EcoreUtilJ.getObjectMatchingLambda(tree, 
-//			[eObj | for (crossRef : eObj.eCrossReferences) {
-//				if (crossRef instanceof ClassDecl && (crossRef as ClassDecl).name == typeName)
-//					return true;
-//				}
-//				
-//				return false
-//			])
-//		
-//		val classDecl = container.eCrossReferences.findFirst[obj | obj instanceof ClassDecl && (obj as ClassDecl).name == typeName]
-//			
-//		val topLevel = EcoreUtil2.getContainerOfType(classDecl, TopLevel)
-//		val projName = topLevel.name
-//		var String fileName = null
-//		
-//		val topLevelFile = topLevel.topLevelFile
-//		val bSharpFileName = topLevelFile.name
-//		
-//		val imports = topLevelFile.getTopLevelImports()
-//		
-//		if (imports === null || imports.isEmpty) {
-//			fileName = bSharpFileName
-//		} else {
-//			var fileNdx = 0;
-//			if (topLevelFile.getNoImportElements() !== null && !topLevelFile.getNoImportElements().isEmpty) {
-//				fileNdx = 1;
-//			}
-//			
-//			val topLevelImport = EcoreUtil2.getContainerOfType(classDecl, TopLevelImport)
-//			if (topLevelImport === null) {
-//				/* If there's no TopLevelImport above the classDecl the classDecl must have 
-//				 * been declared in the noImportElements section.
-//				 */
-//				fileName = bSharpFileName + 0.toString
-//			} else {
-//				if (imports.last === topLevelImport) {
-//					fileName = bSharpFileName
-//				} else {
-//					fileName = bSharpFileName + (imports.indexOf(topLevelImport) + fileNdx).toString
-//				}
-//			}
-//		}
-//		
-//		importTheoryWithNameFromProjectWithName(fileName, projName)
-//	}
 	
 	def getImportBlockForProj(EventBFQNImport fqn, IRodinProject rodProj){
 		val projName = fqn.projName

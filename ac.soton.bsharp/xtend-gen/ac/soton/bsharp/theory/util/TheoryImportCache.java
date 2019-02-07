@@ -137,9 +137,6 @@ public class TheoryImportCache {
     }
   }
   
-  /**
-   * Finds an instance of the type to be imported and imports the theory of that type
-   */
   public IImportTheoryProject getImportBlockForProj(final EventBFQNImport fqn, final IRodinProject rodProj) {
     try {
       final String projName = fqn.getProjName();

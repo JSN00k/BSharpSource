@@ -7,8 +7,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 
 /**
@@ -77,8 +75,6 @@ public interface TopLevelImport extends ITheoryImportCacheProvider, IBodyElement
 	 * @generated
 	 */
 	EList<TopLevelFile> getImportRefs();
-
-	void compileImports(Set<EventBFQNImport> alreadyImported, EventBFQNImport prevFile);
 
 	void addAllEventBImportsToNewImports(Set<EventBFQNImport> alreadyImported, Set<EventBFQNImport> newImports);
 	void addAllElementsToAlreadyImported(Set<EventBFQNImport> alreadyImported, Set<EventBFQNImport> newImports);

@@ -5,20 +5,16 @@ package ac.soton.bsharp.generator;
 
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
-import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ch.ethz.eventb.utils.EventBUtils;
-import java.util.ArrayList;
 import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eventb.core.IEventBProject;
 import org.rodinp.core.IRodinProject;
@@ -37,11 +33,6 @@ public class BSharpGenerator extends AbstractGenerator {
   
   private IRodinProject proj;
   
-  /**
-   * An array of arrays, each Array contains the elements that need to be compiled for the current import block
-   */
-  private ArrayList<EList<TopLevelInstance>> elementsForImport;
-  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     try {
@@ -50,7 +41,6 @@ public class BSharpGenerator extends AbstractGenerator {
       String _name = topLevel.getName();
       String _plus = (_name + "-gen");
       this.projName = _plus;
-      this.elementsForImport = CollectionLiterals.<EList<TopLevelInstance>>newArrayList();
       IEventBProject eventBproj = EventBUtils.getEventBProject(this.projName);
       boolean _exists = eventBproj.getRodinProject().exists();
       boolean _not = (!_exists);

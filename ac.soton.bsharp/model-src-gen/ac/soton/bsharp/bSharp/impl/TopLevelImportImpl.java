@@ -4,27 +4,16 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.FileImport;
-import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.Import;
-import ac.soton.bsharp.bSharp.LocalImport;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
-import ac.soton.bsharp.bSharp.util.ComparatorHashSet;
-import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.EventBFQNImport;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
-import ch.ethz.eventb.utils.EventBUtils;
-
-import java.io.ObjectInputStream.GetField;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -32,15 +21,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.Functions.Function2;
-import org.eventb.theory.core.IImportTheoryProject;
-import org.rodinp.core.IRodinProject;
 
 /**
  * <!-- begin-user-doc -->
@@ -254,71 +237,7 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	public void setTheoryImportCache(TheoryImportCache thyCache) {
 		this.thyCache = thyCache;
 	}
-	
-	@Override 
-	public void compileImports(Set<EventBFQNImport> alreadyImported, EventBFQNImport prevFile) {
-		
-	}
-	
-//	@Override
-//	public void compile() {
-//		/* For each import it is checked whether it already appears in the already imported
-//		 * if it does this import is ignored. If it doesn't the dependencies of the import
-//		 * are added to the already imported array (if the dependency isn't already in it) and 
-//		 * the import is added to the currentImports.
-//		 */
-//		
-//		Function2<EventBFQNImport, Object, Boolean> comparator = new Function2<EventBFQNImport, Object, Boolean>() {
-//
-//			@Override
-//			public Boolean apply(EventBFQNImport p1, Object p2) {
-//				if (!(p2 instanceof EventBFQNImport))
-//						return false;
-//				
-//				return p1.isInferredImporterOf((EventBFQNImport)p2);
-//			}
-//		};
-//		
-//		// I wish that sets had basic set operations such as '-' 'union' and 'intersection :-(
-//		ComparatorHashSet<EventBFQNImport> alreadyImported = new ComparatorHashSet<EventBFQNImport>(comparator);
-//		ComparatorHashSet<EventBFQNImport> currentImports = new ComparatorHashSet<EventBFQNImport>(comparator);
-//		
-//		List<Import> imports = getImports();
-//		if (imports == null)
-//			return;
-//		
-//		for (Import imp : imports) {
-//			final EventBFQNImport impFQN = imp.eventBFqn();
-//			if (CompilationUtil.collectionContainsObjectMatching(alreadyImported, new Function1<EventBFQNImport, Boolean>() {
-//				@Override
-//				public Boolean apply(EventBFQNImport p) {
-//					return p.isInferredImporterOf(impFQN);
-//				}
-//			})) {
-//				continue;
-//			}
-//			
-//			Set<EventBFQNImport> eventBImportfqns = imp.allInferredImportfqns();
-//			/* This could be redone to also return the set of objects that were added.
-//			 * This would shorten the next operation.
-//			 */
-//			alreadyImported.addAll(eventBImportfqns);
-//			currentImports.add(impFQN);
-//		}
-//		
-//		/* EventBFqns have the format projectName.fileName.fileNumer FileNumber is optional and 
-//		 * is a a string that is always an integer. We know there is a file number if the fqn
-//		 * contains 3 elements.
-//		 */
-//		for (EventBFQNImport importFQN : currentImports) {
-//			TheoryImportCache thyCache = getTheoryImportCache();
-//			String prjName = importFQN.getProjName();
-//			IRodinProject rodinProj = EventBUtils.getEventBProject(prjName).getRodinProject();
-//			IImportTheoryProject proj = thyCache.getImportBlockForProj(prjName, rodinProj);
-//			
-//			
-//		}
-//	}
+
 	
 	/* Also immediately adds the elements to already imported, so there is no chance of them getting 
 	 * imported again.
