@@ -73,7 +73,7 @@ public class StringTypeInstance extends TypeInstanceAbstract implements ITypeIns
 
 	@Override
 	public String eventBTypeInstance() {
-		return constructingTypesTyped.get(constructingTypesTyped.size() - 1).x;
+		return instanceName;
 	}
 
 	@Override

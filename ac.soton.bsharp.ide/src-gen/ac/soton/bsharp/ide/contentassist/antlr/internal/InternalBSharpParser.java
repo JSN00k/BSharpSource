@@ -8114,20 +8114,20 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__2__Impl"
-    // InternalBSharp.g:2519:1: rule__Class__Group__2__Impl : ( ( rule__Class__ContextAssignment_2 )? ) ;
+    // InternalBSharp.g:2519:1: rule__Class__Group__2__Impl : ( ( rule__Class__RawContextAssignment_2 )? ) ;
     public final void rule__Class__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:2523:1: ( ( ( rule__Class__ContextAssignment_2 )? ) )
-            // InternalBSharp.g:2524:1: ( ( rule__Class__ContextAssignment_2 )? )
+            // InternalBSharp.g:2523:1: ( ( ( rule__Class__RawContextAssignment_2 )? ) )
+            // InternalBSharp.g:2524:1: ( ( rule__Class__RawContextAssignment_2 )? )
             {
-            // InternalBSharp.g:2524:1: ( ( rule__Class__ContextAssignment_2 )? )
-            // InternalBSharp.g:2525:2: ( rule__Class__ContextAssignment_2 )?
+            // InternalBSharp.g:2524:1: ( ( rule__Class__RawContextAssignment_2 )? )
+            // InternalBSharp.g:2525:2: ( rule__Class__RawContextAssignment_2 )?
             {
-             before(grammarAccess.getClassAccess().getContextAssignment_2()); 
-            // InternalBSharp.g:2526:2: ( rule__Class__ContextAssignment_2 )?
+             before(grammarAccess.getClassAccess().getRawContextAssignment_2()); 
+            // InternalBSharp.g:2526:2: ( rule__Class__RawContextAssignment_2 )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -8136,10 +8136,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             }
             switch (alt26) {
                 case 1 :
-                    // InternalBSharp.g:2526:3: rule__Class__ContextAssignment_2
+                    // InternalBSharp.g:2526:3: rule__Class__RawContextAssignment_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Class__ContextAssignment_2();
+                    rule__Class__RawContextAssignment_2();
 
                     state._fsp--;
 
@@ -8149,7 +8149,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getClassAccess().getContextAssignment_2()); 
+             after(grammarAccess.getClassAccess().getRawContextAssignment_2()); 
 
             }
 
@@ -12685,20 +12685,20 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Datatype__Group__2__Impl"
-    // InternalBSharp.g:4011:1: rule__Datatype__Group__2__Impl : ( ( rule__Datatype__ContextAssignment_2 )? ) ;
+    // InternalBSharp.g:4011:1: rule__Datatype__Group__2__Impl : ( ( rule__Datatype__RawContextAssignment_2 )? ) ;
     public final void rule__Datatype__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalBSharp.g:4015:1: ( ( ( rule__Datatype__ContextAssignment_2 )? ) )
-            // InternalBSharp.g:4016:1: ( ( rule__Datatype__ContextAssignment_2 )? )
+            // InternalBSharp.g:4015:1: ( ( ( rule__Datatype__RawContextAssignment_2 )? ) )
+            // InternalBSharp.g:4016:1: ( ( rule__Datatype__RawContextAssignment_2 )? )
             {
-            // InternalBSharp.g:4016:1: ( ( rule__Datatype__ContextAssignment_2 )? )
-            // InternalBSharp.g:4017:2: ( rule__Datatype__ContextAssignment_2 )?
+            // InternalBSharp.g:4016:1: ( ( rule__Datatype__RawContextAssignment_2 )? )
+            // InternalBSharp.g:4017:2: ( rule__Datatype__RawContextAssignment_2 )?
             {
-             before(grammarAccess.getDatatypeAccess().getContextAssignment_2()); 
-            // InternalBSharp.g:4018:2: ( rule__Datatype__ContextAssignment_2 )?
+             before(grammarAccess.getDatatypeAccess().getRawContextAssignment_2()); 
+            // InternalBSharp.g:4018:2: ( rule__Datatype__RawContextAssignment_2 )?
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -12707,10 +12707,10 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             }
             switch (alt39) {
                 case 1 :
-                    // InternalBSharp.g:4018:3: rule__Datatype__ContextAssignment_2
+                    // InternalBSharp.g:4018:3: rule__Datatype__RawContextAssignment_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Datatype__ContextAssignment_2();
+                    rule__Datatype__RawContextAssignment_2();
 
                     state._fsp--;
 
@@ -12720,7 +12720,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getDatatypeAccess().getContextAssignment_2()); 
+             after(grammarAccess.getDatatypeAccess().getRawContextAssignment_2()); 
 
             }
 
@@ -23023,9 +23023,9 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Class__NameAssignment_1"
 
 
-    // $ANTLR start "rule__Class__ContextAssignment_2"
-    // InternalBSharp.g:7394:1: rule__Class__ContextAssignment_2 : ( rulePolyContext ) ;
-    public final void rule__Class__ContextAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__Class__RawContextAssignment_2"
+    // InternalBSharp.g:7394:1: rule__Class__RawContextAssignment_2 : ( rulePolyContext ) ;
+    public final void rule__Class__RawContextAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -23036,13 +23036,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:7399:2: ( rulePolyContext )
             // InternalBSharp.g:7400:3: rulePolyContext
             {
-             before(grammarAccess.getClassAccess().getContextPolyContextParserRuleCall_2_0()); 
+             before(grammarAccess.getClassAccess().getRawContextPolyContextParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
             rulePolyContext();
 
             state._fsp--;
 
-             after(grammarAccess.getClassAccess().getContextPolyContextParserRuleCall_2_0()); 
+             after(grammarAccess.getClassAccess().getRawContextPolyContextParserRuleCall_2_0()); 
 
             }
 
@@ -23061,7 +23061,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Class__ContextAssignment_2"
+    // $ANTLR end "rule__Class__RawContextAssignment_2"
 
 
     // $ANTLR start "rule__Class__InstNameAssignment_3_1"
@@ -24019,9 +24019,9 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Datatype__NameAssignment_1"
 
 
-    // $ANTLR start "rule__Datatype__ContextAssignment_2"
-    // InternalBSharp.g:7766:1: rule__Datatype__ContextAssignment_2 : ( rulePolyContext ) ;
-    public final void rule__Datatype__ContextAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__Datatype__RawContextAssignment_2"
+    // InternalBSharp.g:7766:1: rule__Datatype__RawContextAssignment_2 : ( rulePolyContext ) ;
+    public final void rule__Datatype__RawContextAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -24032,13 +24032,13 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
             // InternalBSharp.g:7771:2: ( rulePolyContext )
             // InternalBSharp.g:7772:3: rulePolyContext
             {
-             before(grammarAccess.getDatatypeAccess().getContextPolyContextParserRuleCall_2_0()); 
+             before(grammarAccess.getDatatypeAccess().getRawContextPolyContextParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
             rulePolyContext();
 
             state._fsp--;
 
-             after(grammarAccess.getDatatypeAccess().getContextPolyContextParserRuleCall_2_0()); 
+             after(grammarAccess.getDatatypeAccess().getRawContextPolyContextParserRuleCall_2_0()); 
 
             }
 
@@ -24057,7 +24057,7 @@ public class InternalBSharpParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Datatype__ContextAssignment_2"
+    // $ANTLR end "rule__Datatype__RawContextAssignment_2"
 
 
     // $ANTLR start "rule__Datatype__ConstructorsAssignment_3_1"

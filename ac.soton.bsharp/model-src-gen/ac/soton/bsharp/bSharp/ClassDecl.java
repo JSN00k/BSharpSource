@@ -33,33 +33,35 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
  */
 public interface ClassDecl extends TopLevelInstance, GenName, ExpressionVariable, IVariableProvider, IPolyTypeProvider, Type, IEventBPrefixProvider, IClassInstance {
 	/**
-	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Raw Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Context</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Raw Context</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context</em>' containment reference.
-	 * @see #setContext(PolyContext)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl_Context()
+	 * @return the value of the '<em>Raw Context</em>' containment reference.
+	 * @see #setRawContext(PolyContext)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassDecl_RawContext()
 	 * @model containment="true"
 	 * @generated
 	 */
-	PolyContext getContext();
+	PolyContext getRawContext();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ClassDecl#getContext <em>Context</em>}' containment reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ClassDecl#getRawContext <em>Raw Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context</em>' containment reference.
-	 * @see #getContext()
+	 * @param value the new value of the '<em>Raw Context</em>' containment reference.
+	 * @see #getRawContext()
 	 * @generated
 	 */
-	void setContext(PolyContext value);
+	void setRawContext(PolyContext value);
+	
+	PolyContext getContext();
 
 	String eventBPolymorphicTypeConstructorName();
-	String constructWithTypeContext(TypeDeclContext context, ClassDecl containingClass);
+	String constructWithTypeContext(TypeDeclContext context);
 
 	/* Given a polytype T : Setoid this deals with a call like T.equ(a, b) 
 	 * ownerType would be T, typeInst would be equ, function call contains a polytype and 
@@ -74,5 +76,7 @@ public interface ClassDecl extends TopLevelInstance, GenName, ExpressionVariable
 	String constructorArgsForTypeInstance(ITypeInstance typeInst);
 
 	String constructWithTypeInstances(List<ITypeInstance> instList);
+
+	TypeBuilder baseTypeForTypeDeclarationContext(TypeDeclContext tdContext);
 
 } // ClassDecl

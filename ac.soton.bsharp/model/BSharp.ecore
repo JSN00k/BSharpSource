@@ -42,7 +42,7 @@
         eType="#//ITheoremContainer" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDecl" abstract="true" eSuperTypes="#//TopLevelInstance #//GenName #//ExpressionVariable #//IVariableProvider #//IPolyTypeProvider #//Type #//IEventBPrefixProvider #//IClassInstance">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rawContext" eType="#//PolyContext"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassVarDecl" eSuperTypes="#//IVarType">

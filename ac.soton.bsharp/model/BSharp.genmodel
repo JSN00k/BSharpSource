@@ -36,7 +36,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//BSharpBlock/theorems"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ClassDecl">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/context"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassDecl/rawContext"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ClassVarDecl">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassVarDecl/ownerType"/>

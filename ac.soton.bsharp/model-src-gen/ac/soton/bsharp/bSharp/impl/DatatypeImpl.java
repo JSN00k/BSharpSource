@@ -6,11 +6,13 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
@@ -26,6 +28,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -198,6 +201,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	@Override
 	public void compile(IProgressMonitor monitor) throws Exception {
+		PolyContext context = getContext();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 		ITheoryRoot thyRoot = thyCache.theory;
 		
@@ -243,7 +247,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public String constructWithTypeContext(TypeDeclContext context, ClassDecl containingClass) {
+	public String constructWithTypeContext(TypeDeclContext context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -256,6 +260,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	@Override
 	public String typeStringWithContext(TypeDeclContext ctx) {
+		PolyContext context = getContext();
 		if (context == null || context.eventBPolyVarCount() == 0) {
 			return name;
 		}
@@ -335,5 +340,19 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	@Override
 	public ITypeInstance getInferredTypeInstance() {
 		return new ConcreteTypeInstance(this, this);
+	}
+
+	@Override
+	public TypeBuilder baseTypeForTypeDeclarationContext(TypeDeclContext tdContext) {
+		TypeConstructor result = BSharpFactory.eINSTANCE.createTypeConstructor();
+		result.setTypeName(this);
+		
+		PolyContext context = getContext();
+		if (context == null || context.isEmpty()) {
+			return result;
+		}
+
+		result.setContext(tdContext);
+		return result;
 	}
 } //DatatypeImpl

@@ -678,7 +678,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassDecl_Context() {
+	public EReference getClassDecl_RawContext() {
 		return (EReference)classDeclEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1920,7 +1920,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(bSharpBlockEClass, BSHARP_BLOCK__THEOREMS);
 
 		classDeclEClass = createEClass(CLASS_DECL);
-		createEReference(classDeclEClass, CLASS_DECL__CONTEXT);
+		createEReference(classDeclEClass, CLASS_DECL__RAW_CONTEXT);
 
 		classVarDeclEClass = createEClass(CLASS_VAR_DECL);
 		createEReference(classVarDeclEClass, CLASS_VAR_DECL__OWNER_TYPE);
@@ -2216,7 +2216,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getBSharpBlock_Theorems(), this.getITheoremContainer(), null, "theorems", null, 0, -1, BSharpBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classDeclEClass, ClassDecl.class, "ClassDecl", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassDecl_RawContext(), this.getPolyContext(), null, "rawContext", null, 0, 1, ClassDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classVarDeclEClass, ClassVarDecl.class, "ClassVarDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassVarDecl_OwnerType(), this.getGenName(), null, "ownerType", null, 0, 1, ClassVarDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

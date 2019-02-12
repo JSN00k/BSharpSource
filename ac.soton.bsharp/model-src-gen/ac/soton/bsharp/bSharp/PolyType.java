@@ -46,11 +46,6 @@ public interface PolyType extends GenName {
 	 */
 	EList<ClassDecl> getSuperTypes();
 
-	/* A type in BSharp may require several EventB types when constructed with a polymorphic context
-	 * This method uses the prj functions to deconstruct the correct types to fill in the arguments.
-	 */
-	String deconstructTypeToArguments(TypeBuilder typeBuilder, ClassDecl containerType);
-
 	String baseTypeString();
 
 	ArrayList<String> typeNames();
@@ -61,5 +56,10 @@ public interface PolyType extends GenName {
 	ArrayList<Tuple2<String, String>> eBNamesAndTypes(TheoryImportCache thyCache);
 
 	String getTypeConstructorArgumentsFromTypeInstance(ITypeInstance instance);
+
+	/* A type in BSharp may require several EventB types when constructed with a polymorphic context
+	 * This method uses the prj functions to deconstruct the correct types to fill in the arguments.
+	 */
+	String deconstructTypeToArguments(TypeBuilder callType);
 
 } // PolyContextTypes

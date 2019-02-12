@@ -670,17 +670,17 @@ ruleClass returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getClassAccess().getContextPolyContextParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getClassAccess().getRawContextPolyContextParserRuleCall_2_0());
 				}
-				lv_context_2_0=rulePolyContext
+				lv_rawContext_2_0=rulePolyContext
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getClassRule());
 					}
 					set(
 						$current,
-						"context",
-						lv_context_2_0,
+						"rawContext",
+						lv_rawContext_2_0,
 						"ac.soton.bsharp.BSharp.PolyContext");
 					afterParserOrEnumRuleCall();
 				}
@@ -1565,17 +1565,17 @@ ruleDatatype returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDatatypeAccess().getContextPolyContextParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getDatatypeAccess().getRawContextPolyContextParserRuleCall_2_0());
 				}
-				lv_context_2_0=rulePolyContext
+				lv_rawContext_2_0=rulePolyContext
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDatatypeRule());
 					}
 					set(
 						$current,
-						"context",
-						lv_context_2_0,
+						"rawContext",
+						lv_rawContext_2_0,
 						"ac.soton.bsharp.BSharp.PolyContext");
 					afterParserOrEnumRuleCall();
 				}

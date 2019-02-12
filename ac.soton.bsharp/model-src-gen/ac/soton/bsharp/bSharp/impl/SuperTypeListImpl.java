@@ -7,9 +7,12 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypePowerSet;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
@@ -30,6 +33,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.xtext.EcoreUtil2;
 
 /**
  * <!-- begin-user-doc -->
@@ -161,6 +165,7 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 
 	@Override
 	public TypeBuilder getFirst() {
+		List<TypeBuilder> superTypes = getSuperTypes();
 		if (superTypes != null && !superTypes.isEmpty())
 			return superTypes.get(0);
 		
@@ -176,13 +181,16 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 		return st instanceof TypePowerSet;
 	}
 	
-	@Override
-	public String supertypeType(ArrayList<Tuple2<String, String>> bsOpPolyTypes) {
+	@Override 
+	public String generateSuperTypeString(TypeDeclContext typeArguments) {
+		List<TypeBuilder> superTypes = getSuperTypes();
+		
 		if (superTypes == null || superTypes.isEmpty()) {
 			try {
 				throw new Exception("Type class doesn't have a supertype. This should be validated against");
 			} catch (Exception e) {
 				System.err.println("A type is created without any supertypes.");
+				e.printStackTrace();
 				return null;
 			}
 		}
@@ -196,16 +204,20 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 			}
 			first = false;
 			
+			/* As I allow inferred types, when there are inferred types I need to compile against the
+			 * passed in typeArguments. If there are no inferred types st can be compiled directly. 
+			 */
 			Boolean hasInferredTypes = st.inferredTypeCount() != 0;
+			
 			if (hasInferredTypes) {
-				result += st.getTypeClass().eventBPolymorphicTypeConstructorName();
-				result += "(" + CompilationUtil.compileTypedVariablesToNameListWithSeparator(bsOpPolyTypes, ", ", true) + ")";
+				TypeConstructor clone = (TypeConstructor)EcoreUtil2.copy(st);
+				clone.setContext(typeArguments);
+				result += clone.buildEventBType();
 			} else {
 				if (isPowerSet())
 					result += ((TypePowerSet)st).getChild().buildEventBType();
 				else 
 					result += st.buildEventBType();
-				
 			}
 		}
 		

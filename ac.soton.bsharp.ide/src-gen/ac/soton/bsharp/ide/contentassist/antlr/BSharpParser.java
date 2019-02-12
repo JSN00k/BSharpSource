@@ -124,7 +124,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFileImportAccess().getTypeAssignment_1_1_1(), "rule__FileImport__TypeAssignment_1_1_1");
 			builder.put(grammarAccess.getLocalImportAccess().getFileImportsAssignment_1(), "rule__LocalImport__FileImportsAssignment_1");
 			builder.put(grammarAccess.getClassAccess().getNameAssignment_1(), "rule__Class__NameAssignment_1");
-			builder.put(grammarAccess.getClassAccess().getContextAssignment_2(), "rule__Class__ContextAssignment_2");
+			builder.put(grammarAccess.getClassAccess().getRawContextAssignment_2(), "rule__Class__RawContextAssignment_2");
 			builder.put(grammarAccess.getClassAccess().getInstNameAssignment_3_1(), "rule__Class__InstNameAssignment_3_1");
 			builder.put(grammarAccess.getClassAccess().getSupertypesAssignment_4(), "rule__Class__SupertypesAssignment_4");
 			builder.put(grammarAccess.getClassAccess().getVarListAssignment_5_1(), "rule__Class__VarListAssignment_5_1");
@@ -148,7 +148,7 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getWhereAccess().getExpressionsAssignment_1(), "rule__Where__ExpressionsAssignment_1");
 			builder.put(grammarAccess.getWhereAccess().getExpressionsAssignment_2_1(), "rule__Where__ExpressionsAssignment_2_1");
 			builder.put(grammarAccess.getDatatypeAccess().getNameAssignment_1(), "rule__Datatype__NameAssignment_1");
-			builder.put(grammarAccess.getDatatypeAccess().getContextAssignment_2(), "rule__Datatype__ContextAssignment_2");
+			builder.put(grammarAccess.getDatatypeAccess().getRawContextAssignment_2(), "rule__Datatype__RawContextAssignment_2");
 			builder.put(grammarAccess.getDatatypeAccess().getConstructorsAssignment_3_1(), "rule__Datatype__ConstructorsAssignment_3_1");
 			builder.put(grammarAccess.getDatatypeAccess().getBlockAssignment_4(), "rule__Datatype__BlockAssignment_4");
 			builder.put(grammarAccess.getDatatypeConstructorAccess().getNameAssignment_0(), "rule__DatatypeConstructor__NameAssignment_0");

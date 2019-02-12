@@ -1897,7 +1897,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleClass"
-    // InternalBSharp.g:640:1: ruleClass returns [EObject current=null] : (otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) ) ) ;
+    // InternalBSharp.g:640:1: ruleClass returns [EObject current=null] : (otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) ) ) ;
     public final EObject ruleClass() throws RecognitionException {
         EObject current = null;
 
@@ -1908,7 +1908,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
         Token otherlv_7=null;
         Token otherlv_9=null;
         Token otherlv_11=null;
-        EObject lv_context_2_0 = null;
+        EObject lv_rawContext_2_0 = null;
 
         EObject lv_instName_4_0 = null;
 
@@ -1925,11 +1925,11 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBSharp.g:646:2: ( (otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) ) ) )
-            // InternalBSharp.g:647:2: (otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) ) )
+            // InternalBSharp.g:646:2: ( (otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) ) ) )
+            // InternalBSharp.g:647:2: (otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) ) )
             {
-            // InternalBSharp.g:647:2: (otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) ) )
-            // InternalBSharp.g:648:3: otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) )
+            // InternalBSharp.g:647:2: (otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) ) )
+            // InternalBSharp.g:648:3: otherlv_0= 'Class' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '[' ( (lv_instName_4_0= ruleInstName ) ) otherlv_5= ']' ) ( (lv_supertypes_6_0= ruleSuperTypeList ) )? (otherlv_7= '(' ( (lv_varList_8_0= ruleTypedVariableList ) ) otherlv_9= ')' )? ( (lv_where_10_0= ruleWhere ) )? (otherlv_11= ';' )? ( (lv_block_12_0= ruleBSharpBlock ) )
             {
             otherlv_0=(Token)match(input,17,FOLLOW_3); 
 
@@ -1961,7 +1961,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBSharp.g:670:3: ( (lv_context_2_0= rulePolyContext ) )?
+            // InternalBSharp.g:670:3: ( (lv_rawContext_2_0= rulePolyContext ) )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1970,16 +1970,16 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             }
             switch (alt14) {
                 case 1 :
-                    // InternalBSharp.g:671:4: (lv_context_2_0= rulePolyContext )
+                    // InternalBSharp.g:671:4: (lv_rawContext_2_0= rulePolyContext )
                     {
-                    // InternalBSharp.g:671:4: (lv_context_2_0= rulePolyContext )
-                    // InternalBSharp.g:672:5: lv_context_2_0= rulePolyContext
+                    // InternalBSharp.g:671:4: (lv_rawContext_2_0= rulePolyContext )
+                    // InternalBSharp.g:672:5: lv_rawContext_2_0= rulePolyContext
                     {
 
-                    					newCompositeNode(grammarAccess.getClassAccess().getContextPolyContextParserRuleCall_2_0());
+                    					newCompositeNode(grammarAccess.getClassAccess().getRawContextPolyContextParserRuleCall_2_0());
                     				
                     pushFollow(FOLLOW_14);
-                    lv_context_2_0=rulePolyContext();
+                    lv_rawContext_2_0=rulePolyContext();
 
                     state._fsp--;
 
@@ -1989,8 +1989,8 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     					}
                     					set(
                     						current,
-                    						"context",
-                    						lv_context_2_0,
+                    						"rawContext",
+                    						lv_rawContext_2_0,
                     						"ac.soton.bsharp.BSharp.PolyContext");
                     					afterParserOrEnumRuleCall();
                     				
@@ -4249,14 +4249,14 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDatatype"
-    // InternalBSharp.g:1535:1: ruleDatatype returns [EObject current=null] : (otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) ) ) ;
+    // InternalBSharp.g:1535:1: ruleDatatype returns [EObject current=null] : (otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) ) ) ;
     public final EObject ruleDatatype() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token lv_name_1_0=null;
         Token otherlv_3=null;
-        EObject lv_context_2_0 = null;
+        EObject lv_rawContext_2_0 = null;
 
         EObject lv_constructors_4_0 = null;
 
@@ -4267,11 +4267,11 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalBSharp.g:1541:2: ( (otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) ) ) )
-            // InternalBSharp.g:1542:2: (otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) ) )
+            // InternalBSharp.g:1541:2: ( (otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) ) ) )
+            // InternalBSharp.g:1542:2: (otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) ) )
             {
-            // InternalBSharp.g:1542:2: (otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) ) )
-            // InternalBSharp.g:1543:3: otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_context_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) )
+            // InternalBSharp.g:1542:2: (otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) ) )
+            // InternalBSharp.g:1543:3: otherlv_0= 'Datatype' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rawContext_2_0= rulePolyContext ) )? (otherlv_3= '|' ( (lv_constructors_4_0= ruleDatatypeConstructor ) ) )+ ( (lv_block_5_0= ruleBSharpBlock ) )
             {
             otherlv_0=(Token)match(input,38,FOLLOW_3); 
 
@@ -4303,7 +4303,7 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalBSharp.g:1565:3: ( (lv_context_2_0= rulePolyContext ) )?
+            // InternalBSharp.g:1565:3: ( (lv_rawContext_2_0= rulePolyContext ) )?
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -4312,16 +4312,16 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
             }
             switch (alt29) {
                 case 1 :
-                    // InternalBSharp.g:1566:4: (lv_context_2_0= rulePolyContext )
+                    // InternalBSharp.g:1566:4: (lv_rawContext_2_0= rulePolyContext )
                     {
-                    // InternalBSharp.g:1566:4: (lv_context_2_0= rulePolyContext )
-                    // InternalBSharp.g:1567:5: lv_context_2_0= rulePolyContext
+                    // InternalBSharp.g:1566:4: (lv_rawContext_2_0= rulePolyContext )
+                    // InternalBSharp.g:1567:5: lv_rawContext_2_0= rulePolyContext
                     {
 
-                    					newCompositeNode(grammarAccess.getDatatypeAccess().getContextPolyContextParserRuleCall_2_0());
+                    					newCompositeNode(grammarAccess.getDatatypeAccess().getRawContextPolyContextParserRuleCall_2_0());
                     				
                     pushFollow(FOLLOW_29);
-                    lv_context_2_0=rulePolyContext();
+                    lv_rawContext_2_0=rulePolyContext();
 
                     state._fsp--;
 
@@ -4331,8 +4331,8 @@ public class InternalBSharpParser extends AbstractInternalAntlrParser {
                     					}
                     					set(
                     						current,
-                    						"context",
-                    						lv_context_2_0,
+                    						"rawContext",
+                    						lv_rawContext_2_0,
                     						"ac.soton.bsharp.BSharp.PolyContext");
                     					afterParserOrEnumRuleCall();
                     				

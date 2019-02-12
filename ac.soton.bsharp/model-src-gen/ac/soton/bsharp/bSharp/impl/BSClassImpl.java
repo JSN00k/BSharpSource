@@ -44,6 +44,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.StringTypeInstance;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.security.auth.Refreshable;
@@ -394,6 +395,44 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		return super.eIsSet(featureID);
 	}
+	
+	protected PolyContext context = null;
+	
+	@Override
+	public PolyContext getContext() {
+		if (context != null)
+			return context;
+		
+		if (rawContext !=  null) {
+			context = rawContext;
+			return context;
+		}
+		
+		SuperTypeList superTypeList = getSupertypes();
+		if (superTypeList == null || superTypeList.isEmpty()) {
+			return null;
+		}
+		
+		TypeBuilder firstSType = superTypeList.getFirst();
+		
+		ClassDecl classDecl = firstSType.getClassDecl();
+		if (classDecl == null)
+			return null;
+		
+		/* If the super type has an attached context then it has to be complete.
+		 * This means that the types must either be declared in context of this
+		 * BSClass (in which case we'd have had a raw context and wouldn't have 
+		 * got to this point). Or they must be entirely concrete types. In which
+		 * case the current type doesn't have a polyContext.
+		 */
+		TypeDeclContext declContext = ((TypeConstructor)firstSType).getContext();
+		if (declContext != null) {
+			return null;
+		}
+		
+		context = EcoreUtil2.copy(classDecl.getContext());
+		return context;
+	}
 
 	public Collection<EObject> getVariablesNames() {
 		ArrayList<EObject> result = new ArrayList<EObject>();
@@ -416,20 +455,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * class
 	 */
 	public Integer eventBRequiredPolyTypes() {
-		generateInferredContext();
-		if (context != null) {
-			return context.eventBPolyVarCount();
-		} else if (supertypes != null) {
-			/* The polyContext is inferred from the supertype. */
-			TypeBuilder superclass = supertypes.getFirst();
-			if (superclass == null)
-				return 1;
-
-			BSClass sup = (BSClass) ((TypeConstructor) superclass).getTypeName();
-			return sup.eventBRequiredPolyTypes();
-		}
-
-		return 1;
+		PolyContext context = getContext();
+		if (context == null)
+			return 0;
+		
+		return context.polyTypesCount();
 	}
 
 	@Override
@@ -474,6 +504,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	/* Compiles the operator used to create an instance of this type class. */
 	public void compileOp() throws Exception {
+		PolyContext context = getContext();
 		compiledMatchStatements = 0;
 		/*
 		 * TODO: document this method working through a couple of event B examples to
@@ -485,8 +516,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		 * '1' The TypeEnvironmentBuilder needs fixing to resolve this issue.
 		 */
 		String iName = instanceName();
-
-		generateInferredContext();
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this);
 
 		INewOperatorDefinition op;
@@ -535,7 +564,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		else
 			opString += iName + " ∈ ";
 
-		opString += supertypes.supertypeType(polyTypedVars);
+		opString += supertypes.generateSuperTypeString(contextToConstructSuperType());
 
 		if (typedVars != null) {
 			opString += CompilationUtil.compileTypedVaribalesToTypedList(typedVars, false);
@@ -550,6 +579,24 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 		opString += "}";
 		TheoryUtils.createDirectDefinition(op, opString, null, nullMonitor);
+	}
+	
+	TypeDeclContext contextToConstructSuperType() {
+		PolyContext context = getContext();
+		
+		if (context == null || context.isEmpty())
+			return null;
+		
+		TypeDeclContext result = BSharpFactory.eINSTANCE.createTypeDeclContext();
+		List<TypeBuilder> wrappedPolyTypes = result.getTypeName();
+		
+		for (PolyType pt : context.getPolyTypes()) {
+			TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
+			tc.setTypeName(pt);
+			wrappedPolyTypes.add(tc);
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -589,7 +636,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	@Override
 	public ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass(TheoryImportCache theoryCache)
 			throws Exception {
-		generateInferredContext();
+		PolyContext context = getContext();
+		
 		TheoryImportCache thyCache = null;
 		if (theoryCache == null) {
 			thyCache = CompilationUtil.getTheoryCacheForElement(this);
@@ -597,28 +645,29 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			thyCache = theoryCache;
 		}
 
-		if (context != null) {
+		if (context == null)
+			return new ArrayList<Tuple2<String,String>>();
+		else
 			return context.namesAndTypesForPolyContext(thyCache);
-		}
 
-		if (supertypes == null) {
-			throw new Exception("Type class declared without any sort of supertype");
-		}
-
-		Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
-		if (sTypes == null || sTypes.isEmpty()) {
-			throw new Exception("Type class declared without any sort of supertype");
-		}
-
-		TypeBuilder sup = sTypes.iterator().next();
-
-		if (!sup.isAbstractTypeClass())
-			throw new Exception("Type class declared without any sort of supertype");
-
-		BSClass superClass = sup.getTypeClass();
-		ArrayList<Tuple2<String, String>> result = superClass.polyArgumentsToConstructGenericTypeClass(thyCache);
-
-		return result;
+//		if (supertypes == null) {
+//			throw new Exception("Type class declared without any sort of supertype");
+//		}
+//
+//		Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
+//		if (sTypes == null || sTypes.isEmpty()) {
+//			throw new Exception("Type class declared without any sort of supertype");
+//		}
+//
+//		TypeBuilder sup = sTypes.iterator().next();
+//
+//		if (!sup.isAbstractTypeClass())
+//			throw new Exception("Type class declared without any sort of supertype");
+//
+//		BSClass superClass = sup.getTypeClass();
+//		ArrayList<Tuple2<String, String>> result = superClass.polyArgumentsToConstructGenericTypeClass(thyCache);
+//
+//		return result;
 	}
 
 	@Override
@@ -715,10 +764,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		} catch (Exception e) {
 			// TODO: Validation against this.
 			System.err.println("Illegal type declaration, this should be validataed against.");
+			e.printStackTrace();
 			return null;
 		}
 
-		IMapletNode mappedVariables = mappedVariables((typeConstructors.get(typeConstructors.size() - 1).x));
+		IMapletNode mappedVariables = mappedVariables(baseType().buildEventBType());
 
 		if (mappedVariables == null) {
 			String argsForConstructor = "("
@@ -730,6 +780,62 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		MapletTypeInstance res = new MapletTypeInstance(this, typeConstructors, mappedVariables, context);
 		res.setIsInferredTypeInst(true);
 		return res;
+	}
+	
+	@Override
+	public TypeBuilder baseTypeForTypeDeclarationContext(TypeDeclContext tdContext) {
+		PolyContext ctx = getContext();
+		
+		if (ctx == null || ctx.isEmpty()) {
+			if (tdContext != null && !tdContext.isEmpty()) {
+				try {
+					throw new Exception("Variables in type declaration context don't match variables in polyContext");
+				} catch (Exception e) {
+					System.err.println("Variables in type declaration context don't match variables in polyContext");
+					e.printStackTrace();
+					return null;
+				}
+			}
+			
+			SuperTypeList superTypes = getSupertypes();
+			if (superTypes == null || superTypes.isEmpty()) {
+				try {
+					throw new Exception("Type Class has no supertype");
+				} catch (Exception e) {
+					System.err.println("Type Class has no supertype");
+					e.printStackTrace();
+					return null;
+				}
+			}
+				
+			TypeConstructor tc = (TypeConstructor) superTypes.getFirst();
+			TypeDeclContext tdc = tc.getContext();
+			ClassDecl classDecl = tc.getClassDecl();
+			return classDecl.baseTypeForTypeDeclarationContext(tdc);
+		}
+		
+		TypeBuilder baseType = baseType().reorderTypeTree();
+		List<PolyType> polyTypes = ctx.getPolyTypes();
+		List<TypeBuilder> concreteTypes = tdContext.getTypeName();
+		int tdContextSize = concreteTypes.size();
+		int ctxSize = polyTypes.size();
+		if (ctxSize != tdContextSize) {
+			try {
+				throw new Exception("Variables in type declaration context don't match variables in polyContext");
+			} catch (Exception e) {
+				System.err.println("Variables in type declaration context don't match variables in polyContext");
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		HashMap<PolyType, TypeBuilder> typeMap = new HashMap<PolyType, TypeBuilder>();
+		for(int i = 0; i < tdContextSize; ++i) {
+			typeMap.put(polyTypes.get(i), concreteTypes.get(i));
+		}
+
+		TypeBuilder varReplaced = baseType.copyWithConcreteTypes(typeMap);
+		return varReplaced;
 	}
 
 	INewOperatorDefinition constructOpForGetterWithName(String n) {
@@ -764,6 +870,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	public void compileGetterOperators() {
+		PolyContext context = getContext();
 		String iName = instanceName();
 
 		if (supertypes != null) {
@@ -772,7 +879,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			 * subtypes. This makes coding simpler. The supertype is always at prj1. of the
 			 * type.
 			 */
-			ArrayList<String> polyVars = context.namesForPolyContextTypes();
+			ArrayList<String> polyVars;
+			if (context != null)
+				polyVars = context.namesForPolyContextTypes();
+			else
+				polyVars = new ArrayList<String>();
 			
 			TypedVariableList varList = getVarList();
 			if (varList != null && getVarList().count() != 0)
@@ -891,15 +1002,18 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	@Override
-	public String constructWithTypeContext(TypeDeclContext ctx, ClassDecl containerType) {
-		generateInferredContext();
+	public String constructWithTypeContext(TypeDeclContext ctx) {
+		//Use This to solve the porblem.
+		PolyContext context = getContext();
+
+
+		String result = eventBPolymorphicTypeConstructorName();
+		
 		if (context == null)
 			return "()";
 
-		String result = eventBPolymorphicTypeConstructorName();
-
 		try {
-			result += context.compileCallWithTypeContext(ctx, containerType);
+			result += context.compileCallWithTypeContext(ctx);
 		} catch (Exception e) {
 			System.err.print(e.getLocalizedMessage());
 		}
@@ -909,7 +1023,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	
 	@Override
 	public String constructWithTypeInstances(List<ITypeInstance> instList) {
-		generateInferredContext();
+		PolyContext context = getContext();
 		if (context == null) {
 			return eventBPolymorphicTypeConstructorName() + "()";
 		}
@@ -922,7 +1036,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 	@Override
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
-		generateInferredContext();
+		PolyContext context = getContext();
 		TypeDeclContext ctx = fc.getContext();
 		EList<Expression> arguments = fc.getArguments();
 
@@ -936,7 +1050,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				 * I'm not sure that this should be possible either. It would require the
 				 * unification of types and instances (I think).
 				 */
-				return name;
+				return eventBPolymorphicTypeConstructorName();
 			}
 		}
 
@@ -950,7 +1064,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 			if (EcoreUtil2.getContainerOfType(fc, TheoremDecl.class) != null
 					|| EcoreUtil2.getContainerOfType(fc, FunctionDecl.class) != null)
-				result = name;
+				result = eventBPolymorphicTypeConstructorName();
 			else {
 				/* We need to know about the type this was referenced from. */
 				BSClass containingClass = EcoreUtil2.getContainerOfType(fc, BSClass.class);
@@ -959,7 +1073,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					/* Due to a name change this requires special casing. */
 					result = containingClass.instanceName();
 				} else {
-					result = name;
+					result = eventBPolymorphicTypeConstructorName();
 				}
 			}
 
@@ -978,7 +1092,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			 * If there is a context then it is necessary to build the types within the
 			 * context correctly. Fortunately there is a method on the context to do this.
 			 */
-			// context.compileCallWithTypeContext(ctx);
+			return eventBPolymorphicTypeConstructorName() + context.compileCallWithTypeContext(ctx);
 		}
 
 		return null;
@@ -988,33 +1102,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	public String eventBPrefix() {
 		// TODO Fix this when a prefix can be manually set.
 		return getName();
-	}
-
-	/*
-	 * If there is an inferred Context for this type class because it has super
-	 * types which are type classes, this method will create the inferred context if
-	 * it hasn't already been created.
-	 */
-	public void generateInferredContext() {
-		if (context != null)
-			return;
-
-		if (supertypes == null)
-			return;
-
-		EList<TypeBuilder> sTypes = supertypes.getSuperTypes();
-		if (sTypes == null || sTypes.isEmpty())
-			return;
-
-		TypeBuilder first = sTypes.get(0);
-		BSClass s = first.getTypeClass();
-		context = EcoreUtil2.copy(s.getContext());
-	}
-
-	@Override
-	public PolyContext getContext() {
-		generateInferredContext();
-		return context;
 	}
 
 	/* Reduces the type to the BSharp type without any Type classes within it. */
@@ -1071,16 +1158,20 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		EList<TypeBuilder> sTypes = supertypes.getSuperTypes();
 
 		for (TypeBuilder supT : sTypes) {
-			if (supT.isAbstractTypeClass()) {
-				BSClass s = supT.getTypeClass();
-				Integer prjs = s.prjsRequiredForSupertype(sType);
-				/* If there are no new variables then the supertype doesn't require an extra prj. */
-				TypedVariableList varList = getVarList();
-				if (prjs != null && varList != null && varList.varCount() != 0)
-					return prjs + 1;
-				else 
-					return prjs;
-			}
+			BSClass s = supT.getTypeClass();
+			if (s == null)
+				continue;
+
+			Integer prjs = s.prjsRequiredForSupertype(sType);
+			/*
+			 * If there are no new variables then the supertype doesn't require an extra
+			 * prj.
+			 */
+			TypedVariableList varList = getVarList();
+			if (prjs != null && varList != null && varList.varCount() != 0)
+				return prjs + 1;
+			else
+				return prjs;
 		}
 
 		return null;
@@ -1131,6 +1222,13 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 			if (super1 instanceof TypePowerSet) {
 				super1 = ((TypePowerSet) super1).getChild();
+			}
+			
+			if (super1 instanceof TypeConstructor) {
+				TypeDeclContext ctx = ((TypeConstructor)super1).getContext();
+				if (ctx != null) {
+					return ((ClassDecl)((TypeConstructor) super1).getTypeName()).baseTypeForTypeDeclarationContext(ctx);
+				}
 			}
 
 			if (super1.isBaseType())
@@ -1273,7 +1371,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 */
 	@Override
 	public String baseTypeFromBSContext() {
-		generateInferredContext();
+		PolyContext context = getContext();
 		ArrayList<String> polyTypedVars = context.namesForPolyContextTypes();
 		TypeBuilder baseType = baseType();
 		return baseType.constructWithTypes(polyTypedVars);

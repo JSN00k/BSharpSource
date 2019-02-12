@@ -4,9 +4,10 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
-
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -370,6 +371,8 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 		return true;
 	}
 	
+	/* TODO: I haven't handled brackets there is currently no code to decide when they are required. */
+	
 	@Override
 	void getPrimativeTypePathsByDeconstructionInternal( 
 			ArrayList<Integer> currentPath, LinkedHashMap<String, ArrayList<Integer>> paths) {
@@ -391,5 +394,16 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 	public boolean referencesContainingType() {
 		return left.referencesContainingType() || right.referencesContainingType();
 	}
+
+	@Override
+	public TypeBuilder copyWithConcreteTypes(HashMap<PolyType, TypeBuilder> typeMap) {
+		ConstructedType result = BSharpFactory.eINSTANCE.createConstructedType();
+		result.setLeft(getLeft().copyWithConcreteTypes(typeMap));
+		result.setRight(getRight().copyWithConcreteTypes(typeMap));
+		result.setConstructor(getConstructor());
+		return result;
+	}
+
+
 
 } //ConstructedTypeImpl

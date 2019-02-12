@@ -112,7 +112,7 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 
 	@Override
 	public Tuple2<ExprPredEnum, ExprPredEnum> infixArgumentExprPredTypes() {
-		if (name.equals("=") || name.contentEquals("≠"))
+		if (name.equals("=") || name.contentEquals("≠") || name.contentEquals("∈"))
 			return new Tuple2<ExprPredEnum, ExprPredEnum>(ExprPredEnum.EXPRESSION, ExprPredEnum.EXPRESSION) ;
 			
 		return new Tuple2<ExprPredEnum, ExprPredEnum>(ExprPredEnum.PREDICATE, ExprPredEnum.PREDICATE);

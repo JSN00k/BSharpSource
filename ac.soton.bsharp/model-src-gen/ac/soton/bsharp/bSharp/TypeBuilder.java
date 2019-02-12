@@ -53,4 +53,6 @@ public interface TypeBuilder extends ExpressionVariable {
 	String constructWithTypes(ArrayList<String> requiredEBTypes);
 
 	boolean referencesContainingType();
+
+	TypeBuilder copyWithConcreteTypes(HashMap<PolyType, TypeBuilder> typeMap);
 } // TypeBuilder

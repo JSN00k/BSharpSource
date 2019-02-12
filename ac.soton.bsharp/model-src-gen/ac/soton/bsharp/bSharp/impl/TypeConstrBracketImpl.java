@@ -3,12 +3,15 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -201,7 +204,12 @@ public class TypeConstrBracketImpl extends TypeBuilderImpl implements TypeConstr
 	public boolean referencesContainingType() {
 		return child.referencesContainingType();
 	}
-	
-	
 
+	@Override
+	public TypeBuilder copyWithConcreteTypes(HashMap<PolyType, TypeBuilder> typeMap) {
+		TypeConstrBracket result = BSharpFactory.eINSTANCE.createTypeConstrBracket();
+		result.setChild(child.copyWithConcreteTypes(typeMap));
+		return result;
+	}
+	
 } //TypeConstrBracketImpl

@@ -432,8 +432,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cClassKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cContextPolyContextParserRuleCall_2_0 = (RuleCall)cContextAssignment_2.eContents().get(0);
+		private final Assignment cRawContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRawContextPolyContextParserRuleCall_2_0 = (RuleCall)cRawContextAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cLeftSquareBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cInstNameAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -453,12 +453,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockBSharpBlockParserRuleCall_8_0 = (RuleCall)cBlockAssignment_8.eContents().get(0);
 		
 		///* ------------------------ Class statements --------------------- */ Class BSClass:
-		//	'Class' name=ID context=PolyContext? ('[' instName=InstName ']') supertypes=SuperTypeList? ('('
+		//	'Class' name=ID rawContext=PolyContext? ('[' instName=InstName ']') supertypes=SuperTypeList? ('('
 		//	varList=TypedVariableList ')')? where=Where? ';'?
 		//	block=BSharpBlock;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Class' name=ID context=PolyContext? ('[' instName=InstName ']') supertypes=SuperTypeList? ('('
+		//'Class' name=ID rawContext=PolyContext? ('[' instName=InstName ']') supertypes=SuperTypeList? ('('
 		//varList=TypedVariableList ')')? where=Where? ';'? block=BSharpBlock
 		public Group getGroup() { return cGroup; }
 		
@@ -471,11 +471,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//context=PolyContext?
-		public Assignment getContextAssignment_2() { return cContextAssignment_2; }
+		//rawContext=PolyContext?
+		public Assignment getRawContextAssignment_2() { return cRawContextAssignment_2; }
 		
 		//PolyContext
-		public RuleCall getContextPolyContextParserRuleCall_2_0() { return cContextPolyContextParserRuleCall_2_0; }
+		public RuleCall getRawContextPolyContextParserRuleCall_2_0() { return cRawContextPolyContextParserRuleCall_2_0; }
 		
 		//'[' instName=InstName ']'
 		public Group getGroup_3() { return cGroup_3; }
@@ -999,8 +999,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDatatypeKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cContextPolyContextParserRuleCall_2_0 = (RuleCall)cContextAssignment_2.eContents().get(0);
+		private final Assignment cRawContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRawContextPolyContextParserRuleCall_2_0 = (RuleCall)cRawContextAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cVerticalLineKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cConstructorsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -1009,10 +1009,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockBSharpBlockParserRuleCall_4_0 = (RuleCall)cBlockAssignment_4.eContents().get(0);
 		
 		///* ---------------------- Datatype declarations -------------------------- */ Datatype:
-		//	'Datatype' name=ID context=PolyContext? ('|' constructors+=DatatypeConstructor)+ block=BSharpBlock;
+		//	'Datatype' name=ID rawContext=PolyContext? ('|' constructors+=DatatypeConstructor)+ block=BSharpBlock;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Datatype' name=ID context=PolyContext? ('|' constructors+=DatatypeConstructor)+ block=BSharpBlock
+		//'Datatype' name=ID rawContext=PolyContext? ('|' constructors+=DatatypeConstructor)+ block=BSharpBlock
 		public Group getGroup() { return cGroup; }
 		
 		//'Datatype'
@@ -1024,11 +1024,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//context=PolyContext?
-		public Assignment getContextAssignment_2() { return cContextAssignment_2; }
+		//rawContext=PolyContext?
+		public Assignment getRawContextAssignment_2() { return cRawContextAssignment_2; }
 		
 		//PolyContext
-		public RuleCall getContextPolyContextParserRuleCall_2_0() { return cContextPolyContextParserRuleCall_2_0; }
+		public RuleCall getRawContextPolyContextParserRuleCall_2_0() { return cRawContextPolyContextParserRuleCall_2_0; }
 		
 		//('|' constructors+=DatatypeConstructor)+
 		public Group getGroup_3() { return cGroup_3; }
@@ -2584,7 +2584,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ------------------------ Class statements --------------------- */ Class BSClass:
-	//	'Class' name=ID context=PolyContext? ('[' instName=InstName ']') supertypes=SuperTypeList? ('('
+	//	'Class' name=ID rawContext=PolyContext? ('[' instName=InstName ']') supertypes=SuperTypeList? ('('
 	//	varList=TypedVariableList ')')? where=Where? ';'?
 	//	block=BSharpBlock;
 	public ClassElements getClassAccess() {
@@ -2740,7 +2740,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ---------------------- Datatype declarations -------------------------- */ Datatype:
-	//	'Datatype' name=ID context=PolyContext? ('|' constructors+=DatatypeConstructor)+ block=BSharpBlock;
+	//	'Datatype' name=ID rawContext=PolyContext? ('|' constructors+=DatatypeConstructor)+ block=BSharpBlock;
 	public DatatypeElements getDatatypeAccess() {
 		return pDatatype;
 	}

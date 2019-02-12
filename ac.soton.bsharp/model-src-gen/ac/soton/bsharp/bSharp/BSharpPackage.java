@@ -830,13 +830,13 @@ public interface BSharpPackage extends EPackage {
 	int CLASS_DECL__BLOCK = TOP_LEVEL_INSTANCE__BLOCK;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * The feature id for the '<em><b>Raw Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DECL__CONTEXT = TOP_LEVEL_INSTANCE_FEATURE_COUNT + 0;
+	int CLASS_DECL__RAW_CONTEXT = TOP_LEVEL_INSTANCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Class Decl</em>' class.
@@ -866,13 +866,13 @@ public interface BSharpPackage extends EPackage {
 	int BS_CLASS__BLOCK = CLASS_DECL__BLOCK;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * The feature id for the '<em><b>Raw Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BS_CLASS__CONTEXT = CLASS_DECL__CONTEXT;
+	int BS_CLASS__RAW_CONTEXT = CLASS_DECL__RAW_CONTEXT;
 
 	/**
 	 * The feature id for the '<em><b>Supertypes</b></em>' containment reference.
@@ -1073,13 +1073,13 @@ public interface BSharpPackage extends EPackage {
 	int DATATYPE__BLOCK = CLASS_DECL__BLOCK;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * The feature id for the '<em><b>Raw Context</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATATYPE__CONTEXT = CLASS_DECL__CONTEXT;
+	int DATATYPE__RAW_CONTEXT = CLASS_DECL__RAW_CONTEXT;
 
 	/**
 	 * The feature id for the '<em><b>Constructors</b></em>' containment reference list.
@@ -2499,15 +2499,15 @@ public interface BSharpPackage extends EPackage {
 	EClass getClassDecl();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.ClassDecl#getContext <em>Context</em>}'.
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.ClassDecl#getRawContext <em>Raw Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Context</em>'.
-	 * @see ac.soton.bsharp.bSharp.ClassDecl#getContext()
+	 * @return the meta object for the containment reference '<em>Raw Context</em>'.
+	 * @see ac.soton.bsharp.bSharp.ClassDecl#getRawContext()
 	 * @see #getClassDecl()
 	 * @generated
 	 */
-	EReference getClassDecl_Context();
+	EReference getClassDecl_RawContext();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.BSClass <em>BS Class</em>}'.
@@ -4031,12 +4031,12 @@ public interface BSharpPackage extends EPackage {
 		EClass CLASS_DECL = eINSTANCE.getClassDecl();
 
 		/**
-		 * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Raw Context</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLASS_DECL__CONTEXT = eINSTANCE.getClassDecl_Context();
+		EReference CLASS_DECL__RAW_CONTEXT = eINSTANCE.getClassDecl_RawContext();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.BSClassImpl <em>BS Class</em>}' class.

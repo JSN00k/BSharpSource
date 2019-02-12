@@ -265,7 +265,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         context=PolyContext? 
+	 *         rawContext=PolyContext? 
 	 *         instName=InstName 
 	 *         supertypes=SuperTypeList? 
 	 *         varList=TypedVariableList? 
@@ -327,7 +327,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Datatype returns Datatype
 	 *
 	 * Constraint:
-	 *     (name=ID context=PolyContext? constructors+=DatatypeConstructor+ block=BSharpBlock)
+	 *     (name=ID rawContext=PolyContext? constructors+=DatatypeConstructor+ block=BSharpBlock)
 	 */
 	protected void sequence_Datatype(ISerializationContext context, Datatype semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

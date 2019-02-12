@@ -46,9 +46,6 @@ public interface SuperTypeList extends EObject {
 	
 	TypeBuilder getFirst();
 
-	/* Creates an EventB type string respresenting the type of the supertype. */
-	String supertypeType(ArrayList<Tuple2<String, String>> bsOpPolyTypes);
-
 	boolean isPowerSet();
 
 	boolean isEmpty();
@@ -56,4 +53,7 @@ public interface SuperTypeList extends EObject {
 	boolean containsType(ClassDecl type);
 
 	boolean containsTypeRecursive(ClassDecl type);
+
+	/* Compiles the super types of a type class, resultant string will be something like T \in SymRel(T) n ReflexRel(T)... */
+	String generateSuperTypeString(TypeDeclContext typeArguments);
 } // SuperTypeList

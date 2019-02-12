@@ -2522,9 +2522,9 @@ rule__Class__Group__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getClassAccess().getContextAssignment_2()); }
-	(rule__Class__ContextAssignment_2)?
-	{ after(grammarAccess.getClassAccess().getContextAssignment_2()); }
+	{ before(grammarAccess.getClassAccess().getRawContextAssignment_2()); }
+	(rule__Class__RawContextAssignment_2)?
+	{ after(grammarAccess.getClassAccess().getRawContextAssignment_2()); }
 )
 ;
 finally {
@@ -4014,9 +4014,9 @@ rule__Datatype__Group__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDatatypeAccess().getContextAssignment_2()); }
-	(rule__Datatype__ContextAssignment_2)?
-	{ after(grammarAccess.getDatatypeAccess().getContextAssignment_2()); }
+	{ before(grammarAccess.getDatatypeAccess().getRawContextAssignment_2()); }
+	(rule__Datatype__RawContextAssignment_2)?
+	{ after(grammarAccess.getDatatypeAccess().getRawContextAssignment_2()); }
 )
 ;
 finally {
@@ -7391,15 +7391,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Class__ContextAssignment_2
+rule__Class__RawContextAssignment_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getClassAccess().getContextPolyContextParserRuleCall_2_0()); }
+		{ before(grammarAccess.getClassAccess().getRawContextPolyContextParserRuleCall_2_0()); }
 		rulePolyContext
-		{ after(grammarAccess.getClassAccess().getContextPolyContextParserRuleCall_2_0()); }
+		{ after(grammarAccess.getClassAccess().getRawContextPolyContextParserRuleCall_2_0()); }
 	)
 ;
 finally {
@@ -7763,15 +7763,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Datatype__ContextAssignment_2
+rule__Datatype__RawContextAssignment_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getDatatypeAccess().getContextPolyContextParserRuleCall_2_0()); }
+		{ before(grammarAccess.getDatatypeAccess().getRawContextPolyContextParserRuleCall_2_0()); }
 		rulePolyContext
-		{ after(grammarAccess.getDatatypeAccess().getContextPolyContextParserRuleCall_2_0()); }
+		{ after(grammarAccess.getDatatypeAccess().getRawContextPolyContextParserRuleCall_2_0()); }
 	)
 ;
 finally {

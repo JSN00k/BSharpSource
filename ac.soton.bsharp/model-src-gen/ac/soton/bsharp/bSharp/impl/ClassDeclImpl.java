@@ -41,22 +41,21 @@ import org.eclipse.xtext.EcoreUtil2;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl#getRawContext <em>Raw Context</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements ClassDecl {
 	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
+	 * The cached value of the '{@link #getRawContext() <em>Raw Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContext()
+	 * @see #getRawContext()
 	 * @generated
 	 * @ordered
 	 */
-	protected PolyContext context;
-
+	protected PolyContext rawContext;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,8 +80,8 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PolyContext getContext() {
-		return context;
+	public PolyContext getRawContext() {
+		return rawContext;
 	}
 
 	/**
@@ -90,11 +89,11 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContext(PolyContext newContext, NotificationChain msgs) {
-		PolyContext oldContext = context;
-		context = newContext;
+	public NotificationChain basicSetRawContext(PolyContext newRawContext, NotificationChain msgs) {
+		PolyContext oldRawContext = rawContext;
+		rawContext = newRawContext;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_DECL__CONTEXT, oldContext, newContext);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_DECL__RAW_CONTEXT, oldRawContext, newRawContext);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -105,18 +104,18 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContext(PolyContext newContext) {
-		if (newContext != context) {
+	public void setRawContext(PolyContext newRawContext) {
+		if (newRawContext != rawContext) {
 			NotificationChain msgs = null;
-			if (context != null)
-				msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.CLASS_DECL__CONTEXT, null, msgs);
-			if (newContext != null)
-				msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.CLASS_DECL__CONTEXT, null, msgs);
-			msgs = basicSetContext(newContext, msgs);
+			if (rawContext != null)
+				msgs = ((InternalEObject)rawContext).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.CLASS_DECL__RAW_CONTEXT, null, msgs);
+			if (newRawContext != null)
+				msgs = ((InternalEObject)newRawContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.CLASS_DECL__RAW_CONTEXT, null, msgs);
+			msgs = basicSetRawContext(newRawContext, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_DECL__CONTEXT, newContext, newContext));
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_DECL__RAW_CONTEXT, newRawContext, newRawContext));
 	}
 
 	/**
@@ -127,8 +126,8 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__CONTEXT:
-				return basicSetContext(null, msgs);
+			case BSharpPackage.CLASS_DECL__RAW_CONTEXT:
+				return basicSetRawContext(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -141,8 +140,8 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__CONTEXT:
-				return getContext();
+			case BSharpPackage.CLASS_DECL__RAW_CONTEXT:
+				return getRawContext();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,8 +155,8 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__CONTEXT:
-				setContext((PolyContext)newValue);
+			case BSharpPackage.CLASS_DECL__RAW_CONTEXT:
+				setRawContext((PolyContext)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -171,8 +170,8 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__CONTEXT:
-				setContext((PolyContext)null);
+			case BSharpPackage.CLASS_DECL__RAW_CONTEXT:
+				setRawContext((PolyContext)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -186,8 +185,8 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.CLASS_DECL__CONTEXT:
-				return context != null;
+			case BSharpPackage.CLASS_DECL__RAW_CONTEXT:
+				return rawContext != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -200,12 +199,18 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	}
 	
 	public Collection<PolyType> getPolyTypeNames() {
+		PolyContext ctx = getRawContext();
 		/* Context is the Polynomial context. */
-		if (context != null) {
-			return EcoreUtil2.getAllContentsOfType(context, PolyType.class);
+		if (ctx != null) {
+			return EcoreUtil2.getAllContentsOfType(ctx, PolyType.class);
 		} else {
-;			return new ArrayList<PolyType>();
+			return new ArrayList<PolyType>();
 		}
+	}
+	
+	@Override
+	public PolyContext getContext() {
+		return getRawContext();
 	}
 
 } //ClassDeclImpl

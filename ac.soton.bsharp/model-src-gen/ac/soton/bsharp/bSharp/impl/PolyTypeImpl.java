@@ -152,7 +152,7 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 	/* The call type may not be exactly the type that is required by the polymorphic context that is 
 	 * being called. This function applies prj1s to the call type until the correct super type is found
 	 */
-	String deconstructionType(TypeBuilder callType, ClassDecl containerType) {
+	String deconstructionType(TypeBuilder callType) {
 		callType.reorderTypeTree();
 		
 		if (callType instanceof ConstructedType) {
@@ -180,19 +180,6 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 			return CompilationUtil.wrapNameInPrj1s(otherPoly.getName(), prjsRequired);
 		}
 		
-		if (generic instanceof InstName) {
-			Integer prjsRequired = ((BSClass)generic.eContainer()).prjsRequiredForSupertype(sType);
-			if (generic.eContainer() == containerType) {
-				/* When within a type class declaration the type class can be refered to as a type
-				 * without any constructors rather than having a this/self structure. I believe that
-				 * we can only get to this point within the type class declaration, so
-				 * we need to use the supertype inst. */
-				return CompilationUtil.wrapNameInPrj1s(((InstName)generic).getName(), prjsRequired - 1);
-			}
-			
-			return CompilationUtil.wrapNameInPrj1s(callType.buildEventBType(), prjsRequired);
-		}
-		
 		if (generic instanceof Datatype) {
 			return callType.buildEventBType() + "_" + sType.getName();
 		}
@@ -205,7 +192,7 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 	 * total EventB type. This is what this method does.
 	 */
 	@Override
-	public String deconstructTypeToArguments(TypeBuilder callType, ClassDecl containerType) {
+	public String deconstructTypeToArguments(TypeBuilder callType) {
 		/* All the supertypes require the same type structure. so we can get the
 		 * first supertype and go from there. If there are no supertypes then
 		 * just return the call type compiled as is.
@@ -216,11 +203,22 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 
 		BSClass sType = (BSClass)superTypes.get(0);
 		
+		/* TODO: Change this so that it uses TypeInstances always. This will require a 
+		 * function to make type instances more generally from the call type.
+		 */
+		if (callType instanceof TypeConstructor) {
+			GenName typeName = ((TypeConstructor) callType).getTypeName();
+			if (typeName instanceof InstName) {
+				ITypeInstance typeInst = CompilationUtil.getTypeInstance(callType);
+				return sType.constructorArgsForTypeInstance(typeInst);
+			}
+		}
+		
 		/* DeconstructEventBTypeToArguments takes an Event-B string as an argument,
 		 * and applies prjs and doms to build the EventB type constructor. This job is
 		 * going to be taken over by the ITypeInstance interface.
 		 */
-		return sType.deconstructEventBTypeToArguments(deconstructionType(callType, containerType));
+		return sType.deconstructEventBTypeToArguments(deconstructionType(callType));
 	}
 	
 	@Override
@@ -328,6 +326,25 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 		result.add(new Tuple2<String, String>(name, constructedType));
 		
 		return result;
+	}
+	
+	/* Due to references not always being identical objects I've implemented a simple hash() and
+	 * equals() method. If necessary the object in which the type is declared could be examined to 
+	 * make sure that there isn't a class with another similar type name. I can't think of a situation
+	 * where this could be possible. The fact that I've had to implement these methods may suggest that 
+	 * there is a problem with the wrong PolyType being referenced. TODO: investigate if the wrong polytype
+	 * is being referenced by putting a breakpoint in one of the below methods and checking the context
+	 * in which the two types appear is "the same" context.
+	 */
+	@Override public int hashCode() {
+		return name.hashCode();
+	}
+	
+	@Override public boolean equals(Object o) {
+		if (!(o instanceof PolyType))
+			return false;
+		
+		return getName().equals(((PolyType)o).getName());
 	}
 
 } //PolyTypeImpl

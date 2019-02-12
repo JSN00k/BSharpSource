@@ -52,12 +52,6 @@ public interface PolyContext extends EObject {
 	/* Returns the number of types declared in the polyContext. */
 	int polyTypesCount();
 
-	/* Something with a context has been called with the context arguments, it is necessary to 
-	 * resolve types properly, searching for the correct supertypes to fill the context in EventB
-	 * This method does that.
-	 */
-	String compileCallWithTypeContext(TypeDeclContext ctx, ClassDecl containerType) throws Exception;
-
 	/* thyCache can potentially be null, however, if the polymorphic types are references this may cause
 	 * a crash.
 	 */
@@ -68,6 +62,12 @@ public interface PolyContext extends EObject {
 	boolean isEmpty();
 
 	String compileEventBTypeConstructorArguments(List<ITypeInstance> instList);
+
+	/* Something with a context has been called with the context arguments, it is necessary to 
+	 * resolve types properly, searching for the correct supertypes to fill the context in EventB
+	 * This method does that.
+	 */
+	String compileCallWithTypeContext(TypeDeclContext ctx) throws Exception;
 
 	
 } // PolyContext

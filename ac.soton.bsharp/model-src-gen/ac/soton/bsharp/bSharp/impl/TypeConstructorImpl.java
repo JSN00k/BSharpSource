@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
@@ -24,6 +25,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -273,49 +275,11 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 			String result =typeInst.baseTypeString();
 			
 			return result;
-			
-//			FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
-//			TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
-//			BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
-//			if (func != null) {
-//				return ((BSClass)((InstName)tn).eContainer()).baseTypeFromBSContext();
-//			} else if (theorem != null) {
-//				return theorem.baseTypeForBSClass((BSClass)tn.eContainer());
-//			} else if (bsClass != null) {
-//				return bsClass.baseTypeFromBSContext();
-//			}
-//			
-//			return "";
 		}
 		
 		if (tn instanceof ClassDecl) {
 			if (context != null) {
-				/*
-				 * In type class declarations it is possible for a variable to be a : Monoid a
-				 * monoid is a type with additional features (e.g. an identity) a : Monoid means
-				 * that a is in the Monoid type. If we are in the monoid constructutor the
-				 * polymorphic type used to construct the monoid can be used directly. If we are
-				 * in a function or a theorem then the context of the function/theorm needs to
-				 * be be considered.
-				 */
-
-				FunctionDecl func = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
-				TheoremDecl theorem = EcoreUtil2.getContainerOfType(this, TheoremDecl.class);
-				BSClass bsClass = EcoreUtil2.getContainerOfType(this, BSClass.class);
-				if (func != null) {
-					// TODO: Implement me!
-					return "";
-				} else if (theorem != null) {
-					// TODO: Implement me!
-				} else if (bsClass != null) {
-					/*
-					 * As we're not in a function or theorem, we can check if we're in a type class
-					 * without us bing further into the tree.
-					 */
-					return ((ClassDecl)tn).constructWithTypeContext(context, bsClass);
-				}
-				
-				return "";
+				return ((ClassDecl)tn).constructWithTypeContext(context);
 			}
 
 			String tName = tn.getName();
@@ -443,10 +407,36 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	
 	@Override
 	public ClassDecl getClassDecl() {
+		GenName typeName = getTypeName();
 		if (typeName instanceof ClassDecl)
 			return (ClassDecl)getTypeName();
 		
 		return null;
 	}
 
+	@Override
+	public TypeBuilder copyWithConcreteTypes(HashMap<PolyType, TypeBuilder> typeMap) {
+		GenName type = getTypeName();
+		if (type instanceof PolyType) {
+			return EcoreUtil2.copy(typeMap.get((PolyType)type));
+		} else {
+			TypeConstructor clone = EcoreUtil2.copy(this);
+			TypeDeclContext cloneContext = clone.getContext();
+			if (cloneContext == null)
+				return clone;
+			
+			List<TypeBuilder> clonesTypes = clone.getContext().getTypeName();
+			clonesTypes.clear();
+			
+			TypeDeclContext context = getContext();
+			List<TypeBuilder> typeBuilderList = context.getTypeName();
+			
+			
+			for (TypeBuilder tb : typeBuilderList) {
+				clonesTypes.add(tb.copyWithConcreteTypes(typeMap));
+			}
+			
+			return clone;
+		}
+	}
 } //TypeConstructorImpl

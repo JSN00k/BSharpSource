@@ -1078,10 +1078,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 		ClassDecl containType = CompilationUtil.getClassDecl(this);
 
-		ArrayList<String> polyTypes = typeInst.typeConstructionTypes();
-		String result = CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(polyTypes, ", ", true);
+		String result = containType.constructorArgsForTypeInstance(typeInst);
+//		ArrayList<String> polyTypes = typeInst.typeConstructionTypes();
+//		String result = CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(polyTypes, ", ", true);
 
-		result += ",  " + typeInst.eventBTypeInstanceForType(containType);
+//		result += ",  " + typeInst.eventBTypeInstanceForType(containType);
 		return result;
 	}
 
@@ -1091,8 +1092,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(evBTypeInstance.typeConstructionTypes(),
 				", ", true);
 		if (context != null) {
-			ClassDecl clContainer = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
-			result += ", " + context.compileCallWithTypeContext(fc.getContext(), clContainer);
+			result += ", " + context.compileCallWithTypeContext(fc.getContext());
 		}
 
 		EList<Expression> exprs = fc.getArguments();
@@ -1132,11 +1132,6 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		}
 
 		String result = eventBExprName() + "(";
-		/*
-		 * TODO: it is unclear to me why I would need the container type in this
-		 * context, see if the code can be re-written to avoid this.
-		 */
-		ClassDecl clContainer = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
 		
 		boolean hasInferredContext = hasInferredContext();
 		
@@ -1149,7 +1144,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			if (hasInferredContext)
 				result += ", ";
 				
-			result += context.compileCallWithTypeContext(ctx, clContainer);
+			result += context.compileCallWithTypeContext(ctx);
 		}
 		
 		result += ")";

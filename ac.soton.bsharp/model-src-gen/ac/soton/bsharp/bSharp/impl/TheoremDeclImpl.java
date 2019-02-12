@@ -355,6 +355,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				ebPred = forallLambda.compileToEventBStringWithInferredTypeArgs(true, this.typeInst.isInferredTypeInst());
 			} catch (Exception e) {
 				System.err.println("Unable to compile expression with error: " + e.getLocalizedMessage());
+				e.printStackTrace();
 				return;
 			}
 			

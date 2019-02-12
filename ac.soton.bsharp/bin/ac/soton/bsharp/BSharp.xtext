@@ -92,7 +92,7 @@ LocalImport:
 
 
 Class returns BSClass:
-	'Class' name=ID (context=PolyContext)? ('[' instName=InstName ']') (supertypes=SuperTypeList)? ('(' varList=TypedVariableList ')')? (where=Where)? (';')? 
+	'Class' name=ID (rawContext=PolyContext)? ('[' instName=InstName ']') (supertypes=SuperTypeList)? ('(' varList=TypedVariableList ')')? (where=Where)? (';')? 
 	block=BSharpBlock
 ;
 
@@ -176,7 +176,7 @@ Where:
 /* ---------------------- Datatype declarations -------------------------- */
 
 Datatype:
-	'Datatype' name=ID (context=PolyContext)? ('|' constructors+=DatatypeConstructor)+ block=BSharpBlock
+	'Datatype' name=ID (rawContext=PolyContext)? ('|' constructors+=DatatypeConstructor)+ block=BSharpBlock
 ;
 
 /* PolyContext is the same as PolyContext used by the class declaration above. */
