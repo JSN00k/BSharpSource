@@ -60,6 +60,7 @@ public class InstanceItemProvider
 
 			addNamePropertyDescriptor(object);
 			addClassNamePropertyDescriptor(object);
+			addClassNameNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -109,6 +110,28 @@ public class InstanceItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Class Name Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addClassNameNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Instance_classNameName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Instance_classNameName_feature", "_UI_Instance_type"),
+				 BSharpPackage.Literals.INSTANCE__CLASS_NAME_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -122,6 +145,7 @@ public class InstanceItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(BSharpPackage.Literals.INSTANCE__CONTEXT);
 			childrenFeatures.add(BSharpPackage.Literals.INSTANCE__ARGUMENTS);
+			childrenFeatures.add(BSharpPackage.Literals.INSTANCE__REFERENCING_FUNCS);
 		}
 		return childrenFeatures;
 	}
@@ -178,10 +202,12 @@ public class InstanceItemProvider
 
 		switch (notification.getFeatureID(Instance.class)) {
 			case BSharpPackage.INSTANCE__NAME:
+			case BSharpPackage.INSTANCE__CLASS_NAME_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case BSharpPackage.INSTANCE__CONTEXT:
 			case BSharpPackage.INSTANCE__ARGUMENTS:
+			case BSharpPackage.INSTANCE__REFERENCING_FUNCS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -248,6 +274,11 @@ public class InstanceItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INSTANCE__REFERENCING_FUNCS,
+				 BSharpFactory.eINSTANCE.createReferencingFunc()));
 	}
 
 }

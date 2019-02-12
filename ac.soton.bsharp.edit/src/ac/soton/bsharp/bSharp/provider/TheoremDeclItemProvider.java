@@ -98,6 +98,7 @@ public class TheoremDeclItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(BSharpPackage.Literals.THEOREM_DECL__EXPR);
+			childrenFeatures.add(BSharpPackage.Literals.THEOREM_DECL__GENERATED_QUANTS);
 		}
 		return childrenFeatures;
 	}
@@ -157,6 +158,7 @@ public class TheoremDeclItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case BSharpPackage.THEOREM_DECL__EXPR:
+			case BSharpPackage.THEOREM_DECL__GENERATED_QUANTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -208,6 +210,34 @@ public class TheoremDeclItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.THEOREM_DECL__GENERATED_QUANTS,
+				 BSharpFactory.eINSTANCE.createQuantLambda()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == BSharpPackage.Literals.THEOREM_DECL__EXPR ||
+			childFeature == BSharpPackage.Literals.THEOREM_DECL__GENERATED_QUANTS;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

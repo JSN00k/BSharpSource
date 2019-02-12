@@ -326,29 +326,6 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.GenName} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected GenNameItemProvider genNameItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.GenName}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createGenNameAdapter() {
-		if (genNameItemProvider == null) {
-			genNameItemProvider = new GenNameItemProvider(this);
-		}
-
-		return genNameItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.PolyContext} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -832,6 +809,29 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.ReferencingFunc} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ReferencingFuncItemProvider referencingFuncItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.ReferencingFunc}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createReferencingFuncAdapter() {
+		if (referencingFuncItemProvider == null) {
+			referencingFuncItemProvider = new ReferencingFuncItemProvider(this);
+		}
+
+		return referencingFuncItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.Expression} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1150,7 +1150,6 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 		if (fileImportItemProvider != null) fileImportItemProvider.dispose();
 		if (functionCallItemProvider != null) functionCallItemProvider.dispose();
 		if (functionDeclItemProvider != null) functionDeclItemProvider.dispose();
-		if (genNameItemProvider != null) genNameItemProvider.dispose();
 		if (globalImportItemProvider != null) globalImportItemProvider.dispose();
 		if (inbuiltInfixItemProvider != null) inbuiltInfixItemProvider.dispose();
 		if (infixItemProvider != null) infixItemProvider.dispose();
@@ -1164,6 +1163,7 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 		if (polyTypeItemProvider != null) polyTypeItemProvider.dispose();
 		if (prefixItemProvider != null) prefixItemProvider.dispose();
 		if (quantLambdaItemProvider != null) quantLambdaItemProvider.dispose();
+		if (referencingFuncItemProvider != null) referencingFuncItemProvider.dispose();
 		if (superTypeListItemProvider != null) superTypeListItemProvider.dispose();
 		if (theoremBodyItemProvider != null) theoremBodyItemProvider.dispose();
 		if (theoremDeclItemProvider != null) theoremDeclItemProvider.dispose();

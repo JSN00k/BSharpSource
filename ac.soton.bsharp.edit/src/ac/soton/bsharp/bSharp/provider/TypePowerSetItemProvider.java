@@ -100,7 +100,10 @@ public class TypePowerSetItemProvider extends TypeBuilderItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_TypePowerSet_type");
+		String label = ((TypePowerSet)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_TypePowerSet_type") :
+			getString("_UI_TypePowerSet_type") + " " + label;
 	}
 
 

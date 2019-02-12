@@ -124,7 +124,10 @@ public class TypeConstructorItemProvider extends TypeBuilderItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_TypeConstructor_type");
+		String label = ((TypeConstructor)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_TypeConstructor_type") :
+			getString("_UI_TypeConstructor_type") + " " + label;
 	}
 
 

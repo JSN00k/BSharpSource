@@ -25,7 +25,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ClassDeclItemProvider extends GenNameItemProvider {
+public class ClassDeclItemProvider extends TopLevelInstanceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -63,8 +63,7 @@ public class ClassDeclItemProvider extends GenNameItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK);
-			childrenFeatures.add(BSharpPackage.Literals.CLASS_DECL__CONTEXT);
+			childrenFeatures.add(BSharpPackage.Literals.CLASS_DECL__RAW_CONTEXT);
 		}
 		return childrenFeatures;
 	}
@@ -120,8 +119,7 @@ public class ClassDeclItemProvider extends GenNameItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ClassDecl.class)) {
-			case BSharpPackage.CLASS_DECL__BLOCK:
-			case BSharpPackage.CLASS_DECL__CONTEXT:
+			case BSharpPackage.CLASS_DECL__RAW_CONTEXT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -141,12 +139,7 @@ public class ClassDeclItemProvider extends GenNameItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK,
-				 BSharpFactory.eINSTANCE.createBSharpBlock()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.CLASS_DECL__CONTEXT,
+				(BSharpPackage.Literals.CLASS_DECL__RAW_CONTEXT,
 				 BSharpFactory.eINSTANCE.createPolyContext()));
 	}
 

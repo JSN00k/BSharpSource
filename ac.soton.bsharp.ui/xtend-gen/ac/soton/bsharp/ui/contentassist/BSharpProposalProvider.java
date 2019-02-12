@@ -4,7 +4,7 @@
 package ac.soton.bsharp.ui.contentassist;
 
 import ac.soton.bsharp.ui.contentassist.AbstractBSharpProposalProvider;
-import ac.soton.xeventb.common.RodinSymbolsProposalProvider;
+import ac.soton.bsharp.ui.contentassist.RodinSymbolsProposalProvider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;

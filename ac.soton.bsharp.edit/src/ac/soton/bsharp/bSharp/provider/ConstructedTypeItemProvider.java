@@ -138,7 +138,7 @@ public class ConstructedTypeItemProvider extends TypeBuilderItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ConstructedType)object).getConstructor();
+		String label = ((ConstructedType)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ConstructedType_type") :
 			getString("_UI_ConstructedType_type") + " " + label;

@@ -100,7 +100,10 @@ public class TypeConstrBracketItemProvider extends TypeBuilderItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_TypeConstrBracket_type");
+		String label = ((TypeConstrBracket)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_TypeConstrBracket_type") :
+			getString("_UI_TypeConstrBracket_type") + " " + label;
 	}
 
 

@@ -32,13 +32,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class TopLevelInstanceItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends NamedObjectItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -113,7 +107,10 @@ public class TopLevelInstanceItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_TopLevelInstance_type");
+		String label = ((TopLevelInstance)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_TopLevelInstance_type") :
+			getString("_UI_TopLevelInstance_type") + " " + label;
 	}
 
 
@@ -151,17 +148,6 @@ public class TopLevelInstanceItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK,
 				 BSharpFactory.eINSTANCE.createBSharpBlock()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return BSharpEditPlugin.INSTANCE;
 	}
 
 }

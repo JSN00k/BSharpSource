@@ -158,6 +158,11 @@ public class BSharpBlockItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(BSharpPackage.Literals.BSHARP_BLOCK__FUNCTIONS,
+				 BSharpFactory.eINSTANCE.createReferencingFunc()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(BSharpPackage.Literals.BSHARP_BLOCK__THEOREMS,
 				 BSharpFactory.eINSTANCE.createInstance()));
 

@@ -63,8 +63,7 @@ public class TopLevelImportItemProvider extends ITheoryImportCacheProviderItemPr
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS);
-			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_IMPORT__LOCAL_IMPORTS);
+			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_IMPORT__IMPORTS);
 			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_IMPORT__BODY_ELEMENTS);
 			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_IMPORT__IMPORT_REFS);
 		}
@@ -119,8 +118,7 @@ public class TopLevelImportItemProvider extends ITheoryImportCacheProviderItemPr
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TopLevelImport.class)) {
-			case BSharpPackage.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS:
-			case BSharpPackage.TOP_LEVEL_IMPORT__LOCAL_IMPORTS:
+			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORTS:
 			case BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS:
 			case BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -142,12 +140,12 @@ public class TopLevelImportItemProvider extends ITheoryImportCacheProviderItemPr
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BSharpPackage.Literals.TOP_LEVEL_IMPORT__GLOBAL_IMPORTS,
+				(BSharpPackage.Literals.TOP_LEVEL_IMPORT__IMPORTS,
 				 BSharpFactory.eINSTANCE.createGlobalImport()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BSharpPackage.Literals.TOP_LEVEL_IMPORT__LOCAL_IMPORTS,
+				(BSharpPackage.Literals.TOP_LEVEL_IMPORT__IMPORTS,
 				 BSharpFactory.eINSTANCE.createLocalImport()));
 
 		newChildDescriptors.add

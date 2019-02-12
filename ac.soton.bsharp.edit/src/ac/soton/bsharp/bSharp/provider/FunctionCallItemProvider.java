@@ -49,6 +49,7 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addOwnerTypePropertyDescriptor(object);
+			addCompilationObjectPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -67,6 +68,28 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 				 getString("_UI_FunctionCall_ownerType_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionCall_ownerType_feature", "_UI_FunctionCall_type"),
 				 BSharpPackage.Literals.FUNCTION_CALL__OWNER_TYPE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Compilation Object feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCompilationObjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FunctionCall_compilationObject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionCall_compilationObject_feature", "_UI_FunctionCall_type"),
+				 BSharpPackage.Literals.FUNCTION_CALL__COMPILATION_OBJECT,
 				 true,
 				 false,
 				 true,

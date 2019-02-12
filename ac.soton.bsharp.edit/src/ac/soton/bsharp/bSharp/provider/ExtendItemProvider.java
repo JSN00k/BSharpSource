@@ -36,13 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ExtendItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends TopLevelInstanceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -65,7 +59,7 @@ public class ExtendItemProvider
 			super.getPropertyDescriptors(object);
 
 			addExtendedClassPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
+			addExtendedClassNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -93,55 +87,25 @@ public class ExtendItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Extended Class Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addExtendedClassNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Extend_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Extend_name_feature", "_UI_Extend_type"),
-				 BSharpPackage.Literals.EXTEND__NAME,
+				 getString("_UI_Extend_extendedClassName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Extend_extendedClassName_feature", "_UI_Extend_type"),
+				 BSharpPackage.Literals.EXTEND__EXTENDED_CLASS_NAME,
 				 true,
 				 false,
-				 true,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -182,8 +146,8 @@ public class ExtendItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Extend.class)) {
-			case BSharpPackage.EXTEND__BLOCK:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			case BSharpPackage.EXTEND__EXTENDED_CLASS_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -199,22 +163,6 @@ public class ExtendItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.TOP_LEVEL_INSTANCE__BLOCK,
-				 BSharpFactory.eINSTANCE.createBSharpBlock()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return BSharpEditPlugin.INSTANCE;
 	}
 
 }

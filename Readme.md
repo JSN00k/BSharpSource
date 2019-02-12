@@ -1,0 +1,8 @@
+# BSharp Source
+
+The source files for the BSharp language. The BSharp language is built using Xtext, and uses Rodin as a target platform. The version of Rodin that is used as a Target platform needs to have the Rodin Theory Plug-in installed. Instructions for setting up Rodin as a target platform can be found [here](http://wiki.event-b.org/index.php/Using_Rodin_as_Target_Platform). Xtext also needs to be installed, as BSharp is implemented as an Xtext project. Instructions for install Xtext can be found [here](https://www.eclipse.org/Xtext/download.html).
+
+You can familiarize yourself with the Xtext build process by reading the Xtext [tutorials](https://www.eclipse.org/Xtext/documentation/101_five_minutes.html).
+BSharp has a separate EMF model (it is not generated through Xtext), This is contained in `BppSource -> ac.soton.bsharp -> model`. If this is changed it needs to be regenerated (it won't regenerate automatically. The majority of the cross compilation code can be found in the generated EMF files `BppSource -> ac.soton.bsharp -> model-src-gen`. The top level method for compilation is normally called `compile()`. Note that EMF generation will only overwrite methods which are tagged with `@generated`. Creating a method without `@generated` or removing the `@generated` tag will cause a method to persist. If EMF "wants" to generate a method and it finds a method with the same signature already exists it will not generate its method (the non-generated method will persist and will be unique.).
+
+Examples of the BSharp language can be found [here](https://git.soton.ac.uk/jhs1m15/bsharptestfiles).

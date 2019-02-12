@@ -157,6 +157,11 @@ public class ExpressionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
+				 BSharpFactory.eINSTANCE.createConstructedType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
 				 BSharpFactory.eINSTANCE.createDatatype()));
 
 		newChildDescriptors.add
@@ -178,6 +183,26 @@ public class ExpressionItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
 				 BSharpFactory.eINSTANCE.createInstName()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
+				 BSharpFactory.eINSTANCE.createReferencingFunc()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
+				 BSharpFactory.eINSTANCE.createTypeConstructor()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
+				 BSharpFactory.eINSTANCE.createTypeConstrBracket()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
+				 BSharpFactory.eINSTANCE.createTypePowerSet()));
 
 		newChildDescriptors.add
 			(createChildParameter
