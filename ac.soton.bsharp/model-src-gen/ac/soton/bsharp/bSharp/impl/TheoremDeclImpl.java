@@ -345,12 +345,12 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				this.typeInst = typeInstance;
 			}
 
-			if (typeInstance.isInferredTypeInst())
+			if (typeInst.isInferredTypeInst())
 				ebPred = createClassRepPrefix();
 			else 
 				ebPred = "";
 			
-			boolean addBrackets = typeInstance.isInferredTypeInst() && expr instanceof QuantLambda;
+			boolean addBrackets = typeInst.isInferredTypeInst() && expr instanceof QuantLambda;
 			
 			try {
 				if (addBrackets)
@@ -367,7 +367,13 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 			}
 		}
 		
-		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this.typeInst.getContext());
+		TheoryImportCache thyCache;
+		
+		if (typeInst == null) {
+			thyCache = CompilationUtil.getTheoryCacheForElement(this);
+		} else {
+			thyCache = CompilationUtil.getTheoryCacheForElement(this.typeInst.getContext());
+		}
 		try {
 			TheoryUtils.createTheorem(thyCache.theory, getTheoremName(), ebPred, nullMonitor);
 		} catch (Exception e) {
