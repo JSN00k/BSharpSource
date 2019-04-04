@@ -141,7 +141,7 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 	 
 	String instanceName();
 
-	ArrayList<String> getterOperatorSuffixes();
+	ArrayList<String> getterOperatorNames();
 
 	ArrayList<Tuple2<String, String>> polyArgumentsToConstructGenericTypeClass(TheoryImportCache thyCache) throws Exception;
 
@@ -206,4 +206,7 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 	List<Integer> prjsForTypedVariable(TypedVariable typedVariable);
 
 	int variablesCount();
+
+	String wrapInstInPrjsForOpWithName(String inst, String opName);
+
 } // BppClass

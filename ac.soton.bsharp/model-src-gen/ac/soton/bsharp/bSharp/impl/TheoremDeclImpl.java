@@ -314,6 +314,16 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 		this.theoremPrefix = null;
 	}
 	
+	String createClassRepPrefix() {
+		ITypeInstance classTypeInst = getInferredTypeInstance();
+		String result = "∀";
+		result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(classTypeInst.typeAndVariableNames(), ", ", true);
+		result += "·";
+		result += CompilationUtil.compileTypedVaribalesToTypedList(classTypeInst.typingStatementForInstance(), true);
+		result += " ⇒ ";
+		return result;
+	}
+	
 	@Override
 	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance) {
 		expr = expr.reorderExpresionTree();
@@ -334,35 +344,27 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 			} else {
 				this.typeInst = typeInstance;
 			}
+
+			if (typeInstance.isInferredTypeInst())
+				ebPred = createClassRepPrefix();
+			else 
+				ebPred = "";
 			
-			boolean addedToGeneratedLambdas = false;
-			
-			/* Change the expression into a lambda which can add a type instance to its polycontext. If the
-			 * expression can't imeddiately */
-			QuantLambda forallLambda;
-			if (expr instanceof QuantLambda && (((QuantLambda)expr).quantLambdaType() == QuantLambdaType.LAMBDA
-					|| ((QuantLambda)expr).quantLambdaType() == QuantLambdaType.FORALL)) {
-				forallLambda = (QuantLambda)expr;
-			} else {
-				forallLambda = BSharpFactory.eINSTANCE.createQuantLambda();
-				forallLambda.setQuantLambdaType(QuantLambdaType.FORALL);
-				forallLambda.setExpr(EcoreUtil2.copy(expr));
-				getGeneratedQuants().add(forallLambda);
-				addedToGeneratedLambdas = true;
-			}
+			boolean addBrackets = typeInstance.isInferredTypeInst() && expr instanceof QuantLambda;
 			
 			try {
-				ebPred = forallLambda.compileToEventBStringWithInferredTypeArgs(true, this.typeInst.isInferredTypeInst());
+				if (addBrackets)
+					ebPred += "(";
+				
+				ebPred += expr.compileToEventBString(true);
+				
+				if (addBrackets)
+					ebPred += ")";
 			} catch (Exception e) {
 				System.err.println("Unable to compile expression with error: " + e.getLocalizedMessage());
 				e.printStackTrace();
 				return;
 			}
-			
-			if (addedToGeneratedLambdas) {
-				getGeneratedQuants().remove(forallLambda);
-			}
-			
 		}
 		
 		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(this.typeInst.getContext());

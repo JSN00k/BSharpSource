@@ -465,13 +465,9 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
 	}
 	
-	@Override
-	public String compileToEventBString(Boolean asPredicate) throws Exception {
-		return compileToEventBStringWithInferredTypeArgs(asPredicate, false);
-	}
 
 	@Override
-	public String compileToEventBStringWithInferredTypeArgs(Boolean asPredicate, Boolean addTypeInstArgs) throws Exception {
+	public String compileToEventBString(Boolean asPredicate) throws Exception {
 		/* Polymorphic contexts make this a little more complex. There are two possibilities
 		 * either the polymorphic context can become direct arguments to an EventB Quantifier/Lambda
 		 * or an additional operator could be generated which given the polymorphic context
@@ -480,15 +476,9 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		 * In the case of QuantLambdas the approach is to compile the polycontext directly 
 		 * to eventB equivalents.
 		 */
+		
 		String result = qType;
 		QuantLambdaType type = quantLambdaType();
-		
-		ITypeInstance classTypeInst = null;
-		if (expr.referencesContainingType()) {
-			IExpressionContainer exprContainer = EcoreUtil2.getContainerOfType(this, IExpressionContainer.class);
-			if (exprContainer != null)
-				classTypeInst = exprContainer.getInferredTypeInstance();
-		}
 		
 		ArrayList<Tuple2<String, String>> typedVariables = null;
 		if (context != null) {
@@ -504,32 +494,20 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 			}
 		}
 		
-		if ((typedVariables == null || typedVariables.isEmpty()) && (!addTypeInstArgs || classTypeInst == null)) {
+		if ((typedVariables == null || typedVariables.isEmpty())) {
 			throw new Exception("QuantLambdaImpl tried to compile without any arguments.");
 		}
 		
 		String sep = type == QuantLambdaType.LAMBDA ? " ↦ " : ", ";
 		
-		boolean isFirst = true;
-		if (classTypeInst != null && addTypeInstArgs) {
-			result += CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(classTypeInst.typeAndVariableNames(), sep, true);
-			isFirst = false;
-		}
-		
 		if (typedVariables != null) {
-			result += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVariables, sep, isFirst);
+			result += CompilationUtil.compileTypedVariablesToNameListWithSeparator(typedVariables, sep, true);
 		}
 		
 		result += "·";
-		
-		isFirst = true;
-		if (classTypeInst != null && addTypeInstArgs) {
-			result += CompilationUtil.compileTypedVaribalesToTypedList(classTypeInst.typingStatementForInstance(), true);
-			isFirst = false;
-		}
-		
+
 		if (typedVariables != null) {
-			result += CompilationUtil.compileTypedVaribalesToTypedList(typedVariables, isFirst);
+			result += CompilationUtil.compileTypedVaribalesToTypedList(typedVariables, true);
 		}
 		
 		switch (type) {
@@ -546,7 +524,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 		
 		/* TODO: Consult EventB precedence to reduce number of brackets */
 		boolean resultRequiresParens = expr instanceof Infix 
-				|| (type == QuantLambdaType.FORALL && expr instanceof QuantLambda && ((QuantLambda)expr).quantLambdaType() == QuantLambdaType.FORALL);
+				|| (type == QuantLambdaType.FORALL && expr instanceof QuantLambda && ((QuantLambda)expr).quantLambdaType() == QuantLambdaType.FORALL)
+				|| ((type == QuantLambdaType.EXISTS || type ==  QuantLambdaType.FORALL) && expr instanceof QuantLambda && (((QuantLambda)expr).quantLambdaType() == QuantLambdaType.EXISTS || ((QuantLambda)expr).quantLambdaType() == QuantLambdaType.FORALL));
 		if (resultRequiresParens) {
 			result += "(";
 		}

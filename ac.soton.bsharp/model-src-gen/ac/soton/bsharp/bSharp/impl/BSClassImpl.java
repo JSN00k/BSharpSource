@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.security.auth.Refreshable;
 
@@ -558,7 +559,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					typedVars.size() > 1);
 		}
 
-		opString += " | ";
+		opString += " ∣ ";
 		if (supertypes.isPowerSet())
 			opString += iName + "=";
 		else
@@ -600,7 +601,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	@Override
-	public ArrayList<String> getterOperatorSuffixes() {
+	public ArrayList<String> getterOperatorNames() {
 		/*
 		 * Get the complete list of operator suffixes from the super type, then append
 		 * the operator suffixes from this type.
@@ -613,7 +614,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 				TypeBuilder sup = sTypes.iterator().next();
 
 				if (sup.isAbstractTypeClass()) {
-					result.addAll(sup.getTypeClass().getterOperatorSuffixes());
+					result.addAll(sup.getTypeClass().getterOperatorNames());
 				}
 			}
 		}
@@ -622,7 +623,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			List<String> typedVars = varList.getVariableNames();
 
 			for (String typedVar : typedVars) {
-				result.add("_" + typedVar);
+				result.add(typedVar);
 			}
 		}
 
@@ -868,103 +869,86 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	public String getterForOpName(String opName) {
 		return name + "_" + opName;
 	}
-
-	public void compileGetterOperators() {
-		PolyContext context = getContext();
-		String iName = instanceName();
-
-		if (supertypes != null) {
-			/*
-			 * I think that I'm going to use Event-B operators to pass getters onto
-			 * subtypes. This makes coding simpler. The supertype is always at prj1. of the
-			 * type.
-			 */
-			ArrayList<String> polyVars;
-			if (context != null)
-				polyVars = context.namesForPolyContextTypes();
-			else
-				polyVars = new ArrayList<String>();
+	
+	protected HashMap<String, ArrayList<Integer>> prjMapForOpName = null;
+	HashMap<String, ArrayList<Integer>> localProjectionsforOpNameMap() {
+		if (prjMapForOpName != null)
+			return prjMapForOpName;
+		
+		prjMapForOpName = new HashMap<String, ArrayList<Integer>>();
+		List<String> varListVariables = varList.getVariableNames();
+		Integer varsCount = varListVariables.size();
+		Integer prj1sRequired = varsCount - 1;
+		Boolean isFirst = true;
+		for (String varName : varListVariables) {
+			ArrayList<Integer> prjs = new ArrayList<Integer>();
 			
-			TypedVariableList varList = getVarList();
-			if (varList != null && getVarList().count() != 0)
-				polyVars.add("prj1(" + instanceName() + ")");
-			else
-				polyVars.add(instanceName());
-				
-			String polyTypeArgs = "("
-					+ CompilationUtil.compileVariablesNamesToArgumentsWithSeparator(polyVars, ", ", true) + ")";
-			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
-
-			if (sTypes != null && !sTypes.isEmpty()) {
-				TypeBuilder sup = sTypes.iterator().next();
-
-				if (sup.isAbstractTypeClass()) {
-					BSClass sType = sup.getTypeClass();
-					ArrayList<String> suffixes = sType.getterOperatorSuffixes();
-
-					for (String suffix : suffixes) {
-						INewOperatorDefinition op = constructOpForGetterWithName(name + suffix);
-						try {
-							TheoryUtils.createDirectDefinition(op, sType.getName() + suffix + polyTypeArgs, null,
-									nullMonitor);
-						} catch (Exception e) {
-							System.err.println("Unable to create direct definition for getter op with erorr: "
-									+ e.getLocalizedMessage());
-						}
-
-					}
-				}
+			if (!isFirst) {
+				prjs.add(2);
 			}
+			
+			isFirst = false;
+			for (int i = 0; i < prj1sRequired; ++i) {
+				prjs.add(1);
+			}
+			
+			prj1sRequired--;
+			prjs.add(2);
+			
+			prjMapForOpName.put(varName, prjs);
 		}
-
-		if (varList != null) {
-			ArrayList<Tuple2<String, String>> varListVariables = varList.getCompiledVariablesAndTypes();
-			Integer varsCount = varListVariables.size();
-			Integer prj1sRequired = varsCount - 1;
-			Boolean isFirst = true;
-			for (Tuple2<String, String> typedVar : varListVariables) {
-				INewOperatorDefinition op = constructOpForGetterWithName(getterForOpName(typedVar.x));
-
-				String directDefString = "prj2(" + iName + ")";
-
-				directDefString = CompilationUtil.wrapNameInPrj1s(directDefString, prj1sRequired);
-				prj1sRequired--;
-
-				if (!isFirst) {
-					directDefString = "prj2(" + directDefString + ")";
-				}
-
-				isFirst = false;
-
-				try {
-					TheoryUtils.createDirectDefinition(op, directDefString, null, nullMonitor);
-				} catch (Exception e) {
-					System.err.println(
-							"Unable to create direct definition for getter op with erorr: " + e.getLocalizedMessage());
-				}
+		
+		return prjMapForOpName;
+	}
+	
+	String wrapStringInPrjs(String t, List<Integer> prjs) {
+		String result = "";
+		for (Integer i : prjs) {
+			result += "prj" + i.toString() + "(";
+		}
+		
+		result += t;
+		
+		for (int i = 0; i < prjs.size(); ++i) {
+			result += ")";
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public String wrapInstInPrjsForOpWithName (String inst, String opName){
+		Map<String, ArrayList<Integer>> prjMap = localProjectionsforOpNameMap();
+		if (prjMap.containsKey(opName)) {
+			return wrapStringInPrjs(inst, prjMap.get(opName));
+		} else {
+			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
+			TypeBuilder sup = sTypes.iterator().next();
+			BSClass sType = sup.getTypeClass();
+			return  sType.wrapInstInPrjsForOpWithName("prj1(" + inst + ")", opName);
+		}
+	}
+	
+	public void compileGetterOperators() {
+		List<String> ops = getterOperatorNames();
+		String iName = instanceName();
+		
+		for (String opName : ops) {
+			INewOperatorDefinition op = constructOpForGetterWithName(getterForOpName(opName));
+			
+			try {
+				TheoryUtils.createDirectDefinition(op, wrapInstInPrjsForOpWithName(iName, opName), null, nullMonitor);
+			} catch (Exception e) {
+				System.err.println(
+						"Unable to create direct definition for getter op with erorr: " + e.getLocalizedMessage());
 			}
 		}
 	}
 	
 	@Override
 	public List<Integer> prjsForTypedVariable(TypedVariable typedVariable) {
-		List<TypedVariable> typedVars = getVarList().getTypedVariables();
-		int totalVarsCount = typedVars.size();
-		int varIndex = typedVars.indexOf(typedVariable);
-		
-		ArrayList<Integer> prjPath = new ArrayList<Integer>();
-		/* Always start with a prj2 because instances have the type as their first part. */
-		prjPath.add(2);
-		
-		for (int i = 0; i < totalVarsCount - varIndex - 1; ++i) {
-			prjPath.add(1);
-		}
-		
-		if (varIndex != 0) {
-			prjPath.add(2);
-		}
-		
-		return prjPath;
+		Map<String, ArrayList<Integer>> prjMap = localProjectionsforOpNameMap();
+		return prjMap.get(typedVariable.getName());
 	}
 
 	@Override

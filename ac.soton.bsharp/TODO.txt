@@ -33,3 +33,5 @@ Fortunately these will probably give errors in Event-B, but it would be nice to 
  ------------- Features __________________
  1) Add proof rules to deconstruct type classes e.g., 'Monoid_op(T |-> equ |-> op |-> ident)' should instantly 
  give 'op' using the proof rule.
+ 2) Make it so the deconstructor operators only use prj1 and prj2, rather than the deconstructors of the super type.
+    this will save considerable time in proofs.

@@ -230,7 +230,6 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 
 	@Override
 	public ArrayList<Tuple2<TypedVariable, TypeBuilder>> getVariablesAndTypes() {
-		
 		ArrayList<Tuple2<TypedVariable, TypeBuilder>> result = new ArrayList<Tuple2<TypedVariable, TypeBuilder>>();
 		EList<TypedVariable> tv = getTypeVar();
 		TypeBuilder t = getType();
