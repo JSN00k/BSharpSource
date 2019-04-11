@@ -178,6 +178,32 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, IExp
 	 */
 	EList<Expression> getGeneratedLambdas();
 
+	/**
+	 * Returns the value of the '<em><b>Typing Theorem</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Typing Theorem</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Typing Theorem</em>' containment reference.
+	 * @see #setTypingTheorem(TheoremDecl)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl_TypingTheorem()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TheoremDecl getTypingTheorem();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionDecl#getTypingTheorem <em>Typing Theorem</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Typing Theorem</em>' containment reference.
+	 * @see #getTypingTheorem()
+	 * @generated
+	 */
+	void setTypingTheorem(TheoremDecl value);
+
 	String callWithTypeContext(TypeDeclContext context);
 
 	String eventBPredName()  throws Exception;
@@ -194,6 +220,6 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, IExp
 
 	boolean hasInferredContext();
 
-	void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance);
+	void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance, String thmPrefix);
 
 } // FunctionDecl

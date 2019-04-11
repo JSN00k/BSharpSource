@@ -1361,13 +1361,22 @@ public interface BSharpPackage extends EPackage {
 	int FUNCTION_DECL__GENERATED_LAMBDAS = IVARIABLE_PROVIDER_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Typing Theorem</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_DECL__TYPING_THEOREM = IVARIABLE_PROVIDER_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Function Decl</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DECL_FEATURE_COUNT = IVARIABLE_PROVIDER_FEATURE_COUNT + 8;
+	int FUNCTION_DECL_FEATURE_COUNT = IVARIABLE_PROVIDER_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>File Imports</b></em>' containment reference list.
@@ -1911,6 +1920,15 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCING_FUNC__GENERATED_LAMBDAS = FUNCTION_DECL__GENERATED_LAMBDAS;
+
+	/**
+	 * The feature id for the '<em><b>Typing Theorem</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCING_FUNC__TYPING_THEOREM = FUNCTION_DECL__TYPING_THEOREM;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Func</b></em>' reference.
@@ -2997,6 +3015,17 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFunctionDecl_GeneratedLambdas();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.FunctionDecl#getTypingTheorem <em>Typing Theorem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Typing Theorem</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionDecl#getTypingTheorem()
+	 * @see #getFunctionDecl()
+	 * @generated
+	 */
+	EReference getFunctionDecl_TypingTheorem();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.MatchStatement <em>Match Statement</em>}'.
@@ -4439,6 +4468,14 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTION_DECL__GENERATED_LAMBDAS = eINSTANCE.getFunctionDecl_GeneratedLambdas();
+
+		/**
+		 * The meta object literal for the '<em><b>Typing Theorem</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_DECL__TYPING_THEOREM = eINSTANCE.getFunctionDecl_TypingTheorem();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.MatchStatementImpl <em>Match Statement</em>}' class.

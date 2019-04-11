@@ -17,12 +17,15 @@ import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVarType;
+import ac.soton.bsharp.bSharp.InbuiltInfix;
+import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.InfixFunc;
 import ac.soton.bsharp.bSharp.MatchStatement;
 import ac.soton.bsharp.bSharp.NamedObject;
 import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.QuantLambda;
+import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
@@ -77,6 +80,7 @@ import org.rodinp.core.IInternalElement;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getInfix <em>Infix</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getExpr <em>Expr</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getGeneratedLambdas <em>Generated Lambdas</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionDeclImpl#getTypingTheorem <em>Typing Theorem</em>}</li>
  * </ul>
  *
  * @generated
@@ -185,6 +189,16 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * @ordered
 	 */
 	protected EList<Expression> generatedLambdas;
+
+	/**
+	 * The cached value of the '{@link #getTypingTheorem() <em>Typing Theorem</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypingTheorem()
+	 * @generated
+	 * @ordered
+	 */
+	protected TheoremDecl typingTheorem;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -413,6 +427,52 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	public TheoremDecl getTypingTheorem() {
+		if (typingTheorem == null) {
+			setTypingTheorem(generateTypingTheorem());
+		}
+		
+		return typingTheorem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTypingTheorem(TheoremDecl newTypingTheorem, NotificationChain msgs) {
+		TheoremDecl oldTypingTheorem = typingTheorem;
+		typingTheorem = newTypingTheorem;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__TYPING_THEOREM, oldTypingTheorem, newTypingTheorem);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypingTheorem(TheoremDecl newTypingTheorem) {
+		if (newTypingTheorem != typingTheorem) {
+			NotificationChain msgs = null;
+			if (typingTheorem != null)
+				msgs = ((InternalEObject)typingTheorem).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__TYPING_THEOREM, null, msgs);
+			if (newTypingTheorem != null)
+				msgs = ((InternalEObject)newTypingTheorem).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_DECL__TYPING_THEOREM, null, msgs);
+			msgs = basicSetTypingTheorem(newTypingTheorem, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__TYPING_THEOREM, newTypingTheorem, newTypingTheorem));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -448,6 +508,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return basicSetExpr(null, msgs);
 			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
 				return ((InternalEList<?>)getGeneratedLambdas()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.FUNCTION_DECL__TYPING_THEOREM:
+				return basicSetTypingTheorem(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -475,6 +537,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return getExpr();
 			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
 				return getGeneratedLambdas();
+			case BSharpPackage.FUNCTION_DECL__TYPING_THEOREM:
+				return getTypingTheorem();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -512,6 +576,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				getGeneratedLambdas().clear();
 				getGeneratedLambdas().addAll((Collection<? extends Expression>)newValue);
 				return;
+			case BSharpPackage.FUNCTION_DECL__TYPING_THEOREM:
+				setTypingTheorem((TheoremDecl)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -547,6 +614,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
 				getGeneratedLambdas().clear();
 				return;
+			case BSharpPackage.FUNCTION_DECL__TYPING_THEOREM:
+				setTypingTheorem((TheoremDecl)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -574,6 +644,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				return expr != null;
 			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
 				return generatedLambdas != null && !generatedLambdas.isEmpty();
+			case BSharpPackage.FUNCTION_DECL__TYPING_THEOREM:
+				return typingTheorem != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -854,13 +926,16 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		} else {
 			compileWithoutPolyContext();
 		}
+		
+		TheoremDecl typingTheorem = getTypingTheorem();
+		typingTheorem.compile();
 
 		evBTypeInstance = null;
 		typedPolyVariables = null;
 	}
 	
 	@Override
-	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance) {
+	public void compileWithTypeInstancesForInferredType(ITypeInstance typeInstance, String thmPrefix) {
 		evBTypeInstance = typeInstance;
 		compiledMatchStatements = 0;
 		List<Tuple2<String, String>> polyContext = compiledPolyContext();
@@ -870,6 +945,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			compileWithPolyContext(polyContext);
 		else 
 			compileWithoutPolyContext();
+		
+		TheoremDecl typingTheorem = getTypingTheorem();
+		typingTheorem.compileWithTypeInstancesForInferredType(typeInstance, thmPrefix);
 		
 		evBTypeInstance = null;
 		typedPolyVariables = null;
@@ -1307,5 +1385,57 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	@Override
 	public Integer bSharpPrecedence() {
 		return getPrecedence();
+	}
+	
+	TheoremDecl generateTypingTheorem() {
+		TheoremDecl typingTheorem = BSharpFactory.eINSTANCE.createTheoremDecl();
+		typingTheorem.setName("TypingTheorem " + getName());
+		PolyContext pC = getContext();
+		TypedVariableList varList = getVarList();
+		boolean hasPc = pC != null && !pC.isEmpty();
+
+		QuantLambda forAll = BSharpFactory.eINSTANCE.createQuantLambda();
+		forAll.setQuantLambdaType(QuantLambdaType.FORALL);
+		
+		if (hasPc)
+			forAll.setContext(EcoreUtil2.copy(getContext()));
+		
+		forAll.setVarList(EcoreUtil2.copy(varList));
+		
+		FunctionCall fc = BSharpFactory.eINSTANCE.createFunctionCall();
+		fc.setTypeInst(this);
+		if (hasPc) {
+			TypeDeclContext callCtx = BSharpFactory.eINSTANCE.createTypeDeclContext();
+			List<TypeBuilder> ctxTypes = callCtx.getTypeName();
+			List<PolyType> polyTypes = pC.getPolyTypes();
+			for (PolyType t : polyTypes) {
+				TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
+				tc.setTypeName(t);
+				ctxTypes.add(tc);
+			}
+			
+			fc.setContext(callCtx);
+		}
+		
+		List<TypedVariable> typedVars = varList.getTypedVariables();
+		List<Expression> args = fc.getArguments();
+		
+		for (TypedVariable tv : typedVars) {
+			FunctionCall arg = BSharpFactory.eINSTANCE.createFunctionCall();
+			arg.setTypeInst(tv);
+			args.add(arg);
+		}
+		
+		FunctionCall right = BSharpFactory.eINSTANCE.createFunctionCall();
+		right.setTypeInst(EcoreUtil2.copy(returnType));
+		
+		Infix expr = BSharpFactory.eINSTANCE.createInfix();
+		expr.setOpName("∈");
+		expr.setLeft(fc);
+		expr.setRight(right);
+		
+		forAll.setExpr(expr);
+		typingTheorem.setExpr(forAll);
+		return typingTheorem;
 	}
 } // FunctionDeclImpl

@@ -876,6 +876,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			return prjMapForOpName;
 		
 		prjMapForOpName = new HashMap<String, ArrayList<Integer>>();
+		TypedVariableList varList = getVarList();
+		if (varList == null) {
+			return prjMapForOpName;
+		}
+		
 		List<String> varListVariables = varList.getVariableNames();
 		Integer varsCount = varListVariables.size();
 		Integer prj1sRequired = varsCount - 1;
@@ -925,6 +930,15 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
 			TypeBuilder sup = sTypes.iterator().next();
 			BSClass sType = sup.getTypeClass();
+			
+			TypedVariableList varList = getVarList();
+			if (varList == null || varList.count() == 0) {
+				/* If there are no required elements then the structure is directly inherited from the supertype,
+				 * and there is no need to access the supertype with a call of prj1.
+				 */
+				return sType.wrapInstInPrjsForOpWithName(inst, opName);
+			}
+			
 			return  sType.wrapInstInPrjsForOpWithName("prj1(" + inst + ")", opName);
 		}
 	}

@@ -427,4 +427,9 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 		return decons.getCompiledVariablesAndTypes();
 	}
 
+	@Override
+	public boolean referencesContainingType() {
+		return false;
+	}
+
 } //DatatypeConstructorImpl

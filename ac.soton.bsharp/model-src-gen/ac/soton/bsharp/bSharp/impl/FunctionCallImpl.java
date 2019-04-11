@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
+import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
@@ -623,6 +624,12 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				/* If we're using a variable from a class we have to be wihtin that class. */
 				return true;
 			}
+		}
+		
+		if (typeInst instanceof TypeBuilder) {
+			if (((TypeBuilder)typeInst).referencesContainingType())
+				return true;
+			
 		}
 		
 

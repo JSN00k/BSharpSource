@@ -651,7 +651,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 		//TODO: Some compiling of functions and theorems
 		List<FunctionDecl> methods = allMethods();
 		for (FunctionDecl meth : methods) {
-			meth.compileWithTypeInstancesForInferredType(typeInst);
+			meth.compileWithTypeInstancesForInferredType(typeInst, getName());
 		}
 		
 		List<TheoremDecl> theorems = allTheorems();

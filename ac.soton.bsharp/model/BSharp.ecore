@@ -104,6 +104,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generatedLambdas" upperBound="-1"
         eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typingTheorem" eType="#//TheoremDecl"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenName" abstract="true" eSuperTypes="#//NamedObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalImport" eSuperTypes="#//Import">

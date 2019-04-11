@@ -339,7 +339,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 			}
 		} else {
 			if (typeInstance == null) {
-				ClassDecl containingType = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
+				ClassDecl containingType = CompilationUtil.getClassDecl(this);
 				this.typeInst = ((BSClass)containingType).deconstructedTypeInstance(this, null);
 			} else {
 				this.typeInst = typeInstance;
@@ -351,7 +351,6 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 				ebPred = "";
 			
 			boolean addBrackets = typeInst.isInferredTypeInst() && expr instanceof QuantLambda;
-			
 			try {
 				if (addBrackets)
 					ebPred += "(";

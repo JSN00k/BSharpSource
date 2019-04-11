@@ -583,6 +583,10 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 
 	@Override
 	public boolean referencesContainingType() {
+//		TypedVariableList varList = getVarList();
+//		if (varList.referencesContainingType())
+//			return true;
+		
 		return expr.referencesContainingType();
 	}
 

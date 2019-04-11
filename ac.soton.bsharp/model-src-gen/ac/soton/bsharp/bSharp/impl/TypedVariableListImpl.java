@@ -268,5 +268,16 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 		
 		return result;
 	}
+	
+	@Override
+	public boolean referencesContainingType() {
+		List<TypedVariable> vars = getTypedVariables();
+		for (TypedVariable var : vars) {
+			if (var.referencesContainingType())
+				return true;
+		}
+		
+		return false;
+	}
 
 } //TypedVariableListImpl

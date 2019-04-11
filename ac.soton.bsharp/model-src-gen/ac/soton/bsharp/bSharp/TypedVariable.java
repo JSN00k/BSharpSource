@@ -19,5 +19,6 @@ public interface TypedVariable extends ExpressionVariable {
 	Boolean isPredicateVariable();
 	TypeBuilder getType();
 	Boolean isTypeClassVariable();
+	boolean referencesContainingType();
 
 } // TypedVariable

@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
@@ -378,6 +379,10 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	public boolean referencesContainingType() {
 		ClassDecl container = EcoreUtil2.getContainerOfType(this, ClassDecl.class);
 		
+		if (typeName instanceof InstName) {
+			return true;
+		}
+		
 		if (typeName instanceof ClassDecl) {
 			if (typeName == container && context == null)
 				return true;
@@ -437,6 +442,17 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 			}
 			
 			return clone;
+		}
+	}
+	
+	@Override
+	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred)  throws Exception {
+		if (typeName instanceof InstName) {
+			return CompilationUtil.getTypeInstance(fc).baseTypeString();
+		} else if (typeName instanceof BSClass){
+			return ((BSClass)typeName).compileToStringWithContextAndArguments(fc, asPred);
+		} else {
+			return typeName.getName();
 		}
 	}
 } //TypeConstructorImpl

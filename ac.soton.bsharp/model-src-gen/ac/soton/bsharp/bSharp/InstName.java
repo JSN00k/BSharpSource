@@ -3,6 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,4 +16,5 @@ package ac.soton.bsharp.bSharp;
  * @generated
  */
 public interface InstName extends ExpressionVariable, GenName {
+
 } // InstName

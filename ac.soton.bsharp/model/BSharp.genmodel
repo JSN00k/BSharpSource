@@ -82,6 +82,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FunctionDecl/infix"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/expr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/generatedLambdas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/typingTheorem"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//GenName"/>
     <genClasses ecoreClass="BSharp.ecore#//GlobalImport">

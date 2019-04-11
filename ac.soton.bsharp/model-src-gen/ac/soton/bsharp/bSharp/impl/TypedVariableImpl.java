@@ -102,5 +102,11 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 	public TypeBuilder calculateType() {
 		return getType();
 	}
+	
+	@Override 
+	public
+	boolean referencesContainingType() {
+		return getType().referencesContainingType();
+	}
 
 } //TypedVariableImpl

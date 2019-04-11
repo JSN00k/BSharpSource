@@ -76,4 +76,7 @@ public interface TypedVariableList extends EObject {
 
 
 	List<String> getVariableNames();
+
+
+	boolean referencesContainingType();
 } // TypedVariableList
