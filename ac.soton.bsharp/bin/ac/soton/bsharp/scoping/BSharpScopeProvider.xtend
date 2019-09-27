@@ -243,8 +243,42 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		return Scopes.scopeFor(classInstances)
 	}
 	
+	def List<FunctionDecl> getImportedFuncs(EObject context) {
+		val topLevels = CompilationUtil.getAllImportedTopLevelInstances(context)
+		val ArrayList<FunctionDecl> importedFuncs = newArrayList
+		
+		for (topLevel : topLevels) {
+			importedFuncs += EcoreUtil2.getAllContentsOfType(topLevel, FunctionDecl)
+		}
+		
+		return importedFuncs
+	}
+	
+	/* I'm not sure that this function will get called above the scope_ExpressionVariable
+	 * function, so it may be necessary to move this logic into the scope_ExpressionVariable.
+	 * I definitely need to implement logic like this for datatype constructors and destructors.
+	 */
 	def IScope scope_FunctionDecl(ReferencingFunc context, EReference ref) {
-		return scope_ExpressionVariable(context,  ref)
+		/* We want all the function in the super types, all of the functions from the imported types,
+		 *  and all of the functions declared above this point in this file. Much of this work is 
+		 * already done in scope_ExpressionVariable, We still need to add the imported functions
+		 */
+		 val parent = scope_ExpressionVariable(context, ref)
+		/* Get all imports */
+		var importedFuncs = getImportedFuncs(context)
+		
+		Scopes.scopeFor(importedFuncs, parent)
+		
+		return parent
+	}
+	
+	def IScope scope_InfixFunc(EObject context, EReference ref) {
+		val ArrayList<FunctionDecl> functions = newArrayList
+		functions += EcoreUtilJ.eFindAllInstancesBefore(context, FunctionDecl)
+		functions += getImportedFuncs(context)
+		
+		var result = functions.filter[object | return object.getInfix == "INFIX"]
+		return Scopes.scopeFor(result)
 	}
 
 	def IScope getPolyScopeFor(EObject context, IScope parent) {

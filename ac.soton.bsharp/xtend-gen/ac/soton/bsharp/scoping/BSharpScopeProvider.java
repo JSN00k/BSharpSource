@@ -39,8 +39,10 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
@@ -209,8 +211,40 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     return Scopes.scopeFor(classInstances);
   }
   
+  public List<FunctionDecl> getImportedFuncs(final EObject context) {
+    final List<TopLevelInstance> topLevels = CompilationUtil.getAllImportedTopLevelInstances(context);
+    final ArrayList<FunctionDecl> importedFuncs = CollectionLiterals.<FunctionDecl>newArrayList();
+    for (final TopLevelInstance topLevel : topLevels) {
+      List<FunctionDecl> _allContentsOfType = EcoreUtil2.<FunctionDecl>getAllContentsOfType(topLevel, FunctionDecl.class);
+      Iterables.<FunctionDecl>addAll(importedFuncs, _allContentsOfType);
+    }
+    return importedFuncs;
+  }
+  
+  /**
+   * I'm not sure that this function will get called above the scope_ExpressionVariable
+   * function, so it may be necessary to move this logic into the scope_ExpressionVariable.
+   * I definitely need to implement logic like this for datatype constructors and destructors.
+   */
   public IScope scope_FunctionDecl(final ReferencingFunc context, final EReference ref) {
-    return this.scope_ExpressionVariable(context, ref);
+    final IScope parent = this.scope_ExpressionVariable(context, ref);
+    List<FunctionDecl> importedFuncs = this.getImportedFuncs(context);
+    Scopes.scopeFor(importedFuncs, parent);
+    return parent;
+  }
+  
+  public IScope scope_InfixFunc(final EObject context, final EReference ref) {
+    final ArrayList<FunctionDecl> functions = CollectionLiterals.<FunctionDecl>newArrayList();
+    ArrayList<FunctionDecl> _eFindAllInstancesBefore = EcoreUtilJ.<FunctionDecl>eFindAllInstancesBefore(context, FunctionDecl.class);
+    Iterables.<FunctionDecl>addAll(functions, _eFindAllInstancesBefore);
+    List<FunctionDecl> _importedFuncs = this.getImportedFuncs(context);
+    Iterables.<FunctionDecl>addAll(functions, _importedFuncs);
+    final Function1<FunctionDecl, Boolean> _function = (FunctionDecl object) -> {
+      String _infix = object.getInfix();
+      return Boolean.valueOf(Objects.equal(_infix, "INFIX"));
+    };
+    Iterable<FunctionDecl> result = IterableExtensions.<FunctionDecl>filter(functions, _function);
+    return Scopes.scopeFor(result);
   }
   
   public IScope getPolyScopeFor(final EObject context, final IScope parent) {

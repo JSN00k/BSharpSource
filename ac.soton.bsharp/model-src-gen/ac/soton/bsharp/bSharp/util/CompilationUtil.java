@@ -31,6 +31,7 @@ import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
 import ac.soton.bsharp.bSharp.SuperTypeList;
+import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.mapletTree.IMapletNode;
@@ -300,6 +301,41 @@ public class CompilationUtil {
 		}
 		
 		return alreadyImported;
+	}
+	
+	/* Finds all the FileImports above the location of the context object */
+	public static List<FileImport> getLocalFileImports(EObject context) {
+		@SuppressWarnings("unchecked")
+		ArrayList<FileImport> fileImports = (ArrayList<FileImport>)EcoreUtilJ.eFilterUpToCurrentWith(context, new Function1<EObject, Boolean>() {
+
+			@Override
+			public Boolean apply(EObject p) {
+				return p instanceof FileImport;
+			}
+		});
+		
+		return fileImports;
+	}
+	
+	/* Generates a list of all of the TopLevel Instances (Class Declarations, Datatypes, and Extends) which
+	 * have been imported from import statments
+	 */
+	public static List<TopLevelInstance> getAllImportedTopLevelInstances(EObject context) {
+		List<FileImport> imports = getLocalFileImports(context);
+		ArrayList<TopLevelInstance> result = new ArrayList<TopLevelInstance>();
+		
+		for (FileImport imp : imports) {
+			TopLevelInstance topLevel = imp.getType();
+			if (topLevel != null) {
+				result.add(topLevel);
+			} else {
+				/* Add all the top level instances in the file. */
+				TopLevelFile fileRef = imp.getFileReference();
+				result.addAll(EcoreUtil2.getAllContentsOfType(fileRef, TopLevelInstance.class));
+			}
+		}
+		
+		return result;
 	}
 	
 	public static EList<EObject> filterFileImportReference(FileImport fileImport, Function1<EObject, Boolean> filter) {
