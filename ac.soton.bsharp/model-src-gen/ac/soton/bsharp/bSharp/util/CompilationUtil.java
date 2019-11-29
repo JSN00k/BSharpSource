@@ -3,6 +3,7 @@ package ac.soton.bsharp.bSharp.util;
 import java.awt.Container;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,18 +23,27 @@ import org.rodinp.core.IInternalElement;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IBodyElementsContainer;
 import ac.soton.bsharp.bSharp.IClassInstance;
 import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
+import ac.soton.bsharp.bSharp.IVariableProvider;
+import ac.soton.bsharp.bSharp.MatchCase;
+import ac.soton.bsharp.bSharp.QuantLambda;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.mapletTree.IMapletNode;
 import ac.soton.bsharp.mapletTree.MapletExpressionLeaf;
 import ac.soton.bsharp.mapletTree.MapletExpressionVariableLeaf;
@@ -541,6 +551,10 @@ public class CompilationUtil {
 		return exprContainer.getInferredTypeInstance();
 	}
 	
+	/* All Expressions appear in a type body of either a BSClass or a Datatype (or an
+	 * extension of one of these) This function gets the Datatype or BSClass associated 
+	 * with the current type body.
+	 */
 	public static IClassInstance getClassInstance(EObject context) {
 		IClassInstance result = EcoreUtil2.getContainerOfType(context, IClassInstance.class);
 		if (result != null)

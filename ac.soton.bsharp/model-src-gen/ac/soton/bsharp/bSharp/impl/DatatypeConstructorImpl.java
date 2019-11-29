@@ -326,8 +326,8 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 		return result.toString();
 	}
 
-	public Collection<EObject> getVariablesNames() {
-		ArrayList<EObject> result = new ArrayList<EObject>();
+	public Collection<ExpressionVariable> getVariablesNames() {
+		ArrayList<ExpressionVariable> result = new ArrayList<ExpressionVariable>();
 		result.add(this);
 		return result;
 	}

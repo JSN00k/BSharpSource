@@ -176,8 +176,8 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 
-	public Collection<EObject> getVariablesNames() {
-		ArrayList<EObject> result = new ArrayList<EObject>();
+	public Collection<ExpressionVariable> getVariablesNames() {
+		ArrayList<ExpressionVariable> result = new ArrayList<ExpressionVariable>();
 		
 		result.add(this);
 		

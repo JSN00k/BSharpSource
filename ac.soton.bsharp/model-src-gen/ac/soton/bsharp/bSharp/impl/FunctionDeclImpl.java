@@ -754,9 +754,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	protected IProgressMonitor nullMonitor = new NullProgressMonitor();
 
 	@Override
-	public Collection<EObject> getVariablesNames() {
+	public Collection<ExpressionVariable> getVariablesNames() {
 		TypedVariableList varList = getVarList();
-		ArrayList<EObject> result = new ArrayList<EObject>();
+		ArrayList<ExpressionVariable> result = new ArrayList<ExpressionVariable>();
 		result.addAll(EcoreUtil2.getAllContentsOfType(varList, TypedVariable.class));
 		return result;
 	}

@@ -6,6 +6,14 @@ package ac.soton.bsharp.validation
 import ac.soton.bsharp.bSharp.Infix
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.validation.Check
+import org.eclipse.emf.ecore.EObject
+import ac.soton.bsharp.bSharp.util.FunctionValidatorUtil
+import ac.soton.bsharp.bSharp.FunctionCall
+import ac.soton.bsharp.bSharp.BSharpPackage
+import org.eclipse.emf.ecore.EStructuralFeature
+import ac.soton.bsharp.bSharp.ExpressionVariable
+import ac.soton.bsharp.bSharp.util.CompilationUtil
+import ac.soton.bsharp.bSharp.WrappedInfix
 
 /**
  * This class contains custom validation rules. 
@@ -46,5 +54,55 @@ class BSharpValidator extends AbstractBSharpValidator {
 		//print(copy)
 	}
 
+	/* It is possible to have multiple functions with the same name in scope.
+	 * A future implementation could improve this with type inference. However
+	 * in this implementation we just check the function name is unique in the scope
+	 * if it is all is good, otherwise the full name is required i.e., add -> Nat.add */
+	def visibaleRefencesMatchingFunctionType(EObject ctx, ExpressionVariable fd) {
+		val exprVars = FunctionValidatorUtil.allInscopeExpressionVariables(ctx);
+		val funcArray = exprVars.stream.filter([e | e.getName().equals(fd.getName()) 
+			&& FunctionValidatorUtil.isGlobalFuncType(e)]).toArray;
+		return funcArray
+	}
 	
+	public static val UNREASOLVABLE_FUNCTION_NAME = 'unreasolvable function name'
+	
+	def errorForUnresolvableFunctionName(Object[] references) {
+		if (references.size == 1) {
+			return
+		}
+		
+		var correctionString = ""
+		var first = true
+		for (Object e : references) {
+			if (!first) {
+				correctionString += ", "
+			} else {
+				first = false
+			}
+			
+			correctionString += CompilationUtil.getClassDecl(e as ExpressionVariable).name + "." + (e as ExpressionVariable).name
+		}
+		
+		error("Multiple functions with the same name in scope. Change to one of the following: " + correctionString,
+			BSharpPackage.Literals.FUNCTION_CALL as EStructuralFeature, UNREASOLVABLE_FUNCTION_NAME)
+	}
+	
+	@Check
+	def checkFunctionCall(FunctionCall fn) {
+		val tInst = fn.getTypeInstBasic
+		if (tInst !== null && FunctionValidatorUtil.isGlobalFuncType(tInst)) {
+			val references = visibaleRefencesMatchingFunctionType(fn, tInst)
+			errorForUnresolvableFunctionName(references)
+		}
+	}
+	
+	@Check
+	def checkWrappedInfix(WrappedInfix infix) {
+		val tInst = infix.funcName
+			if (tInst !== null && FunctionValidatorUtil.isGlobalFuncType(tInst)) {
+			val references = visibaleRefencesMatchingFunctionType(infix, tInst)
+			errorForUnresolvableFunctionName(references)
+		}
+	}
 }

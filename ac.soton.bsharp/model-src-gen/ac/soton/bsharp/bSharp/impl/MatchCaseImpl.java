@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.TypedVariable;
@@ -291,10 +292,9 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	}
 
 	@Override
-	public Collection<EObject> getVariablesNames() {		
-		ArrayList<EObject> result = new ArrayList<EObject>();
+	public Collection<ExpressionVariable> getVariablesNames() {		
+		ArrayList<ExpressionVariable> result = new ArrayList<ExpressionVariable>();
 		
-		result.add(this);
 		if (variables == null) {
 			return result;
 		}

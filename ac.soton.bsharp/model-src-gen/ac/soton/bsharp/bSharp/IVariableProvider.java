@@ -28,7 +28,7 @@ public interface IVariableProvider extends EObject {
 	 * scope. Having an interface for it allows easy iteration up through the tree to find the
 	 * variable names.
 	 */
-	public Collection<EObject> getVariablesNames();
+	public Collection<ExpressionVariable> getVariablesNames();
 	
 	/* If there is a call like AssocOp<Monoid> anywhere within the Monoid type class
 	 * this call will get the arguments to the AssocOp_T operator. Note that this will
@@ -41,5 +41,12 @@ public interface IVariableProvider extends EObject {
 
 	public String opNameForMatchStatement(MatchStatementImpl match);
 
+	/* A list of eventB variable names and their type, This searches up
+	 * the EMF tree to find class variables and variables from outer 
+	 * lambdas/quantifiers/functions.
+	 * TODO: This currently does not following the scoping rules, and needs
+	 * to be re-written so inner scopes hide outer scopes when the same name
+	 * for a variable is written. 
+	 */
 	public Collection<? extends Tuple2<String, String>> inScopeTypedVariables();
 } // IVariableProvider

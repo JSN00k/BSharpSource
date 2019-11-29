@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.IEventBPrefixProvider;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
@@ -236,7 +237,7 @@ public class ExtendImpl extends TopLevelInstanceImpl implements Extend {
 	}
 
 	@Override
-	public Collection<EObject> getVariablesNames() {
+	public Collection<ExpressionVariable> getVariablesNames() {
 		/* Note datatypes don't create type variables, I think these may be 
 		 * covered when looking for function names instead.
 		 */

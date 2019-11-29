@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IExpressionContainer;
 import ac.soton.bsharp.bSharp.IVariableProvider;
@@ -450,8 +451,8 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	}
 
 	@Override
-	public Collection<EObject> getVariablesNames() {
-		ArrayList<EObject> result = new ArrayList<EObject>();
+	public Collection<ExpressionVariable> getVariablesNames() {
+		ArrayList<ExpressionVariable> result = new ArrayList<ExpressionVariable>();
 		result.addAll(EcoreUtil2.getAllContentsOfType(varList, TypedVariable.class));
 		return result;
 	}

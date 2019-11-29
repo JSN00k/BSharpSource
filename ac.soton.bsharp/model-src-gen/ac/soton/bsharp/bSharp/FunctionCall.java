@@ -176,5 +176,8 @@ public interface FunctionCall extends Expression {
 	void setCompilationObject(EObject value);
 
 	String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPredicate) throws Exception;
+	
+	
+	public ExpressionVariable getTypeInstBasic();
 
 } // FunctionCall

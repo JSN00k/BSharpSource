@@ -268,7 +268,7 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     final IScope parentScope = this.getVariableScopeFor(ctx, scope);
     if ((ctx instanceof IVariableProvider)) {
       final IVariableProvider varProv = ((IVariableProvider) ctx);
-      final Collection<EObject> variableNames = varProv.getVariablesNames();
+      final Collection<ExpressionVariable> variableNames = varProv.getVariablesNames();
       if ((variableNames == null)) {
         return parentScope;
       } else {
@@ -288,7 +288,7 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
       return parent;
     }
     final IScope parentScope = this.getVariableScopeFor(((EObject) variableProvider), parent);
-    Collection<EObject> _variablesNames = variableProvider.getVariablesNames();
+    Collection<ExpressionVariable> _variablesNames = variableProvider.getVariablesNames();
     boolean _tripleEquals = (_variablesNames == null);
     if (_tripleEquals) {
       return parentScope;

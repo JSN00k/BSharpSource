@@ -435,8 +435,8 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		return context;
 	}
 
-	public Collection<EObject> getVariablesNames() {
-		ArrayList<EObject> result = new ArrayList<EObject>();
+	public Collection<ExpressionVariable> getVariablesNames() {
+		ArrayList<ExpressionVariable> result = new ArrayList<ExpressionVariable>();
 
 		if (instName != null)
 			result.add(instName);

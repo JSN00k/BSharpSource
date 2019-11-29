@@ -488,6 +488,13 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		return super.eIsSet(featureID);
 	}
 	
+	/* 
+	 * (non-Javadoc)
+	 * @see ac.soton.bsharp.bSharp.impl.ExpressionImpl#getTypeInst()
+	 * If method unifies the FuncName and Wrapped infix functions. This causes a problem
+	 * if we are currently validating as a additional EMF is generated that Xtext doesn't 
+	 * like. getTypeInstBasic() resolves this by not converting the WrappedInfix to a functionName.
+	 */
 	@Override
 	public ExpressionVariable getTypeInst() {
 		ExpressionVariable t = super.getTypeInst();
@@ -499,6 +506,10 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		}
 		
 		return t;
+	}
+	
+	public ExpressionVariable getTypeInstBasic() {
+		return super.getTypeInst();
 	}
 
 	@Override
