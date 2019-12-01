@@ -42,6 +42,7 @@ import javax.inject.Inject
 import ac.soton.bsharp.bSharp.BSharpBlock
 import org.eclipse.xtext.resource.IEObjectDescription
 import ac.soton.bsharp.bSharp.ReferencingFunc
+import ac.soton.bsharp.bSharp.util.FunctionValidatorUtil
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -106,7 +107,7 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		/* In this case it is necessary to check the class referenced from GenName, then
 		 * finding it's referencable variables
 		 */
-		 
+
 		 var genName = ctx.ownerType
 		 if (genName instanceof PolyType) {
 		 	val polyType = genName as PolyType
@@ -137,51 +138,57 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 * 
 		 * Function names are a special case as they can be cousins of the referenced variable
 		 */
+		 val inscope = FunctionValidatorUtil.allInscopeExpressionVariables(context)
+		 if (inscope === null) {
+		 	return IScope.NULLSCOPE
+		 } else {
+		 	return Scopes.scopeFor(inscope)
+		 }
 		 
-		var parent = delegateGetScope(context, reference)
-
-		var classDeclTmp = EcoreUtil2.getContainerOfType(context, ClassDecl)
-		var BSharpBlock currentBlock
-		
-		if (classDeclTmp === null) {
-			var extend = EcoreUtil2.getContainerOfType(context, Extend)
-			currentBlock = extend.block
-			classDeclTmp = extend.extendedClass
-		} else {
-			currentBlock = classDeclTmp.block
-		}
-		
-		val classDecl = classDeclTmp
-
-		var ArrayList<ExpressionVariable> variables = new ArrayList
-
-		if (classDecl !== null) {
-			if (classDecl instanceof BSClass) {
-				for (sc : BSharpUtil.superClasses(classDecl)) {
-					if (sc instanceof BSClass) {
-						val superClass = sc as BSClass
-						if (superClass.getVarList !== null)
-							variables += EcoreUtil2.getAllContentsOfType(superClass.getVarList, TypedVariable)
-					}
-				}
-			} else {
-				// classDecl is an instance of Datatype
-				variables += (classDecl as Datatype).constructors
-			}
-			parent = Scopes.scopeFor(variables, parent)
-		}
-
-		val rootObj = EcoreUtil2.getRootContainer(context)
-
-		/* FunctionName can be any function within the current body, or any body above. */
-		val functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object|object == classDecl], [ object |
-			object instanceof FunctionDecl
-		])
-
-		var scope = getVariableScopeFor(context, parent)
-		scope = Scopes.scopeFor(functionNames, scope)
-
-		return scope;
+//		var parent = delegateGetScope(context, reference)
+//
+//		var classDeclTmp = EcoreUtil2.getContainerOfType(context, ClassDecl)
+//		var BSharpBlock currentBlock
+//		
+//		if (classDeclTmp === null) {
+//			var extend = EcoreUtil2.getContainerOfType(context, Extend)
+//			currentBlock = extend.block
+//			classDeclTmp = extend.extendedClass
+//		} else {
+//			currentBlock = classDeclTmp.block
+//		}
+//		
+//		val classDecl = classDeclTmp
+//
+//		var ArrayList<ExpressionVariable> variables = new ArrayList
+//
+//		if (classDecl !== null) {
+//			if (classDecl instanceof BSClass) {
+//				for (sc : BSharpUtil.superClasses(classDecl)) {
+//					if (sc instanceof BSClass) {
+//						val superClass = sc as BSClass
+//						if (superClass.getVarList !== null)
+//							variables += EcoreUtil2.getAllContentsOfType(superClass.getVarList, TypedVariable)
+//					}
+//				}
+//			} else {
+//				// classDecl is an instance of Datatype
+//				variables += (classDecl as Datatype).constructors
+//			}
+//			parent = Scopes.scopeFor(variables, parent)
+//		}
+//
+//		val rootObj = EcoreUtil2.getRootContainer(context)
+//
+//		/* FunctionName can be any function within the current body, or any body above. */
+//		val functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object|object == classDecl], [ object |
+//			object instanceof FunctionDecl
+//		])
+//
+//		var scope = getVariableScopeFor(context, parent)
+//		scope = Scopes.scopeFor(functionNames, scope)
+//
+//		return scope;
 	}
 	
 	def IScope scope_TypedVariable(MatchCase context, EReference reference) {

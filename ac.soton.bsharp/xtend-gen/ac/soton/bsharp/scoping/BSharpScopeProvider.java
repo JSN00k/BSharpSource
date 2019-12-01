@@ -1,7 +1,6 @@
 package ac.soton.bsharp.scoping;
 
 import ac.soton.bsharp.bSharp.BSClass;
-import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.Datatype;
@@ -20,15 +19,15 @@ import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
-import ac.soton.bsharp.bSharp.TypedVariable;
-import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+import ac.soton.bsharp.bSharp.util.FunctionValidatorUtil;
 import ac.soton.bsharp.util.BSharpUtil;
 import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
@@ -121,49 +120,12 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   }
   
   public IScope scope_ExpressionVariable(final EObject context, final EReference reference) {
-    IScope parent = this.delegateGetScope(context, reference);
-    ClassDecl classDeclTmp = EcoreUtil2.<ClassDecl>getContainerOfType(context, ClassDecl.class);
-    BSharpBlock currentBlock = null;
-    if ((classDeclTmp == null)) {
-      Extend extend = EcoreUtil2.<Extend>getContainerOfType(context, Extend.class);
-      currentBlock = extend.getBlock();
-      classDeclTmp = extend.getExtendedClass();
+    final HashSet<ExpressionVariable> inscope = FunctionValidatorUtil.allInscopeExpressionVariables(context);
+    if ((inscope == null)) {
+      return IScope.NULLSCOPE;
     } else {
-      currentBlock = classDeclTmp.getBlock();
+      return Scopes.scopeFor(inscope);
     }
-    final ClassDecl classDecl = classDeclTmp;
-    ArrayList<ExpressionVariable> variables = new ArrayList<ExpressionVariable>();
-    if ((classDecl != null)) {
-      if ((classDecl instanceof BSClass)) {
-        ArrayList<EObject> _superClasses = BSharpUtil.superClasses(((BSClass)classDecl));
-        for (final EObject sc : _superClasses) {
-          if ((sc instanceof BSClass)) {
-            final BSClass superClass = ((BSClass) sc);
-            TypedVariableList _varList = superClass.getVarList();
-            boolean _tripleNotEquals = (_varList != null);
-            if (_tripleNotEquals) {
-              List<TypedVariable> _allContentsOfType = EcoreUtil2.<TypedVariable>getAllContentsOfType(superClass.getVarList(), TypedVariable.class);
-              Iterables.<ExpressionVariable>addAll(variables, _allContentsOfType);
-            }
-          }
-        }
-      } else {
-        EList<DatatypeConstructor> _constructors = ((Datatype) classDecl).getConstructors();
-        Iterables.<ExpressionVariable>addAll(variables, _constructors);
-      }
-      parent = Scopes.scopeFor(variables, parent);
-    }
-    final EObject rootObj = EcoreUtil2.getRootContainer(context);
-    final Function1<EObject, Boolean> _function = (EObject object) -> {
-      return Boolean.valueOf(Objects.equal(object, classDecl));
-    };
-    final Function1<EObject, Boolean> _function_1 = (EObject object) -> {
-      return Boolean.valueOf((object instanceof FunctionDecl));
-    };
-    final ArrayList<? extends EObject> functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, _function, _function_1);
-    IScope scope = this.getVariableScopeFor(context, parent);
-    scope = Scopes.scopeFor(functionNames, scope);
-    return scope;
   }
   
   public IScope scope_TypedVariable(final MatchCase context, final EReference reference) {

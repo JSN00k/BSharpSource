@@ -17,6 +17,7 @@ import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.QuantLambda;
+import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -123,19 +124,22 @@ public class FunctionValidatorUtil {
 		 * you get unterminated recursion.
 		 */
 		IVariableProvider provAbove = EcoreUtil2.getContainerOfType(context.eContainer(), IVariableProvider.class);
-		if (context instanceof FunctionDecl) {
+		/* Referencing Funcs are only ever called, so should never add variables to an expression
+		 * They can appear in this context because of instance statements.
+		 */
+		if (context instanceof FunctionDecl && !(context instanceof ReferencingFunc)) {
 			addAllExpressionVariablesToWrapped(s, ((FunctionDecl)context).getVariablesNames());
 			return;
 		}
 		
 		if (context instanceof MatchCase || context instanceof QuantLambda) {
 			addAllExpressionVariablesToWrapped(s, ((IVariableProvider)context).getVariablesNames());
-			if (provAbove != null)
-				addTypedVariableForExpression(provAbove, s);
 		}
 		
+		if (provAbove != null)
+			addTypedVariableForExpression(provAbove, s);
+		
 		return;
-	
 	}
 	
 	public static void addLocalFunctions(EObject context, HashSet<ExpressionVariableWrapper> s) {
@@ -155,7 +159,8 @@ public class FunctionValidatorUtil {
 		List<TopLevelInstance> topLevel = CompilationUtil.getAllImportedTopLevelInstances(context);
 		
 		for (TopLevelInstance inst: topLevel) {
-			addAllExpressionVariablesToWrapped(s, EcoreUtil2.eAllOfType(inst, FunctionDecl.class));
+			Collection<FunctionDecl> funcs = EcoreUtil2.getAllContentsOfType(inst, FunctionDecl.class);
+			addAllExpressionVariablesToWrapped(s, funcs);
 			Collection<Datatype> datatypes = EcoreUtil2.eAllOfType(inst, Datatype.class);
 			for (Datatype d : datatypes)
 				addDatatypeConstructorsAndDestructors(d, s);
