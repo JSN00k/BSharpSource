@@ -83,6 +83,7 @@ public class GlobalImportImpl extends ImportImpl implements GlobalImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProject() {
 		return project;
 	}
@@ -92,6 +93,7 @@ public class GlobalImportImpl extends ImportImpl implements GlobalImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(String newProject) {
 		String oldProject = project;
 		project = newProject;

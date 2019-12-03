@@ -185,6 +185,7 @@ public class FunctionValidatorUtil {
 		addTypedVariableForExpression(context, variables);
 		ClassDecl c = CompilationUtil.getClassDecl(context);
 		if (c instanceof BSClass) {
+			variables.add(new ExpressionVariableWrapper(((BSClass) c).getInstName()));
 			addTypedVariableForBSClass((BSClass)c, variables);
 		}
 		

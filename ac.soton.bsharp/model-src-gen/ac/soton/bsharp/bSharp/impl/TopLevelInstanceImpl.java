@@ -69,6 +69,7 @@ public abstract class TopLevelInstanceImpl extends NamedObjectImpl implements To
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BSharpBlock getBlock() {
 		return block;
 	}
@@ -93,6 +94,7 @@ public abstract class TopLevelInstanceImpl extends NamedObjectImpl implements To
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBlock(BSharpBlock newBlock) {
 		if (newBlock != block) {
 			NotificationChain msgs = null;

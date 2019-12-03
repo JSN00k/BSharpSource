@@ -1,5 +1,6 @@
 package ac.soton.bsharp.typeInstanceRepresentation;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -10,6 +11,7 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
@@ -104,17 +106,26 @@ public abstract class TypeInstanceAbstract implements ITypeInstance {
 	public String compileFunctionCallOfTypeInstance(FunctionCall fc, Boolean asPred, TypedVariable typedVar) throws Exception {
 		String result = compiledTypeVariable(typedVar);
 		
-		EList<Expression> args = fc.getArguments();
-		if (args != null && !args.isEmpty()) {
-			try {
-				result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
-			} catch (Exception e) {
-				System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
-			}
-		}
+		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+		Iterator<FuncCallArgs> iter = fcas.iterator();
 		
-		if (asPred) {
-			result += " = TRUE";
+		while (iter.hasNext()) {
+			List<Expression> args = iter.next().getArguments();
+			String next = null;
+			if (args != null && !args.isEmpty()) {
+				try {
+					next += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
+				} catch (Exception e) {
+					next = "Erorr compiling args";
+					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
+				}
+				
+				if (iter.hasNext()) {
+					result += next;
+				} else if (asPred) {
+					result = next + "∈" + result;
+				}
+			}
 		}
 		
 		return result;

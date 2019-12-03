@@ -71,6 +71,7 @@ public abstract class ImportImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<FileImport> getFileImports() {
 		if (fileImports == null) {
 			fileImports = new EObjectContainmentEList<FileImport>(FileImport.class, this, BSharpPackage.IMPORT__FILE_IMPORTS);

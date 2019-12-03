@@ -115,6 +115,7 @@ public class WrappedInfixImpl extends MinimalEObjectImpl.Container implements Wr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFuncName(ExpressionVariable newFuncName) {
 		ExpressionVariable oldFuncName = funcName;
 		funcName = newFuncName;
@@ -127,6 +128,7 @@ public class WrappedInfixImpl extends MinimalEObjectImpl.Container implements Wr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInbuilt() {
 		return inbuilt;
 	}
@@ -136,6 +138,7 @@ public class WrappedInfixImpl extends MinimalEObjectImpl.Container implements Wr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInbuilt(String newInbuilt) {
 		String oldInbuilt = inbuilt;
 		inbuilt = newInbuilt;

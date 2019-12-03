@@ -2778,6 +2778,15 @@ ruleRootExpression returns [EObject current=null]
 			$current = $this_MatchStatement_3.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getRootExpressionAccess().getIfElseParserRuleCall_4());
+		}
+		this_IfElse_4=ruleIfElse
+		{
+			$current = $this_IfElse_4.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -3133,60 +3142,205 @@ ruleFunctionCall returns [EObject current=null]
 				)
 			)?
 			(
-				otherlv_4='('
+				(
+					{
+						newCompositeNode(grammarAccess.getFunctionCallAccess().getFuncCallArgsFuncCallArgsParserRuleCall_1_2_0());
+					}
+					lv_funcCallArgs_4_0=ruleFuncCallArgs
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
+						}
+						add(
+							$current,
+							"funcCallArgs",
+							lv_funcCallArgs_4_0,
+							"ac.soton.bsharp.BSharp.FuncCallArgs");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)*
+		)
+	)
+;
+
+// Entry rule entryRuleFuncCallArgs
+entryRuleFuncCallArgs returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFuncCallArgsRule()); }
+	iv_ruleFuncCallArgs=ruleFuncCallArgs
+	{ $current=$iv_ruleFuncCallArgs.current; }
+	EOF;
+
+// Rule FuncCallArgs
+ruleFuncCallArgs returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getFuncCallArgsAccess().getFuncCallArgsAction_0(),
+					$current);
+			}
+		)
+		(
+			otherlv_1='('
+			{
+				newLeafNode(otherlv_1, grammarAccess.getFuncCallArgsAccess().getLeftParenthesisKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getFuncCallArgsAccess().getArgumentsRootExpressionParserRuleCall_1_1_0());
+					}
+					lv_arguments_2_0=ruleRootExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getFuncCallArgsRule());
+						}
+						add(
+							$current,
+							"arguments",
+							lv_arguments_2_0,
+							"ac.soton.bsharp.BSharp.RootExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)?
+			(
+				otherlv_3=','
 				{
-					newLeafNode(otherlv_4, grammarAccess.getFunctionCallAccess().getLeftParenthesisKeyword_1_2_0());
+					newLeafNode(otherlv_3, grammarAccess.getFuncCallArgsAccess().getCommaKeyword_1_2_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_1_0());
+							newCompositeNode(grammarAccess.getFuncCallArgsAccess().getArgumentsRootExpressionParserRuleCall_1_2_1_0());
 						}
-						lv_arguments_5_0=ruleRootExpression
+						lv_arguments_4_0=ruleRootExpression
 						{
 							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
+								$current = createModelElementForParent(grammarAccess.getFuncCallArgsRule());
 							}
 							add(
 								$current,
 								"arguments",
-								lv_arguments_5_0,
+								lv_arguments_4_0,
 								"ac.soton.bsharp.BSharp.RootExpression");
 							afterParserOrEnumRuleCall();
 						}
 					)
-				)?
-				(
-					otherlv_6=','
-					{
-						newLeafNode(otherlv_6, grammarAccess.getFunctionCallAccess().getCommaKeyword_1_2_2_0());
-					}
-					(
-						(
-							{
-								newCompositeNode(grammarAccess.getFunctionCallAccess().getArgumentsRootExpressionParserRuleCall_1_2_2_1_0());
-							}
-							lv_arguments_7_0=ruleRootExpression
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
-								}
-								add(
-									$current,
-									"arguments",
-									lv_arguments_7_0,
-									"ac.soton.bsharp.BSharp.RootExpression");
-								afterParserOrEnumRuleCall();
-							}
-						)
-					)
-				)*
-				otherlv_8=')'
-				{
-					newLeafNode(otherlv_8, grammarAccess.getFunctionCallAccess().getRightParenthesisKeyword_1_2_3());
-				}
-			)?
+				)
+			)*
+			otherlv_5=')'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getFuncCallArgsAccess().getRightParenthesisKeyword_1_3());
+			}
 		)
+	)
+;
+
+// Entry rule entryRuleIfElse
+entryRuleIfElse returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIfElseRule()); }
+	iv_ruleIfElse=ruleIfElse
+	{ $current=$iv_ruleIfElse.current; }
+	EOF;
+
+// Rule IfElse
+ruleIfElse returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='if'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getIfElseAccess().getIfKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIfElseAccess().getConditionRootExpressionParserRuleCall_1_0());
+				}
+				lv_condition_1_0=ruleRootExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIfElseRule());
+					}
+					set(
+						$current,
+						"condition",
+						lv_condition_1_0,
+						"ac.soton.bsharp.BSharp.RootExpression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2='{'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getIfElseAccess().getLeftCurlyBracketKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIfElseAccess().getIfTrueExprRootExpressionParserRuleCall_3_0());
+				}
+				lv_ifTrueExpr_3_0=ruleRootExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIfElseRule());
+					}
+					set(
+						$current,
+						"ifTrueExpr",
+						lv_ifTrueExpr_3_0,
+						"ac.soton.bsharp.BSharp.RootExpression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_4='}'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getIfElseAccess().getRightCurlyBracketKeyword_4());
+		}
+		otherlv_5='else'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getIfElseAccess().getElseKeyword_5());
+		}
+		otherlv_6='{'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getIfElseAccess().getLeftCurlyBracketKeyword_6());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIfElseAccess().getIfFalseExprRootExpressionParserRuleCall_7_0());
+				}
+				lv_ifFalseExpr_7_0=ruleRootExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIfElseRule());
+					}
+					set(
+						$current,
+						"ifFalseExpr",
+						lv_ifFalseExpr_7_0,
+						"ac.soton.bsharp.BSharp.RootExpression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_8='}'
+		{
+			newLeafNode(otherlv_8, grammarAccess.getIfElseAccess().getRightCurlyBracketKeyword_8());
+		}
 	)
 ;
 

@@ -125,6 +125,7 @@ public class TopLevelFileImpl extends ITheoryImportCacheProviderImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -137,6 +138,7 @@ public class TopLevelFileImpl extends ITheoryImportCacheProviderImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TopLevelImport> getTopLevelImports() {
 		if (topLevelImports == null) {
 			topLevelImports = new EObjectContainmentEList<TopLevelImport>(TopLevelImport.class, this, BSharpPackage.TOP_LEVEL_FILE__TOP_LEVEL_IMPORTS);
@@ -149,6 +151,7 @@ public class TopLevelFileImpl extends ITheoryImportCacheProviderImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TopLevelInstance> getNoImportElements() {
 		if (noImportElements == null) {
 			noImportElements = new EObjectContainmentEList<TopLevelInstance>(TopLevelInstance.class, this, BSharpPackage.TOP_LEVEL_FILE__NO_IMPORT_ELEMENTS);

@@ -82,6 +82,7 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<FunctionDecl> getFunctions() {
 		if (functions == null) {
 			functions = new EObjectContainmentEList<FunctionDecl>(FunctionDecl.class, this, BSharpPackage.BSHARP_BLOCK__FUNCTIONS);
@@ -94,6 +95,7 @@ public class BSharpBlockImpl extends MinimalEObjectImpl.Container implements BSh
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ITheoremContainer> getTheorems() {
 		if (theorems == null) {
 			theorems = new EObjectContainmentEList<ITheoremContainer>(ITheoremContainer.class, this, BSharpPackage.BSHARP_BLOCK__THEOREMS);

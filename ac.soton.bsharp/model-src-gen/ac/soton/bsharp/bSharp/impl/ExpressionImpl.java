@@ -62,6 +62,7 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpressionVariable getTypeInst() {
 		if (typeInst != null && typeInst.eIsProxy()) {
 			InternalEObject oldTypeInst = (InternalEObject)typeInst;
@@ -88,6 +89,7 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeInst(ExpressionVariable newTypeInst) {
 		ExpressionVariable oldTypeInst = typeInst;
 		typeInst = newTypeInst;

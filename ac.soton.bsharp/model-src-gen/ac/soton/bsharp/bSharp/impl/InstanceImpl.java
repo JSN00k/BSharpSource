@@ -200,6 +200,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BSClass getClassName() {
 		if (className != null && className.eIsProxy()) {
 			InternalEObject oldClassName = (InternalEObject)className;
@@ -226,6 +227,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(BSClass newClassName) {
 		BSClass oldClassName = className;
 		className = newClassName;
@@ -240,6 +242,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<IClassInstance> getContext() {
 		if (context == null) {
 			context = new EObjectResolvingEList<IClassInstance>(IClassInstance.class, this, BSharpPackage.INSTANCE__CONTEXT);
@@ -252,6 +255,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Expression> getArguments() {
 		if (arguments == null) {
 			arguments = new EObjectContainmentEList<Expression>(Expression.class, this, BSharpPackage.INSTANCE__ARGUMENTS);
@@ -264,6 +268,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClassNameName() {
 		return classNameName;
 	}
@@ -273,6 +278,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassNameName(String newClassNameName) {
 		String oldClassNameName = classNameName;
 		classNameName = newClassNameName;
@@ -285,6 +291,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ReferencingFunc> getReferencingFuncs() {
 		if (referencingFuncs == null) {
 			referencingFuncs = new EObjectContainmentEList<ReferencingFunc>(ReferencingFunc.class, this, BSharpPackage.INSTANCE__REFERENCING_FUNCS);
@@ -312,6 +319,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -694,7 +702,7 @@ public class InstanceImpl extends IExpressionContainerImpl implements Instance {
 
 						@Override
 						public Boolean apply(EObject p) {
-							return p instanceof TheoremDecl && ((TheoremDecl) p).getExpr().hasInferredContext();
+							return p instanceof TheoremDecl && ((TheoremDecl) p).getExpr().requiresInferredContext();
 						}
 					});
 			result.addAll(theoremDecl);

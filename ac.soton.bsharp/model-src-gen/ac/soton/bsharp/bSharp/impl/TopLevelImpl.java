@@ -95,6 +95,7 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -104,6 +105,7 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -116,6 +118,7 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TopLevelFile getTopLevelFile() {
 		return topLevelFile;
 	}
@@ -140,6 +143,7 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTopLevelFile(TopLevelFile newTopLevelFile) {
 		if (newTopLevelFile != topLevelFile) {
 			NotificationChain msgs = null;
@@ -159,6 +163,7 @@ public class TopLevelImpl extends MinimalEObjectImpl.Container implements TopLev
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TopLevelFile> getImportedFiles() {
 		if (importedFiles == null) {
 			importedFiles = new EObjectResolvingEList<TopLevelFile>(TopLevelFile.class, this, BSharpPackage.TOP_LEVEL__IMPORTED_FILES);

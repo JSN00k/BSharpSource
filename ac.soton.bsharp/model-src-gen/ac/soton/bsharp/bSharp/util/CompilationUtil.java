@@ -180,7 +180,7 @@ public class CompilationUtil {
 		return createOpWithArgumentsAsPred(thyCache, name, args, notation, true);
 	}
 	
-	public static String compileExpressionListWithSeperator(EList<Expression> exprs, String sep) throws Exception {
+	public static String compileExpressionListWithSeperator(List<? extends Expression> exprs, String sep) throws Exception {
 		Boolean first = true;
 		String result = "";
 		
@@ -348,7 +348,7 @@ public class CompilationUtil {
 		return result;
 	}
 	
-	public static EList<EObject> filterFileImportReference(FileImport fileImport, Function1<EObject, Boolean> filter) {
+	public static List<? extends EObject> filterFileImportReference(FileImport fileImport, Function1<EObject, Boolean> filter) {
 		TopLevelInstance type = fileImport.getType();
 		
 		EObject root = EcoreUtil2.getRootContainer(fileImport.getFileReference());
@@ -433,7 +433,7 @@ public class CompilationUtil {
 		ArrayList<BSharpBlock> result = new ArrayList<BSharpBlock>();
 		SuperTypeList supers = tc.getSupertypes();
 		
-		EList<TypeBuilder> superTypes = supers.getSuperTypes();
+		List<? extends TypeBuilder> superTypes = supers.getSuperTypes();
 		
 		for (TypeBuilder tb : superTypes) {
 			if (tb.isAbstractTypeClass()) {

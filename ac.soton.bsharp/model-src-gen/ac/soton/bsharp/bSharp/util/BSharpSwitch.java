@@ -273,6 +273,12 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.FUNC_CALL_ARGS: {
+				FuncCallArgs funcCallArgs = (FuncCallArgs)theEObject;
+				T result = caseFuncCallArgs(funcCallArgs);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.FUNCTION_DECL: {
 				FunctionDecl functionDecl = (FunctionDecl)theEObject;
 				T result = caseFunctionDecl(functionDecl);
@@ -297,6 +303,13 @@ public class BSharpSwitch<T> extends Switch<T> {
 				GlobalImport globalImport = (GlobalImport)theEObject;
 				T result = caseGlobalImport(globalImport);
 				if (result == null) result = caseImport(globalImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.IF_ELSE: {
+				IfElse ifElse = (IfElse)theEObject;
+				T result = caseIfElse(ifElse);
+				if (result == null) result = caseExpression(ifElse);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1038,6 +1051,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Func Call Args</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Func Call Args</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFuncCallArgs(FuncCallArgs object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Class Var Decl</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1364,6 +1392,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGlobalImport(GlobalImport object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>If Else</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>If Else</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfElse(IfElse object) {
 		return null;
 	}
 

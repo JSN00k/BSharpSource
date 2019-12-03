@@ -15,12 +15,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getArguments <em>Arguments</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getOwnerType <em>Owner Type</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getWrapped <em>Wrapped</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getCompilationObject <em>Compilation Object</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getFuncCallArgs <em>Func Call Args</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall()
@@ -28,22 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface FunctionCall extends Expression {
-
-	/**
-	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
-	 * The list contents are of type {@link ac.soton.bsharp.bSharp.Expression}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Arguments</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Arguments</em>' containment reference list.
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_Arguments()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Expression> getArguments();
 
 	/**
 	 * Returns the value of the '<em><b>Owner Type</b></em>' reference.
@@ -174,6 +158,18 @@ public interface FunctionCall extends Expression {
 	 * @generated
 	 */
 	void setCompilationObject(EObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Func Call Args</b></em>' containment reference list.
+	 * The list contents are of type {@link ac.soton.bsharp.bSharp.FuncCallArgs}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Func Call Args</em>' containment reference list.
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_FuncCallArgs()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<FuncCallArgs> getFuncCallArgs();
 
 	String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPredicate) throws Exception;
 	

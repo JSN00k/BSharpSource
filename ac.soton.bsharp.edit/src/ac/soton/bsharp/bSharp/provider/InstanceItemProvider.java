@@ -258,6 +258,11 @@ public class InstanceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
+				 BSharpFactory.eINSTANCE.createIfElse()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
 				 BSharpFactory.eINSTANCE.createInfix()));
 
 		newChildDescriptors.add

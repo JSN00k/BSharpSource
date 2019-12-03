@@ -19,6 +19,7 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
+import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
@@ -33,6 +34,7 @@ import ac.soton.bsharp.bSharp.ITheoremContainer;
 import ac.soton.bsharp.bSharp.ITheoryImportCacheProvider;
 import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.IVariableProvider;
+import ac.soton.bsharp.bSharp.IfElse;
 import ac.soton.bsharp.bSharp.Import;
 import ac.soton.bsharp.bSharp.InbuiltInfix;
 import ac.soton.bsharp.bSharp.Infix;
@@ -316,6 +318,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass funcCallArgsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass classVarDeclEClass = null;
 
 	/**
@@ -470,6 +479,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass ifElseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass inbuiltInfixEClass = null;
 
 	/**
@@ -552,6 +568,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIEventBPrefixProvider() {
 		return iEventBPrefixProviderEClass;
 	}
@@ -561,6 +578,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTopLevel() {
 		return topLevelEClass;
 	}
@@ -570,6 +588,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTopLevel_Name() {
 		return (EAttribute)topLevelEClass.getEStructuralFeatures().get(0);
 	}
@@ -579,6 +598,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopLevel_TopLevelFile() {
 		return (EReference)topLevelEClass.getEStructuralFeatures().get(1);
 	}
@@ -588,6 +608,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopLevel_ImportedFiles() {
 		return (EReference)topLevelEClass.getEStructuralFeatures().get(2);
 	}
@@ -597,6 +618,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTopLevelFile() {
 		return topLevelFileEClass;
 	}
@@ -606,6 +628,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTopLevelFile_Name() {
 		return (EAttribute)topLevelFileEClass.getEStructuralFeatures().get(0);
 	}
@@ -615,6 +638,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopLevelFile_TopLevelImports() {
 		return (EReference)topLevelFileEClass.getEStructuralFeatures().get(1);
 	}
@@ -624,6 +648,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopLevelFile_NoImportElements() {
 		return (EReference)topLevelFileEClass.getEStructuralFeatures().get(2);
 	}
@@ -633,6 +658,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTopLevelImport() {
 		return topLevelImportEClass;
 	}
@@ -642,6 +668,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopLevelImport_Imports() {
 		return (EReference)topLevelImportEClass.getEStructuralFeatures().get(0);
 	}
@@ -651,6 +678,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopLevelImport_BodyElements() {
 		return (EReference)topLevelImportEClass.getEStructuralFeatures().get(1);
 	}
@@ -660,6 +688,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopLevelImport_ImportRefs() {
 		return (EReference)topLevelImportEClass.getEStructuralFeatures().get(2);
 	}
@@ -669,6 +698,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getClassDecl() {
 		return classDeclEClass;
 	}
@@ -678,6 +708,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassDecl_RawContext() {
 		return (EReference)classDeclEClass.getEStructuralFeatures().get(0);
 	}
@@ -687,6 +718,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBSClass() {
 		return bsClassEClass;
 	}
@@ -696,6 +728,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBSClass_Supertypes() {
 		return (EReference)bsClassEClass.getEStructuralFeatures().get(0);
 	}
@@ -705,6 +738,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBSClass_VarList() {
 		return (EReference)bsClassEClass.getEStructuralFeatures().get(1);
 	}
@@ -714,6 +748,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBSClass_Where() {
 		return (EReference)bsClassEClass.getEStructuralFeatures().get(2);
 	}
@@ -723,6 +758,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBSClass_InstName() {
 		return (EReference)bsClassEClass.getEStructuralFeatures().get(3);
 	}
@@ -732,6 +768,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInstName() {
 		return instNameEClass;
 	}
@@ -741,6 +778,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBSharpBlock() {
 		return bSharpBlockEClass;
 	}
@@ -750,6 +788,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBSharpBlock_Functions() {
 		return (EReference)bSharpBlockEClass.getEStructuralFeatures().get(0);
 	}
@@ -759,6 +798,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBSharpBlock_Theorems() {
 		return (EReference)bSharpBlockEClass.getEStructuralFeatures().get(1);
 	}
@@ -768,6 +808,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGenName() {
 		return genNameEClass;
 	}
@@ -777,6 +818,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPolyContext() {
 		return polyContextEClass;
 	}
@@ -786,6 +828,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPolyContext_PolyTypes() {
 		return (EReference)polyContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -795,6 +838,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPolyType() {
 		return polyTypeEClass;
 	}
@@ -804,6 +848,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPolyType_SuperTypes() {
 		return (EReference)polyTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -813,6 +858,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSuperTypeList() {
 		return superTypeListEClass;
 	}
@@ -822,6 +868,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSuperTypeList_SuperTypes() {
 		return (EReference)superTypeListEClass.getEStructuralFeatures().get(0);
 	}
@@ -831,6 +878,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConstructedType() {
 		return constructedTypeEClass;
 	}
@@ -840,6 +888,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConstructedType_Constructor() {
 		return (EAttribute)constructedTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -849,6 +898,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructedType_Left() {
 		return (EReference)constructedTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -858,6 +908,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConstructedType_Right() {
 		return (EReference)constructedTypeEClass.getEStructuralFeatures().get(2);
 	}
@@ -867,6 +918,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeConstructor() {
 		return typeConstructorEClass;
 	}
@@ -876,6 +928,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeConstructor_TypeName() {
 		return (EReference)typeConstructorEClass.getEStructuralFeatures().get(0);
 	}
@@ -885,6 +938,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeConstructor_Context() {
 		return (EReference)typeConstructorEClass.getEStructuralFeatures().get(1);
 	}
@@ -894,6 +948,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeConstrBracket() {
 		return typeConstrBracketEClass;
 	}
@@ -903,6 +958,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeConstrBracket_Child() {
 		return (EReference)typeConstrBracketEClass.getEStructuralFeatures().get(0);
 	}
@@ -912,6 +968,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeDeclContext() {
 		return typeDeclContextEClass;
 	}
@@ -921,6 +978,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypeDeclContext_TypeName() {
 		return (EReference)typeDeclContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -930,6 +988,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getWhere() {
 		return whereEClass;
 	}
@@ -939,6 +998,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getWhere_Expressions() {
 		return (EReference)whereEClass.getEStructuralFeatures().get(0);
 	}
@@ -948,6 +1008,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getWrappedInfix() {
 		return wrappedInfixEClass;
 	}
@@ -957,6 +1018,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getWrappedInfix_FuncName() {
 		return (EReference)wrappedInfixEClass.getEStructuralFeatures().get(0);
 	}
@@ -966,6 +1028,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getWrappedInfix_Inbuilt() {
 		return (EAttribute)wrappedInfixEClass.getEStructuralFeatures().get(1);
 	}
@@ -975,6 +1038,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDatatype() {
 		return datatypeEClass;
 	}
@@ -984,6 +1048,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatatype_Constructors() {
 		return (EReference)datatypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -993,6 +1058,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDatatypeConstructor() {
 		return datatypeConstructorEClass;
 	}
@@ -1002,6 +1068,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDatatypeConstructor_Decons() {
 		return (EReference)datatypeConstructorEClass.getEStructuralFeatures().get(0);
 	}
@@ -1011,6 +1078,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExtend() {
 		return extendEClass;
 	}
@@ -1020,6 +1088,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExtend_ExtendedClass() {
 		return (EReference)extendEClass.getEStructuralFeatures().get(0);
 	}
@@ -1029,6 +1098,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getExtend_ExtendedClassName() {
 		return (EAttribute)extendEClass.getEStructuralFeatures().get(1);
 	}
@@ -1038,6 +1108,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFunctionDecl() {
 		return functionDeclEClass;
 	}
@@ -1047,6 +1118,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunctionDecl_Context() {
 		return (EReference)functionDeclEClass.getEStructuralFeatures().get(0);
 	}
@@ -1056,6 +1128,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunctionDecl_VarList() {
 		return (EReference)functionDeclEClass.getEStructuralFeatures().get(1);
 	}
@@ -1065,6 +1138,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunctionDecl_ReturnType() {
 		return (EReference)functionDeclEClass.getEStructuralFeatures().get(2);
 	}
@@ -1074,6 +1148,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFunctionDecl_Infix() {
 		return (EAttribute)functionDeclEClass.getEStructuralFeatures().get(3);
 	}
@@ -1083,6 +1158,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunctionDecl_Expr() {
 		return (EReference)functionDeclEClass.getEStructuralFeatures().get(4);
 	}
@@ -1092,6 +1168,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunctionDecl_GeneratedLambdas() {
 		return (EReference)functionDeclEClass.getEStructuralFeatures().get(5);
 	}
@@ -1101,6 +1178,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFunctionDecl_TypingTheorem() {
 		return (EReference)functionDeclEClass.getEStructuralFeatures().get(6);
 	}
@@ -1110,6 +1188,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMatchStatement() {
 		return matchStatementEClass;
 	}
@@ -1119,6 +1198,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMatchStatement_Match() {
 		return (EReference)matchStatementEClass.getEStructuralFeatures().get(0);
 	}
@@ -1128,6 +1208,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMatchStatement_InductCase() {
 		return (EReference)matchStatementEClass.getEStructuralFeatures().get(1);
 	}
@@ -1137,6 +1218,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMatchCase() {
 		return matchCaseEClass;
 	}
@@ -1146,6 +1228,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMatchCase_DeconName() {
 		return (EReference)matchCaseEClass.getEStructuralFeatures().get(0);
 	}
@@ -1155,6 +1238,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMatchCase_Variables() {
 		return (EReference)matchCaseEClass.getEStructuralFeatures().get(1);
 	}
@@ -1164,6 +1248,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMatchCase_Expr() {
 		return (EReference)matchCaseEClass.getEStructuralFeatures().get(2);
 	}
@@ -1173,6 +1258,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTheoremBody() {
 		return theoremBodyEClass;
 	}
@@ -1182,6 +1268,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTheoremBody_TheoremDecl() {
 		return (EReference)theoremBodyEClass.getEStructuralFeatures().get(0);
 	}
@@ -1191,6 +1278,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTheoremDecl() {
 		return theoremDeclEClass;
 	}
@@ -1200,6 +1288,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTheoremDecl_Name() {
 		return (EAttribute)theoremDeclEClass.getEStructuralFeatures().get(0);
 	}
@@ -1209,6 +1298,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTheoremDecl_Expr() {
 		return (EReference)theoremDeclEClass.getEStructuralFeatures().get(1);
 	}
@@ -1218,6 +1308,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTheoremDecl_GeneratedQuants() {
 		return (EReference)theoremDeclEClass.getEStructuralFeatures().get(2);
 	}
@@ -1227,6 +1318,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedVariableList() {
 		return typedVariableListEClass;
 	}
@@ -1236,6 +1328,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedVariableList_VariablesOfType() {
 		return (EReference)typedVariableListEClass.getEStructuralFeatures().get(0);
 	}
@@ -1245,6 +1338,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariableTyping() {
 		return variableTypingEClass;
 	}
@@ -1254,6 +1348,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableTyping_TypeVar() {
 		return (EReference)variableTypingEClass.getEStructuralFeatures().get(0);
 	}
@@ -1263,6 +1358,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getVariableTyping_Type() {
 		return (EReference)variableTypingEClass.getEStructuralFeatures().get(1);
 	}
@@ -1272,6 +1368,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedVariable() {
 		return typedVariableEClass;
 	}
@@ -1281,6 +1378,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getQuantLambda() {
 		return quantLambdaEClass;
 	}
@@ -1290,6 +1388,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getQuantLambda_QType() {
 		return (EAttribute)quantLambdaEClass.getEStructuralFeatures().get(0);
 	}
@@ -1299,6 +1398,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getQuantLambda_Context() {
 		return (EReference)quantLambdaEClass.getEStructuralFeatures().get(1);
 	}
@@ -1308,6 +1408,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getQuantLambda_VarList() {
 		return (EReference)quantLambdaEClass.getEStructuralFeatures().get(2);
 	}
@@ -1317,6 +1418,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getQuantLambda_Expr() {
 		return (EReference)quantLambdaEClass.getEStructuralFeatures().get(3);
 	}
@@ -1326,6 +1428,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getReferencingFunc() {
 		return referencingFuncEClass;
 	}
@@ -1335,6 +1438,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReferencingFunc_ReferencedFunc() {
 		return (EReference)referencingFuncEClass.getEStructuralFeatures().get(0);
 	}
@@ -1344,6 +1448,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpression() {
 		return expressionEClass;
 	}
@@ -1353,6 +1458,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpression_TypeInst() {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1362,6 +1468,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFunctionCall() {
 		return functionCallEClass;
 	}
@@ -1371,7 +1478,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionCall_Arguments() {
+	@Override
+	public EReference getFunctionCall_OwnerType() {
 		return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1380,7 +1488,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionCall_OwnerType() {
+	@Override
+	public EReference getFunctionCall_ClassVarDecl() {
 		return (EReference)functionCallEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1389,7 +1498,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionCall_ClassVarDecl() {
+	@Override
+	public EReference getFunctionCall_Context() {
 		return (EReference)functionCallEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1398,7 +1508,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionCall_Context() {
+	@Override
+	public EReference getFunctionCall_Wrapped() {
 		return (EReference)functionCallEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1407,7 +1518,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionCall_Wrapped() {
+	@Override
+	public EReference getFunctionCall_CompilationObject() {
 		return (EReference)functionCallEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -1416,7 +1528,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionCall_CompilationObject() {
+	@Override
+	public EReference getFunctionCall_FuncCallArgs() {
 		return (EReference)functionCallEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1425,6 +1538,27 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EClass getFuncCallArgs() {
+		return funcCallArgsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFuncCallArgs_Arguments() {
+		return (EReference)funcCallArgsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getClassVarDecl() {
 		return classVarDeclEClass;
 	}
@@ -1434,6 +1568,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassVarDecl_OwnerType() {
 		return (EReference)classVarDeclEClass.getEStructuralFeatures().get(0);
 	}
@@ -1443,6 +1578,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassVarDecl_TypeInst() {
 		return (EReference)classVarDeclEClass.getEStructuralFeatures().get(1);
 	}
@@ -1452,6 +1588,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPrefix() {
 		return prefixEClass;
 	}
@@ -1461,6 +1598,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPrefix_Name() {
 		return (EAttribute)prefixEClass.getEStructuralFeatures().get(0);
 	}
@@ -1470,6 +1608,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPrefix_Elem() {
 		return (EReference)prefixEClass.getEStructuralFeatures().get(1);
 	}
@@ -1479,6 +1618,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBracket() {
 		return bracketEClass;
 	}
@@ -1488,6 +1628,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBracket_Child() {
 		return (EReference)bracketEClass.getEStructuralFeatures().get(0);
 	}
@@ -1497,6 +1638,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpressionVariable() {
 		return expressionVariableEClass;
 	}
@@ -1506,6 +1648,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInstance() {
 		return instanceEClass;
 	}
@@ -1515,6 +1658,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstance_ClassName() {
 		return (EReference)instanceEClass.getEStructuralFeatures().get(0);
 	}
@@ -1524,6 +1668,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstance_Context() {
 		return (EReference)instanceEClass.getEStructuralFeatures().get(1);
 	}
@@ -1533,6 +1678,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstance_Arguments() {
 		return (EReference)instanceEClass.getEStructuralFeatures().get(2);
 	}
@@ -1542,6 +1688,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getInstance_ClassNameName() {
 		return (EAttribute)instanceEClass.getEStructuralFeatures().get(3);
 	}
@@ -1551,6 +1698,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInstance_ReferencingFuncs() {
 		return (EReference)instanceEClass.getEStructuralFeatures().get(4);
 	}
@@ -1560,6 +1708,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInfix() {
 		return infixEClass;
 	}
@@ -1569,6 +1718,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInfix_Left() {
 		return (EReference)infixEClass.getEStructuralFeatures().get(0);
 	}
@@ -1578,6 +1728,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInfix_FuncName() {
 		return (EReference)infixEClass.getEStructuralFeatures().get(1);
 	}
@@ -1587,6 +1738,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInfix_Right() {
 		return (EReference)infixEClass.getEStructuralFeatures().get(2);
 	}
@@ -1596,6 +1748,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getInfix_OpName() {
 		return (EAttribute)infixEClass.getEStructuralFeatures().get(3);
 	}
@@ -1605,6 +1758,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInfixFunc() {
 		return infixFuncEClass;
 	}
@@ -1614,6 +1768,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getInfixFunc_Precedence() {
 		return (EAttribute)infixFuncEClass.getEStructuralFeatures().get(0);
 	}
@@ -1623,6 +1778,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIVariableProvider() {
 		return iVariableProviderEClass;
 	}
@@ -1632,6 +1788,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIPolyTypeProvider() {
 		return iPolyTypeProviderEClass;
 	}
@@ -1641,6 +1798,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIClassInstance() {
 		return iClassInstanceEClass;
 	}
@@ -1650,6 +1808,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIExpressionContainer() {
 		return iExpressionContainerEClass;
 	}
@@ -1659,6 +1818,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getITheoryImportCacheProvider() {
 		return iTheoryImportCacheProviderEClass;
 	}
@@ -1668,6 +1828,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getITheoremContainer() {
 		return iTheoremContainerEClass;
 	}
@@ -1677,6 +1838,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIBodyElementsContainer() {
 		return iBodyElementsContainerEClass;
 	}
@@ -1686,6 +1848,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIVarType() {
 		return iVarTypeEClass;
 	}
@@ -1695,6 +1858,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getType() {
 		return typeEClass;
 	}
@@ -1704,6 +1868,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getImport() {
 		return importEClass;
 	}
@@ -1713,6 +1878,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getImport_FileImports() {
 		return (EReference)importEClass.getEStructuralFeatures().get(0);
 	}
@@ -1722,6 +1888,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTopLevelInstance() {
 		return topLevelInstanceEClass;
 	}
@@ -1731,6 +1898,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopLevelInstance_Block() {
 		return (EReference)topLevelInstanceEClass.getEStructuralFeatures().get(0);
 	}
@@ -1740,6 +1908,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamedObject() {
 		return namedObjectEClass;
 	}
@@ -1749,6 +1918,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNamedObject_Name() {
 		return (EAttribute)namedObjectEClass.getEStructuralFeatures().get(0);
 	}
@@ -1758,6 +1928,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeBuilder() {
 		return typeBuilderEClass;
 	}
@@ -1767,6 +1938,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypePowerSet() {
 		return typePowerSetEClass;
 	}
@@ -1776,6 +1948,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypePowerSet_Child() {
 		return (EReference)typePowerSetEClass.getEStructuralFeatures().get(0);
 	}
@@ -1785,6 +1958,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGlobalImport() {
 		return globalImportEClass;
 	}
@@ -1794,6 +1968,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGlobalImport_Project() {
 		return (EAttribute)globalImportEClass.getEStructuralFeatures().get(0);
 	}
@@ -1803,6 +1978,47 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EClass getIfElse() {
+		return ifElseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfElse_Condition() {
+		return (EReference)ifElseEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfElse_IfTrueExpr() {
+		return (EReference)ifElseEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfElse_IfFalseExpr() {
+		return (EReference)ifElseEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getInbuiltInfix() {
 		return inbuiltInfixEClass;
 	}
@@ -1812,6 +2028,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFileImport() {
 		return fileImportEClass;
 	}
@@ -1821,6 +2038,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFileImport_FileName() {
 		return (EAttribute)fileImportEClass.getEStructuralFeatures().get(0);
 	}
@@ -1830,6 +2048,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFileImport_FileReference() {
 		return (EReference)fileImportEClass.getEStructuralFeatures().get(1);
 	}
@@ -1839,6 +2058,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFileImport_Type() {
 		return (EReference)fileImportEClass.getEStructuralFeatures().get(2);
 	}
@@ -1848,6 +2068,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFileImport_TypeName() {
 		return (EAttribute)fileImportEClass.getEStructuralFeatures().get(3);
 	}
@@ -1857,6 +2078,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLocalImport() {
 		return localImportEClass;
 	}
@@ -1866,6 +2088,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BSharpFactory getBSharpFactory() {
 		return (BSharpFactory)getEFactoryInstance();
 	}
@@ -1962,12 +2185,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEAttribute(fileImportEClass, FILE_IMPORT__TYPE_NAME);
 
 		functionCallEClass = createEClass(FUNCTION_CALL);
-		createEReference(functionCallEClass, FUNCTION_CALL__ARGUMENTS);
 		createEReference(functionCallEClass, FUNCTION_CALL__OWNER_TYPE);
 		createEReference(functionCallEClass, FUNCTION_CALL__CLASS_VAR_DECL);
 		createEReference(functionCallEClass, FUNCTION_CALL__CONTEXT);
 		createEReference(functionCallEClass, FUNCTION_CALL__WRAPPED);
 		createEReference(functionCallEClass, FUNCTION_CALL__COMPILATION_OBJECT);
+		createEReference(functionCallEClass, FUNCTION_CALL__FUNC_CALL_ARGS);
+
+		funcCallArgsEClass = createEClass(FUNC_CALL_ARGS);
+		createEReference(funcCallArgsEClass, FUNC_CALL_ARGS__ARGUMENTS);
 
 		functionDeclEClass = createEClass(FUNCTION_DECL);
 		createEReference(functionDeclEClass, FUNCTION_DECL__CONTEXT);
@@ -1982,6 +2208,11 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		globalImportEClass = createEClass(GLOBAL_IMPORT);
 		createEAttribute(globalImportEClass, GLOBAL_IMPORT__PROJECT);
+
+		ifElseEClass = createEClass(IF_ELSE);
+		createEReference(ifElseEClass, IF_ELSE__CONDITION);
+		createEReference(ifElseEClass, IF_ELSE__IF_TRUE_EXPR);
+		createEReference(ifElseEClass, IF_ELSE__IF_FALSE_EXPR);
 
 		inbuiltInfixEClass = createEClass(INBUILT_INFIX);
 
@@ -2154,6 +2385,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		functionDeclEClass.getESuperTypes().add(this.getInfixFunc());
 		genNameEClass.getESuperTypes().add(this.getNamedObject());
 		globalImportEClass.getESuperTypes().add(this.getImport());
+		ifElseEClass.getESuperTypes().add(this.getExpression());
 		inbuiltInfixEClass.getESuperTypes().add(this.getInfixFunc());
 		infixEClass.getESuperTypes().add(this.getExpression());
 		infixFuncEClass.getESuperTypes().add(this.getExpressionVariable());
@@ -2259,12 +2491,15 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEAttribute(getFileImport_TypeName(), ecorePackage.getEString(), "typeName", null, 0, 1, FileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionCall_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_OwnerType(), this.getGenName(), null, "ownerType", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_ClassVarDecl(), this.getClassVarDecl(), null, "classVarDecl", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_Context(), this.getTypeDeclContext(), null, "context", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_Wrapped(), this.getWrappedInfix(), null, "wrapped", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_CompilationObject(), ecorePackage.getEObject(), null, "compilationObject", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCall_FuncCallArgs(), this.getFuncCallArgs(), null, "funcCallArgs", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(funcCallArgsEClass, FuncCallArgs.class, "FuncCallArgs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFuncCallArgs_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, FuncCallArgs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionDeclEClass, FunctionDecl.class, "FunctionDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2279,6 +2514,11 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 
 		initEClass(globalImportEClass, GlobalImport.class, "GlobalImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGlobalImport_Project(), ecorePackage.getEString(), "project", null, 0, 1, GlobalImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(ifElseEClass, IfElse.class, "IfElse", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIfElse_Condition(), this.getExpression(), null, "condition", null, 0, 1, IfElse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfElse_IfTrueExpr(), this.getExpression(), null, "ifTrueExpr", null, 0, 1, IfElse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfElse_IfFalseExpr(), this.getExpression(), null, "ifFalseExpr", null, 0, 1, IfElse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inbuiltInfixEClass, InbuiltInfix.class, "InbuiltInfix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

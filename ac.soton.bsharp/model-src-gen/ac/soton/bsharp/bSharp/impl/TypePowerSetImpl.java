@@ -69,6 +69,7 @@ public class TypePowerSetImpl extends TypeBuilderImpl implements TypePowerSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeBuilder getChild() {
 		return child;
 	}
@@ -93,6 +94,7 @@ public class TypePowerSetImpl extends TypeBuilderImpl implements TypePowerSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setChild(TypeBuilder newChild) {
 		if (newChild != child) {
 			NotificationChain msgs = null;

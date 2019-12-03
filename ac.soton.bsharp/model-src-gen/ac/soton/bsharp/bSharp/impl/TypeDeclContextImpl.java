@@ -70,6 +70,7 @@ public class TypeDeclContextImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TypeBuilder> getTypeName() {
 		if (typeName == null) {
 			typeName = new EObjectContainmentEList<TypeBuilder>(TypeBuilder.class, this, BSharpPackage.TYPE_DECL_CONTEXT__TYPE_NAME);

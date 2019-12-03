@@ -64,6 +64,7 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getChild() {
 		return child;
 	}
@@ -88,6 +89,7 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setChild(Expression newChild) {
 		if (newChild != child) {
 			NotificationChain msgs = null;
@@ -207,8 +209,8 @@ public class BracketImpl extends ExpressionImpl implements Bracket {
 	}
 
 	@Override
-	public Boolean hasInferredContext() {
-		return child.hasInferredContext();
+	public Boolean requiresInferredContext() {
+		return child.requiresInferredContext();
 	}
 
 	@Override

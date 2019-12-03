@@ -69,8 +69,10 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.EXPRESSION: return createExpression();
 			case BSharpPackage.FILE_IMPORT: return createFileImport();
 			case BSharpPackage.FUNCTION_CALL: return createFunctionCall();
+			case BSharpPackage.FUNC_CALL_ARGS: return createFuncCallArgs();
 			case BSharpPackage.FUNCTION_DECL: return createFunctionDecl();
 			case BSharpPackage.GLOBAL_IMPORT: return createGlobalImport();
+			case BSharpPackage.IF_ELSE: return createIfElse();
 			case BSharpPackage.INBUILT_INFIX: return createInbuiltInfix();
 			case BSharpPackage.INFIX: return createInfix();
 			case BSharpPackage.INST_NAME: return createInstName();
@@ -109,6 +111,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TopLevel createTopLevel() {
 		TopLevelImpl topLevel = new TopLevelImpl();
 		return topLevel;
@@ -119,6 +122,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TopLevelFile createTopLevelFile() {
 		TopLevelFileImpl topLevelFile = new TopLevelFileImpl();
 		return topLevelFile;
@@ -129,6 +133,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TopLevelImport createTopLevelImport() {
 		TopLevelImportImpl topLevelImport = new TopLevelImportImpl();
 		return topLevelImport;
@@ -139,6 +144,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BSharpBlock createBSharpBlock() {
 		BSharpBlockImpl bSharpBlock = new BSharpBlockImpl();
 		return bSharpBlock;
@@ -149,6 +155,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PolyContext createPolyContext() {
 		PolyContextImpl polyContext = new PolyContextImpl();
 		return polyContext;
@@ -159,6 +166,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PolyType createPolyType() {
 		PolyTypeImpl polyType = new PolyTypeImpl();
 		return polyType;
@@ -169,6 +177,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SuperTypeList createSuperTypeList() {
 		SuperTypeListImpl superTypeList = new SuperTypeListImpl();
 		return superTypeList;
@@ -179,6 +188,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConstructedType createConstructedType() {
 		ConstructedTypeImpl constructedType = new ConstructedTypeImpl();
 		return constructedType;
@@ -189,6 +199,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeConstructor createTypeConstructor() {
 		TypeConstructorImpl typeConstructor = new TypeConstructorImpl();
 		return typeConstructor;
@@ -199,6 +210,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeConstrBracket createTypeConstrBracket() {
 		TypeConstrBracketImpl typeConstrBracket = new TypeConstrBracketImpl();
 		return typeConstrBracket;
@@ -209,6 +221,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeDeclContext createTypeDeclContext() {
 		TypeDeclContextImpl typeDeclContext = new TypeDeclContextImpl();
 		return typeDeclContext;
@@ -219,6 +232,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Where createWhere() {
 		WhereImpl where = new WhereImpl();
 		return where;
@@ -229,6 +243,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public WrappedInfix createWrappedInfix() {
 		WrappedInfixImpl wrappedInfix = new WrappedInfixImpl();
 		return wrappedInfix;
@@ -239,6 +254,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Datatype createDatatype() {
 		DatatypeImpl datatype = new DatatypeImpl();
 		return datatype;
@@ -249,6 +265,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DatatypeConstructor createDatatypeConstructor() {
 		DatatypeConstructorImpl datatypeConstructor = new DatatypeConstructorImpl();
 		return datatypeConstructor;
@@ -259,6 +276,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Extend createExtend() {
 		ExtendImpl extend = new ExtendImpl();
 		return extend;
@@ -269,6 +287,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FunctionDecl createFunctionDecl() {
 		FunctionDeclImpl functionDecl = new FunctionDeclImpl();
 		return functionDecl;
@@ -279,6 +298,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MatchStatement createMatchStatement() {
 		MatchStatementImpl matchStatement = new MatchStatementImpl();
 		return matchStatement;
@@ -289,6 +309,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MatchCase createMatchCase() {
 		MatchCaseImpl matchCase = new MatchCaseImpl();
 		return matchCase;
@@ -299,6 +320,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TheoremBody createTheoremBody() {
 		TheoremBodyImpl theoremBody = new TheoremBodyImpl();
 		return theoremBody;
@@ -309,6 +331,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TheoremDecl createTheoremDecl() {
 		TheoremDeclImpl theoremDecl = new TheoremDeclImpl();
 		return theoremDecl;
@@ -319,6 +342,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedVariableList createTypedVariableList() {
 		TypedVariableListImpl typedVariableList = new TypedVariableListImpl();
 		return typedVariableList;
@@ -329,6 +353,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VariableTyping createVariableTyping() {
 		VariableTypingImpl variableTyping = new VariableTypingImpl();
 		return variableTyping;
@@ -339,6 +364,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedVariable createTypedVariable() {
 		TypedVariableImpl typedVariable = new TypedVariableImpl();
 		return typedVariable;
@@ -349,6 +375,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public QuantLambda createQuantLambda() {
 		QuantLambdaImpl quantLambda = new QuantLambdaImpl();
 		return quantLambda;
@@ -359,6 +386,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReferencingFunc createReferencingFunc() {
 		ReferencingFuncImpl referencingFunc = new ReferencingFuncImpl();
 		return referencingFunc;
@@ -380,6 +408,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FunctionCall createFunctionCall() {
 		FunctionCallImpl functionCall = new FunctionCallImpl();
 		return functionCall;
@@ -390,6 +419,18 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public FuncCallArgs createFuncCallArgs() {
+		FuncCallArgsImpl funcCallArgs = new FuncCallArgsImpl();
+		return funcCallArgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ClassVarDecl createClassVarDecl() {
 		ClassVarDeclImpl classVarDecl = new ClassVarDeclImpl();
 		return classVarDecl;
@@ -400,6 +441,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Prefix createPrefix() {
 		PrefixImpl prefix = new PrefixImpl();
 		return prefix;
@@ -410,6 +452,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Bracket createBracket() {
 		BracketImpl bracket = new BracketImpl();
 		return bracket;
@@ -420,6 +463,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Instance createInstance() {
 		InstanceImpl instance = new InstanceImpl();
 		return instance;
@@ -430,6 +474,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Infix createInfix() {
 		InfixImpl infix = new InfixImpl();
 		return infix;
@@ -440,6 +485,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type createType() {
 		TypeImpl type = new TypeImpl();
 		return type;
@@ -450,6 +496,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NamedObject createNamedObject() {
 		NamedObjectImpl namedObject = new NamedObjectImpl();
 		return namedObject;
@@ -460,6 +507,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypePowerSet createTypePowerSet() {
 		TypePowerSetImpl typePowerSet = new TypePowerSetImpl();
 		return typePowerSet;
@@ -470,6 +518,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GlobalImport createGlobalImport() {
 		GlobalImportImpl globalImport = new GlobalImportImpl();
 		return globalImport;
@@ -480,6 +529,18 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public IfElse createIfElse() {
+		IfElseImpl ifElse = new IfElseImpl();
+		return ifElse;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public InbuiltInfix createInbuiltInfix() {
 		InbuiltInfixImpl inbuiltInfix = new InbuiltInfixImpl();
 		return inbuiltInfix;
@@ -490,6 +551,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FileImport createFileImport() {
 		FileImportImpl fileImport = new FileImportImpl();
 		return fileImport;
@@ -500,6 +562,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LocalImport createLocalImport() {
 		LocalImportImpl localImport = new LocalImportImpl();
 		return localImport;
@@ -510,6 +573,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BSClass createBSClass() {
 		BSClassImpl bsClass = new BSClassImpl();
 		return bsClass;
@@ -520,6 +584,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InstName createInstName() {
 		InstNameImpl instName = new InstNameImpl();
 		return instName;
@@ -530,6 +595,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BSharpPackage getBSharpPackage() {
 		return (BSharpPackage)getEPackage();
 	}

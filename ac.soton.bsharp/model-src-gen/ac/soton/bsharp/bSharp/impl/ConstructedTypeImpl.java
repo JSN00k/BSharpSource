@@ -110,6 +110,7 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getConstructor() {
 		return constructor;
 	}
@@ -119,6 +120,7 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConstructor(String newConstructor) {
 		String oldConstructor = constructor;
 		constructor = newConstructor;
@@ -131,6 +133,7 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeBuilder getLeft() {
 		return left;
 	}
@@ -155,6 +158,7 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeft(TypeBuilder newLeft) {
 		if (newLeft != left) {
 			NotificationChain msgs = null;
@@ -174,6 +178,7 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeBuilder getRight() {
 		return right;
 	}
@@ -198,6 +203,7 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRight(TypeBuilder newRight) {
 		if (newRight != right) {
 			NotificationChain msgs = null;
@@ -338,6 +344,9 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 		 */
 		
 		String result = left.buildEventBType();
+		if (constructor.equals("→") && right.isBoolType()) {
+			return "ℙ(" + result + ")";
+		}
 		
 		String rightString = null;
 		if (right instanceof ConstructedType) {
@@ -347,7 +356,6 @@ public class ConstructedTypeImpl extends TypeBuilderImpl implements ConstructedT
 		}
 		
 		result += " " + constructor + " " + rightString;
-		// TODO Auto-generated method stub
 		return result;
 	}
 

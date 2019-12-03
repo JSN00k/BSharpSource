@@ -88,6 +88,7 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -97,6 +98,7 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -109,6 +111,7 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getElem() {
 		return elem;
 	}
@@ -133,6 +136,7 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElem(Expression newElem) {
 		if (newElem != elem) {
 			NotificationChain msgs = null;
@@ -277,8 +281,8 @@ public class PrefixImpl extends ExpressionImpl implements Prefix {
 	}
 
 	@Override
-	public Boolean hasInferredContext() {
-		return elem.hasInferredContext();
+	public Boolean requiresInferredContext() {
+		return elem.requiresInferredContext();
 	}
 
 	@Override

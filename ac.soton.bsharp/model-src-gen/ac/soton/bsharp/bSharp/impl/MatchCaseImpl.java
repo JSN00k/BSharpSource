@@ -106,6 +106,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DatatypeConstructor getDeconName() {
 		if (deconName != null && deconName.eIsProxy()) {
 			InternalEObject oldDeconName = (InternalEObject)deconName;
@@ -132,6 +133,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeconName(DatatypeConstructor newDeconName) {
 		DatatypeConstructor oldDeconName = deconName;
 		deconName = newDeconName;
@@ -144,6 +146,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TypedVariable> getVariables() {
 		if (variables == null) {
 			variables = new EObjectContainmentEList<TypedVariable>(TypedVariable.class, this, BSharpPackage.MATCH_CASE__VARIABLES);
@@ -156,6 +159,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getExpr() {
 		return expr;
 	}
@@ -180,6 +184,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpr(Expression newExpr) {
 		if (newExpr != expr) {
 			NotificationChain msgs = null;
@@ -305,7 +310,7 @@ public class MatchCaseImpl extends MinimalEObjectImpl.Container implements Match
 
 	@Override
 	public boolean hasInferredContext() {
-		return expr.hasInferredContext();
+		return expr.requiresInferredContext();
 	}
 
 	@Override

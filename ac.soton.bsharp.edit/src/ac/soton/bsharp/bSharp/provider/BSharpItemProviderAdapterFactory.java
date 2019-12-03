@@ -188,6 +188,29 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.IfElse} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IfElseItemProvider ifElseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.IfElse}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIfElseAdapter() {
+		if (ifElseItemProvider == null) {
+			ifElseItemProvider = new IfElseItemProvider(this);
+		}
+
+		return ifElseItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.InbuiltInfix} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -878,6 +901,29 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.FuncCallArgs} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FuncCallArgsItemProvider funcCallArgsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.FuncCallArgs}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFuncCallArgsAdapter() {
+		if (funcCallArgsItemProvider == null) {
+			funcCallArgsItemProvider = new FuncCallArgsItemProvider(this);
+		}
+
+		return funcCallArgsItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.ClassVarDecl} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1044,6 +1090,7 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -1054,6 +1101,7 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -1102,6 +1150,7 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -1112,6 +1161,7 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -1122,6 +1172,7 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -1136,6 +1187,7 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (typeItemProvider != null) typeItemProvider.dispose();
 		if (bracketItemProvider != null) bracketItemProvider.dispose();
@@ -1149,8 +1201,10 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 		if (expressionItemProvider != null) expressionItemProvider.dispose();
 		if (fileImportItemProvider != null) fileImportItemProvider.dispose();
 		if (functionCallItemProvider != null) functionCallItemProvider.dispose();
+		if (funcCallArgsItemProvider != null) funcCallArgsItemProvider.dispose();
 		if (functionDeclItemProvider != null) functionDeclItemProvider.dispose();
 		if (globalImportItemProvider != null) globalImportItemProvider.dispose();
+		if (ifElseItemProvider != null) ifElseItemProvider.dispose();
 		if (inbuiltInfixItemProvider != null) inbuiltInfixItemProvider.dispose();
 		if (infixItemProvider != null) infixItemProvider.dispose();
 		if (instNameItemProvider != null) instNameItemProvider.dispose();

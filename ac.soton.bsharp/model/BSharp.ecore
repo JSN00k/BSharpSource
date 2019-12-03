@@ -80,8 +80,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
-        eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownerType" eType="#//GenName"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classVarDecl" eType="#//ClassVarDecl"
         containment="true"/>
@@ -91,6 +89,12 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compilationObject" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funcCallArgs" upperBound="-1"
+        eType="#//FuncCallArgs" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FuncCallArgs">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionDecl" eSuperTypes="#//IVariableProvider #//IPolyTypeProvider #//IExpressionContainer #//InfixFunc">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//PolyContext"
@@ -110,6 +114,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="GenName" abstract="true" eSuperTypes="#//NamedObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalImport" eSuperTypes="#//Import">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="project" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfElse" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ifTrueExpr" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ifFalseExpr" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InbuiltInfix" eSuperTypes="#//InfixFunc"/>
   <eClassifiers xsi:type="ecore:EClass" name="Infix" eSuperTypes="#//Expression">

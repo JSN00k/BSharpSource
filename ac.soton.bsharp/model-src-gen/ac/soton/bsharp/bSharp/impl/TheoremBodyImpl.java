@@ -70,6 +70,7 @@ public class TheoremBodyImpl extends MinimalEObjectImpl.Container implements The
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TheoremDecl> getTheoremDecl() {
 		if (theoremDecl == null) {
 			theoremDecl = new EObjectContainmentEList<TheoremDecl>(TheoremDecl.class, this, BSharpPackage.THEOREM_BODY__THEOREM_DECL);

@@ -70,6 +70,7 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Expression> getExpressions() {
 		if (expressions == null) {
 			expressions = new EObjectContainmentEList<Expression>(Expression.class, this, BSharpPackage.WHERE__EXPRESSIONS);

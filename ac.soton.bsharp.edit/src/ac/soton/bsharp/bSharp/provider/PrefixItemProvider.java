@@ -183,6 +183,11 @@ public class PrefixItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.PREFIX__ELEM,
+				 BSharpFactory.eINSTANCE.createIfElse()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.PREFIX__ELEM,
 				 BSharpFactory.eINSTANCE.createInfix()));
 
 		newChildDescriptors.add

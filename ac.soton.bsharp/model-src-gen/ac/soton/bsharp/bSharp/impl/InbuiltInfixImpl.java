@@ -17,6 +17,7 @@ import ac.soton.bsharp.bSharp.util.ExprPredEnum;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
@@ -133,7 +134,10 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 			" a poly context applied to it.");
 		}
 		
-		EList<Expression> exprs = fc.getArguments();
+		/* TODO: validate this. Infix operators shouldn't be able to have multiple blocks
+		 * of arguments, as they would have to be bracketed for this.
+		 */
+		List<Expression> exprs = fc.getFuncCallArgs().get(0).getArguments();
 		if (exprs != null && !exprs.isEmpty()) {
 			/* wouldn't function currying be fun at this point! Anyhow I'm not doing that yet, although it could be achieved
 			 * by making an some sort of instance of the function that remembers the arguments already sent to 
@@ -160,7 +164,6 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 		}
 		
 		return "(λx ↦ y·⊤ ∣ bool(x " + getName() + " y))";
-
 	}
 	
 } //InbuiltInfixImpl

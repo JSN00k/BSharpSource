@@ -110,10 +110,10 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__CLASS_VAR_DECL);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__CONTEXT);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__WRAPPED);
+			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__FUNC_CALL_ARGS);
 		}
 		return childrenFeatures;
 	}
@@ -166,10 +166,10 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FunctionCall.class)) {
-			case BSharpPackage.FUNCTION_CALL__ARGUMENTS:
 			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
 			case BSharpPackage.FUNCTION_CALL__CONTEXT:
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
+			case BSharpPackage.FUNCTION_CALL__FUNC_CALL_ARGS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -189,41 +189,6 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createBracket()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createFunctionCall()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createInfix()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createMatchStatement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createPrefix()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__ARGUMENTS,
-				 BSharpFactory.eINSTANCE.createQuantLambda()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_CALL__CLASS_VAR_DECL,
 				 BSharpFactory.eINSTANCE.createClassVarDecl()));
 
@@ -236,6 +201,11 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_CALL__WRAPPED,
 				 BSharpFactory.eINSTANCE.createWrappedInfix()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_CALL__FUNC_CALL_ARGS,
+				 BSharpFactory.eINSTANCE.createFuncCallArgs()));
 	}
 
 }

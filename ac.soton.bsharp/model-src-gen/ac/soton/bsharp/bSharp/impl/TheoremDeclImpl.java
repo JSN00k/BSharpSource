@@ -112,6 +112,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -121,6 +122,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -133,6 +135,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getExpr() {
 		return expr;
 	}
@@ -157,6 +160,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpr(Expression newExpr) {
 		if (newExpr != expr) {
 			NotificationChain msgs = null;
@@ -176,6 +180,7 @@ public class TheoremDeclImpl extends IExpressionContainerImpl implements Theorem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<QuantLambda> getGeneratedQuants() {
 		if (generatedQuants == null) {
 			generatedQuants = new EObjectContainmentEList<QuantLambda>(QuantLambda.class, this, BSharpPackage.THEOREM_DECL__GENERATED_QUANTS);

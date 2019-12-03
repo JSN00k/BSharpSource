@@ -113,6 +113,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getLeft() {
 		return left;
 	}
@@ -137,6 +138,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeft(Expression newLeft) {
 		if (newLeft != left) {
 			NotificationChain msgs = null;
@@ -187,6 +189,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFuncName(InfixFunc newFuncName) {
 		InfixFunc oldFuncName = funcName;
 		funcName = newFuncName;
@@ -199,6 +202,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getRight() {
 		return right;
 	}
@@ -223,6 +227,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRight(Expression newRight) {
 		if (newRight != right) {
 			NotificationChain msgs = null;
@@ -242,6 +247,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOpName() {
 		return opName;
 	}
@@ -251,6 +257,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOpName(String newOpName) {
 		String oldOpName = opName;
 		opName = newOpName;
@@ -400,6 +407,23 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		boolean leftIsPred = argTypes.x == ExprPredEnum.PREDICATE;
 		boolean rightIsPred = argTypes.y == ExprPredEnum.PREDICATE;
 		
+
+		
+		ExprPredEnum compType = asPredicate ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION;
+		String nameStr = funcName.eventBName(compType);
+		
+		/* If the left or the right is a predicate statement, and the infix operator is equals
+		 * it likely means the user meant if and only if. We shall kindly make this substitution
+		 * for them.
+		 * TODO: during validation make sure that a warning is generated for equals on predicate 
+		 * statements.
+		 */
+		if (left.calculateType().isBoolType() && fName.getName().equals("=")) {
+			nameStr = "⇔";
+			leftIsPred = true;
+			rightIsPred = true;
+		}
+		
 		String leftStr = left.compileToEventBString(leftIsPred);
 		String rightStr = right.compileToEventBString(rightIsPred);
 		
@@ -411,10 +435,10 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 			rightStr = "(" + rightStr + ")";
 		}
 		
-		ExprPredEnum compType = asPredicate ? ExprPredEnum.PREDICATE : ExprPredEnum.EXPRESSION;
+		
 		ExprPredEnum compAvailable = fName.compilationResultType(compType);
 		
-		String nameStr = funcName.eventBName(compType);
+		
 		String result = null;
 		
 		if (funcName.hasEventBInfixOp()) {
@@ -426,6 +450,7 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		if (compAvailable == compType) {
 			return result;
 		} else if (compType == ExprPredEnum.PREDICATE) {
+			/* I doubt this is right now I've changed everything to use sets. */
 			return result + " = TRUE";
 		} else {
 			return "bool(" + result + ")";
@@ -443,8 +468,8 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 	}
 
 	@Override
-	public Boolean hasInferredContext() {
-		return (left.hasInferredContext() || right.hasInferredContext());
+	public Boolean requiresInferredContext() {
+		return (left.requiresInferredContext() || right.requiresInferredContext());
 	}
 
 	@Override

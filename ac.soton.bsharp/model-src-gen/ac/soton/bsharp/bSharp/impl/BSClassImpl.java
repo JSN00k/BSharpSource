@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IClassInstance;
@@ -42,6 +43,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
 import ac.soton.bsharp.typeInstanceRepresentation.MapletTypeInstance;
 import ac.soton.bsharp.typeInstanceRepresentation.StringTypeInstance;
 
+import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -138,6 +140,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SuperTypeList getSupertypes() {
 		return supertypes;
 	}
@@ -160,6 +163,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSupertypes(SuperTypeList newSupertypes) {
 		if (newSupertypes != supertypes) {
 			NotificationChain msgs = null;
@@ -178,6 +182,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedVariableList getVarList() {
 		return varList;
 	}
@@ -200,6 +205,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVarList(TypedVariableList newVarList) {
 		if (newVarList != varList) {
 			NotificationChain msgs = null;
@@ -218,6 +224,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Where getWhere() {
 		return where;
 	}
@@ -240,6 +247,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWhere(Where newWhere) {
 		if (newWhere != where) {
 			NotificationChain msgs = null;
@@ -258,6 +266,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InstName getInstName() {
 		return instName;
 	}
@@ -280,6 +289,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstName(InstName newInstName) {
 		if (newInstName != instName) {
 			NotificationChain msgs = null;
@@ -1036,9 +1046,10 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
 		PolyContext context = getContext();
 		TypeDeclContext ctx = fc.getContext();
-		EList<Expression> arguments = fc.getArguments();
+		List<FuncCallArgs> argumentBlocks = fc.getFuncCallArgs();
+		boolean noArgs = argumentBlocks == null || argumentBlocks.isEmpty();
 
-		if (ctx == null && arguments == null) {
+		if (ctx == null && noArgs) {
 			if (asPred) {
 				throw new Exception(
 						"This should be validated against, a type class appears wihtout context or argument, "
@@ -1052,7 +1063,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 			}
 		}
 
-		if (ctx == null && arguments != null) {
+		if (ctx == null && !noArgs) {
 			/*
 			 * If the expression is in a Theorem of a method then the name of the instance
 			 * will be the name of the type class. If we're within a where statement the
@@ -1074,11 +1085,18 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 					result = eventBPolymorphicTypeConstructorName();
 				}
 			}
+			
+			int blocksCount = argumentBlocks.size();
+			for (int i = 0; i < blocksCount - 1; ++i) {
+				result += "(" + CompilationUtil.compileExpressionListWithSeperator(argumentBlocks.get(i).getArguments(), " ↦ ") + ")";
+			}
 
-			result += "(" + CompilationUtil.compileExpressionListWithSeperator(arguments, " ↦ ") + ")";
-
+			String lastBlock = "(" + CompilationUtil.compileExpressionListWithSeperator(argumentBlocks.get(blocksCount - 1).getArguments(), " ↦ ") + ")";
+			
 			if (asPred) {
-				result += " = TRUE";
+				result = lastBlock + "∈" + result;
+			} else {
+				result += lastBlock;
 			}
 
 			return result;
@@ -1269,6 +1287,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	/*
 	 * Given a polytype T : Setoid this deals with a call like T.equ(a, b) ownerType
 	 * would be T, typeInst would be equ, function call contains a polytype and
+	 * TODO:
+	 * I'm very sceptical how similar this is to compileToStringWithContextAndArguments
+	 * and suspect that these should be merged.
 	 */
 	@Override
 	public String applyMemberOrFuncGetter(ExpressionVariable typeInst, PolyType ownerType, FunctionCall fc,
@@ -1279,7 +1300,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		 * current type to get the correct supertype.
 		 */
 		TypeDeclContext ctx = fc.getContext();
-		EList<Expression> args = fc.getArguments();
+		List<FuncCallArgs> argumentBlocks = fc.getFuncCallArgs();
 
 		TypedVariableList varList = EcoreUtil2.getContainerOfType(typeInst, TypedVariableList.class);
 
@@ -1300,13 +1321,30 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 
 			result += ")";
 
-			if (args != null) {
-				try {
-					result += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
-				} catch (Exception e) {
-					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
+			if (argumentBlocks != null && !argumentBlocks.isEmpty()) {
+				String lastArgs;
+				int blocksCount = argumentBlocks.size();
+				for (int i = 0; i < blocksCount - 1; ++i) {
+					try {
+						result += "(" + CompilationUtil.compileExpressionListWithSeperator(argumentBlocks.get(i).getArguments(), " ↦ ") + ")";
+					} catch (Exception e) {
+						System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
+					}
 				}
-
+				try {
+					lastArgs = "(" + CompilationUtil.compileExpressionListWithSeperator(argumentBlocks.get(blocksCount - 1).getArguments(), " ↦ ") + ")";
+				}  catch (Exception e) {
+					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
+					return null;
+				}
+				
+				if (asPred) {
+					result = lastArgs + "∈" + result;
+				} else {
+					result += lastArgs;
+				}
+				
+				return result;
 			}
 
 			if (asPred) {

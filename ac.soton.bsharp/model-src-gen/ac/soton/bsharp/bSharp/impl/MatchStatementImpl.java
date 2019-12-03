@@ -102,6 +102,7 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getMatch() {
 		return match;
 	}
@@ -126,6 +127,7 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMatch(Expression newMatch) {
 		if (newMatch != match) {
 			NotificationChain msgs = null;
@@ -145,6 +147,7 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MatchCase> getInductCase() {
 		if (inductCase == null) {
 			inductCase = new EObjectContainmentEList<MatchCase>(MatchCase.class, this, BSharpPackage.MATCH_STATEMENT__INDUCT_CASE);
@@ -337,7 +340,7 @@ public class MatchStatementImpl extends ExpressionImpl implements MatchStatement
 	}
 
 	@Override
-	public Boolean hasInferredContext() {
+	public Boolean requiresInferredContext() {
 		for (MatchCase mCase : inductCase) {
 			if (mCase.hasInferredContext())
 				return true;

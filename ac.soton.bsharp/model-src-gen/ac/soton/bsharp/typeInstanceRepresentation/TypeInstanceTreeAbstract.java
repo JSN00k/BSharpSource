@@ -9,6 +9,7 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.mapletTree.IMapletNode;
@@ -98,9 +99,9 @@ public abstract class TypeInstanceTreeAbstract extends TypeInstanceAbstract impl
 	@Override 
 	public String compileFunctionCallOfTypeInstance(FunctionCall fc, Boolean asPred, TypedVariable typedVar) throws Exception {
 		IMapletNode node = nodeForTypedVariable(typedVar);
-		List<Expression> args = fc.getArguments();
+		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
 		
-		if (args == null || args.isEmpty() || !(node instanceof MapletExpressionLeaf)) {
+		if (fcas == null || fcas.isEmpty() || !(node instanceof MapletExpressionLeaf)) {
 			return super.compileFunctionCallOfTypeInstance(fc, asPred, typedVar);
 		}
 		

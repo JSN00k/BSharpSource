@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.IClassInstance;
@@ -43,6 +44,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstanceOpArgs;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -221,6 +223,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PolyContext getContext() {
 		return context;
 	}
@@ -243,6 +246,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContext(PolyContext newContext) {
 		if (newContext != context) {
 			NotificationChain msgs = null;
@@ -261,6 +265,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedVariableList getVarList() {
 		return varList;
 	}
@@ -283,6 +288,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVarList(TypedVariableList newVarList) {
 		if (newVarList != varList) {
 			NotificationChain msgs = null;
@@ -301,6 +307,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeConstructor getReturnType() {
 		return returnType;
 	}
@@ -323,6 +330,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnType(TypeConstructor newReturnType) {
 		if (newReturnType != returnType) {
 			NotificationChain msgs = null;
@@ -341,6 +349,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInfix() {
 		return infix;
 	}
@@ -349,6 +358,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInfix(String newInfix) {
 		String oldInfix = infix;
 		infix = newInfix;
@@ -360,6 +370,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getPrecedence() {
 		return precedence;
 	}
@@ -368,6 +379,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrecedence(int newPrecedence) {
 		int oldPrecedence = precedence;
 		precedence = newPrecedence;
@@ -379,6 +391,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Expression getExpr() {
 		return expr;
 	}
@@ -401,6 +414,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpr(Expression newExpr) {
 		if (newExpr != expr) {
 			NotificationChain msgs = null;
@@ -419,6 +433,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Expression> getGeneratedLambdas() {
 		if (generatedLambdas == null) {
 			generatedLambdas = new EObjectContainmentEList<Expression>(Expression.class, this, BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS);
@@ -458,6 +473,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypingTheorem(TheoremDecl newTypingTheorem) {
 		if (newTypingTheorem != typingTheorem) {
 			NotificationChain msgs = null;
@@ -476,6 +492,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -484,6 +501,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -837,7 +855,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	
 	@Override
 	public boolean hasInferredContext() {
-		return expr.hasInferredContext();
+		return expr.requiresInferredContext();
 	}
 	
 	/* TODO: The PolyContext should be made up of a dictionary of type instances, then 
@@ -1075,7 +1093,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		lambda.setVarList(EcoreUtil2.copy(varList));
 		FunctionCall func = BSharpFactory.eINSTANCE.createFunctionCall();
 		func.setTypeInst(this);
-		EList<Expression> callArgs = func.getArguments();
+		List<FuncCallArgs> fcas = func.getFuncCallArgs();
+		FuncCallArgs fca = BSharpFactory.eINSTANCE.createFuncCallArgs();
+		List<Expression> callArgs = fca.getArguments();
 
 		ArrayList<TypedVariable> variables = varList.getTypedVariables();
 		for (TypedVariable var : variables) {
@@ -1083,6 +1103,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			wrappedVar.setTypeInst(var);
 			callArgs.add(wrappedVar);
 		}
+		
+		fcas.add(fca);
 
 		lambda.setExpr(func);
 		
@@ -1090,7 +1112,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		generatedLambdas.add(lambda);
 
 		try {
-			TheoryUtils.createDirectDefinition(op, lambda.compileToEventBString(false), null, nullMonitor);
+			TheoryUtils.createDirectDefinition(op, lambda.compileToEventBString(returnType.isBoolType()), null, nullMonitor);
 		} catch (Exception e) {
 			System.err.println("Unable to create operator definition for op: " + name + " in FunctionDecl");
 		}
@@ -1173,7 +1195,11 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 			result += ", " + context.compileCallWithTypeContext(fc.getContext());
 		}
 
-		EList<Expression> exprs = fc.getArguments();
+		/* Really not sure if this is correct or not, I think the internal recursive call
+		 * cannot return a functional type so multiple arg blocks in the function call would
+		 * be illegal.
+		 */
+		List<Expression> exprs = fc.getFuncCallArgs().get(0).getArguments();
 
 		if (exprs != null && !exprs.isEmpty()) {
 			result += ", " + CompilationUtil.compileExpressionListWithSeperator(exprs, ", ");
@@ -1227,14 +1253,22 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		
 		result += ")";
 
-		EList<Expression> exprs = fc.getArguments();
-
-		if (exprs != null && !exprs.isEmpty()) {
-			result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
+		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+		int fcasCount = fcas.size();
+		
+		for (int i = 0; i < fcasCount - 1; ++i) {
+			List<Expression> exprs = fcas.get(i).getArguments();
+			if (exprs != null && !exprs.isEmpty()) {
+				result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
+			}
 		}
-
+		
+		String last = "(" + CompilationUtil.compileExpressionListWithSeperator(fcas.get(fcasCount - 1).getArguments(), " ↦ ") + ")";
+	
 		if (asPred) {
-			result += "= TRUE";
+			result = last + "∈" + result;
+		} else {
+			result += last;
 		}
 
 		return result;
@@ -1242,8 +1276,8 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	String comipileFunctionCallNoContext(FunctionCall fc, boolean asPred) throws Exception {
 		TypedVariableList varList = getVarList();
-		EList<Expression> exprs = fc.getArguments();
-		if (exprs == null || exprs.isEmpty()) {
+		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+		if (fcas == null || fcas.isEmpty()) {
 			if (varList == null || varList.isEmpty()) {
 				return eventBExprName();
 			} else {
@@ -1265,11 +1299,30 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 		if (infix != null && infix.equals("INFIX")) {
 			/* TODO: validate there are only two arguments. */
+			List<Expression> exprs = fcas.get(0).getArguments();
 			return exprs.get(0).compileToEventBString(false) + " " + result + " "
 					+ exprs.get(1).compileToEventBString(false);
 		}
 
+		Iterator<FuncCallArgs> iter = fcas.iterator();
+		List<Expression> exprs = iter.next().getArguments();
 		result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, ", ") + ")";
+		
+		while (iter.hasNext()) {
+			exprs = iter.next().getArguments();
+			String next = "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
+			
+			if (iter.hasNext())
+				result += next;
+			else {
+				if (asPred) {
+					result = next + "∈" + result;
+				} else {
+					result += next;
+				}
+			}
+				
+		}
 
 		return result;
 	}
@@ -1418,7 +1471,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		}
 		
 		List<TypedVariable> typedVars = varList.getTypedVariables();
-		List<Expression> args = fc.getArguments();
+		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+		FuncCallArgs fca = BSharpFactory.eINSTANCE.createFuncCallArgs();
+		fcas.add(fca);
+		List<Expression> args = fca.getArguments();
 		
 		for (TypedVariable tv : typedVars) {
 			FunctionCall arg = BSharpFactory.eINSTANCE.createFunctionCall();

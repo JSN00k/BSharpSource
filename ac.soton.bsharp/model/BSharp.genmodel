@@ -68,12 +68,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FileImport/typeName"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FunctionCall">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/arguments"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/ownerType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/classVarDecl"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/wrapped"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/compilationObject"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/funcCallArgs"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//FuncCallArgs">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FuncCallArgs/arguments"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FunctionDecl">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionDecl/context"/>
@@ -87,6 +90,11 @@
     <genClasses ecoreClass="BSharp.ecore#//GenName"/>
     <genClasses ecoreClass="BSharp.ecore#//GlobalImport">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//GlobalImport/project"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//IfElse">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//IfElse/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//IfElse/ifTrueExpr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//IfElse/ifFalseExpr"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//InbuiltInfix"/>
     <genClasses ecoreClass="BSharp.ecore#//Infix">

@@ -93,6 +93,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<DatatypeConstructor> getConstructors() {
 		if (constructors == null) {
 			constructors = new EObjectContainmentEList<DatatypeConstructor>(DatatypeConstructor.class, this, BSharpPackage.DATATYPE__CONSTRUCTORS);

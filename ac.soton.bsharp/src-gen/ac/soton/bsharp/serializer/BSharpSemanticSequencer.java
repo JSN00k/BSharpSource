@@ -13,9 +13,11 @@ import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
+import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GlobalImport;
+import ac.soton.bsharp.bSharp.IfElse;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.Instance;
@@ -96,6 +98,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.FILE_IMPORT:
 				sequence_FileImport(context, (FileImport) semanticObject); 
 				return; 
+			case BSharpPackage.FUNC_CALL_ARGS:
+				sequence_FuncCallArgs(context, (FuncCallArgs) semanticObject); 
+				return; 
 			case BSharpPackage.FUNCTION_CALL:
 				sequence_FunctionCall(context, (FunctionCall) semanticObject); 
 				return; 
@@ -105,6 +110,17 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.GLOBAL_IMPORT:
 				sequence_GlobalImport(context, (GlobalImport) semanticObject); 
 				return; 
+			case BSharpPackage.IF_ELSE:
+				if (rule == grammarAccess.getCondRule()) {
+					sequence_Cond(context, (IfElse) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getRootExpressionRule()
+						|| rule == grammarAccess.getIfElseRule()) {
+					sequence_IfElse(context, (IfElse) semanticObject); 
+					return; 
+				}
+				else break;
 			case BSharpPackage.INFIX:
 				sequence_Infix(context, (Infix) semanticObject); 
 				return; 
@@ -280,6 +296,30 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     Cond returns IfElse
+	 *
+	 * Constraint:
+	 *     (condition=RootExpression ifTrueExpr=RootExpression ifFalseExpr=RootExpression)
+	 */
+	protected void sequence_Cond(ISerializationContext context, IfElse semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.IF_ELSE__CONDITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.IF_ELSE__CONDITION));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.IF_ELSE__IF_TRUE_EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.IF_ELSE__IF_TRUE_EXPR));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.IF_ELSE__IF_FALSE_EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.IF_ELSE__IF_FALSE_EXPR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCondAccess().getConditionRootExpressionParserRuleCall_2_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getCondAccess().getIfTrueExprRootExpressionParserRuleCall_4_0(), semanticObject.getIfTrueExpr());
+		feeder.accept(grammarAccess.getCondAccess().getIfFalseExprRootExpressionParserRuleCall_6_0(), semanticObject.getIfFalseExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     TypeBuilder returns ConstructedType
 	 *     ConstructedType returns ConstructedType
 	 *     ConstructedType.ConstructedType_1_0 returns ConstructedType
@@ -373,6 +413,18 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     FuncCallArgs returns FuncCallArgs
+	 *
+	 * Constraint:
+	 *     (arguments+=RootExpression? arguments+=RootExpression*)
+	 */
+	protected void sequence_FuncCallArgs(ISerializationContext context, FuncCallArgs semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     RootExpression returns FunctionCall
 	 *     Infix returns FunctionCall
 	 *     Infix.Infix_1_0 returns FunctionCall
@@ -380,10 +432,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FunctionCall returns FunctionCall
 	 *
 	 * Constraint:
-	 *     (
-	 *         wrapped=WrappedInfix | 
-	 *         ((typeInst=[ExpressionVariable|ID] | classVarDecl=ClassVarDecl) context=TypeDeclContext? arguments+=RootExpression? arguments+=RootExpression*)
-	 *     )
+	 *     (wrapped=WrappedInfix | ((typeInst=[ExpressionVariable|ID] | classVarDecl=ClassVarDecl) context=TypeDeclContext? funcCallArgs+=FuncCallArgs*))
 	 */
 	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -421,6 +470,31 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 */
 	protected void sequence_GlobalImport(ISerializationContext context, GlobalImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     RootExpression returns IfElse
+	 *     IfElse returns IfElse
+	 *
+	 * Constraint:
+	 *     (condition=RootExpression ifTrueExpr=RootExpression ifFalseExpr=RootExpression)
+	 */
+	protected void sequence_IfElse(ISerializationContext context, IfElse semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.IF_ELSE__CONDITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.IF_ELSE__CONDITION));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.IF_ELSE__IF_TRUE_EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.IF_ELSE__IF_TRUE_EXPR));
+			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.IF_ELSE__IF_FALSE_EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.IF_ELSE__IF_FALSE_EXPR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIfElseAccess().getConditionRootExpressionParserRuleCall_1_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getIfElseAccess().getIfTrueExprRootExpressionParserRuleCall_3_0(), semanticObject.getIfTrueExpr());
+		feeder.accept(grammarAccess.getIfElseAccess().getIfFalseExprRootExpressionParserRuleCall_7_0(), semanticObject.getIfFalseExpr());
+		feeder.finish();
 	}
 	
 	

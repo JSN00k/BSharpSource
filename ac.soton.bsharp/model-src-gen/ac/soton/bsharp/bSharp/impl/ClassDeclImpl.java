@@ -80,6 +80,7 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PolyContext getRawContext() {
 		return rawContext;
 	}
@@ -104,6 +105,7 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRawContext(PolyContext newRawContext) {
 		if (newRawContext != rawContext) {
 			NotificationChain msgs = null;

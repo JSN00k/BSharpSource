@@ -208,6 +208,11 @@ public class InfixItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.INFIX__LEFT,
+				 BSharpFactory.eINSTANCE.createIfElse()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INFIX__LEFT,
 				 BSharpFactory.eINSTANCE.createInfix()));
 
 		newChildDescriptors.add
@@ -239,6 +244,11 @@ public class InfixItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.INFIX__RIGHT,
 				 BSharpFactory.eINSTANCE.createFunctionCall()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INFIX__RIGHT,
+				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
 			(createChildParameter

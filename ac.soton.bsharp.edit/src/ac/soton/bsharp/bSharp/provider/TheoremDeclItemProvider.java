@@ -194,6 +194,11 @@ public class TheoremDeclItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createIfElse()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
 				 BSharpFactory.eINSTANCE.createInfix()));
 
 		newChildDescriptors.add

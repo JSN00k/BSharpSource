@@ -203,6 +203,11 @@ public class MatchCaseItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.MATCH_CASE__EXPR,
+				 BSharpFactory.eINSTANCE.createIfElse()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.MATCH_CASE__EXPR,
 				 BSharpFactory.eINSTANCE.createInfix()));
 
 		newChildDescriptors.add

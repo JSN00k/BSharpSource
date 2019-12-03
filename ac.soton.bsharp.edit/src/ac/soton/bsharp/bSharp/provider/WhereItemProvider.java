@@ -167,6 +167,11 @@ public class WhereItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.WHERE__EXPRESSIONS,
+				 BSharpFactory.eINSTANCE.createIfElse()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.WHERE__EXPRESSIONS,
 				 BSharpFactory.eINSTANCE.createInfix()));
 
 		newChildDescriptors.add

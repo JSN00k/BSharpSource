@@ -275,6 +275,15 @@ public interface BSharpFactory extends EFactory {
 	FunctionCall createFunctionCall();
 
 	/**
+	 * Returns a new object of class '<em>Func Call Args</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Func Call Args</em>'.
+	 * @generated
+	 */
+	FuncCallArgs createFuncCallArgs();
+
+	/**
 	 * Returns a new object of class '<em>Class Var Decl</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -354,6 +363,15 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	GlobalImport createGlobalImport();
+
+	/**
+	 * Returns a new object of class '<em>If Else</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>If Else</em>'.
+	 * @generated
+	 */
+	IfElse createIfElse();
 
 	/**
 	 * Returns a new object of class '<em>Inbuilt Infix</em>'.

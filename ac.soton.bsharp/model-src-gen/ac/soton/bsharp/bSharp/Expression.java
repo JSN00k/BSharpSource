@@ -54,6 +54,9 @@ public interface Expression extends EObject {
 	 */
 	String constructLatexExpressionTree(String indent);
 
+	/* TODO: There is a lot of repetition in implementations of this method, this needs to be 
+	 * encapsulated out.
+	 */
 	String compileToEventBString(Boolean asPredicate) throws Exception;
 	
 	/* Event-B inbuilt predicate operators have a precedence of 0. User declared infix operators
@@ -66,7 +69,7 @@ public interface Expression extends EObject {
 	 * adding extra arguments in some way to the function/theorem to represent the type class. This
 	 * method iterates through the expression and looks for references to the varlist types.
 	 */
-	Boolean hasInferredContext();
+	Boolean requiresInferredContext();
 	
 	Boolean isReordered();
 	/* Reorders the expression tree if is hasn't already been reordered. */

@@ -80,6 +80,7 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ClassDecl> getSuperTypes() {
 		if (superTypes == null) {
 			superTypes = new EObjectResolvingEList<ClassDecl>(ClassDecl.class, this, BSharpPackage.POLY_TYPE__SUPER_TYPES);

@@ -75,6 +75,7 @@ public class TypedVariableListImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableTyping> getVariablesOfType() {
 		if (variablesOfType == null) {
 			variablesOfType = new EObjectContainmentEList<VariableTyping>(VariableTyping.class, this, BSharpPackage.TYPED_VARIABLE_LIST__VARIABLES_OF_TYPE);

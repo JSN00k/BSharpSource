@@ -169,6 +169,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createFunctionCallAdapter();
 			}
 			@Override
+			public Adapter caseFuncCallArgs(FuncCallArgs object) {
+				return createFuncCallArgsAdapter();
+			}
+			@Override
 			public Adapter caseFunctionDecl(FunctionDecl object) {
 				return createFunctionDeclAdapter();
 			}
@@ -179,6 +183,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseGlobalImport(GlobalImport object) {
 				return createGlobalImportAdapter();
+			}
+			@Override
+			public Adapter caseIfElse(IfElse object) {
+				return createIfElseAdapter();
 			}
 			@Override
 			public Adapter caseInbuiltInfix(InbuiltInfix object) {
@@ -783,6 +791,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.FuncCallArgs <em>Func Call Args</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.FuncCallArgs
+	 * @generated
+	 */
+	public Adapter createFuncCallArgsAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.ClassVarDecl <em>Class Var Decl</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1087,6 +1109,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGlobalImportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.IfElse <em>If Else</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.IfElse
+	 * @generated
+	 */
+	public Adapter createIfElseAdapter() {
 		return null;
 	}
 

@@ -95,6 +95,7 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Import> getImports() {
 		if (imports == null) {
 			imports = new EObjectContainmentEList<Import>(Import.class, this, BSharpPackage.TOP_LEVEL_IMPORT__IMPORTS);
@@ -107,6 +108,7 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TopLevelInstance> getBodyElements() {
 		if (bodyElements == null) {
 			bodyElements = new EObjectContainmentEList<TopLevelInstance>(TopLevelInstance.class, this, BSharpPackage.TOP_LEVEL_IMPORT__BODY_ELEMENTS);
@@ -119,6 +121,7 @@ public class TopLevelImportImpl extends ITheoryImportCacheProviderImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TopLevelFile> getImportRefs() {
 		if (importRefs == null) {
 			importRefs = new EObjectContainmentEList<TopLevelFile>(TopLevelFile.class, this, BSharpPackage.TOP_LEVEL_IMPORT__IMPORT_REFS);

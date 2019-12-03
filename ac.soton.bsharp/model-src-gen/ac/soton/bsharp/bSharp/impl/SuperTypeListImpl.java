@@ -82,6 +82,7 @@ public class SuperTypeListImpl extends MinimalEObjectImpl.Container implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TypeBuilder> getSuperTypes() {
 		if (superTypes == null) {
 			superTypes = new EObjectContainmentEList<TypeBuilder>(TypeBuilder.class, this, BSharpPackage.SUPER_TYPE_LIST__SUPER_TYPES);

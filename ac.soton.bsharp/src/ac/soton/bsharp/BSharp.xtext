@@ -258,7 +258,7 @@ Quantifier returns QuantLambda:
 ;
 
 RootExpression returns Expression:
-	Lambda | Quantifier | Infix | MatchStatement
+	Lambda | Quantifier | Infix | MatchStatement | IfElse
 ;
 
 /* ---------------------- *Fix ------------------------------ */
@@ -315,7 +315,26 @@ Bracket returns Bracket:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns FunctionCall:
-	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? ('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')?
+	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? 
+	  funcCallArgs+=FuncCallArgs*
+;
+
+/* Function calls can return a functional type, which can then be applied. I'd have rather represented this
+ * as the 'typeInst' being able to be a functionCall, unfortunately this would cause the parser to recurse
+ * forever, so the pragmatic solution is to allow multiple argument blocks and apply them  */
+FuncCallArgs:
+	{FuncCallArgs}
+	('(' (arguments+=RootExpression)? (',' arguments+=RootExpression)* ')')
+;
+
+IfElse:
+	'if' condition = RootExpression '{' ifTrueExpr =  RootExpression '}' 'else' '{' ifFalseExpr = RootExpression '}'
+;
+
+/* IfElse syntax is great but looks horrible when a function type is returned and then applied.
+ * COND will look more natural in these situations. */
+Cond returns IfElse:
+	'COND' '(' condition = RootExpression "," ifTrueExpr = RootExpression "," ifFalseExpr = RootExpression ')'
 ;
 
 /* This is used to get variables from a class I think that it may be only applicable for

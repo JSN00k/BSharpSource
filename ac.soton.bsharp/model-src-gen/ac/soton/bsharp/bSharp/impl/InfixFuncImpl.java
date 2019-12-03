@@ -67,6 +67,7 @@ public abstract class InfixFuncImpl extends ExpressionVariableImpl implements In
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getPrecedence() {
 		return precedence;
 	}
@@ -76,6 +77,7 @@ public abstract class InfixFuncImpl extends ExpressionVariableImpl implements In
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrecedence(int newPrecedence) {
 		int oldPrecedence = precedence;
 		precedence = newPrecedence;

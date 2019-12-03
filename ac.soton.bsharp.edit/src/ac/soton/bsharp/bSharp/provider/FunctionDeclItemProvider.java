@@ -154,6 +154,7 @@ public class FunctionDeclItemProvider
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_DECL__RETURN_TYPE);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_DECL__EXPR);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS);
+			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_DECL__TYPING_THEOREM);
 		}
 		return childrenFeatures;
 	}
@@ -219,6 +220,7 @@ public class FunctionDeclItemProvider
 			case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
 			case BSharpPackage.FUNCTION_DECL__EXPR:
 			case BSharpPackage.FUNCTION_DECL__GENERATED_LAMBDAS:
+			case BSharpPackage.FUNCTION_DECL__TYPING_THEOREM:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -269,6 +271,11 @@ public class FunctionDeclItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createIfElse()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
 				 BSharpFactory.eINSTANCE.createInfix()));
 
 		newChildDescriptors.add
@@ -304,6 +311,11 @@ public class FunctionDeclItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
+				 BSharpFactory.eINSTANCE.createIfElse()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
 				 BSharpFactory.eINSTANCE.createInfix()));
 
 		newChildDescriptors.add
@@ -320,6 +332,11 @@ public class FunctionDeclItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__TYPING_THEOREM,
+				 BSharpFactory.eINSTANCE.createTheoremDecl()));
 	}
 
 	/**

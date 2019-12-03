@@ -124,6 +124,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFileName() {
 		return fileName;
 	}
@@ -133,6 +134,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFileName(String newFileName) {
 		String oldFileName = fileName;
 		fileName = newFileName;
@@ -145,6 +147,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TopLevelFile getFileReference() {
 		if (fileReference != null && fileReference.eIsProxy()) {
 			InternalEObject oldFileReference = (InternalEObject)fileReference;
@@ -171,6 +174,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFileReference(TopLevelFile newFileReference) {
 		TopLevelFile oldFileReference = fileReference;
 		fileReference = newFileReference;
@@ -183,6 +187,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TopLevelInstance getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
@@ -209,6 +214,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(TopLevelInstance newType) {
 		TopLevelInstance oldType = type;
 		type = newType;
@@ -221,6 +227,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTypeName() {
 		return typeName;
 	}
@@ -230,6 +237,7 @@ public class FileImportImpl extends MinimalEObjectImpl.Container implements File
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeName(String newTypeName) {
 		String oldTypeName = typeName;
 		typeName = newTypeName;

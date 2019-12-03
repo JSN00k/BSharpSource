@@ -78,6 +78,7 @@ public class PolyContextImpl extends MinimalEObjectImpl.Container implements Pol
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PolyType> getPolyTypes() {
 		if (polyTypes == null) {
 			polyTypes = new EObjectContainmentEList<PolyType>(PolyType.class, this, BSharpPackage.POLY_CONTEXT__POLY_TYPES);

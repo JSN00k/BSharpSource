@@ -92,6 +92,7 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<TypedVariable> getTypeVar() {
 		if (typeVar == null) {
 			typeVar = new EObjectContainmentEList<TypedVariable>(TypedVariable.class, this, BSharpPackage.VARIABLE_TYPING__TYPE_VAR);
@@ -104,6 +105,7 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeBuilder getType() {
 		return type;
 	}
@@ -128,6 +130,7 @@ public class VariableTypingImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(TypeBuilder newType) {
 		if (newType != type) {
 			NotificationChain msgs = null;

@@ -95,6 +95,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenName getTypeName() {
 		if (typeName != null && typeName.eIsProxy()) {
 			InternalEObject oldTypeName = (InternalEObject)typeName;
@@ -121,6 +122,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeName(GenName newTypeName) {
 		GenName oldTypeName = typeName;
 		typeName = newTypeName;
@@ -133,6 +135,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeDeclContext getContext() {
 		return context;
 	}
@@ -157,6 +160,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContext(TypeDeclContext newContext) {
 		if (newContext != context) {
 			NotificationChain msgs = null;
@@ -289,7 +293,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 				 * When we're in a function that points to a Pred it would be better to deal
 				 * with this using the set notation, this requires handling this at a higher
 				 * point, Interestingly the left handed graph automatically generated would make
-				 * detecting this easy (e.g., this could be checked before reversing the graph.
+				 * detecting this easy (e.g., this could be checked before reversing the graph).
 				 */
 				return "BOOL";
 			}

@@ -6,10 +6,14 @@ package ac.soton.bsharp.bSharp.impl;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
+
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -50,6 +54,13 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 
 	@Override
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred)  throws Exception {
+		/* TODO: This is the third time I've come across very similar methods, the others were 
+		 * BSClassImpl.compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred)
+		 * and 
+		 * BSClassImpl.(ExpressionVariable typeInst, PolyType ownerType, FunctionCall fc,
+			Boolean asPred)
+		 * Ideally these should be encapsulated.	
+		 */
 		TypeDeclContext ctx = fc.getContext();
 		
 		if (ctx != null) {
@@ -58,12 +69,28 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 			" a poly context applied to it.");
 		}
 		
-		EList<Expression> exprs = fc.getArguments();
-		
+		List<FuncCallArgs> argBlock = fc.getFuncCallArgs();
+		boolean argsAreEmpty = argBlock == null || argBlock.isEmpty();
 		String result = name;
 		
-		if (exprs != null && !exprs.isEmpty()) {
-			result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
+		if (!argsAreEmpty) {
+			int blocksCount = argBlock.size();
+			for (int i = 0; i < blocksCount - 1; ++i) {
+				result += "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(i).getArguments(), " ↦ ") + ")";
+			}
+			
+			String lastBlock = "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(blocksCount - 1).getArguments(), " ↦ ") + ")";
+			
+			if (calculateReturnType().isBoolType()) {
+				result = lastBlock + "∈" + result;
+				if (!asPred) {
+					result = "bool(" + result + ")";
+				}
+			} else {
+				result += lastBlock;
+			}
+			
+			return result;
 		}
 		
 		if (asPred) {

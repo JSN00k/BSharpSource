@@ -68,6 +68,7 @@ public class ReferencingFuncImpl extends FunctionDeclImpl implements Referencing
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public FunctionDecl getReferencedFunc() {
 		if (referencedFunc != null && referencedFunc.eIsProxy()) {
 			InternalEObject oldReferencedFunc = (InternalEObject)referencedFunc;
@@ -94,6 +95,7 @@ public class ReferencingFuncImpl extends FunctionDeclImpl implements Referencing
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencedFunc(FunctionDecl newReferencedFunc) {
 		FunctionDecl oldReferencedFunc = referencedFunc;
 		referencedFunc = newReferencedFunc;

@@ -10,6 +10,7 @@ import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
+import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.NamedObject;
@@ -24,6 +25,8 @@ import ac.soton.bsharp.theory.util.TheoryUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
@@ -107,6 +110,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -116,6 +120,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -128,6 +133,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypedVariableList getDecons() {
 		return decons;
 	}
@@ -152,6 +158,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDecons(TypedVariableList newDecons) {
 		if (newDecons != decons) {
 			NotificationChain msgs = null;
@@ -351,7 +358,14 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
 		String result = name;
-		EList<Expression> args = fc.getArguments();
+		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+		if (fcas == null || fcas.isEmpty()) {
+			return result;
+		}
+		
+		Iterator<FuncCallArgs> argBlockIter = fc.getFuncCallArgs().iterator();
+		List<Expression> args = argBlockIter.next().getArguments();
+		
 		if (args != null && !args.isEmpty()) {
 			result += "(";
 			try {
@@ -361,6 +375,32 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 			}
 			
 			result += ")";
+		}
+		
+		String last = null;
+		while(argBlockIter.hasNext()) {
+			args = argBlockIter.next().getArguments();
+			String next;
+			try {
+				next = CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ");
+			} catch (Exception e) {
+				System.err.println("Failed to compile args for match statement with error: " + e.getMessage());
+				return result;
+			}
+			 
+			if (argBlockIter.hasNext()) {
+				result += next;
+			} else {
+				last = next;
+			}
+		}
+		
+		if (last != null) {
+			if (asPred) {
+				result = last + "∈" + result;
+			} else {
+				result += last;
+			}
 		}
 		
 		return result;

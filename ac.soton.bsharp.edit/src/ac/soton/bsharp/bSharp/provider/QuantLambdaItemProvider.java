@@ -197,6 +197,11 @@ public class QuantLambdaItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.QUANT_LAMBDA__EXPR,
+				 BSharpFactory.eINSTANCE.createIfElse()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.QUANT_LAMBDA__EXPR,
 				 BSharpFactory.eINSTANCE.createInfix()));
 
 		newChildDescriptors.add

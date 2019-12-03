@@ -96,6 +96,7 @@ public class ExtendImpl extends TopLevelInstanceImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ClassDecl getExtendedClass() {
 		if (extendedClass != null && extendedClass.eIsProxy()) {
 			InternalEObject oldExtendedClass = (InternalEObject)extendedClass;
@@ -122,6 +123,7 @@ public class ExtendImpl extends TopLevelInstanceImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtendedClass(ClassDecl newExtendedClass) {
 		ClassDecl oldExtendedClass = extendedClass;
 		extendedClass = newExtendedClass;
@@ -134,6 +136,7 @@ public class ExtendImpl extends TopLevelInstanceImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExtendedClassName() {
 		return extendedClassName;
 	}
@@ -143,6 +146,7 @@ public class ExtendImpl extends TopLevelInstanceImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtendedClassName(String newExtendedClassName) {
 		String oldExtendedClassName = extendedClassName;
 		extendedClassName = newExtendedClassName;

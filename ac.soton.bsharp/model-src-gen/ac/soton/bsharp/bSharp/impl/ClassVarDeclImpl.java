@@ -86,6 +86,7 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GenName getOwnerType() {
 		if (ownerType != null && ownerType.eIsProxy()) {
 			InternalEObject oldOwnerType = (InternalEObject)ownerType;
@@ -112,6 +113,7 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnerType(GenName newOwnerType) {
 		GenName oldOwnerType = ownerType;
 		ownerType = newOwnerType;
@@ -124,6 +126,7 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpressionVariable getTypeInst() {
 		if (typeInst != null && typeInst.eIsProxy()) {
 			InternalEObject oldTypeInst = (InternalEObject)typeInst;
@@ -150,6 +153,7 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeInst(ExpressionVariable newTypeInst) {
 		ExpressionVariable oldTypeInst = typeInst;
 		typeInst = newTypeInst;

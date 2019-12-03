@@ -1671,12 +1671,13 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cQuantifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cInfixParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cMatchStatementParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cIfElseParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//RootExpression Expression:
-		//	Lambda | Quantifier | Infix | MatchStatement;
+		//	Lambda | Quantifier | Infix | MatchStatement | IfElse;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Lambda | Quantifier | Infix | MatchStatement
+		//Lambda | Quantifier | Infix | MatchStatement | IfElse
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Lambda
@@ -1690,6 +1691,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//MatchStatement
 		public RuleCall getMatchStatementParserRuleCall_3() { return cMatchStatementParserRuleCall_3; }
+		
+		//IfElse
+		public RuleCall getIfElseParserRuleCall_4() { return cIfElseParserRuleCall_4; }
 	}
 	public class PrefixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Prefix");
@@ -1863,15 +1867,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassVarDeclClassVarDeclParserRuleCall_1_0_1_0 = (RuleCall)cClassVarDeclAssignment_1_0_1.eContents().get(0);
 		private final Assignment cContextAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cContextTypeDeclContextParserRuleCall_1_1_0 = (RuleCall)cContextAssignment_1_1.eContents().get(0);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final Keyword cLeftParenthesisKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
-		private final Assignment cArgumentsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_2_1_0 = (RuleCall)cArgumentsAssignment_1_2_1.eContents().get(0);
-		private final Group cGroup_1_2_2 = (Group)cGroup_1_2.eContents().get(2);
-		private final Keyword cCommaKeyword_1_2_2_0 = (Keyword)cGroup_1_2_2.eContents().get(0);
-		private final Assignment cArgumentsAssignment_1_2_2_1 = (Assignment)cGroup_1_2_2.eContents().get(1);
-		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_2_2_1_0 = (RuleCall)cArgumentsAssignment_1_2_2_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_2_3 = (Keyword)cGroup_1_2.eContents().get(3);
+		private final Assignment cFuncCallArgsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cFuncCallArgsFuncCallArgsParserRuleCall_1_2_0 = (RuleCall)cFuncCallArgsAssignment_1_2.eContents().get(0);
 		
 		///* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
 		// * scenarios: 
@@ -1886,12 +1883,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * 
 		// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
 		// */ FunctionCall:
-		//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? ('('
-		//	arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
+		//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext?
+		//	funcCallArgs+=FuncCallArgs*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? ('('
-		//arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
+		//wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext?
+		//funcCallArgs+=FuncCallArgs*
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//wrapped=WrappedInfix
@@ -1900,8 +1897,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//WrappedInfix
 		public RuleCall getWrappedWrappedInfixParserRuleCall_0_0() { return cWrappedWrappedInfixParserRuleCall_0_0; }
 		
-		//(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? ('(' arguments+=RootExpression?
-		//(',' arguments+=RootExpression)* ')')?
+		//(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? funcCallArgs+=FuncCallArgs*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl
@@ -1928,32 +1924,179 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//TypeDeclContext
 		public RuleCall getContextTypeDeclContextParserRuleCall_1_1_0() { return cContextTypeDeclContextParserRuleCall_1_1_0; }
 		
-		//('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?
-		public Group getGroup_1_2() { return cGroup_1_2; }
+		//funcCallArgs+=FuncCallArgs*
+		public Assignment getFuncCallArgsAssignment_1_2() { return cFuncCallArgsAssignment_1_2; }
+		
+		//FuncCallArgs
+		public RuleCall getFuncCallArgsFuncCallArgsParserRuleCall_1_2_0() { return cFuncCallArgsFuncCallArgsParserRuleCall_1_2_0; }
+	}
+	public class FuncCallArgsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FuncCallArgs");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cFuncCallArgsAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cArgumentsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_1_0 = (RuleCall)cArgumentsAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cArgumentsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cArgumentsRootExpressionParserRuleCall_1_2_1_0 = (RuleCall)cArgumentsAssignment_1_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		
+		///* Function calls can return a functional type, which can then be applied. I'd have rather represented this
+		// * as the 'typeInst' being able to be a functionCall, unfortunately this would cause the parser to recurse
+		// * forever, so the pragmatic solution is to allow multiple argument blocks and apply them  */ FuncCallArgs:
+		//	{FuncCallArgs} ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')');
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{FuncCallArgs} ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')')
+		public Group getGroup() { return cGroup; }
+		
+		//{FuncCallArgs}
+		public Action getFuncCallArgsAction_0() { return cFuncCallArgsAction_0; }
+		
+		//'(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')'
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_1_2_0() { return cLeftParenthesisKeyword_1_2_0; }
+		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
 		
 		//arguments+=RootExpression?
+		public Assignment getArgumentsAssignment_1_1() { return cArgumentsAssignment_1_1; }
+		
+		//RootExpression
+		public RuleCall getArgumentsRootExpressionParserRuleCall_1_1_0() { return cArgumentsRootExpressionParserRuleCall_1_1_0; }
+		
+		//(',' arguments+=RootExpression)*
+		public Group getGroup_1_2() { return cGroup_1_2; }
+		
+		//','
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
+		
+		//arguments+=RootExpression
 		public Assignment getArgumentsAssignment_1_2_1() { return cArgumentsAssignment_1_2_1; }
 		
 		//RootExpression
 		public RuleCall getArgumentsRootExpressionParserRuleCall_1_2_1_0() { return cArgumentsRootExpressionParserRuleCall_1_2_1_0; }
 		
-		//(',' arguments+=RootExpression)*
-		public Group getGroup_1_2_2() { return cGroup_1_2_2; }
+		//')'
+		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
+	}
+	public class IfElseElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.IfElse");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cIfKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cConditionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cConditionRootExpressionParserRuleCall_1_0 = (RuleCall)cConditionAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cIfTrueExprAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cIfTrueExprRootExpressionParserRuleCall_3_0 = (RuleCall)cIfTrueExprAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cElseKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cIfFalseExprAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cIfFalseExprRootExpressionParserRuleCall_7_0 = (RuleCall)cIfFalseExprAssignment_7.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
-		//','
-		public Keyword getCommaKeyword_1_2_2_0() { return cCommaKeyword_1_2_2_0; }
+		//IfElse:
+		//	'if' condition=RootExpression '{' ifTrueExpr=RootExpression '}' 'else' '{' ifFalseExpr=RootExpression '}';
+		@Override public ParserRule getRule() { return rule; }
 		
-		//arguments+=RootExpression
-		public Assignment getArgumentsAssignment_1_2_2_1() { return cArgumentsAssignment_1_2_2_1; }
+		//'if' condition=RootExpression '{' ifTrueExpr=RootExpression '}' 'else' '{' ifFalseExpr=RootExpression '}'
+		public Group getGroup() { return cGroup; }
+		
+		//'if'
+		public Keyword getIfKeyword_0() { return cIfKeyword_0; }
+		
+		//condition=RootExpression
+		public Assignment getConditionAssignment_1() { return cConditionAssignment_1; }
 		
 		//RootExpression
-		public RuleCall getArgumentsRootExpressionParserRuleCall_1_2_2_1_0() { return cArgumentsRootExpressionParserRuleCall_1_2_2_1_0; }
+		public RuleCall getConditionRootExpressionParserRuleCall_1_0() { return cConditionRootExpressionParserRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//ifTrueExpr=RootExpression
+		public Assignment getIfTrueExprAssignment_3() { return cIfTrueExprAssignment_3; }
+		
+		//RootExpression
+		public RuleCall getIfTrueExprRootExpressionParserRuleCall_3_0() { return cIfTrueExprRootExpressionParserRuleCall_3_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		
+		//'else'
+		public Keyword getElseKeyword_5() { return cElseKeyword_5; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
+		
+		//ifFalseExpr=RootExpression
+		public Assignment getIfFalseExprAssignment_7() { return cIfFalseExprAssignment_7; }
+		
+		//RootExpression
+		public RuleCall getIfFalseExprRootExpressionParserRuleCall_7_0() { return cIfFalseExprRootExpressionParserRuleCall_7_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+	}
+	public class CondElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Cond");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCONDKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cConditionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cConditionRootExpressionParserRuleCall_2_0 = (RuleCall)cConditionAssignment_2.eContents().get(0);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cIfTrueExprAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cIfTrueExprRootExpressionParserRuleCall_4_0 = (RuleCall)cIfTrueExprAssignment_4.eContents().get(0);
+		private final Keyword cCommaKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cIfFalseExprAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cIfFalseExprRootExpressionParserRuleCall_6_0 = (RuleCall)cIfFalseExprAssignment_6.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		
+		///* IfElse syntax is great but looks horrible when a function type is returned and then applied.
+		// * COND will look more natural in these situations. */ Cond IfElse:
+		//	'COND' '(' condition=RootExpression "," ifTrueExpr=RootExpression "," ifFalseExpr=RootExpression ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'COND' '(' condition=RootExpression "," ifTrueExpr=RootExpression "," ifFalseExpr=RootExpression ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'COND'
+		public Keyword getCONDKeyword_0() { return cCONDKeyword_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		
+		//condition=RootExpression
+		public Assignment getConditionAssignment_2() { return cConditionAssignment_2; }
+		
+		//RootExpression
+		public RuleCall getConditionRootExpressionParserRuleCall_2_0() { return cConditionRootExpressionParserRuleCall_2_0; }
+		
+		//","
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		
+		//ifTrueExpr=RootExpression
+		public Assignment getIfTrueExprAssignment_4() { return cIfTrueExprAssignment_4; }
+		
+		//RootExpression
+		public RuleCall getIfTrueExprRootExpressionParserRuleCall_4_0() { return cIfTrueExprRootExpressionParserRuleCall_4_0; }
+		
+		//","
+		public Keyword getCommaKeyword_5() { return cCommaKeyword_5; }
+		
+		//ifFalseExpr=RootExpression
+		public Assignment getIfFalseExprAssignment_6() { return cIfFalseExprAssignment_6; }
+		
+		//RootExpression
+		public RuleCall getIfFalseExprRootExpressionParserRuleCall_6_0() { return cIfFalseExprRootExpressionParserRuleCall_6_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_1_2_3() { return cRightParenthesisKeyword_1_2_3; }
+		public Keyword getRightParenthesisKeyword_7() { return cRightParenthesisKeyword_7; }
 	}
 	public class ClassVarDeclElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ClassVarDecl");
@@ -2307,6 +2450,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final ElementElements pElement;
 	private final BracketElements pBracket;
 	private final FunctionCallElements pFunctionCall;
+	private final FuncCallArgsElements pFuncCallArgs;
+	private final IfElseElements pIfElse;
+	private final CondElements pCond;
 	private final ClassVarDeclElements pClassVarDecl;
 	private final ExpressionVariableElements pExpressionVariable;
 	private final InbuiltInfixElements pInbuiltInfix;
@@ -2374,6 +2520,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pElement = new ElementElements();
 		this.pBracket = new BracketElements();
 		this.pFunctionCall = new FunctionCallElements();
+		this.pFuncCallArgs = new FuncCallArgsElements();
+		this.pIfElse = new IfElseElements();
+		this.pCond = new CondElements();
 		this.pClassVarDecl = new ClassVarDeclElements();
 		this.pExpressionVariable = new ExpressionVariableElements();
 		this.pInbuiltInfix = new InbuiltInfixElements();
@@ -2891,7 +3040,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootExpression Expression:
-	//	Lambda | Quantifier | Infix | MatchStatement;
+	//	Lambda | Quantifier | Infix | MatchStatement | IfElse;
 	public RootExpressionElements getRootExpressionAccess() {
 		return pRootExpression;
 	}
@@ -2978,14 +3127,47 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * 
 	// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
 	// */ FunctionCall:
-	//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? ('('
-	//	arguments+=RootExpression? (',' arguments+=RootExpression)* ')')?;
+	//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext?
+	//	funcCallArgs+=FuncCallArgs*;
 	public FunctionCallElements getFunctionCallAccess() {
 		return pFunctionCall;
 	}
 	
 	public ParserRule getFunctionCallRule() {
 		return getFunctionCallAccess().getRule();
+	}
+	
+	///* Function calls can return a functional type, which can then be applied. I'd have rather represented this
+	// * as the 'typeInst' being able to be a functionCall, unfortunately this would cause the parser to recurse
+	// * forever, so the pragmatic solution is to allow multiple argument blocks and apply them  */ FuncCallArgs:
+	//	{FuncCallArgs} ('(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')');
+	public FuncCallArgsElements getFuncCallArgsAccess() {
+		return pFuncCallArgs;
+	}
+	
+	public ParserRule getFuncCallArgsRule() {
+		return getFuncCallArgsAccess().getRule();
+	}
+	
+	//IfElse:
+	//	'if' condition=RootExpression '{' ifTrueExpr=RootExpression '}' 'else' '{' ifFalseExpr=RootExpression '}';
+	public IfElseElements getIfElseAccess() {
+		return pIfElse;
+	}
+	
+	public ParserRule getIfElseRule() {
+		return getIfElseAccess().getRule();
+	}
+	
+	///* IfElse syntax is great but looks horrible when a function type is returned and then applied.
+	// * COND will look more natural in these situations. */ Cond IfElse:
+	//	'COND' '(' condition=RootExpression "," ifTrueExpr=RootExpression "," ifFalseExpr=RootExpression ')';
+	public CondElements getCondAccess() {
+		return pCond;
+	}
+	
+	public ParserRule getCondRule() {
+		return getCondAccess().getRule();
 	}
 	
 	///* This is used to get variables from a class I think that it may be only applicable for
