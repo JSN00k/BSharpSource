@@ -229,25 +229,6 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 	}
 
 	@Override
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String applyMemberOrFuncGetter(ExpressionVariable typeInst, PolyType ownerType, FunctionCall fc,
-			Boolean asPred) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String appyMemberOrFunc(ExpressionVariable typeInst, FunctionCall fc, Boolean asPred) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String constructWithTypeContext(TypeDeclContext context) {
 		// TODO Auto-generated method stub
 		return null;
@@ -355,5 +336,28 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 		result.setContext(tdContext);
 		return result;
+	}
+
+	/* Not at all sure that implementing this protocol
+	 * makes sense. Leaving blank for now.
+	 * (non-Javadoc)
+	 * @see ac.soton.bsharp.bSharp.IVarType#getEventBFunctypeForCall(ac.soton.bsharp.bSharp.FunctionCall)
+	 */
+	@Override
+	public String getEventBFunctypeForCall(FunctionCall fc) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String evBSeparatorForFunc() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 } //DatatypeImpl

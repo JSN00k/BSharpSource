@@ -418,7 +418,13 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 		 * TODO: during validation make sure that a warning is generated for equals on predicate 
 		 * statements.
 		 */
-		if (left.calculateType().isBoolType() && fName.getName().equals("=")) {
+		boolean leftIsBoolType = false;
+		try {
+			leftIsBoolType = left.calculateType().isBoolType();
+		} catch (Exception e) {
+			System.err.println("Unable to calculate return type, this should be looked into.");
+		}
+		if (fName.getName().equals("=") && leftIsBoolType) {
 			nameStr = "⇔";
 			leftIsPred = true;
 			rightIsPred = true;

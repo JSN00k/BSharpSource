@@ -183,21 +183,21 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.GenName");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPolyTypeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cTypeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cClassDeclParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cInstNameParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//GenName:
-		//	PolyType | Type | InstName;
+		//	PolyType | ClassDecl | InstName;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PolyType | Type | InstName
+		//PolyType | ClassDecl | InstName
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//PolyType
 		public RuleCall getPolyTypeParserRuleCall_0() { return cPolyTypeParserRuleCall_0; }
 		
-		//Type
-		public RuleCall getTypeParserRuleCall_1() { return cTypeParserRuleCall_1; }
+		//ClassDecl
+		public RuleCall getClassDeclParserRuleCall_1() { return cClassDeclParserRuleCall_1; }
 		
 		//InstName
 		public RuleCall getInstNameParserRuleCall_2() { return cInstNameParserRuleCall_2; }
@@ -2109,8 +2109,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cTypeInstExpressionVariableCrossReference_2_0 = (CrossReference)cTypeInstAssignment_2.eContents().get(0);
 		private final RuleCall cTypeInstExpressionVariableIDTerminalRuleCall_2_0_1 = (RuleCall)cTypeInstExpressionVariableCrossReference_2_0.eContents().get(1);
 		
-		///* This is used to get variables from a class I think that it may be only applicable for
-		// * concrete and polynomial types, but I'm not entirely sure. */ ClassVarDecl:
+		///* This is used to get variables, functions constructors and deconstructors from a class I think 
+		// * that it may be only applicable for concrete and polynomial types, but I'm not entirely sure. */ ClassVarDecl:
 		//	ownerType=[GenName] '.' typeInst=[ExpressionVariable];
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2639,7 +2639,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//GenName:
-	//	PolyType | Type | InstName;
+	//	PolyType | ClassDecl | InstName;
 	public GenNameElements getGenNameAccess() {
 		return pGenName;
 	}
@@ -3170,8 +3170,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getCondAccess().getRule();
 	}
 	
-	///* This is used to get variables from a class I think that it may be only applicable for
-	// * concrete and polynomial types, but I'm not entirely sure. */ ClassVarDecl:
+	///* This is used to get variables, functions constructors and deconstructors from a class I think 
+	// * that it may be only applicable for concrete and polynomial types, but I'm not entirely sure. */ ClassVarDecl:
 	//	ownerType=[GenName] '.' typeInst=[ExpressionVariable];
 	public ClassVarDeclElements getClassVarDeclAccess() {
 		return pClassVarDecl;

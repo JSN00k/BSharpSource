@@ -125,7 +125,7 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 	}
 	
 	@Override
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception {
 		TypeDeclContext ctx = fc.getContext();
 		
 		if (ctx != null) {

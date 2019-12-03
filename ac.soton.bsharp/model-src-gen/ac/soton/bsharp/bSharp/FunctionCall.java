@@ -171,7 +171,7 @@ public interface FunctionCall extends Expression {
 	 */
 	EList<FuncCallArgs> getFuncCallArgs();
 
-	String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPredicate) throws Exception;
+	String compileToStringWithContext(FunctionCall fc, Boolean asPredicate) throws Exception;
 	
 	
 	public ExpressionVariable getTypeInstBasic();

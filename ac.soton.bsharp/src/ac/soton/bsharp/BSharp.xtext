@@ -42,11 +42,11 @@ ClassDecl returns ClassDecl:
  * occasions where each of these can be used.
  */
 
-Type:
-	ClassDecl
-;
+//Type:
+//	ClassDecl
+//;
 
-GenName: PolyType | Type | InstName;
+GenName: PolyType | ClassDecl | InstName;
 
 /* -------------------------- Import Statements -------------------- */
 /* I had hoped to use a python style import, however this seems to be fighting 
@@ -337,8 +337,8 @@ Cond returns IfElse:
 	'COND' '(' condition = RootExpression "," ifTrueExpr = RootExpression "," ifFalseExpr = RootExpression ')'
 ;
 
-/* This is used to get variables from a class I think that it may be only applicable for
- * concrete and polynomial types, but I'm not entirely sure. */
+/* This is used to get variables, functions constructors and deconstructors from a class I think 
+ * that it may be only applicable for concrete and polynomial types, but I'm not entirely sure. */
 ClassVarDecl:
 	(ownerType=[GenName] '.' typeInst=[ExpressionVariable])
 ;

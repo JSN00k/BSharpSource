@@ -60,6 +60,11 @@ public class FunctionValidatorUtil {
 			 
 			return exprVar.getName().equals(other.exprVar.getName());
 		}
+		
+		@Override
+		public String toString() {
+			return '<' + exprVar.toString() + '>';
+		}
 	}
 	
 	public static void addAllExpressionVariablesToWrapped(HashSet<ExpressionVariableWrapper> wrappedSet,
@@ -167,6 +172,34 @@ public class FunctionValidatorUtil {
 		}
 	}
 	
+	/* Only does FunctionDecl, no other function like objects. */
+	public static void addLocalFunctionsForClass(EObject context, ClassDecl clss, HashSet<ExpressionVariableWrapper> s) {
+		@SuppressWarnings("unchecked")
+		List<FunctionDecl> localFuncs = (List<FunctionDecl>) EcoreUtilJ.eFilterUpToIncludingCurrentWith(context, new Function1<EObject, Boolean>() {
+			public Boolean apply(EObject e) {
+				if (e instanceof FunctionDecl) {
+					ClassDecl eclss = CompilationUtil.getClassDecl(e);
+					return eclss == clss ||  (clss instanceof BSClass) && ((BSClass)clss).isSuperType(eclss);
+				}
+				return false;
+			}
+		});
+		
+		addAllExpressionVariablesToWrapped(s, localFuncs);
+	}
+	
+	public static void addImportedFunctionsForClass(EObject context, ClassDecl clss, HashSet<ExpressionVariableWrapper> s) {
+		List<TopLevelInstance> topLevel = CompilationUtil.getAllImportedTopLevelInstances(context);
+		
+		for (TopLevelInstance inst: topLevel) {
+			ClassDecl instClass = CompilationUtil.getClassDecl(inst);
+			if (instClass == clss || (clss instanceof BSClass) && ((BSClass)clss).isSuperType(instClass)) { 
+				Collection<FunctionDecl> funcs = EcoreUtil2.getAllContentsOfType(inst, FunctionDecl.class);
+				addAllExpressionVariablesToWrapped(s, funcs);
+			}
+		}
+	}
+	
 	public static HashSet<ExpressionVariable> unwrapWrappedExpressions(Collection<ExpressionVariableWrapper> c) {
 		HashSet<ExpressionVariable> result = new HashSet<ExpressionVariable>();
 		for (ExpressionVariableWrapper e : c) {
@@ -191,6 +224,28 @@ public class FunctionValidatorUtil {
 		
 		addLocalFunctions(context, variables);
 		addImportedFunctions(context, variables);
+		
+		return unwrapWrappedExpressions(variables);
+	}
+	
+	/* Used when scoping something like T.equ. In this case we only want to check for functions 
+	 * Associated variables, or constructors/destructors associated with the class of T.
+	 * TODO: Validate against functions having the same name as constructors/destructors or
+	 * associated variables. Alternatively implement some way of referencing the original 
+	 * constructors/destructors etc.
+	 */
+	public static HashSet<ExpressionVariable> allInscopeExpressionVariablesAssociatedWithClass(EObject context, ClassDecl clss) {
+		/* Associated variables and datatype constructors will currently hide any function instances with the same name. */
+		HashSet<ExpressionVariableWrapper> variables = new HashSet<ExpressionVariableWrapper>();
+		if (clss instanceof BSClass) {
+			variables.add(new ExpressionVariableWrapper(((BSClass) clss).getInstName()));
+			addTypedVariableForBSClass((BSClass)clss, variables);
+		} else if (clss instanceof Datatype) {
+			addDatatypeConstructorsAndDestructors((Datatype)clss, variables);
+		}
+		
+		addLocalFunctionsForClass(context, clss, variables);
+		addImportedFunctionsForClass(context, clss, variables);
 		
 		return unwrapWrappedExpressions(variables);
 	}

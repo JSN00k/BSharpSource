@@ -796,14 +796,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public String eventBPredName() throws Exception {
-		PolyContext context = getContext();
-		if (context != null || !(returnType instanceof TypeConstructor)
-				|| !((TypeConstructor) returnType).getTypeName().getName().equals("Bool")) {
-			throw new Exception(
-					"In FunctionDeclImpl tried to get a EventB predicate function for non-boolean function type");
-		}
-
-		return eventBExprName() + "_Pred";
+		return eventBExprName();
 	}
 
 	@Override
@@ -1137,11 +1130,54 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		ITypeInstance inst = CompilationUtil.getTypeInstance(ctx);
 		return inst.isInferredTypeInst();
 	}
+	
+	private String getEventBFunctypeNoContext(FunctionCall fc) throws Exception {
+		TypedVariableList varList = getVarList();
+		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+		if (fcas == null || fcas.isEmpty()) {
+			if (varList == null || varList.isEmpty()) {
+				return eventBExprName();
+			} else {
+				return passableName();
+			}
+		}
 
-	@Override
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
+		return eventBExprName();
+	}
+	
+	private String getEventBFunctypeWithContext(FunctionCall fc) throws Exception  {
+		TypeDeclContext ctx = fc.getContext();
+		if ((ctx == null || ctx.isEmpty()) && !expr.referencesContainingType()) {
+			/*
+			 * Having a context called with the wrong number of arguments should be
+			 * validated against.
+			 */
+			throw new Exception("Function with context called with wrong number of arguments");
+		}
+
+		String result = eventBExprName() + "(";
 		
-		/* If this is in a recursive definition then there may already be a evBInstance, which should not be overwritten. */
+		boolean hasInferredContext = hasInferredContext();
+		
+		if (hasInferredContext)
+			result += getInferredContextCallString(fc);
+		
+		PolyContext context = getContext();
+		
+		if (context != null && !context.isEmpty()) {
+			if (hasInferredContext)
+				result += ", ";
+				
+			result += context.compileCallWithTypeContext(ctx);
+		}
+		
+		result += ")";
+		
+		return result;
+	}
+	
+	@Override
+	public String getEventBFunctypeForCall(FunctionCall fc) throws Exception {
 		boolean typeInstIsNull = evBTypeInstance == null;
 		if (typeInstIsNull && hasInferredContext())
 			evBTypeInstance = CompilationUtil.getTypeInstance(fc);
@@ -1149,9 +1185,9 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		String result;
 		
 		if (compilationRequiresContext(fc)) {
-			result =  compileFunctionCallWithContext(fc, asPred);
+			result = getEventBFunctypeWithContext(fc);
 		} else {
-			result =  comipileFunctionCallNoContext(fc, asPred);
+			result = getEventBFunctypeNoContext(fc);
 		}
 		
 		if (typeInstIsNull) {
@@ -1160,6 +1196,58 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 		return result;
 	}
+
+	@Override
+	public String evBSeparatorForFunc() {
+		return " ↦ ";
+	}
+	
+	@Override
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception {
+		boolean typeInstIsNull = evBTypeInstance == null;
+		if (typeInstIsNull && hasInferredContext())
+			evBTypeInstance = CompilationUtil.getTypeInstance(fc);
+		if (compilationRequiresContext(fc)) {
+			/* Check to see if I'm recursive. */
+			IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
+			if (container == this) {
+				return compileRecursiveCallWithContext(fc, asPred);
+			}
+		} else {
+			String result = getEventBFunctypeNoContext(fc);
+			List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+			if (infix != null && infix.equals("INFIX")) {
+				/* TODO: validate there are only two arguments. */
+				List<Expression> exprs = fcas.get(0).getArguments();
+				return exprs.get(0).compileToEventBString(false) + " " + result + " "
+						+ exprs.get(1).compileToEventBString(false);
+			}
+		}
+		
+		return ExpressionVariableImpl.compileToStringWithContextFunc(this, fc, asPred);
+	}
+
+//	@Override
+//	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {	
+//		/* If this is in a recursive definition then there may already be a evBInstance, which should not be overwritten. */
+//		boolean typeInstIsNull = evBTypeInstance == null;
+//		if (typeInstIsNull && hasInferredContext())
+//			evBTypeInstance = CompilationUtil.getTypeInstance(fc);
+//		
+//		String result;
+//		
+//		if (compilationRequiresContext(fc)) {
+//			result =  compileFunctionCallWithContext(fc, asPred);
+//		} else {
+//			result =  comipileFunctionCallNoContext(fc, asPred);
+//		}
+//		
+//		if (typeInstIsNull) {
+//			evBTypeInstance = null;
+//		}
+//
+//		return result;
+//	}
 
 	String getInferredContextCallString(FunctionCall fc) {
 		/*
@@ -1210,122 +1298,123 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		return result;
 	}
 
-	String compileFunctionCallWithContext(FunctionCall fc, boolean asPred) throws Exception {
-		/*
-		 * There are two additional things that I need to consider here. 1) The function
-		 * can have an inferred polyContext, which needs to be got from the current
-		 * function that is being compiled. Functions with contexts have a different
-		 * call structure. 2) If this is a recursive function with a polycontext then it
-		 * generates a new operator to handle the match statement, in this case the new
-		 * operator needs to be called instead of the current op.
-		 */
-
-		TypeDeclContext ctx = fc.getContext();
-		if ((ctx == null || ctx.isEmpty()) && !expr.referencesContainingType()) {
-			/*
-			 * Having a context called with the wrong number of arguments should be
-			 * validated against.
-			 */
-			throw new Exception("Function with context called with wrong number of arguments");
-		}
-
-		/* Check to see if I'm recursive. */
-		IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
-		if (container == this) {
-			return compileRecursiveCallWithContext(fc, asPred);
-		}
-
-		String result = eventBExprName() + "(";
-		
-		boolean hasInferredContext = hasInferredContext();
-		
-		if (hasInferredContext)
-			result += getInferredContextCallString(fc);
-		
-		PolyContext context = getContext();
-		
-		if (context != null && !context.isEmpty()) {
-			if (hasInferredContext)
-				result += ", ";
-				
-			result += context.compileCallWithTypeContext(ctx);
-		}
-		
-		result += ")";
-
-		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
-		int fcasCount = fcas.size();
-		
-		for (int i = 0; i < fcasCount - 1; ++i) {
-			List<Expression> exprs = fcas.get(i).getArguments();
-			if (exprs != null && !exprs.isEmpty()) {
-				result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
-			}
-		}
-		
-		String last = "(" + CompilationUtil.compileExpressionListWithSeperator(fcas.get(fcasCount - 1).getArguments(), " ↦ ") + ")";
-	
-		if (asPred) {
-			result = last + "∈" + result;
-		} else {
-			result += last;
-		}
-
-		return result;
-	}
-
-	String comipileFunctionCallNoContext(FunctionCall fc, boolean asPred) throws Exception {
-		TypedVariableList varList = getVarList();
-		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
-		if (fcas == null || fcas.isEmpty()) {
-			if (varList == null || varList.isEmpty()) {
-				return eventBExprName();
-			} else {
-				return passableName();
-			}
-		}
-
-		if (asPred && !returnType.isBoolType()) {
-			/* TODO: Validate. */
-			throw new Exception("Tried to call non-predicate as a predicate");
-		}
-
-		String result = null;
-		if (asPred) {
-			result = eventBPredName();
-		} else {
-			result = eventBExprName();
-		}
-
-		if (infix != null && infix.equals("INFIX")) {
-			/* TODO: validate there are only two arguments. */
-			List<Expression> exprs = fcas.get(0).getArguments();
-			return exprs.get(0).compileToEventBString(false) + " " + result + " "
-					+ exprs.get(1).compileToEventBString(false);
-		}
-
-		Iterator<FuncCallArgs> iter = fcas.iterator();
-		List<Expression> exprs = iter.next().getArguments();
-		result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, ", ") + ")";
-		
-		while (iter.hasNext()) {
-			exprs = iter.next().getArguments();
-			String next = "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
-			
-			if (iter.hasNext())
-				result += next;
-			else {
-				if (asPred) {
-					result = next + "∈" + result;
-				} else {
-					result += next;
-				}
-			}
-				
-		}
-
-		return result;
-	}
+	/* This has been replaced. Left in for debugging. If found delete. */
+//	String compileFunctionCallWithContext(FunctionCall fc, boolean asPred) throws Exception {
+//		/*
+//		 * There are two additional things that I need to consider here. 1) The function
+//		 * can have an inferred polyContext, which needs to be got from the current
+//		 * function that is being compiled. Functions with contexts have a different
+//		 * call structure. 2) If this is a recursive function with a polycontext then it
+//		 * generates a new operator to handle the match statement, in this case the new
+//		 * operator needs to be called instead of the current op.
+//		 */
+//
+//		TypeDeclContext ctx = fc.getContext();
+//		if ((ctx == null || ctx.isEmpty()) && !expr.referencesContainingType()) {
+//			/*
+//			 * Having a context called with the wrong number of arguments should be
+//			 * validated against.
+//			 */
+//			throw new Exception("Function with context called with wrong number of arguments");
+//		}
+//
+//		/* Check to see if I'm recursive. */
+//		IExpressionContainer container = EcoreUtil2.getContainerOfType(fc, IExpressionContainer.class);
+//		if (container == this) {
+//			return compileRecursiveCallWithContext(fc, asPred);
+//		}
+//
+//		String result = eventBExprName() + "(";
+//		
+//		boolean hasInferredContext = hasInferredContext();
+//		
+//		if (hasInferredContext)
+//			result += getInferredContextCallString(fc);
+//		
+//		PolyContext context = getContext();
+//		
+//		if (context != null && !context.isEmpty()) {
+//			if (hasInferredContext)
+//				result += ", ";
+//				
+//			result += context.compileCallWithTypeContext(ctx);
+//		}
+//		
+//		result += ")";
+//
+//		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+//		int fcasCount = fcas.size();
+//		
+//		for (int i = 0; i < fcasCount - 1; ++i) {
+//			List<Expression> exprs = fcas.get(i).getArguments();
+//			if (exprs != null && !exprs.isEmpty()) {
+//				result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
+//			}
+//		}
+//		
+//		String last = "(" + CompilationUtil.compileExpressionListWithSeperator(fcas.get(fcasCount - 1).getArguments(), " ↦ ") + ")";
+//	
+//		if (asPred) {
+//			result = last + "∈" + result;
+//		} else {
+//			result += last;
+//		}
+//
+//		return result;
+//	}
+//
+//	String comipileFunctionCallNoContext(FunctionCall fc, boolean asPred) throws Exception {
+//		TypedVariableList varList = getVarList();
+//		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+//		if (fcas == null || fcas.isEmpty()) {
+//			if (varList == null || varList.isEmpty()) {
+//				return eventBExprName();
+//			} else {
+//				return passableName();
+//			}
+//		}
+//
+//		if (asPred && !returnType.isBoolType()) {
+//			/* TODO: Validate. */
+//			throw new Exception("Tried to call non-predicate as a predicate");
+//		}
+//
+//		String result = null;
+//		if (asPred) {
+//			result = eventBPredName();
+//		} else {
+//			result = eventBExprName();
+//		}
+//
+//		if (infix != null && infix.equals("INFIX")) {
+//			/* TODO: validate there are only two arguments. */
+//			List<Expression> exprs = fcas.get(0).getArguments();
+//			return exprs.get(0).compileToEventBString(false) + " " + result + " "
+//					+ exprs.get(1).compileToEventBString(false);
+//		}
+//
+//		Iterator<FuncCallArgs> iter = fcas.iterator();
+//		List<Expression> exprs = iter.next().getArguments();
+//		result += "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, ", ") + ")";
+//		
+//		while (iter.hasNext()) {
+//			exprs = iter.next().getArguments();
+//			String next = "(" + CompilationUtil.compileExpressionListWithSeperator(exprs, " ↦ ") + ")";
+//			
+//			if (iter.hasNext())
+//				result += next;
+//			else {
+//				if (asPred) {
+//					result = next + "∈" + result;
+//				} else {
+//					result += next;
+//				}
+//			}
+//				
+//		}
+//
+//		return result;
+//	}
 
 	@Override
 	public String inferredPolyTypeArgsForType(ClassDecl t) {

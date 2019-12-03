@@ -354,9 +354,9 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
+	public String getEventBFunctypeForCall(FunctionCall fc) throws Exception {
 		String result = name;
 		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
 		if (fcas == null || fcas.isEmpty()) {
@@ -377,34 +377,69 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 			result += ")";
 		}
 		
-		String last = null;
-		while(argBlockIter.hasNext()) {
-			args = argBlockIter.next().getArguments();
-			String next;
-			try {
-				next = CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ");
-			} catch (Exception e) {
-				System.err.println("Failed to compile args for match statement with error: " + e.getMessage());
-				return result;
-			}
-			 
-			if (argBlockIter.hasNext()) {
-				result += next;
-			} else {
-				last = next;
-			}
-		}
-		
-		if (last != null) {
-			if (asPred) {
-				result = last + "∈" + result;
-			} else {
-				result += last;
-			}
-		}
-		
 		return result;
 	}
+
+	@Override
+	public String evBSeparatorForFunc() {
+		return " ↦ ";
+	}
+
+	@Override
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception {
+		return ExpressionVariableImpl.compileToStringWithContextFunc(this, fc, asPred);
+	}
+
+//	@Override
+//	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
+//		String result = name;
+//		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+//		if (fcas == null || fcas.isEmpty()) {
+//			return result;
+//		}
+//		
+//		Iterator<FuncCallArgs> argBlockIter = fc.getFuncCallArgs().iterator();
+//		List<Expression> args = argBlockIter.next().getArguments();
+//		
+//		if (args != null && !args.isEmpty()) {
+//			result += "(";
+//			try {
+//				result += CompilationUtil.compileExpressionListWithSeperator(args, ", ");
+//			} catch (Exception e) {
+//				System.err.println("Failed to compile args for match statement with error: " + e.getMessage());
+//			}
+//			
+//			result += ")";
+//		}
+//		
+//		String last = null;
+//		while(argBlockIter.hasNext()) {
+//			args = argBlockIter.next().getArguments();
+//			String next;
+//			try {
+//				next = CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ");
+//			} catch (Exception e) {
+//				System.err.println("Failed to compile args for match statement with error: " + e.getMessage());
+//				return result;
+//			}
+//			 
+//			if (argBlockIter.hasNext()) {
+//				result += next;
+//			} else {
+//				last = next;
+//			}
+//		}
+//		
+//		if (last != null) {
+//			if (asPred) {
+//				result = last + "∈" + result;
+//			} else {
+//				result += last;
+//			}
+//		}
+//		
+//		return result;
+//	}
 
 	@Override
 	public Boolean isTypeClassVariable() {
@@ -471,5 +506,4 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	public boolean referencesContainingType() {
 		return false;
 	}
-
 } //DatatypeConstructorImpl

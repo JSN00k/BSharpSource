@@ -17,11 +17,4 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ExpressionVariable extends NamedObject, IVarType {
 	String descriptiveName();
-
-	/* Returns the type that will be returned if this expression variable is called like a function. */
-	TypeBuilder calculateReturnType();
-
-	TypeBuilder calculateType();
-
-
 } // ExpressionVariable

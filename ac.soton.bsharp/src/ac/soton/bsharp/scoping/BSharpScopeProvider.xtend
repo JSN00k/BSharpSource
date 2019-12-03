@@ -43,6 +43,8 @@ import ac.soton.bsharp.bSharp.BSharpBlock
 import org.eclipse.xtext.resource.IEObjectDescription
 import ac.soton.bsharp.bSharp.ReferencingFunc
 import ac.soton.bsharp.bSharp.util.FunctionValidatorUtil
+import ac.soton.bsharp.bSharp.InstName
+import java.util.HashSet
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 	
@@ -107,21 +109,31 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		/* In this case it is necessary to check the class referenced from GenName, then
 		 * finding it's referencable variables
 		 */
-
 		 var genName = ctx.ownerType
+		 if (genName instanceof ClassDecl) {
+		 	val inscope = FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(ctx, (genName as ClassDecl))
+		 	return Scopes.scopeFor(inscope)
+		 } 
+		 
+		 if (genName instanceof InstName) {
+		 	val clss = EcoreUtil2.getContainerOfType(genName, BSClass)
+		 	val inscope = FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(ctx, clss)
+		 	return Scopes.scopeFor(inscope)
+		 }
+		 
 		 if (genName instanceof PolyType) {
 		 	val polyType = genName as PolyType
-		 	if (polyType.superTypes !== null && !polyType.superTypes.empty) {
+		 	val superTypes = polyType.superTypes
+		 	if (superTypes !== null && !superTypes.empty) {
 		 		/* We now need to iterate over the constraints and find the applicable
 		 		 * member variables and functions.
 		 		 */
-		 		 val superClasses = BSharpUtil.expandConstraintTypes(polyType.superTypes)
-		 		 var result = IScope.NULLSCOPE
-		 		 for (superClass : superClasses) {
-		 		 	result = getVariableScopeIncludingForCtxInclusive(superClass, result)
+		 		 var variables = new HashSet<ExpressionVariable>() 
+		 		 for (superClass : superTypes) {
+		 		 	variables.addAll(FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(ctx, superClass))
 		 		 }
 		 		 
-		 		 return result
+		 		 return Scopes.scopeFor(variables);
 		 	}
 		 }
 		 
@@ -144,51 +156,6 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 } else {
 		 	return Scopes.scopeFor(inscope)
 		 }
-		 
-//		var parent = delegateGetScope(context, reference)
-//
-//		var classDeclTmp = EcoreUtil2.getContainerOfType(context, ClassDecl)
-//		var BSharpBlock currentBlock
-//		
-//		if (classDeclTmp === null) {
-//			var extend = EcoreUtil2.getContainerOfType(context, Extend)
-//			currentBlock = extend.block
-//			classDeclTmp = extend.extendedClass
-//		} else {
-//			currentBlock = classDeclTmp.block
-//		}
-//		
-//		val classDecl = classDeclTmp
-//
-//		var ArrayList<ExpressionVariable> variables = new ArrayList
-//
-//		if (classDecl !== null) {
-//			if (classDecl instanceof BSClass) {
-//				for (sc : BSharpUtil.superClasses(classDecl)) {
-//					if (sc instanceof BSClass) {
-//						val superClass = sc as BSClass
-//						if (superClass.getVarList !== null)
-//							variables += EcoreUtil2.getAllContentsOfType(superClass.getVarList, TypedVariable)
-//					}
-//				}
-//			} else {
-//				// classDecl is an instance of Datatype
-//				variables += (classDecl as Datatype).constructors
-//			}
-//			parent = Scopes.scopeFor(variables, parent)
-//		}
-//
-//		val rootObj = EcoreUtil2.getRootContainer(context)
-//
-//		/* FunctionName can be any function within the current body, or any body above. */
-//		val functionNames = EcoreUtilJ.eFilterUpToIncludingWith(rootObj, [object|object == classDecl], [ object |
-//			object instanceof FunctionDecl
-//		])
-//
-//		var scope = getVariableScopeFor(context, parent)
-//		scope = Scopes.scopeFor(functionNames, scope)
-//
-//		return scope;
 	}
 	
 	def IScope scope_TypedVariable(MatchCase context, EReference reference) {
@@ -270,7 +237,7 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 *  and all of the functions declared above this point in this file. Much of this work is 
 		 * already done in scope_ExpressionVariable, We still need to add the imported functions
 		 */
-		 val parent = scope_ExpressionVariable(context, ref)
+		val parent = scope_ExpressionVariable(context, ref)
 		/* Get all imports */
 		var importedFuncs = getImportedFuncs(context)
 		

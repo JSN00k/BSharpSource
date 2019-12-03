@@ -78,9 +78,9 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 	}
 	
 	@Override 
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred)  throws Exception {
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPred)  throws Exception {
 		if (!isTypeClassVariable())
-			return super.compileToStringWithContextAndArguments(fc, asPred);
+			return super.compileToStringWithContext(fc, asPred);
 		
 		ITypeInstance typeInst = CompilationUtil.getTypeInstance(fc);
 		return typeInst.compileFunctionCallOfTypeInstance(fc, asPred, this);
@@ -89,7 +89,7 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 	@Override
 	public TypeBuilder calculateReturnType() {
 		/*TODO: Need some test cases. The type could be a wrapped type class, so may need more logic here. */
-		TypeBuilder type = getType();
+		TypeBuilder type = getType().calculateReturnType();
 		
 		if (type instanceof ConstructedType) {
 			return ((ConstructedType) type).getRight();

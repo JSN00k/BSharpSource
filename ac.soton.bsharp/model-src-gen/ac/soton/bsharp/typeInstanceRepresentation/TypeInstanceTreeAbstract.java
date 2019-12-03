@@ -107,7 +107,7 @@ public abstract class TypeInstanceTreeAbstract extends TypeInstanceAbstract impl
 		
 		Expression expr = ((MapletExpressionLeaf)node).expression();
 		if (expr instanceof FunctionCall) {
-			return ((FunctionCall)expr).compileToStringWithContextAndArguments(fc, asPred);
+			return ((FunctionCall)expr).compileToStringWithContext(fc, asPred);
 		}
 		
 		return super.compileFunctionCallOfTypeInstance(fc, asPred, typedVar);

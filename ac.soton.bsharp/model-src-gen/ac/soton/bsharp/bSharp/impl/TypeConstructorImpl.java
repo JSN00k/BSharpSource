@@ -450,13 +450,24 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	}
 	
 	@Override
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred)  throws Exception {
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPred)  throws Exception {
 		if (typeName instanceof InstName) {
 			return CompilationUtil.getTypeInstance(fc).baseTypeString();
 		} else if (typeName instanceof BSClass){
-			return ((BSClass)typeName).compileToStringWithContextAndArguments(fc, asPred);
+			return ((BSClass)typeName).compileToStringWithContext(fc, asPred);
 		} else {
 			return typeName.getName();
 		}
+	}
+	
+	@Override
+	public TypeBuilder calculateReturnType() {
+		GenName typeName = getTypeName();
+		if (typeName instanceof BSClass) {
+			TypeBuilder tb = ((BSClass)typeName).baseType();
+			return tb.calculateReturnType();
+		}
+		
+		return null;
 	}
 } //TypeConstructorImpl

@@ -208,5 +208,10 @@ public interface BSClass extends ClassDecl, IExpressionContainer {
 	int variablesCount();
 
 	String wrapInstInPrjsForOpWithName(String inst, String opName);
+	
+	/* Given T.equ this becomes Setoid_equ(..., T) in EventB ownerType is T,
+	 * and typeInst is equ.
+	 */
+	public String applyGetter(PolyType ownerType, ExpressionVariable typeInst);
 
 } // BppClass

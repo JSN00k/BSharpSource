@@ -3,20 +3,25 @@
  */
 package ac.soton.bsharp.bSharp.impl;
 
+import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
+import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
+import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -230,28 +235,77 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 		}
 		return super.eIsSet(featureID);
 	}
-
+	
 	@Override
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
-		/* This can either access variables associated with the type class or methods written 
-		 * on the type class. Currently only the instance variable option is covered, and this may 
-		 * change when having to deal with methods to reduce the total amount of code.
+	public String getEventBFunctypeForCall(FunctionCall fc) throws Exception {
+		/* In most cases this class acts only as a wrapper, allowing typeInst
+		 * to be uniquely referenced, if so simply call the methods on the
+		 * wrapped class. When the typeInst is a TypedVariable the deconstructors 
+		 * need to be called on a type class to get the right name.
+		 */
+		if (!(typeInst instanceof TypedVariable)) {
+			return typeInst.getEventBFunctypeForCall(fc);
+		}
+		
+		/* Henceforth it is assumed that we are referencing an
+		 * associated variable of a class.
 		 */
 		if (ownerType instanceof PolyType) {
-			EList<ClassDecl> supers = ((PolyType) ownerType).getSuperTypes();
+			List<ClassDecl> supers = ((PolyType) ownerType).getSuperTypes();
 			
 			for (ClassDecl sup : supers) {
-				String res = sup.applyMemberOrFuncGetter(typeInst, (PolyType)ownerType, fc, asPred);
+				String res = null;
+				if (sup instanceof BSClass)
+					res = ((BSClass)sup).applyGetter((PolyType)ownerType, typeInst);
 				
 				if (res != null && !res.isEmpty())
 					return res;
 			}
-		} else {
-			return ((ClassDecl)ownerType).appyMemberOrFunc(typeInst, fc, asPred);
 		}
 		
+		/* Don't know when this would happen. */
 		return null;
 	}
+
+	@Override
+	public String evBSeparatorForFunc() {
+		if (typeInst instanceof FunctionDecl) {
+			return typeInst.evBSeparatorForFunc();
+		}
+		
+		if (typeInst instanceof DatatypeConstructor)
+			return ", ";
+		
+		
+		return " ↦ ";
+	}
+
+	@Override
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception {
+		return ExpressionVariableImpl.compileToStringWithContextFunc(this, fc, asPred);
+	}
+
+//	@Override
+//	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
+//		/* This can either access variables associated with the type class or methods written 
+//		 * on the type class. Currently only the instance variable option is covered, and this may 
+//		 * change when having to deal with methods to reduce the total amount of code.
+//		 */
+//		if (ownerType instanceof PolyType) {
+//			EList<ClassDecl> supers = ((PolyType) ownerType).getSuperTypes();
+//			
+//			for (ClassDecl sup : supers) {
+//				String res = sup.applyMemberOrFuncGetter(typeInst, (PolyType)ownerType, fc, asPred);
+//				
+//				if (res != null && !res.isEmpty())
+//					return res;
+//			}
+//		} else {
+//			return ((ClassDecl)ownerType).appyMemberOrFunc(typeInst, fc, asPred);
+//		}
+//		
+//		return null;
+//	}
 
 	@Override
 	public boolean referencesContainingType() {
@@ -286,5 +340,4 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	public TypeBuilder calculateType() {
 		return typeInst.calculateType();
 	}
-
 } //ClassVarDeclImpl

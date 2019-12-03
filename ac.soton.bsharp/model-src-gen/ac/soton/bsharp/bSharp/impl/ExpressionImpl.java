@@ -173,5 +173,4 @@ public abstract class ExpressionImpl extends MinimalEObjectImpl.Container implem
 	public boolean isInstanceVariable() {
 		return false;
 	}
-
 } //ExpressionImpl

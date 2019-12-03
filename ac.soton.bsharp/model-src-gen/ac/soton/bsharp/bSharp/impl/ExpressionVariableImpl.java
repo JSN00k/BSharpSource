@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.IVarType;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -51,16 +52,22 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 		// TODO Auto-generated method stub
 		return name;
 	}
+	
+	@Override 
+	public String getEventBFunctypeForCall(FunctionCall fc) {
+		return getName();
+	}
+	
+	public String evBSeparatorForFunc() {
+		return " ↦ ";
+	}
 
 	@Override
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred)  throws Exception {
-		/* TODO: This is the third time I've come across very similar methods, the others were 
-		 * BSClassImpl.compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred)
-		 * and 
-		 * BSClassImpl.(ExpressionVariable typeInst, PolyType ownerType, FunctionCall fc,
-			Boolean asPred)
-		 * Ideally these should be encapsulated.	
-		 */
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPred)  throws Exception {
+		return compileToStringWithContextFunc(this, fc, asPred);
+	}
+	
+	public static String compileToStringWithContextFunc(IVarType var, FunctionCall fc, Boolean asPred)  throws Exception {
 		TypeDeclContext ctx = fc.getContext();
 		
 		if (ctx != null) {
@@ -71,18 +78,31 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 		
 		List<FuncCallArgs> argBlock = fc.getFuncCallArgs();
 		boolean argsAreEmpty = argBlock == null || argBlock.isEmpty();
-		String result = name;
+		String result = var.getEventBFunctypeForCall(fc);
 		
 		if (!argsAreEmpty) {
+			String sep = var.evBSeparatorForFunc();
 			int blocksCount = argBlock.size();
 			for (int i = 0; i < blocksCount - 1; ++i) {
-				result += "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(i).getArguments(), " ↦ ") + ")";
+				result += "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(i).getArguments(), sep) + ")";
 			}
 			
 			String lastBlock = "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(blocksCount - 1).getArguments(), " ↦ ") + ")";
 			
-			if (calculateReturnType().isBoolType()) {
-				result = lastBlock + "∈" + result;
+			boolean returnTypeIsBoolean = false;
+			try {
+				returnTypeIsBoolean = var.calculateReturnType().isBoolType();
+			} catch (Exception e) {
+				/* I'm skeptical that this is always correct as polymorphic types are not replaced with
+				 * concrete types when they could be. This needs to be fixed in future implementation.
+				 * In this instance the chances are that if we can't calculate the return type it's not
+				 * a boolean.
+				 */
+				System.err.println("Unable to calculate return type.");
+			}
+			
+			if (var.calculateReturnType().isBoolType()) {
+				result = lastBlock + " ∈ " + result;
 				if (!asPred) {
 					result = "bool(" + result + ")";
 				}
@@ -99,6 +119,4 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 		
 		return result;
 	}
-
-
 } //ExpressionVariableImpl

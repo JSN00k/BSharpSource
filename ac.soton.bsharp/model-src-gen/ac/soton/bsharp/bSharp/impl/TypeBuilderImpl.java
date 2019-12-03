@@ -143,7 +143,6 @@ public abstract class TypeBuilderImpl extends ExpressionVariableImpl implements 
 	
 	@Override
 	public TypeBuilder calculateReturnType() {
-		/* Not sure about this. */
 		return this;
 	}
 

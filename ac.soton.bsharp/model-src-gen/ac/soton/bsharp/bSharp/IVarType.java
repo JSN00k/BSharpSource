@@ -19,6 +19,21 @@ import org.eclipse.emf.ecore.EObject;
 public interface IVarType extends EObject {
 	/* This interface is for classes that can appear in expressions as variables or functions. */
 	
-	String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception;
+	/* Returns the type that will be returned if this expression variable is called like a function. */
+	TypeBuilder calculateReturnType();
+	TypeBuilder calculateType();
+	
+	/* Depending on the expression variable this will return 
+	 * either a function/variable name, if there is a polymorphic
+	 * context, this will be applied in EventB and this string
+	 * will be returned. 
+	 */
+	String getEventBFunctypeForCall(FunctionCall fc) throws Exception;
+	/* If an EventB operator is used then the separator is 
+	 * a ',' otherwise it will be a ' |-> '.
+	 */
+	String evBSeparatorForFunc();
+	
+	String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception;
 	
 } // IVarType

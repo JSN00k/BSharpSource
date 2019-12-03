@@ -555,19 +555,18 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
-		return compileToStringWithContextAndArguments(this, asPredicate);
+		return compileToStringWithContext(this, asPredicate);
 	}
-	
 	
 	/* Sometimes there are wrapped function calls that need the information from the original function call passed through
 	 * this function allows that. */
 	@Override
-	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPredicate) throws Exception {
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPredicate) throws Exception {
 		ExpressionVariable typeInst = getTypeInst();
 		if (typeInst != null) {
-			return typeInst.compileToStringWithContextAndArguments(fc, asPredicate);
+			return typeInst.compileToStringWithContext(fc, asPredicate);
 		} else {
-			return classVarDecl.compileToStringWithContextAndArguments(fc, asPredicate);
+			return classVarDecl.compileToStringWithContext(fc, asPredicate);
 		}
 	}
 

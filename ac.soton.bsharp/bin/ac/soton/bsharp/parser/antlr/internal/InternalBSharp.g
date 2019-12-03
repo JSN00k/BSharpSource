@@ -270,31 +270,6 @@ ruleClassDecl returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleType
-entryRuleType returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypeRule()); }
-	iv_ruleType=ruleType
-	{ $current=$iv_ruleType.current; }
-	EOF;
-
-// Rule Type
-ruleType returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	{
-		newCompositeNode(grammarAccess.getTypeAccess().getClassDeclParserRuleCall());
-	}
-	this_ClassDecl_0=ruleClassDecl
-	{
-		$current = $this_ClassDecl_0.current;
-		afterParserOrEnumRuleCall();
-	}
-;
-
 // Entry rule entryRuleQualifiedName
 entryRuleQualifiedName returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getQualifiedNameRule()); }

@@ -11,6 +11,7 @@ import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
 import ac.soton.bsharp.bSharp.IVariableProvider;
+import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.Instance;
 import ac.soton.bsharp.bSharp.MatchCase;
 import ac.soton.bsharp.bSharp.MatchStatement;
@@ -21,7 +22,6 @@ import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.FunctionValidatorUtil;
-import ac.soton.bsharp.util.BSharpUtil;
 import ac.soton.bsharp.util.EcoreUtilJ;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
@@ -105,15 +105,24 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   
   public IScope scope_ExpressionVariable(final ClassVarDecl ctx, final EReference reference) {
     GenName genName = ctx.getOwnerType();
+    if ((genName instanceof ClassDecl)) {
+      final HashSet<ExpressionVariable> inscope = FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(ctx, ((ClassDecl) genName));
+      return Scopes.scopeFor(inscope);
+    }
+    if ((genName instanceof InstName)) {
+      final BSClass clss = EcoreUtil2.<BSClass>getContainerOfType(genName, BSClass.class);
+      final HashSet<ExpressionVariable> inscope_1 = FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(ctx, clss);
+      return Scopes.scopeFor(inscope_1);
+    }
     if ((genName instanceof PolyType)) {
       final PolyType polyType = ((PolyType) genName);
-      if (((polyType.getSuperTypes() != null) && (!polyType.getSuperTypes().isEmpty()))) {
-        final ArrayList<EObject> superClasses = BSharpUtil.expandConstraintTypes(polyType.getSuperTypes());
-        IScope result = IScope.NULLSCOPE;
-        for (final EObject superClass : superClasses) {
-          result = this.getVariableScopeIncludingForCtxInclusive(superClass, result);
+      final EList<ClassDecl> superTypes = polyType.getSuperTypes();
+      if (((superTypes != null) && (!superTypes.isEmpty()))) {
+        HashSet<ExpressionVariable> variables = new HashSet<ExpressionVariable>();
+        for (final ClassDecl superClass : superTypes) {
+          variables.addAll(FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(ctx, superClass));
         }
-        return result;
+        return Scopes.scopeFor(variables);
       }
     }
     return IScope.NULLSCOPE;

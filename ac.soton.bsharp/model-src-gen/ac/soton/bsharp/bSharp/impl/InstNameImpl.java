@@ -61,5 +61,4 @@ public class InstNameImpl extends ExpressionVariableImpl implements InstName {
 		tc.setTypeName((BSClass)eContainer());
 		return tc;
 	}
-
 } //InstNameImpl
