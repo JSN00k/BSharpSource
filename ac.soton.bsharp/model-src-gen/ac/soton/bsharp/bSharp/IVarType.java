@@ -36,4 +36,10 @@ public interface IVarType extends EObject {
 	
 	String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception;
 	
+	/* FunctionDecls has contexts and arguments, this method allows the context to 
+	 * be added to the function call when it exists, this allows the non-passable
+	 * EventB operator to be called instead of the passable one.
+	 */
+	String getParaContextArgs(FunctionCall fc) throws Exception;
+	
 } // IVarType

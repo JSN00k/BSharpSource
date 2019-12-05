@@ -1006,7 +1006,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	 */
 	@Override
 	public String eventBPolymorphicTypeConstructorName() {
-		return name + "_T";
+		return name;
 	}
 
 	@Override
@@ -1090,6 +1090,11 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 	
 	@Override
+	public String getParaContextArgs(FunctionCall fc) throws Exception {
+		return null;
+	}
+	
+	@Override
 	public String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception {
 		TypeDeclContext ctx = fc.getContext();
 		List<FuncCallArgs> argumentBlocks = fc.getFuncCallArgs();
@@ -1108,79 +1113,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		 */
 		return ExpressionVariableImpl.compileToStringWithContextFunc(this, fc, asPred);
 	}
-
-/* Briefly keeping the old method until tested. */
-//	@Override
-//	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) throws Exception {
-//		PolyContext context = getContext();
-//		TypeDeclContext ctx = fc.getContext();
-//		List<FuncCallArgs> argumentBlocks = fc.getFuncCallArgs();
-//		boolean noArgs = argumentBlocks == null || argumentBlocks.isEmpty();
-//
-//		if (ctx == null && noArgs) {
-//			if (asPred) {
-//				throw new Exception(
-//						"This should be validated against, a type class appears wihtout context or argument, "
-//								+ "and is required to be a predicate.");
-//			} else {
-//				/*
-//				 * I'm not sure that this should be possible either. It would require the
-//				 * unification of types and instances (I think).
-//				 */
-//				return eventBPolymorphicTypeConstructorName();
-//			}
-//		}
-//
-//		if (ctx == null && !noArgs) {
-//			/*
-//			 * If the expression is in a Theorem of a method then the name of the instance
-//			 * will be the name of the type class. If we're within a where statement the
-//			 * name of the instance is "super"
-//			 */
-//			String result = null;
-//
-//			if (EcoreUtil2.getContainerOfType(fc, TheoremDecl.class) != null
-//					|| EcoreUtil2.getContainerOfType(fc, FunctionDecl.class) != null)
-//				result = eventBPolymorphicTypeConstructorName();
-//			else {
-//				/* We need to know about the type this was referenced from. */
-//				BSClass containingClass = EcoreUtil2.getContainerOfType(fc, BSClass.class);
-//
-//				if (containingClass != null && containingClass == this) {
-//					/* Due to a name change this requires special casing. */
-//					result = containingClass.instanceName();
-//				} else {
-//					result = eventBPolymorphicTypeConstructorName();
-//				}
-//			}
-//			
-//			int blocksCount = argumentBlocks.size();
-//			for (int i = 0; i < blocksCount - 1; ++i) {
-//				result += "(" + CompilationUtil.compileExpressionListWithSeperator(argumentBlocks.get(i).getArguments(), " ↦ ") + ")";
-//			}
-//
-//			String lastBlock = "(" + CompilationUtil.compileExpressionListWithSeperator(argumentBlocks.get(blocksCount - 1).getArguments(), " ↦ ") + ")";
-//			
-//			if (asPred) {
-//				result = lastBlock + "∈" + result;
-//			} else {
-//				result += lastBlock;
-//			}
-//
-//			return result;
-//
-//		}
-//
-//		if (context != null) {
-//			/*
-//			 * If there is a context then it is necessary to build the types within the
-//			 * context correctly. Fortunately there is a method on the context to do this.
-//			 */
-//			return eventBPolymorphicTypeConstructorName() + context.compileCallWithTypeContext(ctx);
-//		}
-//
-//		return null;
-//	}
 
 	@Override
 	public String eventBPrefix() {
@@ -1380,75 +1312,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		
 		return null;
 	}
-
-	/*
-	 * Given a polytype T : Setoid this deals with a call like T.equ(a, b) ownerType
-	 * would be T, typeInst would be equ, function call contains a polytype and
-	 */
-//	@Override
-//	public String applyMemberOrFuncGetter(ExpressionVariable typeInst, PolyType ownerType, FunctionCall fc,
-//			Boolean asPred) {
-//		/*
-//		 * It's possible that the type of owner type is a subtype of the required type.
-//		 * In this case it is necessary to calculate the number of prj1s to apply to the
-//		 * current type to get the correct supertype.
-//		 */
-//		List<FuncCallArgs> argumentBlocks = fc.getFuncCallArgs();
-//
-//		TypedVariableList varList = EcoreUtil2.getContainerOfType(typeInst, TypedVariableList.class);
-//
-//		if (varList != null && varList.eContainer() instanceof BSClass) {
-//			String getterFunc = getterForOpName(typeInst.getName());
-//			String result = getterFunc + "(";
-//			ArrayList<String> polyTypes = ownerType.typeNames();
-//
-//			boolean first = true;
-//			for (String tName : polyTypes) {
-//				if (!first) {
-//					result += ", ";
-//				}
-//				first = false;
-//
-//				result += tName;
-//			}
-//
-//			result += ")";
-//
-//			if (argumentBlocks != null && !argumentBlocks.isEmpty()) {
-//				String lastArgs;
-//				int blocksCount = argumentBlocks.size();
-//				for (int i = 0; i < blocksCount - 1; ++i) {
-//					try {
-//						result += "(" + CompilationUtil.compileExpressionListWithSeperator(argumentBlocks.get(i).getArguments(), " ↦ ") + ")";
-//					} catch (Exception e) {
-//						System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
-//					}
-//				}
-//				try {
-//					lastArgs = "(" + CompilationUtil.compileExpressionListWithSeperator(argumentBlocks.get(blocksCount - 1).getArguments(), " ↦ ") + ")";
-//				}  catch (Exception e) {
-//					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
-//					return null;
-//				}
-//				
-//				if (asPred) {
-//					result = lastArgs + "∈" + result;
-//				} else {
-//					result += lastArgs;
-//				}
-//				
-//				return result;
-//			}
-//
-//			if (asPred) {
-//				result += "= TRUE";
-//			}
-//
-//			return result;
-//		}
-//
-//		return null;
-//	}
 
 	@Override
 	public String expandSupertypeMemberReferencedInWhere(TypedVariable var) {

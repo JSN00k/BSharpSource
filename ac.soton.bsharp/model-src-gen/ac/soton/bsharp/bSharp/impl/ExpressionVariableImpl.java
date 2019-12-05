@@ -73,15 +73,29 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 		boolean argsAreEmpty = argBlock == null || argBlock.isEmpty();
 		String result = var.getEventBFunctypeForCall(fc);
 		
+		/* The compiled parametric context args, a list of comma separated args ending with the trailing 
+		 * comma when necessary. */
+		String parametricContextArgs = var.getParaContextArgs(fc);
+		
 		if (!argsAreEmpty) {
 			String sep = var.evBSeparatorForFunc();
 			int blocksCount = argBlock.size();
 			for (int i = 0; i < blocksCount - 1; ++i) {
-				result += "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(i).getArguments(), sep) + ")";
+				if (parametricContextArgs != null) {
+					result += "(" + parametricContextArgs + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(i).getArguments(), sep) + ")";
+					parametricContextArgs = null;
+				} else {
+					result += "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(i).getArguments(), sep) + ")";
+				}
 				sep = " ↦ ";
 			}
 			
-			String lastBlock = "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(blocksCount - 1).getArguments(), sep) + ")";
+			String lastBlock;
+			if (parametricContextArgs != null) {
+				lastBlock = "(" + parametricContextArgs + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(blocksCount - 1).getArguments(), sep) + ")";
+			} else {
+				lastBlock = "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(blocksCount - 1).getArguments(), sep) + ")";
+			}
 			
 			boolean returnTypeIsBoolean = false;
 			try {
@@ -105,6 +119,8 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 			}
 			
 			return result;
+		} else if (parametricContextArgs != null) {
+			result += "(" + parametricContextArgs.substring(0, parametricContextArgs.length() - 1) + ")";
 		}
 		
 		if (asPred) {
@@ -112,5 +128,10 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public String getParaContextArgs(FunctionCall fc) throws Exception {
+		return null;
 	}
 } //ExpressionVariableImpl

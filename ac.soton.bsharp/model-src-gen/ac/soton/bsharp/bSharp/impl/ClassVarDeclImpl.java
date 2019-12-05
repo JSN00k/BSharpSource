@@ -279,33 +279,16 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 		
 		return " ↦ ";
 	}
+	
+	@Override
+	public String getParaContextArgs(FunctionCall fc) throws Exception {
+		return null;
+	}
 
 	@Override
 	public String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception {
 		return ExpressionVariableImpl.compileToStringWithContextFunc(this, fc, asPred);
 	}
-
-//	@Override
-//	public String compileToStringWithContextAndArguments(FunctionCall fc, Boolean asPred) {
-//		/* This can either access variables associated with the type class or methods written 
-//		 * on the type class. Currently only the instance variable option is covered, and this may 
-//		 * change when having to deal with methods to reduce the total amount of code.
-//		 */
-//		if (ownerType instanceof PolyType) {
-//			EList<ClassDecl> supers = ((PolyType) ownerType).getSuperTypes();
-//			
-//			for (ClassDecl sup : supers) {
-//				String res = sup.applyMemberOrFuncGetter(typeInst, (PolyType)ownerType, fc, asPred);
-//				
-//				if (res != null && !res.isEmpty())
-//					return res;
-//			}
-//		} else {
-//			return ((ClassDecl)ownerType).appyMemberOrFunc(typeInst, fc, asPred);
-//		}
-//		
-//		return null;
-//	}
 
 	@Override
 	public boolean referencesContainingType() {

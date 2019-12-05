@@ -360,4 +360,9 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String getParaContextArgs(FunctionCall fc) throws Exception {
+		return null;
+	}
 } //DatatypeImpl
