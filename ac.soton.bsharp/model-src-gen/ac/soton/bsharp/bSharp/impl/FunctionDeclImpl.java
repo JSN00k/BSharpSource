@@ -1199,7 +1199,10 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 
 	@Override
 	public String evBSeparatorForFunc() {
-		return " ↦ ";
+		if (hasInferredContext() && evBTypeInstance == null || getContext() != null)
+			return " ↦ ";
+		else
+			return ", ";
 	}
 	
 	@Override
@@ -1216,6 +1219,13 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 		} else {
 			String result = getEventBFunctypeNoContext(fc);
 			List<FuncCallArgs> fcas = fc.getFuncCallArgs();
+			if (fcas == null || fcas.isEmpty()) {
+				TypedVariableList varList = getVarList();
+				if (varList == null || varList.isEmpty())
+					return eventBExprName();
+				else
+					return passableName();
+			}
 			if (infix != null && infix.equals("INFIX")) {
 				/* TODO: validate there are only two arguments. */
 				List<Expression> exprs = fcas.get(0).getArguments();

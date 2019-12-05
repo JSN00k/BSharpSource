@@ -357,27 +357,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	
 	@Override
 	public String getEventBFunctypeForCall(FunctionCall fc) throws Exception {
-		String result = name;
-		List<FuncCallArgs> fcas = fc.getFuncCallArgs();
-		if (fcas == null || fcas.isEmpty()) {
-			return result;
-		}
-		
-		Iterator<FuncCallArgs> argBlockIter = fc.getFuncCallArgs().iterator();
-		List<Expression> args = argBlockIter.next().getArguments();
-		
-		if (args != null && !args.isEmpty()) {
-			result += "(";
-			try {
-				result += CompilationUtil.compileExpressionListWithSeperator(args, ", ");
-			} catch (Exception e) {
-				System.err.println("Failed to compile args for match statement with error: " + e.getMessage());
-			}
-			
-			result += ")";
-		}
-		
-		return result;
+		return getName();
 	}
 
 	@Override

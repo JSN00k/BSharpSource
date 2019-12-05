@@ -114,13 +114,13 @@ public abstract class TypeInstanceAbstract implements ITypeInstance {
 			String next = null;
 			if (args != null && !args.isEmpty()) {
 				try {
-					next += "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
+					next = "(" + CompilationUtil.compileExpressionListWithSeperator(args, " ↦ ") + ")";
 				} catch (Exception e) {
 					next = "Erorr compiling args";
 					System.err.println("unable to compile variable list with error: " + e.getLocalizedMessage());
 				}
 				
-				if (iter.hasNext()) {
+				if (iter.hasNext() || !asPred) {
 					result += next;
 				} else if (asPred) {
 					result = next + "∈" + result;

@@ -7,6 +7,7 @@ import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.InbuiltInfix;
 import ac.soton.bsharp.bSharp.Infix;
@@ -137,8 +138,9 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 		/* TODO: validate this. Infix operators shouldn't be able to have multiple blocks
 		 * of arguments, as they would have to be bracketed for this.
 		 */
-		List<Expression> exprs = fc.getFuncCallArgs().get(0).getArguments();
-		if (exprs != null && !exprs.isEmpty()) {
+		List<FuncCallArgs> argBlocks = fc.getFuncCallArgs();
+		if (argBlocks != null && !argBlocks.isEmpty()) {
+			List<Expression> exprs = argBlocks.get(0).getArguments();
 			/* wouldn't function currying be fun at this point! Anyhow I'm not doing that yet, although it could be achieved
 			 * by making an some sort of instance of the function that remembers the arguments already sent to 
 			 * it then only calling the function when all of the arguments had been given.
@@ -163,7 +165,21 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 			return result;
 		}
 		
-		return "(λx ↦ y·⊤ ∣ bool(x " + getName() + " y))";
+		boolean returnsPred = false;
+		try {
+			returnsPred = calculateReturnType().isBoolType();
+		} catch (Exception e) {
+			System.err.println("unable to calculate return type, should be looked into.");
+		}
+		
+		/*TODO: Would much rather see a BSharp lambda constructed here to do this.
+		 * specifically I worry that I haven't given x or y typing info.
+		 */
+		if (returnsPred) {
+			return "{ x ↦ y ∣ x " + getName() + " y}";
+		} else {
+			return "(λx ↦ y·⊤ ∣ bool(x " + getName() + " y))";
+		}
 	}
 	
 } //InbuiltInfixImpl

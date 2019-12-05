@@ -69,13 +69,6 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 	
 	public static String compileToStringWithContextFunc(IVarType var, FunctionCall fc, Boolean asPred)  throws Exception {
 		TypeDeclContext ctx = fc.getContext();
-		
-		if (ctx != null) {
-			/* I don't believe that there is any way that a type variable can have a context. */
-			throw new Exception("Validate against this, a type variable shouldn't be able to have" +
-			" a poly context applied to it.");
-		}
-		
 		List<FuncCallArgs> argBlock = fc.getFuncCallArgs();
 		boolean argsAreEmpty = argBlock == null || argBlock.isEmpty();
 		String result = var.getEventBFunctypeForCall(fc);
@@ -85,9 +78,10 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 			int blocksCount = argBlock.size();
 			for (int i = 0; i < blocksCount - 1; ++i) {
 				result += "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(i).getArguments(), sep) + ")";
+				sep = " ↦ ";
 			}
 			
-			String lastBlock = "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(blocksCount - 1).getArguments(), " ↦ ") + ")";
+			String lastBlock = "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(blocksCount - 1).getArguments(), sep) + ")";
 			
 			boolean returnTypeIsBoolean = false;
 			try {
@@ -101,7 +95,7 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 				System.err.println("Unable to calculate return type.");
 			}
 			
-			if (var.calculateReturnType().isBoolType()) {
+			if (returnTypeIsBoolean) {
 				result = lastBlock + " ∈ " + result;
 				if (!asPred) {
 					result = "bool(" + result + ")";

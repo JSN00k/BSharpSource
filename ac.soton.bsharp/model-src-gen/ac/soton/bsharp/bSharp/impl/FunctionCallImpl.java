@@ -595,7 +595,7 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return true;
 		}
 		
-		if (funcCallArgs != null ) {
+		if (funcCallArgs != null && !funcCallArgs.isEmpty()) {
 			List<Expression> args = funcCallArgs.get(0).getArguments();
 			for (Expression argument : args) {
 				if (argument.requiresInferredContext())

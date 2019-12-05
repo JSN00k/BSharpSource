@@ -29,6 +29,11 @@ public class MapletTypeInstance extends TypeInstanceTreeAbstract implements ITyp
 	}
 	
 	@Override
+	public String toString() {
+		return "MapletTypeInstance<Class = " + classDecl.getName() + " repr = " + getTree().compileToString() + ">";
+	}
+	
+	@Override
 	public IMapletNode getTree() {
 		return tree;
 	}

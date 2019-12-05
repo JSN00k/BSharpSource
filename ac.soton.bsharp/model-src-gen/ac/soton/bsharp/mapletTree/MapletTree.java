@@ -40,4 +40,9 @@ public class MapletTree implements IMapletNode {
 		left = left.appendNodeToLeft(node);
 		return this;
 	}
+	
+	@Override
+	public String toString() {
+		return compileToString();
+	}
 }

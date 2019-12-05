@@ -1602,13 +1602,9 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		}
 		
 		List<Expression> args = arguments;
-		
 		IClassInstance type = types.get(0);
-		
 		int argsCount = args.size();
-		
 		TypedVariableList varList = getVarList();
-		
 		int requiredArgsCount;
 		
 		if (varList == null)
