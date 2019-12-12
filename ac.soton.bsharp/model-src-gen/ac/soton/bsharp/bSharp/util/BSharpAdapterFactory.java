@@ -169,6 +169,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createFunctionCallAdapter();
 			}
 			@Override
+			public Adapter caseFunctionCallInbuilt(FunctionCallInbuilt object) {
+				return createFunctionCallInbuiltAdapter();
+			}
+			@Override
 			public Adapter caseFuncCallArgs(FuncCallArgs object) {
 				return createFuncCallArgsAdapter();
 			}
@@ -191,6 +195,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseInbuiltInfix(InbuiltInfix object) {
 				return createInbuiltInfixAdapter();
+			}
+			@Override
+			public Adapter caseInbuiltPrefixFuncName(InbuiltPrefixFuncName object) {
+				return createInbuiltPrefixFuncNameAdapter();
 			}
 			@Override
 			public Adapter caseInfix(Infix object) {
@@ -267,6 +275,10 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTopLevelImport(TopLevelImport object) {
 				return createTopLevelImportAdapter();
+			}
+			@Override
+			public Adapter caseTuple(Tuple object) {
+				return createTupleAdapter();
 			}
 			@Override
 			public Adapter caseTypeBuilder(TypeBuilder object) {
@@ -381,6 +393,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTopLevelImportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.Tuple <em>Tuple</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.Tuple
+	 * @generated
+	 */
+	public Adapter createTupleAdapter() {
 		return null;
 	}
 
@@ -791,6 +817,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.FunctionCallInbuilt <em>Function Call Inbuilt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.FunctionCallInbuilt
+	 * @generated
+	 */
+	public Adapter createFunctionCallInbuiltAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.FuncCallArgs <em>Func Call Args</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1137,6 +1177,20 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInbuiltInfixAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.InbuiltPrefixFuncName <em>Inbuilt Prefix Func Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.bsharp.bSharp.InbuiltPrefixFuncName
+	 * @generated
+	 */
+	public Adapter createInbuiltPrefixFuncNameAdapter() {
 		return null;
 	}
 

@@ -59,7 +59,7 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 	}
 
 	@Override
-	public TypeBuilder calculateReturnType() {
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
 		Datatype dt = BSharpFactory.eINSTANCE.createDatatype();
 		dt.setName("Bool");
 		TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
@@ -167,7 +167,7 @@ public class InbuiltInfixImpl extends InfixFuncImpl implements InbuiltInfix {
 		
 		boolean returnsPred = false;
 		try {
-			returnsPred = calculateReturnType().isBoolType();
+			returnsPred = calculateReturnType(ctx, null).isBoolType();
 		} catch (Exception e) {
 			System.err.println("unable to calculate return type, should be looked into.");
 		}

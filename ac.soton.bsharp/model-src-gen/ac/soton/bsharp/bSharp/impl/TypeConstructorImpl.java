@@ -8,6 +8,7 @@ import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
@@ -461,11 +462,11 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 	}
 	
 	@Override
-	public TypeBuilder calculateReturnType() {
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
 		GenName typeName = getTypeName();
 		if (typeName instanceof BSClass) {
 			TypeBuilder tb = ((BSClass)typeName).baseType();
-			return tb.calculateReturnType();
+			return tb.calculateReturnType(ctx, args);
 		}
 		
 		return null;

@@ -3,7 +3,7 @@
  */
 package ac.soton.bsharp.bSharp;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -18,5 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface IPolyTypeProvider extends EObject {
-	public Collection<PolyType> getPolyTypeNames();
+	public List<PolyType> getPolyTypeNames();
 } // IPolyTypeProvider

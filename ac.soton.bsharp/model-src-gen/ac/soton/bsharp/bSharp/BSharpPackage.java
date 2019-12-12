@@ -83,7 +83,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevel()
 	 * @generated
 	 */
-	int TOP_LEVEL = 48;
+	int TOP_LEVEL = 50;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl <em>Class Decl</em>}' class.
@@ -103,7 +103,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getNamedObject()
 	 * @generated
 	 */
-	int NAMED_OBJECT = 38;
+	int NAMED_OBJECT = 40;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.GenNameImpl <em>Gen Name</em>}' class.
@@ -113,7 +113,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getGenName()
 	 * @generated
 	 */
-	int GEN_NAME = 27;
+	int GEN_NAME = 28;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BSharpBlockImpl <em>Block</em>}' class.
@@ -133,7 +133,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPolyContext()
 	 * @generated
 	 */
-	int POLY_CONTEXT = 39;
+	int POLY_CONTEXT = 41;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.SuperTypeListImpl <em>Super Type List</em>}' class.
@@ -143,7 +143,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getSuperTypeList()
 	 * @generated
 	 */
-	int SUPER_TYPE_LIST = 44;
+	int SUPER_TYPE_LIST = 46;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ConstructedTypeImpl <em>Constructed Type</em>}' class.
@@ -163,7 +163,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeConstructor()
 	 * @generated
 	 */
-	int TYPE_CONSTRUCTOR = 51;
+	int TYPE_CONSTRUCTOR = 54;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeDeclContextImpl <em>Type Decl Context</em>}' class.
@@ -173,7 +173,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeDeclContext()
 	 * @generated
 	 */
-	int TYPE_DECL_CONTEXT = 53;
+	int TYPE_DECL_CONTEXT = 56;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.WhereImpl <em>Where</em>}' class.
@@ -183,7 +183,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getWhere()
 	 * @generated
 	 */
-	int WHERE = 58;
+	int WHERE = 61;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.DatatypeImpl <em>Datatype</em>}' class.
@@ -242,7 +242,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionDecl()
 	 * @generated
 	 */
-	int FUNCTION_DECL = 26;
+	int FUNCTION_DECL = 27;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.
@@ -272,7 +272,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getMatchStatement()
 	 * @generated
 	 */
-	int MATCH_STATEMENT = 37;
+	int MATCH_STATEMENT = 39;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.MatchCaseImpl <em>Match Case</em>}' class.
@@ -282,7 +282,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getMatchCase()
 	 * @generated
 	 */
-	int MATCH_CASE = 36;
+	int MATCH_CASE = 38;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TheoremBodyImpl <em>Theorem Body</em>}' class.
@@ -292,7 +292,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTheoremBody()
 	 * @generated
 	 */
-	int THEOREM_BODY = 45;
+	int THEOREM_BODY = 47;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TheoremDeclImpl <em>Theorem Decl</em>}' class.
@@ -302,7 +302,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTheoremDecl()
 	 * @generated
 	 */
-	int THEOREM_DECL = 46;
+	int THEOREM_DECL = 48;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypedVariableListImpl <em>Typed Variable List</em>}' class.
@@ -312,7 +312,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypedVariableList()
 	 * @generated
 	 */
-	int TYPED_VARIABLE_LIST = 56;
+	int TYPED_VARIABLE_LIST = 59;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.VariableTypingImpl <em>Variable Typing</em>}' class.
@@ -322,7 +322,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getVariableTyping()
 	 * @generated
 	 */
-	int VARIABLE_TYPING = 57;
+	int VARIABLE_TYPING = 60;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypedVariableImpl <em>Typed Variable</em>}' class.
@@ -332,7 +332,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypedVariable()
 	 * @generated
 	 */
-	int TYPED_VARIABLE = 55;
+	int TYPED_VARIABLE = 58;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.QuantLambdaImpl <em>Quant Lambda</em>}' class.
@@ -342,7 +342,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getQuantLambda()
 	 * @generated
 	 */
-	int QUANT_LAMBDA = 42;
+	int QUANT_LAMBDA = 44;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl <em>Function Call</em>}' class.
@@ -362,7 +362,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPrefix()
 	 * @generated
 	 */
-	int PREFIX = 41;
+	int PREFIX = 43;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BracketImpl <em>Bracket</em>}' class.
@@ -382,7 +382,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInstance()
 	 * @generated
 	 */
-	int INSTANCE = 34;
+	int INSTANCE = 36;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InfixImpl <em>Infix</em>}' class.
@@ -392,7 +392,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInfix()
 	 * @generated
 	 */
-	int INFIX = 31;
+	int INFIX = 33;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.IPolyTypeProvider <em>IPoly Type Provider</em>}' class.
@@ -664,7 +664,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelFile()
 	 * @generated
 	 */
-	int TOP_LEVEL_FILE = 47;
+	int TOP_LEVEL_FILE = 49;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TopLevelImportImpl <em>Top Level Import</em>}' class.
@@ -674,7 +674,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTopLevelImport()
 	 * @generated
 	 */
-	int TOP_LEVEL_IMPORT = 49;
+	int TOP_LEVEL_IMPORT = 51;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.PolyTypeImpl <em>Poly Type</em>}' class.
@@ -684,7 +684,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getPolyType()
 	 * @generated
 	 */
-	int POLY_TYPE = 40;
+	int POLY_TYPE = 42;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.ClassVarDeclImpl <em>Class Var Decl</em>}' class.
@@ -704,7 +704,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getGlobalImport()
 	 * @generated
 	 */
-	int GLOBAL_IMPORT = 28;
+	int GLOBAL_IMPORT = 29;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FileImportImpl <em>File Import</em>}' class.
@@ -724,7 +724,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getLocalImport()
 	 * @generated
 	 */
-	int LOCAL_IMPORT = 35;
+	int LOCAL_IMPORT = 37;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.BSClassImpl <em>BS Class</em>}' class.
@@ -744,7 +744,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeBuilder()
 	 * @generated
 	 */
-	int TYPE_BUILDER = 50;
+	int TYPE_BUILDER = 53;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TypeConstrBracketImpl <em>Type Constr Bracket</em>}' class.
@@ -754,7 +754,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypeConstrBracket()
 	 * @generated
 	 */
-	int TYPE_CONSTR_BRACKET = 52;
+	int TYPE_CONSTR_BRACKET = 55;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InstNameImpl <em>Inst Name</em>}' class.
@@ -764,7 +764,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInstName()
 	 * @generated
 	 */
-	int INST_NAME = 33;
+	int INST_NAME = 35;
 
 	/**
 	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
@@ -1280,13 +1280,122 @@ public interface BSharpPackage extends EPackage {
 	int FUNCTION_CALL__FUNC_CALL_ARGS = EXPRESSION_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Gen Inbuilt Func</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL__GEN_INBUILT_FUNC = EXPRESSION_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Function Call</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 6;
+	int FUNCTION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 7;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FunctionCallInbuiltImpl <em>Function Call Inbuilt</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.FunctionCallInbuiltImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionCallInbuilt()
+	 * @generated
+	 */
+	int FUNCTION_CALL_INBUILT = 25;
+
+	/**
+	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT__TYPE_INST = FUNCTION_CALL__TYPE_INST;
+
+	/**
+	 * The feature id for the '<em><b>Owner Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT__OWNER_TYPE = FUNCTION_CALL__OWNER_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Class Var Decl</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT__CLASS_VAR_DECL = FUNCTION_CALL__CLASS_VAR_DECL;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT__CONTEXT = FUNCTION_CALL__CONTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Wrapped</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT__WRAPPED = FUNCTION_CALL__WRAPPED;
+
+	/**
+	 * The feature id for the '<em><b>Compilation Object</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT__COMPILATION_OBJECT = FUNCTION_CALL__COMPILATION_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Func Call Args</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT__FUNC_CALL_ARGS = FUNCTION_CALL__FUNC_CALL_ARGS;
+
+	/**
+	 * The feature id for the '<em><b>Gen Inbuilt Func</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT__GEN_INBUILT_FUNC = FUNCTION_CALL__GEN_INBUILT_FUNC;
+
+	/**
+	 * The feature id for the '<em><b>Inbuilt Unary</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT__INBUILT_UNARY = FUNCTION_CALL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Function Call Inbuilt</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_INBUILT_FEATURE_COUNT = FUNCTION_CALL_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.FuncCallArgsImpl <em>Func Call Args</em>}' class.
@@ -1296,7 +1405,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFuncCallArgs()
 	 * @generated
 	 */
-	int FUNC_CALL_ARGS = 25;
+	int FUNC_CALL_ARGS = 26;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -1441,7 +1550,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getIfElse()
 	 * @generated
 	 */
-	int IF_ELSE = 29;
+	int IF_ELSE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
@@ -1496,7 +1605,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInfixFunc()
 	 * @generated
 	 */
-	int INFIX_FUNC = 32;
+	int INFIX_FUNC = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1533,7 +1642,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInbuiltInfix()
 	 * @generated
 	 */
-	int INBUILT_INFIX = 30;
+	int INBUILT_INFIX = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1561,6 +1670,34 @@ public interface BSharpPackage extends EPackage {
 	 * @ordered
 	 */
 	int INBUILT_INFIX_FEATURE_COUNT = INFIX_FUNC_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.InbuiltPrefixFuncNameImpl <em>Inbuilt Prefix Func Name</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.InbuiltPrefixFuncNameImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInbuiltPrefixFuncName()
+	 * @generated
+	 */
+	int INBUILT_PREFIX_FUNC_NAME = 32;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INBUILT_PREFIX_FUNC_NAME__NAME = EXPRESSION_VARIABLE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Inbuilt Prefix Func Name</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INBUILT_PREFIX_FUNC_NAME_FEATURE_COUNT = EXPRESSION_VARIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
@@ -1930,7 +2067,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getReferencingFunc()
 	 * @generated
 	 */
-	int REFERENCING_FUNC = 43;
+	int REFERENCING_FUNC = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2212,6 +2349,43 @@ public interface BSharpPackage extends EPackage {
 	int TOP_LEVEL_IMPORT_FEATURE_COUNT = ITHEORY_IMPORT_CACHE_PROVIDER_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link ac.soton.bsharp.bSharp.impl.TupleImpl <em>Tuple</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.bsharp.bSharp.impl.TupleImpl
+	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTuple()
+	 * @generated
+	 */
+	int TUPLE = 52;
+
+	/**
+	 * The feature id for the '<em><b>Type Inst</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE__TYPE_INST = EXPRESSION__TYPE_INST;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE__ELEMENTS = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Tuple</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2301,7 +2475,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTypePowerSet()
 	 * @generated
 	 */
-	int TYPE_POWER_SET = 54;
+	int TYPE_POWER_SET = 57;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2420,7 +2594,7 @@ public interface BSharpPackage extends EPackage {
 	 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getWrappedInfix()
 	 * @generated
 	 */
-	int WRAPPED_INFIX = 59;
+	int WRAPPED_INFIX = 62;
 
 	/**
 	 * The feature id for the '<em><b>Func Name</b></em>' reference.
@@ -2588,6 +2762,27 @@ public interface BSharpPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTopLevelImport_ImportRefs();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.Tuple <em>Tuple</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tuple</em>'.
+	 * @see ac.soton.bsharp.bSharp.Tuple
+	 * @generated
+	 */
+	EClass getTuple();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.bsharp.bSharp.Tuple#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Elements</em>'.
+	 * @see ac.soton.bsharp.bSharp.Tuple#getElements()
+	 * @see #getTuple()
+	 * @generated
+	 */
+	EReference getTuple_Elements();
 
 	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.ClassDecl <em>Class Decl</em>}'.
@@ -3485,6 +3680,38 @@ public interface BSharpPackage extends EPackage {
 	EReference getFunctionCall_FuncCallArgs();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link ac.soton.bsharp.bSharp.FunctionCall#getGenInbuiltFunc <em>Gen Inbuilt Func</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Gen Inbuilt Func</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionCall#getGenInbuiltFunc()
+	 * @see #getFunctionCall()
+	 * @generated
+	 */
+	EReference getFunctionCall_GenInbuiltFunc();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.FunctionCallInbuilt <em>Function Call Inbuilt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Function Call Inbuilt</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionCallInbuilt
+	 * @generated
+	 */
+	EClass getFunctionCallInbuilt();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.bsharp.bSharp.FunctionCallInbuilt#getInbuiltUnary <em>Inbuilt Unary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Inbuilt Unary</em>'.
+	 * @see ac.soton.bsharp.bSharp.FunctionCallInbuilt#getInbuiltUnary()
+	 * @see #getFunctionCallInbuilt()
+	 * @generated
+	 */
+	EAttribute getFunctionCallInbuilt_InbuiltUnary();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.FuncCallArgs <em>Func Call Args</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3999,6 +4226,16 @@ public interface BSharpPackage extends EPackage {
 	EClass getInbuiltInfix();
 
 	/**
+	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.InbuiltPrefixFuncName <em>Inbuilt Prefix Func Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Inbuilt Prefix Func Name</em>'.
+	 * @see ac.soton.bsharp.bSharp.InbuiltPrefixFuncName
+	 * @generated
+	 */
+	EClass getInbuiltPrefixFuncName();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.bsharp.bSharp.FileImport <em>File Import</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4195,6 +4432,24 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TOP_LEVEL_IMPORT__IMPORT_REFS = eINSTANCE.getTopLevelImport_ImportRefs();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.TupleImpl <em>Tuple</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.TupleImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getTuple()
+		 * @generated
+		 */
+		EClass TUPLE = eINSTANCE.getTuple();
+
+		/**
+		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TUPLE__ELEMENTS = eINSTANCE.getTuple_Elements();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.ClassDeclImpl <em>Class Decl</em>}' class.
@@ -4927,6 +5182,32 @@ public interface BSharpPackage extends EPackage {
 		EReference FUNCTION_CALL__FUNC_CALL_ARGS = eINSTANCE.getFunctionCall_FuncCallArgs();
 
 		/**
+		 * The meta object literal for the '<em><b>Gen Inbuilt Func</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_CALL__GEN_INBUILT_FUNC = eINSTANCE.getFunctionCall_GenInbuiltFunc();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.FunctionCallInbuiltImpl <em>Function Call Inbuilt</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.FunctionCallInbuiltImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getFunctionCallInbuilt()
+		 * @generated
+		 */
+		EClass FUNCTION_CALL_INBUILT = eINSTANCE.getFunctionCallInbuilt();
+
+		/**
+		 * The meta object literal for the '<em><b>Inbuilt Unary</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTION_CALL_INBUILT__INBUILT_UNARY = eINSTANCE.getFunctionCallInbuilt_InbuiltUnary();
+
+		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.FuncCallArgsImpl <em>Func Call Args</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5367,6 +5648,16 @@ public interface BSharpPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INBUILT_INFIX = eINSTANCE.getInbuiltInfix();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.InbuiltPrefixFuncNameImpl <em>Inbuilt Prefix Func Name</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.bsharp.bSharp.impl.InbuiltPrefixFuncNameImpl
+		 * @see ac.soton.bsharp.bSharp.impl.BSharpPackageImpl#getInbuiltPrefixFuncName()
+		 * @generated
+		 */
+		EClass INBUILT_PREFIX_FUNC_NAME = eINSTANCE.getInbuiltPrefixFuncName();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.bsharp.bSharp.impl.FileImportImpl <em>File Import</em>}' class.

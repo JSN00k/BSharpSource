@@ -506,8 +506,11 @@ public class InfixImpl extends ExpressionImpl implements Infix {
 
 	@Override
 	public TypeBuilder calculateType() {
+		/* TODO: This could be T x T -> Bool, to work out T would require inference on the
+		 * expression, beyond what bsharp is currently capable of.
+		 */
 		InfixFunc fName = getFuncName();
-		return fName.calculateReturnType();
+		return fName.calculateReturnType(null, null);
 	}
 	
 	@Override

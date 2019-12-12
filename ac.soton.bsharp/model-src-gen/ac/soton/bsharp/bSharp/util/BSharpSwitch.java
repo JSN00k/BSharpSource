@@ -273,6 +273,14 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.FUNCTION_CALL_INBUILT: {
+				FunctionCallInbuilt functionCallInbuilt = (FunctionCallInbuilt)theEObject;
+				T result = caseFunctionCallInbuilt(functionCallInbuilt);
+				if (result == null) result = caseFunctionCall(functionCallInbuilt);
+				if (result == null) result = caseExpression(functionCallInbuilt);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.FUNC_CALL_ARGS: {
 				FuncCallArgs funcCallArgs = (FuncCallArgs)theEObject;
 				T result = caseFuncCallArgs(funcCallArgs);
@@ -320,6 +328,15 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExpressionVariable(inbuiltInfix);
 				if (result == null) result = caseNamedObject(inbuiltInfix);
 				if (result == null) result = caseIVarType(inbuiltInfix);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BSharpPackage.INBUILT_PREFIX_FUNC_NAME: {
+				InbuiltPrefixFuncName inbuiltPrefixFuncName = (InbuiltPrefixFuncName)theEObject;
+				T result = caseInbuiltPrefixFuncName(inbuiltPrefixFuncName);
+				if (result == null) result = caseExpressionVariable(inbuiltPrefixFuncName);
+				if (result == null) result = caseNamedObject(inbuiltPrefixFuncName);
+				if (result == null) result = caseIVarType(inbuiltPrefixFuncName);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -473,6 +490,13 @@ public class BSharpSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BSharpPackage.TUPLE: {
+				Tuple tuple = (Tuple)theEObject;
+				T result = caseTuple(tuple);
+				if (result == null) result = caseExpression(tuple);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BSharpPackage.TYPE_BUILDER: {
 				TypeBuilder typeBuilder = (TypeBuilder)theEObject;
 				T result = caseTypeBuilder(typeBuilder);
@@ -612,6 +636,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTopLevelImport(TopLevelImport object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tuple</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tuple</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTuple(Tuple object) {
 		return null;
 	}
 
@@ -1051,6 +1090,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Function Call Inbuilt</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Function Call Inbuilt</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFunctionCallInbuilt(FunctionCallInbuilt object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Func Call Args</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1422,6 +1476,21 @@ public class BSharpSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInbuiltInfix(InbuiltInfix object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inbuilt Prefix Func Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inbuilt Prefix Func Name</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInbuiltPrefixFuncName(InbuiltPrefixFuncName object) {
 		return null;
 	}
 

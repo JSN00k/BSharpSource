@@ -8,12 +8,17 @@ import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.Expression;
+import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypePowerSet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
@@ -142,7 +147,7 @@ public abstract class TypeBuilderImpl extends ExpressionVariableImpl implements 
 	}
 	
 	@Override
-	public TypeBuilder calculateReturnType() {
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
 		return this;
 	}
 
@@ -152,6 +157,13 @@ public abstract class TypeBuilderImpl extends ExpressionVariableImpl implements 
 		TypePowerSet powerSet = BSharpFactory.eINSTANCE.createTypePowerSet();
 		powerSet.setChild(EcoreUtil2.copy(this));
 		return powerSet;
+	}
+	
+	@Override
+	public String compileToStringWithContext(FunctionCall fc, Boolean asPred)  throws Exception {
+		HashMap<PolyType, TypeBuilder> ptm = fc.getAllPolyTypeMappings();
+		TypeBuilder copied = copyWithConcreteTypes(ptm);
+		return copied.buildEventBType();
 	}
 	
 } //TypeBuilderImpl

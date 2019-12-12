@@ -208,6 +208,11 @@ public class InfixItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.INFIX__LEFT,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INFIX__LEFT,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -229,6 +234,11 @@ public class InfixItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.INFIX__LEFT,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INFIX__LEFT,
+				 BSharpFactory.eINSTANCE.createTuple()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -248,6 +258,11 @@ public class InfixItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.INFIX__RIGHT,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INFIX__RIGHT,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -269,6 +284,11 @@ public class InfixItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.INFIX__RIGHT,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INFIX__RIGHT,
+				 BSharpFactory.eINSTANCE.createTuple()));
 	}
 
 	/**

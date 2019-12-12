@@ -335,10 +335,10 @@ public class IfElseImpl extends ExpressionImpl implements IfElse {
 
 	@Override
 	public String compileToEventBString(Boolean asPredicate) throws Exception {
-		String result = "Cond(";
-		result += condition.compileToEventBString(true) + ",";
-		result += ifTrueExpr.compileToEventBString(false) + ",";
-		result += ifFalseExpr.compileToEventBString(false);
+		String result = "COND(";
+		result += condition.compileToEventBString(true) + ", ";
+		result += ifTrueExpr.compileToEventBString(false) + ", ";
+		result += ifFalseExpr.compileToEventBString(false) + ")";
 		
 		if (asPredicate) {
 			//TODO: Turn this into a validator error.

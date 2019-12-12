@@ -50,6 +50,15 @@ public interface BSharpFactory extends EFactory {
 	TopLevelImport createTopLevelImport();
 
 	/**
+	 * Returns a new object of class '<em>Tuple</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple</em>'.
+	 * @generated
+	 */
+	Tuple createTuple();
+
+	/**
 	 * Returns a new object of class '<em>Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -275,6 +284,15 @@ public interface BSharpFactory extends EFactory {
 	FunctionCall createFunctionCall();
 
 	/**
+	 * Returns a new object of class '<em>Function Call Inbuilt</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Function Call Inbuilt</em>'.
+	 * @generated
+	 */
+	FunctionCallInbuilt createFunctionCallInbuilt();
+
+	/**
 	 * Returns a new object of class '<em>Func Call Args</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -381,6 +399,15 @@ public interface BSharpFactory extends EFactory {
 	 * @generated
 	 */
 	InbuiltInfix createInbuiltInfix();
+
+	/**
+	 * Returns a new object of class '<em>Inbuilt Prefix Func Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inbuilt Prefix Func Name</em>'.
+	 * @generated
+	 */
+	InbuiltPrefixFuncName createInbuiltPrefixFuncName();
 
 	/**
 	 * Returns a new object of class '<em>File Import</em>'.

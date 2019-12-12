@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -77,7 +79,7 @@ public interface ClassVarDecl extends IVarType {
 
 	boolean referencesContainingType();
 
-	TypeBuilder calculateReturnType();
+	TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args);
 
 	TypeBuilder calculateType();
 

@@ -7,12 +7,16 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ConstructedType;
+import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
+
+import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -44,7 +48,7 @@ public class InstNameImpl extends ExpressionVariableImpl implements InstName {
 	}
 
 	@Override
-	public TypeBuilder calculateReturnType() {
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
 		BSClass bs = (BSClass)this.eContainer();
 		TypeBuilder tb = bs.baseType();
 		

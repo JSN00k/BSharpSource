@@ -182,6 +182,11 @@ public class ExpressionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
+				 BSharpFactory.eINSTANCE.createInbuiltPrefixFuncName()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
 				 BSharpFactory.eINSTANCE.createInstName()));
 
 		newChildDescriptors.add

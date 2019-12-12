@@ -16,6 +16,7 @@ import ac.soton.bsharp.bSharp.SuperTypeList;
 import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.VariableTyping;
@@ -23,6 +24,7 @@ import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -87,9 +89,9 @@ public class TypedVariableImpl extends ExpressionVariableImpl implements TypedVa
 	}
 
 	@Override
-	public TypeBuilder calculateReturnType() {
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
 		/*TODO: Need some test cases. The type could be a wrapped type class, so may need more logic here. */
-		TypeBuilder type = getType().calculateReturnType();
+		TypeBuilder type = getType().calculateReturnType(ctx, args);
 		
 		if (type instanceof ConstructedType) {
 			return ((ConstructedType) type).getRight();

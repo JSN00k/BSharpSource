@@ -417,7 +417,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	@Override
-	public TypeBuilder calculateReturnType() {
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
 		Datatype container = (Datatype)this.eContainer();
 		TypeConstructor tc = BSharpFactory.eINSTANCE.createTypeConstructor();
 		tc.setTypeName(container);

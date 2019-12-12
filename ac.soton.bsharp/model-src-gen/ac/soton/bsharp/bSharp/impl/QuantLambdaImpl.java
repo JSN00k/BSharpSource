@@ -30,6 +30,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -480,12 +481,13 @@ public class QuantLambdaImpl extends ExpressionImpl implements QuantLambda {
 	}
 
 	@Override
-	public Collection<PolyType> getPolyTypeNames() {
+	public List<PolyType> getPolyTypeNames() {
+		PolyContext ctx = getContext();
 		if (getContext() == null) {
 			return Collections.emptyList();
 		}
 		
-		return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
+		return ctx.getPolyTypes();
 	}
 
 	@Override

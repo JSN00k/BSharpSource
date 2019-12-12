@@ -91,6 +91,11 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="funcCallArgs" upperBound="-1"
         eType="#//FuncCallArgs" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genInbuiltFunc" eType="#//FunctionDecl"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionCallInbuilt" eSuperTypes="#//FunctionCall">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inbuiltUnary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FuncCallArgs">
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
@@ -101,7 +106,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//TypedVariableList"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//TypeConstructor"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//TypeBuilder"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="infix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expression"
@@ -124,6 +129,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InbuiltInfix" eSuperTypes="#//InfixFunc"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InbuiltPrefixFuncName" eSuperTypes="#//ExpressionVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="Infix" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"
         containment="true"/>
@@ -225,6 +231,10 @@
         upperBound="-1" eType="#//TopLevelInstance" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importRefs" upperBound="-1"
         eType="#//TopLevelFile" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tuple" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeBuilder" abstract="true" eSuperTypes="#//ExpressionVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypeConstructor" eSuperTypes="#//TypeBuilder">

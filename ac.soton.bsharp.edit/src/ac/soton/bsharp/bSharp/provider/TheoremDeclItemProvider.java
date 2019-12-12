@@ -194,6 +194,11 @@ public class TheoremDeclItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -215,6 +220,11 @@ public class TheoremDeclItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.THEOREM_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createTuple()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -74,6 +74,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/wrapped"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/compilationObject"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/funcCallArgs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/genInbuiltFunc"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//FunctionCallInbuilt">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FunctionCallInbuilt/inbuiltUnary"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FuncCallArgs">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FuncCallArgs/arguments"/>
@@ -97,6 +101,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//IfElse/ifFalseExpr"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//InbuiltInfix"/>
+    <genClasses ecoreClass="BSharp.ecore#//InbuiltPrefixFuncName"/>
     <genClasses ecoreClass="BSharp.ecore#//Infix">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Infix/left"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Infix/funcName"/>
@@ -171,6 +176,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/imports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/bodyElements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//TopLevelImport/importRefs"/>
+    </genClasses>
+    <genClasses ecoreClass="BSharp.ecore#//Tuple">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//Tuple/elements"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BSharp.ecore#//TypeBuilder"/>
     <genClasses ecoreClass="BSharp.ecore#//TypeConstructor">

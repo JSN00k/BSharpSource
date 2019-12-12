@@ -165,6 +165,29 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.Tuple} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TupleItemProvider tupleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.Tuple}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTupleAdapter() {
+		if (tupleItemProvider == null) {
+			tupleItemProvider = new TupleItemProvider(this);
+		}
+
+		return tupleItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.GlobalImport} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -231,6 +254,29 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 		}
 
 		return inbuiltInfixItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.InbuiltPrefixFuncName} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InbuiltPrefixFuncNameItemProvider inbuiltPrefixFuncNameItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.InbuiltPrefixFuncName}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInbuiltPrefixFuncNameAdapter() {
+		if (inbuiltPrefixFuncNameItemProvider == null) {
+			inbuiltPrefixFuncNameItemProvider = new InbuiltPrefixFuncNameItemProvider(this);
+		}
+
+		return inbuiltPrefixFuncNameItemProvider;
 	}
 
 	/**
@@ -901,6 +947,29 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.FunctionCallInbuilt} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FunctionCallInbuiltItemProvider functionCallInbuiltItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.FunctionCallInbuilt}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFunctionCallInbuiltAdapter() {
+		if (functionCallInbuiltItemProvider == null) {
+			functionCallInbuiltItemProvider = new FunctionCallInbuiltItemProvider(this);
+		}
+
+		return functionCallInbuiltItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.FuncCallArgs} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1201,11 +1270,13 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 		if (expressionItemProvider != null) expressionItemProvider.dispose();
 		if (fileImportItemProvider != null) fileImportItemProvider.dispose();
 		if (functionCallItemProvider != null) functionCallItemProvider.dispose();
+		if (functionCallInbuiltItemProvider != null) functionCallInbuiltItemProvider.dispose();
 		if (funcCallArgsItemProvider != null) funcCallArgsItemProvider.dispose();
 		if (functionDeclItemProvider != null) functionDeclItemProvider.dispose();
 		if (globalImportItemProvider != null) globalImportItemProvider.dispose();
 		if (ifElseItemProvider != null) ifElseItemProvider.dispose();
 		if (inbuiltInfixItemProvider != null) inbuiltInfixItemProvider.dispose();
+		if (inbuiltPrefixFuncNameItemProvider != null) inbuiltPrefixFuncNameItemProvider.dispose();
 		if (infixItemProvider != null) infixItemProvider.dispose();
 		if (instNameItemProvider != null) instNameItemProvider.dispose();
 		if (instanceItemProvider != null) instanceItemProvider.dispose();
@@ -1224,6 +1295,7 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 		if (topLevelFileItemProvider != null) topLevelFileItemProvider.dispose();
 		if (topLevelItemProvider != null) topLevelItemProvider.dispose();
 		if (topLevelImportItemProvider != null) topLevelImportItemProvider.dispose();
+		if (tupleItemProvider != null) tupleItemProvider.dispose();
 		if (typeConstructorItemProvider != null) typeConstructorItemProvider.dispose();
 		if (typeConstrBracketItemProvider != null) typeConstrBracketItemProvider.dispose();
 		if (typeDeclContextItemProvider != null) typeDeclContextItemProvider.dispose();

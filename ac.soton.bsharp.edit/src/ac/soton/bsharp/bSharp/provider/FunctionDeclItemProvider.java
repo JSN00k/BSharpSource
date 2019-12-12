@@ -251,10 +251,25 @@ public class FunctionDeclItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__RETURN_TYPE,
+				 BSharpFactory.eINSTANCE.createConstructedType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__RETURN_TYPE,
 				 BSharpFactory.eINSTANCE.createTypeConstructor()));
 
 		newChildDescriptors.add
 			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__RETURN_TYPE,
+				 BSharpFactory.eINSTANCE.createTypeConstrBracket()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__RETURN_TYPE,
+				 BSharpFactory.eINSTANCE.createTypePowerSet()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
 				 BSharpFactory.eINSTANCE.createExpression()));
 
@@ -267,6 +282,11 @@ public class FunctionDeclItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
 				 BSharpFactory.eINSTANCE.createFunctionCall()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -295,6 +315,11 @@ public class FunctionDeclItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__EXPR,
+				 BSharpFactory.eINSTANCE.createTuple()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
 				 BSharpFactory.eINSTANCE.createExpression()));
 
@@ -307,6 +332,11 @@ public class FunctionDeclItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
 				 BSharpFactory.eINSTANCE.createFunctionCall()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -332,6 +362,11 @@ public class FunctionDeclItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_DECL__GENERATED_LAMBDAS,
+				 BSharpFactory.eINSTANCE.createTuple()));
 
 		newChildDescriptors.add
 			(createChildParameter

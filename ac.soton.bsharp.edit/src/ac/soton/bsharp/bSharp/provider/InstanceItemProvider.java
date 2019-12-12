@@ -258,6 +258,11 @@ public class InstanceItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -279,6 +284,11 @@ public class InstanceItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.INSTANCE__ARGUMENTS,
+				 BSharpFactory.eINSTANCE.createTuple()));
 
 		newChildDescriptors.add
 			(createChildParameter

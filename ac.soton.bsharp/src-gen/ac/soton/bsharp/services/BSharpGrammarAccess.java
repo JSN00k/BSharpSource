@@ -165,20 +165,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//Datatype
 		public RuleCall getDatatypeParserRuleCall_1() { return cDatatypeParserRuleCall_1; }
 	}
-	public class TypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Type");
-		private final RuleCall cClassDeclParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		///* There are three Types which can be used as type variables, inbuilt types, types create
-		// * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
-		// * occasions where each of these can be used.
-		// */ Type:
-		//	ClassDecl;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ClassDecl
-		public RuleCall getClassDeclParserRuleCall() { return cClassDeclParserRuleCall; }
-	}
 	public class GenNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.GenName");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -186,6 +172,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassDeclParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cInstNameParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
+		///* There are three Types which can be used as type variables, inbuilt types, types create
+		// * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
+		// * occasions where each of these can be used.
+		// */ //Type:
+		////	ClassDecl
+		////;
 		//GenName:
 		//	PolyType | ClassDecl | InstName;
 		@Override public ParserRule getRule() { return rule; }
@@ -1205,7 +1197,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cReturnTypeAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cReturnTypeTypeConstructorParserRuleCall_6_0 = (RuleCall)cReturnTypeAssignment_6.eContents().get(0);
+		private final RuleCall cReturnTypeConstructedTypeParserRuleCall_6_0 = (RuleCall)cReturnTypeAssignment_6.eContents().get(0);
 		private final Assignment cInfixAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final Keyword cInfixINFIXKeyword_7_0 = (Keyword)cInfixAssignment_7.eContents().get(0);
 		private final Assignment cPrecedenceAssignment_8 = (Assignment)cGroup.eContents().get(8);
@@ -1214,11 +1206,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprRootExpressionParserRuleCall_9_0 = (RuleCall)cExprAssignment_9.eContents().get(0);
 		
 		///*------------------------- Functions --------------------------------- */ FunctionDecl:
-		//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=TypeConstructor infix='INFIX'?
+		//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=ConstructedType infix='INFIX'?
 		//	precedence=INT? expr=RootExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=TypeConstructor infix='INFIX'?
+		//name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=ConstructedType infix='INFIX'?
 		//precedence=INT? expr=RootExpression
 		public Group getGroup() { return cGroup; }
 		
@@ -1249,11 +1241,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//':'
 		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
 		
-		//returnType=TypeConstructor
+		//returnType=ConstructedType
 		public Assignment getReturnTypeAssignment_6() { return cReturnTypeAssignment_6; }
 		
-		//TypeConstructor
-		public RuleCall getReturnTypeTypeConstructorParserRuleCall_6_0() { return cReturnTypeTypeConstructorParserRuleCall_6_0; }
+		//ConstructedType
+		public RuleCall getReturnTypeConstructedTypeParserRuleCall_6_0() { return cReturnTypeConstructedTypeParserRuleCall_6_0; }
 		
 		//infix='INFIX'?
 		public Assignment getInfixAssignment_7() { return cInfixAssignment_7; }
@@ -1803,28 +1795,28 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	public class ElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Element");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cBracketParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTupleParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cPrefixParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cFunctionCallParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cFuncCallParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		///* currently it will not build because the quantifier is causing recursion I think. 
 		// * I think that we need a quantifier free expression to solve the problem Similar to the way
 		// * precedence is handled here: https://typefox.io/parsing-expressions-with-xtext
 		// */ Element Expression:
-		//	Bracket | Prefix | FunctionCall;
+		//	Tuple | Prefix | FuncCall;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Bracket | Prefix | FunctionCall
+		//Tuple | Prefix | FuncCall
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//Bracket
-		public RuleCall getBracketParserRuleCall_0() { return cBracketParserRuleCall_0; }
+		//Tuple
+		public RuleCall getTupleParserRuleCall_0() { return cTupleParserRuleCall_0; }
 		
 		//Prefix
 		public RuleCall getPrefixParserRuleCall_1() { return cPrefixParserRuleCall_1; }
 		
-		//FunctionCall
-		public RuleCall getFunctionCallParserRuleCall_2() { return cFunctionCallParserRuleCall_2; }
+		//FuncCall
+		public RuleCall getFuncCallParserRuleCall_2() { return cFuncCallParserRuleCall_2; }
 	}
 	public class BracketElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Bracket");
@@ -1852,6 +1844,49 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+	}
+	public class TupleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.Tuple");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cElementsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cElementsRootExpressionParserRuleCall_1_0 = (RuleCall)cElementsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cElementsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cElementsRootExpressionParserRuleCall_2_1_0 = (RuleCall)cElementsAssignment_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//Tuple:
+		//	'(' elements+=RootExpression (',' elements+=RootExpression)* ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'(' elements+=RootExpression (',' elements+=RootExpression)* ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+		
+		//elements+=RootExpression
+		public Assignment getElementsAssignment_1() { return cElementsAssignment_1; }
+		
+		//RootExpression
+		public RuleCall getElementsRootExpressionParserRuleCall_1_0() { return cElementsRootExpressionParserRuleCall_1_0; }
+		
+		//(',' elements+=RootExpression)*
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//','
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		
+		//elements+=RootExpression
+		public Assignment getElementsAssignment_2_1() { return cElementsAssignment_2_1; }
+		
+		//RootExpression
+		public RuleCall getElementsRootExpressionParserRuleCall_2_1_0() { return cElementsRootExpressionParserRuleCall_2_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 	public class FunctionCallElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FunctionCall");
@@ -1929,6 +1964,52 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FuncCallArgs
 		public RuleCall getFuncCallArgsFuncCallArgsParserRuleCall_1_2_0() { return cFuncCallArgsFuncCallArgsParserRuleCall_1_2_0; }
+	}
+	public class FunctionCallInbuiltElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FunctionCallInbuilt");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInbuiltUnaryAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cInbuiltUnaryInbuiltUnaryParserRuleCall_0_0 = (RuleCall)cInbuiltUnaryAssignment_0.eContents().get(0);
+		private final Assignment cFuncCallArgsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cFuncCallArgsFuncCallArgsParserRuleCall_1_0 = (RuleCall)cFuncCallArgsAssignment_1.eContents().get(0);
+		
+		//FunctionCallInbuilt:
+		//	inbuiltUnary=InbuiltUnary funcCallArgs+=FuncCallArgs*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//inbuiltUnary=InbuiltUnary funcCallArgs+=FuncCallArgs*
+		public Group getGroup() { return cGroup; }
+		
+		//inbuiltUnary=InbuiltUnary
+		public Assignment getInbuiltUnaryAssignment_0() { return cInbuiltUnaryAssignment_0; }
+		
+		//InbuiltUnary
+		public RuleCall getInbuiltUnaryInbuiltUnaryParserRuleCall_0_0() { return cInbuiltUnaryInbuiltUnaryParserRuleCall_0_0; }
+		
+		//funcCallArgs+=FuncCallArgs*
+		public Assignment getFuncCallArgsAssignment_1() { return cFuncCallArgsAssignment_1; }
+		
+		//FuncCallArgs
+		public RuleCall getFuncCallArgsFuncCallArgsParserRuleCall_1_0() { return cFuncCallArgsFuncCallArgsParserRuleCall_1_0; }
+	}
+	public class FuncCallElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FuncCall");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cFunctionCallParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFunctionCallInbuiltParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//FuncCall FunctionCall:
+		//	FunctionCall | FunctionCallInbuilt;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//FunctionCall | FunctionCallInbuilt
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//FunctionCall
+		public RuleCall getFunctionCallParserRuleCall_0() { return cFunctionCallParserRuleCall_0; }
+		
+		//FunctionCallInbuilt
+		public RuleCall getFunctionCallInbuiltParserRuleCall_1() { return cFunctionCallInbuiltParserRuleCall_1; }
 	}
 	public class FuncCallArgsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FuncCallArgs");
@@ -2210,6 +2291,33 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//'∈'
 		public Keyword getElementOfKeyword_6() { return cElementOfKeyword_6; }
 	}
+	public class InbuiltUnaryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltUnary");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cPrj1Keyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cPrj2Keyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cDomKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cRanKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		
+		//InbuiltUnary:
+		//	'prj1' | 'prj2' | 'dom' | 'ran';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'prj1' | 'prj2' | 'dom' | 'ran'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'prj1'
+		public Keyword getPrj1Keyword_0() { return cPrj1Keyword_0; }
+		
+		//'prj2'
+		public Keyword getPrj2Keyword_1() { return cPrj2Keyword_1; }
+		
+		//'dom'
+		public Keyword getDomKeyword_2() { return cDomKeyword_2; }
+		
+		//'ran'
+		public Keyword getRanKeyword_3() { return cRanKeyword_3; }
+	}
 	public class WrappedInfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.WrappedInfix");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -2405,7 +2513,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final IBodyElementsContainerElements pIBodyElementsContainer;
 	private final TopLevelFileElements pTopLevelFile;
 	private final ClassDeclElements pClassDecl;
-	private final TypeElements pType;
 	private final GenNameElements pGenName;
 	private final QualifiedNameElements pQualifiedName;
 	private final QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
@@ -2449,13 +2556,17 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final InfixElements pInfix;
 	private final ElementElements pElement;
 	private final BracketElements pBracket;
+	private final TupleElements pTuple;
 	private final FunctionCallElements pFunctionCall;
+	private final FunctionCallInbuiltElements pFunctionCallInbuilt;
+	private final FuncCallElements pFuncCall;
 	private final FuncCallArgsElements pFuncCallArgs;
 	private final IfElseElements pIfElse;
 	private final CondElements pCond;
 	private final ClassVarDeclElements pClassVarDecl;
 	private final ExpressionVariableElements pExpressionVariable;
 	private final InbuiltInfixElements pInbuiltInfix;
+	private final InbuiltUnaryElements pInbuiltUnary;
 	private final WrappedInfixElements pWrappedInfix;
 	private final InstanceElements pInstance;
 	private final ReferencingFuncElements pReferencingFunc;
@@ -2475,7 +2586,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pIBodyElementsContainer = new IBodyElementsContainerElements();
 		this.pTopLevelFile = new TopLevelFileElements();
 		this.pClassDecl = new ClassDeclElements();
-		this.pType = new TypeElements();
 		this.pGenName = new GenNameElements();
 		this.pQualifiedName = new QualifiedNameElements();
 		this.pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements();
@@ -2519,13 +2629,17 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pInfix = new InfixElements();
 		this.pElement = new ElementElements();
 		this.pBracket = new BracketElements();
+		this.pTuple = new TupleElements();
 		this.pFunctionCall = new FunctionCallElements();
+		this.pFunctionCallInbuilt = new FunctionCallInbuiltElements();
+		this.pFuncCall = new FuncCallElements();
 		this.pFuncCallArgs = new FuncCallArgsElements();
 		this.pIfElse = new IfElseElements();
 		this.pCond = new CondElements();
 		this.pClassVarDecl = new ClassVarDeclElements();
 		this.pExpressionVariable = new ExpressionVariableElements();
 		this.pInbuiltInfix = new InbuiltInfixElements();
+		this.pInbuiltUnary = new InbuiltUnaryElements();
 		this.pWrappedInfix = new WrappedInfixElements();
 		this.pInstance = new InstanceElements();
 		this.pReferencingFunc = new ReferencingFuncElements();
@@ -2628,16 +2742,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	///* There are three Types which can be used as type variables, inbuilt types, types create
 	// * with ClassDecl (type classes and Datatypes) and Polymorphic types. There are different
 	// * occasions where each of these can be used.
-	// */ Type:
-	//	ClassDecl;
-	public TypeElements getTypeAccess() {
-		return pType;
-	}
-	
-	public ParserRule getTypeRule() {
-		return getTypeAccess().getRule();
-	}
-	
+	// */ //Type:
+	////	ClassDecl
+	////;
 	//GenName:
 	//	PolyType | ClassDecl | InstName;
 	public GenNameElements getGenNameAccess() {
@@ -2932,7 +3039,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///*------------------------- Functions --------------------------------- */ FunctionDecl:
-	//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=TypeConstructor infix='INFIX'?
+	//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=ConstructedType infix='INFIX'?
 	//	precedence=INT? expr=RootExpression;
 	public FunctionDeclElements getFunctionDeclAccess() {
 		return pFunctionDecl;
@@ -3095,7 +3202,7 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * I think that we need a quantifier free expression to solve the problem Similar to the way
 	// * precedence is handled here: https://typefox.io/parsing-expressions-with-xtext
 	// */ Element Expression:
-	//	Bracket | Prefix | FunctionCall;
+	//	Tuple | Prefix | FuncCall;
 	public ElementElements getElementAccess() {
 		return pElement;
 	}
@@ -3112,6 +3219,16 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getBracketRule() {
 		return getBracketAccess().getRule();
+	}
+	
+	//Tuple:
+	//	'(' elements+=RootExpression (',' elements+=RootExpression)* ')';
+	public TupleElements getTupleAccess() {
+		return pTuple;
+	}
+	
+	public ParserRule getTupleRule() {
+		return getTupleAccess().getRule();
 	}
 	
 	///* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
@@ -3135,6 +3252,26 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getFunctionCallRule() {
 		return getFunctionCallAccess().getRule();
+	}
+	
+	//FunctionCallInbuilt:
+	//	inbuiltUnary=InbuiltUnary funcCallArgs+=FuncCallArgs*;
+	public FunctionCallInbuiltElements getFunctionCallInbuiltAccess() {
+		return pFunctionCallInbuilt;
+	}
+	
+	public ParserRule getFunctionCallInbuiltRule() {
+		return getFunctionCallInbuiltAccess().getRule();
+	}
+	
+	//FuncCall FunctionCall:
+	//	FunctionCall | FunctionCallInbuilt;
+	public FuncCallElements getFuncCallAccess() {
+		return pFuncCall;
+	}
+	
+	public ParserRule getFuncCallRule() {
+		return getFuncCallAccess().getRule();
 	}
 	
 	///* Function calls can return a functional type, which can then be applied. I'd have rather represented this
@@ -3201,6 +3338,16 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getInbuiltInfixRule() {
 		return getInbuiltInfixAccess().getRule();
+	}
+	
+	//InbuiltUnary:
+	//	'prj1' | 'prj2' | 'dom' | 'ran';
+	public InbuiltUnaryElements getInbuiltUnaryAccess() {
+		return pInbuiltUnary;
+	}
+	
+	public ParserRule getInbuiltUnaryRule() {
+		return getInbuiltUnaryAccess().getRule();
 	}
 	
 	///* Todo scope/validate this. */ WrappedInfix:

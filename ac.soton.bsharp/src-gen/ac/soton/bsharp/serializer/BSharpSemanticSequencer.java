@@ -15,6 +15,7 @@ import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.FunctionCallInbuilt;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GlobalImport;
 import ac.soton.bsharp.bSharp.IfElse;
@@ -35,6 +36,7 @@ import ac.soton.bsharp.bSharp.TheoremDecl;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
+import ac.soton.bsharp.bSharp.Tuple;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
@@ -103,6 +105,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case BSharpPackage.FUNCTION_CALL:
 				sequence_FunctionCall(context, (FunctionCall) semanticObject); 
+				return; 
+			case BSharpPackage.FUNCTION_CALL_INBUILT:
+				sequence_FunctionCallInbuilt(context, (FunctionCallInbuilt) semanticObject); 
 				return; 
 			case BSharpPackage.FUNCTION_DECL:
 				sequence_FunctionDecl(context, (FunctionDecl) semanticObject); 
@@ -183,6 +188,9 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case BSharpPackage.TOP_LEVEL_IMPORT:
 				sequence_TopLevelImport(context, (TopLevelImport) semanticObject); 
 				return; 
+			case BSharpPackage.TUPLE:
+				sequence_Tuple(context, (Tuple) semanticObject); 
+				return; 
 			case BSharpPackage.TYPE_CONSTR_BRACKET:
 				sequence_TypeConstrBracket(context, (TypeConstrBracket) semanticObject); 
 				return; 
@@ -229,10 +237,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
-	 *     RootExpression returns Bracket
-	 *     Infix returns Bracket
-	 *     Infix.Infix_1_0 returns Bracket
-	 *     Element returns Bracket
 	 *     Bracket returns Bracket
 	 *
 	 * Constraint:
@@ -273,7 +277,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * Contexts:
 	 *     ClassDecl returns BSClass
-	 *     Type returns BSClass
 	 *     GenName returns BSClass
 	 *     TopLevelInstance returns BSClass
 	 *     Class returns BSClass
@@ -361,7 +364,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * Contexts:
 	 *     ClassDecl returns Datatype
-	 *     Type returns Datatype
 	 *     GenName returns Datatype
 	 *     TopLevelInstance returns Datatype
 	 *     Datatype returns Datatype
@@ -425,11 +427,29 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Contexts:
+	 *     RootExpression returns FunctionCallInbuilt
+	 *     Infix returns FunctionCallInbuilt
+	 *     Infix.Infix_1_0 returns FunctionCallInbuilt
+	 *     Element returns FunctionCallInbuilt
+	 *     FunctionCallInbuilt returns FunctionCallInbuilt
+	 *     FuncCall returns FunctionCallInbuilt
+	 *
+	 * Constraint:
+	 *     (inbuiltUnary=InbuiltUnary funcCallArgs+=FuncCallArgs*)
+	 */
+	protected void sequence_FunctionCallInbuilt(ISerializationContext context, FunctionCallInbuilt semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     RootExpression returns FunctionCall
 	 *     Infix returns FunctionCall
 	 *     Infix.Infix_1_0 returns FunctionCall
 	 *     Element returns FunctionCall
 	 *     FunctionCall returns FunctionCall
+	 *     FuncCall returns FunctionCall
 	 *
 	 * Constraint:
 	 *     (wrapped=WrappedInfix | ((typeInst=[ExpressionVariable|ID] | classVarDecl=ClassVarDecl) context=TypeDeclContext? funcCallArgs+=FuncCallArgs*))
@@ -449,7 +469,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *         name=ID 
 	 *         context=PolyContext? 
 	 *         varList=TypedVariableList? 
-	 *         returnType=TypeConstructor 
+	 *         returnType=ConstructedType 
 	 *         infix='INFIX'? 
 	 *         precedence=INT? 
 	 *         expr=RootExpression
@@ -788,6 +808,22 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getTopLevelAccess().getNameQualifiedNameParserRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getTopLevelAccess().getTopLevelFileTopLevelFileParserRuleCall_2_0(), semanticObject.getTopLevelFile());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     RootExpression returns Tuple
+	 *     Infix returns Tuple
+	 *     Infix.Infix_1_0 returns Tuple
+	 *     Element returns Tuple
+	 *     Tuple returns Tuple
+	 *
+	 * Constraint:
+	 *     (elements+=RootExpression elements+=RootExpression*)
+	 */
+	protected void sequence_Tuple(ISerializationContext context, Tuple semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

@@ -167,6 +167,11 @@ public class WhereItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.WHERE__EXPRESSIONS,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.WHERE__EXPRESSIONS,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -188,6 +193,11 @@ public class WhereItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.WHERE__EXPRESSIONS,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.WHERE__EXPRESSIONS,
+				 BSharpFactory.eINSTANCE.createTuple()));
 	}
 
 	/**

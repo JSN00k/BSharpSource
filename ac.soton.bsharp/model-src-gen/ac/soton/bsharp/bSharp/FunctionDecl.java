@@ -93,12 +93,12 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, IExp
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Return Type</em>' containment reference.
-	 * @see #setReturnType(TypeConstructor)
+	 * @see #setReturnType(TypeBuilder)
 	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionDecl_ReturnType()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeConstructor getReturnType();
+	TypeBuilder getReturnType();
 
 	/**
 	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionDecl#getReturnType <em>Return Type</em>}' containment reference.
@@ -108,7 +108,7 @@ public interface FunctionDecl extends IVariableProvider, IPolyTypeProvider, IExp
 	 * @see #getReturnType()
 	 * @generated
 	 */
-	void setReturnType(TypeConstructor value);
+	void setReturnType(TypeBuilder value);
 
 	/**
 	 * Returns the value of the '<em><b>Infix</b></em>' attribute.

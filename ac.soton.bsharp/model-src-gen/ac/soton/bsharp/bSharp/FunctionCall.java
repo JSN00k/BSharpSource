@@ -3,6 +3,8 @@
  */
 package ac.soton.bsharp.bSharp;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -21,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getWrapped <em>Wrapped</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getCompilationObject <em>Compilation Object</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getFuncCallArgs <em>Func Call Args</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getGenInbuiltFunc <em>Gen Inbuilt Func</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall()
@@ -171,9 +174,36 @@ public interface FunctionCall extends Expression {
 	 */
 	EList<FuncCallArgs> getFuncCallArgs();
 
+	/**
+	 * Returns the value of the '<em><b>Gen Inbuilt Func</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Gen Inbuilt Func</em>' containment reference.
+	 * @see #setGenInbuiltFunc(FunctionDecl)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_GenInbuiltFunc()
+	 * @model containment="true"
+	 * @generated
+	 */
+	FunctionDecl getGenInbuiltFunc();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getGenInbuiltFunc <em>Gen Inbuilt Func</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Gen Inbuilt Func</em>' containment reference.
+	 * @see #getGenInbuiltFunc()
+	 * @generated
+	 */
+	void setGenInbuiltFunc(FunctionDecl value);
+
 	String compileToStringWithContext(FunctionCall fc, Boolean asPredicate) throws Exception;
 	
 	
 	public ExpressionVariable getTypeInstBasic();
+
+	/* Goes up through all function calls for the current expressions
+	 * adding polytype mappings to the result.
+	 */
+	HashMap<PolyType, TypeBuilder> getAllPolyTypeMappings() throws Exception;
 
 } // FunctionCall

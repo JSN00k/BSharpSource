@@ -4,6 +4,8 @@
 package ac.soton.bsharp.bSharp;
 
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -20,7 +22,7 @@ public interface IVarType extends EObject {
 	/* This interface is for classes that can appear in expressions as variables or functions. */
 	
 	/* Returns the type that will be returned if this expression variable is called like a function. */
-	TypeBuilder calculateReturnType();
+	TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args);
 	TypeBuilder calculateType();
 	
 	/* Depending on the expression variable this will return 

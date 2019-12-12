@@ -315,8 +315,8 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	}
 
 	@Override
-	public TypeBuilder calculateReturnType() {
-		return typeInst.calculateReturnType();
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
+		return typeInst.calculateReturnType(ctx, args);
 	}
 
 	@Override

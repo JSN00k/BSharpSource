@@ -21,6 +21,7 @@ import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.Type;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -200,11 +201,11 @@ public abstract class ClassDeclImpl extends TopLevelInstanceImpl implements Clas
 		return name;
 	}
 	
-	public Collection<PolyType> getPolyTypeNames() {
+	public List<PolyType> getPolyTypeNames() {
 		PolyContext ctx = getRawContext();
 		/* Context is the Polynomial context. */
 		if (ctx != null) {
-			return EcoreUtil2.getAllContentsOfType(ctx, PolyType.class);
+			return ctx.getPolyTypes();
 		} else {
 			return new ArrayList<PolyType>();
 		}

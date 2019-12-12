@@ -156,6 +156,11 @@ public class IfElseItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.IF_ELSE__CONDITION,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.IF_ELSE__CONDITION,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -177,6 +182,11 @@ public class IfElseItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.IF_ELSE__CONDITION,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.IF_ELSE__CONDITION,
+				 BSharpFactory.eINSTANCE.createTuple()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -196,6 +206,11 @@ public class IfElseItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.IF_ELSE__IF_TRUE_EXPR,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.IF_ELSE__IF_TRUE_EXPR,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -217,6 +232,11 @@ public class IfElseItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.IF_ELSE__IF_TRUE_EXPR,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.IF_ELSE__IF_TRUE_EXPR,
+				 BSharpFactory.eINSTANCE.createTuple()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -236,6 +256,11 @@ public class IfElseItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.IF_ELSE__IF_FALSE_EXPR,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.IF_ELSE__IF_FALSE_EXPR,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -257,6 +282,11 @@ public class IfElseItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.IF_ELSE__IF_FALSE_EXPR,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.IF_ELSE__IF_FALSE_EXPR,
+				 BSharpFactory.eINSTANCE.createTuple()));
 	}
 
 	/**

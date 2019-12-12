@@ -167,6 +167,11 @@ public class FuncCallArgsItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.FUNC_CALL_ARGS__ARGUMENTS,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNC_CALL_ARGS__ARGUMENTS,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -188,6 +193,11 @@ public class FuncCallArgsItemProvider
 			(createChildParameter
 				(BSharpPackage.Literals.FUNC_CALL_ARGS__ARGUMENTS,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNC_CALL_ARGS__ARGUMENTS,
+				 BSharpFactory.eINSTANCE.createTuple()));
 	}
 
 	/**

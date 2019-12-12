@@ -183,6 +183,11 @@ public class PrefixItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.PREFIX__ELEM,
+				 BSharpFactory.eINSTANCE.createFunctionCallInbuilt()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.PREFIX__ELEM,
 				 BSharpFactory.eINSTANCE.createIfElse()));
 
 		newChildDescriptors.add
@@ -204,6 +209,11 @@ public class PrefixItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.PREFIX__ELEM,
 				 BSharpFactory.eINSTANCE.createQuantLambda()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.PREFIX__ELEM,
+				 BSharpFactory.eINSTANCE.createTuple()));
 	}
 
 }

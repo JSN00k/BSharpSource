@@ -204,7 +204,7 @@ BSharpBlock:
 /*------------------------- Functions --------------------------------- */
 
 FunctionDecl:
-	name=ID (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=TypeConstructor (infix='INFIX')? precedence=INT? expr=RootExpression
+	name=ID (context=PolyContext)? '(' (varList=TypedVariableList)? ')' ':' returnType=ConstructedType (infix='INFIX')? precedence=INT? expr=RootExpression
 ;
 
 MatchStatement:
@@ -293,13 +293,16 @@ Infix returns Expression:
  * precedence is handled here: https://typefox.io/parsing-expressions-with-xtext
  */
 Element returns Expression:
-	Bracket | Prefix | FunctionCall
+	 Tuple | Prefix | FuncCall
 ;
 
 Bracket returns Bracket:
 	'(' child=RootExpression ')'
 ;
 
+Tuple:
+	'(' elements+=RootExpression (',' elements+=RootExpression)* ')'
+;
 
 /* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
  * scenarios: 
@@ -315,8 +318,16 @@ Bracket returns Bracket:
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
  */
 FunctionCall returns FunctionCall:
-	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? 
+	 wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? 
 	  funcCallArgs+=FuncCallArgs*
+;
+
+FunctionCallInbuilt:
+	inbuiltUnary=InbuiltUnary funcCallArgs+=FuncCallArgs*
+;
+
+FuncCall returns FunctionCall:
+	FunctionCall | FunctionCallInbuilt
 ;
 
 /* Function calls can return a functional type, which can then be applied. I'd have rather represented this
@@ -352,6 +363,10 @@ ExpressionVariable:
  * operator the code in InfixImpl needs to be changed to check for this. */
 InbuiltInfix:
 	'⇔' | '⇒' | '=' | '≠' | '∧' | '∨' | '∈'
+;
+
+InbuiltUnary:
+	'prj1' | 'prj2' | 'dom' | 'ran'
 ;
 
 /* Todo scope/validate this. */

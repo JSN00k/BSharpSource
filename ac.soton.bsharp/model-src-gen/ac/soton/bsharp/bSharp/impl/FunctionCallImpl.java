@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSClass;
+import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ClassVarDecl;
@@ -16,12 +17,14 @@ import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.InstName;
+import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 
 import ac.soton.bsharp.bSharp.WrappedInfix;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -52,6 +55,7 @@ import org.eclipse.xtext.EcoreUtil2;
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getWrapped <em>Wrapped</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getCompilationObject <em>Compilation Object</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getFuncCallArgs <em>Func Call Args</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getGenInbuiltFunc <em>Gen Inbuilt Func</em>}</li>
  * </ul>
  *
  * @generated
@@ -116,6 +120,16 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * @ordered
 	 */
 	protected EList<FuncCallArgs> funcCallArgs;
+
+	/**
+	 * The cached value of the '{@link #getGenInbuiltFunc() <em>Gen Inbuilt Func</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenInbuiltFunc()
+	 * @generated
+	 * @ordered
+	 */
+	protected FunctionDecl genInbuiltFunc;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -375,6 +389,51 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * @generated
 	 */
 	@Override
+	public FunctionDecl getGenInbuiltFunc() {
+		return genInbuiltFunc;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetGenInbuiltFunc(FunctionDecl newGenInbuiltFunc, NotificationChain msgs) {
+		FunctionDecl oldGenInbuiltFunc = genInbuiltFunc;
+		genInbuiltFunc = newGenInbuiltFunc;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC, oldGenInbuiltFunc, newGenInbuiltFunc);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGenInbuiltFunc(FunctionDecl newGenInbuiltFunc) {
+		if (newGenInbuiltFunc != genInbuiltFunc) {
+			NotificationChain msgs = null;
+			if (genInbuiltFunc != null)
+				msgs = ((InternalEObject)genInbuiltFunc).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC, null, msgs);
+			if (newGenInbuiltFunc != null)
+				msgs = ((InternalEObject)newGenInbuiltFunc).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC, null, msgs);
+			msgs = basicSetGenInbuiltFunc(newGenInbuiltFunc, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC, newGenInbuiltFunc, newGenInbuiltFunc));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
@@ -387,6 +446,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return basicSetCompilationObject(null, msgs);
 			case BSharpPackage.FUNCTION_CALL__FUNC_CALL_ARGS:
 				return ((InternalEList<?>)getFuncCallArgs()).basicRemove(otherEnd, msgs);
+			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
+				return basicSetGenInbuiltFunc(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -412,6 +473,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return getCompilationObject();
 			case BSharpPackage.FUNCTION_CALL__FUNC_CALL_ARGS:
 				return getFuncCallArgs();
+			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
+				return getGenInbuiltFunc();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -444,6 +507,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				getFuncCallArgs().clear();
 				getFuncCallArgs().addAll((Collection<? extends FuncCallArgs>)newValue);
 				return;
+			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
+				setGenInbuiltFunc((FunctionDecl)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -474,6 +540,9 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			case BSharpPackage.FUNCTION_CALL__FUNC_CALL_ARGS:
 				getFuncCallArgs().clear();
 				return;
+			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
+				setGenInbuiltFunc((FunctionDecl)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -498,6 +567,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return compilationObject != null;
 			case BSharpPackage.FUNCTION_CALL__FUNC_CALL_ARGS:
 				return funcCallArgs != null && !funcCallArgs.isEmpty();
+			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
+				return genInbuiltFunc != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -528,16 +599,20 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 
 	@Override
 	public String constructLatexExpressionTree(String indent) {
+		String name = null;
 		ExpressionVariable typeInst = getTypeInst();
+		if (typeInst != null) {
+			name = typeInst.getName();
+		}
+		
 		if (funcCallArgs == null || funcCallArgs.isEmpty()) {
-			String name = typeInst.getName();
 			if (name == null)
 				name = "noName";
 			
 			return indent + "$" + name + "$";
 		}
 		
-		String result = indent + "[.$" + typeInst.getName() + "$\n";
+		String result = indent + "[.$" + name + "$\n";
 		boolean first = true;
 		for (FuncCallArgs block : funcCallArgs) {
 			if (!first) {
@@ -637,6 +712,16 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		}
 			
 		if (typeInst instanceof FunctionDecl) {
+			/* In recursive definitions there is a possible infinite recursion here, as
+			 * if the functionCall is a call to the function being defined checking that
+			 * function for references to the supertype will always continue to check
+			 * the function again.
+			 */
+			FunctionDecl declFunc = EcoreUtil2.getContainerOfType(this, FunctionDecl.class);
+			if (declFunc == typeInst) {
+				return false;
+			}
+			
 			/* A Method is a function that implicitly uses type variables from its containing
 			 * type. Within the containing type methods can also be used without explicit
 			 * reference to the containing type. This is therefore an implicit reference to the
@@ -650,7 +735,7 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			IVariableProvider varProv = EcoreUtil2.getContainerOfType(typeInst, IVariableProvider.class);
 			
 			if (varProv instanceof BSClass) {
-				/* If we're using a variable from a class we have to be wihtin that class. */
+				/* If we're using a variable from a class we have to be within that class. */
 				return true;
 			}
 		}
@@ -686,6 +771,7 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 
 	@Override
 	public TypeBuilder calculateType() {
+		// TODO: This does not appear to calculate the type when called with a context and no args.
 		if (funcCallArgs == null || funcCallArgs.isEmpty()) {
 			if (typeInst != null)
 				return typeInst.calculateType();
@@ -696,14 +782,15 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		
 		Iterator<FuncCallArgs> iter = funcCallArgs.iterator();
 		List<Expression> arguments = iter.next().getArguments();
+		TypeDeclContext ctx = getContext();
 		
 		ExpressionVariable typeInst = getTypeInst();
 		TypeBuilder type = null;
 		if (arguments != null && !arguments.isEmpty()) {
 			if (typeInst != null) {
-				type =  typeInst.calculateReturnType();
+				type =  typeInst.calculateReturnType(ctx, arguments);
 			} else {
-				type = classVarDecl.calculateReturnType();
+				type = classVarDecl.calculateReturnType(ctx, arguments);
 			}
 		}
 		
@@ -716,5 +803,53 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		
 		return type;
 	}
-	
+	 
+	private HashMap<PolyType, TypeBuilder> polyTypeMap() throws Exception {
+		ExpressionVariable typeInst = getTypeInst();
+		if (!(typeInst instanceof FunctionDecl)) {
+			return null;
+		}
+		
+		List<PolyType> polyTypes = ((FunctionDecl)typeInst).getPolyTypeNames();
+		if (polyTypes == null || polyTypes.size() == 0) {
+			return null;
+		}
+		
+		int ctxSize = polyTypes.size();
+		
+		List<TypeBuilder> concreteTypes = getContext().getTypeName();
+		
+		if (ctxSize != concreteTypes.size()) {
+			throw new Exception("Context and call sizes do not match");
+		}
+		
+		HashMap<PolyType, TypeBuilder> typeMap = new HashMap<PolyType, TypeBuilder>();
+		for(int i = 0; i < ctxSize; ++i) {
+			typeMap.put(polyTypes.get(i), concreteTypes.get(i));
+		}
+		
+		return typeMap;
+	}
+
+	@Override
+	public HashMap<PolyType, TypeBuilder> getAllPolyTypeMappings() throws Exception {
+		FunctionCall above = EcoreUtil2.getContainerOfType(this.eContainer(), FunctionCall.class);
+		
+		if (above == null) {
+			return polyTypeMap();
+		}
+		
+		HashMap<PolyType, TypeBuilder> superMap = above.getAllPolyTypeMappings();
+		if (superMap == null) {
+			return polyTypeMap();
+		}
+		
+		HashMap<PolyType, TypeBuilder> localMap = polyTypeMap();
+		if (localMap == null) {
+			return superMap;
+		}
+		
+		superMap.putAll(localMap);
+		return superMap;
+	}
 } //FunctionCallImpl

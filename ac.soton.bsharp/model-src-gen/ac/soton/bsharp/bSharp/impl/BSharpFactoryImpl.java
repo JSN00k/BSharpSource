@@ -69,11 +69,13 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.EXPRESSION: return createExpression();
 			case BSharpPackage.FILE_IMPORT: return createFileImport();
 			case BSharpPackage.FUNCTION_CALL: return createFunctionCall();
+			case BSharpPackage.FUNCTION_CALL_INBUILT: return createFunctionCallInbuilt();
 			case BSharpPackage.FUNC_CALL_ARGS: return createFuncCallArgs();
 			case BSharpPackage.FUNCTION_DECL: return createFunctionDecl();
 			case BSharpPackage.GLOBAL_IMPORT: return createGlobalImport();
 			case BSharpPackage.IF_ELSE: return createIfElse();
 			case BSharpPackage.INBUILT_INFIX: return createInbuiltInfix();
+			case BSharpPackage.INBUILT_PREFIX_FUNC_NAME: return createInbuiltPrefixFuncName();
 			case BSharpPackage.INFIX: return createInfix();
 			case BSharpPackage.INST_NAME: return createInstName();
 			case BSharpPackage.INSTANCE: return createInstance();
@@ -92,6 +94,7 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 			case BSharpPackage.TOP_LEVEL_FILE: return createTopLevelFile();
 			case BSharpPackage.TOP_LEVEL: return createTopLevel();
 			case BSharpPackage.TOP_LEVEL_IMPORT: return createTopLevelImport();
+			case BSharpPackage.TUPLE: return createTuple();
 			case BSharpPackage.TYPE_CONSTRUCTOR: return createTypeConstructor();
 			case BSharpPackage.TYPE_CONSTR_BRACKET: return createTypeConstrBracket();
 			case BSharpPackage.TYPE_DECL_CONTEXT: return createTypeDeclContext();
@@ -137,6 +140,17 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public TopLevelImport createTopLevelImport() {
 		TopLevelImportImpl topLevelImport = new TopLevelImportImpl();
 		return topLevelImport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Tuple createTuple() {
+		TupleImpl tuple = new TupleImpl();
+		return tuple;
 	}
 
 	/**
@@ -420,6 +434,17 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	 * @generated
 	 */
 	@Override
+	public FunctionCallInbuilt createFunctionCallInbuilt() {
+		FunctionCallInbuiltImpl functionCallInbuilt = new FunctionCallInbuiltImpl();
+		return functionCallInbuilt;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public FuncCallArgs createFuncCallArgs() {
 		FuncCallArgsImpl funcCallArgs = new FuncCallArgsImpl();
 		return funcCallArgs;
@@ -544,6 +569,17 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public InbuiltInfix createInbuiltInfix() {
 		InbuiltInfixImpl inbuiltInfix = new InbuiltInfixImpl();
 		return inbuiltInfix;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InbuiltPrefixFuncName createInbuiltPrefixFuncName() {
+		InbuiltPrefixFuncNameImpl inbuiltPrefixFuncName = new InbuiltPrefixFuncNameImpl();
+		return inbuiltPrefixFuncName;
 	}
 
 	/**

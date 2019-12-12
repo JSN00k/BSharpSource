@@ -21,6 +21,7 @@ import ac.soton.bsharp.bSharp.Extend;
 import ac.soton.bsharp.bSharp.FileImport;
 import ac.soton.bsharp.bSharp.FuncCallArgs;
 import ac.soton.bsharp.bSharp.FunctionCall;
+import ac.soton.bsharp.bSharp.FunctionCallInbuilt;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.GlobalImport;
@@ -37,6 +38,7 @@ import ac.soton.bsharp.bSharp.IVariableProvider;
 import ac.soton.bsharp.bSharp.IfElse;
 import ac.soton.bsharp.bSharp.Import;
 import ac.soton.bsharp.bSharp.InbuiltInfix;
+import ac.soton.bsharp.bSharp.InbuiltPrefixFuncName;
 import ac.soton.bsharp.bSharp.Infix;
 import ac.soton.bsharp.bSharp.InfixFunc;
 import ac.soton.bsharp.bSharp.InstName;
@@ -57,6 +59,7 @@ import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelFile;
 import ac.soton.bsharp.bSharp.TopLevelImport;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
+import ac.soton.bsharp.bSharp.Tuple;
 import ac.soton.bsharp.bSharp.Type;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
@@ -109,6 +112,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass topLevelImportEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tupleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -318,6 +328,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass functionCallInbuiltEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass funcCallArgsEClass = null;
 
 	/**
@@ -487,6 +504,13 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	private EClass inbuiltInfixEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inbuiltPrefixFuncNameEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -691,6 +715,26 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	@Override
 	public EReference getTopLevelImport_ImportRefs() {
 		return (EReference)topLevelImportEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTuple() {
+		return tupleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTuple_Elements() {
+		return (EReference)tupleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1539,6 +1583,36 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	@Override
+	public EReference getFunctionCall_GenInbuiltFunc() {
+		return (EReference)functionCallEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getFunctionCallInbuilt() {
+		return functionCallInbuiltEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFunctionCallInbuilt_InbuiltUnary() {
+		return (EAttribute)functionCallInbuiltEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getFuncCallArgs() {
 		return funcCallArgsEClass;
 	}
@@ -2029,6 +2103,16 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getInbuiltPrefixFuncName() {
+		return inbuiltPrefixFuncNameEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getFileImport() {
 		return fileImportEClass;
 	}
@@ -2191,6 +2275,10 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(functionCallEClass, FUNCTION_CALL__WRAPPED);
 		createEReference(functionCallEClass, FUNCTION_CALL__COMPILATION_OBJECT);
 		createEReference(functionCallEClass, FUNCTION_CALL__FUNC_CALL_ARGS);
+		createEReference(functionCallEClass, FUNCTION_CALL__GEN_INBUILT_FUNC);
+
+		functionCallInbuiltEClass = createEClass(FUNCTION_CALL_INBUILT);
+		createEAttribute(functionCallInbuiltEClass, FUNCTION_CALL_INBUILT__INBUILT_UNARY);
 
 		funcCallArgsEClass = createEClass(FUNC_CALL_ARGS);
 		createEReference(funcCallArgsEClass, FUNC_CALL_ARGS__ARGUMENTS);
@@ -2215,6 +2303,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(ifElseEClass, IF_ELSE__IF_FALSE_EXPR);
 
 		inbuiltInfixEClass = createEClass(INBUILT_INFIX);
+
+		inbuiltPrefixFuncNameEClass = createEClass(INBUILT_PREFIX_FUNC_NAME);
 
 		infixEClass = createEClass(INFIX);
 		createEReference(infixEClass, INFIX__LEFT);
@@ -2292,6 +2382,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		createEReference(topLevelImportEClass, TOP_LEVEL_IMPORT__IMPORTS);
 		createEReference(topLevelImportEClass, TOP_LEVEL_IMPORT__BODY_ELEMENTS);
 		createEReference(topLevelImportEClass, TOP_LEVEL_IMPORT__IMPORT_REFS);
+
+		tupleEClass = createEClass(TUPLE);
+		createEReference(tupleEClass, TUPLE__ELEMENTS);
 
 		typeBuilderEClass = createEClass(TYPE_BUILDER);
 
@@ -2379,6 +2472,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		expressionVariableEClass.getESuperTypes().add(this.getNamedObject());
 		expressionVariableEClass.getESuperTypes().add(this.getIVarType());
 		functionCallEClass.getESuperTypes().add(this.getExpression());
+		functionCallInbuiltEClass.getESuperTypes().add(this.getFunctionCall());
 		functionDeclEClass.getESuperTypes().add(this.getIVariableProvider());
 		functionDeclEClass.getESuperTypes().add(this.getIPolyTypeProvider());
 		functionDeclEClass.getESuperTypes().add(this.getIExpressionContainer());
@@ -2387,6 +2481,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		globalImportEClass.getESuperTypes().add(this.getImport());
 		ifElseEClass.getESuperTypes().add(this.getExpression());
 		inbuiltInfixEClass.getESuperTypes().add(this.getInfixFunc());
+		inbuiltPrefixFuncNameEClass.getESuperTypes().add(this.getExpressionVariable());
 		infixEClass.getESuperTypes().add(this.getExpression());
 		infixFuncEClass.getESuperTypes().add(this.getExpressionVariable());
 		instNameEClass.getESuperTypes().add(this.getExpressionVariable());
@@ -2411,6 +2506,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		topLevelFileEClass.getESuperTypes().add(this.getIBodyElementsContainer());
 		topLevelImportEClass.getESuperTypes().add(this.getITheoryImportCacheProvider());
 		topLevelImportEClass.getESuperTypes().add(this.getIBodyElementsContainer());
+		tupleEClass.getESuperTypes().add(this.getExpression());
 		typeBuilderEClass.getESuperTypes().add(this.getExpressionVariable());
 		typeConstructorEClass.getESuperTypes().add(this.getTypeBuilder());
 		typeConstrBracketEClass.getESuperTypes().add(this.getTypeBuilder());
@@ -2497,6 +2593,10 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getFunctionCall_Wrapped(), this.getWrappedInfix(), null, "wrapped", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_CompilationObject(), ecorePackage.getEObject(), null, "compilationObject", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionCall_FuncCallArgs(), this.getFuncCallArgs(), null, "funcCallArgs", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCall_GenInbuiltFunc(), this.getFunctionDecl(), null, "genInbuiltFunc", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(functionCallInbuiltEClass, FunctionCallInbuilt.class, "FunctionCallInbuilt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFunctionCallInbuilt_InbuiltUnary(), ecorePackage.getEString(), "inbuiltUnary", null, 0, 1, FunctionCallInbuilt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(funcCallArgsEClass, FuncCallArgs.class, "FuncCallArgs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFuncCallArgs_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, FuncCallArgs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2504,7 +2604,7 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEClass(functionDeclEClass, FunctionDecl.class, "FunctionDecl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionDecl_Context(), this.getPolyContext(), null, "context", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDecl_VarList(), this.getTypedVariableList(), null, "varList", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDecl_ReturnType(), this.getTypeConstructor(), null, "returnType", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDecl_ReturnType(), this.getTypeBuilder(), null, "returnType", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFunctionDecl_Infix(), ecorePackage.getEString(), "infix", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDecl_Expr(), this.getExpression(), null, "expr", null, 0, 1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDecl_GeneratedLambdas(), this.getExpression(), null, "generatedLambdas", null, 0, -1, FunctionDecl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2521,6 +2621,8 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getIfElse_IfFalseExpr(), this.getExpression(), null, "ifFalseExpr", null, 0, 1, IfElse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inbuiltInfixEClass, InbuiltInfix.class, "InbuiltInfix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(inbuiltPrefixFuncNameEClass, InbuiltPrefixFuncName.class, "InbuiltPrefixFuncName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(infixEClass, Infix.class, "Infix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInfix_Left(), this.getExpression(), null, "left", null, 0, 1, Infix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2598,6 +2700,9 @@ public class BSharpPackageImpl extends EPackageImpl implements BSharpPackage {
 		initEReference(getTopLevelImport_Imports(), this.getImport(), null, "imports", null, 0, -1, TopLevelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTopLevelImport_BodyElements(), this.getTopLevelInstance(), null, "bodyElements", null, 1, -1, TopLevelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTopLevelImport_ImportRefs(), this.getTopLevelFile(), null, "importRefs", null, 0, -1, TopLevelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tupleEClass, Tuple.class, "Tuple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTuple_Elements(), this.getExpression(), null, "elements", null, 0, -1, Tuple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeBuilderEClass, TypeBuilder.class, "TypeBuilder", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

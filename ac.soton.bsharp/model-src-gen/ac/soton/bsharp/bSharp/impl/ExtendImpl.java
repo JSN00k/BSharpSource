@@ -16,6 +16,7 @@ import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Notification;
@@ -253,7 +254,7 @@ public class ExtendImpl extends TopLevelInstanceImpl implements Extend {
 	}
 
 	@Override
-	public Collection<PolyType> getPolyTypeNames() {
+	public List<PolyType> getPolyTypeNames() {
 		if (extendedClass instanceof BSClass) {
 			return ((BSClass)extendedClass).getPolyTypeNames();
 		} else {

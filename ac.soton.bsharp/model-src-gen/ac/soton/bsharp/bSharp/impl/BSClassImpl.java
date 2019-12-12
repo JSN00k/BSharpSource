@@ -1408,7 +1408,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	@Override
-	public TypeBuilder calculateReturnType() {
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
 		/*
 		 * I think that I need some serious consideration about whether this should ever
 		 * happen. I don't think that it should.

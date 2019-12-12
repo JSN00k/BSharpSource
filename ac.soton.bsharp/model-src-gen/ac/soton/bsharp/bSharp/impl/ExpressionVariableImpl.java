@@ -78,6 +78,7 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 		String parametricContextArgs = var.getParaContextArgs(fc);
 		
 		if (!argsAreEmpty) {
+			List<Expression> firstArgs = argBlock.get(0).getArguments();
 			String sep = var.evBSeparatorForFunc();
 			int blocksCount = argBlock.size();
 			for (int i = 0; i < blocksCount - 1; ++i) {
@@ -99,7 +100,7 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 			
 			boolean returnTypeIsBoolean = false;
 			try {
-				returnTypeIsBoolean = var.calculateReturnType().isBoolType();
+				returnTypeIsBoolean = var.calculateReturnType(ctx, firstArgs).isBoolType();
 			} catch (Exception e) {
 				/* I'm skeptical that this is always correct as polymorphic types are not replaced with
 				 * concrete types when they could be. This needs to be fixed in future implementation.

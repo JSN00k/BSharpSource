@@ -151,7 +151,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeConstructor returnType;
+	protected TypeBuilder returnType;
 
 	/**
 	 * The default value of the '{@link #getInfix() <em>Infix</em>}' attribute. <!--
@@ -308,16 +308,17 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	 * @generated
 	 */
 	@Override
-	public TypeConstructor getReturnType() {
+	public TypeBuilder getReturnType() {
 		return returnType;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReturnType(TypeConstructor newReturnType, NotificationChain msgs) {
-		TypeConstructor oldReturnType = returnType;
+	public NotificationChain basicSetReturnType(TypeBuilder newReturnType, NotificationChain msgs) {
+		TypeBuilder oldReturnType = returnType;
 		returnType = newReturnType;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_DECL__RETURN_TYPE, oldReturnType, newReturnType);
@@ -327,11 +328,12 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public void setReturnType(TypeConstructor newReturnType) {
+	public void setReturnType(TypeBuilder newReturnType) {
 		if (newReturnType != returnType) {
 			NotificationChain msgs = null;
 			if (returnType != null)
@@ -582,7 +584,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				setVarList((TypedVariableList)newValue);
 				return;
 			case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
-				setReturnType((TypeConstructor)newValue);
+				setReturnType((TypeBuilder)newValue);
 				return;
 			case BSharpPackage.FUNCTION_DECL__INFIX:
 				setInfix((String)newValue);
@@ -621,7 +623,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 				setVarList((TypedVariableList)null);
 				return;
 			case BSharpPackage.FUNCTION_DECL__RETURN_TYPE:
-				setReturnType((TypeConstructor)null);
+				setReturnType((TypeBuilder)null);
 				return;
 			case BSharpPackage.FUNCTION_DECL__INFIX:
 				setInfix(INFIX_EDEFAULT);
@@ -780,11 +782,12 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	@Override
-	public Collection<PolyType> getPolyTypeNames() {
+	public List<PolyType> getPolyTypeNames() {
+		PolyContext ctx = getContext();
 		if (context == null) {
 			return new ArrayList<PolyType>();
 		} else {
-			return EcoreUtil2.getAllContentsOfType(getContext(), PolyType.class);
+			return ctx.getPolyTypes();
 		}
 	}
 
@@ -1357,7 +1360,7 @@ public class FunctionDeclImpl extends MinimalEObjectImpl.Container implements Fu
 	}
 
 	@Override
-	public TypeBuilder calculateReturnType() {
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
 		return returnType.reorderTypeTree();
 	}
 

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -114,6 +115,7 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__CONTEXT);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__WRAPPED);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__FUNC_CALL_ARGS);
+			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__GEN_INBUILT_FUNC);
 		}
 		return childrenFeatures;
 	}
@@ -170,6 +172,7 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 			case BSharpPackage.FUNCTION_CALL__CONTEXT:
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
 			case BSharpPackage.FUNCTION_CALL__FUNC_CALL_ARGS:
+			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -206,6 +209,39 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_CALL__FUNC_CALL_ARGS,
 				 BSharpFactory.eINSTANCE.createFuncCallArgs()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_CALL__GEN_INBUILT_FUNC,
+				 BSharpFactory.eINSTANCE.createFunctionDecl()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_CALL__GEN_INBUILT_FUNC,
+				 BSharpFactory.eINSTANCE.createReferencingFunc()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == BSharpPackage.Literals.EXPRESSION__TYPE_INST ||
+			childFeature == BSharpPackage.Literals.FUNCTION_CALL__GEN_INBUILT_FUNC;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

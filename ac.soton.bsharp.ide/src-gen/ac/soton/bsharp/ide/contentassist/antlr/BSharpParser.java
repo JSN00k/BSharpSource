@@ -48,8 +48,10 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getElementAccess().getAlternatives(), "rule__Element__Alternatives");
 			builder.put(grammarAccess.getFunctionCallAccess().getAlternatives(), "rule__FunctionCall__Alternatives");
 			builder.put(grammarAccess.getFunctionCallAccess().getAlternatives_1_0(), "rule__FunctionCall__Alternatives_1_0");
+			builder.put(grammarAccess.getFuncCallAccess().getAlternatives(), "rule__FuncCall__Alternatives");
 			builder.put(grammarAccess.getExpressionVariableAccess().getAlternatives(), "rule__ExpressionVariable__Alternatives");
 			builder.put(grammarAccess.getInbuiltInfixAccess().getAlternatives(), "rule__InbuiltInfix__Alternatives");
+			builder.put(grammarAccess.getInbuiltUnaryAccess().getAlternatives(), "rule__InbuiltUnary__Alternatives");
 			builder.put(grammarAccess.getWrappedInfixAccess().getAlternatives_1(), "rule__WrappedInfix__Alternatives_1");
 			builder.put(grammarAccess.getTopLevelAccess().getGroup(), "rule__TopLevel__Group__0");
 			builder.put(grammarAccess.getTHM_NAMEAccess().getGroup(), "rule__THM_NAME__Group__0");
@@ -103,7 +105,10 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInfixAccess().getGroup(), "rule__Infix__Group__0");
 			builder.put(grammarAccess.getInfixAccess().getGroup_1(), "rule__Infix__Group_1__0");
 			builder.put(grammarAccess.getBracketAccess().getGroup(), "rule__Bracket__Group__0");
+			builder.put(grammarAccess.getTupleAccess().getGroup(), "rule__Tuple__Group__0");
+			builder.put(grammarAccess.getTupleAccess().getGroup_2(), "rule__Tuple__Group_2__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1(), "rule__FunctionCall__Group_1__0");
+			builder.put(grammarAccess.getFunctionCallInbuiltAccess().getGroup(), "rule__FunctionCallInbuilt__Group__0");
 			builder.put(grammarAccess.getFuncCallArgsAccess().getGroup(), "rule__FuncCallArgs__Group__0");
 			builder.put(grammarAccess.getFuncCallArgsAccess().getGroup_1(), "rule__FuncCallArgs__Group_1__0");
 			builder.put(grammarAccess.getFuncCallArgsAccess().getGroup_1_2(), "rule__FuncCallArgs__Group_1_2__0");
@@ -199,11 +204,15 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInfixAccess().getOpNameAssignment_1_1_1(), "rule__Infix__OpNameAssignment_1_1_1");
 			builder.put(grammarAccess.getInfixAccess().getRightAssignment_1_2(), "rule__Infix__RightAssignment_1_2");
 			builder.put(grammarAccess.getBracketAccess().getChildAssignment_1(), "rule__Bracket__ChildAssignment_1");
+			builder.put(grammarAccess.getTupleAccess().getElementsAssignment_1(), "rule__Tuple__ElementsAssignment_1");
+			builder.put(grammarAccess.getTupleAccess().getElementsAssignment_2_1(), "rule__Tuple__ElementsAssignment_2_1");
 			builder.put(grammarAccess.getFunctionCallAccess().getWrappedAssignment_0(), "rule__FunctionCall__WrappedAssignment_0");
 			builder.put(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_1_0_0(), "rule__FunctionCall__TypeInstAssignment_1_0_0");
 			builder.put(grammarAccess.getFunctionCallAccess().getClassVarDeclAssignment_1_0_1(), "rule__FunctionCall__ClassVarDeclAssignment_1_0_1");
 			builder.put(grammarAccess.getFunctionCallAccess().getContextAssignment_1_1(), "rule__FunctionCall__ContextAssignment_1_1");
 			builder.put(grammarAccess.getFunctionCallAccess().getFuncCallArgsAssignment_1_2(), "rule__FunctionCall__FuncCallArgsAssignment_1_2");
+			builder.put(grammarAccess.getFunctionCallInbuiltAccess().getInbuiltUnaryAssignment_0(), "rule__FunctionCallInbuilt__InbuiltUnaryAssignment_0");
+			builder.put(grammarAccess.getFunctionCallInbuiltAccess().getFuncCallArgsAssignment_1(), "rule__FunctionCallInbuilt__FuncCallArgsAssignment_1");
 			builder.put(grammarAccess.getFuncCallArgsAccess().getArgumentsAssignment_1_1(), "rule__FuncCallArgs__ArgumentsAssignment_1_1");
 			builder.put(grammarAccess.getFuncCallArgsAccess().getArgumentsAssignment_1_2_1(), "rule__FuncCallArgs__ArgumentsAssignment_1_2_1");
 			builder.put(grammarAccess.getIfElseAccess().getConditionAssignment_1(), "rule__IfElse__ConditionAssignment_1");
