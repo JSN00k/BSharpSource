@@ -118,7 +118,7 @@ public class FunctionValidatorUtil {
 				}
 				
 				if (tb.isDatatype()) {
-					
+					addDatatypeConstructorsAndDestructors(tb.getDatatype(), s);
 				}
 			}
 		}		
@@ -238,7 +238,6 @@ public class FunctionValidatorUtil {
 		/* Associated variables and datatype constructors will currently hide any function instances with the same name. */
 		HashSet<ExpressionVariableWrapper> variables = new HashSet<ExpressionVariableWrapper>();
 		if (clss instanceof BSClass) {
-			variables.add(new ExpressionVariableWrapper(((BSClass) clss).getInstName()));
 			addTypedVariableForBSClass((BSClass)clss, variables);
 		} else if (clss instanceof Datatype) {
 			addDatatypeConstructorsAndDestructors((Datatype)clss, variables);

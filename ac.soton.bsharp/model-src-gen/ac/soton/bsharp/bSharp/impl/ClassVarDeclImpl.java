@@ -18,6 +18,7 @@ import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.TypedVariableList;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 
 import java.util.ArrayList;
@@ -41,7 +42,8 @@ import org.eclipse.xtext.EcoreUtil2;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassVarDeclImpl#getOwnerType <em>Owner Type</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassVarDeclImpl#getTypeInst <em>Type Inst</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassVarDeclImpl#getTypeVar <em>Type Var</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.ClassVarDeclImpl#getTypedVar <em>Typed Var</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,14 +60,24 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	protected GenName ownerType;
 
 	/**
-	 * The cached value of the '{@link #getTypeInst() <em>Type Inst</em>}' reference.
+	 * The cached value of the '{@link #getTypeVar() <em>Type Var</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeInst()
+	 * @see #getTypeVar()
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpressionVariable typeInst;
+	protected ExpressionVariable typeVar;
+
+	/**
+	 * The cached value of the '{@link #getTypedVar() <em>Typed Var</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypedVar()
+	 * @generated
+	 * @ordered
+	 */
+	protected TypedVariable typedVar;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,16 +144,16 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	 * @generated
 	 */
 	@Override
-	public ExpressionVariable getTypeInst() {
-		if (typeInst != null && typeInst.eIsProxy()) {
-			InternalEObject oldTypeInst = (InternalEObject)typeInst;
-			typeInst = (ExpressionVariable)eResolveProxy(oldTypeInst);
-			if (typeInst != oldTypeInst) {
+	public ExpressionVariable getTypeVar() {
+		if (typeVar != null && typeVar.eIsProxy()) {
+			InternalEObject oldTypeVar = (InternalEObject)typeVar;
+			typeVar = (ExpressionVariable)eResolveProxy(oldTypeVar);
+			if (typeVar != oldTypeVar) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.CLASS_VAR_DECL__TYPE_INST, oldTypeInst, typeInst));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.CLASS_VAR_DECL__TYPE_VAR, oldTypeVar, typeVar));
 			}
 		}
-		return typeInst;
+		return typeVar;
 	}
 
 	/**
@@ -149,8 +161,8 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpressionVariable basicGetTypeInst() {
-		return typeInst;
+	public ExpressionVariable basicGetTypeVar() {
+		return typeVar;
 	}
 
 	/**
@@ -159,11 +171,51 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 	 * @generated
 	 */
 	@Override
-	public void setTypeInst(ExpressionVariable newTypeInst) {
-		ExpressionVariable oldTypeInst = typeInst;
-		typeInst = newTypeInst;
+	public void setTypeVar(ExpressionVariable newTypeVar) {
+		ExpressionVariable oldTypeVar = typeVar;
+		typeVar = newTypeVar;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_VAR_DECL__TYPE_INST, oldTypeInst, typeInst));
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_VAR_DECL__TYPE_VAR, oldTypeVar, typeVar));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TypedVariable getTypedVar() {
+		if (typedVar != null && typedVar.eIsProxy()) {
+			InternalEObject oldTypedVar = (InternalEObject)typedVar;
+			typedVar = (TypedVariable)eResolveProxy(oldTypedVar);
+			if (typedVar != oldTypedVar) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.CLASS_VAR_DECL__TYPED_VAR, oldTypedVar, typedVar));
+			}
+		}
+		return typedVar;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypedVariable basicGetTypedVar() {
+		return typedVar;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTypedVar(TypedVariable newTypedVar) {
+		TypedVariable oldTypedVar = typedVar;
+		typedVar = newTypedVar;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.CLASS_VAR_DECL__TYPED_VAR, oldTypedVar, typedVar));
 	}
 
 	/**
@@ -177,9 +229,12 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 			case BSharpPackage.CLASS_VAR_DECL__OWNER_TYPE:
 				if (resolve) return getOwnerType();
 				return basicGetOwnerType();
-			case BSharpPackage.CLASS_VAR_DECL__TYPE_INST:
-				if (resolve) return getTypeInst();
-				return basicGetTypeInst();
+			case BSharpPackage.CLASS_VAR_DECL__TYPE_VAR:
+				if (resolve) return getTypeVar();
+				return basicGetTypeVar();
+			case BSharpPackage.CLASS_VAR_DECL__TYPED_VAR:
+				if (resolve) return getTypedVar();
+				return basicGetTypedVar();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -195,8 +250,11 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 			case BSharpPackage.CLASS_VAR_DECL__OWNER_TYPE:
 				setOwnerType((GenName)newValue);
 				return;
-			case BSharpPackage.CLASS_VAR_DECL__TYPE_INST:
-				setTypeInst((ExpressionVariable)newValue);
+			case BSharpPackage.CLASS_VAR_DECL__TYPE_VAR:
+				setTypeVar((ExpressionVariable)newValue);
+				return;
+			case BSharpPackage.CLASS_VAR_DECL__TYPED_VAR:
+				setTypedVar((TypedVariable)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -213,8 +271,11 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 			case BSharpPackage.CLASS_VAR_DECL__OWNER_TYPE:
 				setOwnerType((GenName)null);
 				return;
-			case BSharpPackage.CLASS_VAR_DECL__TYPE_INST:
-				setTypeInst((ExpressionVariable)null);
+			case BSharpPackage.CLASS_VAR_DECL__TYPE_VAR:
+				setTypeVar((ExpressionVariable)null);
+				return;
+			case BSharpPackage.CLASS_VAR_DECL__TYPED_VAR:
+				setTypedVar((TypedVariable)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -230,8 +291,10 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 		switch (featureID) {
 			case BSharpPackage.CLASS_VAR_DECL__OWNER_TYPE:
 				return ownerType != null;
-			case BSharpPackage.CLASS_VAR_DECL__TYPE_INST:
-				return typeInst != null;
+			case BSharpPackage.CLASS_VAR_DECL__TYPE_VAR:
+				return typeVar != null;
+			case BSharpPackage.CLASS_VAR_DECL__TYPED_VAR:
+				return typedVar != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -243,8 +306,8 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 		 * wrapped class. When the typeInst is a TypedVariable the deconstructors 
 		 * need to be called on a type class to get the right name.
 		 */
-		if (!(typeInst instanceof TypedVariable)) {
-			return typeInst.getEventBFunctypeForCall(fc);
+		if (!(typeVar instanceof TypedVariable)) {
+			return typeVar.getEventBFunctypeForCall(fc);
 		}
 		
 		/* Henceforth it is assumed that we are referencing an
@@ -256,7 +319,7 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 			for (ClassDecl sup : supers) {
 				String res = null;
 				if (sup instanceof BSClass)
-					res = ((BSClass)sup).applyGetter((PolyType)ownerType, typeInst);
+					res = ((BSClass)sup).applyGetter((PolyType)ownerType, typeVar);
 				
 				if (res != null && !res.isEmpty())
 					return res;
@@ -269,11 +332,11 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 
 	@Override
 	public String evBSeparatorForFunc() {
-		if (typeInst instanceof FunctionDecl) {
-			return typeInst.evBSeparatorForFunc();
+		if (typeVar instanceof FunctionDecl) {
+			return typeVar.evBSeparatorForFunc();
 		}
 		
-		if (typeInst instanceof DatatypeConstructor)
+		if (typeVar instanceof DatatypeConstructor)
 			return ", ";
 		
 		
@@ -316,11 +379,11 @@ public class ClassVarDeclImpl extends MinimalEObjectImpl.Container implements Cl
 
 	@Override
 	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
-		return typeInst.calculateReturnType(ctx, args);
+		return typeVar.calculateReturnType(ctx, args);
 	}
 
 	@Override
 	public TypeBuilder calculateType() {
-		return typeInst.calculateType();
+		return typeVar.calculateType();
 	}
 } //ClassVarDeclImpl

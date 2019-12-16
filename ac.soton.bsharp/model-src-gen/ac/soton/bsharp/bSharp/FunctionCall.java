@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getOwnerType <em>Owner Type</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getWrapped <em>Wrapped</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getCompilationObject <em>Compilation Object</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getFuncCallArgs <em>Func Call Args</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getGenInbuiltFunc <em>Gen Inbuilt Func</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getGetter <em>Getter</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall()
@@ -31,58 +31,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface FunctionCall extends Expression {
-
-	/**
-	 * Returns the value of the '<em><b>Owner Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owner Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owner Type</em>' reference.
-	 * @see #setOwnerType(GenName)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_OwnerType()
-	 * @model
-	 * @generated
-	 */
-	GenName getOwnerType();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getOwnerType <em>Owner Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owner Type</em>' reference.
-	 * @see #getOwnerType()
-	 * @generated
-	 */
-	void setOwnerType(GenName value);
-
-	/**
-	 * Returns the value of the '<em><b>Class Var Decl</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Class Var Decl</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Var Decl</em>' containment reference.
-	 * @see #setClassVarDecl(ClassVarDecl)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_ClassVarDecl()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ClassVarDecl getClassVarDecl();
-
-	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Var Decl</em>' containment reference.
-	 * @see #getClassVarDecl()
-	 * @generated
-	 */
-	void setClassVarDecl(ClassVarDecl value);
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
@@ -195,6 +143,50 @@ public interface FunctionCall extends Expression {
 	 * @generated
 	 */
 	void setGenInbuiltFunc(FunctionDecl value);
+
+	/**
+	 * Returns the value of the '<em><b>Getter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Getter</em>' reference.
+	 * @see #setGetter(ExpressionVariable)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_Getter()
+	 * @model
+	 * @generated
+	 */
+	ExpressionVariable getGetter();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getGetter <em>Getter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Getter</em>' reference.
+	 * @see #getGetter()
+	 * @generated
+	 */
+	void setGetter(ExpressionVariable value);
+
+	/**
+	 * Returns the value of the '<em><b>Class Var Decl</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Class Var Decl</em>' containment reference.
+	 * @see #setClassVarDecl(ClassVarDecl)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getFunctionCall_ClassVarDecl()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ClassVarDecl getClassVarDecl();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.FunctionCall#getClassVarDecl <em>Class Var Decl</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Class Var Decl</em>' containment reference.
+	 * @see #getClassVarDecl()
+	 * @generated
+	 */
+	void setClassVarDecl(ClassVarDecl value);
 
 	String compileToStringWithContext(FunctionCall fc, Boolean asPredicate) throws Exception;
 	

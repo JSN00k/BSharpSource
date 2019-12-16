@@ -59,7 +59,8 @@ public class ClassVarDeclItemProvider
 			super.getPropertyDescriptors(object);
 
 			addOwnerTypePropertyDescriptor(object);
-			addTypeInstPropertyDescriptor(object);
+			addTypeVarPropertyDescriptor(object);
+			addTypedVarPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -87,19 +88,41 @@ public class ClassVarDeclItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Type Inst feature.
+	 * This adds a property descriptor for the Type Var feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypeInstPropertyDescriptor(Object object) {
+	protected void addTypeVarPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ClassVarDecl_typeInst_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ClassVarDecl_typeInst_feature", "_UI_ClassVarDecl_type"),
-				 BSharpPackage.Literals.CLASS_VAR_DECL__TYPE_INST,
+				 getString("_UI_ClassVarDecl_typeVar_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ClassVarDecl_typeVar_feature", "_UI_ClassVarDecl_type"),
+				 BSharpPackage.Literals.CLASS_VAR_DECL__TYPE_VAR,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Typed Var feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypedVarPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ClassVarDecl_typedVar_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ClassVarDecl_typedVar_feature", "_UI_ClassVarDecl_type"),
+				 BSharpPackage.Literals.CLASS_VAR_DECL__TYPED_VAR,
 				 true,
 				 false,
 				 true,

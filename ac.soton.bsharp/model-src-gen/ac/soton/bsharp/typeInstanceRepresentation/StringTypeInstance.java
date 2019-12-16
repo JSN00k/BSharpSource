@@ -7,9 +7,11 @@ import org.eclipse.emf.ecore.EObject;
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypedVariable;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
+import ac.soton.bsharp.theory.util.TheoryImportCache;
 
 public class StringTypeInstance extends TypeInstanceAbstract implements ITypeInstanceOpArgs {
 	
@@ -26,7 +28,15 @@ public class StringTypeInstance extends TypeInstanceAbstract implements ITypeIns
 		classDecl = decl;
 		constructingTypesTyped = constrTypes;
 		instanceName = instName;
-		this.baseTypeString = baseTypeString;
+	}
+	
+	public StringTypeInstance(TypedVariable var) {
+		TypeBuilder type = var.getType();
+		TheoryImportCache thyCache = CompilationUtil.getTheoryCacheForElement(var);
+		classDecl = type.getClassDecl();
+		constructingTypesTyped = classDecl.getContext().namesAndTypesForPolyContext(thyCache);
+		instanceName = var.getName();
+		context = var;
 	}
 
 	@Override

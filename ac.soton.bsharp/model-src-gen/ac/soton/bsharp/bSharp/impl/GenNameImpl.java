@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class GenNameImpl extends NamedObjectImpl implements GenName {
+public abstract class GenNameImpl extends ExpressionVariableImpl implements GenName {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

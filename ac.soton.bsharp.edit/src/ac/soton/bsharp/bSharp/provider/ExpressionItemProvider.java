@@ -192,6 +192,11 @@ public class ExpressionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
+				 BSharpFactory.eINSTANCE.createPolyType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.EXPRESSION__TYPE_INST,
 				 BSharpFactory.eINSTANCE.createReferencingFunc()));
 
 		newChildDescriptors.add

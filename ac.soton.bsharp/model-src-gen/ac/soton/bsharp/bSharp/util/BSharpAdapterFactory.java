@@ -105,10 +105,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 				return createIVarTypeAdapter();
 			}
 			@Override
-			public Adapter caseType(Type object) {
-				return createTypeAdapter();
-			}
-			@Override
 			public Adapter caseImport(Import object) {
 				return createImportAdapter();
 			}
@@ -1051,20 +1047,6 @@ public class BSharpAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIVarTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link ac.soton.bsharp.bSharp.Type <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see ac.soton.bsharp.bSharp.Type
-	 * @generated
-	 */
-	public Adapter createTypeAdapter() {
 		return null;
 	}
 

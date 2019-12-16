@@ -5,7 +5,7 @@ package ac.soton.bsharp.bSharp.tests;
 
 import ac.soton.bsharp.bSharp.BSharpFactory;
 import ac.soton.bsharp.bSharp.BSharpPackage;
-import ac.soton.bsharp.bSharp.Type;
+import ac.soton.bsharp.bSharp.Bracket;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,7 +61,7 @@ public class BSharpExample {
 			System.out.println("Enter a list of file paths or URIs that have content like this:");
 			try {
 				Resource resource = resourceSet.createResource(URI.createURI("http:///My.bs"));
-				Type root = BSharpFactory.eINSTANCE.createType();
+				Bracket root = BSharpFactory.eINSTANCE.createBracket();
 				resource.getContents().add(root);
 				resource.save(System.out, null);
 			}

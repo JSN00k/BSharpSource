@@ -8,12 +8,14 @@ import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.ClassDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
+import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.InstName;
 import ac.soton.bsharp.bSharp.PolyType;
 import ac.soton.bsharp.bSharp.TypeBuilder;
 import ac.soton.bsharp.bSharp.TypeConstrBracket;
 import ac.soton.bsharp.bSharp.TypeConstructor;
+import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.Tuple2;
 import ac.soton.bsharp.theory.util.TheoryImportCache;
@@ -22,6 +24,7 @@ import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -346,6 +349,18 @@ public class PolyTypeImpl extends GenNameImpl implements PolyType {
 			return false;
 		
 		return getName().equals(((PolyType)o).getName());
+	}
+
+	@Override
+	public TypeBuilder calculateReturnType(TypeDeclContext ctx, List<Expression> args) {
+		/* Don't think this can be called as a function. */
+		return null;
+	}
+
+	@Override
+	public TypeBuilder calculateType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //PolyTypeImpl

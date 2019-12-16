@@ -2,11 +2,12 @@ package ac.soton.bsharp.scoping;
 
 import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.ClassDecl;
-import ac.soton.bsharp.bSharp.ClassVarDecl;
+import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.Extend;
+import ac.soton.bsharp.bSharp.FunctionCall;
 import ac.soton.bsharp.bSharp.FunctionDecl;
 import ac.soton.bsharp.bSharp.GenName;
 import ac.soton.bsharp.bSharp.IPolyTypeProvider;
@@ -20,6 +21,8 @@ import ac.soton.bsharp.bSharp.ReferencingFunc;
 import ac.soton.bsharp.bSharp.TopLevel;
 import ac.soton.bsharp.bSharp.TopLevelInstance;
 import ac.soton.bsharp.bSharp.TypeBuilder;
+import ac.soton.bsharp.bSharp.TypedVariable;
+import ac.soton.bsharp.bSharp.impl.FunctionCallImpl;
 import ac.soton.bsharp.bSharp.util.CompilationUtil;
 import ac.soton.bsharp.bSharp.util.FunctionValidatorUtil;
 import ac.soton.bsharp.util.EcoreUtilJ;
@@ -29,26 +32,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
-  @Inject
-  @Extension
-  private IQualifiedNameProvider _iQualifiedNameProvider;
-  
   public IScope scope_TopLevelFile(final EObject context, final EReference reference) {
     IScope scope = this.delegateGetScope(context, reference);
     return scope;
@@ -103,8 +99,7 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
     return Scopes.scopeFor(typeNames, parent);
   }
   
-  public IScope scope_ExpressionVariable(final ClassVarDecl ctx, final EReference reference) {
-    GenName genName = ctx.getOwnerType();
+  public IScope scopeGetterExpressionVariable(final EObject ctx, final GenName genName, final EReference reference) {
     if ((genName instanceof ClassDecl)) {
       final HashSet<ExpressionVariable> inscope = FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(ctx, ((ClassDecl) genName));
       return Scopes.scopeFor(inscope);
@@ -129,6 +124,37 @@ public class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
   }
   
   public IScope scope_ExpressionVariable(final EObject context, final EReference reference) {
+    if ((((context instanceof FunctionCall) && Objects.equal(reference.getName(), "typeInst")) && (((FunctionCallImpl) context).basicGetGetter() != null))) {
+      IScope result = this.scope_GenName(context, reference);
+      ClassDecl classDecl = CompilationUtil.getClassDecl(context);
+      final HashSet<ExpressionVariable> classTypedVars = FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(context, classDecl);
+      return Scopes.scopeFor(classTypedVars, result);
+    }
+    if (((context instanceof FunctionCall) && Objects.equal(reference.getName(), "getter"))) {
+      final ExpressionVariable typeInst = ((FunctionCall) context).getTypeInst();
+      if ((typeInst != null)) {
+        GenName genName = null;
+        if ((typeInst instanceof TypedVariable)) {
+          genName = ((TypedVariable) typeInst).getType().getClassDecl();
+        } else {
+          if ((typeInst instanceof ConstructedType)) {
+            genName = ((ConstructedType) typeInst).getClassDecl();
+          } else {
+            if ((typeInst instanceof PolyType)) {
+              genName = ((PolyType) typeInst);
+            }
+          }
+        }
+        if ((genName != null)) {
+          return this.scopeGetterExpressionVariable(context, genName, reference);
+        }
+        return IScope.NULLSCOPE;
+      }
+      if ((!(typeInst instanceof ConstructedType))) {
+        return IScope.NULLSCOPE;
+      }
+      return this.scopeGetterExpressionVariable(context, ((ConstructedType) typeInst).getClassDecl(), reference);
+    }
     final HashSet<ExpressionVariable> inscope = FunctionValidatorUtil.allInscopeExpressionVariables(context);
     if ((inscope == null)) {
       return IScope.NULLSCOPE;

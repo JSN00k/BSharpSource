@@ -7,7 +7,6 @@ import ac.soton.bsharp.bSharp.BSClass;
 import ac.soton.bsharp.bSharp.BSharpBlock;
 import ac.soton.bsharp.bSharp.BSharpPackage;
 import ac.soton.bsharp.bSharp.Bracket;
-import ac.soton.bsharp.bSharp.ClassVarDecl;
 import ac.soton.bsharp.bSharp.ConstructedType;
 import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.DatatypeConstructor;
@@ -81,9 +80,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case BSharpPackage.BRACKET:
 				sequence_Bracket(context, (Bracket) semanticObject); 
-				return; 
-			case BSharpPackage.CLASS_VAR_DECL:
-				sequence_ClassVarDecl(context, (ClassVarDecl) semanticObject); 
 				return; 
 			case BSharpPackage.CONSTRUCTED_TYPE:
 				sequence_ConstructedType(context, (ConstructedType) semanticObject); 
@@ -249,27 +245,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getBracketAccess().getChildRootExpressionParserRuleCall_1_0(), semanticObject.getChild());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ClassVarDecl returns ClassVarDecl
-	 *
-	 * Constraint:
-	 *     (ownerType=[GenName|ID] typeInst=[ExpressionVariable|ID])
-	 */
-	protected void sequence_ClassVarDecl(ISerializationContext context, ClassVarDecl semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.CLASS_VAR_DECL__OWNER_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.CLASS_VAR_DECL__OWNER_TYPE));
-			if (transientValues.isValueTransient(semanticObject, BSharpPackage.Literals.CLASS_VAR_DECL__TYPE_INST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BSharpPackage.Literals.CLASS_VAR_DECL__TYPE_INST));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getClassVarDeclAccess().getOwnerTypeGenNameIDTerminalRuleCall_0_0_1(), semanticObject.eGet(BSharpPackage.Literals.CLASS_VAR_DECL__OWNER_TYPE, false));
-		feeder.accept(grammarAccess.getClassVarDeclAccess().getTypeInstExpressionVariableIDTerminalRuleCall_2_0_1(), semanticObject.eGet(BSharpPackage.Literals.CLASS_VAR_DECL__TYPE_INST, false));
 		feeder.finish();
 	}
 	
@@ -452,7 +427,7 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     FuncCall returns FunctionCall
 	 *
 	 * Constraint:
-	 *     (wrapped=WrappedInfix | ((typeInst=[ExpressionVariable|ID] | classVarDecl=ClassVarDecl) context=TypeDeclContext? funcCallArgs+=FuncCallArgs*))
+	 *     (wrapped=WrappedInfix | (typeInst=[ExpressionVariable|ID] getter=[ExpressionVariable|ID]? context=TypeDeclContext? funcCallArgs+=FuncCallArgs*))
 	 */
 	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -536,7 +511,6 @@ public class BSharpSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * Contexts:
 	 *     GenName returns InstName
 	 *     InstName returns InstName
-	 *     ExpressionVariable returns InstName
 	 *
 	 * Constraint:
 	 *     name=ID

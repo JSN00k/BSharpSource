@@ -47,7 +47,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInfixAccess().getAlternatives_1_1(), "rule__Infix__Alternatives_1_1");
 			builder.put(grammarAccess.getElementAccess().getAlternatives(), "rule__Element__Alternatives");
 			builder.put(grammarAccess.getFunctionCallAccess().getAlternatives(), "rule__FunctionCall__Alternatives");
-			builder.put(grammarAccess.getFunctionCallAccess().getAlternatives_1_0(), "rule__FunctionCall__Alternatives_1_0");
 			builder.put(grammarAccess.getFuncCallAccess().getAlternatives(), "rule__FuncCall__Alternatives");
 			builder.put(grammarAccess.getExpressionVariableAccess().getAlternatives(), "rule__ExpressionVariable__Alternatives");
 			builder.put(grammarAccess.getInbuiltInfixAccess().getAlternatives(), "rule__InbuiltInfix__Alternatives");
@@ -108,13 +107,14 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTupleAccess().getGroup(), "rule__Tuple__Group__0");
 			builder.put(grammarAccess.getTupleAccess().getGroup_2(), "rule__Tuple__Group_2__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1(), "rule__FunctionCall__Group_1__0");
+			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1_0(), "rule__FunctionCall__Group_1_0__0");
+			builder.put(grammarAccess.getFunctionCallAccess().getGroup_1_0_1(), "rule__FunctionCall__Group_1_0_1__0");
 			builder.put(grammarAccess.getFunctionCallInbuiltAccess().getGroup(), "rule__FunctionCallInbuilt__Group__0");
 			builder.put(grammarAccess.getFuncCallArgsAccess().getGroup(), "rule__FuncCallArgs__Group__0");
 			builder.put(grammarAccess.getFuncCallArgsAccess().getGroup_1(), "rule__FuncCallArgs__Group_1__0");
 			builder.put(grammarAccess.getFuncCallArgsAccess().getGroup_1_2(), "rule__FuncCallArgs__Group_1_2__0");
 			builder.put(grammarAccess.getIfElseAccess().getGroup(), "rule__IfElse__Group__0");
 			builder.put(grammarAccess.getCondAccess().getGroup(), "rule__Cond__Group__0");
-			builder.put(grammarAccess.getClassVarDeclAccess().getGroup(), "rule__ClassVarDecl__Group__0");
 			builder.put(grammarAccess.getWrappedInfixAccess().getGroup(), "rule__WrappedInfix__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup(), "rule__Instance__Group__0");
 			builder.put(grammarAccess.getInstanceAccess().getGroup_7(), "rule__Instance__Group_7__0");
@@ -208,9 +208,9 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTupleAccess().getElementsAssignment_2_1(), "rule__Tuple__ElementsAssignment_2_1");
 			builder.put(grammarAccess.getFunctionCallAccess().getWrappedAssignment_0(), "rule__FunctionCall__WrappedAssignment_0");
 			builder.put(grammarAccess.getFunctionCallAccess().getTypeInstAssignment_1_0_0(), "rule__FunctionCall__TypeInstAssignment_1_0_0");
-			builder.put(grammarAccess.getFunctionCallAccess().getClassVarDeclAssignment_1_0_1(), "rule__FunctionCall__ClassVarDeclAssignment_1_0_1");
-			builder.put(grammarAccess.getFunctionCallAccess().getContextAssignment_1_1(), "rule__FunctionCall__ContextAssignment_1_1");
-			builder.put(grammarAccess.getFunctionCallAccess().getFuncCallArgsAssignment_1_2(), "rule__FunctionCall__FuncCallArgsAssignment_1_2");
+			builder.put(grammarAccess.getFunctionCallAccess().getGetterAssignment_1_0_1_1(), "rule__FunctionCall__GetterAssignment_1_0_1_1");
+			builder.put(grammarAccess.getFunctionCallAccess().getContextAssignment_1_0_2(), "rule__FunctionCall__ContextAssignment_1_0_2");
+			builder.put(grammarAccess.getFunctionCallAccess().getFuncCallArgsAssignment_1_1(), "rule__FunctionCall__FuncCallArgsAssignment_1_1");
 			builder.put(grammarAccess.getFunctionCallInbuiltAccess().getInbuiltUnaryAssignment_0(), "rule__FunctionCallInbuilt__InbuiltUnaryAssignment_0");
 			builder.put(grammarAccess.getFunctionCallInbuiltAccess().getFuncCallArgsAssignment_1(), "rule__FunctionCallInbuilt__FuncCallArgsAssignment_1");
 			builder.put(grammarAccess.getFuncCallArgsAccess().getArgumentsAssignment_1_1(), "rule__FuncCallArgs__ArgumentsAssignment_1_1");
@@ -221,8 +221,6 @@ public class BSharpParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCondAccess().getConditionAssignment_2(), "rule__Cond__ConditionAssignment_2");
 			builder.put(grammarAccess.getCondAccess().getIfTrueExprAssignment_4(), "rule__Cond__IfTrueExprAssignment_4");
 			builder.put(grammarAccess.getCondAccess().getIfFalseExprAssignment_6(), "rule__Cond__IfFalseExprAssignment_6");
-			builder.put(grammarAccess.getClassVarDeclAccess().getOwnerTypeAssignment_0(), "rule__ClassVarDecl__OwnerTypeAssignment_0");
-			builder.put(grammarAccess.getClassVarDeclAccess().getTypeInstAssignment_2(), "rule__ClassVarDecl__TypeInstAssignment_2");
 			builder.put(grammarAccess.getWrappedInfixAccess().getInbuiltAssignment_1_0(), "rule__WrappedInfix__InbuiltAssignment_1_0");
 			builder.put(grammarAccess.getWrappedInfixAccess().getFuncNameAssignment_1_1(), "rule__WrappedInfix__FuncNameAssignment_1_1");
 			builder.put(grammarAccess.getInstanceAccess().getClassNameAssignment_1(), "rule__Instance__ClassNameAssignment_1");

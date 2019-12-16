@@ -23,6 +23,9 @@ import ac.soton.bsharp.bSharp.TypeDeclContext;
 import ac.soton.bsharp.bSharp.TypedVariable;
 
 import ac.soton.bsharp.bSharp.WrappedInfix;
+import ac.soton.bsharp.typeInstanceRepresentation.ITypeInstance;
+import ac.soton.bsharp.typeInstanceRepresentation.StringTypeInstance;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,38 +52,18 @@ import org.eclipse.xtext.EcoreUtil2;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getOwnerType <em>Owner Type</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getClassVarDecl <em>Class Var Decl</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getContext <em>Context</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getWrapped <em>Wrapped</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getCompilationObject <em>Compilation Object</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getFuncCallArgs <em>Func Call Args</em>}</li>
  *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getGenInbuiltFunc <em>Gen Inbuilt Func</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getGetter <em>Getter</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.impl.FunctionCallImpl#getClassVarDecl <em>Class Var Decl</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
-	/**
-	 * The cached value of the '{@link #getOwnerType() <em>Owner Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnerType()
-	 * @generated
-	 * @ordered
-	 */
-	protected GenName ownerType;
-
-	/**
-	 * The cached value of the '{@link #getClassVarDecl() <em>Class Var Decl</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClassVarDecl()
-	 * @generated
-	 * @ordered
-	 */
-	protected ClassVarDecl classVarDecl;
-
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -132,6 +115,26 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	protected FunctionDecl genInbuiltFunc;
 
 	/**
+	 * The cached value of the '{@link #getGetter() <em>Getter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGetter()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExpressionVariable getter;
+
+	/**
+	 * The cached value of the '{@link #getClassVarDecl() <em>Class Var Decl</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClassVarDecl()
+	 * @generated
+	 * @ordered
+	 */
+	protected ClassVarDecl classVarDecl;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -148,91 +151,6 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	@Override
 	protected EClass eStaticClass() {
 		return BSharpPackage.Literals.FUNCTION_CALL;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public GenName getOwnerType() {
-		if (ownerType != null && ownerType.eIsProxy()) {
-			InternalEObject oldOwnerType = (InternalEObject)ownerType;
-			ownerType = (GenName)eResolveProxy(oldOwnerType);
-			if (ownerType != oldOwnerType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.FUNCTION_CALL__OWNER_TYPE, oldOwnerType, ownerType));
-			}
-		}
-		return ownerType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GenName basicGetOwnerType() {
-		return ownerType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setOwnerType(GenName newOwnerType) {
-		GenName oldOwnerType = ownerType;
-		ownerType = newOwnerType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__OWNER_TYPE, oldOwnerType, ownerType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ClassVarDecl getClassVarDecl() {
-		return classVarDecl;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetClassVarDecl(ClassVarDecl newClassVarDecl, NotificationChain msgs) {
-		ClassVarDecl oldClassVarDecl = classVarDecl;
-		classVarDecl = newClassVarDecl;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL, oldClassVarDecl, newClassVarDecl);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setClassVarDecl(ClassVarDecl newClassVarDecl) {
-		if (newClassVarDecl != classVarDecl) {
-			NotificationChain msgs = null;
-			if (classVarDecl != null)
-				msgs = ((InternalEObject)classVarDecl).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL, null, msgs);
-			if (newClassVarDecl != null)
-				msgs = ((InternalEObject)newClassVarDecl).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL, null, msgs);
-			msgs = basicSetClassVarDecl(newClassVarDecl, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL, newClassVarDecl, newClassVarDecl));
 	}
 
 	/**
@@ -434,10 +352,121 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * @generated
 	 */
 	@Override
+	public ExpressionVariable getGetter() {
+		if (getter != null && getter.eIsProxy()) {
+			InternalEObject oldGetter = (InternalEObject)getter;
+			getter = (ExpressionVariable)eResolveProxy(oldGetter);
+			if (getter != oldGetter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BSharpPackage.FUNCTION_CALL__GETTER, oldGetter, getter));
+			}
+		}
+		return getter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpressionVariable basicGetGetter() {
+		return getter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGetter(ExpressionVariable newGetter) {
+		ExpressionVariable oldGetter = getter;
+		getter = newGetter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__GETTER, oldGetter, getter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	public ClassVarDecl getClassVarDecl() {
+		if (classVarDecl != null)
+			return classVarDecl;
+		
+		if (getter == null) {
+			return null;
+		}
+		
+		ClassVarDecl cvd = BSharpFactory.eINSTANCE.createClassVarDecl();
+		cvd.setTypeVar(getter);
+		
+
+		ExpressionVariable inst = getTypeInst();
+			
+		if (!(inst instanceof TypedVariable) && !(inst instanceof ConstructedType) && !(inst instanceof PolyType))
+			return null;
+		
+		if (inst instanceof TypedVariable) {
+			cvd.setTypedVar((TypedVariable)inst);
+		} else if (inst instanceof PolyType) {
+			cvd.setOwnerType((PolyType)inst);
+		} else if (inst instanceof InstName) {
+			cvd.setOwnerType((InstName)inst);
+		} else {
+			ClassDecl type = ((ConstructedType)inst).getClassDecl();
+			cvd.setOwnerType(type);
+		}
+		
+		setClassVarDecl(cvd);
+		
+		return classVarDecl;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetClassVarDecl(ClassVarDecl newClassVarDecl, NotificationChain msgs) {
+		ClassVarDecl oldClassVarDecl = classVarDecl;
+		classVarDecl = newClassVarDecl;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL, oldClassVarDecl, newClassVarDecl);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setClassVarDecl(ClassVarDecl newClassVarDecl) {
+		if (newClassVarDecl != classVarDecl) {
+			NotificationChain msgs = null;
+			if (classVarDecl != null)
+				msgs = ((InternalEObject)classVarDecl).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL, null, msgs);
+			if (newClassVarDecl != null)
+				msgs = ((InternalEObject)newClassVarDecl).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL, null, msgs);
+			msgs = basicSetClassVarDecl(newClassVarDecl, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL, newClassVarDecl, newClassVarDecl));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
-				return basicSetClassVarDecl(null, msgs);
 			case BSharpPackage.FUNCTION_CALL__CONTEXT:
 				return basicSetContext(null, msgs);
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
@@ -448,6 +477,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return ((InternalEList<?>)getFuncCallArgs()).basicRemove(otherEnd, msgs);
 			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
 				return basicSetGenInbuiltFunc(null, msgs);
+			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
+				return basicSetClassVarDecl(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -460,11 +491,6 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_CALL__OWNER_TYPE:
-				if (resolve) return getOwnerType();
-				return basicGetOwnerType();
-			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
-				return getClassVarDecl();
 			case BSharpPackage.FUNCTION_CALL__CONTEXT:
 				return getContext();
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
@@ -475,6 +501,11 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return getFuncCallArgs();
 			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
 				return getGenInbuiltFunc();
+			case BSharpPackage.FUNCTION_CALL__GETTER:
+				if (resolve) return getGetter();
+				return basicGetGetter();
+			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
+				return getClassVarDecl();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -488,12 +519,6 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_CALL__OWNER_TYPE:
-				setOwnerType((GenName)newValue);
-				return;
-			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
-				setClassVarDecl((ClassVarDecl)newValue);
-				return;
 			case BSharpPackage.FUNCTION_CALL__CONTEXT:
 				setContext((TypeDeclContext)newValue);
 				return;
@@ -510,6 +535,12 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
 				setGenInbuiltFunc((FunctionDecl)newValue);
 				return;
+			case BSharpPackage.FUNCTION_CALL__GETTER:
+				setGetter((ExpressionVariable)newValue);
+				return;
+			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
+				setClassVarDecl((ClassVarDecl)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -522,12 +553,6 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_CALL__OWNER_TYPE:
-				setOwnerType((GenName)null);
-				return;
-			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
-				setClassVarDecl((ClassVarDecl)null);
-				return;
 			case BSharpPackage.FUNCTION_CALL__CONTEXT:
 				setContext((TypeDeclContext)null);
 				return;
@@ -543,6 +568,12 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
 				setGenInbuiltFunc((FunctionDecl)null);
 				return;
+			case BSharpPackage.FUNCTION_CALL__GETTER:
+				setGetter((ExpressionVariable)null);
+				return;
+			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
+				setClassVarDecl((ClassVarDecl)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -555,10 +586,6 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BSharpPackage.FUNCTION_CALL__OWNER_TYPE:
-				return ownerType != null;
-			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
-				return classVarDecl != null;
 			case BSharpPackage.FUNCTION_CALL__CONTEXT:
 				return context != null;
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
@@ -569,6 +596,10 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return funcCallArgs != null && !funcCallArgs.isEmpty();
 			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
 				return genInbuiltFunc != null;
+			case BSharpPackage.FUNCTION_CALL__GETTER:
+				return getter != null;
+			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
+				return classVarDecl != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -637,8 +668,20 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	 * this function allows that. */
 	@Override
 	public String compileToStringWithContext(FunctionCall fc, Boolean asPredicate) throws Exception {
+		ExpressionVariable getter = getGetter();
+		if (getter != null) {
+			ExpressionVariable typeInst = getTypeInst();
+			if (typeInst instanceof InstName) {
+				return getter.compileToStringWithContext(fc, asPredicate);
+			}
+			
+			ITypeInstance ti = new StringTypeInstance((TypedVariable)typeInst);
+			return ti.compileFunctionCallOfTypeInstance(fc, asPredicate, (TypedVariable)getter);
+		}
+		
 		ExpressionVariable typeInst = getTypeInst();
-		if (typeInst != null) {
+		ClassVarDecl classVarDecl = getClassVarDecl();
+		if (classVarDecl == null) {
 			return typeInst.compileToStringWithContext(fc, asPredicate);
 		} else {
 			return classVarDecl.compileToStringWithContext(fc, asPredicate);
@@ -704,6 +747,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		if (typeInst instanceof InstName) {
 			return true;
 		}
+		
+		ClassVarDecl classVarDecl = getClassVarDecl();
 		
 		if (classVarDecl != null) {
 			if (classVarDecl.referencesContainingType())
@@ -772,12 +817,13 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 	@Override
 	public TypeBuilder calculateType() {
 		// TODO: This does not appear to calculate the type when called with a context and no args.
+		ClassVarDecl classVarDecl = getClassVarDecl();
 		if (funcCallArgs == null || funcCallArgs.isEmpty()) {
-			if (typeInst != null)
-				return typeInst.calculateType();
-			else
+			if (classVarDecl != null) {
 				return classVarDecl.calculateType();
-			
+			} else {
+				return typeInst.calculateType();
+			}
 		}
 		
 		Iterator<FuncCallArgs> iter = funcCallArgs.iterator();
@@ -787,7 +833,8 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 		ExpressionVariable typeInst = getTypeInst();
 		TypeBuilder type = null;
 		if (arguments != null && !arguments.isEmpty()) {
-			if (typeInst != null) {
+			
+			if (classVarDecl == null) {
 				type =  typeInst.calculateReturnType(ctx, arguments);
 			} else {
 				type = classVarDecl.calculateReturnType(ctx, arguments);

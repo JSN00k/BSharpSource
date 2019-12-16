@@ -11,7 +11,7 @@ import ac.soton.bsharp.bSharp.GenName;
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class GenNameTest extends NamedObjectTest {
+public abstract class GenNameTest extends ExpressionVariableTest {
 
 	/**
 	 * Constructs a new Gen Name test case with the given name.

@@ -17,7 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link ac.soton.bsharp.bSharp.ClassVarDecl#getOwnerType <em>Owner Type</em>}</li>
- *   <li>{@link ac.soton.bsharp.bSharp.ClassVarDecl#getTypeInst <em>Type Inst</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.ClassVarDecl#getTypeVar <em>Type Var</em>}</li>
+ *   <li>{@link ac.soton.bsharp.bSharp.ClassVarDecl#getTypedVar <em>Typed Var</em>}</li>
  * </ul>
  *
  * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassVarDecl()
@@ -52,30 +53,48 @@ public interface ClassVarDecl extends IVarType {
 	void setOwnerType(GenName value);
 
 	/**
-	 * Returns the value of the '<em><b>Type Inst</b></em>' reference.
+	 * Returns the value of the '<em><b>Type Var</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type Inst</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Inst</em>' reference.
-	 * @see #setTypeInst(ExpressionVariable)
-	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassVarDecl_TypeInst()
+	 * @return the value of the '<em>Type Var</em>' reference.
+	 * @see #setTypeVar(ExpressionVariable)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassVarDecl_TypeVar()
 	 * @model
 	 * @generated
 	 */
-	ExpressionVariable getTypeInst();
+	ExpressionVariable getTypeVar();
 
 	/**
-	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ClassVarDecl#getTypeInst <em>Type Inst</em>}' reference.
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ClassVarDecl#getTypeVar <em>Type Var</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type Inst</em>' reference.
-	 * @see #getTypeInst()
+	 * @param value the new value of the '<em>Type Var</em>' reference.
+	 * @see #getTypeVar()
 	 * @generated
 	 */
-	void setTypeInst(ExpressionVariable value);
+	void setTypeVar(ExpressionVariable value);
+
+	/**
+	 * Returns the value of the '<em><b>Typed Var</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Typed Var</em>' reference.
+	 * @see #setTypedVar(TypedVariable)
+	 * @see ac.soton.bsharp.bSharp.BSharpPackage#getClassVarDecl_TypedVar()
+	 * @model
+	 * @generated
+	 */
+	TypedVariable getTypedVar();
+
+	/**
+	 * Sets the value of the '{@link ac.soton.bsharp.bSharp.ClassVarDecl#getTypedVar <em>Typed Var</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Typed Var</em>' reference.
+	 * @see #getTypedVar()
+	 * @generated
+	 */
+	void setTypedVar(TypedVariable value);
 
 	boolean referencesContainingType();
 

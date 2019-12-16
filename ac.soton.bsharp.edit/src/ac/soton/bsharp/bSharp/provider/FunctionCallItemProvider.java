@@ -49,32 +49,10 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOwnerTypePropertyDescriptor(object);
 			addCompilationObjectPropertyDescriptor(object);
+			addGetterPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Owner Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOwnerTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FunctionCall_ownerType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionCall_ownerType_feature", "_UI_FunctionCall_type"),
-				 BSharpPackage.Literals.FUNCTION_CALL__OWNER_TYPE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -100,6 +78,28 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Getter feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGetterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FunctionCall_getter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FunctionCall_getter_feature", "_UI_FunctionCall_type"),
+				 BSharpPackage.Literals.FUNCTION_CALL__GETTER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -111,11 +111,11 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__CLASS_VAR_DECL);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__CONTEXT);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__WRAPPED);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__FUNC_CALL_ARGS);
 			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__GEN_INBUILT_FUNC);
+			childrenFeatures.add(BSharpPackage.Literals.FUNCTION_CALL__CLASS_VAR_DECL);
 		}
 		return childrenFeatures;
 	}
@@ -168,11 +168,11 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FunctionCall.class)) {
-			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
 			case BSharpPackage.FUNCTION_CALL__CONTEXT:
 			case BSharpPackage.FUNCTION_CALL__WRAPPED:
 			case BSharpPackage.FUNCTION_CALL__FUNC_CALL_ARGS:
 			case BSharpPackage.FUNCTION_CALL__GEN_INBUILT_FUNC:
+			case BSharpPackage.FUNCTION_CALL__CLASS_VAR_DECL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -189,11 +189,6 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BSharpPackage.Literals.FUNCTION_CALL__CLASS_VAR_DECL,
-				 BSharpFactory.eINSTANCE.createClassVarDecl()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -219,6 +214,11 @@ public class FunctionCallItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(BSharpPackage.Literals.FUNCTION_CALL__GEN_INBUILT_FUNC,
 				 BSharpFactory.eINSTANCE.createReferencingFunc()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BSharpPackage.Literals.FUNCTION_CALL__CLASS_VAR_DECL,
+				 BSharpFactory.eINSTANCE.createClassVarDecl()));
 	}
 
 	/**

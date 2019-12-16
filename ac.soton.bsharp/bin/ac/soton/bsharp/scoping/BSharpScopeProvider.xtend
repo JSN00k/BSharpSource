@@ -15,40 +15,27 @@ import ac.soton.bsharp.bSharp.IVariableProvider
 import ac.soton.bsharp.bSharp.MatchCase
 import ac.soton.bsharp.bSharp.MatchStatement
 import ac.soton.bsharp.bSharp.DatatypeConstructor
-import ac.soton.bsharp.util.BSharpUtil
-import ac.soton.bsharp.bSharp.TypedVariable
 import java.util.ArrayList
-import ac.soton.bsharp.bSharp.ClassVarDecl
 import ac.soton.bsharp.bSharp.PolyType
 import ac.soton.bsharp.bSharp.BSClass
 import ac.soton.bsharp.bSharp.FunctionDecl
-import java.lang.reflect.Array
 import ac.soton.bsharp.bSharp.GenName
 import ac.soton.bsharp.bSharp.Extend
-import ac.soton.bsharp.bSharp.TypedVariableList
-import ac.soton.bsharp.bSharp.VariableTyping
-import ac.soton.bsharp.bSharp.TypeConstructor
 import ac.soton.bsharp.bSharp.ExpressionVariable
 import ac.soton.bsharp.bSharp.Instance
-import ac.soton.bsharp.bSharp.IClassInstance
 import ac.soton.bsharp.bSharp.TopLevelInstance
-import org.eclipse.xtext.parser.packrat.tokens.AssignmentToken.End
-import ac.soton.bsharp.bSharp.FileImport
 import ac.soton.bsharp.bSharp.util.CompilationUtil
 import java.util.List
-import org.eclipse.xtext.naming.QualifiedName
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import javax.inject.Inject
-import ac.soton.bsharp.bSharp.BSharpBlock
-import org.eclipse.xtext.resource.IEObjectDescription
 import ac.soton.bsharp.bSharp.ReferencingFunc
 import ac.soton.bsharp.bSharp.util.FunctionValidatorUtil
 import ac.soton.bsharp.bSharp.InstName
 import java.util.HashSet
+import ac.soton.bsharp.bSharp.FunctionCall
+import ac.soton.bsharp.bSharp.TypedVariable
+import ac.soton.bsharp.bSharp.ConstructedType
+import ac.soton.bsharp.bSharp.impl.FunctionCallImpl
 
 class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
-	
-	@Inject extension IQualifiedNameProvider
 	
 	def IScope scope_TopLevelFile(EObject context, EReference reference) {
 		/* We only want objects from the global scope. */
@@ -105,11 +92,10 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		return Scopes.scopeFor(typeNames, parent)
 	}
 	
-	def IScope scope_ExpressionVariable(ClassVarDecl ctx, EReference reference) {
+	def IScope scopeGetterExpressionVariable(EObject ctx, GenName genName, EReference reference) {
 		/* In this case it is necessary to check the class referenced from GenName, then
 		 * finding it's referencable variables
 		 */
-		 var genName = ctx.ownerType
 		 if (genName instanceof ClassDecl) {
 		 	val inscope = FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(ctx, (genName as ClassDecl))
 		 	return Scopes.scopeFor(inscope)
@@ -150,6 +136,44 @@ class BSharpScopeProvider extends AbstractDeclarativeScopeProvider {
 		 * 
 		 * Function names are a special case as they can be cousins of the referenced variable
 		 */
+		 if (context instanceof FunctionCall && reference.name == "typeInst" && (context as FunctionCallImpl).basicGetGetter() !== null) {
+		 	var result = scope_GenName(context, reference)
+		 	var  classDecl = CompilationUtil.getClassDecl(context)
+		 	val classTypedVars = FunctionValidatorUtil.allInscopeExpressionVariablesAssociatedWithClass(context, classDecl);
+		 	return Scopes.scopeFor(classTypedVars, result);
+		 }
+		 
+		 if (context instanceof FunctionCall && reference.name == "getter") {
+		 	/* We're in a situation like T.equ, we need to get the scope for equ
+		 	 */
+		 	 val typeInst = (context as FunctionCall).typeInst
+		 	 if (typeInst !== null) {
+		 	 	var GenName genName = null
+		 	 	if (typeInst instanceof TypedVariable) { 
+		 	 		genName = (typeInst as TypedVariable).type.classDecl
+		 	 	} else if (typeInst instanceof ConstructedType) {
+		 	 		genName = (typeInst as ConstructedType).classDecl
+		 	 	} else if (typeInst instanceof PolyType) {
+		 	 		genName = (typeInst as PolyType)
+		 	 	}
+		 	 	
+		 	 	if (genName !== null) {
+		 	 		return scopeGetterExpressionVariable(context, genName, reference
+		 	 		)
+		 	 	}
+		 	 	
+		 	 	
+		 	 	
+		 	 	return IScope.NULLSCOPE
+		 	 }
+		 	 
+		 	 if (!(typeInst instanceof ConstructedType)) {
+		 	 	return IScope.NULLSCOPE
+		 	 }
+		 	 
+		 	 return scopeGetterExpressionVariable(context, (typeInst as ConstructedType).classDecl, reference)
+		 }
+		 
 		 val inscope = FunctionValidatorUtil.allInscopeExpressionVariables(context)
 		 if (inscope === null) {
 		 	return IScope.NULLSCOPE

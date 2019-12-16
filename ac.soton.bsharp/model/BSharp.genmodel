@@ -15,7 +15,6 @@
     <genClasses image="false" ecoreClass="BSharp.ecore#//ITheoremContainer"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IBodyElementsContainer"/>
     <genClasses image="false" ecoreClass="BSharp.ecore#//IVarType"/>
-    <genClasses ecoreClass="BSharp.ecore#//Type"/>
     <genClasses ecoreClass="BSharp.ecore#//Import">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//Import/fileImports"/>
     </genClasses>
@@ -40,7 +39,8 @@
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ClassVarDecl">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassVarDecl/ownerType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassVarDecl/typeInst"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassVarDecl/typeVar"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//ClassVarDecl/typedVar"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//ConstructedType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//ConstructedType/constructor"/>
@@ -68,13 +68,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FileImport/typeName"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FunctionCall">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/ownerType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/classVarDecl"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/wrapped"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/compilationObject"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/funcCallArgs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/genInbuiltFunc"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/getter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BSharp.ecore#//FunctionCall/classVarDecl"/>
     </genClasses>
     <genClasses ecoreClass="BSharp.ecore#//FunctionCallInbuilt">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BSharp.ecore#//FunctionCallInbuilt/inbuiltUnary"/>

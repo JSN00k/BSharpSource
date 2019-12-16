@@ -1894,16 +1894,19 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cWrappedAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cWrappedWrappedInfixParserRuleCall_0_0 = (RuleCall)cWrappedAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final Assignment cTypeInstAssignment_1_0_0 = (Assignment)cAlternatives_1_0.eContents().get(0);
+		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
+		private final Assignment cTypeInstAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
 		private final CrossReference cTypeInstExpressionVariableCrossReference_1_0_0_0 = (CrossReference)cTypeInstAssignment_1_0_0.eContents().get(0);
 		private final RuleCall cTypeInstExpressionVariableIDTerminalRuleCall_1_0_0_0_1 = (RuleCall)cTypeInstExpressionVariableCrossReference_1_0_0_0.eContents().get(1);
-		private final Assignment cClassVarDeclAssignment_1_0_1 = (Assignment)cAlternatives_1_0.eContents().get(1);
-		private final RuleCall cClassVarDeclClassVarDeclParserRuleCall_1_0_1_0 = (RuleCall)cClassVarDeclAssignment_1_0_1.eContents().get(0);
-		private final Assignment cContextAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cContextTypeDeclContextParserRuleCall_1_1_0 = (RuleCall)cContextAssignment_1_1.eContents().get(0);
-		private final Assignment cFuncCallArgsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cFuncCallArgsFuncCallArgsParserRuleCall_1_2_0 = (RuleCall)cFuncCallArgsAssignment_1_2.eContents().get(0);
+		private final Group cGroup_1_0_1 = (Group)cGroup_1_0.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0_1_0 = (Keyword)cGroup_1_0_1.eContents().get(0);
+		private final Assignment cGetterAssignment_1_0_1_1 = (Assignment)cGroup_1_0_1.eContents().get(1);
+		private final CrossReference cGetterExpressionVariableCrossReference_1_0_1_1_0 = (CrossReference)cGetterAssignment_1_0_1_1.eContents().get(0);
+		private final RuleCall cGetterExpressionVariableIDTerminalRuleCall_1_0_1_1_0_1 = (RuleCall)cGetterExpressionVariableCrossReference_1_0_1_1_0.eContents().get(1);
+		private final Assignment cContextAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final RuleCall cContextTypeDeclContextParserRuleCall_1_0_2_0 = (RuleCall)cContextAssignment_1_0_2.eContents().get(0);
+		private final Assignment cFuncCallArgsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cFuncCallArgsFuncCallArgsParserRuleCall_1_1_0 = (RuleCall)cFuncCallArgsAssignment_1_1.eContents().get(0);
 		
 		///* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
 		// * scenarios: 
@@ -1917,12 +1920,15 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		// * it to be called either as an operator or a functional call.
 		// * 
 		// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
+		// * 
+		// * Due to the left  to right parsing of the Antlr parser splitting this into simpler statements is hard without backtracking
+		// * (Which is not recommended)
 		// */ FunctionCall:
-		//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext?
+		//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] (=> '.' getter=[ExpressionVariable])? context=TypeDeclContext?)
 		//	funcCallArgs+=FuncCallArgs*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext?
+		//wrapped=WrappedInfix | (typeInst=[ExpressionVariable] (=> '.' getter=[ExpressionVariable])? context=TypeDeclContext?)
 		//funcCallArgs+=FuncCallArgs*
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
@@ -1932,11 +1938,12 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//WrappedInfix
 		public RuleCall getWrappedWrappedInfixParserRuleCall_0_0() { return cWrappedWrappedInfixParserRuleCall_0_0; }
 		
-		//(typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? funcCallArgs+=FuncCallArgs*
+		//(typeInst=[ExpressionVariable] (=> '.' getter=[ExpressionVariable])? context=TypeDeclContext?)
+		//funcCallArgs+=FuncCallArgs*
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		//typeInst=[ExpressionVariable] (=> '.' getter=[ExpressionVariable])? context=TypeDeclContext?
+		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//typeInst=[ExpressionVariable]
 		public Assignment getTypeInstAssignment_1_0_0() { return cTypeInstAssignment_1_0_0; }
@@ -1947,23 +1954,32 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getTypeInstExpressionVariableIDTerminalRuleCall_1_0_0_0_1() { return cTypeInstExpressionVariableIDTerminalRuleCall_1_0_0_0_1; }
 		
-		//classVarDecl=ClassVarDecl
-		public Assignment getClassVarDeclAssignment_1_0_1() { return cClassVarDeclAssignment_1_0_1; }
+		//(=> '.' getter=[ExpressionVariable])?
+		public Group getGroup_1_0_1() { return cGroup_1_0_1; }
 		
-		//ClassVarDecl
-		public RuleCall getClassVarDeclClassVarDeclParserRuleCall_1_0_1_0() { return cClassVarDeclClassVarDeclParserRuleCall_1_0_1_0; }
+		//=> '.'
+		public Keyword getFullStopKeyword_1_0_1_0() { return cFullStopKeyword_1_0_1_0; }
+		
+		//getter=[ExpressionVariable]
+		public Assignment getGetterAssignment_1_0_1_1() { return cGetterAssignment_1_0_1_1; }
+		
+		//[ExpressionVariable]
+		public CrossReference getGetterExpressionVariableCrossReference_1_0_1_1_0() { return cGetterExpressionVariableCrossReference_1_0_1_1_0; }
+		
+		//ID
+		public RuleCall getGetterExpressionVariableIDTerminalRuleCall_1_0_1_1_0_1() { return cGetterExpressionVariableIDTerminalRuleCall_1_0_1_1_0_1; }
 		
 		//context=TypeDeclContext?
-		public Assignment getContextAssignment_1_1() { return cContextAssignment_1_1; }
+		public Assignment getContextAssignment_1_0_2() { return cContextAssignment_1_0_2; }
 		
 		//TypeDeclContext
-		public RuleCall getContextTypeDeclContextParserRuleCall_1_1_0() { return cContextTypeDeclContextParserRuleCall_1_1_0; }
+		public RuleCall getContextTypeDeclContextParserRuleCall_1_0_2_0() { return cContextTypeDeclContextParserRuleCall_1_0_2_0; }
 		
 		//funcCallArgs+=FuncCallArgs*
-		public Assignment getFuncCallArgsAssignment_1_2() { return cFuncCallArgsAssignment_1_2; }
+		public Assignment getFuncCallArgsAssignment_1_1() { return cFuncCallArgsAssignment_1_1; }
 		
 		//FuncCallArgs
-		public RuleCall getFuncCallArgsFuncCallArgsParserRuleCall_1_2_0() { return cFuncCallArgsFuncCallArgsParserRuleCall_1_2_0; }
+		public RuleCall getFuncCallArgsFuncCallArgsParserRuleCall_1_1_0() { return cFuncCallArgsFuncCallArgsParserRuleCall_1_1_0; }
 	}
 	public class FunctionCallInbuiltElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.FunctionCallInbuilt");
@@ -1973,6 +1989,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFuncCallArgsAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cFuncCallArgsFuncCallArgsParserRuleCall_1_0 = (RuleCall)cFuncCallArgsAssignment_1.eContents().get(0);
 		
+		///* This is used to get variables, functions constructors and deconstructors from a class I think 
+		// * that it may be only applicable for concrete and polynomial types, but I'm not entirely sure. */ //ClassVarDecl:
+		////	ownerType=[GenName]  '.' typeInst=[ExpressionVariable]
+		////;
 		//FunctionCallInbuilt:
 		//	inbuiltUnary=InbuiltUnary funcCallArgs+=FuncCallArgs*;
 		@Override public ParserRule getRule() { return rule; }
@@ -2179,60 +2199,19 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_7() { return cRightParenthesisKeyword_7; }
 	}
-	public class ClassVarDeclElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ClassVarDecl");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnerTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cOwnerTypeGenNameCrossReference_0_0 = (CrossReference)cOwnerTypeAssignment_0.eContents().get(0);
-		private final RuleCall cOwnerTypeGenNameIDTerminalRuleCall_0_0_1 = (RuleCall)cOwnerTypeGenNameCrossReference_0_0.eContents().get(1);
-		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cTypeInstAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cTypeInstExpressionVariableCrossReference_2_0 = (CrossReference)cTypeInstAssignment_2.eContents().get(0);
-		private final RuleCall cTypeInstExpressionVariableIDTerminalRuleCall_2_0_1 = (RuleCall)cTypeInstExpressionVariableCrossReference_2_0.eContents().get(1);
-		
-		///* This is used to get variables, functions constructors and deconstructors from a class I think 
-		// * that it may be only applicable for concrete and polynomial types, but I'm not entirely sure. */ ClassVarDecl:
-		//	ownerType=[GenName] '.' typeInst=[ExpressionVariable];
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownerType=[GenName] '.' typeInst=[ExpressionVariable]
-		public Group getGroup() { return cGroup; }
-		
-		//ownerType=[GenName]
-		public Assignment getOwnerTypeAssignment_0() { return cOwnerTypeAssignment_0; }
-		
-		//[GenName]
-		public CrossReference getOwnerTypeGenNameCrossReference_0_0() { return cOwnerTypeGenNameCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getOwnerTypeGenNameIDTerminalRuleCall_0_0_1() { return cOwnerTypeGenNameIDTerminalRuleCall_0_0_1; }
-		
-		//'.'
-		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
-		
-		//typeInst=[ExpressionVariable]
-		public Assignment getTypeInstAssignment_2() { return cTypeInstAssignment_2; }
-		
-		//[ExpressionVariable]
-		public CrossReference getTypeInstExpressionVariableCrossReference_2_0() { return cTypeInstExpressionVariableCrossReference_2_0; }
-		
-		//ID
-		public RuleCall getTypeInstExpressionVariableIDTerminalRuleCall_2_0_1() { return cTypeInstExpressionVariableIDTerminalRuleCall_2_0_1; }
-	}
 	public class ExpressionVariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.ExpressionVariable");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cFunctionDeclParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTypedVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cInstNameParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cDatatypeConstructorParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cConstructedTypeParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cDatatypeConstructorParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cConstructedTypeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//ExpressionVariable:
-		//	FunctionDecl | TypedVariable | InstName | DatatypeConstructor | ConstructedType;
+		//	FunctionDecl | TypedVariable | DatatypeConstructor | ConstructedType;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FunctionDecl | TypedVariable | InstName | DatatypeConstructor | ConstructedType
+		//FunctionDecl | TypedVariable | DatatypeConstructor | ConstructedType
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//FunctionDecl
@@ -2241,14 +2220,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		//TypedVariable
 		public RuleCall getTypedVariableParserRuleCall_1() { return cTypedVariableParserRuleCall_1; }
 		
-		//InstName
-		public RuleCall getInstNameParserRuleCall_2() { return cInstNameParserRuleCall_2; }
-		
 		//DatatypeConstructor
-		public RuleCall getDatatypeConstructorParserRuleCall_3() { return cDatatypeConstructorParserRuleCall_3; }
+		public RuleCall getDatatypeConstructorParserRuleCall_2() { return cDatatypeConstructorParserRuleCall_2; }
 		
 		//ConstructedType
-		public RuleCall getConstructedTypeParserRuleCall_4() { return cConstructedTypeParserRuleCall_4; }
+		public RuleCall getConstructedTypeParserRuleCall_3() { return cConstructedTypeParserRuleCall_3; }
 	}
 	public class InbuiltInfixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ac.soton.bsharp.BSharp.InbuiltInfix");
@@ -2563,7 +2539,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	private final FuncCallArgsElements pFuncCallArgs;
 	private final IfElseElements pIfElse;
 	private final CondElements pCond;
-	private final ClassVarDeclElements pClassVarDecl;
 	private final ExpressionVariableElements pExpressionVariable;
 	private final InbuiltInfixElements pInbuiltInfix;
 	private final InbuiltUnaryElements pInbuiltUnary;
@@ -2636,7 +2611,6 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		this.pFuncCallArgs = new FuncCallArgsElements();
 		this.pIfElse = new IfElseElements();
 		this.pCond = new CondElements();
-		this.pClassVarDecl = new ClassVarDeclElements();
 		this.pExpressionVariable = new ExpressionVariableElements();
 		this.pInbuiltInfix = new InbuiltInfixElements();
 		this.pInbuiltUnary = new InbuiltUnaryElements();
@@ -3243,8 +3217,11 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	// * it to be called either as an operator or a functional call.
 	// * 
 	// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
+	// * 
+	// * Due to the left  to right parsing of the Antlr parser splitting this into simpler statements is hard without backtracking
+	// * (Which is not recommended)
 	// */ FunctionCall:
-	//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext?
+	//	wrapped=WrappedInfix | (typeInst=[ExpressionVariable] (=> '.' getter=[ExpressionVariable])? context=TypeDeclContext?)
 	//	funcCallArgs+=FuncCallArgs*;
 	public FunctionCallElements getFunctionCallAccess() {
 		return pFunctionCall;
@@ -3254,6 +3231,10 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionCallAccess().getRule();
 	}
 	
+	///* This is used to get variables, functions constructors and deconstructors from a class I think 
+	// * that it may be only applicable for concrete and polynomial types, but I'm not entirely sure. */ //ClassVarDecl:
+	////	ownerType=[GenName]  '.' typeInst=[ExpressionVariable]
+	////;
 	//FunctionCallInbuilt:
 	//	inbuiltUnary=InbuiltUnary funcCallArgs+=FuncCallArgs*;
 	public FunctionCallInbuiltElements getFunctionCallInbuiltAccess() {
@@ -3307,19 +3288,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getCondAccess().getRule();
 	}
 	
-	///* This is used to get variables, functions constructors and deconstructors from a class I think 
-	// * that it may be only applicable for concrete and polynomial types, but I'm not entirely sure. */ ClassVarDecl:
-	//	ownerType=[GenName] '.' typeInst=[ExpressionVariable];
-	public ClassVarDeclElements getClassVarDeclAccess() {
-		return pClassVarDecl;
-	}
-	
-	public ParserRule getClassVarDeclRule() {
-		return getClassVarDeclAccess().getRule();
-	}
-	
 	//ExpressionVariable:
-	//	FunctionDecl | TypedVariable | InstName | DatatypeConstructor | ConstructedType;
+	//	FunctionDecl | TypedVariable | DatatypeConstructor | ConstructedType;
 	public ExpressionVariableElements getExpressionVariableAccess() {
 		return pExpressionVariable;
 	}

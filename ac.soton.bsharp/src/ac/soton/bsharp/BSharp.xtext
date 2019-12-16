@@ -316,11 +316,20 @@ Tuple:
  * it to be called either as an operator or a functional call.
  * 
  * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
+ * 
+ * Due to the left  to right parsing of the Antlr parser splitting this into simpler statements is hard without backtracking
+ * (Which is not recommended)
  */
 FunctionCall returns FunctionCall:
-	 wrapped=WrappedInfix | (typeInst=[ExpressionVariable] | classVarDecl=ClassVarDecl) context=TypeDeclContext? 
+	  wrapped=WrappedInfix | (typeInst=[ExpressionVariable] (=>'.' getter=[ExpressionVariable])? context=TypeDeclContext?)
 	  funcCallArgs+=FuncCallArgs*
 ;
+
+/* This is used to get variables, functions constructors and deconstructors from a class I think 
+ * that it may be only applicable for concrete and polynomial types, but I'm not entirely sure. */
+//ClassVarDecl:
+//	ownerType=[GenName]  '.' typeInst=[ExpressionVariable]
+//;
 
 FunctionCallInbuilt:
 	inbuiltUnary=InbuiltUnary funcCallArgs+=FuncCallArgs*
@@ -348,14 +357,8 @@ Cond returns IfElse:
 	'COND' '(' condition = RootExpression "," ifTrueExpr = RootExpression "," ifFalseExpr = RootExpression ')'
 ;
 
-/* This is used to get variables, functions constructors and deconstructors from a class I think 
- * that it may be only applicable for concrete and polynomial types, but I'm not entirely sure. */
-ClassVarDecl:
-	(ownerType=[GenName] '.' typeInst=[ExpressionVariable])
-;
-
 ExpressionVariable:
-	 FunctionDecl | TypedVariable | InstName | DatatypeConstructor | ConstructedType
+	 FunctionDecl | TypedVariable | DatatypeConstructor | ConstructedType
 ;
 
 /* Currently all of the Inbuilt infix operators declared here are predicate operators, the code 

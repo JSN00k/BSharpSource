@@ -73,29 +73,6 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.Type} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TypeItemProvider typeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link ac.soton.bsharp.bSharp.Type}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTypeAdapter() {
-		if (typeItemProvider == null) {
-			typeItemProvider = new TypeItemProvider(this);
-		}
-
-		return typeItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link ac.soton.bsharp.bSharp.TopLevel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1258,7 +1235,6 @@ public class BSharpItemProviderAdapterFactory extends BSharpAdapterFactory imple
 	 */
 	@Override
 	public void dispose() {
-		if (typeItemProvider != null) typeItemProvider.dispose();
 		if (bracketItemProvider != null) bracketItemProvider.dispose();
 		if (bsClassItemProvider != null) bsClassItemProvider.dispose();
 		if (bSharpBlockItemProvider != null) bSharpBlockItemProvider.dispose();

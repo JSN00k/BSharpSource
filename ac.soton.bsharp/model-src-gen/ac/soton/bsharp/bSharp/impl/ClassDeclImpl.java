@@ -18,7 +18,6 @@ import ac.soton.bsharp.bSharp.PolyContext;
 import ac.soton.bsharp.bSharp.PolyType;
 
 import ac.soton.bsharp.bSharp.TopLevelInstance;
-import ac.soton.bsharp.bSharp.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

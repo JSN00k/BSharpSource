@@ -57,7 +57,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case BSharpPackage.TYPE: return createType();
 			case BSharpPackage.BRACKET: return createBracket();
 			case BSharpPackage.BS_CLASS: return createBSClass();
 			case BSharpPackage.BSHARP_BLOCK: return createBSharpBlock();
@@ -503,17 +502,6 @@ public class BSharpFactoryImpl extends EFactoryImpl implements BSharpFactory {
 	public Infix createInfix() {
 		InfixImpl infix = new InfixImpl();
 		return infix;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type createType() {
-		TypeImpl type = new TypeImpl();
-		return type;
 	}
 
 	/**
