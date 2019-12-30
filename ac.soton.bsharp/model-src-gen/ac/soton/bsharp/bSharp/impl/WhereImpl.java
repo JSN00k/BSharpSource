@@ -177,6 +177,8 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 			return "";
 		}
 		
+		boolean reqBrackets = expressions.size() > 1;
+		
 		Boolean first = true;
 		String result = "";
 		for (Expression expr : expressions) {
@@ -188,7 +190,11 @@ public class WhereImpl extends MinimalEObjectImpl.Container implements Where {
 			
 			/* These expressions have to compile to predicates. */
 			try {
-				result += expr.compileToEventBString(true);
+				if (reqBrackets && expr instanceof QuantLambda) {
+					result += "(" + expr.compileToEventBString(true) + ")";
+				} else {
+					result += expr.compileToEventBString(true);
+				}
 			} catch (Exception e) {
 				System.err.print("Failed to compile expression as boolean with error: " + e.getLocalizedMessage());
 			}

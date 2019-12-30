@@ -675,8 +675,10 @@ public class FunctionCallImpl extends ExpressionImpl implements FunctionCall {
 				return getter.compileToStringWithContext(fc, asPredicate);
 			}
 			
-			ITypeInstance ti = new StringTypeInstance((TypedVariable)typeInst);
-			return ti.compileFunctionCallOfTypeInstance(fc, asPredicate, (TypedVariable)getter);
+			if (typeInst instanceof TypedVariable) {
+				ITypeInstance ti = new StringTypeInstance((TypedVariable)typeInst);
+				return ti.compileFunctionCallOfTypeInstance(fc, asPredicate, (TypedVariable)getter);
+			}
 		}
 		
 		ExpressionVariable typeInst = getTypeInst();
