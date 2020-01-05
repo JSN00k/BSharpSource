@@ -661,24 +661,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		else
 			return context.namesAndTypesForPolyContext(thyCache);
 
-//		if (supertypes == null) {
-//			throw new Exception("Type class declared without any sort of supertype");
-//		}
-//
-//		Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
-//		if (sTypes == null || sTypes.isEmpty()) {
-//			throw new Exception("Type class declared without any sort of supertype");
-//		}
-//
-//		TypeBuilder sup = sTypes.iterator().next();
-//
-//		if (!sup.isAbstractTypeClass())
-//			throw new Exception("Type class declared without any sort of supertype");
-//
-//		BSClass superClass = sup.getTypeClass();
-//		ArrayList<Tuple2<String, String>> result = superClass.polyArgumentsToConstructGenericTypeClass(thyCache);
-//
-//		return result;
 	}
 
 	@Override
@@ -876,7 +858,7 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 	}
 
 	@Override
-	public String getterForOpName(String opName) {
+	public String getterForOpName(String opName) {		
 		return name + "_" + opName;
 	}
 	
@@ -974,24 +956,26 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		Map<String, ArrayList<Integer>> prjMap = localProjectionsforOpNameMap();
 		return prjMap.get(typedVariable.getName());
 	}
-
-	@Override
+	
+	@Override 
 	public Boolean isTypeClass() {
-		if (varList != null) {
-			if (varList.getCompiledVariablesAndTypes().size() != 0) {
+		/* This is true if there are associated elements, or if one of the supertypes has associated elements */
+		TypedVariableList associatedElems = getVarList();
+		if (associatedElems != null && !associatedElems.isEmpty())
+			return true;
+		
+		SuperTypeList stl = getSupertypes();
+		if (stl == null || stl.isEmpty()) {
+			return false;
+		}
+		
+		for (TypeBuilder tc : stl.getSuperTypes() ) {
+			BSClass st = tc.getTypeClass();
+			if (st != null && st.isTypeClass()) {
 				return true;
 			}
 		}
-
-		if (supertypes != null) {
-			Collection<TypeBuilder> sTypes = supertypes.getSuperTypes();
-
-			if (sTypes != null && !sTypes.isEmpty()) {
-				TypeBuilder sup = sTypes.iterator().next();
-				return sup.isAbstractTypeClass();
-			}
-		}
-
+		
 		return false;
 	}
 
@@ -1649,4 +1633,6 @@ public class BSClassImpl extends ClassDeclImpl implements BSClass {
 		 */
 		return genericTypeInstance(context);
 	}
+	
+
 } // BppClassImpl

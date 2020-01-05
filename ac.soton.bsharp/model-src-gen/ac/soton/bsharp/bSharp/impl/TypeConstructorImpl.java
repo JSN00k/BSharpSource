@@ -313,8 +313,7 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 		if (!(typeName instanceof BSClass))
 			return false;
 		
-		TypedVariableList varList = ((BSClass)typeName).getVarList();
-		return varList != null && varList.varCount() != 0 && (context == null || context.getTypeName().size() == 0);
+		return ((BSClass)typeName).isTypeClass();
 	}
 
 	@Override
