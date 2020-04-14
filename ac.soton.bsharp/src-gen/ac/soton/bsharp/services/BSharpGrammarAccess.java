@@ -1206,8 +1206,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprRootExpressionParserRuleCall_9_0 = (RuleCall)cExprAssignment_9.eContents().get(0);
 		
 		///*------------------------- Functions --------------------------------- */ FunctionDecl:
-		//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=ConstructedType infix='INFIX'?
-		//	precedence=INT? expr=RootExpression;
+		//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')'
+		//	':' returnType=ConstructedType infix='INFIX'? precedence=INT? expr=RootExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=ConstructedType infix='INFIX'?
@@ -1908,18 +1908,20 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFuncCallArgsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cFuncCallArgsFuncCallArgsParserRuleCall_1_1_0 = (RuleCall)cFuncCallArgsAssignment_1_1.eContents().get(0);
 		
-		///* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
-		// * scenarios: 
+		///* This produces an interesting issue in parsing the program because it is necessary to 
+		// * distinguish between the following three scenarios: 
 		// * A function call f(arguments)
 		// * A infix function with a bracketed argument on the right 10 f (arguments)
 		// * A function used without any arguments f add g 
 		// * 
-		// * To solve this functions can either be Prefix, Infix, or called with bracketed arguments. You cannot call a Infix function with bracketd 
-		// * arguments. To do this you would need to write another function to make this call for you. In coq this is achieved when you declare a function
-		// * you can add a operator name to the function, which is either infix or prefix, this again gives the two names for the function allowing 
-		// * it to be called either as an operator or a functional call.
+		// * To solve this functions can either be Prefix, Infix, or called with bracketed arguments. 
+		// * You cannot call a Infix function with bracketed arguments. To do this you would need to 
+		// * write another function to make this call for you. In coq this is achieved when you declare a function
+		// * you can add a operator name to the function, which is either infix or prefix, this again gives 
+		// * the two names for the function allowing it to be called either as an operator or a functional call.
 		// * 
-		// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
+		// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, 
+		// * followed by type checking the arguments.
 		// * 
 		// * Due to the left  to right parsing of the Antlr parser splitting this into simpler statements is hard without backtracking
 		// * (Which is not recommended)
@@ -2366,8 +2368,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_10_2 = (Keyword)cGroup_10.eContents().get(2);
 		
 		///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-		//	'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>' '(' arguments+=RootExpression? (','
-		//	arguments+=RootExpression)* ')' name=ID? ('(' referencingFuncs+=ReferencingFunc ')')*;
+		//	'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>'
+		//	'(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')' name=ID? ('(' referencingFuncs+=ReferencingFunc
+		//	')')*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>' '(' arguments+=RootExpression? (','
@@ -3013,8 +3016,8 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///*------------------------- Functions --------------------------------- */ FunctionDecl:
-	//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')' ':' returnType=ConstructedType infix='INFIX'?
-	//	precedence=INT? expr=RootExpression;
+	//	name=ID context=PolyContext? '(' varList=TypedVariableList? ')'
+	//	':' returnType=ConstructedType infix='INFIX'? precedence=INT? expr=RootExpression;
 	public FunctionDeclElements getFunctionDeclAccess() {
 		return pFunctionDecl;
 	}
@@ -3205,18 +3208,20 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 		return getTupleAccess().getRule();
 	}
 	
-	///* This produces an interesting issue in parsing the program because it is necessary to distinguish between the following three
-	// * scenarios: 
+	///* This produces an interesting issue in parsing the program because it is necessary to 
+	// * distinguish between the following three scenarios: 
 	// * A function call f(arguments)
 	// * A infix function with a bracketed argument on the right 10 f (arguments)
 	// * A function used without any arguments f add g 
 	// * 
-	// * To solve this functions can either be Prefix, Infix, or called with bracketed arguments. You cannot call a Infix function with bracketd 
-	// * arguments. To do this you would need to write another function to make this call for you. In coq this is achieved when you declare a function
-	// * you can add a operator name to the function, which is either infix or prefix, this again gives the two names for the function allowing 
-	// * it to be called either as an operator or a functional call.
+	// * To solve this functions can either be Prefix, Infix, or called with bracketed arguments. 
+	// * You cannot call a Infix function with bracketed arguments. To do this you would need to 
+	// * write another function to make this call for you. In coq this is achieved when you declare a function
+	// * you can add a operator name to the function, which is either infix or prefix, this again gives 
+	// * the two names for the function allowing it to be called either as an operator or a functional call.
 	// * 
-	// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, followed by type checking the arguments.
+	// * This expressions needs a lot of programmatic checking! Starting with the count of the arguments, 
+	// * followed by type checking the arguments.
 	// * 
 	// * Due to the left  to right parsing of the Antlr parser splitting this into simpler statements is hard without backtracking
 	// * (Which is not recommended)
@@ -3331,8 +3336,9 @@ public class BSharpGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ------------------------------ Instance ---------------------------------------------*/ Instance:
-	//	'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>' '(' arguments+=RootExpression? (','
-	//	arguments+=RootExpression)* ')' name=ID? ('(' referencingFuncs+=ReferencingFunc ')')*;
+	//	'Instance' className=[BSClass|QualifiedName] '<' context+=[IClassInstance]+ '>'
+	//	'(' arguments+=RootExpression? (',' arguments+=RootExpression)* ')' name=ID? ('(' referencingFuncs+=ReferencingFunc
+	//	')')*;
 	public InstanceElements getInstanceAccess() {
 		return pInstance;
 	}

@@ -185,6 +185,16 @@ public class ReferencingFuncImpl extends FunctionDeclImpl implements Referencing
 	}
 	
 	@Override
+	public boolean isMethod() {
+		/* I believe that a ReferencingFunc is a function that is instantiated by an 
+		 * instance statement. As such it is no longer a method. Note also that this 
+		 * method has to overridden as the default method looks for an expr, which
+		 * ReferencingFuncs don't have.
+		 */
+		return false;
+	}
+	
+	@Override
 	public boolean hasInferredContext() {
 		return getReferencedFunc().hasInferredContext();
 	}
