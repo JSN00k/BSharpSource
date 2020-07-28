@@ -4,6 +4,7 @@
 package ac.soton.bsharp.bSharp.impl;
 
 import ac.soton.bsharp.bSharp.BSharpPackage;
+import ac.soton.bsharp.bSharp.Datatype;
 import ac.soton.bsharp.bSharp.Expression;
 import ac.soton.bsharp.bSharp.ExpressionVariable;
 import ac.soton.bsharp.bSharp.FuncCallArgs;
@@ -68,7 +69,7 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 	}
 	
 	public static String compileToStringWithContextFunc(IVarType var, FunctionCall fc, Boolean asPred)  throws Exception {
-		TypeDeclContext ctx = fc.getContext();
+		TypeDeclContext ctx = fc.getContext();		
 		List<FuncCallArgs> argBlock = fc.getFuncCallArgs();
 		boolean argsAreEmpty = argBlock == null || argBlock.isEmpty();
 		String result = var.getEventBFunctypeForCall(fc);
@@ -88,7 +89,9 @@ public abstract class ExpressionVariableImpl extends NamedObjectImpl implements 
 				} else {
 					result += "(" + CompilationUtil.compileExpressionListWithSeperator(argBlock.get(i).getArguments(), sep) + ")";
 				}
-				sep = " ↦ ";
+				
+				/* Very skeptical about this. */
+				//sep = " ↦ ";
 			}
 			
 			String lastBlock;

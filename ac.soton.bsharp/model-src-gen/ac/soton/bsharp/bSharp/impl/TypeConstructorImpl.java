@@ -455,6 +455,19 @@ public class TypeConstructorImpl extends TypeBuilderImpl implements TypeConstruc
 			return CompilationUtil.getTypeInstance(fc).baseTypeString();
 		} else if (typeName instanceof BSClass){
 			return ((BSClass)typeName).compileToStringWithContext(fc, asPred);
+		} else if (typeName instanceof Datatype) {
+			/* There are monsters here. A Datatype is being compiled as part of
+			 * an expression this could be viewed as a function call or a type constructor
+			 * if it's viewed as a function call the context of the function call should be 
+			 * used. If it's a type constructor the tc context should be used. I don't believe
+			 * that both could happen at once so the below code should work. However I shouldn't
+			 * be in this situation! 
+			 */
+			if (fc.getContext() == null || fc.getContext().isEmpty()) {
+				return ((Datatype) typeName).typeStringWithContext(context);
+			}
+			
+			return ((Datatype)typeName).compileToStringWithContext(fc, asPred);
 		} else {
 			return typeName.getName();
 		}

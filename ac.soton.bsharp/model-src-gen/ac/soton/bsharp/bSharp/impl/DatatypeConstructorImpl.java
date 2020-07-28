@@ -362,7 +362,7 @@ public class DatatypeConstructorImpl extends MinimalEObjectImpl.Container implem
 
 	@Override
 	public String evBSeparatorForFunc() {
-		return " ↦ ";
+		return ", ";
 	}
 	
 	@Override

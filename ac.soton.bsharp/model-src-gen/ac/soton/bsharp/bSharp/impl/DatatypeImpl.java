@@ -216,8 +216,15 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 		if (context != null) {
 			Collection<PolyType> pTypes =  context.getPolyTypes();
 			for (PolyType pType : pTypes) {
-				String evBName = thyCache.getEventBTypeParamNameForName(pType.getName());
-				TheoryUtils.createTypeArgument(datatype, evBName, null, nullMonitor);
+				// In datatypes we currently only allow complete Event-B types the 
+				// result of this is that we can use the same name as the Bsharp type.
+				// The original was wrong anyway as subtypes will be allowed by subtyping
+				// the data type.
+				//String evBName = thyCache.getEventBTypeParamNameForName(pType.getName());
+				//TODO:This has a high chance of causing a naming clash as we don't add _EvB
+				//     to the type name. This should be checked for.
+				TheoryUtils.createTypeParameter(thyRoot, pType.getName(), null, nullMonitor);
+				TheoryUtils.createTypeArgument(datatype, pType.getName(), null, nullMonitor);
 			}
 		}
 		
@@ -230,8 +237,16 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	@Override
 	public String constructWithTypeContext(TypeDeclContext context) {
-		// TODO Auto-generated method stub
-		return null;
+		String result = new String();
+		result += name + "(";
+		List<TypeBuilder> types = context.getTypeName();
+		for (TypeBuilder t : types) {
+			result += t.buildEventBType();
+		}
+		
+		result += ")";
+		
+		return result;
 	}
 
 	@Override
@@ -357,8 +372,7 @@ public class DatatypeImpl extends ClassDeclImpl implements Datatype {
 
 	@Override
 	public String compileToStringWithContext(FunctionCall fc, Boolean asPred) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return ExpressionVariableImpl.compileToStringWithContextFunc(this, fc, asPred);
 	}
 
 	@Override
